@@ -1,0 +1,38 @@
+?>
+<script>
+document.getElementById("id_accion_edit").addEventListener("change", function(){
+    //alert(this.value);
+
+	var datos = {
+		"id_accion": this.value
+	};
+
+	$.ajax({
+		data: datos,
+		url: 'ax_option_espacio.php',
+		type: 'post',
+		success: function(respuesta) {
+			$("#id_espacio_edit").html(respuesta);
+		}
+	});
+	$.ajax({
+		data: datos,
+		url: 'ax_option_bien.php',
+		type: 'post',
+		success: function(respuesta) {
+			$("#id_bien_edit").html(respuesta);
+		}
+	});
+	$.ajax({
+		data: datos,
+		url: 'ax_default_periodicidad.php',
+		type: 'post',
+		success: function(respuesta) {
+			if(respuesta) {
+				//document.getElementById("id_periodicidad_edit").value = respuesta;
+				$("#id_periodicidad_edit")[0].value = respuesta;
+			}
+		}
+	});
+});
+</script>
