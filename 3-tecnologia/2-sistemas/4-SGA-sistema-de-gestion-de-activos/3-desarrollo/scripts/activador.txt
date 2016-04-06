@@ -1,0 +1,12 @@
+accion.php
+bien.php
+espacio.php
+metodologia.php
+origen.php
+periodicidad.php
+planta.php
+sector.php
+tarea_plan.php
+tipo_accion.php
+tipo_bien.php
+tipo_espacio.php
