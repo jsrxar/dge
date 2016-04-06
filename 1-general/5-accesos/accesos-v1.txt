@@ -1,0 +1,8 @@
+SERVIDOR-1 (SGI,SGA)
+10.13.18.133
+nac
+hola1234
+
+FACHADAS (GDT)
+Team Viewer: 788011903
+Contraeña: Autorizado2016!
