@@ -1,0 +1,1 @@
+carpeta destinada a espacios
