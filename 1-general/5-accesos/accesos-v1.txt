@@ -1,8 +1,19 @@
-SERVIDOR-1 (SGI,SGA)
-10.13.18.133
-nac
-hola1234
+SERVIDOR-1 (SGI, SGA)
+URL: http://10.13.18.133
+Usuario: nac
+Contraeña: hola1234
 
-FACHADAS (GDT)
+URL: http://10.13.18.133:8080
+Usuario: admin
+Contraeña: hola1234
+
+
+SISTEMA ILUMINACION - FACHADAS (SIL)
 Team Viewer: 788011903
 Contraeña: Autorizado2016!
+
+
+SISTEMA INTEGRACION - EVENTOS - (SI)
+URL: http://gestioneventoscck.minplan.gob.ar/
+Usuario: pmaccari
+Contraseña: cck.2016
