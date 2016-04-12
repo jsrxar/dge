@@ -1,4 +1,4 @@
-<Project productVersion="14.10.0.10" localizationFileName="C:\app\PostgreSQL PHP Generator\lang.es.php" phpDriver="0" outputPath="C:\app\xampp\htdocs\RCDTO" copySystemFiles="true" outputFilesExtension="php" colorSchemeName="Facebook">
+<Project productVersion="14.10.0.10" localizationFileName="C:\app\PostgreSQL PHP Generator\lang.es.php" phpDriver="0" outputPath="\\10.13.18.133\rcdto" copySystemFiles="true" outputFilesExtension="php" colorSchemeName="Facebook">
   <ConnectionOptions host="10.13.18.133" port="5432" login="rcdto" password="ZOO\[/&lt;~" database="RCDTO" client_encoding="">
     <ssh_secure secure="false" port="22" authentication_mode="0"/>
     <http_tunnel tunneling="false" url="">
@@ -2006,6 +2006,9 @@
                 <Format type="number" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
               </ViewProperties>
             </Column>
+            <Column fieldName="ds_tipo_frecuencia" caption="Tipo Frecuencia" visible="true" headerHint="Tipo de medida con que se mide la frecuencia de ejecución." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
           </ViewColumns>
           <SingleRecordViewColumns>
             <Column fieldName="id_periodicidad" caption="Id Periodicidad" visible="true" headerHint="Identificador único de la periodicidad.">
@@ -2019,6 +2022,9 @@
                 <Format type="number" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
               </ViewProperties>
             </Column>
+            <Column fieldName="ds_tipo_frecuencia" caption="Tipo Frecuencia" visible="true" headerHint="Tipo de medida con que se mide la frecuencia de ejecución.">
+              <ViewProperties type="text"/>
+            </Column>
           </SingleRecordViewColumns>
           <EditColumns>
             <Column fieldName="id_periodicidad" caption="Id Periodicidad" visible="true" canSetNull="true" readOnly="true">
@@ -2029,6 +2035,17 @@
             </Column>
             <Column fieldName="va_frecuencia" caption="Frecuencia" visible="true" canSetNull="true">
               <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="ds_tipo_frecuencia" caption="Tipo Frecuencia" visible="true">
+              <EditProperties type="comboBox">
+                <Values>
+                  <Value name="HOUR" caption="Horas"/>
+                  <Value name="DAY" caption="Días"/>
+                  <Value name="MONTH" caption="Meses"/>
+                  <Value name="YEAR" caption="Años"/>
+                </Values>
+                <MFUItems/>
+              </EditProperties>
             </Column>
           </EditColumns>
           <InsertColumns>
@@ -2041,16 +2058,29 @@
             <Column fieldName="va_frecuencia" caption="Frecuencia" visible="true" canSetNull="true" defaultInsertValue="">
               <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
             </Column>
+            <Column fieldName="ds_tipo_frecuencia" caption="Tipo Frecuencia" visible="true" defaultInsertValue="">
+              <EditProperties type="comboBox">
+                <Values>
+                  <Value name="HOUR" caption="Horas"/>
+                  <Value name="DAY" caption="Días"/>
+                  <Value name="MONTH" caption="Meses"/>
+                  <Value name="YEAR" caption="Años"/>
+                </Values>
+                <MFUItems/>
+              </EditProperties>
+            </Column>
           </InsertColumns>
           <SimpleSearchColumns>
             <Column fieldName="id_periodicidad" caption="Id Periodicidad" visible="true"/>
             <Column fieldName="no_periodicidad" caption="Nombre Periodicidad" visible="true"/>
             <Column fieldName="va_frecuencia" caption="Frecuencia" visible="true"/>
+            <Column fieldName="ds_tipo_frecuencia" caption="Tipo Frecuencia" visible="true"/>
           </SimpleSearchColumns>
           <AdvancedSearchColumns>
             <Column fieldName="id_periodicidad" caption="Id Periodicidad" visible="true" useComboBox="false"/>
             <Column fieldName="no_periodicidad" caption="Nombre Periodicidad" visible="true" useComboBox="false"/>
             <Column fieldName="va_frecuencia" caption="Frecuencia" visible="true" useComboBox="false"/>
+            <Column fieldName="ds_tipo_frecuencia" caption="Tipo Frecuencia" visible="true" useComboBox="false"/>
           </AdvancedSearchColumns>
           <ExportColumns>
             <Column fieldName="id_periodicidad" caption="Id Periodicidad" visible="true" headerHint="Identificador único de la periodicidad.">
@@ -2064,6 +2094,9 @@
                 <Format type="number" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
               </ViewProperties>
             </Column>
+            <Column fieldName="ds_tipo_frecuencia" caption="Tipo Frecuencia" visible="true" headerHint="Tipo de medida con que se mide la frecuencia de ejecución.">
+              <ViewProperties type="text"/>
+            </Column>
           </ExportColumns>
           <PrintColumns>
             <Column fieldName="id_periodicidad" caption="Id Periodicidad" visible="true" headerHint="Identificador único de la periodicidad.">
@@ -2076,6 +2109,9 @@
               <ViewProperties type="text">
                 <Format type="number" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
               </ViewProperties>
+            </Column>
+            <Column fieldName="ds_tipo_frecuencia" caption="Tipo Frecuencia" visible="true" headerHint="Tipo de medida con que se mide la frecuencia de ejecución.">
+              <ViewProperties type="text"/>
             </Column>
           </PrintColumns>
         </Columns>
