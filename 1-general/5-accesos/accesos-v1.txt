@@ -17,3 +17,8 @@ SISTEMA INTEGRACION - EVENTOS - (SI)
 URL: http://gestioneventoscck.minplan.gob.ar/
 Usuario: pmaccari
 Contraseña: cck.2016
+
+Sistema de Camaras CCTV
+URL: 192.168.201.241
+Usuario: mesadeayuda
+Contraseña: Cultural2016!
