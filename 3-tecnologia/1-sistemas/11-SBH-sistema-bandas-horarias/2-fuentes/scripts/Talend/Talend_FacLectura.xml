@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema dbmsId="postgres_id">
+    <column comment="" default="" key="false" label="id_lectura"
+        length="-1" nullable="false" originalDbColumnName="id_lectura"
+        originalLength="-1" pattern="" precision="-1"
+        talendType="id_Long" type="INT8"/>
+    <column comment="" default="" key="false" label="id_lugar"
+        length="-1" nullable="false" originalDbColumnName="id_lugar"
+        originalLength="-1" pattern="" precision="-1"
+        talendType="id_Integer" type="INT4"/>
+    <column comment="" default="" key="false" label="id_persona"
+        length="-1" nullable="false" originalDbColumnName="id_persona"
+        originalLength="-1" pattern="" precision="-1"
+        talendType="id_Integer" type="INT4"/>
+    <column comment="" default="" key="false" label="id_fecha"
+        length="-1" nullable="false" originalDbColumnName="id_fecha"
+        originalLength="-1" pattern="" precision="-1"
+        talendType="id_Long" type="INT8"/>
+    <column comment="" default="" key="false" label="id_tipo_persona"
+        length="-1" nullable="false"
+        originalDbColumnName="id_tipo_persona" originalLength="-1"
+        pattern="" precision="-1" talendType="id_Integer" type="INT4"/>
+    <column comment="" default="" key="false" label="id_empresa_area"
+        length="-1" nullable="false"
+        originalDbColumnName="id_empresa_area" originalLength="-1"
+        pattern="" precision="-1" talendType="id_Integer" type="INT4"/>
+    <column comment="" default="" key="false" label="nu_lecturas"
+        length="-1" nullable="false" originalDbColumnName="nu_lecturas"
+        originalLength="-1" pattern="" precision="-1"
+        talendType="id_Integer" type="INT4"/>
+    <column comment="" default="" key="false" label="fe_hora"
+        length="-1" nullable="false" originalDbColumnName="fe_hora"
+        originalLength="-1" pattern="" precision="-1"
+        talendType="id_String" type="VARCHAR"/>
+    <column comment="" default="" key="false" label="no_usuario"
+        length="-1" nullable="true" originalDbColumnName="no_usuario"
+        originalLength="-1" pattern="" precision="-1"
+        talendType="id_String" type="VARCHAR"/>
+    <column comment="" default="" key="false" label="ds_usuario"
+        length="-1" nullable="true" originalDbColumnName="ds_usuario"
+        originalLength="-1" pattern="" precision="-1"
+        talendType="id_String" type="VARCHAR"/>
+    <column comment="" default="" key="false" label="co_lector"
+        length="-1" nullable="true" originalDbColumnName="co_lector"
+        originalLength="-1" pattern="" precision="-1"
+        talendType="id_Integer" type="INT4"/>
+    <column comment="" default="" key="false" label="ds_observaciones"
+        length="-1" nullable="true"
+        originalDbColumnName="ds_observaciones" originalLength="-1"
+        pattern="" precision="-1" talendType="id_String" type="VARCHAR"/>
+    <column comment="" default="" key="false" label="id_carga"
+        length="-1" nullable="false" originalDbColumnName="id_carga"
+        originalLength="-1" pattern="" precision="-1"
+        talendType="id_Long" type="INT8"/>
+</schema>

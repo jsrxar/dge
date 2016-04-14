@@ -1,0 +1,12 @@
+﻿TRUNCATE TABLE stg_lecturas CASCADE;
+TRUNCATE TABLE ods_lectura CASCADE;
+TRUNCATE TABLE ods_persona CASCADE;
+TRUNCATE TABLE fac_lectura CASCADE;
+TRUNCATE TABLE fac_totales CASCADE;
+TRUNCATE TABLE fac_turnos CASCADE;
+TRUNCATE TABLE dim_persona CASCADE;
+TRUNCATE TABLE dim_empresa_area CASCADE;
+TRUNCATE TABLE dim_tipo_acreditacion CASCADE;
+INSERT INTO dim_persona (id_persona, co_dni_cuit, no_persona) VALUES (0, '-1', 'Persona no identificada');
+INSERT INTO dim_empresa_area (id_empresa_area, no_empresa_area) VALUES (0, 'No Definido');
+INSERT INTO dim_tipo_acreditacion (id_tipo_acreditacion, no_tipo_acreditacion) VALUES (0, 'No Definido');

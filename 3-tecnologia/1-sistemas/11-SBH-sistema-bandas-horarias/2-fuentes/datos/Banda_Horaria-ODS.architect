@@ -1,0 +1,604 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<architect-project version="1.0" appversion="1.0.7">
+ <project-name>Banda_Horaria-ODS</project-name>
+ <print-settings numCopies="1" zoom="1.0" pageNumbersPrinted="true" orientation="1" paperWidth="612.0" paperHeight="792.0" leftBorder="50.0" rightBorder="50.0" topBorder="50.0" bottomBorder="50.0" />
+ <project-data-sources>
+  <data-source id="DS0">
+   <property key="Logical" value="RRHH Local" />
+   <property key="Connection Type" value="PostgreSQL" />
+   <property key="JDBC URL" value="jdbc:postgresql://localhost:5432/RRHH" />
+   <property key="UID" value="rrhh" />
+   <property key="PWD" value="rrhh" />
+   <property key="ca.sqlpower.architect.etl.kettle.database" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.port" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.hostname" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.repos.login" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.repos.password" value="" />
+  </data-source>
+  <data-source id="DS2">
+   <property key="Connection Type" value="PostgreSQL" />
+   <property key="Logical" value="PlayPen Database" />
+   <property key="JDBC URL" value="jdbc:postgresql://localhost:5432/rcdto" />
+   <property key="UID" value="rcdto" />
+   <property key="PWD" value="rcdto" />
+   <property key="ca.sqlpower.architect.etl.kettle.database" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.port" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.hostname" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.repos.login" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.repos.password" value="" />
+  </data-source>
+ </project-data-sources>
+ <source-databases>
+  <database id="DB0" populated="true" UUID="73ba7043-9f67-41b9-ab16-93625276b568" dbcs-ref="DS2" name="PlayPen Database" physicalName="RRHH Local" >
+   <catalog id="CAT1" populated="true" UUID="11c7ced1-144c-4cae-8e23-1efd05f6a6af" name="RRHH" nativeTerm="database" physicalName="RRHH" >
+    <schema id="SCH2" populated="false" UUID="cab99b95-4308-4707-8083-30dcac0bf83e" name="information_schema" nativeTerm="schema" physicalName="information_schema" >
+    </schema>
+    <schema id="SCH3" populated="false" UUID="e4ab6ed5-481d-45c1-8262-904da47230e7" name="pg_catalog" nativeTerm="schema" physicalName="pg_catalog" >
+    </schema>
+    <schema id="SCH4" populated="false" UUID="912682b1-2781-4d3e-aac2-a072eacbbdd0" name="pg_toast_temp_1" nativeTerm="schema" physicalName="pg_toast_temp_1" >
+    </schema>
+    <schema id="SCH5" populated="true" UUID="02610728-f44e-4f11-9043-dea786a0729b" name="public" nativeTerm="schema" physicalName="public" >
+     <table id="TAB6" populated="true" UUID="c0045d69-ed99-45f7-8a31-9567efa15540" name="stg_banda_horaria" objectType="TABLE" physicalName="stg_banda_horaria" >
+      <remarks>Carga masiva de archivos de Banda Horaria CCK.</remarks>
+      <folder id="FOLTAB61" populated="true" name="Columns" physicalName="Columns" type="1">
+       <column id="COL7" populated="true" UUID="89bf9dc4-4af6-4e22-9f56-09ed2ec12ae2" autoIncrement="false" defaultValue="nextval(&apos;carga_seq&apos;::regclass)" name="id_carga" nullable="0" physicalName="id_carga" precision="19" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="bigserial" type="-5" >
+        <remarks>Identificador único del registro cargado.</remarks>
+       </column>
+       <column id="COL8" populated="true" UUID="82b25b58-2fa7-4e15-ba4e-32abbb4353e2" autoIncrement="false" defaultValue="NULL::character varying" name="tx_codigo" nullable="1" physicalName="tx_codigo" precision="10" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks>Código de carga.</remarks>
+       </column>
+       <column id="COL9" populated="true" UUID="bacdfbb7-140a-4df5-8168-66ee3d712768" autoIncrement="false" defaultValue="NULL::character varying" name="tx_tipo" nullable="1" physicalName="tx_tipo" precision="50" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks>Tipo de la lectura cargada.</remarks>
+       </column>
+       <column id="COL10" populated="true" UUID="a30d2053-7e74-4c48-8a6f-11a9be91eaeb" autoIncrement="false" defaultValue="NULL::character varying" name="tx_nombre" nullable="1" physicalName="tx_nombre" precision="50" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks>Nombre de la persona de la lectura cargada.</remarks>
+       </column>
+       <column id="COL11" populated="true" UUID="c3e2823f-96ef-42fa-872e-4bb287c442b8" autoIncrement="false" defaultValue="NULL::character varying" name="tx_apellido" nullable="1" physicalName="tx_apellido" precision="50" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks>Apellido de la persona de la lectura cargada.</remarks>
+       </column>
+       <column id="COL12" populated="true" UUID="5b297d36-80b4-4a34-b273-ba1b36d7a856" autoIncrement="false" defaultValue="NULL::character varying" name="tx_empresa_area" nullable="1" physicalName="tx_empresa_area" precision="50" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks>Empresa o Área de la lectura cargada.</remarks>
+       </column>
+       <column id="COL13" populated="true" UUID="1566c366-c139-4cdf-92d6-bec2f3fa24a8" autoIncrement="false" defaultValue="NULL::character varying" name="tx_dni_cuit" nullable="1" physicalName="tx_dni_cuit" precision="12" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks>DNI o CUIT de la persona de la lectura cargada.</remarks>
+       </column>
+       <column id="COL14" populated="true" UUID="39fdcb89-b6fe-4412-acf5-308fbbe60d8f" autoIncrement="false" defaultValue="NULL::character varying" name="tx_art" nullable="1" physicalName="tx_art" precision="50" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks>ART de la persona de la lectura cargada.</remarks>
+       </column>
+       <column id="COL15" populated="true" UUID="4ecb0a30-b15a-4659-a513-415de31128e5" autoIncrement="false" defaultValue="NULL::character varying" name="tx_poliza" nullable="1" physicalName="tx_poliza" precision="50" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks>Póliza de ART de la persona de la lectura cargada.</remarks>
+       </column>
+       <column id="COL16" populated="true" UUID="9cf53677-e12d-4d0a-b3e7-994f1bee97a0" autoIncrement="false" defaultValue="NULL::character varying" name="tx_vigencia_poliza" nullable="1" physicalName="tx_vigencia_poliza" precision="10" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks>Vigencia de la póliza de la pesona.</remarks>
+       </column>
+       <column id="COL17" populated="true" UUID="a9f84dc2-e787-4312-97e0-2e70bcbf3c83" autoIncrement="false" defaultValue="NULL::character varying" name="tx_visita" nullable="1" physicalName="tx_visita" precision="50" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks>Persona visitada.</remarks>
+       </column>
+       <column id="COL18" populated="true" UUID="30632e0e-ad5c-4c2f-bb40-0764f800e91d" autoIncrement="false" defaultValue="NULL::character varying" name="tx_vencimiento" nullable="1" physicalName="tx_vencimiento" precision="10" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks>Vencimiento de la tarjeta de ingreso.</remarks>
+       </column>
+       <column id="COL19" populated="true" UUID="2b565340-c09a-477c-a36d-fd0edb02c79c" autoIncrement="false" defaultValue="NULL::character varying" name="tx_observaciones" nullable="1" physicalName="tx_observaciones" precision="100" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks>Observaciones principales.</remarks>
+       </column>
+       <column id="COL20" populated="true" UUID="dc9fe09e-52fb-416a-942c-1ed86093040a" autoIncrement="false" defaultValue="NULL::character varying" name="tx_equipamiento_1" nullable="1" physicalName="tx_equipamiento_1" precision="100" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks>Detalle de equipamiento (1).</remarks>
+       </column>
+       <column id="COL21" populated="true" UUID="ebd352a7-909c-4edd-ad1e-6f295858d251" autoIncrement="false" defaultValue="NULL::character varying" name="tx_equipamiento_2" nullable="1" physicalName="tx_equipamiento_2" precision="100" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks>Detalle de equipamiento (2).</remarks>
+       </column>
+       <column id="COL22" populated="true" UUID="f2140b1b-9581-4323-81be-4aa9a0931b2b" autoIncrement="false" defaultValue="NULL::character varying" name="tx_equipamiento_3" nullable="1" physicalName="tx_equipamiento_3" precision="100" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks>Detalle de equipamiento (3).</remarks>
+       </column>
+       <column id="COL23" populated="true" UUID="2657ef2c-964a-4f73-bc1c-08194fcd0723" autoIncrement="false" defaultValue="NULL::character varying" name="tx_observacion_1" nullable="1" physicalName="tx_observacion_1" precision="100" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks>Otras observaciones (1).</remarks>
+       </column>
+       <column id="COL24" populated="true" UUID="c494f6b9-3fb0-41a7-bddc-b5746b8f6ae8" autoIncrement="false" defaultValue="NULL::character varying" name="tx_observacion_2" nullable="1" physicalName="tx_observacion_2" precision="100" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks>Otras observaciones (2).</remarks>
+       </column>
+       <column id="COL25" populated="true" UUID="ad35a936-8209-4365-b400-204e1a83c331" autoIncrement="false" defaultValue="NULL::character varying" name="tx_observacion_3" nullable="1" physicalName="tx_observacion_3" precision="100" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks>Otras observaciones (3).</remarks>
+       </column>
+       <column id="COL26" populated="true" UUID="0a16b1ba-a403-4ef5-b5b9-6663ca8fe098" autoIncrement="false" defaultValue="NULL::character varying" name="tx_cantidad" nullable="1" physicalName="tx_cantidad" precision="5" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks>Cantidad cargada en la lectura.</remarks>
+       </column>
+       <column id="COL27" populated="true" UUID="78b4d18a-69cd-4951-8bf1-c787ba54b0e9" autoIncrement="false" defaultValue="NULL::character varying" name="tx_lectura" nullable="1" physicalName="tx_lectura" precision="20" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks>Fecha y Hora de la lectura.</remarks>
+       </column>
+       <column id="COL28" populated="true" UUID="1c7bb97c-0684-4f21-8c0f-9cbac6df83fb" autoIncrement="false" defaultValue="NULL::character varying" name="tx_usuario_lectura" nullable="1" physicalName="tx_usuario_lectura" precision="5" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks>Usuario de la lectura.</remarks>
+       </column>
+       <column id="COL29" populated="true" UUID="bcd748d1-2d19-4f5a-a78d-84fbf0792714" autoIncrement="false" defaultValue="" name="no_archivo" nullable="1" physicalName="no_archivo" precision="100" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks>Nombre del archivo cargado.</remarks>
+       </column>
+       <column id="COL30" populated="true" UUID="a489537e-a0db-4c32-8b0c-0ed07efd277a" autoIncrement="false" defaultValue="" name="co_lugar" nullable="1" physicalName="co_lugar" precision="1" referenceCount="1" scale="0" sourceDataTypeName="bpchar" type="1" >
+        <remarks>Código de lugar.</remarks>
+       </column>
+       <column id="COL31" populated="true" UUID="69e3ddb5-c24e-4054-90c0-b5b27ad5c78b" autoIncrement="false" defaultValue="" name="fe_carga" nullable="1" physicalName="fe_carga" precision="29" referenceCount="1" scale="6" sourceDataTypeName="timestamp" type="93" >
+        <remarks>Fecha y hora de carga del archivo.</remarks>
+       </column>
+       <column id="COL32" populated="true" UUID="da65ab59-ddab-493b-a767-314afdf20a46" autoIncrement="false" defaultValue="" name="co_estado_proceso" nullable="1" physicalName="co_estado_proceso" precision="1" referenceCount="1" scale="0" sourceDataTypeName="bpchar" type="1" >
+        <remarks>Estado de procesamiento del registro.</remarks>
+       </column>
+       </folder>
+       <folder id="FOLTAB63" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+       </folder>
+       <folder id="FOLTAB62" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+       </folder>
+       <folder id="FOLTAB64" populated="true" name="Indices" physicalName="Indices" type="4">
+       <index id="IDX33" populated="true" UUID="67de9281-06ea-4e2e-b611-45ac6e0dc146" clustered="false" index-type="BTREE" name="stg_banda_horaria_pk" physicalName="stg_banda_horaria_pk" primaryKeyIndex="true" unique="true" >
+        <index-column id="IDC34" populated="true" UUID="073f3686-ba81-4051-a104-2e7622b199c2" ascendingOrDescending="UNSPECIFIED" column-ref="COL7" name="id_carga" physicalName="id_carga" />
+       </index>
+      </folder>
+     </table>
+     <table id="TAB35" populated="true" UUID="0cd68acf-89bd-4ade-aa14-0ad2afd74171" name="dim_fecha" objectType="TABLE" physicalName="dim_fecha" >
+      <remarks>Fecha de la lectura.</remarks>
+      <folder id="FOLTAB351" populated="true" name="Columns" physicalName="Columns" type="1">
+       <column id="COL36" populated="true" UUID="03377289-aec3-4baa-ad3d-f1a23aaf85b1" autoIncrement="false" defaultValue="" name="id_fecha" nullable="0" physicalName="id_fecha" precision="20" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="int8" type="-5" >
+        <remarks>Identificador único de la fecha.</remarks>
+       </column>
+       <column id="COL37" populated="true" UUID="51b31a1c-e3bb-4783-b4a8-5cf08de04770" autoIncrement="false" defaultValue="" name="fe_fecha" nullable="0" physicalName="fe_fecha" precision="10" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks>Fecha real en formato de fecha.</remarks>
+       </column>
+       <column id="COL38" populated="true" UUID="5fe6b210-d24a-40d5-9b22-3cdea386c6cd" autoIncrement="false" defaultValue="" name="nu_anio" nullable="0" physicalName="nu_anio" precision="10" referenceCount="1" scale="0" sourceDataTypeName="int4" type="4" >
+        <remarks>Año de la fecha.</remarks>
+       </column>
+       <column id="COL39" populated="true" UUID="b5ec47d6-5a08-4303-b0c8-6bdab8ce61f8" autoIncrement="false" defaultValue="" name="nu_mes" nullable="0" physicalName="nu_mes" precision="10" referenceCount="1" scale="0" sourceDataTypeName="int4" type="4" >
+        <remarks>Mes de la fecha.</remarks>
+       </column>
+       <column id="COL40" populated="true" UUID="683ac755-5a53-4993-a782-7325e9bf1111" autoIncrement="false" defaultValue="" name="no_mes" nullable="0" physicalName="no_mes" precision="20" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks>Nombre del mes de la fecha.</remarks>
+       </column>
+       <column id="COL41" populated="true" UUID="1d24a3c7-d951-4d4c-9a71-468f7c082066" autoIncrement="false" defaultValue="" name="nu_dia" nullable="0" physicalName="nu_dia" precision="10" referenceCount="1" scale="0" sourceDataTypeName="int4" type="4" >
+        <remarks>Número del día en el mes.</remarks>
+       </column>
+       <column id="COL42" populated="true" UUID="66e4f0ea-beab-4a9e-8e63-44015b423f7e" autoIncrement="false" defaultValue="" name="nu_dia_semana" nullable="0" physicalName="nu_dia_semana" precision="10" referenceCount="1" scale="0" sourceDataTypeName="int4" type="4" >
+        <remarks>Número del día de la semana.</remarks>
+       </column>
+       <column id="COL43" populated="true" UUID="830950ce-7f1f-45a0-b70e-092273528896" autoIncrement="false" defaultValue="" name="no_dia_semana" nullable="0" physicalName="no_dia_semana" precision="20" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks>Nombre del día de la semana.</remarks>
+       </column>
+       <column id="COL44" populated="true" UUID="8373626a-4dac-41a3-ab09-7f2396c8c04b" autoIncrement="false" defaultValue="" name="nu_semana_anio" nullable="0" physicalName="nu_semana_anio" precision="10" referenceCount="1" scale="0" sourceDataTypeName="int4" type="4" >
+        <remarks>Número de semana en el año.</remarks>
+       </column>
+       <column id="COL45" populated="true" UUID="5e0d8a14-b3d1-432c-b894-3ce8e52120e5" autoIncrement="false" defaultValue="" name="nu_dia_ano" nullable="0" physicalName="nu_dia_ano" precision="10" referenceCount="1" scale="0" sourceDataTypeName="int4" type="4" >
+        <remarks>Número de día en el año.</remarks>
+       </column>
+       <column id="COL46" populated="true" UUID="748a059c-afbd-4adb-a0df-df5bf9490fbd" autoIncrement="false" defaultValue="" name="nu_cuatrimestre" nullable="0" physicalName="nu_cuatrimestre" precision="10" referenceCount="1" scale="0" sourceDataTypeName="int4" type="4" >
+        <remarks>Número de cuatrimestre.</remarks>
+       </column>
+       <column id="COL47" populated="true" UUID="0601bb3e-4180-44aa-9672-78952e808296" autoIncrement="false" defaultValue="&apos;No&apos;::character varying" name="fl_fin_semana" nullable="0" physicalName="fl_fin_semana" precision="2" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks>Flag indicativo de fin de semana.</remarks>
+       </column>
+       <column id="COL48" populated="true" UUID="05d9cf4e-91f1-4347-a67c-2bad08fda276" autoIncrement="false" defaultValue="&apos;No&apos;::character varying" name="fl_feriado" nullable="0" physicalName="fl_feriado" precision="2" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks>Flag indicativo de feriado.</remarks>
+       </column>
+       <column id="COL49" populated="true" UUID="67eaf98c-d34b-4f88-b94f-b2379919cdcc" autoIncrement="false" defaultValue="" name="no_estacion" nullable="0" physicalName="no_estacion" precision="20" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks>Estación del año.</remarks>
+       </column>
+       <column id="COL50" populated="true" UUID="4260097a-17de-4958-9945-59511f55f17c" autoIncrement="false" defaultValue="" name="no_fecha" nullable="0" physicalName="no_fecha" precision="30" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks>Nombre completo de la fecha.</remarks>
+       </column>
+       </folder>
+       <folder id="FOLTAB353" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+       </folder>
+       <folder id="FOLTAB352" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+       </folder>
+       <folder id="FOLTAB354" populated="true" name="Indices" physicalName="Indices" type="4">
+       <index id="IDX51" populated="true" UUID="73b6f977-b88c-4291-a58f-33da800844e4" clustered="false" index-type="BTREE" name="dim_fecha_pk" physicalName="dim_fecha_pk" primaryKeyIndex="true" unique="true" >
+        <index-column id="IDC52" populated="true" UUID="cbbfb50d-0e58-4a40-96e9-9bf1274be3b0" ascendingOrDescending="UNSPECIFIED" column-ref="COL36" name="id_fecha" physicalName="id_fecha" />
+       </index>
+      </folder>
+     </table>
+     <table id="TAB53" populated="false" UUID="ad78b264-1353-457a-8d1b-68718ab56263" name="dim_lugar" objectType="TABLE" physicalName="dim_lugar" >
+      <remarks>Dimensión de lugares de lectura.</remarks>
+      <folder id="FOLTAB531" populated="false" name="Columns" physicalName="Columns" type="1">
+       <index id="IDX54" populated="true" UUID="77ed73ac-f58a-435d-a83c-8fb053f7cde7" clustered="false" name="dim_lugar_pk" physicalName="dim_lugar_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+     <table id="TAB55" populated="false" UUID="79788522-1a61-4e1b-be58-5b5a864a5e38" name="dim_persona" objectType="TABLE" physicalName="dim_persona" >
+      <remarks>Dimensión de personas.</remarks>
+      <folder id="FOLTAB551" populated="false" name="Columns" physicalName="Columns" type="1">
+       <index id="IDX56" populated="true" UUID="4c42b26a-b2a4-4f78-bdb4-f1a368010fda" clustered="false" name="dim_persona_pk" physicalName="dim_persona_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+     <table id="TAB57" populated="false" UUID="16dd8f13-ef25-41dc-b9a9-bfb8a8d43b62" name="dim_tipo_persona" objectType="TABLE" physicalName="dim_tipo_persona" >
+      <remarks>Dimensión de tipo de personas.</remarks>
+      <folder id="FOLTAB571" populated="false" name="Columns" physicalName="Columns" type="1">
+       <index id="IDX58" populated="true" UUID="59ca5abe-6a8d-4dfc-8e93-0268a27eb1a9" clustered="false" name="dim_tipo_persona_pk" physicalName="dim_tipo_persona_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+     <table id="TAB59" populated="false" UUID="0aaf5c2a-c355-4a93-9681-aa3a8e986206" name="fac_lectura" objectType="TABLE" physicalName="fac_lectura" >
+      <remarks>Tabla de hecho de lecturas.</remarks>
+      <folder id="FOLTAB591" populated="true" name="Columns" physicalName="Columns" type="1">
+       <column id="COL60" populated="true" UUID="57ed6bdf-48e5-40de-8bee-a1b10cb114a3" autoIncrement="false" defaultValue="nextval(&apos;carga_seq&apos;::regclass)" name="id_lectura" nullable="0" physicalName="id_lectura" precision="19" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="bigserial" type="-5" >
+        <remarks>Identificador único de la lectura.</remarks>
+       </column>
+       <column id="COL61" populated="true" UUID="e97de658-1a53-4a4d-94d1-f06186593bd8" autoIncrement="false" defaultValue="" name="id_lugar" nullable="0" physicalName="id_lugar" precision="10" referenceCount="1" scale="0" sourceDataTypeName="int4" type="4" >
+        <remarks>Identificador único de lugar de lectura.</remarks>
+       </column>
+       <column id="COL62" populated="true" UUID="beb198fa-af1e-422c-b72b-5cee6c6b90af" autoIncrement="false" defaultValue="" name="id_persona" nullable="0" physicalName="id_persona" precision="10" referenceCount="1" scale="0" sourceDataTypeName="int4" type="4" >
+        <remarks>Identificador único de la persona.</remarks>
+       </column>
+       <column id="COL63" populated="true" UUID="df9cc8ec-26c1-491e-84ef-80290e95f46f" autoIncrement="false" defaultValue="" name="id_tipo_persona" nullable="0" physicalName="id_tipo_persona" precision="10" referenceCount="1" scale="0" sourceDataTypeName="int4" type="4" >
+        <remarks>Identificador único dl tipo de persona.</remarks>
+       </column>
+       <column id="COL64" populated="true" UUID="d2c053d7-2a8d-461d-8907-f3795bde93e3" autoIncrement="false" defaultValue="" name="id_fecha" nullable="0" physicalName="id_fecha" precision="20" referenceCount="2" scale="0" sourceDataTypeName="int8" type="-5" >
+        <remarks>Identificador único de la fecha.</remarks>
+       </column>
+       <column id="COL65" populated="true" UUID="722f9536-e9bf-4206-9b20-a05dcb829f3e" autoIncrement="false" defaultValue="" name="fe_hora" nullable="0" physicalName="fe_hora" precision="10" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks>Fecha y Hora de la lectura.</remarks>
+       </column>
+       <column id="COL66" populated="true" UUID="ca4919cb-397c-421e-bfa8-e316a5e6d518" autoIncrement="false" defaultValue="NULL::character varying" name="ds_observaciones" nullable="1" physicalName="ds_observaciones" precision="400" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks>Observaciones de la lectura.</remarks>
+       </column>
+       <column id="COL67" populated="true" UUID="b3538e35-2394-47b0-a364-dfb5885e9f41" autoIncrement="false" defaultValue="" name="id_empresa_area" nullable="1" physicalName="id_empresa_area" precision="10" referenceCount="1" scale="0" sourceDataTypeName="int4" type="4" >
+        <remarks>Identificador único de Empresa o Área.</remarks>
+       </column>
+       <column id="COL68" populated="true" UUID="ad5d5280-f752-4808-a2e7-3cfd47a851ec" autoIncrement="false" defaultValue="1" name="nu_lecturas" nullable="0" physicalName="nu_lecturas" precision="10" referenceCount="1" scale="0" sourceDataTypeName="int4" type="4" >
+        <remarks>Cantidad de lecturas.</remarks>
+       </column>
+       <column id="COL69" populated="true" UUID="f4517ff9-6365-49dc-8df8-0af4b624b6a6" autoIncrement="false" defaultValue="" name="no_usuario" nullable="1" physicalName="no_usuario" precision="10" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks>Usuário de la lectura.</remarks>
+       </column>
+       <column id="COL70" populated="true" UUID="9d020a63-0034-4081-8102-3c55b81871ac" autoIncrement="false" defaultValue="" name="ds_usuario" nullable="1" physicalName="ds_usuario" precision="50" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks>Descripción de usuário de la lectura.</remarks>
+       </column>
+       <column id="COL71" populated="true" UUID="1fe0d24b-9e18-4edd-bda4-ebe8395ff1ff" autoIncrement="false" defaultValue="" name="co_lector" nullable="1" physicalName="co_lector" precision="10" referenceCount="1" scale="0" sourceDataTypeName="int4" type="4" >
+        <remarks>Código de lector.</remarks>
+       </column>
+       </folder>
+       <folder id="FOLTAB593" populated="false" name="Exported Keys" physicalName="Exported Keys" type="3">
+       </folder>
+       <folder id="FOLTAB592" populated="false" name="Imported Keys" physicalName="Imported Keys" type="2">
+       </folder>
+       <folder id="FOLTAB594" populated="true" name="Indices" physicalName="Indices" type="4">
+       <index id="IDX72" populated="true" UUID="87f400fd-f171-4f39-ad2d-05c37e09c4bd" clustered="false" index-type="BTREE" name="fac_lectura_pk" physicalName="fac_lectura_pk" primaryKeyIndex="true" unique="true" >
+        <index-column id="IDC73" populated="true" UUID="30cb3462-b57e-4840-a336-eb2613fe7a7f" ascendingOrDescending="UNSPECIFIED" column-ref="COL60" name="id_lectura" physicalName="id_lectura" />
+       </index>
+      </folder>
+     </table>
+     <table id="TAB74" populated="false" UUID="1ebada1f-df72-47e6-8b00-16cf9a8f0994" name="fac_totales" objectType="TABLE" physicalName="fac_totales" >
+      <remarks>Tabla de hecho de totales de horas de las lecturas.</remarks>
+      <folder id="FOLTAB741" populated="false" name="Columns" physicalName="Columns" type="1">
+       <index id="IDX75" populated="true" UUID="3b3f13bc-62f6-49ba-8ed8-17dc59017b41" clustered="false" name="fac_totales_pk" physicalName="fac_totales_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+     <table id="TAB76" populated="true" UUID="ee22b1e6-5478-468e-9c7f-9e0c7670a087" name="stg_fichadas" objectType="TABLE" physicalName="stg_fichadas" >
+      <remarks>Carga masiva de archivos de fichadas.</remarks>
+      <folder id="FOLTAB761" populated="true" name="Columns" physicalName="Columns" type="1">
+       <column id="COL77" populated="true" UUID="8fba683e-7e7c-40be-829a-3aad866298bf" autoIncrement="false" defaultValue="nextval(&apos;carga_seq&apos;::regclass)" name="id_carga" nullable="0" physicalName="id_carga" precision="19" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="bigserial" type="-5" >
+        <remarks></remarks>
+       </column>
+       <column id="COL78" populated="true" UUID="00ac1cc7-44ea-472e-9866-ee64dd82855a" autoIncrement="false" defaultValue="" name="tx_fecha" nullable="1" physicalName="tx_fecha" precision="20" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks></remarks>
+       </column>
+       <column id="COL79" populated="true" UUID="b6b7bc41-d9aa-4f2a-a68c-f7795683b4ef" autoIncrement="false" defaultValue="" name="tx_legajo" nullable="1" physicalName="tx_legajo" precision="20" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks></remarks>
+       </column>
+       <column id="COL80" populated="true" UUID="aa4cefca-f3a0-4d87-a378-d8456fa479c8" autoIncrement="false" defaultValue="" name="tx_usuario" nullable="1" physicalName="tx_usuario" precision="100" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks></remarks>
+       </column>
+       <column id="COL81" populated="true" UUID="b328e45e-bad5-41fe-83f2-614c08928aee" autoIncrement="false" defaultValue="" name="tx_entrada_hora" nullable="1" physicalName="tx_entrada_hora" precision="20" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks></remarks>
+       </column>
+       <column id="COL82" populated="true" UUID="0dfb700c-21eb-4ebc-bd1e-d52222d203d0" autoIncrement="false" defaultValue="" name="tx_entrada_usuario" nullable="1" physicalName="tx_entrada_usuario" precision="10" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks></remarks>
+       </column>
+       <column id="COL83" populated="true" UUID="2e25a4a2-7f47-4e45-868e-3e78f1d216e3" autoIncrement="false" defaultValue="" name="tx_entrada_descrip" nullable="1" physicalName="tx_entrada_descrip" precision="50" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks></remarks>
+       </column>
+       <column id="COL84" populated="true" UUID="0776e844-ab8a-4a6d-a99c-cc7ff6a4a7a6" autoIncrement="false" defaultValue="" name="tx_entrada_lector" nullable="1" physicalName="tx_entrada_lector" precision="10" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks></remarks>
+       </column>
+       <column id="COL85" populated="true" UUID="08e55b74-0a03-44c2-97a4-b1f5bd727699" autoIncrement="false" defaultValue="" name="tx_entrada_lista" nullable="1" physicalName="tx_entrada_lista" precision="20" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks></remarks>
+       </column>
+       <column id="COL86" populated="true" UUID="006bebd7-593b-49be-ac5a-bd5114f67315" autoIncrement="false" defaultValue="" name="tx_salida_hora" nullable="1" physicalName="tx_salida_hora" precision="20" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks></remarks>
+       </column>
+       <column id="COL87" populated="true" UUID="dd5e60e5-33a7-42e4-9e7b-a4255883a91c" autoIncrement="false" defaultValue="" name="tx_salida_usuario" nullable="1" physicalName="tx_salida_usuario" precision="10" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks></remarks>
+       </column>
+       <column id="COL88" populated="true" UUID="51807677-e884-4aba-b4d4-ca8566aff10d" autoIncrement="false" defaultValue="" name="tx_salida_descrip" nullable="1" physicalName="tx_salida_descrip" precision="50" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks></remarks>
+       </column>
+       <column id="COL89" populated="true" UUID="c325b1a3-fb01-4632-9a08-4cae9e7898c7" autoIncrement="false" defaultValue="" name="tx_salida_lector" nullable="1" physicalName="tx_salida_lector" precision="10" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks></remarks>
+       </column>
+       <column id="COL90" populated="true" UUID="d22e8813-0456-43ab-9f48-b26f16cea088" autoIncrement="false" defaultValue="" name="tx_salida_lista" nullable="1" physicalName="tx_salida_lista" precision="20" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks></remarks>
+       </column>
+       <column id="COL91" populated="true" UUID="3ba69afd-5b90-4b91-8f69-e6508e6d02f5" autoIncrement="false" defaultValue="" name="tx_total_hs" nullable="1" physicalName="tx_total_hs" precision="20" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks></remarks>
+       </column>
+       <column id="COL92" populated="true" UUID="3ac60fa0-7b64-46ba-9ae4-26f5942983b4" autoIncrement="false" defaultValue="" name="tx_observacion" nullable="1" physicalName="tx_observacion" precision="100" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks></remarks>
+       </column>
+       <column id="COL93" populated="true" UUID="8e2cd26e-d5d3-4b53-a987-3955483794b5" autoIncrement="false" defaultValue="" name="tx_dni" nullable="1" physicalName="tx_dni" precision="20" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks></remarks>
+       </column>
+       <column id="COL94" populated="true" UUID="0723d0ce-abfa-4f9e-8faf-1d9dcac72a40" autoIncrement="false" defaultValue="" name="tx_empresa_area" nullable="1" physicalName="tx_empresa_area" precision="100" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks></remarks>
+       </column>
+       <column id="COL95" populated="true" UUID="6094f268-a568-4991-b562-de259879b79a" autoIncrement="false" defaultValue="" name="tx_tipo_acreditac" nullable="1" physicalName="tx_tipo_acreditac" precision="100" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks></remarks>
+       </column>
+       <column id="COL96" populated="true" UUID="042f2fc6-2a5a-47c6-ba0d-4cc2f989896d" autoIncrement="false" defaultValue="" name="no_archivo" nullable="1" physicalName="no_archivo" precision="100" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks>Nombre del archivo cargado.</remarks>
+       </column>
+       <column id="COL97" populated="true" UUID="35d5596b-75e7-4f1c-b4e3-7c096bc14f20" autoIncrement="false" defaultValue="" name="co_lugar" nullable="1" physicalName="co_lugar" precision="1" referenceCount="1" scale="0" sourceDataTypeName="bpchar" type="1" >
+        <remarks>Código de lugar.</remarks>
+       </column>
+       <column id="COL98" populated="true" UUID="7ba7c8b6-021b-4cbd-afc6-b62ce509be0b" autoIncrement="false" defaultValue="" name="fe_carga" nullable="1" physicalName="fe_carga" precision="29" referenceCount="1" scale="6" sourceDataTypeName="timestamp" type="93" >
+        <remarks>Fecha y hora de carga del archivo.</remarks>
+       </column>
+       <column id="COL99" populated="true" UUID="9782a448-ce52-4939-828d-6d40493c6f77" autoIncrement="false" defaultValue="" name="co_estado_proceso" nullable="1" physicalName="co_estado_proceso" precision="1" referenceCount="1" scale="0" sourceDataTypeName="bpchar" type="1" >
+        <remarks>Estado de procesamiento del registro.</remarks>
+       </column>
+       </folder>
+       <folder id="FOLTAB763" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+       </folder>
+       <folder id="FOLTAB762" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+       </folder>
+       <folder id="FOLTAB764" populated="true" name="Indices" physicalName="Indices" type="4">
+       <index id="IDX100" populated="true" UUID="43e00607-1678-4023-8a83-41aac264998b" clustered="false" index-type="BTREE" name="stg_fichadas_pk" physicalName="stg_fichadas_pk" primaryKeyIndex="true" unique="true" >
+        <index-column id="IDC101" populated="true" UUID="49ed8e06-5e19-448b-862d-9f5e1be3db43" ascendingOrDescending="UNSPECIFIED" column-ref="COL77" name="id_carga" physicalName="id_carga" />
+       </index>
+      </folder>
+     </table>
+     <table id="TAB102" populated="false" UUID="b7c55849-d2bf-403b-aa74-9b8b61fd4ae5" name="dim_empresa_area" objectType="TABLE" physicalName="dim_empresa_area" >
+      <remarks>Dimensión de Empresas / Áreas.</remarks>
+      <folder id="FOLTAB1021" populated="false" name="Columns" physicalName="Columns" type="1">
+       <index id="IDX103" populated="true" UUID="ef96553d-5f69-4cfc-a174-5d573c779b63" clustered="false" name="dim_empresa_area_pk" physicalName="dim_empresa_area_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+     <table id="TAB104" populated="true" UUID="80185ef6-c17a-4b56-8f8b-f87b5c36df99" name="stg_banda_ciardi" objectType="TABLE" physicalName="stg_banda_ciardi" >
+      <remarks></remarks>
+      <folder id="FOLTAB1041" populated="true" name="Columns" physicalName="Columns" type="1">
+       <column id="COL105" populated="true" UUID="ce498daf-871e-4643-8611-87b7547d7557" autoIncrement="false" defaultValue="nextval(&apos;carga_seq&apos;::regclass)" name="id_carga" nullable="0" physicalName="id_carga" precision="19" referenceCount="1" scale="0" sourceDataTypeName="bigserial" type="-5" >
+        <remarks></remarks>
+       </column>
+       <column id="COL106" populated="true" UUID="d043d4f7-b861-42c0-b332-4ed7aa67ec23" autoIncrement="false" defaultValue="" name="no_archivo" nullable="1" physicalName="no_archivo" precision="100" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks></remarks>
+       </column>
+       <column id="COL107" populated="true" UUID="11a0eac1-de8a-4805-804a-f18e508acc41" autoIncrement="false" defaultValue="" name="co_lugar" nullable="1" physicalName="co_lugar" precision="1" referenceCount="1" scale="0" sourceDataTypeName="bpchar" type="1" >
+        <remarks></remarks>
+       </column>
+       <column id="COL108" populated="true" UUID="a94c35af-c443-4e11-b123-762307eb914a" autoIncrement="false" defaultValue="" name="fe_carga" nullable="1" physicalName="fe_carga" precision="29" referenceCount="1" scale="6" sourceDataTypeName="timestamp" type="93" >
+        <remarks></remarks>
+       </column>
+       <column id="COL109" populated="true" UUID="b95d9a3c-9da2-444e-a74b-3ccf1c3d3c9f" autoIncrement="false" defaultValue="" name="co_estado_proceso" nullable="1" physicalName="co_estado_proceso" precision="1" referenceCount="1" scale="0" sourceDataTypeName="bpchar" type="1" >
+        <remarks></remarks>
+       </column>
+       <column id="COL110" populated="true" UUID="c0789195-fe97-49a4-9e06-b029e1a892c8" autoIncrement="false" defaultValue="NULL::character varying" name="tx_dia" nullable="1" physicalName="tx_dia" precision="20" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks></remarks>
+       </column>
+       <column id="COL111" populated="true" UUID="6a4053b6-8020-4a0e-a12a-bb3b763f677f" autoIncrement="false" defaultValue="NULL::character varying" name="tx_molinete" nullable="1" physicalName="tx_molinete" precision="10" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks></remarks>
+       </column>
+       <column id="COL112" populated="true" UUID="55d56789-17f0-4522-a470-2388827bffb9" autoIncrement="false" defaultValue="NULL::character varying" name="tx_tipo" nullable="1" physicalName="tx_tipo" precision="1" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks></remarks>
+       </column>
+       <column id="COL113" populated="true" UUID="161909f0-ecd0-46b4-9395-25843249d272" autoIncrement="false" defaultValue="NULL::character varying" name="tx_ds_molinete" nullable="1" physicalName="tx_ds_molinete" precision="20" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks></remarks>
+       </column>
+       <column id="COL114" populated="true" UUID="d6c06092-b61b-41a4-9f22-c50d82e0f523" autoIncrement="false" defaultValue="NULL::character varying" name="tx_hora" nullable="1" physicalName="tx_hora" precision="20" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks></remarks>
+       </column>
+       <column id="COL115" populated="true" UUID="3100ab03-024d-4914-ae61-611f44ce034f" autoIncrement="false" defaultValue="NULL::character varying" name="tx_tarjeta" nullable="1" physicalName="tx_tarjeta" precision="20" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks></remarks>
+       </column>
+       <column id="COL116" populated="true" UUID="55a4185b-d6f6-48d2-b814-48523d4fe5f9" autoIncrement="false" defaultValue="NULL::character varying" name="tx_agente" nullable="1" physicalName="tx_agente" precision="50" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks></remarks>
+       </column>
+       <column id="COL117" populated="true" UUID="03ba5e73-031d-4feb-8e29-b87d163264ee" autoIncrement="false" defaultValue="NULL::character varying" name="tx_cruce" nullable="1" physicalName="tx_cruce" precision="20" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks></remarks>
+       </column>
+       </folder>
+       <folder id="FOLTAB1043" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+       </folder>
+       <folder id="FOLTAB1042" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+       </folder>
+       <folder id="FOLTAB1044" populated="true" name="Indices" physicalName="Indices" type="4">
+       <index id="IDX118" populated="true" UUID="807772db-0c35-449a-b045-fddcec80a39b" clustered="false" name="stg_banda_ciardi_pk" physicalName="stg_banda_ciardi_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+    </schema>
+   </catalog>
+   <relationships>
+    <relationship id="REL119" populated="true" UUID="d7a67b77-85d7-4c32-b18f-959934d03f20" deferrability="7" deleteRule="3" fk-table-ref="TAB59" fkCardinality="7" identifying="false" name="fecha_lectura_fk" physicalName="fecha_lectura_fk" pk-table-ref="TAB35" pkCardinality="2" updateRule="3" >
+     <column-mapping id="CMP120" populated="true" UUID="235b694a-d68a-49db-ae7b-5f563ed69899" fk-column-ref="COL64" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL36" />
+    </relationship>
+   </relationships>
+  </database>
+ </source-databases>
+ <target-database id="ppdb" dbcs-ref="DS0">
+  <table id="TAB122" populated="true" UUID="793b2c62-c14b-48a9-bc0f-68f9d0c4d5fd" name="Persona" objectType="TABLE" physicalName="ods_persona" >
+   <remarks>Personas que trabajan en el CCK.</remarks>
+   <folder id="FOLTAB1221" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL123" populated="true" UUID="2b6a28c1-945f-497e-bdba-980f5074d7b7" autoIncrement="true" autoIncrementSequenceName="ods_persona_sq" defaultValue="" name="ID Persona" nullable="0" physicalName="id_persona" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Identificador único de la persona.</remarks>
+    </column>
+    <column id="COL124" populated="true" UUID="2500b6fc-385e-4b3b-bc76-49e11f3eb0bd" autoIncrement="false" autoIncrementSequenceName="ods_persona_co_dni_cuit_seq" defaultValue="" name="Número DNI / CUIT" nullable="0" physicalName="co_dni_cuit" precision="20" referenceCount="1" scale="0" sourceDataTypeName="int8" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Número de DNI o CUIT de la persona.</remarks>
+    </column>
+    <column id="COL125" populated="true" UUID="118a5d02-f0fa-4327-872e-e8875fe84e37" autoIncrement="false" autoIncrementSequenceName="ods_persona_co_legajo_seq" defaultValue="" name="Legajo" nullable="1" physicalName="co_legajo" precision="20" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Legajo de la persona.</remarks>
+    </column>
+    <column id="COL126" populated="true" UUID="92f271b1-43f2-491a-8ccb-dc8ca05e5900" autoIncrement="false" autoIncrementSequenceName="ods_persona_no_persona_seq" defaultValue="" name="Nombre Persona" nullable="0" physicalName="no_persona" precision="100" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Nombre de la persona.</remarks>
+    </column>
+    <column id="COL127" populated="true" UUID="a3835382-945a-43aa-9c34-68a83ae532c1" autoIncrement="false" autoIncrementSequenceName="ods_persona_no_direccion_seq" defaultValue="" name="Dirección" nullable="1" physicalName="no_direccion" precision="100" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Dirección en la que trabaja la persona.</remarks>
+    </column>
+    <column id="COL128" populated="true" UUID="02cc4035-8333-4efe-8d94-755480dce2ca" autoIncrement="false" autoIncrementSequenceName="ods_persona_no_dependencia_seq" defaultValue="" name="Dependencia" nullable="1" physicalName="no_dependencia" precision="100" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Dependencia en la que trabaja la persona.</remarks>
+    </column>
+    <column id="COL129" populated="true" UUID="63d1ee04-f654-4d2a-872a-f1f8e3c0456e" autoIncrement="false" autoIncrementSequenceName="ods_persona_no_sector_seq" defaultValue="" name="Sector" nullable="1" physicalName="no_sector" precision="100" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Sector en que trabaja la persona.</remarks>
+    </column>
+    <column id="COL130" populated="true" UUID="667ee46c-ad14-48ee-98ee-97f257287829" autoIncrement="false" autoIncrementSequenceName="ods_persona_no_area_seq" defaultValue="" name="Área" nullable="1" physicalName="no_area" precision="100" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Área dentro del sector.</remarks>
+    </column>
+    <column id="COL131" populated="true" UUID="df0b790c-6bd0-4f72-b52a-16aa67ceb788" autoIncrement="false" autoIncrementSequenceName="ods_persona_no_puesto_seq" defaultValue="" name="Puesto" nullable="1" physicalName="no_puesto" precision="100" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Puesto dentro del área.</remarks>
+    </column>
+    <column id="COL132" populated="true" UUID="08c7eb1a-23b0-43ae-a5f5-e5e79783f4f9" autoIncrement="false" autoIncrementSequenceName="ods_persona_no_tarea_seq" defaultValue="" name="Tarea" nullable="1" physicalName="no_tarea" precision="100" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Tarea dentro del área.</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB1223" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB1222" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB1224" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX133" populated="true" UUID="0b3a85e4-7ef8-419e-9250-abe8d8902a8c" clustered="false" index-type="BTREE" name="ods_persona_pk" physicalName="ods_persona_pk" primaryKeyIndex="true" unique="true" >
+     <index-column id="IDC134" populated="true" UUID="be693912-3d88-4cf1-86e3-79372578af77" ascendingOrDescending="UNSPECIFIED" column-ref="COL123" name="ID Persona" physicalName="id_persona" />
+    </index>
+    <index id="IDX135" populated="true" UUID="d3216bf2-30f1-4725-8e91-7b6068c4f60d" clustered="false" name="ods_persona_ix" physicalName="ods_persona_ix" primaryKeyIndex="false" unique="false" >
+     <index-column id="IDC136" populated="true" UUID="309d7a40-383d-45fc-8d39-7d4bf06e76c1" ascendingOrDescending="UNSPECIFIED" column-ref="COL124" name="Número DNI / CUIT" physicalName="co_dni_cuit" />
+     <index-column id="IDC137" populated="true" UUID="a1121330-4ed8-4b61-8898-0a0da0f82d61" ascendingOrDescending="UNSPECIFIED" column-ref="COL125" name="Legajo" physicalName="co_legajo" />
+    </index>
+    <index id="IDX138" populated="true" UUID="6e833ce0-ffcc-4581-a7e0-ee96e45f4ab5" clustered="false" name="ods_persona_uk" physicalName="ods_persona_uk" primaryKeyIndex="false" unique="true" >
+     <index-column id="IDC139" populated="true" UUID="5e45a62c-2abf-4e69-9c50-5e7390570656" ascendingOrDescending="UNSPECIFIED" column-ref="COL124" name="Número DNI / CUIT" physicalName="co_dni_cuit" />
+     <index-column id="IDC140" populated="true" UUID="de120b48-9915-4d99-be91-7cee07cfb4b8" ascendingOrDescending="UNSPECIFIED" column-ref="COL125" name="Legajo" physicalName="co_legajo" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB141" populated="true" UUID="f6653c1a-a1e9-44d9-8c73-c67c67c5c4e4" name="Lectura" objectType="TABLE" physicalName="ods_lectura" >
+   <remarks>Lecturas de ingreso y egreso de las personas en el centro cultural.</remarks>
+   <folder id="FOLTAB1411" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL142" populated="true" UUID="76434f3e-e03f-4eeb-9da4-9464dfe4e88c" autoIncrement="true" autoIncrementSequenceName="ods_lectura_sq" defaultValue="" name="ID Lectura" nullable="0" physicalName="id_lectura" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="-5" userDefinedTypeUUID="433cc8af-284d-4abb-8ef7-08ebcb34dbf1" >
+     <remarks>Identificador único de la lectura.</remarks>
+    </column>
+    <column id="COL143" populated="true" UUID="5cda01f8-da1b-4516-98bf-c11ae9ea48f8" autoIncrement="false" autoIncrementSequenceName="dim_persona_seq" defaultValue="" name="ID Persona" nullable="1" physicalName="id_persona" precision="0" referenceCount="2" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Identificador único de la persona.</remarks>
+    </column>
+    <column id="COL144" populated="true" UUID="6e66ace8-eb4d-40f2-a299-021e16472965" autoIncrement="false" autoIncrementSequenceName="ods_lectura_fe_fecha_lectura_seq" defaultValue="" name="Fecha Hora" nullable="1" physicalName="fe_fecha_lectura" precision="0" referenceCount="1" scale="0" sourceDataTypeName="timestamp" type="93" userDefinedTypeUUID="6497d8de-0e00-40d6-a42e-e2adca83be64" >
+     <remarks>Fecha y Hora de la lectura.</remarks>
+    </column>
+    <column id="COL145" populated="true" UUID="67b01c09-af7a-47ca-8566-43ac63580c39" autoIncrement="false" autoIncrementSequenceName="stg_dto_banda_co_lugar_seq" defaultValue="&apos;C&apos;" name="Lugar" nullable="1" physicalName="co_lugar" precision="1" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="1" userDefinedTypeUUID="67ddc63f-5541-4dd1-9236-632d9d155e80" >
+     <remarks>Código de lugar.</remarks>
+    </column>
+    <column id="COL146" populated="true" UUID="e0c58181-a674-4c05-8f95-239ffbec5c6b" autoIncrement="false" autoIncrementSequenceName="stg_dto_banda_co_origen_seq" defaultValue="&apos;M&apos;" name="Origen" nullable="1" physicalName="co_origen" precision="1" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="1" userDefinedTypeUUID="67ddc63f-5541-4dd1-9236-632d9d155e80" >
+     <remarks>Código de origen de lectura.</remarks>
+    </column>
+    <column id="COL147" populated="true" UUID="92cdeda6-8ba0-4cb6-a556-b3d760142fa7" autoIncrement="false" defaultValue="" name="Tipo Acreditación" nullable="0" physicalName="no_tipo_acreditacion" precision="100" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Nombre del tipo de acreditación.</remarks>
+    </column>
+    <column id="COL148" populated="true" UUID="071f6496-3742-4622-a74f-8cfb9d75fc9a" autoIncrement="false" defaultValue="" name="Empresa / Área" nullable="1" physicalName="no_empresa_area" precision="100" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Nombre de la Empresa o Área de la lectura.</remarks>
+    </column>
+    <column id="COL149" populated="true" UUID="96f478bd-d732-425b-a54a-98f65406acfe" autoIncrement="false" autoIncrementSequenceName="ods_lectura_no_usuario_seq" defaultValue="" name="Usuario" nullable="1" physicalName="no_usuario" precision="10" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Usuário de la lectura.</remarks>
+    </column>
+    <column id="COL150" populated="true" UUID="3be09fd4-cb9b-4723-b8a4-b344a984c669" autoIncrement="false" autoIncrementSequenceName="ods_lectura_ds_usuario_seq" defaultValue="" name="Descripción Usuario" nullable="1" physicalName="ds_usuario" precision="50" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Descripción de usuário de la lectura.</remarks>
+    </column>
+    <column id="COL151" populated="true" UUID="31b7dbe0-a986-44fd-aaa4-a42940c97aca" autoIncrement="false" autoIncrementSequenceName="ods_lectura_co_lector_seq" defaultValue="" name="Lector" nullable="1" physicalName="co_lector" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código de lector.</remarks>
+    </column>
+    <column id="COL152" populated="true" UUID="66f2a561-ea68-4613-b6ca-79667fe57417" autoIncrement="false" autoIncrementSequenceName="stg_banda_horaria_tx_observaciones_seq" defaultValue="NULL::character varying" name="Observaciones" nullable="1" physicalName="ds_observaciones" precision="400" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Observaciones de la lectura.</remarks>
+    </column>
+    <column id="COL153" populated="true" UUID="d720e4ad-5267-48c5-b9c4-0dbc6ae7de04" autoIncrement="false" autoIncrementSequenceName="carga_seq" defaultValue="0" name="ID Carga" nullable="1" physicalName="id_carga" precision="0" referenceCount="1" scale="0" sourceDataTypeName="bigserial" type="-5" userDefinedTypeUUID="433cc8af-284d-4abb-8ef7-08ebcb34dbf1" >
+     <remarks>Identicifador de la carga.</remarks>
+    </column>
+    <column id="COL154" populated="true" UUID="fbb664e5-0005-44d1-93ed-f2be6687e1a1" autoIncrement="false" autoIncrementSequenceName="ods_lectura_fe_creacion_seq" defaultValue="now()" name="Fecha Creación" nullable="0" physicalName="fe_creacion" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="93" userDefinedTypeUUID="6497d8de-0e00-40d6-a42e-e2adca83be64" >
+     <remarks>Fecha de Creación del registro.</remarks>
+    </column>
+    <column id="COL155" populated="true" UUID="df898d46-4247-4e14-b1ac-460c4742bafa" autoIncrement="false" autoIncrementSequenceName="ods_lectura_fe_carga_seq" defaultValue="" name="Fecha Carga" nullable="1" physicalName="fe_carga" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="93" userDefinedTypeUUID="6497d8de-0e00-40d6-a42e-e2adca83be64" >
+     <remarks>Fecha de carga del registro en el DW.</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB1413" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB1412" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB1414" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX156" populated="true" UUID="d6db7ed8-4c59-4da8-801d-b20c687adb23" clustered="false" name="ods_lectura_pk" physicalName="ods_lectura_pk" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC157" populated="true" UUID="2889c969-8e49-44c4-880d-12db452e3c15" ascendingOrDescending="UNSPECIFIED" column-ref="COL142" name="ID Lectura" physicalName="id_lectura" />
+    </index>
+    <index id="IDX158" populated="true" UUID="235cc905-0b67-4fe4-8b38-3edb17fe63af" clustered="false" name="ods_lectura_ix" physicalName="ods_lectura_ix" primaryKeyIndex="false" unique="false" >
+     <index-column id="IDC159" populated="true" UUID="88784858-2f53-4539-b84f-fa108f39d572" ascendingOrDescending="UNSPECIFIED" column-ref="COL143" name="ID Persona" physicalName="id_persona" />
+     <index-column id="IDC160" populated="true" UUID="aeccc0e3-716a-4505-a6ab-0b00d5aeb3b7" ascendingOrDescending="UNSPECIFIED" column-ref="COL144" name="Fecha Hora" physicalName="fe_fecha_lectura" />
+     <index-column id="IDC161" populated="true" UUID="5d65b418-ed4c-46f9-b9a9-85ae0246262c" ascendingOrDescending="UNSPECIFIED" column-ref="COL153" name="ID Carga" physicalName="id_carga" />
+    </index>
+   </folder>
+  </table>
+  <relationships>
+   <relationship id="REL162" populated="true" UUID="b255faba-c8a7-4293-9545-5256a7ffd671" deferrability="7" deleteRule="3" fk-table-ref="TAB141" fkCardinality="7" identifying="false" name="ods_persona_lectura_fk" physicalName="ods_persona_lectura_fk" pk-table-ref="TAB122" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP163" populated="true" UUID="41ced146-d683-4322-a699-2ff7d649c035" fk-column-ref="COL143" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL123" />
+   </relationship>
+  </relationships>
+ </target-database>
+ <ddl-generator type="ca.sqlpower.architect.ddl.PostgresDDLGenerator" allow-connection="false" target-schema="public"> </ddl-generator>
+ <liquibase-settings useSeparateChangeSets="false" generateId="false" idStart="1"/>
+ <compare-dm-settings  ddlGenerator="ca.sqlpower.architect.ddl.PostgresDDLGenerator"  outputFormatAsString="SQL"  saveFlag="true" >
+  <source-stuff   datastoreTypeAsString="DATABASE"   connectName="RRHH Local"   filePath=""  />
+  <target-stuff   datastoreTypeAsString="PROJECT"   filePath=""  />
+  <liquibase-settings useSeparateChangeSets="false" generateId="false" idStart="1"/>
+ </compare-dm-settings>
+ <create-kettle-job-settings filePath="" jobName="" schemaName="" kettleJoinType="0" savingToFile="true" />
+ <play-pen zoom="1.0" viewportX="0" viewportY="0" relationship-style="rectilinear" names-displayLogicalNames="true" showPrimaryTag="true" showForeignTag="true" showAlternateTag="true" columnVisibility="ALL" relationshipLabelVisibility="true">
+  <table-pane table-ref="TAB122" x="66" y="314" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB141" x="406" y="178" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-link relationship-ref="REL162" pkConnection="0.17751479289940827" fkConnection="0.7595628415300546" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="33"/>
+ </play-pen>
+ <critic-manager>
+  <critic-grouping platformType="Generic" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.PrimaryKeyCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.RelationshipMappingTypeCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.EmptyRelationshipCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.AlphaNumericNameCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.AlphaNumericSequenceNameCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SetDefaultOnColumnWithNoDefaultCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SetNullOnNonNullableColumnCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.DuplicateNameCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="DB2" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.DB2UnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="H2" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.H2UnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="HSQLDB" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.HSQLDBUnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="MySQL" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.MySQLCommentCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.MySQLReservedWordsCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.MySQLUnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="Oracle" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.OraclePhysicalNameCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.OracleReservedWordsCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.OracleUnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="PostgreSQL" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.PostgreSQLReservedWordsCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="SQL Server" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SQLServerUnsupportedFeaturesCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SQLServerReservedWordsCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="SQL Server 2000" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SQLServer2000UnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="SQL Server 2005" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SQLServer2005UnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+ </critic-manager>
+ <profiles topNCount="10">
+  </profiles>
+  <olap>
+  </olap>
+  <olap-gui>
+  </olap-gui>
+</architect-project>

@@ -1,0 +1,5 @@
+Estructura de la carpeta "C:\archivos", soporte de los archivos XLS y CSV a ser cargados en la base de datos.
+
+Proceso:
+1- Crear la carpeta "archivos" en "C:\"
+2- Descomprimir el contenido del archivo "Estructura Carpeta Archivos.zip" dentro de "C:\archivos".

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema dbmsId="postgres_id">
+    <column comment="" default="" key="false" label="no_archivo"
+        length="100" nullable="true" originalDbColumnName="no_archivo"
+        originalLength="100" pattern="" precision="0"
+        talendType="id_String" type="VARCHAR"/>
+    <column comment="" default="" key="false" label="co_lugar"
+        length="1" nullable="true" originalDbColumnName="co_lugar"
+        originalLength="1" pattern="" precision="-1"
+        talendType="id_Character" type="CHAR"/>
+    <column comment="" default="" key="false" label="fe_carga"
+        length="-1" nullable="true" originalDbColumnName="fe_carga"
+        originalLength="0" pattern="&quot;dd-MM-yyyy&quot;"
+        precision="-1" talendType="id_Date" type="TIMESTAMP"/>
+    <column comment="" default="" key="false" label="co_estado_proceso"
+        length="1" nullable="true"
+        originalDbColumnName="co_estado_proceso" originalLength="1"
+        pattern="" precision="-1" talendType="id_Character" type="CHAR"/>
+    <column comment="" default="" key="false" label="tx_codigo"
+        length="10" nullable="true" originalDbColumnName="tx_codigo"
+        originalLength="0" pattern="" precision="0"
+        talendType="id_String" type="VARCHAR"/>
+    <column comment="" default="" key="false" label="tx_tipo"
+        length="50" nullable="true" originalDbColumnName="tx_tipo"
+        originalLength="0" pattern="" precision="0"
+        talendType="id_String" type="VARCHAR"/>
+    <column comment="" default="" key="false" label="tx_nombre"
+        length="50" nullable="true" originalDbColumnName="tx_nombre"
+        originalLength="0" pattern="" precision="0"
+        talendType="id_String" type="VARCHAR"/>
+    <column comment="" default="" key="false" label="tx_apellido"
+        length="50" nullable="true" originalDbColumnName="tx_apellido"
+        originalLength="0" pattern="" precision="0"
+        talendType="id_String" type="VARCHAR"/>
+    <column comment="" default="" key="false" label="tx_empresa_area"
+        length="50" nullable="true"
+        originalDbColumnName="tx_empresa_area" originalLength="0"
+        pattern="" precision="0" talendType="id_String" type="VARCHAR"/>
+    <column comment="" default="" key="false" label="tx_dni_cuit"
+        length="12" nullable="true" originalDbColumnName="tx_dni_cuit"
+        originalLength="0" pattern="" precision="0"
+        talendType="id_String" type="VARCHAR"/>
+    <column comment="" default="" key="false" label="tx_art" length="50"
+        nullable="true" originalDbColumnName="tx_art" originalLength="0"
+        pattern="" precision="0" talendType="id_String" type="VARCHAR"/>
+    <column comment="" default="" key="false" label="tx_poliza"
+        length="50" nullable="true" originalDbColumnName="tx_poliza"
+        originalLength="0" pattern="" precision="0"
+        talendType="id_String" type="VARCHAR"/>
+    <column comment="" default="" key="false" label="tx_vigencia_poliza"
+        length="10" nullable="true"
+        originalDbColumnName="tx_vigencia_poliza" originalLength="0"
+        pattern="" precision="0" talendType="id_String" type="VARCHAR"/>
+    <column comment="" default="" key="false" label="tx_visita"
+        length="50" nullable="true" originalDbColumnName="tx_visita"
+        originalLength="0" pattern="" precision="0"
+        talendType="id_String" type="VARCHAR"/>
+    <column comment="" default="" key="false" label="tx_vencimiento"
+        length="10" nullable="true"
+        originalDbColumnName="tx_vencimiento" originalLength="0"
+        pattern="" precision="0" talendType="id_String" type="VARCHAR"/>
+    <column comment="" default="" key="false" label="tx_observaciones"
+        length="100" nullable="true"
+        originalDbColumnName="tx_observaciones" originalLength="0"
+        pattern="" precision="0" talendType="id_String" type="VARCHAR"/>
+    <column comment="" default="" key="false" label="tx_equipamiento_1"
+        length="100" nullable="true"
+        originalDbColumnName="tx_equipamiento_1" originalLength="0"
+        pattern="" precision="0" talendType="id_String" type="VARCHAR"/>
+    <column comment="" default="" key="false" label="tx_equipamiento_2"
+        length="100" nullable="true"
+        originalDbColumnName="tx_equipamiento_2" originalLength="0"
+        pattern="" precision="0" talendType="id_String" type="VARCHAR"/>
+    <column comment="" default="" key="false" label="tx_equipamiento_3"
+        length="100" nullable="true"
+        originalDbColumnName="tx_equipamiento_3" originalLength="0"
+        pattern="" precision="0" talendType="id_String" type="VARCHAR"/>
+    <column comment="" default="" key="false" label="tx_observacion_1"
+        length="100" nullable="true"
+        originalDbColumnName="tx_observacion_1" originalLength="0"
+        pattern="" precision="0" talendType="id_String" type="VARCHAR"/>
+    <column comment="" default="" key="false" label="tx_observacion_2"
+        length="100" nullable="true"
+        originalDbColumnName="tx_observacion_2" originalLength="0"
+        pattern="" precision="0" talendType="id_String" type="VARCHAR"/>
+    <column comment="" default="" key="false" label="tx_observacion_3"
+        length="100" nullable="true"
+        originalDbColumnName="tx_observacion_3" originalLength="0"
+        pattern="" precision="0" talendType="id_String" type="VARCHAR"/>
+    <column comment="" default="" key="false" label="tx_cantidad"
+        length="5" nullable="true" originalDbColumnName="tx_cantidad"
+        originalLength="0" pattern="" precision="0"
+        talendType="id_String" type="VARCHAR"/>
+    <column comment="" default="" key="false" label="tx_lectura"
+        length="20" nullable="true" originalDbColumnName="tx_lectura"
+        originalLength="0" pattern="" precision="0"
+        talendType="id_String" type="VARCHAR"/>
+    <column comment="" default="" key="false" label="tx_usuario_lectura"
+        length="5" nullable="true"
+        originalDbColumnName="tx_usuario_lectura" originalLength="0"
+        pattern="" precision="0" talendType="id_String" type="VARCHAR"/>
+</schema>

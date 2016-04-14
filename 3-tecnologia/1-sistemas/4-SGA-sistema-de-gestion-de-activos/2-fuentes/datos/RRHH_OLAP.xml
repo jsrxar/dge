@@ -1,0 +1,311 @@
+<Schema name="RRHH" description="Esquema de An&#225;lisis de datos de Recursos Humanos." measuresCaption="Medidas">
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="Fecha" caption="Fecha Lectura" description="Fecha de la lectura de la fichada.">
+    <Hierarchy visible="true" hasAll="true" primaryKey="id_fecha">
+      <Table name="dim_fecha" schema="public">
+      </Table>
+      <Level name="Anio" visible="true" column="nu_anio" type="Numeric" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never" caption="A&#241;o" description="A&#241;o de la fecha.">
+      </Level>
+      <Level name="Cuatrimestre" visible="true" column="nu_cuatrimestre" type="Numeric" uniqueMembers="false" levelType="TimeQuarters" hideMemberIf="Never" caption="Cuatrimestre" description="Cuatrimestre de la fecha.">
+      </Level>
+      <Level name="Mes" visible="true" column="nu_mes" type="Numeric" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Mes" description="Mes de la fecha.">
+      </Level>
+      <Level name="Nombre Mes" visible="true" column="no_mes" ordinalColumn="nu_mes" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Nombre Mes" description="Nombre del Mes de la fecha.">
+      </Level>
+      <Level name="Dia" visible="true" column="nu_dia" type="Numeric" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="D&#237;a" description="Dia de la fecha.">
+      </Level>
+      <Level name="Fecha" visible="true" column="fe_fecha" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Fecha" description="Fecha formateada DD/MM/YYYY.">
+      </Level>
+      <Level name="Dia Anio" visible="true" column="nu_dia_ano" type="Numeric" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="D&#237;a A&#241;o" description="N&#250;mero de d&#237;a en el A&#241;o.">
+      </Level>
+      <Level name="Nombre Fecha" visible="true" column="no_fecha" ordinalColumn="id_fecha" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Nombre Fecha" description="Descripci&#243;n de la fecha en formato texto largo.">
+      </Level>
+      <Level name="Feriado" visible="true" column="fl_feriado" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Feriado" description="Si es feriado.">
+      </Level>
+      <Level name="Fin Semana" visible="true" column="fl_fin_semana" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Fin Semana" description="Si es fin de semana.">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Semana Anio" visible="true" hasAll="true" primaryKey="id_fecha" caption="Semana A&#241;o" description="N&#250;mero de semana dentro del a&#241;o calendario de la lectura.">
+      <Table name="dim_fecha" schema="public">
+      </Table>
+      <Level name="Semana Anio" visible="true" column="nu_semana_anio" type="Numeric" uniqueMembers="false" levelType="TimeWeeks" hideMemberIf="Never" caption="Semana A&#241;o" description="Semana en el a&#241;o.">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Dia Semana" visible="true" hasAll="true" primaryKey="id_fecha" caption="D&#237;a Semana" description="D&#237;a de la semana de la lectura.">
+      <Table name="dim_fecha" schema="public">
+      </Table>
+      <Level name="Dia Semana" visible="true" column="no_dia_semana" ordinalColumn="nu_dia_semana" type="String" uniqueMembers="false" levelType="TimeUndefined" hideMemberIf="Never" caption="D&#237;a Semana" description="Nombre del d&#237;a de la semana">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Estacion" visible="false" hasAll="true" primaryKey="id_fecha" caption="Estaci&#243;n" description="Estaci&#243;n del a&#241;o a que pertenece la fecha de lectura.">
+      <Table name="dim_fecha" schema="public">
+      </Table>
+      <Level name="Estacion" visible="true" column="no_estacion" type="String" uniqueMembers="false" levelType="TimeUndefined" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Lugar" caption="Lugar Lectura" description="Lugar f&#237;sico del que provienen las lecturas.">
+    <Hierarchy visible="true" hasAll="true" primaryKey="id_lugar">
+      <Table name="dim_lugar" schema="public">
+      </Table>
+      <Level name="Lugar" visible="true" column="no_lugar" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" caption="Lugar Banda" description="Lugar de donde proviene la banda horaria.">
+      </Level>
+      <Level name="Direccion" visible="true" column="ds_direccion" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Direcci&#243;n Lugar" description="Direcci&#243;n del lugar de donde proviene la banda horaria.">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Persona" caption="Persona" description="Persona que produjo la lectura de la fichada.">
+    <Hierarchy visible="true" hasAll="true" primaryKey="id_persona">
+      <Table name="dim_persona" schema="public">
+      </Table>
+      <Level name="Sector" visible="true" column="no_sector" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Sector" description="Sector de la persona que produjo la lectura.">
+      </Level>
+      <Level name="Area" visible="true" column="no_area" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="&#193;rea" description="&#193;rea de la persona dentro del Sector.">
+      </Level>
+      <Level name="Puesto" visible="true" column="no_puesto" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Puesto" description="Puesto que ocupa la persona dentro del &#193;rea.">
+      </Level>
+      <Level name="DNI CUIT" visible="true" column="co_dni_cuit" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="DNI / CUIT" description="DNI o CUIT de la persona que produjo la lectura.">
+      </Level>
+      <Level name="Nombre Persona" visible="true" column="no_persona" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Nombre Persona" description="Nombre de la persona que produjo la lectura.">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Tipo" caption="Tipo Acreditaci&#243;n" description="Tipo de acreditaci&#243;n de acceso usada por la persona.">
+    <Hierarchy visible="true" hasAll="true" primaryKey="id_tipo_acreditacion">
+      <Table name="dim_tipo_acreditacion" schema="public">
+      </Table>
+      <Level name="Tipo" visible="true" column="no_tipo_acreditacion" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Tipo Acreditaci&#243;n" description="Tipo de la persona de la lectura.">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Tipo Hora" caption="Tipo Horario" description="Rango de horario en el que se encuentra la lectura.">
+    <Hierarchy visible="true" hasAll="true" primaryKey="id_tipo_hora">
+      <View alias="Horarios">
+        <SQL dialect="postgres">
+          <![CDATA[SELECT id_tipo_hora, no_tipo_hora, no_turno FROM dim_tipo_hora WHERE id_tipo_hora > 0]]>
+        </SQL>
+      </View>
+      <Level name="Tipo Hora" visible="true" column="no_tipo_hora" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Tipo Horario" description="Tipo de horario en que se produjo la lectura.">
+      </Level>
+      <Level name="Turno" visible="true" column="no_turno" ordinalColumn="id_tipo_hora" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Turno" description="Turno del horario de la lectura.">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Empresa Area" caption="Empresa / &#193;rea" description="Empresa o &#193;rea a la que pertenece la persona de la lectura.">
+    <Hierarchy visible="true" hasAll="true" primaryKey="id_empresa_area">
+      <Table name="dim_empresa_area" schema="public">
+      </Table>
+      <Level name="Empresa Area" visible="true" column="no_empresa_area" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Empresa / &#193;rea" description="Empresa o &#193;rea de la persona de la lectura.">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Lectura" caption="Detalle Lectura" description="Detalles de la lectura.">
+    <Hierarchy visible="true" hasAll="true" primaryKey="id_lectura">
+      <Table name="fac_lectura" schema="public">
+      </Table>
+      <Level name="Hora" visible="true" column="ds_hora" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Hora" description="Hora de la lectura.">
+      </Level>
+      <Level name="Usuario" visible="true" column="no_usuario" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Usu&#225;rio" description="Usu&#225;rio de la lectura.">
+      </Level>
+      <Level name="Nombre Usuario" visible="true" column="ds_usuario" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Nombre Usu&#225;rio" description="Descripci&#243;n de usu&#225;rio de la lectura.">
+      </Level>
+      <Level name="Lector" visible="true" column="co_lector" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Lector" description="C&#243;digo de lector.">
+      </Level>
+      <Level name="Observaciones" visible="true" column="ds_observaciones" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Observaciones" description="Observaciones de la lectura.">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Origen" caption="Origen Lectura" description="Forma en la que fue creada la lectura (Archivo, Manual, Calculado).">
+    <Hierarchy visible="true" hasAll="true" primaryKey="id_origen">
+      <Table name="dim_origen" schema="public">
+      </Table>
+      <Level name="Origen" visible="true" column="no_origen" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Origen Lectura" description="Origen de las lecturas.">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Turno" caption="Turno Trabajo" description="Turno de trabajo hecho por la persona">
+    <Hierarchy visible="true" hasAll="true" primaryKey="id_tipo_hora">
+      <View alias="Turnos">
+        <SQL dialect="postgres">
+          <![CDATA[SELECT id_tipo_hora, no_turno FROM dim_tipo_hora WHERE id_tipo_hora != 1]]>
+        </SQL>
+      </View>
+      <Level name="Turno" visible="true" column="no_turno" ordinalColumn="id_tipo_hora" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Turno Trabajo" description="Turno de trabajo de la persona.">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Cube name="LECTURAS" caption="Lecturas" visible="true" description="Cubo de An&#225;lisis de datos de Recursos Humanos." cache="true" enabled="true">
+    <Annotations>
+      <Annotation name="AnalyzerFieldListView">
+        <![CDATA[cmdViewSchema]]>
+      </Annotation>
+    </Annotations>
+    <Table name="fac_lectura" schema="public">
+    </Table>
+    <DimensionUsage source="Persona" name="Persona" visible="true" foreignKey="id_persona" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Tipo" name="Tipo" visible="true" foreignKey="id_tipo_acreditacion" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Empresa Area" name="Empresa Area" visible="true" foreignKey="id_empresa_area" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Lectura" name="Lectura" visible="true" foreignKey="id_lectura" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Tipo Hora" name="Tipo Hora" visible="true" foreignKey="id_tipo_hora" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Fecha" name="Fecha" visible="true" foreignKey="id_fecha" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Lugar" name="Lugar" visible="true" foreignKey="id_lugar" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Origen" name="Origen" visible="true" foreignKey="id_origen" highCardinality="false">
+    </DimensionUsage>
+    <Measure name="Cantidad Lecturas" column="nu_lecturas" datatype="Numeric" aggregator="sum" caption="Cantidad Lecturas" description="Cantidad de lecturas hechas en la fecha dada.">
+    </Measure>
+    <Measure name="Hora Menor" column="fe_hora" datatype="String" aggregator="min" caption="Hora Menor" description="Fecha y Hora de la primera lectura." visible="true">
+      <CellFormatter>
+        <Script language="JavaScript">
+          <![CDATA[return value;]]>
+        </Script>
+      </CellFormatter>
+    </Measure>
+    <Measure name="Hora Mayor" column="fe_hora" datatype="String" aggregator="max" caption="Hora Mayor" description="Fecha y Hora de la &#218;ltima lectura." visible="true">
+      <CellFormatter>
+        <Script language="JavaScript">
+          <![CDATA[return value;]]>
+        </Script>
+      </CellFormatter>
+    </Measure>
+  </Cube>
+  <Cube name="HORAS" caption="Horas" visible="true" description="Cubo de An&#225;lisis de datos de Recursos Humanos." cache="true" enabled="true">
+    <Annotations>
+      <Annotation name="AnalyzerFieldListView">
+        <![CDATA[cmdViewSchema]]>
+      </Annotation>
+    </Annotations>
+    <Table name="fac_totales" schema="public">
+    </Table>
+    <DimensionUsage source="Persona" name="Persona" visible="true" foreignKey="id_persona" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Tipo" name="Tipo" visible="true" foreignKey="id_tipo_acreditacion" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Empresa Area" name="Empresa Area" visible="true" foreignKey="id_empresa_area" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Fecha" name="Fecha" visible="true" foreignKey="id_fecha" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Lugar" name="Lugar" visible="true" foreignKey="id_lugar" highCardinality="false">
+    </DimensionUsage>
+    <Measure name="Cantidad Lecturas" column="nu_lecturas" datatype="Numeric" aggregator="sum" caption="Cantidad Lecturas" description="Numero de lecturas en el d&#237;a.">
+    </Measure>
+    <Measure name="Cantidad Dias" column="id_lectura" datatype="Numeric" aggregator="count" caption="Cantidad D&#237;as" description="Numero de lecturas por D&#237;a.">
+    </Measure>
+    <Measure name="Cantidad Dias Sumados" column="nu_persona_dias" datatype="Numeric" aggregator="sum" caption="Cantidad D&#237;as Sumados" description="Numero de s&#237;as con horario calculado (tienen m&#237;s de una lectura).">
+    </Measure>
+    <Measure name="Entrada" column="fe_hora_min" datatype="String" aggregator="min" caption="Lectura Primera" description="Primera lectura del d&#237;a de la persona.">
+    </Measure>
+    <Measure name="Salida" column="fe_hora_max" datatype="String" aggregator="max" caption="Lectura &#218;ltima" description="Valor de horas calculado.">
+    </Measure>
+    <Measure name="Horas Total" column="va_horas_total" datatype="Numeric" aggregator="sum" caption="Suma Horas" description="Total de horas trabajadas en el d&#237;a (Maximo - M&#237;nimo).">
+      <CellFormatter>
+        <Script language="JavaScript">
+          <![CDATA[var result_string = '';
+var time = value;
+var hours = Math.floor(time);
+var minutes = Math.floor(time*60) - (hours*60);
+var seconds = Math.floor(time*60*60) - (hours*60*60) - (minutes*60);
+result_string = ("0" + hours.toString()).slice(-2) + ':' + ("0" + minutes.toString()).slice(-2) + ':' + ("0" + seconds.toString()).slice(-2);
+return result_string;]]>
+        </Script>
+      </CellFormatter>
+    </Measure>
+    <Measure name="Horas Media" column="va_horas_media" datatype="Numeric" aggregator="avg" caption="Suma Promedio" description="Promedio de horas calculado.">
+      <CellFormatter>
+        <Script language="JavaScript">
+          <![CDATA[var result_string = '';
+var time = value;
+var hours = Math.floor(time);
+var minutes = Math.floor(time*60) - (hours*60);
+var seconds = Math.floor(time*60*60) - (hours*60*60) - (minutes*60);
+result_string = ("0" + hours.toString()).slice(-2) + ':' + ("0" + minutes.toString()).slice(-2) + ':' + ("0" + seconds.toString()).slice(-2);
+return result_string;]]>
+        </Script>
+      </CellFormatter>
+    </Measure>
+  </Cube>
+  <Cube name="TURNOS" caption="Turnos" visible="true" description="Cubo de An&#225;lisis de datos de Recursos Humanos." cache="true" enabled="true">
+    <Annotations>
+      <Annotation name="AnalyzerFieldListView">
+        <![CDATA[cmdViewSchema]]>
+      </Annotation>
+    </Annotations>
+    <Table name="fac_turnos" schema="public">
+    </Table>
+    <DimensionUsage source="Persona" name="Persona" visible="true" foreignKey="id_persona" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Empresa Area" name="Empresa Area" visible="true" foreignKey="id_empresa_area" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Turno" name="Turno" visible="true" foreignKey="id_tipo_hora" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Fecha" name="Fecha Inicio" caption="In&#237;cio" visible="true" foreignKey="id_fecha_inicio" highCardinality="false">
+    </DimensionUsage>
+    <Dimension type="TimeDimension" visible="true" foreignKey="id_fecha_fin" highCardinality="false" name="Fecha Fin" caption="Fecha Fin" description="Fecha de la lectura del final del turno.">
+      <Hierarchy visible="true" hasAll="true" primaryKey="id_fecha">
+        <Table name="dim_fecha" schema="public">
+        </Table>
+        <Level name="Dia Semana" visible="true" column="no_dia_semana" ordinalColumn="nu_dia_semana" type="String" uniqueMembers="false" levelType="TimeUndefined" hideMemberIf="Never" caption="D&#237;a Semana" description="Nombre del d&#237;a de la semana">
+        </Level>
+        <Level name="Fecha" visible="true" column="fe_fecha" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Fecha" description="Fecha formateada DD/MM/YYYY.">
+        </Level>
+        <Level name="Nombre Fecha" visible="true" column="no_fecha" ordinalColumn="id_fecha" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Nombre Fecha" description="Descripci&#243;n de la fecha en formato texto largo.">
+        </Level>
+        <Level name="Feriado" visible="true" column="fl_feriado" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Feriado" description="Si es feriado.">
+        </Level>
+        <Level name="Fin Semana" visible="true" column="fl_fin_semana" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Fin Semana" description="Si es fin de semana.">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Measure name="Hora Inicio" column="fe_hora_inicio" datatype="String" aggregator="min" caption="Hora In&#237;cio" description="Hora de in&#237;cio del turno." visible="true">
+      <CellFormatter>
+        <Script language="JavaScript">
+          <![CDATA[return value;]]>
+        </Script>
+      </CellFormatter>
+    </Measure>
+    <Measure name="Hora Fin" column="fe_hora_fin" datatype="String" aggregator="max" caption="Hora Fin" description="Hora de finalizacion del turno." visible="true">
+      <CellFormatter>
+        <Script language="JavaScript">
+          <![CDATA[return value;]]>
+        </Script>
+      </CellFormatter>
+    </Measure>
+    <Measure name="Cantidad Lecturas" column="nu_lecturas" datatype="Numeric" aggregator="sum" caption="Cantidad Lecturas" description="Cantidad de lecturas agrupadas.">
+    </Measure>
+    <Measure name="Cantidad Dias" column="id_fecha_inicio" datatype="Numeric" aggregator="distinct-count" caption="Cantidad D&#237;as" description="Cantidad de d&#237;a diferentes en los que se encuentran las lecturas.">
+    </Measure>
+    <Measure name="Cantidad Personas" column="id_persona" datatype="Numeric" aggregator="distinct-count" caption="Cantidad Personas" description="Cantidad de personas diferentes que generaron las lecturas.">
+    </Measure>
+    <Measure name="Horas Total" column="va_horas_total" datatype="Numeric" aggregator="sum" caption="Suma Horas" description="Total de horas trabajadas en el turno (Fin Turno - Inicio Turno).">
+      <CellFormatter>
+        <Script language="JavaScript">
+          <![CDATA[var result_string = '';
+var time = value;
+var hours = Math.floor(time);
+var minutes = Math.floor(time*60) - (hours*60);
+var seconds = Math.floor(time*60*60) - (hours*60*60) - (minutes*60);
+result_string = hours.toString() + ':' + ("0" + minutes.toString()).slice(-2) + ':' + ("0" + seconds.toString()).slice(-2);
+return result_string;]]>
+        </Script>
+      </CellFormatter>
+    </Measure>
+    <Measure name="Horas Media" column="va_horas_media" datatype="Numeric" aggregator="avg" caption="Suma Promedio" description="Promedio de horas calculado.">
+      <CellFormatter>
+        <Script language="JavaScript">
+          <![CDATA[var result_string = '';
+var time = value;
+var hours = Math.floor(time);
+var minutes = Math.floor(time*60) - (hours*60);
+var seconds = Math.floor(time*60*60) - (hours*60*60) - (minutes*60);
+result_string = hours.toString() + ':' + ("0" + minutes.toString()).slice(-2) + ':' + ("0" + seconds.toString()).slice(-2);
+return result_string;]]>
+        </Script>
+      </CellFormatter>
+    </Measure>
+  </Cube>
+</Schema>

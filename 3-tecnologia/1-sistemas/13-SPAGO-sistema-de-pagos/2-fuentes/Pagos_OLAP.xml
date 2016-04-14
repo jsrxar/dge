@@ -1,0 +1,74 @@
+<Schema name="PAGOS">
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Evento">
+    <Hierarchy visible="true" hasAll="true" primaryKey="id_carga">
+      <Table name="stg_pagos_1" schema="public">
+      </Table>
+      <Level name="Lugar" visible="true" column="tx_lugar" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Fecha" visible="true" column="tx_fecha_evento" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Evento" visible="true" column="tx_evento" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Descripcion" visible="true" column="tx_descripcion" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Proyecto">
+    <Hierarchy visible="true" hasAll="true" primaryKey="id_carga">
+      <Table name="stg_pagos_1" schema="public">
+      </Table>
+      <Level name="Proyecto" visible="true" column="tx_proyecto" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Linea Accion" visible="true" column="tx_linea_accion_1" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Proveedor">
+    <Hierarchy visible="true" hasAll="true" primaryKey="id_carga">
+      <Table name="stg_pagos_1" schema="public">
+      </Table>
+      <Level name="Razon Social" visible="true" column="tx_razon_social" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="CUIT" visible="true" column="tx_cuit" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Numero CBU" visible="true" column="tx_numero_cbu" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Contacto" visible="true" column="tx_contacto" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Mail Contacto" visible="true" column="tx_mail_contacto" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Telefono Contacto" visible="true" column="tx_telefono_contacto" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Cube name="Pagos" visible="true" cache="true" enabled="true">
+    <View alias="Pago">
+      <SQL dialect="postgres">
+        <![CDATA[SELECT
+  id_carga,
+  REPLACE(REPLACE(REPLACE(REPLACE(tx_importe, '$', ''), ' ', ''), '.', ''), ',', '.')::FLOAT8 va_importe,
+  REPLACE(REPLACE(REPLACE(REPLACE(tx_retenciones_realizadas, '$', ''), ' ', ''), '.', ''), ',', '.')::FLOAT8 va_retenciones_realizadas,
+  REPLACE(REPLACE(REPLACE(REPLACE(tx_importe_neto_pagar, '$', ''), ' ', ''), '.', ''), ',', '.')::FLOAT8 va_importe_neto_pagar
+FROM stg_pagos_1]]>
+      </SQL>
+    </View>
+    <DimensionUsage source="Evento" name="Evento" visible="true" foreignKey="id_carga" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Proyecto" name="Proyecto" visible="true" foreignKey="id_carga" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Proveedor" name="Proveedor" visible="true" foreignKey="id_carga" highCardinality="false">
+    </DimensionUsage>
+    <Measure name="Importe" column="va_importe" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="Retenciones" column="va_retenciones_realizadas" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="Neto Pagar" column="va_importe_neto_pagar" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="Cantidad" column="id_carga" aggregator="count" visible="true">
+    </Measure>
+  </Cube>
+  <Role name="PAGO">
+    <SchemaGrant access="all">
+    </SchemaGrant>
+  </Role>
+</Schema>

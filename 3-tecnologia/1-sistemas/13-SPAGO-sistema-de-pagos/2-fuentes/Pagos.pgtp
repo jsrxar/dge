@@ -1,0 +1,742 @@
+<Project productVersion="14.10.0.10" localizationFileName="C:\app\PHP Generator for PostgreSQL\lang.es.php" phpDriver="0" outputPath="\\10.13.18.28\pagos" copySystemFiles="true" outputFilesExtension="php" colorSchemeName="United">
+  <ConnectionOptions host="localhost" port="5432" login="pagos" password="Z/G_]^L~" database="PAGOS" client_encoding="">
+    <ssh_secure secure="false" port="22" authentication_mode="0"/>
+    <http_tunnel tunneling="false" url="">
+      <http_proxy_server use_proxy="false" port="8080"/>
+      <http_authentication/>
+    </http_tunnel>
+  </ConnectionOptions>
+  <ScriptConnectionOptions host="localhost" port="5432" login="pagos" password="Z/G_]^L~" database="PAGOS" client_encoding="">
+    <ssh_secure secure="false" port="22" authentication_mode="0"/>
+    <http_tunnel tunneling="false" url="">
+      <http_proxy_server use_proxy="false" port="8080"/>
+      <http_authentication/>
+    </http_tunnel>
+  </ScriptConnectionOptions>
+  <Queries/>
+  <FieldContainers/>
+  <Presentation disableMagicQuotesRuntime="false" showEnvironmentVariables="false" showExecutedQueries="false" showPHPErrorsAndWarnings="false">
+    <Pages>
+      <Page type="table" tableName="public.stg_pagos_1" fileName="public.stg_pagos_1" caption="Public.Stg Pagos 1" shortCaption="Public.Stg Pagos 1" groupName="Default" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" NavigatorPosition="0" insertAbilityMode="1" deleteAbilityMode="3" contentEncoding="UTF-8" controlButtonsPosition="255" pageListMode="1" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true" showKeyColumnsImagesInGridHeader="false">
+        <BeforeGridText/>
+        <Columns>
+          <ViewColumns>
+            <Column fieldName="id_carga" caption="Id Carga" visible="false" totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_archivo" caption="No Archivo" visible="false" totalFunction="0">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="co_contrato" caption="Co Contrato" visible="false" totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="fe_carga" caption="Fe Carga" visible="false" totalFunction="0">
+              <ViewProperties type="dateTime" dateTimeFormat="Y-m-d H:i:s"/>
+            </Column>
+            <Column fieldName="co_estado_proceso" caption="Co Estado Proceso" visible="false" totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_proyecto" caption="Tx Proyecto" visible="true" totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_linea_accion_1" caption="Tx Linea Accion 1" visible="true" totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_linea_accion_2" caption="Tx Linea Accion 2" visible="false" totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_renglon_categoria_1" caption="Tx Renglon Categoria 1" visible="true" totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_renglon_categoria_2" caption="Tx Renglon Categoria 2" visible="false" totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_saldo_renglon_categ" caption="Tx Saldo Renglon Categ" visible="false" totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_cuota" caption="Tx Cuota" visible="true" totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_evento" caption="Tx Evento" visible="true" totalFunction="0">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="tx_descripcion" caption="Tx Descripcion" visible="false" totalFunction="0">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="tx_fecha_evento" caption="Tx Fecha Evento" visible="false" totalFunction="0">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="tx_lugar" caption="Tx Lugar" visible="false" totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_importe" caption="Tx Importe" visible="true" totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_razon_social" caption="Tx Razon Social" visible="true" totalFunction="0">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="tx_cuit" caption="Tx Cuit" visible="false" totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_fecha_comprobante" caption="Tx Fecha Comprobante" visible="true" totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_tipo_comprobante" caption="Tx Tipo Comprobante" visible="false" totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_nro_comprobante" caption="Tx Nro Comprobante" visible="false" totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_forma_pago" caption="Tx Forma Pago" visible="true" totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_numero_cbu" caption="Tx Numero Cbu" visible="false" totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_contacto" caption="Tx Contacto" visible="false" totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_mail_contacto" caption="Tx Mail Contacto" visible="false" totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_telefono_contacto" caption="Tx Telefono Contacto" visible="false" totalFunction="0">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="tx_fecha_ingreso_unsam" caption="Tx Fecha Ingreso Unsam" visible="false" totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_expediente" caption="Tx Expediente" visible="false" totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_numero_op" caption="Tx Numero Op" visible="false" totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_retenciones_realizadas" caption="Tx Retenciones Realizadas" visible="false" totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_importe_neto_pagar" caption="Tx Importe Neto Pagar" visible="true" totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_estado" caption="Tx Estado" visible="true" totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_fecha_pago" caption="Tx Fecha Pago" visible="false" totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+          </ViewColumns>
+          <SingleRecordViewColumns>
+            <Column fieldName="id_carga" caption="Id Carga" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_archivo" caption="No Archivo" visible="true">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="co_contrato" caption="Co Contrato" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="fe_carga" caption="Fe Carga" visible="true">
+              <ViewProperties type="dateTime" dateTimeFormat="Y-m-d H:i:s"/>
+            </Column>
+            <Column fieldName="co_estado_proceso" caption="Co Estado Proceso" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_proyecto" caption="Tx Proyecto" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_linea_accion_1" caption="Tx Linea Accion 1" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_linea_accion_2" caption="Tx Linea Accion 2" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_renglon_categoria_1" caption="Tx Renglon Categoria 1" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_renglon_categoria_2" caption="Tx Renglon Categoria 2" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_saldo_renglon_categ" caption="Tx Saldo Renglon Categ" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_cuota" caption="Tx Cuota" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_evento" caption="Tx Evento" visible="true">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="tx_descripcion" caption="Tx Descripcion" visible="true">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="tx_fecha_evento" caption="Tx Fecha Evento" visible="true">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="tx_lugar" caption="Tx Lugar" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_importe" caption="Tx Importe" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_razon_social" caption="Tx Razon Social" visible="true">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="tx_cuit" caption="Tx Cuit" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_fecha_comprobante" caption="Tx Fecha Comprobante" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_tipo_comprobante" caption="Tx Tipo Comprobante" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_nro_comprobante" caption="Tx Nro Comprobante" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_forma_pago" caption="Tx Forma Pago" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_numero_cbu" caption="Tx Numero Cbu" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_contacto" caption="Tx Contacto" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_mail_contacto" caption="Tx Mail Contacto" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_telefono_contacto" caption="Tx Telefono Contacto" visible="true">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="tx_fecha_ingreso_unsam" caption="Tx Fecha Ingreso Unsam" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_expediente" caption="Tx Expediente" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_numero_op" caption="Tx Numero Op" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_retenciones_realizadas" caption="Tx Retenciones Realizadas" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_importe_neto_pagar" caption="Tx Importe Neto Pagar" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_estado" caption="Tx Estado" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_fecha_pago" caption="Tx Fecha Pago" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+          </SingleRecordViewColumns>
+          <EditColumns>
+            <Column fieldName="id_carga" caption="Id Carga" visible="false">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="no_archivo" caption="No Archivo" visible="false" canSetNull="true">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="co_contrato" caption="Co Contrato" visible="false" canSetNull="true">
+              <EditProperties type="textBox" size="3" maxLength="3" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="fe_carga" caption="Fe Carga" visible="false" canSetNull="true">
+              <EditProperties type="dateTime" showsTime="true" dateTimeFormat="Y-m-d H:i:s" firstDayOfWeek="0"/>
+            </Column>
+            <Column fieldName="co_estado_proceso" caption="Co Estado Proceso" visible="false" canSetNull="true">
+              <EditProperties type="textBox" size="1" maxLength="1" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_proyecto" caption="Tx Proyecto" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="20" maxLength="20" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_linea_accion_1" caption="Tx Linea Accion 1" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="2" maxLength="2" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_linea_accion_2" caption="Tx Linea Accion 2" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="2" maxLength="2" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_renglon_categoria_1" caption="Tx Renglon Categoria 1" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="10" maxLength="10" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_renglon_categoria_2" caption="Tx Renglon Categoria 2" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="10" maxLength="10" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_saldo_renglon_categ" caption="Tx Saldo Renglon Categ" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="10" maxLength="10" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_cuota" caption="Tx Cuota" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="20" maxLength="20" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_evento" caption="Tx Evento" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_descripcion" caption="Tx Descripcion" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_fecha_evento" caption="Tx Fecha Evento" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_lugar" caption="Tx Lugar" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="50" maxLength="50" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_importe" caption="Tx Importe" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="20" maxLength="20" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_razon_social" caption="Tx Razon Social" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_cuit" caption="Tx Cuit" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="20" maxLength="20" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_fecha_comprobante" caption="Tx Fecha Comprobante" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="15" maxLength="15" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_tipo_comprobante" caption="Tx Tipo Comprobante" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="2" maxLength="2" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_nro_comprobante" caption="Tx Nro Comprobante" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="20" maxLength="20" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_forma_pago" caption="Tx Forma Pago" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="50" maxLength="50" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_numero_cbu" caption="Tx Numero Cbu" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="50" maxLength="50" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_contacto" caption="Tx Contacto" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="50" maxLength="50" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_mail_contacto" caption="Tx Mail Contacto" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="50" maxLength="50" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_telefono_contacto" caption="Tx Telefono Contacto" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_fecha_ingreso_unsam" caption="Tx Fecha Ingreso Unsam" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="10" maxLength="10" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_expediente" caption="Tx Expediente" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="10" maxLength="10" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_numero_op" caption="Tx Numero Op" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="10" maxLength="10" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_retenciones_realizadas" caption="Tx Retenciones Realizadas" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="20" maxLength="20" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_importe_neto_pagar" caption="Tx Importe Neto Pagar" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="20" maxLength="20" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_estado" caption="Tx Estado" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="20" maxLength="20" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_fecha_pago" caption="Tx Fecha Pago" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="10" maxLength="10" placeholder="" prefix="" suffix=""/>
+            </Column>
+          </EditColumns>
+          <InsertColumns>
+            <Column fieldName="id_carga" caption="Id Carga" visible="false" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="no_archivo" caption="No Archivo" visible="false" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="co_contrato" caption="Co Contrato" visible="false" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="3" maxLength="3" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="fe_carga" caption="Fe Carga" visible="false" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="dateTime" showsTime="true" dateTimeFormat="Y-m-d H:i:s" firstDayOfWeek="0"/>
+            </Column>
+            <Column fieldName="co_estado_proceso" caption="Co Estado Proceso" visible="false" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="1" maxLength="1" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_proyecto" caption="Tx Proyecto" visible="true" canSetServerDefault="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="20" maxLength="20" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_linea_accion_1" caption="Tx Linea Accion 1" visible="true" canSetServerDefault="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="2" maxLength="2" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_linea_accion_2" caption="Tx Linea Accion 2" visible="true" canSetServerDefault="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="2" maxLength="2" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_renglon_categoria_1" caption="Tx Renglon Categoria 1" visible="true" canSetServerDefault="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="10" maxLength="10" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_renglon_categoria_2" caption="Tx Renglon Categoria 2" visible="true" canSetServerDefault="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="10" maxLength="10" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_saldo_renglon_categ" caption="Tx Saldo Renglon Categ" visible="true" canSetServerDefault="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="10" maxLength="10" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_cuota" caption="Tx Cuota" visible="true" canSetServerDefault="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="20" maxLength="20" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_evento" caption="Tx Evento" visible="true" canSetServerDefault="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_descripcion" caption="Tx Descripcion" visible="true" canSetServerDefault="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_fecha_evento" caption="Tx Fecha Evento" visible="true" canSetServerDefault="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_lugar" caption="Tx Lugar" visible="true" canSetServerDefault="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="50" maxLength="50" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_importe" caption="Tx Importe" visible="true" canSetServerDefault="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="20" maxLength="20" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_razon_social" caption="Tx Razon Social" visible="true" canSetServerDefault="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_cuit" caption="Tx Cuit" visible="true" canSetServerDefault="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="20" maxLength="20" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_fecha_comprobante" caption="Tx Fecha Comprobante" visible="true" canSetServerDefault="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="15" maxLength="15" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_tipo_comprobante" caption="Tx Tipo Comprobante" visible="true" canSetServerDefault="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="2" maxLength="2" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_nro_comprobante" caption="Tx Nro Comprobante" visible="true" canSetServerDefault="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="20" maxLength="20" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_forma_pago" caption="Tx Forma Pago" visible="true" canSetServerDefault="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="50" maxLength="50" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_numero_cbu" caption="Tx Numero Cbu" visible="true" canSetServerDefault="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="50" maxLength="50" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_contacto" caption="Tx Contacto" visible="true" canSetServerDefault="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="50" maxLength="50" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_mail_contacto" caption="Tx Mail Contacto" visible="true" canSetServerDefault="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="50" maxLength="50" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_telefono_contacto" caption="Tx Telefono Contacto" visible="true" canSetServerDefault="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_fecha_ingreso_unsam" caption="Tx Fecha Ingreso Unsam" visible="true" canSetServerDefault="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="10" maxLength="10" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_expediente" caption="Tx Expediente" visible="true" canSetServerDefault="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="10" maxLength="10" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_numero_op" caption="Tx Numero Op" visible="true" canSetServerDefault="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="10" maxLength="10" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_retenciones_realizadas" caption="Tx Retenciones Realizadas" visible="true" canSetServerDefault="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="20" maxLength="20" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_importe_neto_pagar" caption="Tx Importe Neto Pagar" visible="true" canSetServerDefault="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="20" maxLength="20" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_estado" caption="Tx Estado" visible="true" canSetServerDefault="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="20" maxLength="20" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_fecha_pago" caption="Tx Fecha Pago" visible="true" canSetServerDefault="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="10" maxLength="10" placeholder="" prefix="" suffix=""/>
+            </Column>
+          </InsertColumns>
+          <SimpleSearchColumns>
+            <Column fieldName="id_carga" caption="Id Carga" visible="true"/>
+            <Column fieldName="no_archivo" caption="No Archivo" visible="true"/>
+            <Column fieldName="co_contrato" caption="Co Contrato" visible="true"/>
+            <Column fieldName="fe_carga" caption="Fe Carga" visible="true"/>
+            <Column fieldName="co_estado_proceso" caption="Co Estado Proceso" visible="true"/>
+            <Column fieldName="tx_proyecto" caption="Tx Proyecto" visible="true"/>
+            <Column fieldName="tx_linea_accion_1" caption="Tx Linea Accion 1" visible="true"/>
+            <Column fieldName="tx_linea_accion_2" caption="Tx Linea Accion 2" visible="true"/>
+            <Column fieldName="tx_renglon_categoria_1" caption="Tx Renglon Categoria 1" visible="true"/>
+            <Column fieldName="tx_renglon_categoria_2" caption="Tx Renglon Categoria 2" visible="true"/>
+            <Column fieldName="tx_saldo_renglon_categ" caption="Tx Saldo Renglon Categ" visible="true"/>
+            <Column fieldName="tx_cuota" caption="Tx Cuota" visible="true"/>
+            <Column fieldName="tx_evento" caption="Tx Evento" visible="true"/>
+            <Column fieldName="tx_descripcion" caption="Tx Descripcion" visible="true"/>
+            <Column fieldName="tx_fecha_evento" caption="Tx Fecha Evento" visible="true"/>
+            <Column fieldName="tx_lugar" caption="Tx Lugar" visible="true"/>
+            <Column fieldName="tx_importe" caption="Tx Importe" visible="true"/>
+            <Column fieldName="tx_razon_social" caption="Tx Razon Social" visible="true"/>
+            <Column fieldName="tx_cuit" caption="Tx Cuit" visible="true"/>
+            <Column fieldName="tx_fecha_comprobante" caption="Tx Fecha Comprobante" visible="true"/>
+            <Column fieldName="tx_tipo_comprobante" caption="Tx Tipo Comprobante" visible="true"/>
+            <Column fieldName="tx_nro_comprobante" caption="Tx Nro Comprobante" visible="true"/>
+            <Column fieldName="tx_forma_pago" caption="Tx Forma Pago" visible="true"/>
+            <Column fieldName="tx_numero_cbu" caption="Tx Numero Cbu" visible="true"/>
+            <Column fieldName="tx_contacto" caption="Tx Contacto" visible="true"/>
+            <Column fieldName="tx_mail_contacto" caption="Tx Mail Contacto" visible="true"/>
+            <Column fieldName="tx_telefono_contacto" caption="Tx Telefono Contacto" visible="true"/>
+            <Column fieldName="tx_fecha_ingreso_unsam" caption="Tx Fecha Ingreso Unsam" visible="true"/>
+            <Column fieldName="tx_expediente" caption="Tx Expediente" visible="true"/>
+            <Column fieldName="tx_numero_op" caption="Tx Numero Op" visible="true"/>
+            <Column fieldName="tx_retenciones_realizadas" caption="Tx Retenciones Realizadas" visible="true"/>
+            <Column fieldName="tx_importe_neto_pagar" caption="Tx Importe Neto Pagar" visible="true"/>
+            <Column fieldName="tx_estado" caption="Tx Estado" visible="true"/>
+            <Column fieldName="tx_fecha_pago" caption="Tx Fecha Pago" visible="true"/>
+          </SimpleSearchColumns>
+          <AdvancedSearchColumns>
+            <Column fieldName="id_carga" caption="Id Carga" visible="true" useComboBox="false"/>
+            <Column fieldName="no_archivo" caption="No Archivo" visible="true" useComboBox="false"/>
+            <Column fieldName="co_contrato" caption="Co Contrato" visible="true" useComboBox="false"/>
+            <Column fieldName="fe_carga" caption="Fe Carga" visible="true" useComboBox="false"/>
+            <Column fieldName="co_estado_proceso" caption="Co Estado Proceso" visible="true" useComboBox="false"/>
+            <Column fieldName="tx_proyecto" caption="Tx Proyecto" visible="true" useComboBox="false"/>
+            <Column fieldName="tx_linea_accion_1" caption="Tx Linea Accion 1" visible="true" useComboBox="false"/>
+            <Column fieldName="tx_linea_accion_2" caption="Tx Linea Accion 2" visible="true" useComboBox="false"/>
+            <Column fieldName="tx_renglon_categoria_1" caption="Tx Renglon Categoria 1" visible="true" useComboBox="false"/>
+            <Column fieldName="tx_renglon_categoria_2" caption="Tx Renglon Categoria 2" visible="true" useComboBox="false"/>
+            <Column fieldName="tx_saldo_renglon_categ" caption="Tx Saldo Renglon Categ" visible="true" useComboBox="false"/>
+            <Column fieldName="tx_cuota" caption="Tx Cuota" visible="true" useComboBox="false"/>
+            <Column fieldName="tx_evento" caption="Tx Evento" visible="true" useComboBox="false"/>
+            <Column fieldName="tx_descripcion" caption="Tx Descripcion" visible="true" useComboBox="false"/>
+            <Column fieldName="tx_fecha_evento" caption="Tx Fecha Evento" visible="true" useComboBox="false"/>
+            <Column fieldName="tx_lugar" caption="Tx Lugar" visible="true" useComboBox="false"/>
+            <Column fieldName="tx_importe" caption="Tx Importe" visible="true" useComboBox="false"/>
+            <Column fieldName="tx_razon_social" caption="Tx Razon Social" visible="true" useComboBox="false"/>
+            <Column fieldName="tx_cuit" caption="Tx Cuit" visible="true" useComboBox="false"/>
+            <Column fieldName="tx_fecha_comprobante" caption="Tx Fecha Comprobante" visible="true" useComboBox="false"/>
+            <Column fieldName="tx_tipo_comprobante" caption="Tx Tipo Comprobante" visible="true" useComboBox="false"/>
+            <Column fieldName="tx_nro_comprobante" caption="Tx Nro Comprobante" visible="true" useComboBox="false"/>
+            <Column fieldName="tx_forma_pago" caption="Tx Forma Pago" visible="true" useComboBox="false"/>
+            <Column fieldName="tx_numero_cbu" caption="Tx Numero Cbu" visible="true" useComboBox="false"/>
+            <Column fieldName="tx_contacto" caption="Tx Contacto" visible="true" useComboBox="false"/>
+            <Column fieldName="tx_mail_contacto" caption="Tx Mail Contacto" visible="true" useComboBox="false"/>
+            <Column fieldName="tx_telefono_contacto" caption="Tx Telefono Contacto" visible="true" useComboBox="false"/>
+            <Column fieldName="tx_fecha_ingreso_unsam" caption="Tx Fecha Ingreso Unsam" visible="true" useComboBox="false"/>
+            <Column fieldName="tx_expediente" caption="Tx Expediente" visible="true" useComboBox="false"/>
+            <Column fieldName="tx_numero_op" caption="Tx Numero Op" visible="true" useComboBox="false"/>
+            <Column fieldName="tx_retenciones_realizadas" caption="Tx Retenciones Realizadas" visible="true" useComboBox="false"/>
+            <Column fieldName="tx_importe_neto_pagar" caption="Tx Importe Neto Pagar" visible="true" useComboBox="false"/>
+            <Column fieldName="tx_estado" caption="Tx Estado" visible="true" useComboBox="false"/>
+            <Column fieldName="tx_fecha_pago" caption="Tx Fecha Pago" visible="true" useComboBox="false"/>
+          </AdvancedSearchColumns>
+          <ExportColumns>
+            <Column fieldName="id_carga" caption="Id Carga" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_archivo" caption="No Archivo" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="co_contrato" caption="Co Contrato" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="fe_carga" caption="Fe Carga" visible="true">
+              <ViewProperties type="dateTime" dateTimeFormat="Y-m-d H:i:s"/>
+            </Column>
+            <Column fieldName="co_estado_proceso" caption="Co Estado Proceso" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_proyecto" caption="Tx Proyecto" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_linea_accion_1" caption="Tx Linea Accion 1" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_linea_accion_2" caption="Tx Linea Accion 2" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_renglon_categoria_1" caption="Tx Renglon Categoria 1" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_renglon_categoria_2" caption="Tx Renglon Categoria 2" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_saldo_renglon_categ" caption="Tx Saldo Renglon Categ" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_cuota" caption="Tx Cuota" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_evento" caption="Tx Evento" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_descripcion" caption="Tx Descripcion" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_fecha_evento" caption="Tx Fecha Evento" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_lugar" caption="Tx Lugar" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_importe" caption="Tx Importe" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_razon_social" caption="Tx Razon Social" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_cuit" caption="Tx Cuit" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_fecha_comprobante" caption="Tx Fecha Comprobante" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_tipo_comprobante" caption="Tx Tipo Comprobante" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_nro_comprobante" caption="Tx Nro Comprobante" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_forma_pago" caption="Tx Forma Pago" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_numero_cbu" caption="Tx Numero Cbu" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_contacto" caption="Tx Contacto" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_mail_contacto" caption="Tx Mail Contacto" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_telefono_contacto" caption="Tx Telefono Contacto" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_fecha_ingreso_unsam" caption="Tx Fecha Ingreso Unsam" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_expediente" caption="Tx Expediente" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_numero_op" caption="Tx Numero Op" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_retenciones_realizadas" caption="Tx Retenciones Realizadas" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_importe_neto_pagar" caption="Tx Importe Neto Pagar" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_estado" caption="Tx Estado" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_fecha_pago" caption="Tx Fecha Pago" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+          </ExportColumns>
+          <PrintColumns>
+            <Column fieldName="id_carga" caption="Id Carga" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_archivo" caption="No Archivo" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="co_contrato" caption="Co Contrato" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="fe_carga" caption="Fe Carga" visible="true">
+              <ViewProperties type="dateTime" dateTimeFormat="Y-m-d H:i:s"/>
+            </Column>
+            <Column fieldName="co_estado_proceso" caption="Co Estado Proceso" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_proyecto" caption="Tx Proyecto" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_linea_accion_1" caption="Tx Linea Accion 1" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_linea_accion_2" caption="Tx Linea Accion 2" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_renglon_categoria_1" caption="Tx Renglon Categoria 1" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_renglon_categoria_2" caption="Tx Renglon Categoria 2" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_saldo_renglon_categ" caption="Tx Saldo Renglon Categ" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_cuota" caption="Tx Cuota" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_evento" caption="Tx Evento" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_descripcion" caption="Tx Descripcion" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_fecha_evento" caption="Tx Fecha Evento" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_lugar" caption="Tx Lugar" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_importe" caption="Tx Importe" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_razon_social" caption="Tx Razon Social" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_cuit" caption="Tx Cuit" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_fecha_comprobante" caption="Tx Fecha Comprobante" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_tipo_comprobante" caption="Tx Tipo Comprobante" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_nro_comprobante" caption="Tx Nro Comprobante" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_forma_pago" caption="Tx Forma Pago" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_numero_cbu" caption="Tx Numero Cbu" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_contacto" caption="Tx Contacto" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_mail_contacto" caption="Tx Mail Contacto" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_telefono_contacto" caption="Tx Telefono Contacto" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_fecha_ingreso_unsam" caption="Tx Fecha Ingreso Unsam" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_expediente" caption="Tx Expediente" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_numero_op" caption="Tx Numero Op" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_retenciones_realizadas" caption="Tx Retenciones Realizadas" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_importe_neto_pagar" caption="Tx Importe Neto Pagar" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_estado" caption="Tx Estado" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_fecha_pago" caption="Tx Fecha Pago" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+          </PrintColumns>
+        </Columns>
+        <Details/>
+        <RecordPermissions useRecordPermissions="false"/>
+        <PartitionNavigators/>
+      </Page>
+    </Pages>
+    <UserAuthorization/>
+    <UserGrants enableGuestAccess="false">
+      <UserPageGrants/>
+    </UserGrants>
+    <Header>
+Pagos    </Header>
+    <Footer/>
+    <Groups>
+      <Group>
+Default      </Group>
+    </Groups>
+  </Presentation>
+  <UserCSS/>
+  <UserJS/>
+  <ExcludedPaths/>
+  <DefaultPageProperties recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true" showKeyColumnsImagesInGridHeader="false"/>
+  <DefaultDataFormats numberAfterDecimal="4" DecimalSeparator="." ThousandSeparator="," DateTimeFormat="Y-m-d H:i:s" DateFormat="Y-m-d" firstDayOfWeek="0"/>
+</Project>

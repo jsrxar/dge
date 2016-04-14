@@ -1,0 +1,33 @@
+﻿SET CLIENT_ENCODING TO 'LATIN1';
+DELETE FROM stg_pagos_1;
+COPY stg_pagos_1 (
+	tx_proyecto,
+	tx_linea_accion_1,
+	tx_linea_accion_2,
+	tx_renglon_categoria_1,
+	tx_renglon_categoria_2,
+	tx_saldo_renglon_categ,
+	tx_cuota,
+	tx_evento,
+	tx_descripcion,
+	tx_fecha_evento,
+	tx_lugar,
+	tx_importe,
+	tx_razon_social,
+	tx_cuit,
+	tx_fecha_comprobante,
+	tx_tipo_comprobante,
+	tx_nro_comprobante,
+	tx_forma_pago,
+	tx_numero_cbu,
+	tx_contacto,
+	tx_mail_contacto,
+	tx_telefono_contacto,
+	tx_fecha_ingreso_unsam,
+	tx_expediente,
+	tx_numero_op,
+	tx_retenciones_realizadas,
+	tx_importe_neto_pagar,
+	tx_estado,
+	tx_fecha_pago )
+FROM 'C:/archivos/PLANILLA UNTREF CONVENIOS 2015 (08062015).csv' USING DELIMITERS ';' WITH CSV HEADER;

@@ -1,0 +1,82 @@
+NIVEL1;NIVEL2;NIVEL3;NOMBRE;TELEFONO;ESPACIO;OFICINA
+DIRECCION TECNICA OPERATIVA;DIRECCION;Coordinación General;Martinez, Alberto;9265;PB;006 A
+DIRECCION TECNICA OPERATIVA;DIRECCION;Asesor Operativo;Umpierrez, Manuel;9348;PB;006 B
+DIRECCION TECNICA OPERATIVA;DIRECCION;Asesor Operativo;Caram, Adrian;9348;PB;006 B
+DIRECCION TECNICA OPERATIVA;MESA DE AYUDA;Responsable Mesa de Ayuda;Leyes, Sabrina;9337/9266;PB;006
+DIRECCION TECNICA OPERATIVA;MESA DE AYUDA;Equipo Mesa de Ayuda;Herrera, Maria del Mar;9337/9266;PB;006
+DIRECCION TECNICA OPERATIVA;MESA DE AYUDA;Equipo Mesa de Ayuda;Lucano, Sandra;9337/9266;PB;006
+DIRECCION TECNICA OPERATIVA;MESA DE AYUDA;Equipo Mesa de Ayuda;Alberti, Cynthia;9337/9266;PB;006
+DIRECCION TECNICA OPERATIVA;MESA DE AYUDA;Equipo Mesa de Ayuda;Valladares, Candela;9337/9266;PB;006
+DIRECCION TECNICA OPERATIVA;MESA DE AYUDA;Equipo Mesa de Ayuda;Lynch, Emanuel;9337/9266;PB;006
+DIRECCION TECNICA OPERATIVA;MESA DE AYUDA;Equipo Mesa de Ayuda;Savignon, Leila;9337/9266;PB;006
+DIRECCION TECNICA OPERATIVA;COORDINACION;Coordinador Tecnico Operativo;Soto, Jonatan;Handie: canal 8;;
+DIRECCION TECNICA OPERATIVA;OPERATIVA Y LOGISTICA;Equipo Tecnico Operativo;Castillo, Enzo;Handie: canal 8;;
+DIRECCION TECNICA OPERATIVA;OPERATIVA Y LOGISTICA;Equipo Tecnico Operativo;Marcote, Mariano;Handie: canal 8;;
+DIRECCION TECNICA OPERATIVA;OPERATIVA Y LOGISTICA;Equipo Tecnico Operativo;Meana, Adrian;Handie: canal 8;;
+DIRECCION TECNICA OPERATIVA;OPERATIVA Y LOGISTICA;Equipo Tecnico Operativo;Baez, Esteban;Handie: canal 8;;
+DIRECCION TECNICA OPERATIVA;OPERATIVA Y LOGISTICA;Equipo Tecnico Operativo;González, Nelson;Handie: canal 8;;
+DIRECCION TECNICA OPERATIVA;OPERATIVA Y LOGISTICA;Equipo Tecnico Operativo;Lotz, Guillermo;Handie: canal 8;;
+DIRECCION TECNICA OPERATIVA;OPERATIVA Y LOGISTICA;Equipo Tecnico Operativo;Acosta, Hugo;Handie: canal 8;;
+DIRECCION TECNICA OPERATIVA;OPERATIVA Y LOGISTICA;Equipo Tecnico Operativo;Chemes, Mariano;Handie: canal 8;;
+DIRECCION TECNICA OPERATIVA;OPERATIVA Y LOGISTICA;Equipo Tecnico Operativo;Goñi, Hernan;Handie: canal 8;;
+DIRECCION TECNICA OPERATIVA;OPERATIVA Y LOGISTICA;Equipo Tecnico Operativo;Vedoya, Emanuel;Handie: canal 8;;
+DIRECCION TECNICA OPERATIVA;OPERATIVA Y LOGISTICA;Equipo Tecnico Operativo;Treser, Carlos;Handie: canal 8;;
+DIRECCION TECNICA OPERATIVA;CONTROL Y PLANIFICACIÓN;Equipo Control y Planificación;Maccari, Pablo;9337/9266;;006
+DIRECCION TECNICA OPERATIVA;CONTROL Y PLANIFICACIÓN;Equipo Control y Planificación;Restuccio, Marcelo;9337/9266;;006
+DIRECCION TECNICA OPERATIVA;CONTROL Y PLANIFICACIÓN;Equipo Control y Planificación;Rizzo, Javier;9337/9266;;006
+DIRECCION TECNICA OPERATIVA;CONTROL Y PLANIFICACIÓN;Equipo Control y Planificación;Sanz, María Fernanda;9337/9266;;006
+SERVICIOS GENERALES;TECNICA ADMINSTRATIVA;Aste. Tecnico Administrativo - Comunicación interna, Pliegos técnicos e informes;Daniel, Danira;9361/9336;;
+SERVICIOS GENERALES;TECNICA ADMINSTRATIVA;Telefonia celular/Otros servicios;Milanese, Fernando;9361/9336;;
+SERVICIOS GENERALES;TECNICA ADMINSTRATIVA;Aste. Técnico Administrativo - Informes técnicos;Peinado, Magali;9361/9336;;
+SERVICIOS GENERALES;INSPECCIÓN LIMPIEZA, JARDINERÍA Y LOGÍSTICA;Encargado Limpieza;Zeniuk, Gabriel;Handie: canal 2;;
+SERVICIOS GENERALES;INSPECCIÓN LIMPIEZA, JARDINERÍA Y LOGÍSTICA;Equipo Limpieza;Dialissandro Jorge;Handie: canal 2;;
+SERVICIOS GENERALES;INSPECCIÓN LIMPIEZA, JARDINERÍA Y LOGÍSTICA;Equipo Limpieza;Dominguez, Emiliano;Handie: canal 2;;
+SERVICIOS GENERALES;INSPECCIÓN LIMPIEZA, JARDINERÍA Y LOGÍSTICA;Equipo Limpieza;Weidert, Fernando;Handie: canal 2;;
+SERVICIOS GENERALES;INSPECCIÓN LIMPIEZA, JARDINERÍA Y LOGÍSTICA;Equipo Limpieza;Varga, Nanci;Handie: canal 2;;
+SERVICIOS GENERALES;INSPECCIÓN LIMPIEZA, JARDINERÍA Y LOGÍSTICA;Maestranza;Leal, Camila;Handie: canal 2;;
+SERVICIOS GENERALES;INSPECCIÓN LIMPIEZA, JARDINERÍA Y LOGÍSTICA;Maestranza;Cabrera, Valeria;Handie: canal 2;;
+SERVICIOS GENERALES;CONTROL DE ACCESOS;Responsable Control de Acceso A;Fuentes Lanesan, Ruben;9300/9296;PB;Acceso 002
+SERVICIOS GENERALES;CONTROL DE ACCESOS;Control de Acceso A - Subresponsable;Carruthers, Federico;9300/9296;PB;Acceso 002
+SERVICIOS GENERALES;CONTROL DE ACCESOS;Control de Acceso A;Daguanno, Maria Florencia;9300/9296;PB;Acceso 002
+SERVICIOS GENERALES;CONTROL DE ACCESOS;Control de Acceso A;Gomez Garnero, Ignacio;9300/9296;PB;Acceso 002
+SERVICIOS GENERALES;CONTROL DE ACCESOS;Control de Acceso A;Granero, Maria Noel;9300/9296;PB;Acceso 002
+SERVICIOS GENERALES;CONTROL DE ACCESOS;Control de Acceso A;Herrera, Lara Mariela;9300/9296;PB;Acceso 002
+SERVICIOS GENERALES;CONTROL DE ACCESOS;Control de Acceso A;Vazquez, Eduardo;9300/9296;PB;Acceso 002
+SERVICIOS GENERALES;CONTROL DE ACCESOS;Responsable Control de Acceso B;Gaitan, Matias;9300/9296;PB;Acceso 002
+SERVICIOS GENERALES;CONTROL DE ACCESOS;Control de Acceso B;Biondo, Paula Lucia;9300/9296;PB;Acceso 002
+SERVICIOS GENERALES;CONTROL DE ACCESOS;Control de Acceso B;Castiello, Nicolas;9300/9296;PB;Acceso 002
+SERVICIOS GENERALES;CONTROL DE ACCESOS;Control de Acceso B Subresponsable;Fuentes Lanesan, Manuel;9300/9296;PB;Acceso 002
+SERVICIOS GENERALES;CONTROL DE ACCESOS;Control de Acceso B;Pacheco, Franco;9300/9296;PB;Acceso 002
+SERVICIOS GENERALES;CONTROL DE ACCESOS;;;9300/9296;PB;Acceso 002
+SEGURIDAD;COORDINACION;Coordinador seguridad;Gustavo Carca;Handie: canal 3;PB;
+SEGURIDAD;PERSONAL;Coordinación Seguridad;Speake, Randy;Handie: canal 3;PB;
+SEGURIDAD;PERSONAL;;Richitelli, Miguel;Handie: canal 3;PB;
+SEGURIDAD;PERSONAL;;Rojas, Mirta;Handie: canal 3;PB;
+SEGURIDAD;PERSONAL;;Ochoa, Fabian;Handie: canal 3;PB;
+ESPACIOS FISICOS;COORDINACION;Coordinación Espacios Físicos;Maxi Seif;9344              Handie: canal 5 ;2º EP;E201
+ESPACIOS FISICOS;COORDINACION;Equipo Espacios Físicos - Sub Coordinación - Proyectos;Faure, Nicolas;9344              Handie: canal 5 ;2º EP;E201
+ESPACIOS FISICOS;CONTROL DE ESPACIOS;Equipo Espacios Fisicos - Aperturas y cerramientos de accesos;Mizzau, Carolina;9344              Handie: canal 5 ;2º EP;E201
+ESPACIOS FISICOS;CONTROL DE ESPACIOS;Equipo Espacios Fisicos - Seguimiento de montajes y desmontajes;Staller, Agustina;9344              Handie: canal 5 ;2º EP;E201
+ESPACIOS FISICOS;CONTROL DE ESPACIOS;Equipo Espacios Fisicos - Seguimiento de montajes y desmontajes;Macia, Pablo;9344              Handie: canal 5 ;2º EP;E201
+ESPACIOS FISICOS;CONTROL DE ESPACIOS;Equipo Espacios Fisicos - Carpintería, Diseño de proyectos;Fabre, Germán;9344              Handie: canal 5 ;2º EP;E201
+ESPACIOS FISICOS;CONTROL DE ESPACIOS;Equipo Espacios Fisicos - Inspección de obra y fotografìa;Toledo Widensky, Julieta;9344              Handie: canal 5 ;2º EP;E201
+ESPACIOS FISICOS;CONTROL DE ESPACIOS;Equipo Espacios Fisicos - Aperturas y cerramientos de accesos;Piccolomini, Sebastian;9344              Handie: canal 5 ;2º EP;E201
+ESPACIOS FISICOS;DISEÑO Y SEGUIMIENTO DE PROYECTOS;Equipo Espacios Fisicos - Aperturas y cerramientos de accesos;Santana, Valeria;9344              Handie: canal 5 ;2º EP;E201
+ESPACIOS FISICOS;DISEÑO Y SEGUIMIENTO DE PROYECTOS;Equipo Espacios Fisicos - Proyectista Cadista;Andino, Florencia;9344              Handie: canal 5 ;2º EP;E201
+ESPACIOS FISICOS;DISEÑO Y SEGUIMIENTO DE PROYECTOS;Equipo Espacios Fisicos - Responsable de proyectos;Ercoli, Julieta;9344              Handie: canal 5 ;2º EP;E201
+ESPACIOS FISICOS;DISEÑO Y SEGUIMIENTO DE PROYECTOS;Equipo Espacios Fisicos - Proyectista Cadista;Shoenfeld, Vanesa;9344              Handie: canal 5 ;2º EP;E201
+ESPACIOS FISICOS;DISEÑO Y SEGUIMIENTO DE PROYECTOS;Equipo Espacios Fisicos - Proyectista / Renderista;Della Vechia, Tomas;9344              Handie: canal 5 ;2º EP;E201
+ESPACIOS FISICOS;DISEÑO Y SEGUIMIENTO DE PROYECTOS;Equipo Espacios Fisicos - Proyectista Diseños;Cagnola, Leticia;9344              Handie: canal 5 ;2º EP;E201
+MANTENIMIENTO;COORDINACION;Coordinador Mantenimiento -  Seguimiento de Obras y funcionamiento de Sistemas;Sanchez, Gabriel;Handie: canal 8;;
+MANTENIMIENTO;ELEVACION VERTICAL;;;Handie: canal 8;;
+MANTENIMIENTO;INFRAESTRUCTURA;Coordinador Mantenimiento -  Seguimiento de Obras y funcionamiento de Sistemas;Sanchez, Gabriel;Handie: canal 8;;
+MANTENIMIENTO;TERMOMECANICA;Equipo Tecnico Operativo Mantenimiento - Termomecanica;Balcazar, Jorge;Handie: canal 8;;
+MANTENIMIENTO;TERMOMECANICA;Equipo Tecnico Operativo Mantenimiento - Termomecanica;Hurtado, Ricardo;Handie: canal 8;;
+MANTENIMIENTO;SISTEMA DE CONTROL Y SEGURIDAD;Equipo Mantenimiento -  Seguimiento de Obras y funcionamiento de Sistemas;Sanchez, Ezequiel;Handie: canal 8;;
+MANTENIMIENTO;INSTALACIONES ELECTRICAS;Equipo Mantenimiento -  Especialista Electrico;Franceschi, Santiago;Handie: canal 8;;
+MANTENIMIENTO;INSTALACIONES ELECTRICAS;Equipo Mantenimiento -  Especialista Electrico;Gómez, Wilson;Handie: canal 8;;
+SEGURIDAD E HIGIENE;RESPONSABLE;Equipo Higiene y Seguridad - Referente, Capacitaciones e Ingeniería;Lirusso, Raul;9290/9358;8º;819
+SEGURIDAD E HIGIENE;CAPACITACION E INDUCCION;Equipo Higiene y Seguridad - Capacitaciones e Ingeniería;Chara Scardigio, Juan Manuel;9290/9358;8º;819
+SEGURIDAD E HIGIENE;DOCUMENTACION, CONTROL E INSPECCIÓN;Equipo Higiene y Seguridad - Persmisos y habilitaciones;Pellegrotti, Antonella;9361;8º;820
+SEGURIDAD E HIGIENE;DOCUMENTACION, CONTROL E INSPECCIÓN;Equipo Higiene y Seguridad - Inspección Técnica;Ciccotosto, Romina;9361;8º;820
+;;;;;;

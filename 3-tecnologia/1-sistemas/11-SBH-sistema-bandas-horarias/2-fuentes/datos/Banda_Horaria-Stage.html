@@ -1,0 +1,418 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-15">
+<style>
+	  body {
+		font-family: Segoe UI, Arial, sans-serif;
+	  }
+
+	  ul {
+		-webkit-margin-before: 1px;
+        -webkit-margin-after: 5px;
+	  }
+
+	  p {
+		margin: 1px;
+	  }
+
+      .tableNameHeading {
+           margin-top: 2px;
+           margin-bottom: 1px;
+           border-top: 3px solid gray;
+           border-bottom: 1px solid #C0C0C0;
+           background-color:#F5F5FF;
+		   font-size:110%;
+       }
+
+      .tableComment{ background-color:#e4efff; margin-bottom:20px;}
+      .tableDefinition { padding:2px; border-collapse:collapse; margin-top:2px;}
+
+      .tdTableDefinition {
+        padding-right:10px;
+        vertical-align:top;
+        border-bottom:1px solid #C0C0C0;
+      }
+
+      .tdTableHeading {
+        padding:2px;
+        font-weight:bold;
+        vertical-align:top;
+        border-bottom: 1px solid #C0C0C0;
+        background-color: rgb(240,240,240);
+      }
+      
+      .subTitle {
+        font-size:120%;
+		font-weight:bold;
+        background-color:#F5F5FF;
+      }
+    </style>
+<title>Banda_Horaria-Stage</title>
+</head>
+<body>
+<center>
+<h2>Banda_Horaria-Stage</h2>
+</center>
+<h3 class="tableNameHeading">Lista de Entidades</h3>
+<ul style="font-size:80%;">
+<li>
+<a href="#Stage Banda Ciardi">Stage Banda Ciardi</a>
+</li>
+<li>
+<a href="#Stage Banda Horaria">Stage Banda Horaria</a>
+</li>
+<li>
+<a href="#Stage DTO Banda">Stage DTO Banda</a>
+</li>
+<li>
+<a href="#Stage DTO Personal">Stage DTO Personal</a>
+</li>
+<li>
+<a href="#Stage Fichadas">Stage Fichadas</a>
+</li>
+<li>
+<a href="#Stage Lecturas">Stage Lecturas</a>
+</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Stage Banda Ciardi">Stage Banda Ciardi</a><span> (Tabla: stg_banda_ciardi)</span>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Carga (Clave)</td><td class="tdTableDefinition">id_carga</td><td class="tdTableDefinition">[-5] <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Nombre Archivo</td><td class="tdTableDefinition">no_archivo</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition">Nombre del archivo cargado.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Lugar</td><td class="tdTableDefinition">co_lugar</td><td class="tdTableDefinition">CHAR</td><td class="tdTableDefinition">C&oacute;digo de lugar.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Fecha Carga</td><td class="tdTableDefinition">fe_carga</td><td class="tdTableDefinition">TIMESTAMP</td><td class="tdTableDefinition">Fecha y hora de carga del archivo.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Estado</td><td class="tdTableDefinition">co_estado_proceso</td><td class="tdTableDefinition">CHAR</td><td class="tdTableDefinition">Estado de procesamiento del registro.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">D&iacute;a</td><td class="tdTableDefinition">tx_dia</td><td class="tdTableDefinition">VARCHAR(20)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Molinete</td><td class="tdTableDefinition">tx_molinete</td><td class="tdTableDefinition">VARCHAR(10)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Tipo</td><td class="tdTableDefinition">tx_tipo</td><td class="tdTableDefinition">VARCHAR(1)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Descripci&oacute;n Molinete</td><td class="tdTableDefinition">tx_ds_molinete</td><td class="tdTableDefinition">VARCHAR(20)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Hora</td><td class="tdTableDefinition">tx_hora</td><td class="tdTableDefinition">VARCHAR(20)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Tarjeta</td><td class="tdTableDefinition">tx_tarjeta</td><td class="tdTableDefinition">VARCHAR(20)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Agente</td><td class="tdTableDefinition">tx_agente</td><td class="tdTableDefinition">VARCHAR(50)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Cruce</td><td class="tdTableDefinition">tx_cruce</td><td class="tdTableDefinition">VARCHAR(20)</td><td class="tdTableDefinition"></td>
+</tr>
+</table>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Stage Banda Horaria">Stage Banda Horaria</a><span> (Tabla: stg_banda_horaria)</span>
+<p>Carga masiva de archivos de Banda Horaria CCK.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Carga (Clave)</td><td class="tdTableDefinition">id_carga</td><td class="tdTableDefinition">[-5] <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del registro cargado.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Nombre Archivo</td><td class="tdTableDefinition">no_archivo</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition">Nombre del archivo cargado.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Lugar</td><td class="tdTableDefinition">co_lugar</td><td class="tdTableDefinition">CHAR</td><td class="tdTableDefinition">C&oacute;digo de lugar.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Fecha Carga</td><td class="tdTableDefinition">fe_carga</td><td class="tdTableDefinition">TIMESTAMP</td><td class="tdTableDefinition">Fecha y hora de carga del archivo.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Estado</td><td class="tdTableDefinition">co_estado_proceso</td><td class="tdTableDefinition">CHAR</td><td class="tdTableDefinition">Estado de procesamiento del registro.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">C&oacute;digo</td><td class="tdTableDefinition">tx_codigo</td><td class="tdTableDefinition">VARCHAR(10)</td><td class="tdTableDefinition">C&oacute;digo de carga.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Tipo</td><td class="tdTableDefinition">tx_tipo</td><td class="tdTableDefinition">VARCHAR(50)</td><td class="tdTableDefinition">Tipo de la lectura cargada.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Nombre</td><td class="tdTableDefinition">tx_nombre</td><td class="tdTableDefinition">VARCHAR(50)</td><td class="tdTableDefinition">Nombre de la persona de la lectura cargada.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Apellido</td><td class="tdTableDefinition">tx_apellido</td><td class="tdTableDefinition">VARCHAR(50)</td><td class="tdTableDefinition">Apellido de la persona de la lectura cargada.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Empresa/ &Aacute;rea</td><td class="tdTableDefinition">tx_empresa_area</td><td class="tdTableDefinition">VARCHAR(50)</td><td class="tdTableDefinition">Empresa o &Aacute;rea de la lectura cargada.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">DNI / CUIT</td><td class="tdTableDefinition">tx_dni_cuit</td><td class="tdTableDefinition">VARCHAR(12)</td><td class="tdTableDefinition">DNI o CUIT de la persona de la lectura cargada.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ART</td><td class="tdTableDefinition">tx_art</td><td class="tdTableDefinition">VARCHAR(50)</td><td class="tdTableDefinition">ART de la persona de la lectura cargada.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">P&oacute;liza</td><td class="tdTableDefinition">tx_poliza</td><td class="tdTableDefinition">VARCHAR(50)</td><td class="tdTableDefinition">P&oacute;liza de ART de la persona de la lectura cargada.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Vigencia P&oacute;liza</td><td class="tdTableDefinition">tx_vigencia_poliza</td><td class="tdTableDefinition">VARCHAR(10)</td><td class="tdTableDefinition">Vigencia de la p&oacute;liza de la pesona.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Visita</td><td class="tdTableDefinition">tx_visita</td><td class="tdTableDefinition">VARCHAR(50)</td><td class="tdTableDefinition">Persona visitada.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Vencimiento</td><td class="tdTableDefinition">tx_vencimiento</td><td class="tdTableDefinition">VARCHAR(10)</td><td class="tdTableDefinition">Vencimiento de la tarjeta de ingreso.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Observaciones</td><td class="tdTableDefinition">tx_observaciones</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition">Observaciones principales.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Equipamiento 1</td><td class="tdTableDefinition">tx_equipamiento_1</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition">Detalle de equipamiento (1).</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Equipamiento 2</td><td class="tdTableDefinition">tx_equipamiento_2</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition">Detalle de equipamiento (2).</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Equipamiento 3</td><td class="tdTableDefinition">tx_equipamiento_3</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition">Detalle de equipamiento (3).</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Observaciones 1</td><td class="tdTableDefinition">tx_observacion_1</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition">Otras observaciones (1).</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Observaciones 2</td><td class="tdTableDefinition">tx_observacion_2</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition">Otras observaciones (2).</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Observaciones 3</td><td class="tdTableDefinition">tx_observacion_3</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition">Otras observaciones (3).</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Cantidad</td><td class="tdTableDefinition">tx_cantidad</td><td class="tdTableDefinition">VARCHAR(5)</td><td class="tdTableDefinition">Cantidad cargada en la lectura.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Fecha Lectura</td><td class="tdTableDefinition">tx_lectura</td><td class="tdTableDefinition">VARCHAR(20)</td><td class="tdTableDefinition">Fecha y Hora de la lectura.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Usuario Lectura</td><td class="tdTableDefinition">tx_usuario_lectura</td><td class="tdTableDefinition">VARCHAR(5)</td><td class="tdTableDefinition">Usuario de la lectura.</td>
+</tr>
+</table>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Stage DTO Banda">Stage DTO Banda</a><span> (Tabla: stg_dto_banda)</span>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Carga (Clave)</td><td class="tdTableDefinition">id_carga</td><td class="tdTableDefinition">[-5] <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Nombre Archivo</td><td class="tdTableDefinition">no_archivo</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition">Nombre del archivo cargado.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Lugar</td><td class="tdTableDefinition">co_lugar</td><td class="tdTableDefinition">CHAR</td><td class="tdTableDefinition">C&oacute;digo de lugar.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Fecha Carga</td><td class="tdTableDefinition">fe_carga</td><td class="tdTableDefinition">TIMESTAMP</td><td class="tdTableDefinition">Fecha y hora de carga del archivo.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Estado</td><td class="tdTableDefinition">co_estado_proceso</td><td class="tdTableDefinition">CHAR</td><td class="tdTableDefinition">Estado de procesamiento del registro.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Fecha</td><td class="tdTableDefinition">tx_fecha</td><td class="tdTableDefinition">VARCHAR(12)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Nombre</td><td class="tdTableDefinition">tx_nombre</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Entrada</td><td class="tdTableDefinition">tx_entrada</td><td class="tdTableDefinition">VARCHAR(20)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Salida</td><td class="tdTableDefinition">tx_salida</td><td class="tdTableDefinition">VARCHAR(20)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Horas</td><td class="tdTableDefinition">tx_horas</td><td class="tdTableDefinition">VARCHAR(20)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">DNI</td><td class="tdTableDefinition">tx_dni</td><td class="tdTableDefinition">VARCHAR(12)</td><td class="tdTableDefinition">DNI de la persona de la lectura cargada.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Empresa/ &Aacute;rea</td><td class="tdTableDefinition">tx_empresa_area</td><td class="tdTableDefinition">VARCHAR(50)</td><td class="tdTableDefinition">Empresa o &Aacute;rea de la lectura cargada.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Tipo Acreditaci&oacute;n</td><td class="tdTableDefinition">tx_tipo_acreditac</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+</table>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Stage DTO Personal">Stage DTO Personal</a><span> (Tabla: stg_dto_personal)</span>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Carga (Clave)</td><td class="tdTableDefinition">id_carga</td><td class="tdTableDefinition">[-5] <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Nombre Archivo</td><td class="tdTableDefinition">no_archivo</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition">Nombre del archivo cargado.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Lugar</td><td class="tdTableDefinition">co_lugar</td><td class="tdTableDefinition">CHAR</td><td class="tdTableDefinition">C&oacute;digo de lugar.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Fecha Carga</td><td class="tdTableDefinition">fe_carga</td><td class="tdTableDefinition">TIMESTAMP</td><td class="tdTableDefinition">Fecha y hora de carga del archivo.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Estado</td><td class="tdTableDefinition">co_estado_proceso</td><td class="tdTableDefinition">CHAR</td><td class="tdTableDefinition">Estado de procesamiento del registro.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Sector</td><td class="tdTableDefinition">tx_sector</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">&Aacute;rea</td><td class="tdTableDefinition">tx_area</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Puesto</td><td class="tdTableDefinition">tx_puesto</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Nombre</td><td class="tdTableDefinition">tx_nombre</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">DNI</td><td class="tdTableDefinition">tx_dni</td><td class="tdTableDefinition">VARCHAR(12)</td><td class="tdTableDefinition">DNI de la persona de la lectura cargada.</td>
+</tr>
+</table>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Stage Fichadas">Stage Fichadas</a><span> (Tabla: stg_fichadas)</span>
+<p>Carga masiva de archivos de fichadas.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Carga (Clave)</td><td class="tdTableDefinition">id_carga</td><td class="tdTableDefinition">[-5] <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Nombre Archivo</td><td class="tdTableDefinition">no_archivo</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition">Nombre del archivo cargado.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Lugar</td><td class="tdTableDefinition">co_lugar</td><td class="tdTableDefinition">CHAR</td><td class="tdTableDefinition">C&oacute;digo de lugar.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Fecha Carga</td><td class="tdTableDefinition">fe_carga</td><td class="tdTableDefinition">TIMESTAMP</td><td class="tdTableDefinition">Fecha y hora de carga del archivo.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Estado</td><td class="tdTableDefinition">co_estado_proceso</td><td class="tdTableDefinition">CHAR</td><td class="tdTableDefinition">Estado de procesamiento del registro.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Fecha</td><td class="tdTableDefinition">tx_fecha</td><td class="tdTableDefinition">VARCHAR(20)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Legajo</td><td class="tdTableDefinition">tx_legajo</td><td class="tdTableDefinition">VARCHAR(20)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Usu&aacute;rio</td><td class="tdTableDefinition">tx_usuario</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Hora Entrada</td><td class="tdTableDefinition">tx_entrada_hora</td><td class="tdTableDefinition">VARCHAR(20)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Usu&aacute;rio Entrada</td><td class="tdTableDefinition">tx_entrada_usuario</td><td class="tdTableDefinition">VARCHAR(10)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Descripci&oacute;n Entrada</td><td class="tdTableDefinition">tx_entrada_descrip</td><td class="tdTableDefinition">VARCHAR(50)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Lector Entrada</td><td class="tdTableDefinition">tx_entrada_lector</td><td class="tdTableDefinition">VARCHAR(10)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Lista Entrada</td><td class="tdTableDefinition">tx_entrada_lista</td><td class="tdTableDefinition">VARCHAR(20)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Hora Salida</td><td class="tdTableDefinition">tx_salida_hora</td><td class="tdTableDefinition">VARCHAR(20)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Usu&aacute;rio Salida</td><td class="tdTableDefinition">tx_salida_usuario</td><td class="tdTableDefinition">VARCHAR(10)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Descripci&oacute;n Salida</td><td class="tdTableDefinition">tx_salida_descrip</td><td class="tdTableDefinition">VARCHAR(50)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Lector Salida</td><td class="tdTableDefinition">tx_salida_lector</td><td class="tdTableDefinition">VARCHAR(10)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Lista Salida</td><td class="tdTableDefinition">tx_salida_lista</td><td class="tdTableDefinition">VARCHAR(20)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Total Horas</td><td class="tdTableDefinition">tx_total_hs</td><td class="tdTableDefinition">VARCHAR(20)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Observaciones</td><td class="tdTableDefinition">tx_observacion</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">DNI</td><td class="tdTableDefinition">tx_dni</td><td class="tdTableDefinition">VARCHAR(20)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Empresa / &Aacute;rea</td><td class="tdTableDefinition">tx_empresa_area</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Tipo Acreditaci&oacute;n</td><td class="tdTableDefinition">tx_tipo_acreditac</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+</table>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Stage Lecturas">Stage Lecturas</a><span> (Tabla: stg_lecturas)</span>
+<p>Carga masiva de lecturas desde el sistema de Control de Accesos.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Carga (Clave)</td><td class="tdTableDefinition">id_carga</td><td class="tdTableDefinition">[-5] <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico de la carga.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Fecha Carga</td><td class="tdTableDefinition">fe_carga</td><td class="tdTableDefinition">TIMESTAMP</td><td class="tdTableDefinition">Fecha y hora de carga del archivo.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Estado</td><td class="tdTableDefinition">co_estado_proceso</td><td class="tdTableDefinition">CHAR</td><td class="tdTableDefinition">Estado de procesamiento del registro.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Fecha / Hora</td><td class="tdTableDefinition">fe_fecha_hora</td><td class="tdTableDefinition">TIMESTAMP <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Fecha y Hora de la fichada.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">DNI</td><td class="tdTableDefinition">tx_dni</td><td class="tdTableDefinition">VARCHAR(20)</td><td class="tdTableDefinition">DNI de la persona que registra la lectura.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Persona</td><td class="tdTableDefinition">tx_persona</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition">Persona que registra la lectura.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Tipo Acreditaci&oacute;n</td><td class="tdTableDefinition">tx_tipo_acreditac</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition">Tipo de acreditaci&oacute;n de la persona.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Empresa / &Aacute;rea</td><td class="tdTableDefinition">tx_empresa_area</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition">Empresa o &Aacute;rea a la que pertenece la persona.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Usu&aacute;rio Lectura</td><td class="tdTableDefinition">tx_entrada</td><td class="tdTableDefinition">VARCHAR(10)</td><td class="tdTableDefinition">Usu&aacute;rio de regitro de la lectura.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Lector</td><td class="tdTableDefinition">tx_lector</td><td class="tdTableDefinition">VARCHAR(10)</td><td class="tdTableDefinition">Lector de la fichada.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Observaciones</td><td class="tdTableDefinition">tx_observacion</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition">Observaciones varias sobre la lectura.</td>
+</tr>
+</table>
+</body>
+</html>
