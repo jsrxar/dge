@@ -2437,6 +2437,7 @@
       <Users>
         <User name="relevamiento" password="hola1234" userId="relevamiento"/>
         <User name="servicios-generales" password="hola1234" userId="servicios-generales"/>
+        <User name="espacios-fisicos" password="hola1234" userId="espacios-fisicos"/>
         <User name="admin" password="hola1234"/>
       </Users>
     </UserAuthorization>
@@ -2444,6 +2445,7 @@
       <UserGrant userName="defaultUser"/>
       <UserGrant userName="relevamiento"/>
       <UserGrant userName="servicios-generales"/>
+      <UserGrant userName="espacios-fisicos"/>
       <UserGrant userName="admin" select="1" insert="1" update="1" delete="1" admin="1"/>
       <UserPageGrants>
         <PageGrants userName="defaultUser">
@@ -2483,6 +2485,20 @@
           <PageGrant pageName="public.sga_tipo_accion" select="1" insert="1" update="1" delete="1"/>
           <PageGrant pageName="public.sga_tipo_bien"/>
           <PageGrant pageName="public.sga_periodicidad" select="1" insert="1" update="1" delete="1"/>
+          <PageGrant pageName="public.sga_planta"/>
+          <PageGrant pageName="public.sga_sector"/>
+          <PageGrant pageName="public.sga_origen"/>
+          <PageGrant pageName="public.sga_tipo_espacio"/>
+        </PageGrants>
+        <PageGrants userName="espacios-fisicos">
+          <PageGrant pageName="public.sga_accion"/>
+          <PageGrant pageName="public.sga_tarea_plan"/>
+          <PageGrant pageName="public.sga_espacio" select="1" insert="1" update="1" delete="1"/>
+          <PageGrant pageName="public.sga_bien"/>
+          <PageGrant pageName="public.sga_metodologia"/>
+          <PageGrant pageName="public.sga_tipo_accion"/>
+          <PageGrant pageName="public.sga_tipo_bien"/>
+          <PageGrant pageName="public.sga_periodicidad"/>
           <PageGrant pageName="public.sga_planta"/>
           <PageGrant pageName="public.sga_sector"/>
           <PageGrant pageName="public.sga_origen"/>
