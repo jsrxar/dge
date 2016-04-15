@@ -1,0 +1,612 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-15">
+<style>
+	  body {
+		font-family: Segoe UI, Arial, sans-serif;
+	  }
+
+	  ul {
+		-webkit-margin-before: 1px;
+        -webkit-margin-after: 5px;
+	  }
+
+	  p {
+		margin: 1px;
+	  }
+
+      .tableNameHeading {
+           margin-top: 2px;
+           margin-bottom: 1px;
+           border-top: 3px solid gray;
+           border-bottom: 1px solid #C0C0C0;
+           background-color:#F5F5FF;
+		   font-size:110%;
+       }
+
+      .tableComment{ background-color:#e4efff; margin-bottom:20px;}
+      .tableDefinition { padding:2px; border-collapse:collapse; margin-top:2px;}
+
+      .tdTableDefinition {
+        padding-right:10px;
+        vertical-align:top;
+        border-bottom:1px solid #C0C0C0;
+      }
+
+      .tdTableHeading {
+        padding:2px;
+        font-weight:bold;
+        vertical-align:top;
+        border-bottom: 1px solid #C0C0C0;
+        background-color: rgb(240,240,240);
+      }
+      
+      .subTitle {
+        font-size:120%;
+		font-weight:bold;
+        background-color:#F5F5FF;
+      }
+    </style>
+<title>Banda_Horaria-DW</title>
+</head>
+<body>
+<center>
+<h2>Banda_Horaria-DW</h2>
+</center>
+<h3 class="tableNameHeading">Lista de Entidades</h3>
+<ul style="font-size:80%;">
+<li>
+<a href="#Empresa / %C3%81rea">Empresa / &Aacute;rea</a>
+</li>
+<li>
+<a href="#Fecha">Fecha</a>
+</li>
+<li>
+<a href="#Hora">Hora</a>
+</li>
+<li>
+<a href="#Lectura">Lectura</a>
+</li>
+<li>
+<a href="#Lugar">Lugar</a>
+</li>
+<li>
+<a href="#Origen">Origen</a>
+</li>
+<li>
+<a href="#Persona">Persona</a>
+</li>
+<li>
+<a href="#Tipo Acreditaci%C3%B3n">Tipo Acreditaci&oacute;n</a>
+</li>
+<li>
+<a href="#Tipo Hora">Tipo Hora</a>
+</li>
+<li>
+<a href="#Totales">Totales</a>
+</li>
+<li>
+<a href="#Turno">Turno</a>
+</li>
+<li>
+<a href="#Turnos">Turnos</a>
+</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Empresa / %C3%81rea">Empresa / &Aacute;rea</a><span> (Tabla: dim_empresa_area)</span>
+<p>Dimensi&oacute;n de Empresas / &Aacute;reas.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Empresa / &Aacute;rea (Clave)</td><td class="tdTableDefinition">id_empresa_area</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico de Empresa o &Aacute;rea.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Empresa / &Aacute;rea</td><td class="tdTableDefinition">no_empresa_area</td><td class="tdTableDefinition">VARCHAR(100) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Nombre de la Empresa o &Aacute;rea.</td>
+</tr>
+</table>
+<p class="subTitle">Referenciado por</p>
+<ul>
+<li>
+<a href="#Lectura">Lectura</a> referencia "ID Empresa / &Aacute;rea"</li>
+<li>
+<a href="#Turnos">Turnos</a> referencia "ID Empresa / &Aacute;rea"</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Fecha">Fecha</a><span> (Tabla: dim_fecha)</span>
+<p>Fecha de la lectura.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Fecha (Clave)</td><td class="tdTableDefinition">id_fecha</td><td class="tdTableDefinition">[-5] <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico de la fecha.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Fecha</td><td class="tdTableDefinition">fe_fecha</td><td class="tdTableDefinition">DATE <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Fecha real en formato de fecha.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Fecha (texto)</td><td class="tdTableDefinition">tx_fecha</td><td class="tdTableDefinition">VARCHAR(10) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Fecha real en formato de texto.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Nombre Fecha</td><td class="tdTableDefinition">no_fecha</td><td class="tdTableDefinition">VARCHAR(50) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Nombre completo de la fecha.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">A&ntilde;o</td><td class="tdTableDefinition">nu_anio</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">A&ntilde;o de la fecha.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Mes</td><td class="tdTableDefinition">nu_mes</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Mes de la fecha.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Nombre Mes</td><td class="tdTableDefinition">no_mes</td><td class="tdTableDefinition">VARCHAR(20) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Nombre del mes de la fecha.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Dia</td><td class="tdTableDefinition">nu_dia</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">N&uacute;mero del d&iacute;a en el mes.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">D&iacute;a Semana</td><td class="tdTableDefinition">nu_dia_semana</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">N&uacute;mero del d&iacute;a de la semana.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Nombre D&iacute;a Semana</td><td class="tdTableDefinition">no_dia_semana</td><td class="tdTableDefinition">VARCHAR(20) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Nombre del d&iacute;a de la semana.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">N&uacute;mero Semana A&ntilde;o</td><td class="tdTableDefinition">nu_semana_anio</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">N&uacute;mero de semana en el a&ntilde;o.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">N&uacute;mero D&iacute;a A&ntilde;o</td><td class="tdTableDefinition">nu_dia_ano</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">N&uacute;mero de d&iacute;a en el a&ntilde;o.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Cuatrimestre</td><td class="tdTableDefinition">nu_cuatrimestre</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">N&uacute;mero de cuatrimestre.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Fin Semana</td><td class="tdTableDefinition">fl_fin_semana</td><td class="tdTableDefinition">VARCHAR(2) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Flag indicativo de fin de semana.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Feriado</td><td class="tdTableDefinition">fl_feriado</td><td class="tdTableDefinition">VARCHAR(2) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Flag indicativo de feriado.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Estaci&oacute;n</td><td class="tdTableDefinition">no_estacion</td><td class="tdTableDefinition">VARCHAR(20) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Estaci&oacute;n del a&ntilde;o.</td>
+</tr>
+</table>
+<p class="subTitle">Referenciado por</p>
+<ul>
+<li>
+<a href="#Lectura">Lectura</a> referencia "ID Fecha"</li>
+<li>
+<a href="#Turnos">Turnos</a> referencia "ID Fecha"</li>
+<li>
+<a href="#Turnos">Turnos</a> referencia "ID Fecha"</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Hora">Hora</a><span> (Tabla: dim_hora)</span>
+<p>Dimensi&oacute;n de representaci&oacute;n de Horas y Minutos.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Hora (Clave)</td><td class="tdTableDefinition">id_hora</td><td class="tdTableDefinition">[-5] <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico de la hora.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Nombre Hora AM/PM</td><td class="tdTableDefinition">no_hora_12</td><td class="tdTableDefinition">VARCHAR(8) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Hora y minutos en formato de 12 horas m&aacute;s AM / PM (12:00 AM a 11:59 PM).</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Hora</td><td class="tdTableDefinition">fe_hora</td><td class="tdTableDefinition">TIME <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Hora en formato de hora.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Nombre Hora 24h</td><td class="tdTableDefinition">no_hora_24</td><td class="tdTableDefinition">VARCHAR(5) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Hora en formato de 24 horas (00:00 a 23:59).</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">N&uacute;mero Hora AM/PM</td><td class="tdTableDefinition">nu_hora_12</td><td class="tdTableDefinition">SMALLINT <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">N&uacute;mero de hora en formato de 12 horas.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">N&uacute;mero Hora 24h</td><td class="tdTableDefinition">nu_hora_24</td><td class="tdTableDefinition">SMALLINT <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">N&uacute;mero de hora en formato de 24 horas.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">AM / PM</td><td class="tdTableDefinition">tx_am_pm</td><td class="tdTableDefinition">CHAR <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identifica si la hora es AM o PM.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">N&uacute;mero Minuto</td><td class="tdTableDefinition">nu_minuto</td><td class="tdTableDefinition">SMALLINT <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">N&uacute;mero de minuto dentro de la hora.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">N&uacute;mero Minuto D&iacute;a</td><td class="tdTableDefinition">nu_minuto_dia</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">N&uacute;mero de minuto en el d&iacute;a.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Cuarto Hora</td><td class="tdTableDefinition">tx_cuartos_hora</td><td class="tdTableDefinition">VARCHAR(20) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Cuarto de hora dentro de la hora.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Turno 8h - ID Turno</td><td class="tdTableDefinition">id_turno8</td><td class="tdTableDefinition">SMALLINT <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del turno de 8 horas.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Turno 8h - ID Tipo Hora</td><td class="tdTableDefinition">id_turno8_tipo_hora</td><td class="tdTableDefinition">SMALLINT <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del tipo de hora en un turno de 8 horas.</td>
+</tr>
+</table>
+<p class="subTitle">Referencias</p>
+<ul>
+<li>
+<a href="#Tipo Hora">Tipo Hora</a> mediante "Turno 8h - ID Tipo Hora"</li>
+<li>
+<a href="#Turno">Turno</a> mediante "Turno 8h - ID Turno"</li>
+</ul>
+<p class="subTitle">Referenciado por</p>
+<ul>
+<li>
+<a href="#Lectura">Lectura</a> referencia "ID Hora"</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Lectura">Lectura</a><span> (Tabla: fac_lectura)</span>
+<p>Tabla de hecho de lecturas.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Lectura (Clave)</td><td class="tdTableDefinition">id_lectura</td><td class="tdTableDefinition">[-5] <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico de la lectura.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Persona</td><td class="tdTableDefinition">id_persona</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico de la persona.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Fecha</td><td class="tdTableDefinition">id_fecha</td><td class="tdTableDefinition">[-5] <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico de la fecha.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Hora</td><td class="tdTableDefinition">id_hora</td><td class="tdTableDefinition">[-5] <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico de la hora.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Lugar</td><td class="tdTableDefinition">id_lugar</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico de lugar de lectura.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Origen</td><td class="tdTableDefinition">id_origen</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del origen de lectura.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Tipo Acreditaci&oacute;n</td><td class="tdTableDefinition">id_tipo_acreditacion</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del tipo de acreditaci&oacute;n de la persona.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Tipo Hora</td><td class="tdTableDefinition">id_tipo_hora</td><td class="tdTableDefinition">SMALLINT <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del tipo de hora.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Empresa / &Aacute;rea</td><td class="tdTableDefinition">id_empresa_area</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico de Empresa o &Aacute;rea.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Q Lecturas</td><td class="tdTableDefinition">nu_lecturas</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Cantidad de lecturas.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Fecha / Hora</td><td class="tdTableDefinition">fe_hora</td><td class="tdTableDefinition">TIMESTAMP <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Fecha y Hora de la lectura.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Texto Hora</td><td class="tdTableDefinition">ds_hora</td><td class="tdTableDefinition">VARCHAR(10) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Hora de la lectura en formato texto.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Usuario</td><td class="tdTableDefinition">no_usuario</td><td class="tdTableDefinition">VARCHAR(10)</td><td class="tdTableDefinition">Usu&aacute;rio de la lectura.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Descripci&oacute;n Usuario</td><td class="tdTableDefinition">ds_usuario</td><td class="tdTableDefinition">VARCHAR(50)</td><td class="tdTableDefinition">Descripci&oacute;n de usu&aacute;rio de la lectura.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Lector</td><td class="tdTableDefinition">co_lector</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition">C&oacute;digo de lector.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Observaciones</td><td class="tdTableDefinition">ds_observaciones</td><td class="tdTableDefinition">VARCHAR(400)</td><td class="tdTableDefinition">Observaciones de la lectura.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Procesada?</td><td class="tdTableDefinition">fl_procesado</td><td class="tdTableDefinition">BOOLEAN <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Si el registro ya fue usado para c&aacute;lculo de turnos.</td>
+</tr>
+</table>
+<p class="subTitle">Referencias</p>
+<ul>
+<li>
+<a href="#Persona">Persona</a> mediante "ID Persona"</li>
+<li>
+<a href="#Tipo Acreditaci%C3%B3n">Tipo Acreditaci&oacute;n</a> mediante "ID Tipo Acreditaci&oacute;n"</li>
+<li>
+<a href="#Lugar">Lugar</a> mediante "ID Lugar"</li>
+<li>
+<a href="#Fecha">Fecha</a> mediante "ID Fecha"</li>
+<li>
+<a href="#Empresa / %C3%81rea">Empresa / &Aacute;rea</a> mediante "ID Empresa / &Aacute;rea"</li>
+<li>
+<a href="#Origen">Origen</a> mediante "ID Origen"</li>
+<li>
+<a href="#Tipo Hora">Tipo Hora</a> mediante "ID Tipo Hora"</li>
+<li>
+<a href="#Hora">Hora</a> mediante "ID Hora"</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Lugar">Lugar</a><span> (Tabla: dim_lugar)</span>
+<p>Dimensi&oacute;n de lugares de lectura.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Lugar (Clave)</td><td class="tdTableDefinition">id_lugar</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico de lugar de lectura.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">C&oacute;digo Logar</td><td class="tdTableDefinition">co_lugar</td><td class="tdTableDefinition">CHAR <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">C&oacute;digo de ifentificaci&oacute;n &uacute;nica del lugar.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Nombre Lugar</td><td class="tdTableDefinition">no_lugar</td><td class="tdTableDefinition">VARCHAR(100) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Nombre del lugar de lectura.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Direcci&oacute;n</td><td class="tdTableDefinition">ds_direccion</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition">Direcci&oacute;n del lugar.</td>
+</tr>
+</table>
+<p class="subTitle">Referenciado por</p>
+<ul>
+<li>
+<a href="#Lectura">Lectura</a> referencia "ID Lugar"</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Origen">Origen</a><span> (Tabla: dim_origen)</span>
+<p>Dimensi&oacute;n de origen de las lecturas.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Origen (Clave)</td><td class="tdTableDefinition">id_origen</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del origen de lectura.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">C&oacute;digo Origen</td><td class="tdTableDefinition">co_origen</td><td class="tdTableDefinition">CHAR <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">C&oacute;digo del origen de la lectura.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Nombre Origen</td><td class="tdTableDefinition">no_origen</td><td class="tdTableDefinition">VARCHAR(100) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Nombre del origen de la lectura.</td>
+</tr>
+</table>
+<p class="subTitle">Referenciado por</p>
+<ul>
+<li>
+<a href="#Lectura">Lectura</a> referencia "ID Origen"</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Persona">Persona</a><span> (Tabla: dim_persona)</span>
+<p>Dimensi&oacute;n de personas.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Persona (Clave)</td><td class="tdTableDefinition">id_persona</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico de la persona.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">N&uacute;mero DNI / CUIT</td><td class="tdTableDefinition">co_dni_cuit</td><td class="tdTableDefinition">VARCHAR(20) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">N&uacute;mero de DNI o CUIT de la persona.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Legajo</td><td class="tdTableDefinition">co_legajo</td><td class="tdTableDefinition">VARCHAR(20)</td><td class="tdTableDefinition">Legajo de la persona.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Nombre Persona</td><td class="tdTableDefinition">no_persona</td><td class="tdTableDefinition">VARCHAR(100) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Nombre de la persona.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Direcci&oacute;n</td><td class="tdTableDefinition">no_direccion</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition">Direcci&oacute;n a la que pertenece la persona.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Dependencia</td><td class="tdTableDefinition">no_dependencia</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition">Dependencia a la que pertenece la persona.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Sector</td><td class="tdTableDefinition">no_sector</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition">Sector en que trabaja la persona.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">&Aacute;rea</td><td class="tdTableDefinition">no_area</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition">&Aacute;rea dentro del sector.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Puesto</td><td class="tdTableDefinition">no_puesto</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition">Puesto dentro del &aacute;rea.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Tarea</td><td class="tdTableDefinition">no_tarea</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition">Tarea realizada dentro del &aacute;rea.</td>
+</tr>
+</table>
+<p class="subTitle">Referenciado por</p>
+<ul>
+<li>
+<a href="#Lectura">Lectura</a> referencia "ID Persona"</li>
+<li>
+<a href="#Turnos">Turnos</a> referencia "ID Persona"</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Tipo Acreditaci%C3%B3n">Tipo Acreditaci&oacute;n</a><span> (Tabla: dim_tipo_acreditacion)</span>
+<p>Dimensi&oacute;n de tipo de acreditaci&oacute;n de las personas.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Tipo Acreditaci&oacute;n (Clave)</td><td class="tdTableDefinition">id_tipo_acreditacion</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del tipo de acreditaci&oacute;n de la persona.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Tipo Acreditaci&oacute;n</td><td class="tdTableDefinition">no_tipo_acreditacion</td><td class="tdTableDefinition">VARCHAR(100) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Nombre del tipo de acreditaci&oacute;n.</td>
+</tr>
+</table>
+<p class="subTitle">Referenciado por</p>
+<ul>
+<li>
+<a href="#Lectura">Lectura</a> referencia "ID Tipo Acreditaci&oacute;n"</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Tipo Hora">Tipo Hora</a><span> (Tabla: dim_tipo_hora)</span>
+<p>Tipo de horario de la fichada.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Tipo Hora (Clave)</td><td class="tdTableDefinition">id_tipo_hora</td><td class="tdTableDefinition">SMALLINT <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del tipo de hora.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Nombre Tipo Hora</td><td class="tdTableDefinition">no_tipo_hora</td><td class="tdTableDefinition">VARCHAR(100) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Nombre del tipo de hora.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Turno Hora</td><td class="tdTableDefinition">no_turno_hora</td><td class="tdTableDefinition">VARCHAR(50)</td><td class="tdTableDefinition">Turno del horario de recambio.</td>
+</tr>
+</table>
+<p class="subTitle">Referenciado por</p>
+<ul>
+<li>
+<a href="#Lectura">Lectura</a> referencia "ID Tipo Hora"</li>
+<li>
+<a href="#Hora">Hora</a> referencia "ID Tipo Hora"</li>
+<li>
+<a href="#Turnos">Turnos</a> referencia "ID Tipo Hora"</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Totales">Totales</a><span> (Tabla: fac_totales)</span>
+<p>Tabla de hecho de totales de horas de las lecturas.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Lectura (Clave)</td><td class="tdTableDefinition">id_lectura</td><td class="tdTableDefinition">[-5] <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico de la lectura.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Lugar</td><td class="tdTableDefinition">id_lugar</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico de lugar de lectura.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Persona</td><td class="tdTableDefinition">id_persona</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico de la persona.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Fecha</td><td class="tdTableDefinition">id_fecha</td><td class="tdTableDefinition">[-5] <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico de la fecha.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Tipo Acreditaci&oacute;n</td><td class="tdTableDefinition">id_tipo_acreditacion</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del tipo de acreditaci&oacute;n de la persona.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Empresa / &Aacute;rea</td><td class="tdTableDefinition">id_empresa_area</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition">Identificador &uacute;nico de Empresa o &Aacute;rea.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Q Lecturas</td><td class="tdTableDefinition">nu_lecturas</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Cantidad de lecturas.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Q Personas D&iacute;as</td><td class="tdTableDefinition">nu_persona_dias</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Cantidad de personas/d&iacute;as de las lecturas.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Min Hora</td><td class="tdTableDefinition">fe_hora_min</td><td class="tdTableDefinition">TIMESTAMP</td><td class="tdTableDefinition">Fecha y Hora de la primera lectura.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">MAX Hora</td><td class="tdTableDefinition">fe_hora_max</td><td class="tdTableDefinition">TIMESTAMP</td><td class="tdTableDefinition">Fecha y Hora de la &uacute;ltima lectura.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Min Hora (n&uacute;mero)</td><td class="tdTableDefinition">va_hora_min</td><td class="tdTableDefinition">REAL</td><td class="tdTableDefinition">Fecha y Hora de la primera lectura.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">MAX Hora (n&uacute;mero)</td><td class="tdTableDefinition">va_hora_max</td><td class="tdTableDefinition">REAL</td><td class="tdTableDefinition">Fecha y Hora de la &uacute;ltima lectura.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Total Horas</td><td class="tdTableDefinition">va_horas_total</td><td class="tdTableDefinition">REAL <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Total de horas trabajadas en el d&iacute;a (Maximo - M&iacute;nimo).</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Media Horas</td><td class="tdTableDefinition">va_horas_media</td><td class="tdTableDefinition">REAL</td><td class="tdTableDefinition">Promedio de horas trabajadas en el d&iacute;a.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Observaciones</td><td class="tdTableDefinition">ds_observaciones</td><td class="tdTableDefinition">VARCHAR(400)</td><td class="tdTableDefinition">Observaciones de la lectura.</td>
+</tr>
+</table>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Turno">Turno</a><span> (Tabla: dim_turno)</span>
+<p>Turno de trabajo.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Turno (Clave)</td><td class="tdTableDefinition">id_turno</td><td class="tdTableDefinition">SMALLINT <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del turno.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Nombre Turno</td><td class="tdTableDefinition">no_turno</td><td class="tdTableDefinition">VARCHAR(50)</td><td class="tdTableDefinition">Turno del horario de recambio.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Banda Horaria</td><td class="tdTableDefinition">tx_banda_horaria</td><td class="tdTableDefinition">VARCHAR(20) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Banda Horaria del turno.</td>
+</tr>
+</table>
+<p class="subTitle">Referenciado por</p>
+<ul>
+<li>
+<a href="#Turnos">Turnos</a> referencia "ID Turno"</li>
+<li>
+<a href="#Hora">Hora</a> referencia "ID Turno"</li>
+<li>
+<a href="#Turnos">Turnos</a> referencia "ID Turno"</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Turnos">Turnos</a><span> (Tabla: fac_turnos)</span>
+<p>Tabla de hecho de turnos.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Persona (Clave)</td><td class="tdTableDefinition">id_persona</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico de la persona.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Hora In&iacute;cio (Clave)</td><td class="tdTableDefinition">fe_hora_inicio</td><td class="tdTableDefinition">TIMESTAMP <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Hora de la lectura de in&iacute;cio del turno.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Fecha In&iacute;cio</td><td class="tdTableDefinition">id_fecha_inicio</td><td class="tdTableDefinition">[-5] <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico de la fecha de in&iacute;cio del turno.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Origen In&iacute;cio</td><td class="tdTableDefinition">id_origen_inicio</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del origen de lectura de in&iacute;cio.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Fecha Fin</td><td class="tdTableDefinition">id_fecha_fin</td><td class="tdTableDefinition">[-5]</td><td class="tdTableDefinition">Identificador &uacute;nico de la fecha de fin del turno.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Origen Fin</td><td class="tdTableDefinition">id_origen_fin</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del origen de lectura de fin.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Turno</td><td class="tdTableDefinition">id_turno</td><td class="tdTableDefinition">SMALLINT <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del turno.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Turno In&iacute;cio</td><td class="tdTableDefinition">id_turno_inicio</td><td class="tdTableDefinition">SMALLINT</td><td class="tdTableDefinition">Identificador &uacute;nico del turno de in&iacute;cio.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Tipo Hora</td><td class="tdTableDefinition">id_tipo_hora</td><td class="tdTableDefinition">SMALLINT <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del tipo de hora.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Hora Fin</td><td class="tdTableDefinition">fe_hora_fin</td><td class="tdTableDefinition">TIMESTAMP</td><td class="tdTableDefinition">Hora de la lectura del fin del turno.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Empresa / &Aacute;rea</td><td class="tdTableDefinition">id_empresa_area</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico de Empresa o &Aacute;rea.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Q Lecturas</td><td class="tdTableDefinition">nu_lecturas</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Cantidad de lecturas.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Total Horas</td><td class="tdTableDefinition">va_horas_total</td><td class="tdTableDefinition">REAL <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Total de horas trabajadas en el d&iacute;a (Maximo - M&iacute;nimo).</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Media Horas</td><td class="tdTableDefinition">va_horas_media</td><td class="tdTableDefinition">REAL</td><td class="tdTableDefinition">Promedio de horas trabajadas en el d&iacute;a.</td>
+</tr>
+</table>
+<p class="subTitle">Referencias</p>
+<ul>
+<li>
+<a href="#Persona">Persona</a> mediante "ID Persona"</li>
+<li>
+<a href="#Fecha">Fecha</a> mediante "ID Fecha In&iacute;cio"</li>
+<li>
+<a href="#Fecha">Fecha</a> mediante "ID Fecha Fin"</li>
+<li>
+<a href="#Empresa / %C3%81rea">Empresa / &Aacute;rea</a> mediante "ID Empresa / &Aacute;rea"</li>
+<li>
+<a href="#Tipo Hora">Tipo Hora</a> mediante "ID Tipo Hora"</li>
+<li>
+<a href="#Turno">Turno</a> mediante "ID Turno"</li>
+<li>
+<a href="#Turno">Turno</a> mediante "ID Turno In&iacute;cio"</li>
+</ul>
+</body>
+</html>

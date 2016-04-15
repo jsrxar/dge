@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-15">
+<style>
+	  body {
+		font-family: Segoe UI, Arial, sans-serif;
+	  }
+
+	  ul {
+		-webkit-margin-before: 1px;
+        -webkit-margin-after: 5px;
+	  }
+
+	  p {
+		margin: 1px;
+	  }
+
+      .tableNameHeading {
+           margin-top: 2px;
+           margin-bottom: 1px;
+           border-top: 3px solid gray;
+           border-bottom: 1px solid #C0C0C0;
+           background-color:#F5F5FF;
+		   font-size:110%;
+       }
+
+      .tableComment{ background-color:#e4efff; margin-bottom:20px;}
+      .tableDefinition { padding:2px; border-collapse:collapse; margin-top:2px;}
+
+      .tdTableDefinition {
+        padding-right:10px;
+        vertical-align:top;
+        border-bottom:1px solid #C0C0C0;
+      }
+
+      .tdTableHeading {
+        padding:2px;
+        font-weight:bold;
+        vertical-align:top;
+        border-bottom: 1px solid #C0C0C0;
+        background-color: rgb(240,240,240);
+      }
+      
+      .subTitle {
+        font-size:120%;
+		font-weight:bold;
+        background-color:#F5F5FF;
+      }
+    </style>
+<title>Banda_Horaria-ODS</title>
+</head>
+<body>
+<center>
+<h2>Banda_Horaria-ODS</h2>
+</center>
+<h3 class="tableNameHeading">Lista de Entidades</h3>
+<ul style="font-size:80%;">
+<li>
+<a href="#Lectura">Lectura</a>
+</li>
+<li>
+<a href="#Persona">Persona</a>
+</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Lectura">Lectura</a><span> (Tabla: ods_lectura)</span>
+<p>Lecturas de ingreso y egreso de las personas en el centro cultural.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Lectura (Clave)</td><td class="tdTableDefinition">id_lectura</td><td class="tdTableDefinition">[-5] <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico de la lectura.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Persona</td><td class="tdTableDefinition">id_persona</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition">Identificador &uacute;nico de la persona.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Fecha Hora</td><td class="tdTableDefinition">fe_fecha_lectura</td><td class="tdTableDefinition">TIMESTAMP</td><td class="tdTableDefinition">Fecha y Hora de la lectura.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Lugar</td><td class="tdTableDefinition">co_lugar</td><td class="tdTableDefinition">CHAR</td><td class="tdTableDefinition">C&oacute;digo de lugar.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Origen</td><td class="tdTableDefinition">co_origen</td><td class="tdTableDefinition">CHAR</td><td class="tdTableDefinition">C&oacute;digo de origen de lectura.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Tipo Acreditaci&oacute;n</td><td class="tdTableDefinition">no_tipo_acreditacion</td><td class="tdTableDefinition">VARCHAR(100) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Nombre del tipo de acreditaci&oacute;n.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Empresa / &Aacute;rea</td><td class="tdTableDefinition">no_empresa_area</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition">Nombre de la Empresa o &Aacute;rea de la lectura.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Usuario</td><td class="tdTableDefinition">no_usuario</td><td class="tdTableDefinition">VARCHAR(10)</td><td class="tdTableDefinition">Usu&aacute;rio de la lectura.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Descripci&oacute;n Usuario</td><td class="tdTableDefinition">ds_usuario</td><td class="tdTableDefinition">VARCHAR(50)</td><td class="tdTableDefinition">Descripci&oacute;n de usu&aacute;rio de la lectura.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Lector</td><td class="tdTableDefinition">co_lector</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition">C&oacute;digo de lector.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Observaciones</td><td class="tdTableDefinition">ds_observaciones</td><td class="tdTableDefinition">VARCHAR(400)</td><td class="tdTableDefinition">Observaciones de la lectura.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Carga</td><td class="tdTableDefinition">id_carga</td><td class="tdTableDefinition">[-5]</td><td class="tdTableDefinition">Identicifador de la carga.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Fecha Creaci&oacute;n</td><td class="tdTableDefinition">fe_creacion</td><td class="tdTableDefinition">TIMESTAMP <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Fecha de Creaci&oacute;n del registro.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Fecha Carga</td><td class="tdTableDefinition">fe_carga</td><td class="tdTableDefinition">TIMESTAMP</td><td class="tdTableDefinition">Fecha de carga del registro en el DW.</td>
+</tr>
+</table>
+<p class="subTitle">Referencias</p>
+<ul>
+<li>
+<a href="#Persona">Persona</a> mediante "ID Persona"</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Persona">Persona</a><span> (Tabla: ods_persona)</span>
+<p>Personas que trabajan en el CCK.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Persona (Clave)</td><td class="tdTableDefinition">id_persona</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico de la persona.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">N&uacute;mero DNI / CUIT</td><td class="tdTableDefinition">co_dni_cuit</td><td class="tdTableDefinition">VARCHAR(20) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">N&uacute;mero de DNI o CUIT de la persona.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Legajo</td><td class="tdTableDefinition">co_legajo</td><td class="tdTableDefinition">VARCHAR(20)</td><td class="tdTableDefinition">Legajo de la persona.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Nombre Persona</td><td class="tdTableDefinition">no_persona</td><td class="tdTableDefinition">VARCHAR(100) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Nombre de la persona.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Direcci&oacute;n</td><td class="tdTableDefinition">no_direccion</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition">Direcci&oacute;n en la que trabaja la persona.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Dependencia</td><td class="tdTableDefinition">no_dependencia</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition">Dependencia en la que trabaja la persona.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Sector</td><td class="tdTableDefinition">no_sector</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition">Sector en que trabaja la persona.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">&Aacute;rea</td><td class="tdTableDefinition">no_area</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition">&Aacute;rea dentro del sector.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Puesto</td><td class="tdTableDefinition">no_puesto</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition">Puesto dentro del &aacute;rea.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Tarea</td><td class="tdTableDefinition">no_tarea</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition">Tarea dentro del &aacute;rea.</td>
+</tr>
+</table>
+<p class="subTitle">Referenciado por</p>
+<ul>
+<li>
+<a href="#Lectura">Lectura</a> referencia "ID Persona"</li>
+</ul>
+</body>
+</html>

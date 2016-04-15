@@ -74,6 +74,9 @@
 <li>
 <a href="#Stage Lecturas">Stage Lecturas</a>
 </li>
+<li>
+<a href="#Stage Personal">Stage Personal</a>
+</li>
 </ul>
 <div class="tableNameHeading">
 <a style="font-size:175%;font-weight:bold;" name="Stage Banda Ciardi">Stage Banda Ciardi</a><span> (Tabla: stg_banda_ciardi)</span>
@@ -405,13 +408,106 @@
 <td class="tdTableDefinition">Empresa / &Aacute;rea</td><td class="tdTableDefinition">tx_empresa_area</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition">Empresa o &Aacute;rea a la que pertenece la persona.</td>
 </tr>
 <tr>
-<td class="tdTableDefinition">Usu&aacute;rio Lectura</td><td class="tdTableDefinition">tx_entrada</td><td class="tdTableDefinition">VARCHAR(10)</td><td class="tdTableDefinition">Usu&aacute;rio de regitro de la lectura.</td>
+<td class="tdTableDefinition">Usu&aacute;rio Lectura</td><td class="tdTableDefinition">tx_usuario</td><td class="tdTableDefinition">VARCHAR(10)</td><td class="tdTableDefinition">Usu&aacute;rio de regitro de la lectura.</td>
 </tr>
 <tr>
 <td class="tdTableDefinition">Lector</td><td class="tdTableDefinition">tx_lector</td><td class="tdTableDefinition">VARCHAR(10)</td><td class="tdTableDefinition">Lector de la fichada.</td>
 </tr>
 <tr>
 <td class="tdTableDefinition">Observaciones</td><td class="tdTableDefinition">tx_observacion</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition">Observaciones varias sobre la lectura.</td>
+</tr>
+</table>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Stage Personal">Stage Personal</a><span> (Tabla: stg_personal)</span>
+<p>Tabla Stage de personal cargado desde planilla enviada por Recursos Humanos.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">id_carga (Clave)</td><td class="tdTableDefinition">id_carga</td><td class="tdTableDefinition">[-5] <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">no_archivo</td><td class="tdTableDefinition">no_archivo</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition">Nombre del archivo cargado.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">co_lugar</td><td class="tdTableDefinition">co_lugar</td><td class="tdTableDefinition">CHAR</td><td class="tdTableDefinition">C&oacute;digo de lugar.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">fe_carga</td><td class="tdTableDefinition">fe_carga</td><td class="tdTableDefinition">TIMESTAMP</td><td class="tdTableDefinition">Fecha y hora de carga del archivo.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">co_estado_proceso</td><td class="tdTableDefinition">co_estado_proceso</td><td class="tdTableDefinition">CHAR</td><td class="tdTableDefinition">Estado de procesamiento del registro.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">tx_dat_lab_dependencia</td><td class="tdTableDefinition">tx_dat_lab_dependencia</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">tx_dat_lab_secretaria</td><td class="tdTableDefinition">tx_dat_lab_secretaria</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">tx_dat_lab_subsecretaria</td><td class="tdTableDefinition">tx_dat_lab_subsecretaria</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">tx_dat_lab_direccion_area</td><td class="tdTableDefinition">tx_dat_lab_direccion_area</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">tx_dat_lab_area_dependenc</td><td class="tdTableDefinition">tx_dat_lab_area_dependenc</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">tx_dat_lab_sector</td><td class="tdTableDefinition">tx_dat_lab_sector</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">tx_dat_lab_sub_sector</td><td class="tdTableDefinition">tx_dat_lab_sub_sector</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">tx_dat_lab_puesto</td><td class="tdTableDefinition">tx_dat_lab_puesto</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">tx_destino_direccion_gral</td><td class="tdTableDefinition">tx_destino_direccion_gral</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">tx_destino_direccion</td><td class="tdTableDefinition">tx_destino_direccion</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">tx_destino_departamento</td><td class="tdTableDefinition">tx_destino_departamento</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">tx_destino_coord_unidad</td><td class="tdTableDefinition">tx_destino_coord_unidad</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">tx_ubi_fis_ubic_fisica_1</td><td class="tdTableDefinition">tx_ubi_fis_ubic_fisica_1</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">tx_ubi_fis_puesto</td><td class="tdTableDefinition">tx_ubi_fis_puesto</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">tx_ubi_fis_ubic_fisica_2</td><td class="tdTableDefinition">tx_ubi_fis_ubic_fisica_2</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">tx_dat_per_apell_nombre</td><td class="tdTableDefinition">tx_dat_per_apell_nombre</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">tx_dat_per_tipo_doc</td><td class="tdTableDefinition">tx_dat_per_tipo_doc</td><td class="tdTableDefinition">VARCHAR(5)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">tx_dat_per_nro_doc</td><td class="tdTableDefinition">tx_dat_per_nro_doc</td><td class="tdTableDefinition">VARCHAR(20)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">tx_mod_con_tipo</td><td class="tdTableDefinition">tx_mod_con_tipo</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">tx_mod_con_tipo_2</td><td class="tdTableDefinition">tx_mod_con_tipo_2</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">tx_mod_con_lm_at</td><td class="tdTableDefinition">tx_mod_con_lm_at</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">tx_mod_con_ingreso</td><td class="tdTableDefinition">tx_mod_con_ingreso</td><td class="tdTableDefinition">VARCHAR(20)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">tx_mod_con_convenio_at</td><td class="tdTableDefinition">tx_mod_con_convenio_at</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
 </tr>
 </table>
 </body>
