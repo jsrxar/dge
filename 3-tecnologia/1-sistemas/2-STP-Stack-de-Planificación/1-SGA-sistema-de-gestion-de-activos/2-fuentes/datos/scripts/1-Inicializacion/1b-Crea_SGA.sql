@@ -179,6 +179,8 @@ CREATE TABLE public.sga_espacio (
                 no_espacio VARCHAR(100) NOT NULL,
                 co_plano VARCHAR(50),
                 ds_referencia VARCHAR(400),
+                va_metros2 REAL,
+                ds_link_ult_relevam VARCHAR(200),
                 CONSTRAINT sga_espacio_pk PRIMARY KEY (id_espacio)
 );
 COMMENT ON TABLE public.sga_espacio IS 'Espacios físicos dentro del centro cultural.';
@@ -191,6 +193,8 @@ COMMENT ON COLUMN public.sga_espacio.co_espacio IS 'Código de espacio.';
 COMMENT ON COLUMN public.sga_espacio.no_espacio IS 'Nombre del espacio.';
 COMMENT ON COLUMN public.sga_espacio.co_plano IS 'Codificación del espacio en los planos de Espacio Físico.';
 COMMENT ON COLUMN public.sga_espacio.ds_referencia IS 'Referencia del registro.';
+COMMENT ON COLUMN public.sga_espacio.va_metros2 IS 'Metros cuadrados del esopacio.';
+COMMENT ON COLUMN public.sga_espacio.ds_link_ult_relevam IS 'Link a planilla de último relevamiento realizado.';
 
 
 ALTER SEQUENCE public.sga_espacio_sq OWNED BY public.sga_espacio.id_espacio;

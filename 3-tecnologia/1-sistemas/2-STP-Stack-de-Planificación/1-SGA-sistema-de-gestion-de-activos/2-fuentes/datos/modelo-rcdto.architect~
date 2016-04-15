@@ -4,9 +4,9 @@
  <print-settings numCopies="1" zoom="1.0" pageNumbersPrinted="true" orientation="1" paperWidth="612.0" paperHeight="792.0" leftBorder="50.0" rightBorder="50.0" topBorder="50.0" bottomBorder="50.0" />
  <project-data-sources>
   <data-source id="DS0">
-   <property key="Logical" value="RCDTO Servidor" />
    <property key="Connection Type" value="PostgreSQL" />
-   <property key="JDBC URL" value="jdbc:postgresql://10.13.18.133:5432/RCDTO" />
+   <property key="Logical" value="PlayPen Database" />
+   <property key="JDBC URL" value="jdbc:postgresql://10.13.18.28:5432/RCDTO" />
    <property key="UID" value="rcdto" />
    <property key="PWD" value="rcdto" />
    <property key="ca.sqlpower.architect.etl.kettle.database" value="" />
@@ -28,9 +28,9 @@
    <property key="ca.sqlpower.architect.etl.kettle.repos.password" value="" />
   </data-source>
   <data-source id="DS0">
-   <property key="Logical" value="RCDTO Servidor" />
    <property key="Connection Type" value="PostgreSQL" />
-   <property key="JDBC URL" value="jdbc:postgresql://10.13.18.133:5432/RCDTO" />
+   <property key="Logical" value="PlayPen Database" />
+   <property key="JDBC URL" value="jdbc:postgresql://10.13.18.28:5432/RCDTO" />
    <property key="UID" value="rcdto" />
    <property key="PWD" value="rcdto" />
    <property key="ca.sqlpower.architect.etl.kettle.database" value="" />
@@ -59,7 +59,7 @@
    <relationships>
    </relationships>
   </database>
-  <database id="DB2" populated="true" UUID="3890d3f8-891b-4b4f-9342-b5473f951f64" dbcs-ref="DS0" name="RCDTO Servidor" physicalName="RCDTO Servidor" >
+  <database id="DB2" populated="true" UUID="3890d3f8-891b-4b4f-9342-b5473f951f64" dbcs-ref="DS0" name="PlayPen Database" physicalName="RCDTO Servidor" >
    <catalog id="CAT3" populated="false" UUID="1f04bd53-f86b-4660-82ea-66cef64b7421" name="RCDTO" nativeTerm="database" physicalName="RCDTO" >
    </catalog>
    <relationships>
@@ -505,7 +505,7 @@
    </relationship>
   </relationships>
  </target-database>
- <ddl-generator type="ca.sqlpower.architect.ddl.PostgresDDLGenerator" allow-connection="false" target-schema="public"> </ddl-generator>
+ <ddl-generator type="ca.sqlpower.architect.ddl.PostgresDDLGenerator" allow-connection="true" target-schema="public"> </ddl-generator>
  <liquibase-settings useSeparateChangeSets="false" generateId="false" idStart="1"/>
  <compare-dm-settings  ddlGenerator="ca.sqlpower.architect.ddl.PostgresDDLGenerator"  outputFormatAsString="SQL"  saveFlag="true" >
   <source-stuff   datastoreTypeAsString="DATABASE"   connectName="RCDTO Servidor"   filePath=""  />

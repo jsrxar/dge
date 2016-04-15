@@ -1187,6 +1187,15 @@
             <Column fieldName="ds_referencia" caption="Descripción" visible="true" headerHint="Referencia del registro." totalFunction="0">
               <ViewProperties type="text" maxLength="75"/>
             </Column>
+            <Column fieldName="ds_link_ult_relevam" caption="Último Relevamiento" visible="false" headerHint="Link a planilla de último relevamiento realizado." totalFunction="0">
+              <ViewProperties type="text" maxLength="75"/>
+              <Hyperlink template="https://github.com/jsrxar/dge/blob/master/3-tecnologia/2-procesos/1-relevamiento-de-activos/6-resultado/%ds_link_ult_relevam%"/>
+            </Column>
+            <Column fieldName="va_metros2" caption="Metros Cuadrados" visible="true" headerHint="Metros cuadrados del esopacio." totalFunction="0">
+              <ViewProperties type="text">
+                <Format type="number" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
+              </ViewProperties>
+            </Column>
           </ViewColumns>
           <SingleRecordViewColumns>
             <Column fieldName="id_espacio" caption="Id Espacio" visible="true" headerHint="Identificador único del espacio.">
@@ -1223,6 +1232,15 @@
             </Column>
             <Column fieldName="ds_referencia" caption="Descripción" visible="true" headerHint="Referencia del registro.">
               <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="ds_link_ult_relevam" caption="Último Relevamiento" visible="true" headerHint="Link a planilla de último relevamiento realizado.">
+              <ViewProperties type="text" maxLength="75"/>
+              <Hyperlink template="https://github.com/jsrxar/dge/blob/master/3-tecnologia/2-procesos/1-relevamiento-de-activos/6-resultado/%ds_link_ult_relevam%"/>
+            </Column>
+            <Column fieldName="va_metros2" caption="Metros Cuadrados" visible="true" headerHint="Metros cuadrados del esopacio.">
+              <ViewProperties type="text">
+                <Format type="number" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
+              </ViewProperties>
             </Column>
           </SingleRecordViewColumns>
           <EditColumns>
@@ -1265,6 +1283,12 @@
             <Column fieldName="ds_referencia" caption="Descripción" visible="false" canSetNull="true">
               <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
             </Column>
+            <Column fieldName="ds_link_ult_relevam" caption="Último Relevamiento" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="va_metros2" caption="Metros Cuadrados" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
           </EditColumns>
           <InsertColumns>
             <Column fieldName="id_espacio" caption="Id Espacio" visible="false" canSetNull="true" readOnly="true" defaultInsertValue="">
@@ -1306,6 +1330,12 @@
             <Column fieldName="ds_referencia" caption="Descripción" visible="false" canSetNull="true" defaultInsertValue="">
               <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
             </Column>
+            <Column fieldName="ds_link_ult_relevam" caption="Último Relevamiento" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="va_metros2" caption="Metros Cuadrados" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
           </InsertColumns>
           <SimpleSearchColumns>
             <Column fieldName="id_espacio" caption="Id Espacio" visible="true"/>
@@ -1325,6 +1355,8 @@
               <Lookup tableName="public.sga_planta" linkFieldName="id_planta" displayFieldName="no_planta" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
             <Column fieldName="ds_referencia" caption="Descripción" visible="true"/>
+            <Column fieldName="ds_link_ult_relevam" caption="Último Relevamiento" visible="true"/>
+            <Column fieldName="va_metros2" caption="Metros Cuadrados" visible="true"/>
           </SimpleSearchColumns>
           <AdvancedSearchColumns>
             <Column fieldName="id_espacio" caption="Id Espacio" visible="true" useComboBox="false"/>
@@ -1344,6 +1376,8 @@
               <Lookup tableName="public.sga_planta" linkFieldName="id_planta" displayFieldName="no_planta" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
             <Column fieldName="ds_referencia" caption="Descripción" visible="true" useComboBox="false"/>
+            <Column fieldName="ds_link_ult_relevam" caption="Último Relevamiento" visible="true" useComboBox="false"/>
+            <Column fieldName="va_metros2" caption="Metros Cuadrados" visible="true" useComboBox="false"/>
           </AdvancedSearchColumns>
           <ExportColumns>
             <Column fieldName="id_espacio" caption="Id Espacio" visible="true" headerHint="Identificador único del espacio.">
@@ -1381,6 +1415,14 @@
             <Column fieldName="ds_referencia" caption="Ds Referencia" visible="true">
               <ViewProperties type="text"/>
             </Column>
+            <Column fieldName="ds_link_ult_relevam" caption="Ds Link Ult Relevam" visible="true" headerHint="Link a planilla de último relevamiento realizado.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="va_metros2" caption="Metros Cuadrados" visible="true" headerHint="Metros cuadrados del esopacio.">
+              <ViewProperties type="text">
+                <Format type="number" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
+              </ViewProperties>
+            </Column>
           </ExportColumns>
           <PrintColumns>
             <Column fieldName="id_espacio" caption="Id Espacio" visible="true" headerHint="Identificador único del espacio.">
@@ -1417,6 +1459,14 @@
             </Column>
             <Column fieldName="ds_referencia" caption="Ds Referencia" visible="true">
               <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_link_ult_relevam" caption="Ds Link Ult Relevam" visible="true" headerHint="Link a planilla de último relevamiento realizado.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="va_metros2" caption="Metros Cuadrados" visible="true" headerHint="Metros cuadrados del esopacio.">
+              <ViewProperties type="text">
+                <Format type="number" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
+              </ViewProperties>
             </Column>
           </PrintColumns>
         </Columns>
