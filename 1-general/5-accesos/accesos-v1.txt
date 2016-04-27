@@ -1,4 +1,4 @@
-SERVIDOR-1 (SGI, SGA)
+﻿SERVIDOR-1 (SGI, SGA)
 URL: http://10.13.18.133
 Usuario: nac
 Contraeña: hola1234
@@ -22,3 +22,6 @@ Sistema de Camaras CCTV
 URL: 192.168.201.241
 Usuario: mesadeayuda
 Contraseña: Cultural2016!
+
+RCDTO - BACKUP - DROPBOX 
+https://www.dropbox.com/sh/xead0ew8ifmwyxb/AACGof94r9lDsZkgIA4fCAjqa?dl=0
