@@ -1,0 +1,2610 @@
+﻿<Project productVersion="14.10.0.10" localizationFileName="C:\app\PostgreSQL PHP Generator\lang.es.php" phpDriver="0" outputPath="\\10.13.18.133\rcdto" copySystemFiles="true" outputFilesExtension="php" colorSchemeName="Facebook">
+  <ConnectionOptions host="10.13.18.133" port="5432" login="rcdto" password="ZOO\[/&lt;~" database="RCDTO" client_encoding="">
+    <ssh_secure secure="false" port="22" authentication_mode="0"/>
+    <http_tunnel tunneling="false" url="">
+      <http_proxy_server use_proxy="false" port="8080"/>
+      <http_authentication/>
+    </http_tunnel>
+  </ConnectionOptions>
+  <ScriptConnectionOptions host="10.13.18.133" port="5432" login="rcdto" password="ZOO\[/&lt;~" database="RCDTO" client_encoding="">
+    <ssh_secure secure="false" port="22" authentication_mode="0"/>
+    <http_tunnel tunneling="false" url="">
+      <http_proxy_server use_proxy="false" port="8080"/>
+      <http_authentication/>
+    </http_tunnel>
+  </ScriptConnectionOptions>
+  <Queries/>
+  <FieldContainers/>
+  <Presentation disableMagicQuotesRuntime="false" showEnvironmentVariables="false" showExecutedQueries="false" showPHPErrorsAndWarnings="false">
+    <Pages>
+      <Page type="table" tableName="public.sga_accion" fileName="accion" caption="Acción" shortCaption="Acción (Espacio / Bien)" groupName="Maestras" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" NavigatorPosition="0" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" contentEncoding="UTF-8" controlButtonsPosition="255" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true">
+        <DefaultSortedColumns>
+          <Column fieldName="id_accion" orderType="1"/>
+        </DefaultSortedColumns>
+        <BeforeGridText/>
+        <Columns>
+          <ViewColumns>
+            <Column fieldName="id_accion" caption="Id Accion" visible="false" headerHint="Identificador único de la acción." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_tipo_accion" caption="Tipo Accion" visible="true" headerHint="Tipo de la accion." totalFunction="0">
+              <Lookup tableName="public.sga_tipo_accion" linkFieldName="id_tipo_accion" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="tipo_accion.php?operation=view&amp;pk0=%id_tipo_accion%" target="_self"/>
+            </Column>
+            <Column fieldName="id_tipo_espacio" caption="Tipo Espacio" visible="true" headerHint="Tipo de espacio en que se puede ejecutar la acción." totalFunction="0">
+              <Lookup tableName="public.sga_tipo_espacio" linkFieldName="id_tipo_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="tipo_espacio.php?operation=view&amp;pk0=%id_tipo_espacio%" target="_self"/>
+            </Column>
+            <Column fieldName="id_sector" caption="Sector" visible="true" headerHint="Sector sobre el que se ejecuta la acción." totalFunction="0">
+              <Lookup tableName="public.sga_sector" linkFieldName="id_sector" displayFieldName="no_sector" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="sector.php?operation=view&amp;pk0=%id_sector%" target="_self"/>
+            </Column>
+            <Column fieldName="id_tipo_bien" caption="Tipo Bien" visible="false" headerHint="Tipo de bien sobre el que se ejecuta la acción." totalFunction="0">
+              <Lookup tableName="public.sga_tipo_bien" linkFieldName="id_tipo_bien" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="tipo_bien.php?operation=view&amp;pk0=%id_tipo_bien%" target="_self"/>
+            </Column>
+            <Column fieldName="id_origen" caption="Origen" visible="false" headerHint="Origen de la acción." totalFunction="0">
+              <Lookup tableName="public.sga_origen" linkFieldName="id_origen" displayFieldName="no_origen" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="origen.php?operation=view&amp;pk0=%id_origen%" target="_self"/>
+            </Column>
+            <Column fieldName="id_metodologia" caption="Metodología" visible="true" headerHint="Metodología de realización de la acción." totalFunction="0">
+              <Lookup tableName="public.sga_metodologia" linkFieldName="id_metodologia" displayFieldName="no_metodologia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="metodologia.php?operation=view&amp;pk0=%id_metodologia%" target="_self"/>
+            </Column>
+            <Column fieldName="id_periodicidad" caption="Periodicidad" visible="true" headerHint="Periodicidad de ejecución de la acción." totalFunction="0">
+              <Lookup tableName="public.sga_periodicidad" linkFieldName="id_periodicidad" displayFieldName="no_periodicidad" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="periodicidad.php?operation=view&amp;pk0=%id_periodicidad%" target="_self"/>
+            </Column>
+            <Column fieldName="fl_a_demanda" caption="A Demanda" visible="false" headerHint="Indicador de si la actividad puede ser realizada a demanda." totalFunction="0">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="nu_personas" caption="Personas" visible="false" headerHint="Cantidad de personas necesarias para la realización de la tarea." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tm_carga_horaria" caption="Carga Horária" visible="false" headerHint="Tiempo estimado de ejecución de la acción." totalFunction="0">
+              <ViewProperties type="dateTime" dateTimeFormat="H:i:s" dateTimeKind="2"/>
+            </Column>
+            <Column fieldName="fe_horas" caption="Horas Ejecución" visible="true" headerHint=" Horarios de ejecución de las tareas." totalFunction="0">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Descripción" visible="false" headerHint="Referencia del registro." totalFunction="0">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+          </ViewColumns>
+          <SingleRecordViewColumns>
+            <Column fieldName="id_accion" caption="Id Accion" visible="true" headerHint="Identificador único de la acción.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_tipo_accion" caption="Tipo Accion" visible="true" headerHint="Tipo de la accion.">
+              <Lookup tableName="public.sga_tipo_accion" linkFieldName="id_tipo_accion" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="tipo_accion.php?operation=view&amp;pk0=%id_tipo_accion%" target="_self"/>
+            </Column>
+            <Column fieldName="id_tipo_espacio" caption="Tipo Espacio" visible="true" headerHint="Tipo de espacio en que se puede ejecutar la acción.">
+              <Lookup tableName="public.sga_tipo_espacio" linkFieldName="id_tipo_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="tipo_espacio.php?operation=view&amp;pk0=%id_tipo_espacio%" target="_self"/>
+            </Column>
+            <Column fieldName="id_sector" caption="Sector" visible="true" headerHint="Sector sobre el que se ejecuta la acción.">
+              <Lookup tableName="public.sga_sector" linkFieldName="id_sector" displayFieldName="no_sector" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="sector.php?operation=view&amp;pk0=%id_sector%" target="_self"/>
+            </Column>
+            <Column fieldName="id_tipo_bien" caption="Tipo Bien" visible="false" headerHint="Tipo de bien sobre el que se ejecuta la acción.">
+              <Lookup tableName="public.sga_tipo_bien" linkFieldName="id_tipo_bien" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="tipo_bien.php?operation=view&amp;pk0=%id_tipo_bien%" target="_self"/>
+            </Column>
+            <Column fieldName="id_origen" caption="Origen" visible="true" headerHint="Origen de la acción.">
+              <Lookup tableName="public.sga_origen" linkFieldName="id_origen" displayFieldName="no_origen" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="origen.php?operation=view&amp;pk0=%id_origen%" target="_self"/>
+            </Column>
+            <Column fieldName="id_metodologia" caption="Metodología" visible="true" headerHint="Metodología de realización de la acción.">
+              <Lookup tableName="public.sga_metodologia" linkFieldName="id_metodologia" displayFieldName="no_metodologia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="metodologia.php?operation=view&amp;pk0=%id_metodologia%" target="_self"/>
+            </Column>
+            <Column fieldName="id_periodicidad" caption="Periodicidad" visible="true" headerHint="Periodicidad de ejecución de la acción.">
+              <Lookup tableName="public.sga_periodicidad" linkFieldName="id_periodicidad" displayFieldName="no_periodicidad" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="periodicidad.php?operation=view&amp;pk0=%id_periodicidad%" target="_self"/>
+            </Column>
+            <Column fieldName="fl_a_demanda" caption="A Demanda" visible="true" headerHint="Indicador de si la actividad puede ser realizada a demanda.">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="nu_personas" caption="Personas" visible="true" headerHint="Cantidad de personas necesarias para la realización de la tarea.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tm_carga_horaria" caption="Carga Horária" visible="true" headerHint="Tiempo estimado de ejecución de la acción.">
+              <ViewProperties type="dateTime" dateTimeFormat="H:i:s" dateTimeKind="2"/>
+            </Column>
+            <Column fieldName="fe_horas" caption="Horas Ejecución" visible="true" headerHint=" Horarios de ejecución de las tareas.">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Descripción" visible="true" headerHint="Referencia del registro.">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+          </SingleRecordViewColumns>
+          <EditColumns>
+            <Column fieldName="id_accion" caption="Id Accion" visible="true" canSetNull="true" readOnly="true">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="id_tipo_accion" caption="Tipo Accion" visible="true" canSetNull="true">
+              <Lookup tableName="public.sga_tipo_accion" linkFieldName="id_tipo_accion" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="id_tipo_espacio" caption="Tipo Espacio" visible="true" canSetNull="true">
+              <Lookup tableName="public.sga_tipo_espacio" linkFieldName="id_tipo_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="id_sector" caption="Sector" visible="true" canSetNull="true">
+              <Lookup tableName="public.sga_sector" linkFieldName="id_sector" displayFieldName="no_sector" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="id_tipo_bien" caption="Tipo Bien" visible="false" canSetNull="true">
+              <Lookup tableName="public.sga_tipo_bien" linkFieldName="id_tipo_bien" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="id_origen" caption="Origen" visible="true" canSetNull="true">
+              <Lookup tableName="public.sga_origen" linkFieldName="id_origen" displayFieldName="no_origen" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="id_metodologia" caption="Metodología" visible="true" canSetNull="true">
+              <Lookup tableName="public.sga_metodologia" linkFieldName="id_metodologia" displayFieldName="no_metodologia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="id_periodicidad" caption="Periodicidad" visible="true" canSetNull="true">
+              <Lookup tableName="public.sga_periodicidad" linkFieldName="id_periodicidad" displayFieldName="no_periodicidad" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="fl_a_demanda" caption="A Demanda" visible="true">
+              <EditProperties type="checkBox"/>
+            </Column>
+            <Column fieldName="nu_personas" caption="Personas" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tm_carga_horaria" caption="Carga Horária" visible="true" canSetNull="true">
+              <EditProperties type="time"/>
+            </Column>
+            <Column fieldName="fe_horas" caption="Horas Ejecución" visible="true" canSetNull="true">
+              <EditProperties type="multiSelect">
+                <Values>
+                  <Value name="00:00" caption="00:00"/>
+                  <Value name="00:15" caption="00:15"/>
+                  <Value name="00:30" caption="00:30"/>
+                  <Value name="00:45" caption="00:45"/>
+                  <Value name="01:00" caption="01:00"/>
+                  <Value name="01:15" caption="01:15"/>
+                  <Value name="01:30" caption="01:30"/>
+                  <Value name="01:45" caption="01:45"/>
+                  <Value name="02:00" caption="02:00"/>
+                  <Value name="02:15" caption="02:15"/>
+                  <Value name="02:30" caption="02:30"/>
+                  <Value name="02:45" caption="02:45"/>
+                  <Value name="03:00" caption="03:00"/>
+                  <Value name="03:15" caption="03:15"/>
+                  <Value name="03:30" caption="03:30"/>
+                  <Value name="03:45" caption="03:45"/>
+                  <Value name="04:00" caption="04:00"/>
+                  <Value name="04:15" caption="04:15"/>
+                  <Value name="04:30" caption="04:30"/>
+                  <Value name="04:45" caption="04:45"/>
+                  <Value name="05:00" caption="05:00"/>
+                  <Value name="05:15" caption="05:15"/>
+                  <Value name="05:30" caption="05:30"/>
+                  <Value name="05:45" caption="05:45"/>
+                  <Value name="06:00" caption="06:00"/>
+                  <Value name="06:15" caption="06:15"/>
+                  <Value name="06:30" caption="06:30"/>
+                  <Value name="06:45" caption="06:45"/>
+                  <Value name="07:00" caption="07:00"/>
+                  <Value name="07:15" caption="07:15"/>
+                  <Value name="07:30" caption="07:30"/>
+                  <Value name="07:45" caption="07:45"/>
+                  <Value name="08:00" caption="08:00"/>
+                  <Value name="08:15" caption="08:15"/>
+                  <Value name="08:30" caption="08:30"/>
+                  <Value name="08:45" caption="08:45"/>
+                  <Value name="09:00" caption="09:00"/>
+                  <Value name="09:15" caption="09:15"/>
+                  <Value name="09:30" caption="09:30"/>
+                  <Value name="09:45" caption="09:45"/>
+                  <Value name="10:00" caption="10:00"/>
+                  <Value name="10:15" caption="10:15"/>
+                  <Value name="10:30" caption="10:30"/>
+                  <Value name="10:45" caption="10:45"/>
+                  <Value name="11:00" caption="11:00"/>
+                  <Value name="11:15" caption="11:15"/>
+                  <Value name="11:30" caption="11:30"/>
+                  <Value name="11:45" caption="11:45"/>
+                  <Value name="12:00" caption="12:00"/>
+                  <Value name="12:15" caption="12:15"/>
+                  <Value name="12:30" caption="12:30"/>
+                  <Value name="12:45" caption="12:45"/>
+                  <Value name="13:00" caption="13:00"/>
+                  <Value name="13:15" caption="13:15"/>
+                  <Value name="13:30" caption="13:30"/>
+                  <Value name="13:45" caption="13:45"/>
+                  <Value name="14:00" caption="14:00"/>
+                  <Value name="14:15" caption="14:15"/>
+                  <Value name="14:30" caption="14:30"/>
+                  <Value name="14:45" caption="14:45"/>
+                  <Value name="15:00" caption="15:00"/>
+                  <Value name="15:15" caption="15:15"/>
+                  <Value name="15:30" caption="15:30"/>
+                  <Value name="15:45" caption="15:45"/>
+                  <Value name="16:00" caption="16:00"/>
+                  <Value name="16:15" caption="16:15"/>
+                  <Value name="16:30" caption="16:30"/>
+                  <Value name="16:45" caption="16:45"/>
+                  <Value name="17:00" caption="17:00"/>
+                  <Value name="17:15" caption="17:15"/>
+                  <Value name="17:30" caption="17:30"/>
+                  <Value name="17:45" caption="17:45"/>
+                  <Value name="18:00" caption="18:00"/>
+                  <Value name="18:15" caption="18:15"/>
+                  <Value name="18:30" caption="18:30"/>
+                  <Value name="18:45" caption="18:45"/>
+                  <Value name="19:00" caption="19:00"/>
+                  <Value name="19:15" caption="19:15"/>
+                  <Value name="19:30" caption="19:30"/>
+                  <Value name="19:45" caption="19:45"/>
+                  <Value name="20:00" caption="20:00"/>
+                  <Value name="20:15" caption="20:15"/>
+                  <Value name="20:30" caption="20:30"/>
+                  <Value name="20:45" caption="20:45"/>
+                  <Value name="21:00" caption="21:00"/>
+                  <Value name="21:15" caption="21:15"/>
+                  <Value name="21:30" caption="21:30"/>
+                  <Value name="21:45" caption="21:45"/>
+                  <Value name="22:00" caption="22:00"/>
+                  <Value name="22:15" caption="22:15"/>
+                  <Value name="22:30" caption="22:30"/>
+                  <Value name="22:45" caption="22:45"/>
+                  <Value name="23:00" caption="23:00"/>
+                  <Value name="23:15" caption="23:15"/>
+                  <Value name="23:30" caption="23:30"/>
+                  <Value name="23:45" caption="23:45"/>
+                </Values>
+              </EditProperties>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Descripción" visible="false" canSetNull="true">
+              <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+            </Column>
+          </EditColumns>
+          <InsertColumns>
+            <Column fieldName="id_accion" caption="Id Accion" visible="false" canSetNull="true" readOnly="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="id_tipo_accion" caption="Tipo Accion" visible="true" canSetNull="true" defaultInsertValue="">
+              <Lookup tableName="public.sga_tipo_accion" linkFieldName="id_tipo_accion" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="id_tipo_espacio" caption="Tipo Espacio" visible="true" canSetNull="true" defaultInsertValue="">
+              <Lookup tableName="public.sga_tipo_espacio" linkFieldName="id_tipo_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="id_sector" caption="Sector" visible="true" canSetNull="true" defaultInsertValue="">
+              <Lookup tableName="public.sga_sector" linkFieldName="id_sector" displayFieldName="no_sector" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="id_tipo_bien" caption="Tipo Bien" visible="false" canSetNull="true" defaultInsertValue="">
+              <Lookup tableName="public.sga_tipo_bien" linkFieldName="id_tipo_bien" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="id_origen" caption="Origen" visible="true" canSetNull="true" defaultInsertValue="">
+              <Lookup tableName="public.sga_origen" linkFieldName="id_origen" displayFieldName="no_origen" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="id_metodologia" caption="Metodología" visible="true" canSetNull="true" defaultInsertValue="">
+              <Lookup tableName="public.sga_metodologia" linkFieldName="id_metodologia" displayFieldName="no_metodologia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="id_periodicidad" caption="Periodicidad" visible="true" canSetNull="true" defaultInsertValue="">
+              <Lookup tableName="public.sga_periodicidad" linkFieldName="id_periodicidad" displayFieldName="no_periodicidad" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="fl_a_demanda" caption="A Demanda" visible="true" defaultInsertValue="">
+              <EditProperties type="checkBox"/>
+            </Column>
+            <Column fieldName="nu_personas" caption="Personas" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tm_carga_horaria" caption="Carga Horária" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="time"/>
+            </Column>
+            <Column fieldName="fe_horas" caption="Horas Ejecución" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="multiSelect">
+                <Values>
+                  <Value name="00:00" caption="00:00"/>
+                  <Value name="00:15" caption="00:15"/>
+                  <Value name="00:30" caption="00:30"/>
+                  <Value name="00:45" caption="00:45"/>
+                  <Value name="01:00" caption="01:00"/>
+                  <Value name="01:15" caption="01:15"/>
+                  <Value name="01:30" caption="01:30"/>
+                  <Value name="01:45" caption="01:45"/>
+                  <Value name="02:00" caption="02:00"/>
+                  <Value name="02:15" caption="02:15"/>
+                  <Value name="02:30" caption="02:30"/>
+                  <Value name="02:45" caption="02:45"/>
+                  <Value name="03:00" caption="03:00"/>
+                  <Value name="03:15" caption="03:15"/>
+                  <Value name="03:30" caption="03:30"/>
+                  <Value name="03:45" caption="03:45"/>
+                  <Value name="04:00" caption="04:00"/>
+                  <Value name="04:15" caption="04:15"/>
+                  <Value name="04:30" caption="04:30"/>
+                  <Value name="04:45" caption="04:45"/>
+                  <Value name="05:00" caption="05:00"/>
+                  <Value name="05:15" caption="05:15"/>
+                  <Value name="05:30" caption="05:30"/>
+                  <Value name="05:45" caption="05:45"/>
+                  <Value name="06:00" caption="06:00"/>
+                  <Value name="06:15" caption="06:15"/>
+                  <Value name="06:30" caption="06:30"/>
+                  <Value name="06:45" caption="06:45"/>
+                  <Value name="07:00" caption="07:00"/>
+                  <Value name="07:15" caption="07:15"/>
+                  <Value name="07:30" caption="07:30"/>
+                  <Value name="07:45" caption="07:45"/>
+                  <Value name="08:00" caption="08:00"/>
+                  <Value name="08:15" caption="08:15"/>
+                  <Value name="08:30" caption="08:30"/>
+                  <Value name="08:45" caption="08:45"/>
+                  <Value name="09:00" caption="09:00"/>
+                  <Value name="09:15" caption="09:15"/>
+                  <Value name="09:30" caption="09:30"/>
+                  <Value name="09:45" caption="09:45"/>
+                  <Value name="10:00" caption="10:00"/>
+                  <Value name="10:15" caption="10:15"/>
+                  <Value name="10:30" caption="10:30"/>
+                  <Value name="10:45" caption="10:45"/>
+                  <Value name="11:00" caption="11:00"/>
+                  <Value name="11:15" caption="11:15"/>
+                  <Value name="11:30" caption="11:30"/>
+                  <Value name="11:45" caption="11:45"/>
+                  <Value name="12:00" caption="12:00"/>
+                  <Value name="12:15" caption="12:15"/>
+                  <Value name="12:30" caption="12:30"/>
+                  <Value name="12:45" caption="12:45"/>
+                  <Value name="13:00" caption="13:00"/>
+                  <Value name="13:15" caption="13:15"/>
+                  <Value name="13:30" caption="13:30"/>
+                  <Value name="13:45" caption="13:45"/>
+                  <Value name="14:00" caption="14:00"/>
+                  <Value name="14:15" caption="14:15"/>
+                  <Value name="14:30" caption="14:30"/>
+                  <Value name="14:45" caption="14:45"/>
+                  <Value name="15:00" caption="15:00"/>
+                  <Value name="15:15" caption="15:15"/>
+                  <Value name="15:30" caption="15:30"/>
+                  <Value name="15:45" caption="15:45"/>
+                  <Value name="16:00" caption="16:00"/>
+                  <Value name="16:15" caption="16:15"/>
+                  <Value name="16:30" caption="16:30"/>
+                  <Value name="16:45" caption="16:45"/>
+                  <Value name="17:00" caption="17:00"/>
+                  <Value name="17:15" caption="17:15"/>
+                  <Value name="17:30" caption="17:30"/>
+                  <Value name="17:45" caption="17:45"/>
+                  <Value name="18:00" caption="18:00"/>
+                  <Value name="18:15" caption="18:15"/>
+                  <Value name="18:30" caption="18:30"/>
+                  <Value name="18:45" caption="18:45"/>
+                  <Value name="19:00" caption="19:00"/>
+                  <Value name="19:15" caption="19:15"/>
+                  <Value name="19:30" caption="19:30"/>
+                  <Value name="19:45" caption="19:45"/>
+                  <Value name="20:00" caption="20:00"/>
+                  <Value name="20:15" caption="20:15"/>
+                  <Value name="20:30" caption="20:30"/>
+                  <Value name="20:45" caption="20:45"/>
+                  <Value name="21:00" caption="21:00"/>
+                  <Value name="21:15" caption="21:15"/>
+                  <Value name="21:30" caption="21:30"/>
+                  <Value name="21:45" caption="21:45"/>
+                  <Value name="22:00" caption="22:00"/>
+                  <Value name="22:15" caption="22:15"/>
+                  <Value name="22:30" caption="22:30"/>
+                  <Value name="22:45" caption="22:45"/>
+                  <Value name="23:00" caption="23:00"/>
+                  <Value name="23:15" caption="23:15"/>
+                  <Value name="23:30" caption="23:30"/>
+                  <Value name="23:45" caption="23:45"/>
+                </Values>
+              </EditProperties>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Descripción" visible="false" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+            </Column>
+          </InsertColumns>
+          <SimpleSearchColumns>
+            <Column fieldName="id_accion" caption="Id Accion" visible="true"/>
+            <Column fieldName="id_tipo_accion" caption="Tipo Accion" visible="true">
+              <Lookup tableName="public.sga_tipo_accion" linkFieldName="id_tipo_accion" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="id_tipo_espacio" caption="Tipo Espacio" visible="true">
+              <Lookup tableName="public.sga_tipo_espacio" linkFieldName="id_tipo_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="id_sector" caption="Sector" visible="true">
+              <Lookup tableName="public.sga_sector" linkFieldName="id_sector" displayFieldName="no_sector" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="id_tipo_bien" caption="Tipo Bien" visible="false">
+              <Lookup tableName="public.sga_tipo_bien" linkFieldName="id_tipo_bien" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="id_origen" caption="Origen" visible="true">
+              <Lookup tableName="public.sga_origen" linkFieldName="id_origen" displayFieldName="no_origen" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="id_metodologia" caption="Metodología" visible="true">
+              <Lookup tableName="public.sga_metodologia" linkFieldName="id_metodologia" displayFieldName="no_metodologia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="id_periodicidad" caption="Periodicidad" visible="true">
+              <Lookup tableName="public.sga_periodicidad" linkFieldName="id_periodicidad" displayFieldName="no_periodicidad" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="fl_a_demanda" caption="A Demanda" visible="true"/>
+            <Column fieldName="nu_personas" caption="Personas" visible="true"/>
+            <Column fieldName="tm_carga_horaria" caption="Carga Horária" visible="true"/>
+            <Column fieldName="fe_horas" caption="Horas Ejecución" visible="true"/>
+            <Column fieldName="ds_referencia" caption="Descripción" visible="true"/>
+          </SimpleSearchColumns>
+          <AdvancedSearchColumns>
+            <Column fieldName="id_accion" caption="Id Accion" visible="true" useComboBox="false"/>
+            <Column fieldName="id_tipo_accion" caption="Tipo Accion" visible="true" useComboBox="false">
+              <Lookup tableName="public.sga_tipo_accion" linkFieldName="id_tipo_accion" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="id_tipo_espacio" caption="Tipo Espacio" visible="true" useComboBox="false">
+              <Lookup tableName="public.sga_tipo_espacio" linkFieldName="id_tipo_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="id_sector" caption="Sector" visible="true" useComboBox="false">
+              <Lookup tableName="public.sga_sector" linkFieldName="id_sector" displayFieldName="no_sector" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="id_tipo_bien" caption="Tipo Bien" visible="false" useComboBox="false">
+              <Lookup tableName="public.sga_tipo_bien" linkFieldName="id_tipo_bien" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="id_origen" caption="Origen" visible="true" useComboBox="false">
+              <Lookup tableName="public.sga_origen" linkFieldName="id_origen" displayFieldName="no_origen" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="id_metodologia" caption="Metodología" visible="true" useComboBox="false">
+              <Lookup tableName="public.sga_metodologia" linkFieldName="id_metodologia" displayFieldName="no_metodologia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="id_periodicidad" caption="Periodicidad" visible="true" useComboBox="false">
+              <Lookup tableName="public.sga_periodicidad" linkFieldName="id_periodicidad" displayFieldName="no_periodicidad" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="fl_a_demanda" caption="A Demanda" visible="true" useComboBox="false"/>
+            <Column fieldName="nu_personas" caption="Personas" visible="true" useComboBox="false"/>
+            <Column fieldName="tm_carga_horaria" caption="Carga Horária" visible="true" useComboBox="false"/>
+            <Column fieldName="fe_horas" caption="Horas Ejecución" visible="true" useComboBox="false"/>
+            <Column fieldName="ds_referencia" caption="Descripción" visible="true" useComboBox="false"/>
+          </AdvancedSearchColumns>
+          <ExportColumns>
+            <Column fieldName="id_accion" caption="Id Accion" visible="true" headerHint="Identificador único de la acción.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_tipo_accion" caption="Tipo Accion" visible="true" headerHint="Tipo de la accion.">
+              <Lookup tableName="public.sga_tipo_accion" linkFieldName="id_tipo_accion" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="tipo_accion.php?operation=view&amp;pk0=%id_tipo_accion%" target="_self"/>
+            </Column>
+            <Column fieldName="id_tipo_espacio" caption="Tipo Espacio" visible="true" headerHint="Tipo de espacio en que se puede ejecutar la acción.">
+              <Lookup tableName="public.sga_tipo_espacio" linkFieldName="id_tipo_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="tipo_espacio.php?operation=view&amp;pk0=%id_tipo_espacio%" target="_self"/>
+            </Column>
+            <Column fieldName="id_sector" caption="Sector" visible="true" headerHint="Sector sobre el que se ejecuta la acción.">
+              <Lookup tableName="public.sga_sector" linkFieldName="id_sector" displayFieldName="no_sector" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="sector.php?operation=view&amp;pk0=%id_sector%" target="_self"/>
+            </Column>
+            <Column fieldName="id_tipo_bien" caption="Tipo Bien" visible="false" headerHint="Tipo de bien sobre el que se ejecuta la acción.">
+              <Lookup tableName="public.sga_tipo_bien" linkFieldName="id_tipo_bien" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="tipo_bien.php?operation=view&amp;pk0=%id_tipo_bien%" target="_self"/>
+            </Column>
+            <Column fieldName="id_origen" caption="Origen" visible="true" headerHint="Origen de la acción.">
+              <Lookup tableName="public.sga_origen" linkFieldName="id_origen" displayFieldName="no_origen" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="origen.php?operation=view&amp;pk0=%id_origen%" target="_self"/>
+            </Column>
+            <Column fieldName="id_metodologia" caption="Metodología" visible="true" headerHint="Metodología de realización de la acción.">
+              <Lookup tableName="public.sga_metodologia" linkFieldName="id_metodologia" displayFieldName="no_metodologia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="metodologia.php?operation=view&amp;pk0=%id_metodologia%" target="_self"/>
+            </Column>
+            <Column fieldName="id_periodicidad" caption="Periodicidad" visible="true" headerHint="Periodicidad de ejecución de la acción.">
+              <Lookup tableName="public.sga_periodicidad" linkFieldName="id_periodicidad" displayFieldName="no_periodicidad" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="periodicidad.php?operation=view&amp;pk0=%id_periodicidad%" target="_self"/>
+            </Column>
+            <Column fieldName="fl_a_demanda" caption="A Demanda" visible="true" headerHint="Indicador de si la actividad puede ser realizada a demanda.">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="nu_personas" caption="Personas" visible="true" headerHint="Cantidad de personas necesarias para la realización de la tarea.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tm_carga_horaria" caption="Carga Horária" visible="true" headerHint="Tiempo estimado de ejecución de la acción.">
+              <ViewProperties type="dateTime" dateTimeFormat="H:i:s" dateTimeKind="2"/>
+            </Column>
+            <Column fieldName="fe_horas" caption="Fe Horas" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Ds Referencia" visible="true" headerHint="Referencia del registro.">
+              <ViewProperties type="text"/>
+            </Column>
+          </ExportColumns>
+          <PrintColumns>
+            <Column fieldName="id_accion" caption="Id Accion" visible="true" headerHint="Identificador único de la acción.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_tipo_accion" caption="Tipo Accion" visible="true" headerHint="Tipo de la accion.">
+              <Lookup tableName="public.sga_tipo_accion" linkFieldName="id_tipo_accion" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="tipo_accion.php?operation=view&amp;pk0=%id_tipo_accion%" target="_self"/>
+            </Column>
+            <Column fieldName="id_tipo_espacio" caption="Tipo Espacio" visible="true" headerHint="Tipo de espacio en que se puede ejecutar la acción.">
+              <Lookup tableName="public.sga_tipo_espacio" linkFieldName="id_tipo_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="tipo_espacio.php?operation=view&amp;pk0=%id_tipo_espacio%" target="_self"/>
+            </Column>
+            <Column fieldName="id_sector" caption="Sector" visible="true" headerHint="Sector sobre el que se ejecuta la acción.">
+              <Lookup tableName="public.sga_sector" linkFieldName="id_sector" displayFieldName="no_sector" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="sector.php?operation=view&amp;pk0=%id_sector%" target="_self"/>
+            </Column>
+            <Column fieldName="id_tipo_bien" caption="Tipo Bien" visible="false" headerHint="Tipo de bien sobre el que se ejecuta la acción.">
+              <Lookup tableName="public.sga_tipo_bien" linkFieldName="id_tipo_bien" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="tipo_bien.php?operation=view&amp;pk0=%id_tipo_bien%" target="_self"/>
+            </Column>
+            <Column fieldName="id_origen" caption="Origen" visible="true" headerHint="Origen de la acción.">
+              <Lookup tableName="public.sga_origen" linkFieldName="id_origen" displayFieldName="no_origen" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="origen.php?operation=view&amp;pk0=%id_origen%" target="_self"/>
+            </Column>
+            <Column fieldName="id_metodologia" caption="Metodología" visible="true" headerHint="Metodología de realización de la acción.">
+              <Lookup tableName="public.sga_metodologia" linkFieldName="id_metodologia" displayFieldName="no_metodologia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="metodologia.php?operation=view&amp;pk0=%id_metodologia%" target="_self"/>
+            </Column>
+            <Column fieldName="id_periodicidad" caption="Periodicidad" visible="true" headerHint="Periodicidad de ejecución de la acción.">
+              <Lookup tableName="public.sga_periodicidad" linkFieldName="id_periodicidad" displayFieldName="no_periodicidad" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="periodicidad.php?operation=view&amp;pk0=%id_periodicidad%" target="_self"/>
+            </Column>
+            <Column fieldName="fl_a_demanda" caption="A Demanda" visible="true" headerHint="Indicador de si la actividad puede ser realizada a demanda.">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="nu_personas" caption="Personas" visible="true" headerHint="Cantidad de personas necesarias para la realización de la tarea.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tm_carga_horaria" caption="Carga Horária" visible="true" headerHint="Tiempo estimado de ejecución de la acción.">
+              <ViewProperties type="dateTime" dateTimeFormat="H:i:s" dateTimeKind="2"/>
+            </Column>
+            <Column fieldName="fe_horas" caption="Fe Horas" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Ds Referencia" visible="true" headerHint="Referencia del registro.">
+              <ViewProperties type="text"/>
+            </Column>
+          </PrintColumns>
+        </Columns>
+        <Details/>
+        <RecordPermissions useRecordPermissions="false"/>
+        <PartitionNavigators/>
+      </Page>
+      <Page type="table" tableName="public.sga_tarea_plan" fileName="tarea_plan" caption="Tarea Planificada" shortCaption="Tarea Planificada" groupName="Maestras" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" NavigatorPosition="0" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" contentEncoding="UTF-8" controlButtonsPosition="255" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true">
+        <BeforeGridText/>
+        <Columns>
+          <ViewColumns>
+            <Column fieldName="id_tarea_plan" caption="Id Tarea Plan" visible="true" headerHint="Identificador único de la planificación de la tarea." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_accion" caption="Acción" visible="true" headerHint="Acción que ejecuta la tarea planificada." totalFunction="0">
+              <Lookup tableName="public.sga_accion" linkFieldName="id_accion" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="accion.php?operation=view&amp;pk0=%id_accion%" target="_self"/>
+            </Column>
+            <Column fieldName="id_espacio" caption="Espacio" visible="true" headerHint="Espacio sobre el que se ejecuta la tarea planificada." totalFunction="0">
+              <Lookup tableName="public.sga_espacio" linkFieldName="id_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="espacio.php?operation=view&amp;pk0=%id_espacio%" target="_self"/>
+            </Column>
+            <Column fieldName="id_bien" caption="Bien" visible="false" headerHint="Bien asociado a la tarea planificada." totalFunction="0">
+              <Lookup tableName="public.sga_bien" linkFieldName="id_bien" displayFieldName="ds_observacion" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="bien.php?operation=view&amp;pk0=%id_bien%" target="_self"/>
+            </Column>
+            <Column fieldName="id_periodicidad" caption="Periodicidad" visible="true" headerHint="Periodicidad de ejecución de la tarea planificada." totalFunction="0">
+              <Lookup tableName="public.sga_periodicidad" linkFieldName="id_periodicidad" displayFieldName="no_periodicidad" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="periodicidad.php?operation=view&amp;pk0=%id_periodicidad%" target="_self"/>
+            </Column>
+            <Column fieldName="ds_detalle" caption="Detalle" visible="true" headerHint="Detalles adicionales necesarios para la realización de la tarea." totalFunction="0">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="fe_inicio" caption="Fecha Início" visible="false" headerHint="Fecha de primera ejecución de la tarea." totalFunction="0">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y H:i:s"/>
+            </Column>
+            <Column fieldName="nu_personas" caption="Personas" visible="false" headerHint="Cantidad de personas necesarias para la realización de la tarea." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tm_carga_horaria" caption="Carga Horária" visible="false" headerHint="Tiempo estimado de ejecución de la acción." totalFunction="0">
+              <ViewProperties type="dateTime" dateTimeFormat="H:i:s" dateTimeKind="2"/>
+            </Column>
+            <Column fieldName="fe_horas" caption="Horas Ejecución" visible="true" headerHint=" Horarios de ejecución de las tareas." totalFunction="0">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Descripción" visible="false" headerHint="Referencia del registro." totalFunction="0">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+          </ViewColumns>
+          <SingleRecordViewColumns>
+            <Column fieldName="id_tarea_plan" caption="Id Tarea Plan" visible="true" headerHint="Identificador único de la planificación de la tarea.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_accion" caption="Acción" visible="true" headerHint="Acción que ejecuta la tarea planificada.">
+              <Lookup tableName="public.sga_accion" linkFieldName="id_accion" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="accion.php?operation=view&amp;pk0=%id_accion%" target="_self"/>
+            </Column>
+            <Column fieldName="id_espacio" caption="Espacio" visible="true" headerHint="Espacio sobre el que se ejecuta la tarea planificada.">
+              <Lookup tableName="public.sga_espacio" linkFieldName="id_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="espacio.php?operation=view&amp;pk0=%id_espacio%" target="_self"/>
+            </Column>
+            <Column fieldName="id_bien" caption="Bien" visible="false" headerHint="Bien asociado a la tarea planificada.">
+              <Lookup tableName="public.sga_bien" linkFieldName="id_bien" displayFieldName="ds_observacion" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="bien.php?operation=view&amp;pk0=%id_bien%" target="_self"/>
+            </Column>
+            <Column fieldName="id_periodicidad" caption="Periodicidad" visible="true" headerHint="Periodicidad de ejecución de la tarea planificada.">
+              <Lookup tableName="public.sga_periodicidad" linkFieldName="id_periodicidad" displayFieldName="no_periodicidad" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="periodicidad.php?operation=view&amp;pk0=%id_periodicidad%" target="_self"/>
+            </Column>
+            <Column fieldName="ds_detalle" caption="Detalle" visible="true" headerHint="Detalles adicionales necesarios para la realización de la tarea.">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="fe_inicio" caption="Fecha Início" visible="true" headerHint="Fecha de primera ejecución de la tarea.">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y H:i:s"/>
+            </Column>
+            <Column fieldName="nu_personas" caption="Personas" visible="true" headerHint="Cantidad de personas necesarias para la realización de la tarea.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tm_carga_horaria" caption="Carga Horária" visible="true" headerHint="Tiempo estimado de ejecución de la acción.">
+              <ViewProperties type="dateTime" dateTimeFormat="H:i:s" dateTimeKind="2"/>
+            </Column>
+            <Column fieldName="fe_horas" caption="Horas Ejecución" visible="true" headerHint=" Horarios de ejecución de las tareas.">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Descripción" visible="true" headerHint="Referencia del registro.">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+          </SingleRecordViewColumns>
+          <EditColumns>
+            <Column fieldName="id_tarea_plan" caption="Id Tarea Plan" visible="true" canSetNull="true" readOnly="true">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="id_accion" caption="Acción" visible="true">
+              <Lookup tableName="public.sga_accion" linkFieldName="id_accion" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <AdvancedProperties inlineStyles="width: 440px;"/>
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="id_espacio" caption="Espacio" visible="true">
+              <Lookup tableName="public.sga_espacio" linkFieldName="id_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <AdvancedProperties inlineStyles="width: 440px;"/>
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="id_bien" caption="Bien" visible="false" canSetNull="true">
+              <Lookup tableName="public.sga_bien" linkFieldName="id_bien" displayFieldName="ds_observacion" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <AdvancedProperties inlineStyles="width: 440px;"/>
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="id_periodicidad" caption="Periodicidad" visible="true" canSetNull="true">
+              <Lookup tableName="public.sga_periodicidad" linkFieldName="id_periodicidad" displayFieldName="no_periodicidad" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="ds_detalle" caption="Detalle" visible="true" canSetNull="true">
+              <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+            </Column>
+            <Column fieldName="fe_inicio" caption="Fecha Início" visible="true" canSetNull="true">
+              <EditProperties type="dateTime" showsTime="true" dateTimeFormat="d/m/Y H:i:s" firstDayOfWeek="0"/>
+            </Column>
+            <Column fieldName="nu_personas" caption="Personas" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tm_carga_horaria" caption="Carga Horária" visible="true" canSetNull="true">
+              <EditProperties type="time"/>
+            </Column>
+            <Column fieldName="fe_horas" caption="Horas Ejecución" visible="true" canSetNull="true">
+              <EditProperties type="multiSelect">
+                <Values>
+                  <Value name="00:00" caption="00:00"/>
+                  <Value name="00:15" caption="00:15"/>
+                  <Value name="00:30" caption="00:30"/>
+                  <Value name="00:45" caption="00:45"/>
+                  <Value name="01:00" caption="01:00"/>
+                  <Value name="01:15" caption="01:15"/>
+                  <Value name="01:30" caption="01:30"/>
+                  <Value name="01:45" caption="01:45"/>
+                  <Value name="02:00" caption="02:00"/>
+                  <Value name="02:15" caption="02:15"/>
+                  <Value name="02:30" caption="02:30"/>
+                  <Value name="02:45" caption="02:45"/>
+                  <Value name="03:00" caption="03:00"/>
+                  <Value name="03:15" caption="03:15"/>
+                  <Value name="03:30" caption="03:30"/>
+                  <Value name="03:45" caption="03:45"/>
+                  <Value name="04:00" caption="04:00"/>
+                  <Value name="04:15" caption="04:15"/>
+                  <Value name="04:30" caption="04:30"/>
+                  <Value name="04:45" caption="04:45"/>
+                  <Value name="05:00" caption="05:00"/>
+                  <Value name="05:15" caption="05:15"/>
+                  <Value name="05:30" caption="05:30"/>
+                  <Value name="05:45" caption="05:45"/>
+                  <Value name="06:00" caption="06:00"/>
+                  <Value name="06:15" caption="06:15"/>
+                  <Value name="06:30" caption="06:30"/>
+                  <Value name="06:45" caption="06:45"/>
+                  <Value name="07:00" caption="07:00"/>
+                  <Value name="07:15" caption="07:15"/>
+                  <Value name="07:30" caption="07:30"/>
+                  <Value name="07:45" caption="07:45"/>
+                  <Value name="08:00" caption="08:00"/>
+                  <Value name="08:15" caption="08:15"/>
+                  <Value name="08:30" caption="08:30"/>
+                  <Value name="08:45" caption="08:45"/>
+                  <Value name="09:00" caption="09:00"/>
+                  <Value name="09:15" caption="09:15"/>
+                  <Value name="09:30" caption="09:30"/>
+                  <Value name="09:45" caption="09:45"/>
+                  <Value name="10:00" caption="10:00"/>
+                  <Value name="10:15" caption="10:15"/>
+                  <Value name="10:30" caption="10:30"/>
+                  <Value name="10:45" caption="10:45"/>
+                  <Value name="11:00" caption="11:00"/>
+                  <Value name="11:15" caption="11:15"/>
+                  <Value name="11:30" caption="11:30"/>
+                  <Value name="11:45" caption="11:45"/>
+                  <Value name="12:00" caption="12:00"/>
+                  <Value name="12:15" caption="12:15"/>
+                  <Value name="12:30" caption="12:30"/>
+                  <Value name="12:45" caption="12:45"/>
+                  <Value name="13:00" caption="13:00"/>
+                  <Value name="13:15" caption="13:15"/>
+                  <Value name="13:30" caption="13:30"/>
+                  <Value name="13:45" caption="13:45"/>
+                  <Value name="14:00" caption="14:00"/>
+                  <Value name="14:15" caption="14:15"/>
+                  <Value name="14:30" caption="14:30"/>
+                  <Value name="14:45" caption="14:45"/>
+                  <Value name="15:00" caption="15:00"/>
+                  <Value name="15:15" caption="15:15"/>
+                  <Value name="15:30" caption="15:30"/>
+                  <Value name="15:45" caption="15:45"/>
+                  <Value name="16:00" caption="16:00"/>
+                  <Value name="16:15" caption="16:15"/>
+                  <Value name="16:30" caption="16:30"/>
+                  <Value name="16:45" caption="16:45"/>
+                  <Value name="17:00" caption="17:00"/>
+                  <Value name="17:15" caption="17:15"/>
+                  <Value name="17:30" caption="17:30"/>
+                  <Value name="17:45" caption="17:45"/>
+                  <Value name="18:00" caption="18:00"/>
+                  <Value name="18:15" caption="18:15"/>
+                  <Value name="18:30" caption="18:30"/>
+                  <Value name="18:45" caption="18:45"/>
+                  <Value name="19:00" caption="19:00"/>
+                  <Value name="19:15" caption="19:15"/>
+                  <Value name="19:30" caption="19:30"/>
+                  <Value name="19:45" caption="19:45"/>
+                  <Value name="20:00" caption="20:00"/>
+                  <Value name="20:15" caption="20:15"/>
+                  <Value name="20:30" caption="20:30"/>
+                  <Value name="20:45" caption="20:45"/>
+                  <Value name="21:00" caption="21:00"/>
+                  <Value name="21:15" caption="21:15"/>
+                  <Value name="21:30" caption="21:30"/>
+                  <Value name="21:45" caption="21:45"/>
+                  <Value name="22:00" caption="22:00"/>
+                  <Value name="22:15" caption="22:15"/>
+                  <Value name="22:30" caption="22:30"/>
+                  <Value name="22:45" caption="22:45"/>
+                  <Value name="23:00" caption="23:00"/>
+                  <Value name="23:15" caption="23:15"/>
+                  <Value name="23:30" caption="23:30"/>
+                  <Value name="23:45" caption="23:45"/>
+                </Values>
+              </EditProperties>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Descripción" visible="false" canSetNull="true">
+              <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+            </Column>
+          </EditColumns>
+          <InsertColumns>
+            <Column fieldName="id_tarea_plan" caption="Id Tarea Plan" visible="false" canSetNull="true" readOnly="true" defaultInsertValue="&quot;00:00&quot;">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="id_accion" caption="Acción" visible="true" defaultInsertValue="">
+              <Lookup tableName="public.sga_accion" linkFieldName="id_accion" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <AdvancedProperties inlineStyles="width: 440px;"/>
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="id_espacio" caption="Espacio" visible="true" defaultInsertValue="">
+              <Lookup tableName="public.sga_espacio" linkFieldName="id_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <AdvancedProperties inlineStyles="width: 440px;"/>
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="id_bien" caption="Bien" visible="false" canSetNull="true" defaultInsertValue="">
+              <Lookup tableName="public.sga_bien" linkFieldName="id_bien" displayFieldName="ds_observacion" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <AdvancedProperties inlineStyles="width: 440px;"/>
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="id_periodicidad" caption="Periodicidad" visible="true" canSetNull="true" defaultInsertValue="">
+              <Lookup tableName="public.sga_periodicidad" linkFieldName="id_periodicidad" displayFieldName="no_periodicidad" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="ds_detalle" caption="Detalle" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+            </Column>
+            <Column fieldName="fe_inicio" caption="Fecha Início" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="dateTime" showsTime="true" dateTimeFormat="d/m/Y H:i:s" firstDayOfWeek="0"/>
+            </Column>
+            <Column fieldName="nu_personas" caption="Personas" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tm_carga_horaria" caption="Carga Horária" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="time"/>
+            </Column>
+            <Column fieldName="fe_horas" caption="Horas Ejecución" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="multiSelect">
+                <Values>
+                  <Value name="00:00" caption="00:00"/>
+                  <Value name="00:15" caption="00:15"/>
+                  <Value name="00:30" caption="00:30"/>
+                  <Value name="00:45" caption="00:45"/>
+                  <Value name="01:00" caption="01:00"/>
+                  <Value name="01:15" caption="01:15"/>
+                  <Value name="01:30" caption="01:30"/>
+                  <Value name="01:45" caption="01:45"/>
+                  <Value name="02:00" caption="02:00"/>
+                  <Value name="02:15" caption="02:15"/>
+                  <Value name="02:30" caption="02:30"/>
+                  <Value name="02:45" caption="02:45"/>
+                  <Value name="03:00" caption="03:00"/>
+                  <Value name="03:15" caption="03:15"/>
+                  <Value name="03:30" caption="03:30"/>
+                  <Value name="03:45" caption="03:45"/>
+                  <Value name="04:00" caption="04:00"/>
+                  <Value name="04:15" caption="04:15"/>
+                  <Value name="04:30" caption="04:30"/>
+                  <Value name="04:45" caption="04:45"/>
+                  <Value name="05:00" caption="05:00"/>
+                  <Value name="05:15" caption="05:15"/>
+                  <Value name="05:30" caption="05:30"/>
+                  <Value name="05:45" caption="05:45"/>
+                  <Value name="06:00" caption="06:00"/>
+                  <Value name="06:15" caption="06:15"/>
+                  <Value name="06:30" caption="06:30"/>
+                  <Value name="06:45" caption="06:45"/>
+                  <Value name="07:00" caption="07:00"/>
+                  <Value name="07:15" caption="07:15"/>
+                  <Value name="07:30" caption="07:30"/>
+                  <Value name="07:45" caption="07:45"/>
+                  <Value name="08:00" caption="08:00"/>
+                  <Value name="08:15" caption="08:15"/>
+                  <Value name="08:30" caption="08:30"/>
+                  <Value name="08:45" caption="08:45"/>
+                  <Value name="09:00" caption="09:00"/>
+                  <Value name="09:15" caption="09:15"/>
+                  <Value name="09:30" caption="09:30"/>
+                  <Value name="09:45" caption="09:45"/>
+                  <Value name="10:00" caption="10:00"/>
+                  <Value name="10:15" caption="10:15"/>
+                  <Value name="10:30" caption="10:30"/>
+                  <Value name="10:45" caption="10:45"/>
+                  <Value name="11:00" caption="11:00"/>
+                  <Value name="11:15" caption="11:15"/>
+                  <Value name="11:30" caption="11:30"/>
+                  <Value name="11:45" caption="11:45"/>
+                  <Value name="12:00" caption="12:00"/>
+                  <Value name="12:15" caption="12:15"/>
+                  <Value name="12:30" caption="12:30"/>
+                  <Value name="12:45" caption="12:45"/>
+                  <Value name="13:00" caption="13:00"/>
+                  <Value name="13:15" caption="13:15"/>
+                  <Value name="13:30" caption="13:30"/>
+                  <Value name="13:45" caption="13:45"/>
+                  <Value name="14:00" caption="14:00"/>
+                  <Value name="14:15" caption="14:15"/>
+                  <Value name="14:30" caption="14:30"/>
+                  <Value name="14:45" caption="14:45"/>
+                  <Value name="15:00" caption="15:00"/>
+                  <Value name="15:15" caption="15:15"/>
+                  <Value name="15:30" caption="15:30"/>
+                  <Value name="15:45" caption="15:45"/>
+                  <Value name="16:00" caption="16:00"/>
+                  <Value name="16:15" caption="16:15"/>
+                  <Value name="16:30" caption="16:30"/>
+                  <Value name="16:45" caption="16:45"/>
+                  <Value name="17:00" caption="17:00"/>
+                  <Value name="17:15" caption="17:15"/>
+                  <Value name="17:30" caption="17:30"/>
+                  <Value name="17:45" caption="17:45"/>
+                  <Value name="18:00" caption="18:00"/>
+                  <Value name="18:15" caption="18:15"/>
+                  <Value name="18:30" caption="18:30"/>
+                  <Value name="18:45" caption="18:45"/>
+                  <Value name="19:00" caption="19:00"/>
+                  <Value name="19:15" caption="19:15"/>
+                  <Value name="19:30" caption="19:30"/>
+                  <Value name="19:45" caption="19:45"/>
+                  <Value name="20:00" caption="20:00"/>
+                  <Value name="20:15" caption="20:15"/>
+                  <Value name="20:30" caption="20:30"/>
+                  <Value name="20:45" caption="20:45"/>
+                  <Value name="21:00" caption="21:00"/>
+                  <Value name="21:15" caption="21:15"/>
+                  <Value name="21:30" caption="21:30"/>
+                  <Value name="21:45" caption="21:45"/>
+                  <Value name="22:00" caption="22:00"/>
+                  <Value name="22:15" caption="22:15"/>
+                  <Value name="22:30" caption="22:30"/>
+                  <Value name="22:45" caption="22:45"/>
+                  <Value name="23:00" caption="23:00"/>
+                  <Value name="23:15" caption="23:15"/>
+                  <Value name="23:30" caption="23:30"/>
+                  <Value name="23:45" caption="23:45"/>
+                </Values>
+              </EditProperties>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Descripción" visible="false" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+            </Column>
+          </InsertColumns>
+          <SimpleSearchColumns>
+            <Column fieldName="id_tarea_plan" caption="Id Tarea Plan" visible="true"/>
+            <Column fieldName="id_accion" caption="Acción" visible="true">
+              <Lookup tableName="public.sga_accion" linkFieldName="id_accion" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="id_espacio" caption="Espacio" visible="true">
+              <Lookup tableName="public.sga_espacio" linkFieldName="id_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="id_bien" caption="Bien" visible="false">
+              <Lookup tableName="public.sga_bien" linkFieldName="id_bien" displayFieldName="ds_observacion" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="id_periodicidad" caption="Periodicidad" visible="true">
+              <Lookup tableName="public.sga_periodicidad" linkFieldName="id_periodicidad" displayFieldName="no_periodicidad" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="ds_detalle" caption="Detalle" visible="true"/>
+            <Column fieldName="fe_inicio" caption="Fecha Início" visible="true"/>
+            <Column fieldName="nu_personas" caption="Personas" visible="true"/>
+            <Column fieldName="tm_carga_horaria" caption="Carga Horária" visible="true"/>
+            <Column fieldName="fe_horas" caption="Horas Ejecución" visible="true"/>
+            <Column fieldName="ds_referencia" caption="Descripción" visible="true"/>
+          </SimpleSearchColumns>
+          <AdvancedSearchColumns>
+            <Column fieldName="id_tarea_plan" caption="Id Tarea Plan" visible="true" useComboBox="false"/>
+            <Column fieldName="id_accion" caption="Acción" visible="true" useComboBox="false">
+              <Lookup tableName="public.sga_accion" linkFieldName="id_accion" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="id_espacio" caption="Espacio" visible="true" useComboBox="false">
+              <Lookup tableName="public.sga_espacio" linkFieldName="id_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="id_bien" caption="Bien" visible="false" useComboBox="false">
+              <Lookup tableName="public.sga_bien" linkFieldName="id_bien" displayFieldName="ds_observacion" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="id_periodicidad" caption="Periodicidad" visible="true" useComboBox="false">
+              <Lookup tableName="public.sga_periodicidad" linkFieldName="id_periodicidad" displayFieldName="no_periodicidad" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="ds_detalle" caption="Detalle" visible="true" useComboBox="false"/>
+            <Column fieldName="fe_inicio" caption="Fecha Início" visible="true" useComboBox="false"/>
+            <Column fieldName="nu_personas" caption="Personas" visible="true" useComboBox="false"/>
+            <Column fieldName="tm_carga_horaria" caption="Carga Horária" visible="true" useComboBox="false"/>
+            <Column fieldName="fe_horas" caption="Horas Ejecución" visible="true" useComboBox="false"/>
+            <Column fieldName="ds_referencia" caption="Descripción" visible="true" useComboBox="false"/>
+          </AdvancedSearchColumns>
+          <ExportColumns>
+            <Column fieldName="id_tarea_plan" caption="Id Tarea Plan" visible="true" headerHint="Identificador único de la planificación de la tarea.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_accion" caption="Acción" visible="true" headerHint="Acción que ejecuta la tarea planificada.">
+              <Lookup tableName="public.sga_accion" linkFieldName="id_accion" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="accion.php?operation=view&amp;pk0=%id_accion%" target="_self"/>
+            </Column>
+            <Column fieldName="id_espacio" caption="Espacio" visible="true" headerHint="Espacio sobre el que se ejecuta la tarea planificada.">
+              <Lookup tableName="public.sga_espacio" linkFieldName="id_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="espacio.php?operation=view&amp;pk0=%id_espacio%" target="_self"/>
+            </Column>
+            <Column fieldName="id_bien" caption="Bien" visible="false" headerHint="Bien asociado a la tarea planificada.">
+              <Lookup tableName="public.sga_bien" linkFieldName="id_bien" displayFieldName="ds_observacion" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="bien.php?operation=view&amp;pk0=%id_bien%" target="_self"/>
+            </Column>
+            <Column fieldName="id_periodicidad" caption="Periodicidad" visible="true" headerHint="Periodicidad de ejecución de la tarea planificada.">
+              <Lookup tableName="public.sga_periodicidad" linkFieldName="id_periodicidad" displayFieldName="no_periodicidad" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="periodicidad.php?operation=view&amp;pk0=%id_periodicidad%" target="_self"/>
+            </Column>
+            <Column fieldName="ds_detalle" caption="Ds Detalle" visible="true" headerHint="Detalles adicionales necesarios para la realización de la tarea.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="fe_inicio" caption="Fecha Início" visible="true" headerHint="Fecha de primera ejecución de la tarea.">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y H:i:s"/>
+            </Column>
+            <Column fieldName="nu_personas" caption="Personas" visible="true" headerHint="Cantidad de personas necesarias para la realización de la tarea.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tm_carga_horaria" caption="Carga Horária" visible="true" headerHint="Tiempo estimado de ejecución de la acción.">
+              <ViewProperties type="dateTime" dateTimeFormat="H:i:s" dateTimeKind="2"/>
+            </Column>
+            <Column fieldName="fe_horas" caption="Fe Horas" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Ds Referencia" visible="true" headerHint="Referencia del registro.">
+              <ViewProperties type="text"/>
+            </Column>
+          </ExportColumns>
+          <PrintColumns>
+            <Column fieldName="id_tarea_plan" caption="Id Tarea Plan" visible="true" headerHint="Identificador único de la planificación de la tarea.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_accion" caption="Acción" visible="true" headerHint="Acción que ejecuta la tarea planificada.">
+              <Lookup tableName="public.sga_accion" linkFieldName="id_accion" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="accion.php?operation=view&amp;pk0=%id_accion%" target="_self"/>
+            </Column>
+            <Column fieldName="id_espacio" caption="Espacio" visible="true" headerHint="Espacio sobre el que se ejecuta la tarea planificada.">
+              <Lookup tableName="public.sga_espacio" linkFieldName="id_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="espacio.php?operation=view&amp;pk0=%id_espacio%" target="_self"/>
+            </Column>
+            <Column fieldName="id_bien" caption="Bien" visible="false" headerHint="Bien asociado a la tarea planificada.">
+              <Lookup tableName="public.sga_bien" linkFieldName="id_bien" displayFieldName="ds_observacion" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="bien.php?operation=view&amp;pk0=%id_bien%" target="_self"/>
+            </Column>
+            <Column fieldName="id_periodicidad" caption="Periodicidad" visible="true" headerHint="Periodicidad de ejecución de la tarea planificada.">
+              <Lookup tableName="public.sga_periodicidad" linkFieldName="id_periodicidad" displayFieldName="no_periodicidad" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="periodicidad.php?operation=view&amp;pk0=%id_periodicidad%" target="_self"/>
+            </Column>
+            <Column fieldName="ds_detalle" caption="Ds Detalle" visible="true" headerHint="Detalles adicionales necesarios para la realización de la tarea.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="fe_inicio" caption="Fecha Início" visible="true" headerHint="Fecha de primera ejecución de la tarea.">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y H:i:s"/>
+            </Column>
+            <Column fieldName="nu_personas" caption="Personas" visible="true" headerHint="Cantidad de personas necesarias para la realización de la tarea.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tm_carga_horaria" caption="Carga Horária" visible="true" headerHint="Tiempo estimado de ejecución de la acción.">
+              <ViewProperties type="dateTime" dateTimeFormat="H:i:s" dateTimeKind="2"/>
+            </Column>
+            <Column fieldName="fe_horas" caption="Fe Horas" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Ds Referencia" visible="true" headerHint="Referencia del registro.">
+              <ViewProperties type="text"/>
+            </Column>
+          </PrintColumns>
+        </Columns>
+        <Details/>
+        <RecordPermissions useRecordPermissions="false"/>
+        <PartitionNavigators/>
+      </Page>
+      <Page type="table" tableName="public.sga_espacio" fileName="espacio" caption="Espacio" shortCaption="Espacio" groupName="Maestras" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" NavigatorPosition="0" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" contentEncoding="UTF-8" controlButtonsPosition="255" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true">
+        <BeforeGridText/>
+        <Columns>
+          <ViewColumns>
+            <Column fieldName="id_espacio" caption="Id Espacio" visible="true" headerHint="Identificador único del espacio." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_tipo_espacio" caption="Tipo Espacio" visible="true" headerHint="Tipo del espacio." totalFunction="0">
+              <Lookup tableName="public.sga_tipo_espacio" linkFieldName="id_tipo_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="tipo_espacio.php?operation=view&amp;pk0=%id_tipo_espacio%" target="_self"/>
+            </Column>
+            <Column fieldName="id_espacio_contenedor" caption="Espacio Contenedor" visible="false" headerHint="Espacio que contiene al espacio actual (padre)." totalFunction="0">
+              <Lookup tableName="public.sga_espacio" linkFieldName="id_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="espacio.php?operation=view&amp;pk0=%id_espacio_contenedor%" target="_self"/>
+            </Column>
+            <Column fieldName="id_sector" caption="Sector" visible="true" headerHint="Sector en el que se encuentra el espacio." totalFunction="0">
+              <Lookup tableName="public.sga_sector" linkFieldName="id_sector" displayFieldName="no_sector" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="sector.php?operation=view&amp;pk0=%id_sector%" target="_self"/>
+            </Column>
+            <Column fieldName="co_espacio" caption="Código Espacio" visible="true" headerHint="Código de espacio." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_espacio" caption="Nombre Espacio" visible="true" headerHint="Nombre del espacio." totalFunction="0">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="co_plano" caption="Código Plano" visible="true" headerHint="Codificación del espacio en los planos de Espacio Físico." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_planta" caption="Planta" visible="true" headerHint="Planta en la que se encuentra el espacio." totalFunction="0">
+              <Lookup tableName="public.sga_planta" linkFieldName="id_planta" displayFieldName="no_planta" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="planta.php?operation=view&amp;pk0=%id_planta%" target="_self"/>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Descripción" visible="true" headerHint="Referencia del registro." totalFunction="0">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="ds_link_ult_relevam" caption="Último Relevamiento" visible="false" headerHint="Link a planilla de último relevamiento realizado." totalFunction="0">
+              <ViewProperties type="text" maxLength="75"/>
+              <Hyperlink template="https://github.com/jsrxar/dge/blob/master/3-tecnologia/2-procesos/1-relevamiento-de-activos/6-resultado/%ds_link_ult_relevam%"/>
+            </Column>
+            <Column fieldName="va_metros2" caption="Metros Cuadrados" visible="true" headerHint="Metros cuadrados del esopacio." totalFunction="0">
+              <ViewProperties type="text">
+                <Format type="number" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
+              </ViewProperties>
+            </Column>
+          </ViewColumns>
+          <SingleRecordViewColumns>
+            <Column fieldName="id_espacio" caption="Id Espacio" visible="true" headerHint="Identificador único del espacio.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_tipo_espacio" caption="Tipo Espacio" visible="true" headerHint="Tipo del espacio.">
+              <Lookup tableName="public.sga_tipo_espacio" linkFieldName="id_tipo_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="tipo_espacio.php?operation=view&amp;pk0=%id_tipo_espacio%" target="_self"/>
+            </Column>
+            <Column fieldName="id_espacio_contenedor" caption="Espacio Contenedor" visible="false" headerHint="Espacio que contiene al espacio actual (padre).">
+              <Lookup tableName="public.sga_espacio" linkFieldName="id_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="espacio.php?operation=view&amp;pk0=%id_espacio_contenedor%" target="_self"/>
+            </Column>
+            <Column fieldName="id_sector" caption="Sector" visible="true" headerHint="Sector en el que se encuentra el espacio.">
+              <Lookup tableName="public.sga_sector" linkFieldName="id_sector" displayFieldName="no_sector" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="sector.php?operation=view&amp;pk0=%id_sector%" target="_self"/>
+            </Column>
+            <Column fieldName="co_espacio" caption="Código Espacio" visible="true" headerHint="Código de espacio.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_espacio" caption="Nombre Espacio" visible="true" headerHint="Nombre del espacio.">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="co_plano" caption="Código Plano" visible="true" headerHint="Codificación del espacio en los planos de Espacio Físico.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_planta" caption="Planta" visible="true" headerHint="Planta en la que se encuentra el espacio.">
+              <Lookup tableName="public.sga_planta" linkFieldName="id_planta" displayFieldName="no_planta" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="planta.php?operation=view&amp;pk0=%id_planta%" target="_self"/>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Descripción" visible="true" headerHint="Referencia del registro.">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="ds_link_ult_relevam" caption="Último Relevamiento" visible="true" headerHint="Link a planilla de último relevamiento realizado.">
+              <ViewProperties type="text" maxLength="75"/>
+              <Hyperlink template="https://github.com/jsrxar/dge/blob/master/3-tecnologia/2-procesos/1-relevamiento-de-activos/6-resultado/%ds_link_ult_relevam%"/>
+            </Column>
+            <Column fieldName="va_metros2" caption="Metros Cuadrados" visible="true" headerHint="Metros cuadrados del esopacio.">
+              <ViewProperties type="text">
+                <Format type="number" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
+              </ViewProperties>
+            </Column>
+          </SingleRecordViewColumns>
+          <EditColumns>
+            <Column fieldName="id_espacio" caption="Id Espacio" visible="true" canSetNull="true" readOnly="true">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="id_tipo_espacio" caption="Tipo Espacio" visible="true">
+              <Lookup tableName="public.sga_tipo_espacio" linkFieldName="id_tipo_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="id_espacio_contenedor" caption="Espacio Contenedor" visible="false" canSetNull="true">
+              <Lookup tableName="public.sga_espacio" linkFieldName="id_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="id_sector" caption="Sector" visible="true" canSetNull="true">
+              <Lookup tableName="public.sga_sector" linkFieldName="id_sector" displayFieldName="no_sector" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="co_espacio" caption="Código Espacio" visible="true">
+              <EditProperties type="textBox" size="50" maxLength="50" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="no_espacio" caption="Nombre Espacio" visible="true">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="co_plano" caption="Código Plano" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="50" maxLength="50" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="id_planta" caption="Planta" visible="true" canSetNull="true">
+              <Lookup tableName="public.sga_planta" linkFieldName="id_planta" displayFieldName="no_planta" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Descripción" visible="false" canSetNull="true">
+              <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+            </Column>
+            <Column fieldName="ds_link_ult_relevam" caption="Último Relevamiento" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="va_metros2" caption="Metros Cuadrados" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+          </EditColumns>
+          <InsertColumns>
+            <Column fieldName="id_espacio" caption="Id Espacio" visible="false" canSetNull="true" readOnly="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="id_tipo_espacio" caption="Tipo Espacio" visible="true" defaultInsertValue="">
+              <Lookup tableName="public.sga_tipo_espacio" linkFieldName="id_tipo_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="id_espacio_contenedor" caption="Espacio Contenedor" visible="false" canSetNull="true" defaultInsertValue="">
+              <Lookup tableName="public.sga_espacio" linkFieldName="id_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="id_sector" caption="Sector" visible="true" canSetNull="true" defaultInsertValue="">
+              <Lookup tableName="public.sga_sector" linkFieldName="id_sector" displayFieldName="no_sector" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="co_espacio" caption="Código Espacio" visible="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="50" maxLength="50" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="no_espacio" caption="Nombre Espacio" visible="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="co_plano" caption="Código Plano" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="50" maxLength="50" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="id_planta" caption="Planta" visible="true" canSetNull="true" defaultInsertValue="">
+              <Lookup tableName="public.sga_planta" linkFieldName="id_planta" displayFieldName="no_planta" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Descripción" visible="false" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+            </Column>
+            <Column fieldName="ds_link_ult_relevam" caption="Último Relevamiento" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="va_metros2" caption="Metros Cuadrados" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+          </InsertColumns>
+          <SimpleSearchColumns>
+            <Column fieldName="id_espacio" caption="Id Espacio" visible="true"/>
+            <Column fieldName="id_tipo_espacio" caption="Tipo Espacio" visible="true">
+              <Lookup tableName="public.sga_tipo_espacio" linkFieldName="id_tipo_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="id_espacio_contenedor" caption="Espacio Contenedor" visible="false">
+              <Lookup tableName="public.sga_espacio" linkFieldName="id_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="id_sector" caption="Sector" visible="true">
+              <Lookup tableName="public.sga_sector" linkFieldName="id_sector" displayFieldName="no_sector" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="co_espacio" caption="Código Espacio" visible="true"/>
+            <Column fieldName="no_espacio" caption="Nombre Espacio" visible="true"/>
+            <Column fieldName="co_plano" caption="Código Plano" visible="true"/>
+            <Column fieldName="id_planta" caption="Planta" visible="true">
+              <Lookup tableName="public.sga_planta" linkFieldName="id_planta" displayFieldName="no_planta" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Descripción" visible="true"/>
+            <Column fieldName="ds_link_ult_relevam" caption="Último Relevamiento" visible="true"/>
+            <Column fieldName="va_metros2" caption="Metros Cuadrados" visible="true"/>
+          </SimpleSearchColumns>
+          <AdvancedSearchColumns>
+            <Column fieldName="id_espacio" caption="Id Espacio" visible="true" useComboBox="false"/>
+            <Column fieldName="id_tipo_espacio" caption="Tipo Espacio" visible="true" useComboBox="false">
+              <Lookup tableName="public.sga_tipo_espacio" linkFieldName="id_tipo_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="id_espacio_contenedor" caption="Espacio Contenedor" visible="false" useComboBox="false">
+              <Lookup tableName="public.sga_espacio" linkFieldName="id_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="id_sector" caption="Sector" visible="true" useComboBox="false">
+              <Lookup tableName="public.sga_sector" linkFieldName="id_sector" displayFieldName="no_sector" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="co_espacio" caption="Código Espacio" visible="true" useComboBox="false"/>
+            <Column fieldName="no_espacio" caption="Nombre Espacio" visible="true" useComboBox="false"/>
+            <Column fieldName="co_plano" caption="Código Plano" visible="true" useComboBox="false"/>
+            <Column fieldName="id_planta" caption="Planta" visible="true" useComboBox="false">
+              <Lookup tableName="public.sga_planta" linkFieldName="id_planta" displayFieldName="no_planta" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Descripción" visible="true" useComboBox="false"/>
+            <Column fieldName="ds_link_ult_relevam" caption="Último Relevamiento" visible="true" useComboBox="false"/>
+            <Column fieldName="va_metros2" caption="Metros Cuadrados" visible="true" useComboBox="false"/>
+          </AdvancedSearchColumns>
+          <ExportColumns>
+            <Column fieldName="id_espacio" caption="Id Espacio" visible="true" headerHint="Identificador único del espacio.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_tipo_espacio" caption="Tipo Espacio" visible="true" headerHint="Tipo del espacio.">
+              <Lookup tableName="public.sga_tipo_espacio" linkFieldName="id_tipo_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="tipo_espacio.php?operation=view&amp;pk0=%id_tipo_espacio%" target="_self"/>
+            </Column>
+            <Column fieldName="id_espacio_contenedor" caption="Espacio Contenedor" visible="false" headerHint="Espacio que contiene al espacio actual (padre).">
+              <Lookup tableName="public.sga_espacio" linkFieldName="id_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="espacio.php?operation=view&amp;pk0=%id_espacio_contenedor%" target="_self"/>
+            </Column>
+            <Column fieldName="id_sector" caption="Sector" visible="true" headerHint="Sector en el que se encuentra el espacio.">
+              <Lookup tableName="public.sga_sector" linkFieldName="id_sector" displayFieldName="no_sector" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="sector.php?operation=view&amp;pk0=%id_sector%" target="_self"/>
+            </Column>
+            <Column fieldName="co_espacio" caption="Código Espacio" visible="true" headerHint="Código de espacio.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_espacio" caption="No Espacio" visible="true" headerHint="Nombre del espacio.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="co_plano" caption="Código Plano" visible="true" headerHint="Codificación del espacio en los planos de Espacio Físico.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_planta" caption="Planta" visible="true" headerHint="Planta en la que se encuentra el espacio.">
+              <Lookup tableName="public.sga_planta" linkFieldName="id_planta" displayFieldName="no_planta" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="planta.php?operation=view&amp;pk0=%id_planta%" target="_self"/>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Ds Referencia" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_link_ult_relevam" caption="Ds Link Ult Relevam" visible="true" headerHint="Link a planilla de último relevamiento realizado.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="va_metros2" caption="Metros Cuadrados" visible="true" headerHint="Metros cuadrados del esopacio.">
+              <ViewProperties type="text">
+                <Format type="number" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
+              </ViewProperties>
+            </Column>
+          </ExportColumns>
+          <PrintColumns>
+            <Column fieldName="id_espacio" caption="Id Espacio" visible="true" headerHint="Identificador único del espacio.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_tipo_espacio" caption="Tipo Espacio" visible="true" headerHint="Tipo del espacio.">
+              <Lookup tableName="public.sga_tipo_espacio" linkFieldName="id_tipo_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="tipo_espacio.php?operation=view&amp;pk0=%id_tipo_espacio%" target="_self"/>
+            </Column>
+            <Column fieldName="id_espacio_contenedor" caption="Espacio Contenedor" visible="false" headerHint="Espacio que contiene al espacio actual (padre).">
+              <Lookup tableName="public.sga_espacio" linkFieldName="id_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="espacio.php?operation=view&amp;pk0=%id_espacio_contenedor%" target="_self"/>
+            </Column>
+            <Column fieldName="id_sector" caption="Sector" visible="true" headerHint="Sector en el que se encuentra el espacio.">
+              <Lookup tableName="public.sga_sector" linkFieldName="id_sector" displayFieldName="no_sector" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="sector.php?operation=view&amp;pk0=%id_sector%" target="_self"/>
+            </Column>
+            <Column fieldName="co_espacio" caption="Código Espacio" visible="true" headerHint="Código de espacio.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_espacio" caption="No Espacio" visible="true" headerHint="Nombre del espacio.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="co_plano" caption="Código Plano" visible="true" headerHint="Codificación del espacio en los planos de Espacio Físico.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_planta" caption="Planta" visible="true" headerHint="Planta en la que se encuentra el espacio.">
+              <Lookup tableName="public.sga_planta" linkFieldName="id_planta" displayFieldName="no_planta" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="planta.php?operation=view&amp;pk0=%id_planta%" target="_self"/>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Ds Referencia" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_link_ult_relevam" caption="Ds Link Ult Relevam" visible="true" headerHint="Link a planilla de último relevamiento realizado.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="va_metros2" caption="Metros Cuadrados" visible="true" headerHint="Metros cuadrados del esopacio.">
+              <ViewProperties type="text">
+                <Format type="number" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
+              </ViewProperties>
+            </Column>
+          </PrintColumns>
+        </Columns>
+        <Details/>
+        <RecordPermissions useRecordPermissions="false"/>
+        <PartitionNavigators/>
+      </Page>
+      <Page type="table" tableName="public.sga_bien" includedIntoPageList="false" fileName="bien" caption="Bien" shortCaption="Bien" groupName="Maestras" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" NavigatorPosition="0" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" contentEncoding="UTF-8" controlButtonsPosition="255" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true">
+        <BeforeGridText/>
+        <Columns>
+          <ViewColumns>
+            <Column fieldName="id_bien" caption="Id Bien" visible="true" headerHint="Identificador único del bien." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_tipo_bien" caption="Tipo Bien" visible="true" headerHint="Tipo del bien." totalFunction="0">
+              <Lookup tableName="public.sga_tipo_bien" linkFieldName="id_tipo_bien" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="tipo_bien.php?operation=view&amp;pk0=%id_tipo_bien%" target="_self"/>
+            </Column>
+            <Column fieldName="id_espacio" caption="Espacio" visible="true" headerHint="Espacio en el que se encuentra el bien." totalFunction="0">
+              <Lookup tableName="public.sga_espacio" linkFieldName="id_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="espacio.php?operation=view&amp;pk0=%id_espacio%" target="_self"/>
+            </Column>
+            <Column fieldName="nu_cantidad" caption="Cantidad" visible="true" headerHint="Cantidad del tipo de bien dentro del espacio." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_observacion" caption="Observaciones" visible="true" headerHint="Observaciones sobre el bien." totalFunction="0">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+          </ViewColumns>
+          <SingleRecordViewColumns>
+            <Column fieldName="id_bien" caption="Id Bien" visible="true" headerHint="Identificador único del bien.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_tipo_bien" caption="Tipo Bien" visible="true" headerHint="Tipo del bien.">
+              <Lookup tableName="public.sga_tipo_bien" linkFieldName="id_tipo_bien" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="tipo_bien.php?operation=view&amp;pk0=%id_tipo_bien%" target="_self"/>
+            </Column>
+            <Column fieldName="id_espacio" caption="Espacio" visible="true" headerHint="Espacio en el que se encuentra el bien.">
+              <Lookup tableName="public.sga_espacio" linkFieldName="id_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="espacio.php?operation=view&amp;pk0=%id_espacio%" target="_self"/>
+            </Column>
+            <Column fieldName="nu_cantidad" caption="Cantidad" visible="true" headerHint="Cantidad del tipo de bien dentro del espacio.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_observacion" caption="Observaciones" visible="true" headerHint="Observaciones sobre el bien.">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+          </SingleRecordViewColumns>
+          <EditColumns>
+            <Column fieldName="id_bien" caption="Id Bien" visible="true" canSetNull="true" readOnly="true">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="id_tipo_bien" caption="Tipo Bien" visible="true">
+              <Lookup tableName="public.sga_tipo_bien" linkFieldName="id_tipo_bien" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="id_espacio" caption="Espacio" visible="true" canSetNull="true">
+              <Lookup tableName="public.sga_espacio" linkFieldName="id_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="nu_cantidad" caption="Cantidad" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="ds_observacion" caption="Observaciones" visible="true" canSetNull="true">
+              <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+            </Column>
+          </EditColumns>
+          <InsertColumns>
+            <Column fieldName="id_bien" caption="Id Bien" visible="false" canSetNull="true" readOnly="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="id_tipo_bien" caption="Tipo Bien" visible="true" defaultInsertValue="">
+              <Lookup tableName="public.sga_tipo_bien" linkFieldName="id_tipo_bien" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="id_espacio" caption="Espacio" visible="true" canSetNull="true" defaultInsertValue="">
+              <Lookup tableName="public.sga_espacio" linkFieldName="id_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="nu_cantidad" caption="Cantidad" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="ds_observacion" caption="Observaciones" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+            </Column>
+          </InsertColumns>
+          <SimpleSearchColumns>
+            <Column fieldName="id_bien" caption="Id Bien" visible="true"/>
+            <Column fieldName="id_tipo_bien" caption="Tipo Bien" visible="true">
+              <Lookup tableName="public.sga_tipo_bien" linkFieldName="id_tipo_bien" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="id_espacio" caption="Espacio" visible="true">
+              <Lookup tableName="public.sga_espacio" linkFieldName="id_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="nu_cantidad" caption="Cantidad" visible="true"/>
+            <Column fieldName="ds_observacion" caption="Observaciones" visible="true"/>
+          </SimpleSearchColumns>
+          <AdvancedSearchColumns>
+            <Column fieldName="id_bien" caption="Id Bien" visible="true" useComboBox="false"/>
+            <Column fieldName="id_tipo_bien" caption="Tipo Bien" visible="true" useComboBox="false">
+              <Lookup tableName="public.sga_tipo_bien" linkFieldName="id_tipo_bien" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="id_espacio" caption="Espacio" visible="true" useComboBox="false">
+              <Lookup tableName="public.sga_espacio" linkFieldName="id_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="nu_cantidad" caption="Cantidad" visible="true" useComboBox="false"/>
+            <Column fieldName="ds_observacion" caption="Observaciones" visible="true" useComboBox="false"/>
+          </AdvancedSearchColumns>
+          <ExportColumns>
+            <Column fieldName="id_bien" caption="Id Bien" visible="true" headerHint="Identificador único del bien.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_tipo_bien" caption="Tipo Bien" visible="true" headerHint="Tipo del bien.">
+              <Lookup tableName="public.sga_tipo_bien" linkFieldName="id_tipo_bien" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="tipo_bien.php?operation=view&amp;pk0=%id_tipo_bien%" target="_self"/>
+            </Column>
+            <Column fieldName="id_espacio" caption="Espacio" visible="true" headerHint="Espacio en el que se encuentra el bien.">
+              <Lookup tableName="public.sga_espacio" linkFieldName="id_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="espacio.php?operation=view&amp;pk0=%id_espacio%" target="_self"/>
+            </Column>
+            <Column fieldName="nu_cantidad" caption="Cantidad" visible="true" headerHint="Cantidad del tipo de bien dentro del espacio.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_observacion" caption="Ds Observacion" visible="true" headerHint="Observaciones del bien.">
+              <ViewProperties type="text"/>
+            </Column>
+          </ExportColumns>
+          <PrintColumns>
+            <Column fieldName="id_bien" caption="Id Bien" visible="true" headerHint="Identificador único del bien.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_tipo_bien" caption="Tipo Bien" visible="true" headerHint="Tipo del bien.">
+              <Lookup tableName="public.sga_tipo_bien" linkFieldName="id_tipo_bien" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="tipo_bien.php?operation=view&amp;pk0=%id_tipo_bien%" target="_self"/>
+            </Column>
+            <Column fieldName="id_espacio" caption="Espacio" visible="true" headerHint="Espacio en el que se encuentra el bien.">
+              <Lookup tableName="public.sga_espacio" linkFieldName="id_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="espacio.php?operation=view&amp;pk0=%id_espacio%" target="_self"/>
+            </Column>
+            <Column fieldName="nu_cantidad" caption="Cantidad" visible="true" headerHint="Cantidad del tipo de bien dentro del espacio.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_observacion" caption="Ds Observacion" visible="true" headerHint="Observaciones del bien.">
+              <ViewProperties type="text"/>
+            </Column>
+          </PrintColumns>
+        </Columns>
+        <Details/>
+        <RecordPermissions useRecordPermissions="false"/>
+        <PartitionNavigators/>
+      </Page>
+      <Page type="table" tableName="public.sga_metodologia" fileName="metodologia" caption="Metodologia" shortCaption="Metodologia de Acción" groupName="Paramétricas" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" NavigatorPosition="0" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" contentEncoding="UTF-8" controlButtonsPosition="255" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true">
+        <BeforeGridText/>
+        <Columns>
+          <ViewColumns>
+            <Column fieldName="id_metodologia" caption="Id Metodologia" visible="true" headerHint="Identificador único de una metodología." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_metodologia" caption="Nombre" visible="true" headerHint="Nombre de la metodología." totalFunction="0">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="ds_metodologia" caption="Descripción Metodo" visible="true" headerHint="Descripción del metodología." totalFunction="0">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="id_origen" caption="Origen" visible="true" headerHint="Origen de la metodología." totalFunction="0">
+              <Lookup tableName="public.sga_origen" linkFieldName="id_origen" displayFieldName="no_origen" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="origen.php?operation=view&amp;pk0=%id_origen%" target="_self"/>
+            </Column>
+          </ViewColumns>
+          <SingleRecordViewColumns>
+            <Column fieldName="id_metodologia" caption="Id Metodologia" visible="true" headerHint="Identificador único de una metodología.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_metodologia" caption="Nombre" visible="true" headerHint="Nombre de la metodología.">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="ds_metodologia" caption="Descripción Metodo" visible="true" headerHint="Descripción del metodología.">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="id_origen" caption="Origen" visible="true" headerHint="Origen de la metodología.">
+              <Lookup tableName="public.sga_origen" linkFieldName="id_origen" displayFieldName="no_origen" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="origen.php?operation=view&amp;pk0=%id_origen%" target="_self"/>
+            </Column>
+          </SingleRecordViewColumns>
+          <EditColumns>
+            <Column fieldName="id_metodologia" caption="Id Metodologia" visible="true" canSetNull="true" readOnly="true">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="no_metodologia" caption="Nombre" visible="true">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="ds_metodologia" caption="Descripción Metodo" visible="true" canSetNull="true">
+              <EditProperties type="htmlWysiwyg"/>
+            </Column>
+            <Column fieldName="id_origen" caption="Origen" visible="true" canSetNull="true">
+              <Lookup tableName="public.sga_origen" linkFieldName="id_origen" displayFieldName="no_origen" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+          </EditColumns>
+          <InsertColumns>
+            <Column fieldName="id_metodologia" caption="Id Metodologia" visible="false" canSetNull="true" readOnly="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="no_metodologia" caption="Nombre" visible="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="ds_metodologia" caption="Descripción Metodo" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="htmlWysiwyg"/>
+            </Column>
+            <Column fieldName="id_origen" caption="Origen" visible="true" canSetNull="true" defaultInsertValue="">
+              <Lookup tableName="public.sga_origen" linkFieldName="id_origen" displayFieldName="no_origen" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+          </InsertColumns>
+          <SimpleSearchColumns>
+            <Column fieldName="id_metodologia" caption="Id Metodologia" visible="true"/>
+            <Column fieldName="no_metodologia" caption="Nombre" visible="true"/>
+            <Column fieldName="ds_metodologia" caption="Descripción Metodo" visible="true"/>
+            <Column fieldName="id_origen" caption="Origen" visible="true">
+              <Lookup tableName="public.sga_origen" linkFieldName="id_origen" displayFieldName="no_origen" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+          </SimpleSearchColumns>
+          <AdvancedSearchColumns>
+            <Column fieldName="id_metodologia" caption="Id Metodologia" visible="true" useComboBox="false"/>
+            <Column fieldName="no_metodologia" caption="Nombre" visible="true" useComboBox="false"/>
+            <Column fieldName="ds_metodologia" caption="Descripción Metodo" visible="true" useComboBox="false"/>
+            <Column fieldName="id_origen" caption="Origen" visible="true" useComboBox="false">
+              <Lookup tableName="public.sga_origen" linkFieldName="id_origen" displayFieldName="no_origen" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+          </AdvancedSearchColumns>
+          <ExportColumns>
+            <Column fieldName="id_metodologia" caption="Id Metodologia" visible="true" headerHint="Identificador único de una metodología.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_metodologia" caption="No Metodologia" visible="true" headerHint="Nombre de la metodología.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_metodologia" caption="Ds Metodologia" visible="true" headerHint="Descripción del metodología.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_origen" caption="Origen" visible="true" headerHint="Origen de la metodología.">
+              <Lookup tableName="public.sga_origen" linkFieldName="id_origen" displayFieldName="no_origen" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="origen.php?operation=view&amp;pk0=%id_origen%" target="_self"/>
+            </Column>
+          </ExportColumns>
+          <PrintColumns>
+            <Column fieldName="id_metodologia" caption="Id Metodologia" visible="true" headerHint="Identificador único de una metodología.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_metodologia" caption="No Metodologia" visible="true" headerHint="Nombre de la metodología.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_metodologia" caption="Ds Metodologia" visible="true" headerHint="Descripción del metodología.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_origen" caption="Origen" visible="true" headerHint="Origen de la metodología.">
+              <Lookup tableName="public.sga_origen" linkFieldName="id_origen" displayFieldName="no_origen" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="origen.php?operation=view&amp;pk0=%id_origen%" target="_self"/>
+            </Column>
+          </PrintColumns>
+        </Columns>
+        <Details/>
+        <RecordPermissions useRecordPermissions="false"/>
+        <PartitionNavigators/>
+      </Page>
+      <Page type="table" tableName="public.sga_tipo_accion" fileName="tipo_accion" caption="Tipo Accion" shortCaption="Tipo Accion" groupName="Paramétricas" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" NavigatorPosition="0" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" contentEncoding="UTF-8" controlButtonsPosition="255" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true">
+        <DefaultSortedColumns>
+          <Column fieldName="ds_referencia" orderType="0"/>
+        </DefaultSortedColumns>
+        <BeforeGridText/>
+        <Columns>
+          <ViewColumns>
+            <Column fieldName="id_tipo_accion" caption="Id Tipo Acción" visible="true" headerHint="Identificador único del tipo de acción." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_tipo_accion" caption="Nombre Tipo Acción" visible="true" headerHint="Nombre del tipo de acción que se puede realizar sobre el bien." totalFunction="0">
+              <ViewProperties type="text" maxLength="75">
+                <DivAttributes align="left"/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="id_tipo_accion_padre" caption="Tipo Acción Padre" visible="true" headerHint="Tipo de acción contenedora (padre)." totalFunction="0">
+              <Lookup tableName="public.sga_tipo_accion" linkFieldName="id_tipo_accion" displayFieldName="no_tipo_accion" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text">
+                <DivAttributes align="left"/>
+              </ViewProperties>
+              <Hyperlink template="tipo_accion.php?operation=view&amp;pk0=%id_tipo_accion_padre%" target="_self"/>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Descripción" visible="true" headerHint="Referencia del registro." totalFunction="0">
+              <ViewProperties type="text" maxLength="75">
+                <DivAttributes align="left"/>
+              </ViewProperties>
+            </Column>
+          </ViewColumns>
+          <SingleRecordViewColumns>
+            <Column fieldName="id_tipo_accion" caption="Id Tipo Acción" visible="true" headerHint="Identificador único del tipo de acción.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_tipo_accion" caption="Nombre Tipo Acción" visible="true" headerHint="Nombre del tipo de acción que se puede realizar sobre el bien.">
+              <ViewProperties type="text" maxLength="75">
+                <DivAttributes align="left"/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="id_tipo_accion_padre" caption="Tipo Acción Padre" visible="true" headerHint="Tipo de acción contenedora (padre).">
+              <Lookup tableName="public.sga_tipo_accion" linkFieldName="id_tipo_accion" displayFieldName="no_tipo_accion" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text">
+                <DivAttributes align="left"/>
+              </ViewProperties>
+              <Hyperlink template="tipo_accion.php?operation=view&amp;pk0=%id_tipo_accion_padre%" target="_self"/>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Descripción" visible="true" headerHint="Referencia del registro.">
+              <ViewProperties type="text" maxLength="75">
+                <DivAttributes align="left"/>
+              </ViewProperties>
+            </Column>
+          </SingleRecordViewColumns>
+          <EditColumns>
+            <Column fieldName="id_tipo_accion" caption="Id Tipo Acción" visible="true" canSetNull="true" readOnly="true">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="no_tipo_accion" caption="Nombre Tipo Acción" visible="true">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="id_tipo_accion_padre" caption="Tipo Acción Padre" visible="true" canSetNull="true">
+              <Lookup tableName="public.sga_tipo_accion" linkFieldName="id_tipo_accion" displayFieldName="no_tipo_accion" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Descripción" visible="false" canSetNull="true">
+              <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+            </Column>
+          </EditColumns>
+          <InsertColumns>
+            <Column fieldName="id_tipo_accion" caption="Id Tipo Acción" visible="false" canSetNull="true" readOnly="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="no_tipo_accion" caption="Nombre Tipo Acción" visible="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="id_tipo_accion_padre" caption="Tipo Acción Padre" visible="true" canSetNull="true" defaultInsertValue="">
+              <Lookup tableName="public.sga_tipo_accion" linkFieldName="id_tipo_accion" displayFieldName="no_tipo_accion" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Descripción" visible="false" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+            </Column>
+          </InsertColumns>
+          <SimpleSearchColumns>
+            <Column fieldName="id_tipo_accion" caption="Id Tipo Acción" visible="true"/>
+            <Column fieldName="no_tipo_accion" caption="Nombre Tipo Acción" visible="true"/>
+            <Column fieldName="id_tipo_accion_padre" caption="Tipo Acción Padre" visible="true">
+              <Lookup tableName="public.sga_tipo_accion" linkFieldName="id_tipo_accion" displayFieldName="no_tipo_accion" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Descripción" visible="true"/>
+          </SimpleSearchColumns>
+          <AdvancedSearchColumns>
+            <Column fieldName="id_tipo_accion" caption="Id Tipo Acción" visible="true" useComboBox="false"/>
+            <Column fieldName="no_tipo_accion" caption="Nombre Tipo Acción" visible="true" useComboBox="false"/>
+            <Column fieldName="id_tipo_accion_padre" caption="Tipo Acción Padre" visible="true" useComboBox="false">
+              <Lookup tableName="public.sga_tipo_accion" linkFieldName="id_tipo_accion" displayFieldName="no_tipo_accion" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Descripción" visible="true" useComboBox="false"/>
+          </AdvancedSearchColumns>
+          <ExportColumns>
+            <Column fieldName="id_tipo_accion" caption="Id Tipo Acción" visible="true" headerHint="Identificador único del tipo de acción.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_tipo_accion" caption="No Tipo Accion" visible="true" headerHint="Nombre del tipo de acción que se puede realizar sobre el bien.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_tipo_accion_padre" caption="Tipo Acción Padre" visible="true" headerHint="Tipo de acción contenedora (padre).">
+              <Lookup tableName="public.sga_tipo_accion" linkFieldName="id_tipo_accion" displayFieldName="no_tipo_accion" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text">
+                <DivAttributes align="left"/>
+              </ViewProperties>
+              <Hyperlink template="tipo_accion.php?operation=view&amp;pk0=%id_tipo_accion_padre%" target="_self"/>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Ds Referencia" visible="true" headerHint="Referencia del registro.">
+              <ViewProperties type="text"/>
+            </Column>
+          </ExportColumns>
+          <PrintColumns>
+            <Column fieldName="id_tipo_accion" caption="Id Tipo Acción" visible="true" headerHint="Identificador único del tipo de acción.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_tipo_accion" caption="No Tipo Accion" visible="true" headerHint="Nombre del tipo de acción que se puede realizar sobre el bien.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_tipo_accion_padre" caption="Tipo Acción Padre" visible="true" headerHint="Tipo de acción contenedora (padre).">
+              <Lookup tableName="public.sga_tipo_accion" linkFieldName="id_tipo_accion" displayFieldName="no_tipo_accion" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text">
+                <DivAttributes align="left"/>
+              </ViewProperties>
+              <Hyperlink template="tipo_accion.php?operation=view&amp;pk0=%id_tipo_accion_padre%" target="_self"/>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Ds Referencia" visible="true" headerHint="Referencia del registro.">
+              <ViewProperties type="text"/>
+            </Column>
+          </PrintColumns>
+        </Columns>
+        <Details/>
+        <RecordPermissions useRecordPermissions="false"/>
+        <PartitionNavigators/>
+      </Page>
+      <Page type="table" tableName="public.sga_tipo_bien" includedIntoPageList="false" fileName="tipo_bien" caption="Tipo Bien" shortCaption="Tipo Bien" groupName="Paramétricas" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" NavigatorPosition="0" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" contentEncoding="UTF-8" controlButtonsPosition="255" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true">
+        <DefaultSortedColumns>
+          <Column fieldName="ds_referencia" orderType="0"/>
+        </DefaultSortedColumns>
+        <BeforeGridText/>
+        <Columns>
+          <ViewColumns>
+            <Column fieldName="id_tipo_bien" caption="Id Tipo Bien" visible="true" headerHint="Identificador único del tipo de bien." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_tipo_bien" caption="Nombre Tipo Bien" visible="true" headerHint="Nombre del tipo de bien." totalFunction="0">
+              <ViewProperties type="text" maxLength="75">
+                <DivAttributes align="left"/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="id_tipo_bien_padre" caption="Tipo Bien Padre" visible="true" headerHint="Tipo de bien padre (supertipo)." totalFunction="0">
+              <Lookup tableName="public.sga_tipo_bien" linkFieldName="id_tipo_bien" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text">
+                <DivAttributes align="left"/>
+              </ViewProperties>
+              <Hyperlink template="tipo_bien.php?operation=view&amp;pk0=%id_tipo_bien_padre%" target="_self"/>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Descripción" visible="true" headerHint="Referencia del registro." totalFunction="0">
+              <ViewProperties type="text" maxLength="75">
+                <DivAttributes align="left"/>
+              </ViewProperties>
+            </Column>
+          </ViewColumns>
+          <SingleRecordViewColumns>
+            <Column fieldName="id_tipo_bien" caption="Id Tipo Bien" visible="true" headerHint="Identificador único del tipo de bien.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_tipo_bien" caption="Nombre Tipo Bien" visible="true" headerHint="Nombre del tipo de bien.">
+              <ViewProperties type="text" maxLength="75">
+                <DivAttributes align="left"/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="id_tipo_bien_padre" caption="Tipo Bien Padre" visible="true" headerHint="Tipo de bien padre (supertipo).">
+              <Lookup tableName="public.sga_tipo_bien" linkFieldName="id_tipo_bien" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text">
+                <DivAttributes align="left"/>
+              </ViewProperties>
+              <Hyperlink template="tipo_bien.php?operation=view&amp;pk0=%id_tipo_bien_padre%" target="_self"/>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Descripción" visible="true" headerHint="Referencia del registro.">
+              <ViewProperties type="text" maxLength="75">
+                <DivAttributes align="left"/>
+              </ViewProperties>
+            </Column>
+          </SingleRecordViewColumns>
+          <EditColumns>
+            <Column fieldName="id_tipo_bien" caption="Id Tipo Bien" visible="true" canSetNull="true" readOnly="true">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="no_tipo_bien" caption="Nombre Tipo Bien" visible="true">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="id_tipo_bien_padre" caption="Tipo Bien Padre" visible="true" canSetNull="true">
+              <Lookup tableName="public.sga_tipo_bien" linkFieldName="id_tipo_bien" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Descripción" visible="false" canSetNull="true">
+              <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+            </Column>
+          </EditColumns>
+          <InsertColumns>
+            <Column fieldName="id_tipo_bien" caption="Id Tipo Bien" visible="false" canSetNull="true" readOnly="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="no_tipo_bien" caption="Nombre Tipo Bien" visible="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="id_tipo_bien_padre" caption="Tipo Bien Padre" visible="true" canSetNull="true" defaultInsertValue="">
+              <Lookup tableName="public.sga_tipo_bien" linkFieldName="id_tipo_bien" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Descripción" visible="false" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+            </Column>
+          </InsertColumns>
+          <SimpleSearchColumns>
+            <Column fieldName="id_tipo_bien" caption="Id Tipo Bien" visible="true"/>
+            <Column fieldName="no_tipo_bien" caption="Nombre Tipo Bien" visible="true"/>
+            <Column fieldName="id_tipo_bien_padre" caption="Tipo Bien Padre" visible="true">
+              <Lookup tableName="public.sga_tipo_bien" linkFieldName="id_tipo_bien" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Descripción" visible="true"/>
+          </SimpleSearchColumns>
+          <AdvancedSearchColumns>
+            <Column fieldName="id_tipo_bien" caption="Id Tipo Bien" visible="true" useComboBox="false"/>
+            <Column fieldName="no_tipo_bien" caption="Nombre Tipo Bien" visible="true" useComboBox="false"/>
+            <Column fieldName="id_tipo_bien_padre" caption="Tipo Bien Padre" visible="true" useComboBox="false">
+              <Lookup tableName="public.sga_tipo_bien" linkFieldName="id_tipo_bien" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Descripción" visible="true" useComboBox="false"/>
+          </AdvancedSearchColumns>
+          <ExportColumns>
+            <Column fieldName="id_tipo_bien" caption="Id Tipo Bien" visible="true" headerHint="Identificador único del tipo de bien.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_tipo_bien" caption="No Tipo Bien" visible="true" headerHint="Nombre del tipo de bien.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_tipo_bien_padre" caption="Tipo Bien Padre" visible="true" headerHint="Tipo de bien padre (supertipo).">
+              <Lookup tableName="public.sga_tipo_bien" linkFieldName="id_tipo_bien" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text">
+                <DivAttributes align="left"/>
+              </ViewProperties>
+              <Hyperlink template="tipo_bien.php?operation=view&amp;pk0=%id_tipo_bien_padre%" target="_self"/>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Ds Referencia" visible="true" headerHint="Referencia del registro.">
+              <ViewProperties type="text"/>
+            </Column>
+          </ExportColumns>
+          <PrintColumns>
+            <Column fieldName="id_tipo_bien" caption="Id Tipo Bien" visible="true" headerHint="Identificador único del tipo de bien.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_tipo_bien" caption="No Tipo Bien" visible="true" headerHint="Nombre del tipo de bien.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_tipo_bien_padre" caption="Tipo Bien Padre" visible="true" headerHint="Tipo de bien padre (supertipo).">
+              <Lookup tableName="public.sga_tipo_bien" linkFieldName="id_tipo_bien" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text">
+                <DivAttributes align="left"/>
+              </ViewProperties>
+              <Hyperlink template="tipo_bien.php?operation=view&amp;pk0=%id_tipo_bien_padre%" target="_self"/>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Ds Referencia" visible="true" headerHint="Referencia del registro.">
+              <ViewProperties type="text"/>
+            </Column>
+          </PrintColumns>
+        </Columns>
+        <Details/>
+        <RecordPermissions useRecordPermissions="false"/>
+        <PartitionNavigators/>
+      </Page>
+      <Page type="table" tableName="public.sga_periodicidad" fileName="periodicidad" caption="Periodicidad" shortCaption="Periodicidad" groupName="Paramétricas" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" NavigatorPosition="0" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" contentEncoding="UTF-8" controlButtonsPosition="255" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true">
+        <DefaultSortedColumns>
+          <Column fieldName="va_frecuencia" orderType="0"/>
+        </DefaultSortedColumns>
+        <BeforeGridText/>
+        <Columns>
+          <ViewColumns>
+            <Column fieldName="id_periodicidad" caption="Id Periodicidad" visible="true" headerHint="Identificador único de la periodicidad." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_periodicidad" caption="Nombre Periodicidad" visible="true" headerHint="Nombre de la periodicidad." totalFunction="0">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="va_frecuencia" caption="Frecuencia" visible="true" headerHint="Frecuencia (en días) de realización de la actividad." totalFunction="0">
+              <ViewProperties type="text">
+                <Format type="number" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="ds_tipo_frecuencia" caption="Tipo Frecuencia" visible="true" headerHint="Tipo de medida con que se mide la frecuencia de ejecución." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+          </ViewColumns>
+          <SingleRecordViewColumns>
+            <Column fieldName="id_periodicidad" caption="Id Periodicidad" visible="true" headerHint="Identificador único de la periodicidad.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_periodicidad" caption="Nombre Periodicidad" visible="true" headerHint="Nombre de la periodicidad.">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="va_frecuencia" caption="Frecuencia" visible="true" headerHint="Frecuencia (en días) de realización de la actividad.">
+              <ViewProperties type="text">
+                <Format type="number" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="ds_tipo_frecuencia" caption="Tipo Frecuencia" visible="true" headerHint="Tipo de medida con que se mide la frecuencia de ejecución.">
+              <ViewProperties type="text"/>
+            </Column>
+          </SingleRecordViewColumns>
+          <EditColumns>
+            <Column fieldName="id_periodicidad" caption="Id Periodicidad" visible="true" canSetNull="true" readOnly="true">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="no_periodicidad" caption="Nombre Periodicidad" visible="true">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="va_frecuencia" caption="Frecuencia" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="ds_tipo_frecuencia" caption="Tipo Frecuencia" visible="true">
+              <EditProperties type="comboBox">
+                <Values>
+                  <Value name="HOUR" caption="Horas"/>
+                  <Value name="DAY" caption="Días"/>
+                  <Value name="MONTH" caption="Meses"/>
+                  <Value name="YEAR" caption="Años"/>
+                </Values>
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+          </EditColumns>
+          <InsertColumns>
+            <Column fieldName="id_periodicidad" caption="Id Periodicidad" visible="false" canSetNull="true" readOnly="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="no_periodicidad" caption="Nombre Periodicidad" visible="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="va_frecuencia" caption="Frecuencia" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="ds_tipo_frecuencia" caption="Tipo Frecuencia" visible="true" defaultInsertValue="">
+              <EditProperties type="comboBox">
+                <Values>
+                  <Value name="HOUR" caption="Horas"/>
+                  <Value name="DAY" caption="Días"/>
+                  <Value name="MONTH" caption="Meses"/>
+                  <Value name="YEAR" caption="Años"/>
+                </Values>
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+          </InsertColumns>
+          <SimpleSearchColumns>
+            <Column fieldName="id_periodicidad" caption="Id Periodicidad" visible="true"/>
+            <Column fieldName="no_periodicidad" caption="Nombre Periodicidad" visible="true"/>
+            <Column fieldName="va_frecuencia" caption="Frecuencia" visible="true"/>
+            <Column fieldName="ds_tipo_frecuencia" caption="Tipo Frecuencia" visible="true"/>
+          </SimpleSearchColumns>
+          <AdvancedSearchColumns>
+            <Column fieldName="id_periodicidad" caption="Id Periodicidad" visible="true" useComboBox="false"/>
+            <Column fieldName="no_periodicidad" caption="Nombre Periodicidad" visible="true" useComboBox="false"/>
+            <Column fieldName="va_frecuencia" caption="Frecuencia" visible="true" useComboBox="false"/>
+            <Column fieldName="ds_tipo_frecuencia" caption="Tipo Frecuencia" visible="true" useComboBox="false"/>
+          </AdvancedSearchColumns>
+          <ExportColumns>
+            <Column fieldName="id_periodicidad" caption="Id Periodicidad" visible="true" headerHint="Identificador único de la periodicidad.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_periodicidad" caption="No Periodicidad" visible="true" headerHint="Nombre de la periodicidad.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="va_frecuencia" caption="Frecuencia" visible="true" headerHint="Frecuencia (en días) de realización de la actividad.">
+              <ViewProperties type="text">
+                <Format type="number" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="ds_tipo_frecuencia" caption="Tipo Frecuencia" visible="true" headerHint="Tipo de medida con que se mide la frecuencia de ejecución.">
+              <ViewProperties type="text"/>
+            </Column>
+          </ExportColumns>
+          <PrintColumns>
+            <Column fieldName="id_periodicidad" caption="Id Periodicidad" visible="true" headerHint="Identificador único de la periodicidad.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_periodicidad" caption="No Periodicidad" visible="true" headerHint="Nombre de la periodicidad.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="va_frecuencia" caption="Frecuencia" visible="true" headerHint="Frecuencia (en días) de realización de la actividad.">
+              <ViewProperties type="text">
+                <Format type="number" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="ds_tipo_frecuencia" caption="Tipo Frecuencia" visible="true" headerHint="Tipo de medida con que se mide la frecuencia de ejecución.">
+              <ViewProperties type="text"/>
+            </Column>
+          </PrintColumns>
+        </Columns>
+        <Details/>
+        <RecordPermissions useRecordPermissions="false"/>
+        <PartitionNavigators/>
+      </Page>
+      <Page type="table" tableName="public.sga_planta" fileName="planta" caption="Planta" shortCaption="Planta" groupName="Paramétricas" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true">
+        <DefaultSortedColumns>
+          <Column fieldName="id_planta" orderType="0"/>
+        </DefaultSortedColumns>
+        <BeforeGridText/>
+        <Columns>
+          <ViewColumns>
+            <Column fieldName="id_planta" caption="Id Planta" visible="true" headerHint="Identificador único de la planta." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_planta" caption="Nombre Planta" visible="true" headerHint="Nombre de la planta." totalFunction="0">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+          </ViewColumns>
+          <SingleRecordViewColumns>
+            <Column fieldName="id_planta" caption="Id Planta" visible="true" headerHint="Identificador único de la planta.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_planta" caption="Nombre Planta" visible="true" headerHint="Nombre de la planta.">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+          </SingleRecordViewColumns>
+          <EditColumns>
+            <Column fieldName="id_planta" caption="Id Planta" visible="true" canSetNull="true" readOnly="true">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="no_planta" caption="Nombre Planta" visible="true">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+          </EditColumns>
+          <InsertColumns>
+            <Column fieldName="id_planta" caption="Id Planta" visible="false" canSetNull="true" readOnly="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="no_planta" caption="Nombre Planta" visible="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+          </InsertColumns>
+          <SimpleSearchColumns>
+            <Column fieldName="id_planta" caption="Id Planta" visible="true"/>
+            <Column fieldName="no_planta" caption="Nombre Planta" visible="true"/>
+          </SimpleSearchColumns>
+          <AdvancedSearchColumns>
+            <Column fieldName="id_planta" caption="Id Planta" visible="true" useComboBox="false"/>
+            <Column fieldName="no_planta" caption="Nombre Planta" visible="true" useComboBox="false"/>
+          </AdvancedSearchColumns>
+          <ExportColumns>
+            <Column fieldName="id_planta" caption="Id Planta" visible="true" headerHint="Identificador único de la planta.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_planta" caption="No Planta" visible="true" headerHint="Nombre de la planta.">
+              <ViewProperties type="text"/>
+            </Column>
+          </ExportColumns>
+          <PrintColumns>
+            <Column fieldName="id_planta" caption="Id Planta" visible="true" headerHint="Identificador único de la planta.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_planta" caption="No Planta" visible="true" headerHint="Nombre de la planta.">
+              <ViewProperties type="text"/>
+            </Column>
+          </PrintColumns>
+        </Columns>
+        <Details/>
+        <RecordPermissions useRecordPermissions="false"/>
+        <PartitionNavigators/>
+      </Page>
+      <Page type="table" tableName="public.sga_sector" fileName="sector" caption="Sector" shortCaption="Sector" groupName="Paramétricas" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true">
+        <BeforeGridText/>
+        <Columns>
+          <ViewColumns>
+            <Column fieldName="id_sector" caption="Id Sector" visible="true" headerHint="Identificador único del sector." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_sector" caption="No Sector" visible="true" headerHint="Nombre del sector (noble, ibndustrial, etc.)." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+          </ViewColumns>
+          <SingleRecordViewColumns>
+            <Column fieldName="id_sector" caption="Id Sector" visible="true" headerHint="Identificador único del sector.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_sector" caption="No Sector" visible="true" headerHint="Nombre del sector (noble, ibndustrial, etc.).">
+              <ViewProperties type="text"/>
+            </Column>
+          </SingleRecordViewColumns>
+          <EditColumns>
+            <Column fieldName="id_sector" caption="Id Sector" visible="false">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="no_sector" caption="No Sector" visible="true">
+              <EditProperties type="textBox" size="50" maxLength="50" placeholder="" prefix="" suffix=""/>
+            </Column>
+          </EditColumns>
+          <InsertColumns>
+            <Column fieldName="id_sector" caption="Id Sector" visible="false" canSetServerDefault="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="no_sector" caption="No Sector" visible="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="50" maxLength="50" placeholder="" prefix="" suffix=""/>
+            </Column>
+          </InsertColumns>
+          <SimpleSearchColumns>
+            <Column fieldName="id_sector" caption="Id Sector" visible="true"/>
+            <Column fieldName="no_sector" caption="No Sector" visible="true"/>
+          </SimpleSearchColumns>
+          <AdvancedSearchColumns>
+            <Column fieldName="id_sector" caption="Id Sector" visible="true" useComboBox="false"/>
+            <Column fieldName="no_sector" caption="No Sector" visible="true" useComboBox="false"/>
+          </AdvancedSearchColumns>
+          <ExportColumns>
+            <Column fieldName="id_sector" caption="Id Sector" visible="true" headerHint="Identificador único del sector.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_sector" caption="No Sector" visible="true" headerHint="Nombre del sector (noble, ibndustrial, etc.).">
+              <ViewProperties type="text"/>
+            </Column>
+          </ExportColumns>
+          <PrintColumns>
+            <Column fieldName="id_sector" caption="Id Sector" visible="true" headerHint="Identificador único del sector.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_sector" caption="No Sector" visible="true" headerHint="Nombre del sector (noble, ibndustrial, etc.).">
+              <ViewProperties type="text"/>
+            </Column>
+          </PrintColumns>
+        </Columns>
+        <Details/>
+        <RecordPermissions useRecordPermissions="false"/>
+        <PartitionNavigators/>
+      </Page>
+      <Page type="table" tableName="public.sga_origen" fileName="origen" caption="Origen" shortCaption="Origen" groupName="Paramétricas" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true">
+        <BeforeGridText/>
+        <Columns>
+          <ViewColumns>
+            <Column fieldName="id_origen" caption="Id Origen" visible="true" headerHint="Identificador único de origen." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_origen" caption="Nombre Origen" visible="true" headerHint="Nombre del origen de la actividad/procedimiento." totalFunction="0">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+          </ViewColumns>
+          <SingleRecordViewColumns>
+            <Column fieldName="id_origen" caption="Id Origen" visible="true" headerHint="Identificador único de origen.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_origen" caption="Nombre Origen" visible="true" headerHint="Nombre del origen de la actividad/procedimiento.">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+          </SingleRecordViewColumns>
+          <EditColumns>
+            <Column fieldName="id_origen" caption="Id Origen" visible="true" canSetNull="true" readOnly="true">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="no_origen" caption="Nombre Origen" visible="true">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+          </EditColumns>
+          <InsertColumns>
+            <Column fieldName="id_origen" caption="Id Origen" visible="false" canSetNull="true" readOnly="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="no_origen" caption="Nombre Origen" visible="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+          </InsertColumns>
+          <SimpleSearchColumns>
+            <Column fieldName="id_origen" caption="Id Origen" visible="true"/>
+            <Column fieldName="no_origen" caption="Nombre Origen" visible="true"/>
+          </SimpleSearchColumns>
+          <AdvancedSearchColumns>
+            <Column fieldName="id_origen" caption="Id Origen" visible="true" useComboBox="false"/>
+            <Column fieldName="no_origen" caption="Nombre Origen" visible="true" useComboBox="false"/>
+          </AdvancedSearchColumns>
+          <ExportColumns>
+            <Column fieldName="id_origen" caption="Id Origen" visible="true" headerHint="Identificador único de origen.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_origen" caption="No Origen" visible="true" headerHint="Nombre del origen de la actividad/procedimiento.">
+              <ViewProperties type="text"/>
+            </Column>
+          </ExportColumns>
+          <PrintColumns>
+            <Column fieldName="id_origen" caption="Id Origen" visible="true" headerHint="Identificador único de origen.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_origen" caption="No Origen" visible="true" headerHint="Nombre del origen de la actividad/procedimiento.">
+              <ViewProperties type="text"/>
+            </Column>
+          </PrintColumns>
+        </Columns>
+        <Details/>
+        <RecordPermissions useRecordPermissions="false"/>
+        <PartitionNavigators/>
+      </Page>
+      <Page type="table" tableName="public.sga_tipo_espacio" fileName="tipo_espacio" caption="Tipo Espacio" shortCaption="Tipo Espacio" groupName="Paramétricas" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" NavigatorPosition="0" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" contentEncoding="UTF-8" controlButtonsPosition="255" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true">
+        <BeforeGridText/>
+        <Columns>
+          <ViewColumns>
+            <Column fieldName="id_tipo_espacio" caption="Id Tipo Espacio" visible="true" headerHint="Identificador único del tipo de espacio." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_tipo_espacio" caption="No Tipo Espacio" visible="true" headerHint="Nombre del tipo de espacio." totalFunction="0">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="id_tipo_espacio_padre" caption="Id Tipo Espacio Padre" visible="true" headerHint="Identificador único del tipo de espacio padre (supertipo)." totalFunction="0">
+              <Lookup tableName="public.sga_tipo_espacio" linkFieldName="id_tipo_espacio" displayFieldName="no_tipo_espacio" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Descripción" visible="true" headerHint="Referencia del registro." totalFunction="0">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+          </ViewColumns>
+          <SingleRecordViewColumns>
+            <Column fieldName="id_tipo_espacio" caption="Id Tipo Espacio" visible="true" headerHint="Identificador único del tipo de espacio.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_tipo_espacio" caption="No Tipo Espacio" visible="true" headerHint="Nombre del tipo de espacio.">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="id_tipo_espacio_padre" caption="Id Tipo Espacio Padre" visible="true" headerHint="Identificador único del tipo de espacio padre (supertipo).">
+              <Lookup tableName="public.sga_tipo_espacio" linkFieldName="id_tipo_espacio" displayFieldName="no_tipo_espacio" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Descripción" visible="true" headerHint="Referencia del registro.">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+          </SingleRecordViewColumns>
+          <EditColumns>
+            <Column fieldName="id_tipo_espacio" caption="Id Tipo Espacio" visible="false">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="no_tipo_espacio" caption="No Tipo Espacio" visible="true">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="id_tipo_espacio_padre" caption="Id Tipo Espacio Padre" visible="true" canSetNull="true">
+              <Lookup tableName="public.sga_tipo_espacio" linkFieldName="id_tipo_espacio" displayFieldName="no_tipo_espacio" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Descripción" visible="true" canSetNull="true">
+              <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+            </Column>
+          </EditColumns>
+          <InsertColumns>
+            <Column fieldName="id_tipo_espacio" caption="Id Tipo Espacio" visible="false" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="no_tipo_espacio" caption="No Tipo Espacio" visible="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="id_tipo_espacio_padre" caption="Id Tipo Espacio Padre" visible="true" canSetNull="true" defaultInsertValue="">
+              <Lookup tableName="public.sga_tipo_espacio" linkFieldName="id_tipo_espacio" displayFieldName="no_tipo_espacio" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Descripción" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+            </Column>
+          </InsertColumns>
+          <SimpleSearchColumns>
+            <Column fieldName="id_tipo_espacio" caption="Id Tipo Espacio" visible="true"/>
+            <Column fieldName="no_tipo_espacio" caption="No Tipo Espacio" visible="true"/>
+            <Column fieldName="id_tipo_espacio_padre" caption="Id Tipo Espacio Padre" visible="true">
+              <Lookup tableName="public.sga_tipo_espacio" linkFieldName="id_tipo_espacio" displayFieldName="no_tipo_espacio" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Descripción" visible="true"/>
+          </SimpleSearchColumns>
+          <AdvancedSearchColumns>
+            <Column fieldName="id_tipo_espacio" caption="Id Tipo Espacio" visible="true" useComboBox="false"/>
+            <Column fieldName="no_tipo_espacio" caption="No Tipo Espacio" visible="true" useComboBox="false"/>
+            <Column fieldName="id_tipo_espacio_padre" caption="Id Tipo Espacio Padre" visible="true" useComboBox="false">
+              <Lookup tableName="public.sga_tipo_espacio" linkFieldName="id_tipo_espacio" displayFieldName="no_tipo_espacio" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Descripción" visible="true" useComboBox="false"/>
+          </AdvancedSearchColumns>
+          <ExportColumns>
+            <Column fieldName="id_tipo_espacio" caption="Id Tipo Espacio" visible="true" headerHint="Identificador único del tipo de espacio.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_tipo_espacio" caption="No Tipo Espacio" visible="true" headerHint="Nombre del tipo de espacio.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_tipo_espacio_padre" caption="Id Tipo Espacio Padre" visible="true" headerHint="Identificador único del tipo de espacio padre (supertipo).">
+              <Lookup tableName="public.sga_tipo_espacio" linkFieldName="id_tipo_espacio" displayFieldName="no_tipo_espacio" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Ds Referencia" visible="true" headerHint="Referencia del registro.">
+              <ViewProperties type="text"/>
+            </Column>
+          </ExportColumns>
+          <PrintColumns>
+            <Column fieldName="id_tipo_espacio" caption="Id Tipo Espacio" visible="true" headerHint="Identificador único del tipo de espacio.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_tipo_espacio" caption="No Tipo Espacio" visible="true" headerHint="Nombre del tipo de espacio.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_tipo_espacio_padre" caption="Id Tipo Espacio Padre" visible="true" headerHint="Identificador único del tipo de espacio padre (supertipo).">
+              <Lookup tableName="public.sga_tipo_espacio" linkFieldName="id_tipo_espacio" displayFieldName="no_tipo_espacio" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Ds Referencia" visible="true" headerHint="Referencia del registro.">
+              <ViewProperties type="text"/>
+            </Column>
+          </PrintColumns>
+        </Columns>
+        <Details/>
+        <RecordPermissions useRecordPermissions="false"/>
+        <PartitionNavigators/>
+      </Page>
+    </Pages>
+    <UserAuthorization type="hardCoded" passwordEncryption="md5">
+      <Users>
+        <User name="relevamiento" password="hola1234" userId="relevamiento"/>
+        <User name="servicios-generales" password="hola1234" userId="servicios-generales"/>
+        <User name="espacios-fisicos" password="hola1234" userId="espacios-fisicos"/>
+        <User name="admin" password="hola1234"/>
+      </Users>
+    </UserAuthorization>
+    <UserGrants enableGuestAccess="false">
+      <UserGrant userName="defaultUser"/>
+      <UserGrant userName="relevamiento"/>
+      <UserGrant userName="servicios-generales"/>
+      <UserGrant userName="espacios-fisicos"/>
+      <UserGrant userName="admin" select="1" insert="1" update="1" delete="1" admin="1"/>
+      <UserPageGrants>
+        <PageGrants userName="defaultUser">
+          <PageGrant pageName="public.sga_accion"/>
+          <PageGrant pageName="public.sga_tarea_plan"/>
+          <PageGrant pageName="public.sga_espacio"/>
+          <PageGrant pageName="public.sga_bien"/>
+          <PageGrant pageName="public.sga_metodologia"/>
+          <PageGrant pageName="public.sga_tipo_accion"/>
+          <PageGrant pageName="public.sga_tipo_bien"/>
+          <PageGrant pageName="public.sga_periodicidad"/>
+          <PageGrant pageName="public.sga_planta"/>
+          <PageGrant pageName="public.sga_sector"/>
+          <PageGrant pageName="public.sga_origen"/>
+          <PageGrant pageName="public.sga_tipo_espacio"/>
+        </PageGrants>
+        <PageGrants userName="relevamiento">
+          <PageGrant pageName="public.sga_accion"/>
+          <PageGrant pageName="public.sga_tarea_plan"/>
+          <PageGrant pageName="public.sga_espacio"/>
+          <PageGrant pageName="public.sga_bien"/>
+          <PageGrant pageName="public.sga_metodologia"/>
+          <PageGrant pageName="public.sga_tipo_accion" select="1" insert="1" update="1" delete="1"/>
+          <PageGrant pageName="public.sga_tipo_bien" select="1" insert="1" update="1" delete="1"/>
+          <PageGrant pageName="public.sga_periodicidad"/>
+          <PageGrant pageName="public.sga_planta"/>
+          <PageGrant pageName="public.sga_sector"/>
+          <PageGrant pageName="public.sga_origen"/>
+          <PageGrant pageName="public.sga_tipo_espacio" select="1" insert="1" update="1" delete="1"/>
+        </PageGrants>
+        <PageGrants userName="servicios-generales">
+          <PageGrant pageName="public.sga_accion" select="1" insert="1" update="1" delete="1"/>
+          <PageGrant pageName="public.sga_tarea_plan" select="1" insert="1" update="1" delete="1"/>
+          <PageGrant pageName="public.sga_espacio" select="1" insert="1" update="1" delete="1"/>
+          <PageGrant pageName="public.sga_bien" select="1" insert="1" update="1" delete="1"/>
+          <PageGrant pageName="public.sga_metodologia" select="1" insert="1" update="1" delete="1"/>
+          <PageGrant pageName="public.sga_tipo_accion" select="1" insert="1" update="1" delete="1"/>
+          <PageGrant pageName="public.sga_tipo_bien"/>
+          <PageGrant pageName="public.sga_periodicidad" select="1" insert="1" update="1" delete="1"/>
+          <PageGrant pageName="public.sga_planta"/>
+          <PageGrant pageName="public.sga_sector"/>
+          <PageGrant pageName="public.sga_origen"/>
+          <PageGrant pageName="public.sga_tipo_espacio"/>
+        </PageGrants>
+        <PageGrants userName="espacios-fisicos">
+          <PageGrant pageName="public.sga_accion"/>
+          <PageGrant pageName="public.sga_tarea_plan"/>
+          <PageGrant pageName="public.sga_espacio" select="1" insert="1" update="1" delete="1"/>
+          <PageGrant pageName="public.sga_bien"/>
+          <PageGrant pageName="public.sga_metodologia"/>
+          <PageGrant pageName="public.sga_tipo_accion"/>
+          <PageGrant pageName="public.sga_tipo_bien"/>
+          <PageGrant pageName="public.sga_periodicidad"/>
+          <PageGrant pageName="public.sga_planta"/>
+          <PageGrant pageName="public.sga_sector"/>
+          <PageGrant pageName="public.sga_origen"/>
+          <PageGrant pageName="public.sga_tipo_espacio"/>
+        </PageGrants>
+        <PageGrants userName="admin">
+          <PageGrant pageName="public.sga_accion"/>
+          <PageGrant pageName="public.sga_tarea_plan"/>
+          <PageGrant pageName="public.sga_espacio"/>
+          <PageGrant pageName="public.sga_bien"/>
+          <PageGrant pageName="public.sga_metodologia"/>
+          <PageGrant pageName="public.sga_tipo_accion"/>
+          <PageGrant pageName="public.sga_tipo_bien"/>
+          <PageGrant pageName="public.sga_periodicidad"/>
+          <PageGrant pageName="public.sga_planta"/>
+          <PageGrant pageName="public.sga_sector"/>
+          <PageGrant pageName="public.sga_origen"/>
+          <PageGrant pageName="public.sga_tipo_espacio"/>
+        </PageGrants>
+      </UserPageGrants>
+    </UserGrants>
+    <Header>
+&lt;br&gt;
+&lt;h2 style=&quot;text-align:left;color:lightgrey&quot;&gt;Dirección Técnica Operativa&lt;/h2&gt;
+&lt;h3&gt;Sistema de Gestión de Activos&lt;/h3&gt;
+&lt;br&gt;    </Header>
+    <Footer/>
+    <Groups>
+      <Group>
+Maestras      </Group>
+      <Group>
+Relaciones      </Group>
+      <Group>
+Paramétricas      </Group>
+      <Group>
+Transacciones      </Group>
+    </Groups>
+  </Presentation>
+  <UserCSS>
+.pgui-null-value {
+color:lightgrey;
+}
+.sortable {
+height: 10px;
+}
+.data-operation {
+height: 10px;
+}
+.row-selection {
+height: 10px;
+}
+.pg-row {
+height: 10px;
+}  </UserCSS>
+  <UserJS/>
+  <ExcludedPaths/>
+  <DefaultPageProperties recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true"/>
+  <DefaultDataFormats numberAfterDecimal="2" DecimalSeparator="," ThousandSeparator="." DateTimeFormat="d/m/Y H:i:s" DateFormat="d/m/Y" firstDayOfWeek="0"/>
+</Project>

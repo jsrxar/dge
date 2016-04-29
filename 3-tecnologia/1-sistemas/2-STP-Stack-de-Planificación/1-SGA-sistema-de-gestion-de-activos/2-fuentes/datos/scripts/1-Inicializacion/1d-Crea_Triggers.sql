@@ -135,13 +135,29 @@ $$;
 CREATE OR REPLACE FUNCTION fn_espacio_tg() RETURNS trigger
     LANGUAGE plpgsql
     AS $$
+DECLARE
+    v_value RECORD;
 BEGIN
   NEW.ds_referencia = TRIM(
     COALESCE((SELECT ds_referencia FROM sga_tipo_espacio WHERE id_tipo_espacio = NEW.id_tipo_espacio) || ' > ', ' ') ||
     COALESCE((SELECT no_sector FROM sga_sector WHERE id_sector = NEW.id_sector) || ' > ', ' ') ||
     COALESCE((SELECT no_planta FROM sga_planta WHERE id_planta = NEW.id_planta) || ' > ', ' ') ||
     COALESCE(TRIM(NEW.no_espacio)));
+  SELECT v INTO v_value FROM dblink ('dbname=redmine port=5432 host=127.0.0.1 user=redmine password=hola1234',
+    'SELECT fn_Carga_Lista(''Espacio Físico'', ''public.sga_espacio'', ''id_espacio'', ''ds_referencia'')') AS P (v int);
   RETURN NEW;
+END;
+$$;
+
+CREATE OR REPLACE FUNCTION fn_espacio_tg_d() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+    v_value RECORD;
+BEGIN
+  SELECT v INTO v_value FROM dblink ('dbname=redmine port=5432 host=127.0.0.1 user=redmine password=hola1234',
+    'SELECT fn_Carga_Lista(''Espacio Físico'', ''public.sga_espacio'', ''id_espacio'', ''ds_referencia'')') AS P (v int);
+  RETURN OLD;
 END;
 $$;
 
@@ -195,6 +211,9 @@ CREATE TRIGGER tg_espacio_i BEFORE INSERT ON sga_espacio
 DROP TRIGGER IF EXISTS tg_espacio_u ON sga_espacio;
 CREATE TRIGGER tg_espacio_u BEFORE UPDATE ON sga_espacio
     FOR EACH ROW EXECUTE PROCEDURE fn_espacio_tg();
+DROP TRIGGER IF EXISTS tg_espacio_d ON sga_espacio;
+CREATE TRIGGER tg_espacio_d BEFORE DELETE ON sga_espacio
+    FOR EACH ROW EXECUTE PROCEDURE fn_espacio_tg_d();
 
 /*
 UPDATE sga_tipo_accion  SET id_tipo_accion  = id_tipo_accion  WHERE id_tipo_accion_padre IS NOT NULL;

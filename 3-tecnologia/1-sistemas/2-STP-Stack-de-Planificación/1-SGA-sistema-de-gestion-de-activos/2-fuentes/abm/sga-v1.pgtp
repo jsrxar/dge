@@ -2371,11 +2371,11 @@
             <Column fieldName="id_tipo_espacio" caption="Id Tipo Espacio" visible="true" headerHint="Identificador único del tipo de espacio." totalFunction="0">
               <ViewProperties type="text"/>
             </Column>
-            <Column fieldName="no_tipo_espacio" caption="No Tipo Espacio" visible="true" headerHint="Nombre del tipo de espacio." totalFunction="0">
+            <Column fieldName="no_tipo_espacio" caption="Nombre Tipo Espacio" visible="true" headerHint="Nombre del tipo de espacio." totalFunction="0">
               <ViewProperties type="text" maxLength="75"/>
             </Column>
-            <Column fieldName="id_tipo_espacio_padre" caption="Id Tipo Espacio Padre" visible="true" headerHint="Identificador único del tipo de espacio padre (supertipo)." totalFunction="0">
-              <Lookup tableName="public.sga_tipo_espacio" linkFieldName="id_tipo_espacio" displayFieldName="no_tipo_espacio" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            <Column fieldName="id_tipo_espacio_padre" caption="Tipo Espacio Padre" visible="true" headerHint="Tipo de espacio padre (supertipo)." totalFunction="0">
+              <Lookup tableName="public.sga_tipo_espacio" linkFieldName="id_tipo_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text"/>
             </Column>
             <Column fieldName="ds_referencia" caption="Descripción" visible="true" headerHint="Referencia del registro." totalFunction="0">
@@ -2386,11 +2386,11 @@
             <Column fieldName="id_tipo_espacio" caption="Id Tipo Espacio" visible="true" headerHint="Identificador único del tipo de espacio.">
               <ViewProperties type="text"/>
             </Column>
-            <Column fieldName="no_tipo_espacio" caption="No Tipo Espacio" visible="true" headerHint="Nombre del tipo de espacio.">
+            <Column fieldName="no_tipo_espacio" caption="Nombre Tipo Espacio" visible="true" headerHint="Nombre del tipo de espacio.">
               <ViewProperties type="text" maxLength="75"/>
             </Column>
-            <Column fieldName="id_tipo_espacio_padre" caption="Id Tipo Espacio Padre" visible="true" headerHint="Identificador único del tipo de espacio padre (supertipo).">
-              <Lookup tableName="public.sga_tipo_espacio" linkFieldName="id_tipo_espacio" displayFieldName="no_tipo_espacio" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            <Column fieldName="id_tipo_espacio_padre" caption="Tipo Espacio Padre" visible="true" headerHint="Tipo de espacio padre (supertipo).">
+              <Lookup tableName="public.sga_tipo_espacio" linkFieldName="id_tipo_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text"/>
             </Column>
             <Column fieldName="ds_referencia" caption="Descripción" visible="true" headerHint="Referencia del registro.">
@@ -2401,16 +2401,16 @@
             <Column fieldName="id_tipo_espacio" caption="Id Tipo Espacio" visible="false">
               <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
             </Column>
-            <Column fieldName="no_tipo_espacio" caption="No Tipo Espacio" visible="true">
+            <Column fieldName="no_tipo_espacio" caption="Nombre Tipo Espacio" visible="true">
               <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
             </Column>
-            <Column fieldName="id_tipo_espacio_padre" caption="Id Tipo Espacio Padre" visible="true" canSetNull="true">
-              <Lookup tableName="public.sga_tipo_espacio" linkFieldName="id_tipo_espacio" displayFieldName="no_tipo_espacio" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            <Column fieldName="id_tipo_espacio_padre" caption="Tipo Espacio Padre" visible="true" canSetNull="true">
+              <Lookup tableName="public.sga_tipo_espacio" linkFieldName="id_tipo_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <EditProperties type="comboBox">
                 <MFUItems/>
               </EditProperties>
             </Column>
-            <Column fieldName="ds_referencia" caption="Descripción" visible="true" canSetNull="true">
+            <Column fieldName="ds_referencia" caption="Descripción" visible="true" canSetNull="true" readOnly="true">
               <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
             </Column>
           </EditColumns>
@@ -2418,32 +2418,32 @@
             <Column fieldName="id_tipo_espacio" caption="Id Tipo Espacio" visible="false" defaultInsertValue="">
               <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
             </Column>
-            <Column fieldName="no_tipo_espacio" caption="No Tipo Espacio" visible="true" defaultInsertValue="">
+            <Column fieldName="no_tipo_espacio" caption="Nombre Tipo Espacio" visible="true" defaultInsertValue="">
               <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
             </Column>
-            <Column fieldName="id_tipo_espacio_padre" caption="Id Tipo Espacio Padre" visible="true" canSetNull="true" defaultInsertValue="">
-              <Lookup tableName="public.sga_tipo_espacio" linkFieldName="id_tipo_espacio" displayFieldName="no_tipo_espacio" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            <Column fieldName="id_tipo_espacio_padre" caption="Tipo Espacio Padre" visible="true" canSetNull="true" defaultInsertValue="">
+              <Lookup tableName="public.sga_tipo_espacio" linkFieldName="id_tipo_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <EditProperties type="comboBox">
                 <MFUItems/>
               </EditProperties>
             </Column>
-            <Column fieldName="ds_referencia" caption="Descripción" visible="true" canSetNull="true" defaultInsertValue="">
+            <Column fieldName="ds_referencia" caption="Descripción" visible="false" canSetNull="true" readOnly="true" defaultInsertValue="">
               <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
             </Column>
           </InsertColumns>
           <SimpleSearchColumns>
             <Column fieldName="id_tipo_espacio" caption="Id Tipo Espacio" visible="true"/>
-            <Column fieldName="no_tipo_espacio" caption="No Tipo Espacio" visible="true"/>
-            <Column fieldName="id_tipo_espacio_padre" caption="Id Tipo Espacio Padre" visible="true">
-              <Lookup tableName="public.sga_tipo_espacio" linkFieldName="id_tipo_espacio" displayFieldName="no_tipo_espacio" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            <Column fieldName="no_tipo_espacio" caption="Nombre Tipo Espacio" visible="true"/>
+            <Column fieldName="id_tipo_espacio_padre" caption="Tipo Espacio Padre" visible="true">
+              <Lookup tableName="public.sga_tipo_espacio" linkFieldName="id_tipo_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
             <Column fieldName="ds_referencia" caption="Descripción" visible="true"/>
           </SimpleSearchColumns>
           <AdvancedSearchColumns>
             <Column fieldName="id_tipo_espacio" caption="Id Tipo Espacio" visible="true" useComboBox="false"/>
-            <Column fieldName="no_tipo_espacio" caption="No Tipo Espacio" visible="true" useComboBox="false"/>
-            <Column fieldName="id_tipo_espacio_padre" caption="Id Tipo Espacio Padre" visible="true" useComboBox="false">
-              <Lookup tableName="public.sga_tipo_espacio" linkFieldName="id_tipo_espacio" displayFieldName="no_tipo_espacio" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            <Column fieldName="no_tipo_espacio" caption="Nombre Tipo Espacio" visible="true" useComboBox="false"/>
+            <Column fieldName="id_tipo_espacio_padre" caption="Tipo Espacio Padre" visible="true" useComboBox="false">
+              <Lookup tableName="public.sga_tipo_espacio" linkFieldName="id_tipo_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
             <Column fieldName="ds_referencia" caption="Descripción" visible="true" useComboBox="false"/>
           </AdvancedSearchColumns>
@@ -2454,8 +2454,8 @@
             <Column fieldName="no_tipo_espacio" caption="No Tipo Espacio" visible="true" headerHint="Nombre del tipo de espacio.">
               <ViewProperties type="text"/>
             </Column>
-            <Column fieldName="id_tipo_espacio_padre" caption="Id Tipo Espacio Padre" visible="true" headerHint="Identificador único del tipo de espacio padre (supertipo).">
-              <Lookup tableName="public.sga_tipo_espacio" linkFieldName="id_tipo_espacio" displayFieldName="no_tipo_espacio" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            <Column fieldName="id_tipo_espacio_padre" caption="Tipo Espacio Padre" visible="true" headerHint="Tipo de espacio padre (supertipo).">
+              <Lookup tableName="public.sga_tipo_espacio" linkFieldName="id_tipo_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text"/>
             </Column>
             <Column fieldName="ds_referencia" caption="Ds Referencia" visible="true" headerHint="Referencia del registro.">
@@ -2469,8 +2469,8 @@
             <Column fieldName="no_tipo_espacio" caption="No Tipo Espacio" visible="true" headerHint="Nombre del tipo de espacio.">
               <ViewProperties type="text"/>
             </Column>
-            <Column fieldName="id_tipo_espacio_padre" caption="Id Tipo Espacio Padre" visible="true" headerHint="Identificador único del tipo de espacio padre (supertipo).">
-              <Lookup tableName="public.sga_tipo_espacio" linkFieldName="id_tipo_espacio" displayFieldName="no_tipo_espacio" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            <Column fieldName="id_tipo_espacio_padre" caption="Tipo Espacio Padre" visible="true" headerHint="Tipo de espacio padre (supertipo).">
+              <Lookup tableName="public.sga_tipo_espacio" linkFieldName="id_tipo_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text"/>
             </Column>
             <Column fieldName="ds_referencia" caption="Ds Referencia" visible="true" headerHint="Referencia del registro.">
@@ -2488,6 +2488,7 @@
         <User name="relevamiento" password="hola1234" userId="relevamiento"/>
         <User name="servicios-generales" password="hola1234" userId="servicios-generales"/>
         <User name="espacios-fisicos" password="hola1234" userId="espacios-fisicos"/>
+        <User name="ruso" password="ruso" userId="ruso"/>
         <User name="admin" password="hola1234"/>
       </Users>
     </UserAuthorization>
@@ -2496,12 +2497,13 @@
       <UserGrant userName="relevamiento"/>
       <UserGrant userName="servicios-generales"/>
       <UserGrant userName="espacios-fisicos"/>
+      <UserGrant userName="ruso"/>
       <UserGrant userName="admin" select="1" insert="1" update="1" delete="1" admin="1"/>
       <UserPageGrants>
         <PageGrants userName="defaultUser">
           <PageGrant pageName="public.sga_accion"/>
           <PageGrant pageName="public.sga_tarea_plan"/>
-          <PageGrant pageName="public.sga_espacio"/>
+          <PageGrant pageName="public.sga_espacio" select="1"/>
           <PageGrant pageName="public.sga_bien"/>
           <PageGrant pageName="public.sga_metodologia"/>
           <PageGrant pageName="public.sga_tipo_accion"/>
@@ -2549,10 +2551,24 @@
           <PageGrant pageName="public.sga_tipo_accion"/>
           <PageGrant pageName="public.sga_tipo_bien"/>
           <PageGrant pageName="public.sga_periodicidad"/>
-          <PageGrant pageName="public.sga_planta"/>
-          <PageGrant pageName="public.sga_sector"/>
+          <PageGrant pageName="public.sga_planta" select="1"/>
+          <PageGrant pageName="public.sga_sector" select="1"/>
           <PageGrant pageName="public.sga_origen"/>
-          <PageGrant pageName="public.sga_tipo_espacio"/>
+          <PageGrant pageName="public.sga_tipo_espacio" select="1" insert="1" update="1" delete="1"/>
+        </PageGrants>
+        <PageGrants userName="ruso">
+          <PageGrant pageName="public.sga_accion" select="1" insert="1" update="1" delete="1"/>
+          <PageGrant pageName="public.sga_tarea_plan" select="1" insert="1" update="1" delete="1"/>
+          <PageGrant pageName="public.sga_espacio" select="1"/>
+          <PageGrant pageName="public.sga_bien"/>
+          <PageGrant pageName="public.sga_metodologia" select="1" insert="1" update="1" delete="1"/>
+          <PageGrant pageName="public.sga_tipo_accion" select="1" insert="1" update="1" delete="1"/>
+          <PageGrant pageName="public.sga_tipo_bien"/>
+          <PageGrant pageName="public.sga_periodicidad" select="1" insert="1" update="1" delete="1"/>
+          <PageGrant pageName="public.sga_planta" select="1"/>
+          <PageGrant pageName="public.sga_sector" select="1"/>
+          <PageGrant pageName="public.sga_origen" select="1"/>
+          <PageGrant pageName="public.sga_tipo_espacio" select="1"/>
         </PageGrants>
         <PageGrants userName="admin">
           <PageGrant pageName="public.sga_accion"/>
