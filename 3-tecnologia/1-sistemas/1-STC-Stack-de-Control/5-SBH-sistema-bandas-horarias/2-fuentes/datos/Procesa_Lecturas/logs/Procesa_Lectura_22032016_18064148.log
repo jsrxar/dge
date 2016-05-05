@@ -1,0 +1,116 @@
+Proceso ejecutado el dia 22/03/2016 a las 18:06:41,48 
+DEBUG: Using PENTAHO_JAVA_HOME
+DEBUG: _PENTAHO_JAVA_HOME=C:\app\pentaho-ee\java
+DEBUG: _PENTAHO_JAVA=C:\app\pentaho-ee\java\bin\java.exe
+DEBUG: PENTAHO_INSTALLED_LICENSE_PATH=C:\app\pentaho-ee\.installedLicenses.xml
+
+C:\app\pentaho-ee\design-tools\data-integration>"C:\app\pentaho-ee\java\bin\java.exe" "-Dpentaho.installed.licenses.file=C:\app\pentaho-ee\.installedLicenses.xml"  "-Xmx512m" "-XX:MaxPermSize=256m" "-Djava.library.path=libswt\win64" "-DKETTLE_HOME=" "-DKETTLE_REPOSITORY=" "-DKETTLE_USER=" "-DKETTLE_PASSWORD=" "-DKETTLE_PLUGIN_PACKAGES=" "-DKETTLE_LOG_SIZE_LIMIT=" "-DKETTLE_JNDI_ROOT=" "-Dpentaho.installed.licenses.file=C:\app\pentaho-ee\.installedLicenses.xml" -jar launcher\pentaho-application-launcher-5.4.0.1-130.jar -lib ..\libswt\win64  -main org.pentaho.di.kitchen.Kitchen /rep:"ETL Lecturas" /job:"Procesa_Lecturas" /level:Detailed 
+2016/03/22 18:06:43 - Kitchen - Nivel de registro: Registro detallado
+2016/03/22 18:06:43 - Kitchen - Comienzo de la ejecución.
+2016/03/22 18:06:43 - RepositoriesMeta - Reading repositories XML file: C:\Users\c\.kettle\repositories.xml
+2016/03/22 18:06:44 - General - Logging plugin type found with ID: CheckpointLogTable
+Refreshing GOE props...
+Trying to add database driver (JDBC): RmiJdbc.RJDriver - Warning, not in CLASSPATH?
+Trying to add database driver (JDBC): jdbc.idbDriver - Warning, not in CLASSPATH?
+Trying to add database driver (JDBC): org.gjt.mm.mysql.Driver - Warning, not in CLASSPATH?
+Trying to add database driver (JDBC): com.mckoi.JDBCDriver - Warning, not in CLASSPATH?
+[KnowledgeFlow] Loading properties and plugins...
+[KnowledgeFlow] Initializing KF...
+Refreshing GOE props...
+Trying to add database driver (JDBC): RmiJdbc.RJDriver - Warning, not in CLASSPATH?
+Trying to add database driver (JDBC): jdbc.idbDriver - Warning, not in CLASSPATH?
+Trying to add database driver (JDBC): org.gjt.mm.mysql.Driver - Warning, not in CLASSPATH?
+Trying to add database driver (JDBC): com.mckoi.JDBCDriver - Warning, not in CLASSPATH?
+[KnowledgeFlow] Loading properties and plugins...
+[KnowledgeFlow] Initializing KF...
+Refreshing GOE props...
+Trying to add database driver (JDBC): RmiJdbc.RJDriver - Warning, not in CLASSPATH?
+Trying to add database driver (JDBC): jdbc.idbDriver - Warning, not in CLASSPATH?
+Trying to add database driver (JDBC): org.gjt.mm.mysql.Driver - Warning, not in CLASSPATH?
+Trying to add database driver (JDBC): com.mckoi.JDBCDriver - Warning, not in CLASSPATH?
+[KnowledgeFlow] Loading properties and plugins...
+[KnowledgeFlow] Initializing KF...
+2016/03/22 18:06:52 - Procesa_Lecturas - Ejecución del trabajo comenzada
+2016/03/22 18:06:52 - Procesa_Lecturas - Handling extension point for plugin with id 'JobTransactionExtensionPlugin' and extension point id 'JobStart'
+2016/03/22 18:06:52 - Procesa_Lecturas - Handling extension point for plugin with id 'JobBeginProcessingExtensionPointPlugin' and extension point id 'JobBeginProcessing'
+2016/03/22 18:06:52 - Procesa_Lecturas - Handling extension point for plugin with id 'JobAfterJobEntryExectionExtensionPointPlugin' and extension point id 'JobBeforeJobEntryExecution'
+2016/03/22 18:06:52 - Procesa_Lecturas - Handling extension point for plugin with id 'JobBeforeJobEntryExectionExtensionPointPlugin' and extension point id 'JobBeforeJobEntryExecution'
+2016/03/22 18:06:52 - Procesa_Lecturas - exec(0, 0, START.0)
+2016/03/22 18:06:52 - START - Starting job entry
+2016/03/22 18:06:52 - Procesa_Lecturas - Entrada de comienzo [Carga STG]
+2016/03/22 18:06:52 - Procesa_Lecturas - Handling extension point for plugin with id 'JobAfterJobEntryExectionExtensionPointPlugin' and extension point id 'JobBeforeJobEntryExecution'
+2016/03/22 18:06:52 - Procesa_Lecturas - Handling extension point for plugin with id 'JobBeforeJobEntryExectionExtensionPointPlugin' and extension point id 'JobBeforeJobEntryExecution'
+2016/03/22 18:06:52 - Procesa_Lecturas - exec(1, 0, Carga STG.0)
+2016/03/22 18:06:52 - Carga STG - Starting job entry
+2016/03/22 18:06:52 - Carga STG - Abriendo transformación [null] en el directorio [/Transformaciones]
+2016/03/22 18:06:52 - Carga STG - Cargando transformación del repositorio [1-Carga_Lecturas] en el directorio [/Transformaciones]
+2016/03/22 18:06:52 - Carga STG - Iniciando la transformación (archivo=null, nombre=Carga STG, repinfo=null)
+2016/03/22 18:06:52 - 1-Carga_Lecturas - Se ha precargado la transformación.
+2016/03/22 18:06:52 - 1-Carga_Lecturas - Iniciado despacho de la transformación [1-Carga_Lecturas]
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/C:/app/pentaho-ee/design-tools/data-integration/launcher/../lib/slf4j-log4j12-1.7.3.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/C:/app/pentaho-ee/design-tools/data-integration/launcher/../lib/slf4j-log4j12-1.7.5.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+2016/03/22 18:06:53 - Grabación Stage de Fichadas.0 - Connected to database [RRHH Servidor] (commit=1000)
+2016/03/22 18:06:53 - Lectura de Fichadas.0 - Finished reading query, closing connection.
+2016/03/22 18:06:53 - Lectura de Fichadas.0 - Procesamiento finalizado (EN=3260, SA=0, LE=0, ES=3260, AC=0, ER=0)
+2016/03/22 18:06:54 - Grabación Stage de Fichadas.0 - Procesamiento finalizado (EN=0, SA=3260, LE=3260, ES=3260, AC=0, ER=0)
+2016/03/22 18:06:54 - Procesa_Lecturas - Entrada de comienzo [Carga ODS]
+2016/03/22 18:06:54 - Procesa_Lecturas - Handling extension point for plugin with id 'JobAfterJobEntryExectionExtensionPointPlugin' and extension point id 'JobBeforeJobEntryExecution'
+2016/03/22 18:06:54 - Procesa_Lecturas - Handling extension point for plugin with id 'JobBeforeJobEntryExectionExtensionPointPlugin' and extension point id 'JobBeforeJobEntryExecution'
+2016/03/22 18:06:54 - Procesa_Lecturas - exec(2, 0, Carga ODS.0)
+2016/03/22 18:06:54 - Carga ODS - Starting job entry
+2016/03/22 18:06:54 - Carga ODS - Abriendo transformación [null] en el directorio [/Transformaciones]
+2016/03/22 18:06:54 - Carga ODS - Cargando transformación del repositorio [2-Carga_ODS] en el directorio [/Transformaciones]
+2016/03/22 18:06:54 - Carga ODS - Iniciando la transformación (archivo=null, nombre=Carga ODS, repinfo=null)
+2016/03/22 18:06:54 - 2-Carga_ODS - Se ha precargado la transformación.
+2016/03/22 18:06:54 - 2-Carga_ODS - Iniciado despacho de la transformación [2-Carga_ODS]
+2016/03/22 18:06:55 - Carga ODS.0 - Terminado la lectura de la consulta, cerrando conexión.
+2016/03/22 18:06:55 - Carga ODS.0 - Procesamiento finalizado (EN=0, SA=0, LE=0, ES=1, AC=0, ER=0)
+2016/03/22 18:06:55 - Procesa_Lecturas - Entrada de comienzo [Carga DW - Dimensiones]
+2016/03/22 18:06:55 - Procesa_Lecturas - Handling extension point for plugin with id 'JobAfterJobEntryExectionExtensionPointPlugin' and extension point id 'JobBeforeJobEntryExecution'
+2016/03/22 18:06:55 - Procesa_Lecturas - Handling extension point for plugin with id 'JobBeforeJobEntryExectionExtensionPointPlugin' and extension point id 'JobBeforeJobEntryExecution'
+2016/03/22 18:06:55 - Procesa_Lecturas - exec(3, 0, Carga DW - Dimensiones.0)
+2016/03/22 18:06:55 - Carga DW - Dimensiones - Starting job entry
+2016/03/22 18:06:55 - Carga DW - Dimensiones - Abriendo transformación [null] en el directorio [/Transformaciones]
+2016/03/22 18:06:55 - Carga DW - Dimensiones - Cargando transformación del repositorio [3-Carga_Dimensiones] en el directorio [/Transformaciones]
+2016/03/22 18:06:55 - Carga DW - Dimensiones - Iniciando la transformación (archivo=null, nombre=Carga DW - Dimensiones, repinfo=null)
+2016/03/22 18:06:55 - 3-Carga_Dimensiones - Se ha precargado la transformación.
+2016/03/22 18:06:55 - 3-Carga_Dimensiones - Iniciado despacho de la transformación [3-Carga_Dimensiones]
+2016/03/22 18:06:56 - Carga Dimensiones.0 - Terminado la lectura de la consulta, cerrando conexión.
+2016/03/22 18:06:56 - Carga Dimensiones.0 - Procesamiento finalizado (EN=0, SA=0, LE=0, ES=1, AC=0, ER=0)
+2016/03/22 18:06:56 - Procesa_Lecturas - Entrada de comienzo [Carga DW - Hechos]
+2016/03/22 18:06:56 - Procesa_Lecturas - Handling extension point for plugin with id 'JobAfterJobEntryExectionExtensionPointPlugin' and extension point id 'JobBeforeJobEntryExecution'
+2016/03/22 18:06:56 - Procesa_Lecturas - Handling extension point for plugin with id 'JobBeforeJobEntryExectionExtensionPointPlugin' and extension point id 'JobBeforeJobEntryExecution'
+2016/03/22 18:06:56 - Procesa_Lecturas - exec(4, 0, Carga DW - Hechos.0)
+2016/03/22 18:06:56 - Carga DW - Hechos - Starting job entry
+2016/03/22 18:06:56 - Carga DW - Hechos - Abriendo transformación [null] en el directorio [/Transformaciones]
+2016/03/22 18:06:56 - Carga DW - Hechos - Cargando transformación del repositorio [4-Carga_Hechos] en el directorio [/Transformaciones]
+2016/03/22 18:06:56 - Carga DW - Hechos - Iniciando la transformación (archivo=null, nombre=Carga DW - Hechos, repinfo=null)
+2016/03/22 18:06:56 - 4-Carga_Hechos - Se ha precargado la transformación.
+2016/03/22 18:06:56 - 4-Carga_Hechos - Iniciado despacho de la transformación [4-Carga_Hechos]
+2016/03/22 18:06:58 - Carga Hechos.0 - Terminado la lectura de la consulta, cerrando conexión.
+2016/03/22 18:06:58 - Carga Hechos.0 - Procesamiento finalizado (EN=0, SA=0, LE=0, ES=1, AC=0, ER=0)
+2016/03/22 18:06:58 - Procesa_Lecturas - Entrada de comienzo [Carga DW - Totales]
+2016/03/22 18:06:58 - Procesa_Lecturas - Handling extension point for plugin with id 'JobAfterJobEntryExectionExtensionPointPlugin' and extension point id 'JobBeforeJobEntryExecution'
+2016/03/22 18:06:58 - Procesa_Lecturas - Handling extension point for plugin with id 'JobBeforeJobEntryExectionExtensionPointPlugin' and extension point id 'JobBeforeJobEntryExecution'
+2016/03/22 18:06:58 - Procesa_Lecturas - exec(5, 0, Carga DW - Totales.0)
+2016/03/22 18:06:58 - Carga DW - Totales - Starting job entry
+2016/03/22 18:06:58 - Carga DW - Totales - Abriendo transformación [null] en el directorio [/Transformaciones]
+2016/03/22 18:06:58 - Carga DW - Totales - Cargando transformación del repositorio [5-Calcula_Totales] en el directorio [/Transformaciones]
+2016/03/22 18:06:58 - Carga DW - Totales - Iniciando la transformación (archivo=null, nombre=Carga DW - Totales, repinfo=null)
+2016/03/22 18:06:58 - 5-Calcula_Totales - Se ha precargado la transformación.
+2016/03/22 18:06:58 - 5-Calcula_Totales - Iniciado despacho de la transformación [5-Calcula_Totales]
+2016/03/22 18:07:11 - Calcula Totales.0 - Terminado la lectura de la consulta, cerrando conexión.
+2016/03/22 18:07:11 - Calcula Totales.0 - Procesamiento finalizado (EN=0, SA=0, LE=0, ES=1, AC=0, ER=0)
+2016/03/22 18:07:11 - Procesa_Lecturas - Finalizó la entrada de trabajo [Carga DW - Totales] (resultado=[true])
+2016/03/22 18:07:11 - Procesa_Lecturas - Finalizó la entrada de trabajo [Carga DW - Hechos] (resultado=[true])
+2016/03/22 18:07:11 - Procesa_Lecturas - Finalizó la entrada de trabajo [Carga DW - Dimensiones] (resultado=[true])
+2016/03/22 18:07:11 - Procesa_Lecturas - Finalizó la entrada de trabajo [Carga ODS] (resultado=[true])
+2016/03/22 18:07:11 - Procesa_Lecturas - Finalizó la entrada de trabajo [Carga STG] (resultado=[true])
+2016/03/22 18:07:11 - Procesa_Lecturas - Ejecución del trabajo finalizada
+2016/03/22 18:07:11 - Kitchen - ¡Finalizado!
+2016/03/22 18:07:11 - Kitchen - Comienzo=2016/03/22 18:06:43.928, Final=2016/03/22 18:07:11.555
+2016/03/22 18:07:11 - Kitchen - El procesamiento terminó luego de 27 segundos.
+Proceso Finalizado 
