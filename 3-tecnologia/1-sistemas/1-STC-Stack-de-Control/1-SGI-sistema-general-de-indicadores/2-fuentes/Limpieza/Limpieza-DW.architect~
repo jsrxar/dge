@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<architect-project version="1.0" appversion="1.0.7">
+ <project-name>Limpieza-DW</project-name>
+ <print-settings numCopies="1" zoom="1.0" pageNumbersPrinted="true" orientation="1" paperWidth="612.0" paperHeight="792.0" leftBorder="50.0" rightBorder="50.0" topBorder="50.0" bottomBorder="50.0" />
+ <project-data-sources>
+  <data-source id="DS0">
+   <property key="Logical" value="RRHH Servidor" />
+   <property key="Connection Type" value="PostgreSQL" />
+   <property key="JDBC URL" value="jdbc:postgresql://10.13.18.133:5432/RRHH" />
+   <property key="UID" value="rrhh" />
+   <property key="PWD" value="rrhh" />
+   <property key="ca.sqlpower.architect.etl.kettle.database" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.port" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.hostname" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.repos.login" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.repos.password" value="" />
+  </data-source>
+  <data-source id="DS2">
+   <property key="Connection Type" value="PostgreSQL" />
+   <property key="Logical" value="PlayPen Database" />
+   <property key="JDBC URL" value="jdbc:postgresql://10.13.18.133:5432/RRHH" />
+   <property key="UID" value="rrhh" />
+   <property key="PWD" value="rrhh" />
+   <property key="ca.sqlpower.architect.etl.kettle.database" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.port" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.hostname" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.repos.login" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.repos.password" value="" />
+  </data-source>
+ </project-data-sources>
+ <source-databases>
+  <database id="DB0" populated="true" UUID="73ba7043-9f67-41b9-ab16-93625276b568" dbcs-ref="DS2" name="PlayPen Database" physicalName="RRHH Local" >
+   <catalog id="CAT1" populated="true" UUID="d14b1889-fa22-4d10-8462-dbe517443798" name="RRHH" nativeTerm="database" physicalName="RRHH" >
+    <schema id="SCH2" populated="false" UUID="0ba77958-be2b-4885-89a6-122584d62031" name="information_schema" nativeTerm="schema" physicalName="information_schema" >
+    </schema>
+    <schema id="SCH3" populated="false" UUID="722d0a9a-41da-4785-89e7-de709fa8dfa4" name="pg_catalog" nativeTerm="schema" physicalName="pg_catalog" >
+    </schema>
+    <schema id="SCH4" populated="false" UUID="c4cc43bd-76ea-4f21-92f5-5b2bd85b7edc" name="pg_toast_temp_1" nativeTerm="schema" physicalName="pg_toast_temp_1" >
+    </schema>
+    <schema id="SCH5" populated="false" UUID="2cc01ae8-eec7-405b-9c84-667fc1f4d0ee" name="pg_toast_temp_4" nativeTerm="schema" physicalName="pg_toast_temp_4" >
+    </schema>
+    <schema id="SCH6" populated="false" UUID="a4d838e5-4e0c-4c34-a8fa-27a55415cbab" name="pg_toast_temp_8" nativeTerm="schema" physicalName="pg_toast_temp_8" >
+    </schema>
+    <schema id="SCH7" populated="true" UUID="9a0c5bfd-c6de-4762-8418-abd7d7651f63" name="public" nativeTerm="schema" physicalName="public" >
+     <table id="TAB8" populated="false" UUID="eb340f0f-7ad7-44d6-bec2-c6a5fe6419f7" name="dim_empresa_area" objectType="TABLE" physicalName="dim_empresa_area" >
+      <remarks>Dimensión de Empresas / Áreas.</remarks>
+      <folder id="FOLTAB81" populated="false" name="Columns" physicalName="Columns" type="1">
+       <index id="IDX9" populated="true" UUID="88459275-3b07-4394-b994-e143d32fabc4" clustered="false" name="dim_empresa_area_pk" physicalName="dim_empresa_area_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+     <table id="TAB10" populated="false" UUID="14fb20b1-833a-41c7-b702-0f9c0835ab41" name="dim_espacio_limpieza" objectType="TABLE" physicalName="dim_espacio_limpieza" >
+      <remarks>Dimensión de espacios limpiados.</remarks>
+      <folder id="FOLTAB101" populated="false" name="Columns" physicalName="Columns" type="1">
+       <index id="IDX11" populated="true" UUID="740bcc24-917c-474b-a581-fa82e3653c08" clustered="false" name="dim_espacio_limpieza_pk" physicalName="dim_espacio_limpieza_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+     <table id="TAB12" populated="false" UUID="6e21e8f8-f50e-4eb9-8c00-66a12dd7ade3" name="dim_estado_limpieza" objectType="TABLE" physicalName="dim_estado_limpieza" >
+      <remarks>Dimensión de estados de limpieza.</remarks>
+      <folder id="FOLTAB121" populated="false" name="Columns" physicalName="Columns" type="1">
+       <index id="IDX13" populated="true" UUID="3185864e-15f7-4985-96d5-1415fa2f0d01" clustered="false" name="dim_estado_limpieza_pk" physicalName="dim_estado_limpieza_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+     <table id="TAB14" populated="false" UUID="a82671f5-c8da-4dbf-9e5e-f631c453e66b" name="dim_fecha" objectType="TABLE" physicalName="dim_fecha" >
+      <remarks>Fecha de la lectura.</remarks>
+      <folder id="FOLTAB141" populated="false" name="Columns" physicalName="Columns" type="1">
+       <index id="IDX15" populated="true" UUID="e15cb42b-49d6-4314-b0b5-d22ef78ffb10" clustered="false" name="dim_fecha_pk" physicalName="dim_fecha_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+     <table id="TAB16" populated="false" UUID="59be42eb-09bc-4e99-b5a0-36d5a30c5c19" name="dim_hora" objectType="TABLE" physicalName="dim_hora" >
+      <remarks>Dimensión de representación de Horas y Minutos.</remarks>
+      <folder id="FOLTAB161" populated="false" name="Columns" physicalName="Columns" type="1">
+       <index id="IDX17" populated="true" UUID="be8ff32f-c948-4a43-8813-d249506f7ac9" clustered="false" name="dim_hora_pk" physicalName="dim_hora_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+     <table id="TAB18" populated="false" UUID="5c750082-5174-4d8b-af7a-49827d4f7cc1" name="dim_lugar" objectType="TABLE" physicalName="dim_lugar" >
+      <remarks>Dimensión de lugares de lectura.</remarks>
+      <folder id="FOLTAB181" populated="false" name="Columns" physicalName="Columns" type="1">
+       <index id="IDX19" populated="true" UUID="f494ac6f-60d0-4678-980c-6df50138706c" clustered="false" name="dim_lugar_pk" physicalName="dim_lugar_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+     <table id="TAB20" populated="false" UUID="432c2096-c0b6-49eb-a282-3d18646942f2" name="dim_origen" objectType="TABLE" physicalName="dim_origen" >
+      <remarks>Dimensión de origen de las lecturas.</remarks>
+      <folder id="FOLTAB201" populated="false" name="Columns" physicalName="Columns" type="1">
+       <index id="IDX21" populated="true" UUID="72165bd0-65f9-45bb-b6f3-d767445041b3" clustered="false" name="dim_origen_pk" physicalName="dim_origen_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+     <table id="TAB22" populated="false" UUID="c8654731-d791-475d-a6fd-d577ec655be3" name="dim_persona" objectType="TABLE" physicalName="dim_persona" >
+      <remarks>Dimensión de personas.</remarks>
+      <folder id="FOLTAB221" populated="false" name="Columns" physicalName="Columns" type="1">
+       <index id="IDX23" populated="true" UUID="fc5a22f4-3da7-443d-b02f-8f2be303ad7f" clustered="false" name="dim_persona_pk" physicalName="dim_persona_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+     <table id="TAB24" populated="false" UUID="bfc2d775-b674-47bc-98b5-501118728455" name="dim_supervisor" objectType="TABLE" physicalName="dim_supervisor" >
+      <remarks>Dimensión de supervisores de limpieza.</remarks>
+      <folder id="FOLTAB241" populated="false" name="Columns" physicalName="Columns" type="1">
+       <index id="IDX25" populated="true" UUID="ffc2655d-5684-42a3-8822-8fcf6e7fc499" clustered="false" name="dim_supervisor_pk" physicalName="dim_supervisor_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+     <table id="TAB26" populated="false" UUID="ea84bf2e-6256-42b9-82db-8c609e0d111c" name="dim_tipo_acreditacion" objectType="TABLE" physicalName="dim_tipo_acreditacion" >
+      <remarks>Dimensión de tipo de acreditación de las personas.</remarks>
+      <folder id="FOLTAB261" populated="false" name="Columns" physicalName="Columns" type="1">
+       <index id="IDX27" populated="true" UUID="9faeed90-e5ae-4673-986a-1484573fd8ed" clustered="false" name="dim_tipo_acreditacion_pk" physicalName="dim_tipo_acreditacion_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+     <table id="TAB28" populated="false" UUID="ceef78a9-6f7d-4758-8f72-e1c35d07a951" name="dim_tipo_hora" objectType="TABLE" physicalName="dim_tipo_hora" >
+      <remarks>Tipo de horario de la fichada.</remarks>
+      <folder id="FOLTAB281" populated="false" name="Columns" physicalName="Columns" type="1">
+       <index id="IDX29" populated="true" UUID="993bda76-d0f0-46f8-8b65-41a61d9bb5ea" clustered="false" name="dim_tipo_hora_pk" physicalName="dim_tipo_hora_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+     <table id="TAB30" populated="false" UUID="e1a74958-5cfa-4297-a5e0-646d9d6fe112" name="dim_turno" objectType="TABLE" physicalName="dim_turno" >
+      <remarks>Turno de trabajo.</remarks>
+      <folder id="FOLTAB301" populated="false" name="Columns" physicalName="Columns" type="1">
+       <index id="IDX31" populated="true" UUID="1c8255b8-388b-434a-8874-5f535838a97b" clustered="false" name="dim_turno_pk" physicalName="dim_turno_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+     <table id="TAB32" populated="false" UUID="fddf9996-5d25-4468-9ec3-4049973c07ea" name="fac_lectura" objectType="TABLE" physicalName="fac_lectura" >
+      <remarks>Tabla de hecho de lecturas.</remarks>
+      <folder id="FOLTAB321" populated="false" name="Columns" physicalName="Columns" type="1">
+       <index id="IDX33" populated="true" UUID="c51ac549-e9b0-4d34-b03e-fa69934a6427" clustered="false" name="fac_lectura_pk" physicalName="fac_lectura_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+     <table id="TAB34" populated="false" UUID="576e79a9-bbd3-46a9-8c73-40c80d357a3a" name="fac_limpieza_banios" objectType="TABLE" physicalName="fac_limpieza_banios" >
+      <remarks>Tabla de hecho de limpiezas hechas en los baños.</remarks>
+      <folder id="FOLTAB341" populated="false" name="Columns" physicalName="Columns" type="1">
+       <index id="IDX35" populated="true" UUID="9b7a85d2-040d-44f6-8865-9d61aa5f3fd8" clustered="false" name="fac_limpieza_banios_pk" physicalName="fac_limpieza_banios_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+     <table id="TAB36" populated="false" UUID="93246d00-623b-41fe-a77a-55ea5d80c3c7" name="fac_totales" objectType="TABLE" physicalName="fac_totales" >
+      <remarks>Tabla de hecho de totales de horas de las lecturas.</remarks>
+      <folder id="FOLTAB361" populated="false" name="Columns" physicalName="Columns" type="1">
+       <index id="IDX37" populated="true" UUID="a77d52aa-1a81-42ba-bb7e-5c8198c792af" clustered="false" name="fac_totales_pk" physicalName="fac_totales_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+     <table id="TAB38" populated="false" UUID="592b5511-271c-4c07-8418-59f55c26c1d0" name="fac_turnos" objectType="TABLE" physicalName="fac_turnos" >
+      <remarks>Tabla de hecho de turnos.</remarks>
+      <folder id="FOLTAB381" populated="false" name="Columns" physicalName="Columns" type="1">
+       <index id="IDX39" populated="true" UUID="ae897802-83f7-4afd-8b2d-35c7001da2f3" clustered="false" name="fac_turnos_pk" physicalName="fac_turnos_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+     <table id="TAB40" populated="false" UUID="db073036-116f-4b0c-afb3-5f3b1bc59d85" name="ods_lectura" objectType="TABLE" physicalName="ods_lectura" >
+      <remarks>Lecturas de ingreso y egreso de las personas en el centro cultural.</remarks>
+      <folder id="FOLTAB401" populated="false" name="Columns" physicalName="Columns" type="1">
+       <index id="IDX41" populated="true" UUID="5725ae04-eaae-4f61-b6c7-cb1625d78f6f" clustered="false" name="ods_lectura_pk" physicalName="ods_lectura_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+     <table id="TAB42" populated="false" UUID="bb28e2d2-465a-453d-8fd4-f67aedb8f649" name="ods_persona" objectType="TABLE" physicalName="ods_persona" >
+      <remarks>Personas que trabajan en el CCK.</remarks>
+      <folder id="FOLTAB421" populated="false" name="Columns" physicalName="Columns" type="1">
+       <index id="IDX43" populated="true" UUID="4a71b831-de6f-40dc-847d-d7710a41e9ea" clustered="false" name="ods_persona_pk" physicalName="ods_persona_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+     <table id="TAB44" populated="false" UUID="d4522090-b706-4342-9813-dd85d2d60d32" name="stg_banda_ciardi" objectType="TABLE" physicalName="stg_banda_ciardi" >
+      <remarks></remarks>
+      <folder id="FOLTAB441" populated="false" name="Columns" physicalName="Columns" type="1">
+       <index id="IDX45" populated="true" UUID="3daf0bb4-93ad-48cb-9e08-1aabb91e60e8" clustered="false" name="stg_banda_ciardi_pk" physicalName="stg_banda_ciardi_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+     <table id="TAB46" populated="false" UUID="116e0f44-82df-4ce0-a8a1-b30b4f474dff" name="stg_banda_horaria" objectType="TABLE" physicalName="stg_banda_horaria" >
+      <remarks>Carga masiva de archivos de Banda Horaria CCK.</remarks>
+      <folder id="FOLTAB461" populated="false" name="Columns" physicalName="Columns" type="1">
+       <index id="IDX47" populated="true" UUID="24724e18-76c7-4314-990e-316580fce429" clustered="false" name="stg_banda_horaria_pk" physicalName="stg_banda_horaria_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+     <table id="TAB48" populated="false" UUID="1901922b-90db-44b4-8fb3-86d4a1068072" name="stg_dto_banda" objectType="TABLE" physicalName="stg_dto_banda" >
+      <remarks></remarks>
+      <folder id="FOLTAB481" populated="false" name="Columns" physicalName="Columns" type="1">
+       <index id="IDX49" populated="true" UUID="b5e60728-3527-4eed-8a42-66703e393799" clustered="false" name="stg_dto_banda_pk" physicalName="stg_dto_banda_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+     <table id="TAB50" populated="false" UUID="de57ee10-f34c-4c72-9a10-5e021026dac7" name="stg_dto_personal" objectType="TABLE" physicalName="stg_dto_personal" >
+      <remarks></remarks>
+      <folder id="FOLTAB501" populated="false" name="Columns" physicalName="Columns" type="1">
+       <index id="IDX51" populated="true" UUID="5a87f104-82f7-42b5-9424-36771326fa85" clustered="false" name="stg_dto_personal_pk" physicalName="stg_dto_personal_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+     <table id="TAB52" populated="false" UUID="35711af3-496e-4743-afbc-60a240731555" name="stg_fichadas" objectType="TABLE" physicalName="stg_fichadas" >
+      <remarks>Carga masiva de archivos de fichadas.</remarks>
+      <folder id="FOLTAB521" populated="false" name="Columns" physicalName="Columns" type="1">
+       <index id="IDX53" populated="true" UUID="2247fe64-153f-4d03-a636-678b871fa7f5" clustered="false" name="stg_fichadas_pk" physicalName="stg_fichadas_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+     <table id="TAB54" populated="false" UUID="a7867979-1be0-4b20-9f3f-b21a15b10d17" name="stg_lecturas" objectType="TABLE" physicalName="stg_lecturas" >
+      <remarks>Carga masiva de lecturas desde el sistema de Control de Accesos.</remarks>
+      <folder id="FOLTAB541" populated="false" name="Columns" physicalName="Columns" type="1">
+       <index id="IDX55" populated="true" UUID="8561db8f-6011-4ead-bcd2-d03b84cc4719" clustered="false" name="stg_lecturas_pk" physicalName="stg_lecturas_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+     <table id="TAB56" populated="true" UUID="e92b7448-d066-4689-8ff1-0b0b69c75ec5" name="stg_limpieza_banios" objectType="TABLE" physicalName="stg_limpieza_banios" >
+      <remarks></remarks>
+      <folder id="FOLTAB561" populated="true" name="Columns" physicalName="Columns" type="1">
+       <column id="COL57" populated="true" UUID="b56253e4-0e89-4478-8c58-bba27fce9b7d" autoIncrement="false" name="no_archivo" nullable="0" physicalName="no_archivo" precision="100" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks></remarks>
+       </column>
+       <column id="COL58" populated="true" UUID="243073e2-9dd7-4d63-a4f3-24dee709de97" autoIncrement="false" name="no_hoja" nullable="1" physicalName="no_hoja" precision="250" referenceCount="1" scale="0" sourceDataTypeName="varchar" type="12" >
+        <remarks></remarks>
+       </column>
+       <column id="COL59" populated="true" UUID="ed54f9fa-2f29-4871-869d-5d3debd99acb" autoIncrement="false" name="fe_modif" nullable="0" physicalName="fe_modif" precision="29" referenceCount="1" scale="6" sourceDataTypeName="timestamp" type="93" >
+        <remarks></remarks>
+       </column>
+       <column id="COL60" populated="true" UUID="ae738df8-c9a8-48f2-a879-8d6e76138554" autoIncrement="false" defaultValue="now()" name="fe_carga" nullable="0" physicalName="fe_carga" precision="29" referenceCount="1" scale="6" sourceDataTypeName="timestamp" type="93" >
+        <remarks></remarks>
+       </column>
+       <column id="COL61" populated="true" UUID="56c7c370-c52b-4c55-831b-67dd9a65abd1" autoIncrement="false" name="nu_fila" nullable="1" physicalName="nu_fila" precision="20" referenceCount="1" scale="0" sourceDataTypeName="int8" type="-5" >
+        <remarks></remarks>
+       </column>
+       <column id="COL62" populated="true" UUID="32db0114-3f0c-4a9e-bad0-4a07dfc447af" autoIncrement="false" defaultValue="&apos;C&apos;::bpchar" name="co_estado_proceso" nullable="0" physicalName="co_estado_proceso" precision="1" referenceCount="1" scale="0" sourceDataTypeName="bpchar" type="1" >
+        <remarks></remarks>
+       </column>
+       <column id="COL63" populated="true" UUID="aff91bc1-e8c4-47a9-93ec-2289b1a37ebd" autoIncrement="false" name="tx_fecha" nullable="1" physicalName="tx_fecha" precision="2147483647" referenceCount="1" scale="0" sourceDataTypeName="text" type="12" >
+        <remarks></remarks>
+       </column>
+       <column id="COL64" populated="true" UUID="625dd548-0585-418c-ab8d-57d3bd0e23ea" autoIncrement="false" name="tx_espacio" nullable="1" physicalName="tx_espacio" precision="2147483647" referenceCount="1" scale="0" sourceDataTypeName="text" type="12" >
+        <remarks></remarks>
+       </column>
+       <column id="COL65" populated="true" UUID="38ec9c9d-fb83-4f0a-b685-f7e557954d1b" autoIncrement="false" name="tx_gestion" nullable="1" physicalName="tx_gestion" precision="2147483647" referenceCount="1" scale="0" sourceDataTypeName="text" type="12" >
+        <remarks></remarks>
+       </column>
+       <column id="COL66" populated="true" UUID="0e0e6bb4-5aed-4f88-8e9a-b6ca5071e82d" autoIncrement="false" name="tx_estado" nullable="1" physicalName="tx_estado" precision="2147483647" referenceCount="1" scale="0" sourceDataTypeName="text" type="12" >
+        <remarks></remarks>
+       </column>
+       <column id="COL67" populated="true" UUID="eea029d1-29e9-4f75-8224-243cdfd2d941" autoIncrement="false" name="tx_observacion" nullable="1" physicalName="tx_observacion" precision="2147483647" referenceCount="1" scale="0" sourceDataTypeName="text" type="12" >
+        <remarks></remarks>
+       </column>
+       <column id="COL68" populated="true" UUID="7d52e19c-22af-45d0-a849-5f33cb402e5b" autoIncrement="false" name="tx_turno" nullable="1" physicalName="tx_turno" precision="2147483647" referenceCount="1" scale="0" sourceDataTypeName="text" type="12" >
+        <remarks></remarks>
+       </column>
+       <column id="COL69" populated="true" UUID="fe964813-38e8-4d56-b45f-d3ef967c7925" autoIncrement="false" name="tx_supervisor" nullable="1" physicalName="tx_supervisor" precision="2147483647" referenceCount="1" scale="0" sourceDataTypeName="text" type="12" >
+        <remarks></remarks>
+       </column>
+       <column id="COL70" populated="true" UUID="a08120f1-8fd1-4dc8-9e23-f4c89ed8673d" autoIncrement="false" name="tx_hora" nullable="1" physicalName="tx_hora" precision="2147483647" referenceCount="1" scale="0" sourceDataTypeName="text" type="12" >
+        <remarks></remarks>
+       </column>
+       </folder>
+       <folder id="FOLTAB563" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+       </folder>
+       <folder id="FOLTAB562" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+       </folder>
+       <folder id="FOLTAB564" populated="true" name="Indices" physicalName="Indices" type="4">
+       <index id="IDX71" populated="true" UUID="9db033f1-8278-4f47-9a99-167197d6fa3a" clustered="false" name="stg_limpieza_banios_pk" physicalName="stg_limpieza_banios_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+     <table id="TAB72" populated="false" UUID="74ba4a2f-8b3e-499c-872a-3d35bdfd14cd" name="stg_personal" objectType="TABLE" physicalName="stg_personal" >
+      <remarks></remarks>
+      <folder id="FOLTAB721" populated="false" name="Columns" physicalName="Columns" type="1">
+       <index id="IDX73" populated="true" UUID="800570ac-33ed-4039-956b-378cd49cda15" clustered="false" name="stg_personal_pk" physicalName="stg_personal_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+     <table id="TAB74" populated="false" UUID="7fb9ee4b-b9e9-4947-8ee8-6bf02cbea9dc" name="tmp_totales" objectType="TABLE" physicalName="tmp_totales" >
+      <remarks></remarks>
+      <folder id="FOLTAB741" populated="false" name="Columns" physicalName="Columns" type="1">
+       <index id="IDX75" populated="true" UUID="9f8cd8c4-7ac1-452b-af95-10db06eec840" clustered="false" name="tmp_totales_pk" physicalName="tmp_totales_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+     <table id="TAB76" populated="false" UUID="2e5c3345-d8c0-4826-8bb6-361947ef715f" name="tmp_turnos" objectType="TABLE" physicalName="tmp_turnos" >
+      <remarks></remarks>
+      <folder id="FOLTAB761" populated="false" name="Columns" physicalName="Columns" type="1">
+       <index id="IDX77" populated="true" UUID="3dd86e0c-83a7-4359-93e9-ae8204d7e629" clustered="false" name="tmp_turnos_pk" physicalName="tmp_turnos_pk" primaryKeyIndex="true" unique="false" >
+       </index>
+      </folder>
+     </table>
+    </schema>
+   </catalog>
+   <relationships>
+   </relationships>
+  </database>
+ </source-databases>
+ <target-database id="ppdb" dbcs-ref="DS0">
+  <table id="TAB79" populated="true" UUID="9b9a2bd5-007f-40da-be37-b3293f2d1d9f" name="Limpieza Baños" objectType="TABLE" physicalName="fac_limpieza_banios" >
+   <remarks>Tabla de hecho de limpiezas hechas en los baños.</remarks>
+   <folder id="FOLTAB791" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL80" populated="true" UUID="8fa674fe-d637-4d2d-93bd-13208aed4765" autoIncrement="false" autoIncrementSequenceName="fac_limpieza_banios_seq" defaultValue="" name="ID Limpieza Baños" nullable="0" physicalName="id_limpieza_banios" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="-5" userDefinedTypeUUID="433cc8af-284d-4abb-8ef7-08ebcb34dbf1" >
+     <remarks>Identificador único de la tabla de hechos de limpieza de baños.</remarks>
+    </column>
+    <column id="COL81" populated="true" UUID="4dae84fd-ee0a-4457-a39f-fe5fd9774e31" autoIncrement="false" autoIncrementSequenceName="fac_limpieza_banios_id_fecha_seq" defaultValue="" name="ID Fecha" nullable="0" physicalName="id_fecha" precision="0" referenceCount="1" scale="0" sourceDataTypeName="text" type="-5" userDefinedTypeUUID="433cc8af-284d-4abb-8ef7-08ebcb34dbf1" >
+     <remarks>Identificador único de la fecha.</remarks>
+    </column>
+    <column id="COL82" populated="true" UUID="e609561c-5d93-4b87-bd57-10b70be1217c" autoIncrement="false" autoIncrementSequenceName="fac_limpieza_banios_id_espacio_limpieza_seq" defaultValue="" name="ID Espacio Limpieza" nullable="0" physicalName="id_espacio_limpieza" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Identificador único del espacio limpiado.</remarks>
+    </column>
+    <column id="COL83" populated="true" UUID="5dfb9914-117b-4b65-b028-2190a68edffb" autoIncrement="false" autoIncrementSequenceName="fac_limpieza_banios_id_estado_limpieza_seq" defaultValue="" name="ID Estado Limpieza" nullable="1" physicalName="id_estado_limpieza" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Identificador único del estado de la limpieza.</remarks>
+    </column>
+    <column id="COL84" populated="true" UUID="55693f7b-a2b8-45b9-a578-cfaa95f18143" autoIncrement="false" autoIncrementSequenceName="fac_limpieza_banios_id_turno_seq" defaultValue="" name="ID Turno" nullable="1" physicalName="id_turno" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="5" userDefinedTypeUUID="69fb547f-e14c-4748-9746-4c0e9e94eb52" >
+     <remarks>Identificador único del turno.</remarks>
+    </column>
+    <column id="COL85" populated="true" UUID="1dfb6dd9-e307-497e-a259-44dd6da24e41" autoIncrement="false" autoIncrementSequenceName="fac_limpieza_banios_id_supervisor_seq" defaultValue="" name="ID Supervisor" nullable="1" physicalName="id_supervisor" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Identificador único del Supervisor.</remarks>
+    </column>
+    <column id="COL86" populated="true" UUID="d577cc0d-c5c3-4968-92ad-d594374fc019" autoIncrement="false" autoIncrementSequenceName="fac_limpieza_banios_nu_hora_seq" defaultValue="" name="Hora" nullable="0" physicalName="nu_hora" precision="0" referenceCount="1" scale="0" sourceDataTypeName="timestamp" type="-5" userDefinedTypeUUID="433cc8af-284d-4abb-8ef7-08ebcb34dbf1" >
+     <remarks>Hora de la limpieza del espacio.</remarks>
+    </column>
+    <column id="COL87" populated="true" UUID="fe78596d-a1b8-40a9-8463-1241bb004552" autoIncrement="false" autoIncrementSequenceName="fac_limpieza_banios_fl_gestion_seq" defaultValue="" name="Gestión" nullable="1" physicalName="fl_gestion" precision="2" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Gestión realizada del espacio.</remarks>
+    </column>
+    <column id="COL88" populated="true" UUID="4dbb843e-4e40-474a-8dd1-0868c2f066cb" autoIncrement="false" autoIncrementSequenceName="fac_limpieza_banios_ds_observaciones_seq" defaultValue="" name="Observaciones" nullable="1" physicalName="ds_observaciones" precision="400" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Observaciones de la limpieza.</remarks>
+    </column>
+    <column id="COL89" populated="true" UUID="719fc3ef-08cb-4f14-99fd-31762367ca7f" autoIncrement="false" autoIncrementSequenceName="fac_limpieza_banios_nu_inspecciones_seq" defaultValue="1" name="Q Inspecciones" nullable="0" physicalName="nu_inspecciones" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Cantidad de inspecciones hechas en los baños.</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB793" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB792" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB794" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX90" populated="true" UUID="86e83de2-0ee9-4954-a6b9-7b8eead57746" clustered="false" name="fac_limpieza_banios_pk" physicalName="fac_limpieza_banios_pk" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC91" populated="true" UUID="4de5ec55-f7b1-468d-856d-ff64cf923ff1" ascendingOrDescending="UNSPECIFIED" column-ref="COL80" name="ID Limpieza Baños" physicalName="id_limpieza_banios" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB92" populated="true" UUID="5965506d-827a-4bc6-994d-e484018a3584" name="Supervisor" objectType="TABLE" physicalName="dim_supervisor" >
+   <remarks>Dimensión de supervisores de limpieza.</remarks>
+   <folder id="FOLTAB921" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL93" populated="true" UUID="ab132294-661e-485a-bf0f-32d921e6c9d0" autoIncrement="true" autoIncrementSequenceName="dim_supervisor_seq" defaultValue="" name="ID Supervisor" nullable="0" physicalName="id_supervisor" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Identificador único del Supervisor.</remarks>
+    </column>
+    <column id="COL94" populated="true" UUID="fa99e1cf-bc0e-44bc-b485-e26c796fd5d8" autoIncrement="false" autoIncrementSequenceName="dim_supervisor_no_supervisor_seq" defaultValue="" name="Nombre Supervisor" nullable="0" physicalName="no_supervisor" precision="100" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Nombre del supervisor de limpieza.</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB923" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB922" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB924" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX95" populated="true" UUID="f36852a6-efc4-484a-855a-98bdc449f292" clustered="false" name="dim_supervisor_pk" physicalName="dim_supervisor_pk" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC96" populated="true" UUID="9fdcc898-2f14-4818-83e0-98789fbbaa12" ascendingOrDescending="UNSPECIFIED" column-ref="COL93" name="ID Supervisor" physicalName="id_supervisor" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB97" populated="true" UUID="bacc3b25-5298-42f2-b3b1-ba507a064d53" name="Estado Limpieza" objectType="TABLE" physicalName="dim_estado_limpieza" >
+   <remarks>Dimensión de estados de limpieza.</remarks>
+   <folder id="FOLTAB971" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL98" populated="true" UUID="dc1102e7-aa41-49d5-88a4-b8cc4e9ee4a8" autoIncrement="true" autoIncrementSequenceName="dim_estado_limpieza_seq" defaultValue="" name="ID Estado Limpieza" nullable="0" physicalName="id_estado_limpieza" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Identificador único del estado de la limpieza.</remarks>
+    </column>
+    <column id="COL99" populated="true" UUID="f2e5a4f6-1bd1-4b88-b088-98a54272044a" autoIncrement="false" autoIncrementSequenceName="dim_estado_limpieza_no_estado_limpieza_seq" defaultValue="" name="Nombre Estado Limpieza" nullable="1" physicalName="no_estado_limpieza" precision="100" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Nombre del estado de limpieza.</remarks>
+    </column>
+    <column id="COL100" populated="true" UUID="7438c849-9fb5-4e89-bc3b-84b348cd2259" autoIncrement="false" autoIncrementSequenceName="dim_estado_limpieza_no_estado_insumos_seq" defaultValue="" name="Estado Insumos" nullable="1" physicalName="no_estado_insumos" precision="100" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Estado de insumos.</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB973" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB972" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB974" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX101" populated="true" UUID="7c41b50f-2155-436d-b1f7-c8ae5c55ecdd" clustered="false" name="dim_estado_limpieza_pk" physicalName="dim_estado_limpieza_pk" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC102" populated="true" UUID="2ad9067a-e396-4304-a76f-2fc904843b8b" ascendingOrDescending="UNSPECIFIED" column-ref="COL98" name="ID Estado Limpieza" physicalName="id_estado_limpieza" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB103" populated="true" UUID="308d2b65-dce5-44d6-b07f-94bee0a15776" name="Espacio Limpieza" objectType="TABLE" physicalName="dim_espacio_limpieza" >
+   <remarks>Dimensión de espacios limpiados.</remarks>
+   <folder id="FOLTAB1031" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL104" populated="true" UUID="5d868385-7760-45a0-ae68-541aef903326" autoIncrement="true" autoIncrementSequenceName="dim_espacio_limpieza_seq" defaultValue="" name="ID Espacio Limpieza" nullable="0" physicalName="id_espacio_limpieza" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Identificador único del espacio limpiado.</remarks>
+    </column>
+    <column id="COL105" populated="true" UUID="a05122f8-90f1-42ca-970c-c9a051832fec" autoIncrement="false" autoIncrementSequenceName="dim_espacio_limpieza_no_espacio_limpieza_seq" defaultValue="" name="Nombre Espacio Limpieza" nullable="1" physicalName="no_espacio_limpieza" precision="100" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Nombre del espacio limpiado.</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB1033" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB1032" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB1034" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX106" populated="true" UUID="28b5c6a4-cb5b-405b-ab15-84313115a644" clustered="false" name="dim_espacio_limpieza_pk" physicalName="dim_espacio_limpieza_pk" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC107" populated="true" UUID="60d3d191-bd22-47d9-8420-6bc26a720c0a" ascendingOrDescending="UNSPECIFIED" column-ref="COL104" name="ID Espacio Limpieza" physicalName="id_espacio_limpieza" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB108" populated="true" UUID="fd225f74-2452-4ce4-830c-dbb9cf597fa1" name="Stage Limpieza Baños" objectType="TABLE" physicalName="stg_limpieza_banios" >
+   <remarks>Tabla de Stage de control de limpieza de los baños.</remarks>
+   <folder id="FOLTAB1081" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL109" populated="true" UUID="11f05169-dcac-487e-9d5b-25e59acb5b16" autoIncrement="true" autoIncrementSequenceName="stg_limpieza_banios_seq" defaultValue="" name="ID Limpieza Baños" nullable="0" physicalName="id_limpieza_banios" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="-5" userDefinedTypeUUID="433cc8af-284d-4abb-8ef7-08ebcb34dbf1" >
+     <remarks>Identificador único de tabla stage de limpieza de baños.</remarks>
+    </column>
+    <column id="COL110" populated="true" UUID="71f9c9ea-4c4d-4af1-8ea5-3bdcee869068" autoIncrement="false" autoIncrementSequenceName="stg_limpieza_banios_no_archivo_seq" defaultValue="" name="Nombre Archivo" nullable="1" physicalName="no_archivo" precision="100" referenceCount="1" scale="0" source-column-ref="COL57" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Nombre del archivo excel cargado.</remarks>
+    </column>
+    <column id="COL111" populated="true" UUID="238f13c2-a171-49e1-8ad9-be8c035c02f4" autoIncrement="false" autoIncrementSequenceName="stg_limpieza_banios_fe_modif_seq" defaultValue="" name="Fecha Modificación" nullable="1" physicalName="fe_modif" precision="0" referenceCount="1" scale="0" source-column-ref="COL59" sourceDataTypeName="timestamp" type="93" userDefinedTypeUUID="6497d8de-0e00-40d6-a42e-e2adca83be64" >
+     <remarks>Fecha de última modificación de la planilla Excel.</remarks>
+    </column>
+    <column id="COL112" populated="true" UUID="537ec438-2063-4c96-83a1-a6d137e145e7" autoIncrement="false" autoIncrementSequenceName="stg_limpieza_banios_fe_carga_seq" defaultValue="now()" name="Fecha Carga" nullable="0" physicalName="fe_carga" precision="0" referenceCount="1" scale="0" source-column-ref="COL60" sourceDataTypeName="timestamp" type="93" userDefinedTypeUUID="6497d8de-0e00-40d6-a42e-e2adca83be64" >
+     <remarks>Fecha de carga de la planilla.</remarks>
+    </column>
+    <column id="COL113" populated="true" UUID="6cb83908-1853-4721-9027-eafd99c47b33" autoIncrement="false" autoIncrementSequenceName="stg_limpieza_banios_no_hoja_seq" defaultValue="" name="Nombre Hoja" nullable="1" physicalName="no_hoja" precision="250" referenceCount="1" scale="0" source-column-ref="COL58" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Nombre de la hoja de Excel cargada.</remarks>
+    </column>
+    <column id="COL114" populated="true" UUID="46aad1ad-4398-4217-bd83-49dee2042c59" autoIncrement="false" autoIncrementSequenceName="stg_limpieza_banios_nu_fila_seq" defaultValue="" name="Número Fila" nullable="1" physicalName="nu_fila" precision="0" referenceCount="1" scale="0" source-column-ref="COL61" sourceDataTypeName="int8" type="-5" userDefinedTypeUUID="433cc8af-284d-4abb-8ef7-08ebcb34dbf1" >
+     <remarks>Número de fila dentro de la planilla Excel.</remarks>
+    </column>
+    <column id="COL115" populated="true" UUID="8204a6bc-b192-48ef-83cf-02dbe4e09792" autoIncrement="false" autoIncrementSequenceName="stg_limpieza_banios_co_estado_proceso_seq" defaultValue="&apos;C&apos;::bpchar" name="Estado Proceso" nullable="0" physicalName="co_estado_proceso" precision="1" referenceCount="1" scale="0" source-column-ref="COL62" sourceDataTypeName="bpchar" type="1" userDefinedTypeUUID="67ddc63f-5541-4dd1-9236-632d9d155e80" >
+     <remarks>Código del estado del registro, identifica si se encuentra cargado o no.</remarks>
+    </column>
+    <column id="COL116" populated="true" UUID="a60e7ff7-88e0-4b88-9aa6-9f38127e1ec6" autoIncrement="false" autoIncrementSequenceName="stg_limpieza_banios_tx_fecha_seq" defaultValue="" name="FECHA" nullable="1" physicalName="tx_fecha" precision="0" referenceCount="1" scale="0" source-column-ref="COL63" sourceDataTypeName="text" type="-1" userDefinedTypeUUID="9a814859-ab26-4acd-9415-ea82291bcac1" >
+     <remarks>Valor de la columna FECHA de la planilla.</remarks>
+    </column>
+    <column id="COL117" populated="true" UUID="468f9d1f-1d2f-4081-ab26-3a57ef7226c4" autoIncrement="false" autoIncrementSequenceName="stg_limpieza_banios_tx_espacio_seq" defaultValue="" name="CODIGO ESPACIO / DESCRIPCION" nullable="1" physicalName="tx_espacio" precision="0" referenceCount="1" scale="0" source-column-ref="COL64" sourceDataTypeName="text" type="-1" userDefinedTypeUUID="9a814859-ab26-4acd-9415-ea82291bcac1" >
+     <remarks>Valor de la columna CODIGO ESPACIO / DESCRIPCION de la planilla.</remarks>
+    </column>
+    <column id="COL118" populated="true" UUID="a73ffd78-7441-4464-8053-a1d50fe3a94b" autoIncrement="false" autoIncrementSequenceName="stg_limpieza_banios_tx_gestion_seq" defaultValue="" name="GESTION" nullable="1" physicalName="tx_gestion" precision="0" referenceCount="1" scale="0" source-column-ref="COL65" sourceDataTypeName="text" type="-1" userDefinedTypeUUID="9a814859-ab26-4acd-9415-ea82291bcac1" >
+     <remarks>Valor de la columna GESTION de la planilla.</remarks>
+    </column>
+    <column id="COL119" populated="true" UUID="c80f17be-71f8-4702-bcd1-9461e6e5bd35" autoIncrement="false" autoIncrementSequenceName="stg_limpieza_banios_tx_estado_seq" defaultValue="" name="ESTADO" nullable="1" physicalName="tx_estado" precision="0" referenceCount="1" scale="0" source-column-ref="COL66" sourceDataTypeName="text" type="-1" userDefinedTypeUUID="9a814859-ab26-4acd-9415-ea82291bcac1" >
+     <remarks>Valor de la columna ESTADO de la planilla.</remarks>
+    </column>
+    <column id="COL120" populated="true" UUID="73b53ab9-3f02-4dff-b020-4ca46d7127d9" autoIncrement="false" autoIncrementSequenceName="stg_limpieza_banios_tx_observacion_seq" defaultValue="" name="OBSERVACIONES" nullable="1" physicalName="tx_observacion" precision="0" referenceCount="1" scale="0" source-column-ref="COL67" sourceDataTypeName="text" type="-1" userDefinedTypeUUID="9a814859-ab26-4acd-9415-ea82291bcac1" >
+     <remarks>Valor de la columna OBSERVACIONES de la planilla.</remarks>
+    </column>
+    <column id="COL121" populated="true" UUID="9f9a5b60-d91d-4db7-af4d-fdb26754ce3e" autoIncrement="false" autoIncrementSequenceName="stg_limpieza_banios_tx_turno_seq" defaultValue="" name="TURNO" nullable="1" physicalName="tx_turno" precision="0" referenceCount="1" scale="0" source-column-ref="COL68" sourceDataTypeName="text" type="-1" userDefinedTypeUUID="9a814859-ab26-4acd-9415-ea82291bcac1" >
+     <remarks>Valor de la columna TURNO de la planilla.</remarks>
+    </column>
+    <column id="COL122" populated="true" UUID="f7187f85-9bab-4047-a0dc-362fea31c6b2" autoIncrement="false" autoIncrementSequenceName="stg_limpieza_banios_tx_supervisor_seq" defaultValue="" name="SUPERVISOR" nullable="1" physicalName="tx_supervisor" precision="0" referenceCount="1" scale="0" source-column-ref="COL69" sourceDataTypeName="text" type="-1" userDefinedTypeUUID="9a814859-ab26-4acd-9415-ea82291bcac1" >
+     <remarks>Valor de la columna SUPERVISOR de la planilla.</remarks>
+    </column>
+    <column id="COL123" populated="true" UUID="84dd98c1-f3cb-4f7d-930e-d79ccec3b6a9" autoIncrement="false" autoIncrementSequenceName="stg_limpieza_banios_tx_hora_seq" defaultValue="" name="HORARIO" nullable="1" physicalName="tx_hora" precision="0" referenceCount="1" scale="0" source-column-ref="COL70" sourceDataTypeName="text" type="-1" userDefinedTypeUUID="9a814859-ab26-4acd-9415-ea82291bcac1" >
+     <remarks>Valor de la columna HORARIO de la planilla.</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB1083" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB1082" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB1084" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX124" populated="true" UUID="2cdf193f-b864-4beb-a738-ea1dc4f02b9d" clustered="false" name="stg_limpieza_banios_pk" physicalName="stg_limpieza_banios_pk" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC125" populated="true" UUID="7bb26f46-5dbd-4091-9653-c520df80f176" ascendingOrDescending="UNSPECIFIED" column-ref="COL109" name="ID Limpieza Baños" physicalName="id_limpieza_banios" />
+    </index>
+   </folder>
+  </table>
+  <relationships>
+   <relationship id="REL126" populated="true" UUID="8faa6374-61ac-41be-b938-f63c473ad4b8" deferrability="7" deleteRule="3" fk-table-ref="TAB79" fkCardinality="7" identifying="false" name="dim_supervisor_limpieza_banios_fk" physicalName="dim_supervisor_limpieza_banios_fk" pk-table-ref="TAB92" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP127" populated="true" UUID="0ae062a0-1b87-4758-8ba2-92874b2772c8" fk-column-ref="COL85" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL93" />
+   </relationship>
+   <relationship id="REL128" populated="true" UUID="fbb68fdd-ceae-4fb7-8a1a-50cfb7828181" deferrability="7" deleteRule="3" fk-table-ref="TAB79" fkCardinality="7" identifying="false" name="dim_estado_limpieza_banios_fk" physicalName="dim_estado_limpieza_banios_fk" pk-table-ref="TAB97" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP129" populated="true" UUID="2346c582-22c1-4233-abae-c618fb21d0b9" fk-column-ref="COL83" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL98" />
+   </relationship>
+   <relationship id="REL130" populated="true" UUID="35290be9-c045-4c05-a681-e1a569654904" deferrability="7" deleteRule="3" fk-table-ref="TAB79" fkCardinality="7" identifying="false" name="dim_espacio_limpieza_banios_fk" physicalName="dim_espacio_limpieza_banios_fk" pk-table-ref="TAB103" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP131" populated="true" UUID="ec934b25-0e1d-4fb8-a1c7-10c2e8bb240c" fk-column-ref="COL82" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL104" />
+   </relationship>
+  </relationships>
+ </target-database>
+ <ddl-generator type="ca.sqlpower.architect.ddl.PostgresDDLGenerator" allow-connection="false" target-schema="public"> </ddl-generator>
+ <liquibase-settings useSeparateChangeSets="false" generateId="false" idStart="1"/>
+ <compare-dm-settings  ddlGenerator="ca.sqlpower.architect.ddl.PostgresDDLGenerator"  outputFormatAsString="SQL"  saveFlag="true" >
+  <source-stuff   datastoreTypeAsString="DATABASE"   connectName="RRHH Local"   filePath=""  />
+  <target-stuff   datastoreTypeAsString="PROJECT"   filePath=""  />
+  <liquibase-settings useSeparateChangeSets="false" generateId="false" idStart="1"/>
+ </compare-dm-settings>
+ <create-kettle-job-settings filePath="" jobName="" schemaName="" kettleJoinType="0" savingToFile="true" />
+ <play-pen zoom="1.0" viewportX="0" viewportY="0" relationship-style="rectilinear" names-displayLogicalNames="true" showPrimaryTag="true" showForeignTag="true" showAlternateTag="true" columnVisibility="ALL" relationshipLabelVisibility="true">
+  <table-pane table-ref="TAB79" x="565" y="146" bgColor="0xf0f0f0" fgColor="0x0000cc" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB92" x="746" y="24" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB97" x="786" y="371" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB103" x="447" y="396" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB108" x="98" y="52" bgColor="0xf0f0f0" fgColor="0x006633" rounded="false" dashed="false"/>
+  <table-link relationship-ref="REL130" pkConnection="0.2549019607843137" fkConnection="0.727810650887574" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="40"/>
+  <table-link relationship-ref="REL128" pkConnection="0.11442786069651742" fkConnection="0.727810650887574" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="24"/>
+  <table-link relationship-ref="REL126" pkConnection="0.6534090909090909" fkConnection="0.28402366863905326" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="20"/>
+ </play-pen>
+ <critic-manager>
+  <critic-grouping platformType="Generic" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.PrimaryKeyCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.RelationshipMappingTypeCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.EmptyRelationshipCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.AlphaNumericNameCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.AlphaNumericSequenceNameCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SetDefaultOnColumnWithNoDefaultCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SetNullOnNonNullableColumnCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.DuplicateNameCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="DB2" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.DB2UnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="H2" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.H2UnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="HSQLDB" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.HSQLDBUnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="MySQL" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.MySQLCommentCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.MySQLReservedWordsCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.MySQLUnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="Oracle" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.OraclePhysicalNameCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.OracleReservedWordsCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.OracleUnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="PostgreSQL" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.PostgreSQLReservedWordsCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="SQL Server" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SQLServerUnsupportedFeaturesCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SQLServerReservedWordsCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="SQL Server 2000" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SQLServer2000UnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="SQL Server 2005" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SQLServer2005UnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+ </critic-manager>
+ <profiles topNCount="10">
+  </profiles>
+  <olap>
+  </olap>
+  <olap-gui>
+  </olap-gui>
+</architect-project>

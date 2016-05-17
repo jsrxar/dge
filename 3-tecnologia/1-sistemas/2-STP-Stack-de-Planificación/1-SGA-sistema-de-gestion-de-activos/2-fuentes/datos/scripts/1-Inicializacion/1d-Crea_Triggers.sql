@@ -144,7 +144,7 @@ BEGIN
     COALESCE((SELECT no_planta FROM sga_planta WHERE id_planta = NEW.id_planta) || ' > ', ' ') ||
     COALESCE(TRIM(NEW.no_espacio)));
   SELECT v INTO v_value FROM dblink ('dbname=redmine port=5432 host=127.0.0.1 user=redmine password=hola1234',
-    'SELECT fn_Carga_Lista(''Espacio Físico'', ''public.sga_espacio'', ''id_espacio'', ''ds_referencia'')') AS P (v int);
+    'SELECT fn_Carga_Lista(''Espacio Físico'', ''public.sga_espacio'', ''id_espacio'', ''ds_referencia'', ''co_espacio'')') AS P (v int);
   RETURN NEW;
 END;
 $$;
@@ -156,7 +156,7 @@ DECLARE
     v_value RECORD;
 BEGIN
   SELECT v INTO v_value FROM dblink ('dbname=redmine port=5432 host=127.0.0.1 user=redmine password=hola1234',
-    'SELECT fn_Carga_Lista(''Espacio Físico'', ''public.sga_espacio'', ''id_espacio'', ''ds_referencia'')') AS P (v int);
+    'SELECT fn_Carga_Lista(''Espacio Físico'', ''public.sga_espacio'', ''id_espacio'', ''ds_referencia'', ''co_espacio'')') AS P (v int);
   RETURN OLD;
 END;
 $$;

@@ -1,8 +1,9 @@
-﻿CREATE OR REPLACE FUNCTION fn_Carga_Lista(
+﻿CREATE OR REPLACE FUNCTION fn_Carga_Lista (
 	destino_campo VARCHAR,
 	origen_tabla  VARCHAR,
 	origen_id     VARCHAR,
 	origen_valor  VARCHAR,
+	origen_corto  VARCHAR DEFAULT NULL,
 	conexion      VARCHAR DEFAULT 'dbname=RCDTO user=rcdto password=rcdto',
 	servidor      VARCHAR DEFAULT 'port=5432 host=127.0.0.1'
 ) RETURNS INTEGER AS
@@ -23,17 +24,21 @@ BEGIN
 		custom_field_id,
 		id_ori,
 		name,
+		view_name,
 		position
 	)
 	SELECT
 		id_field  AS custom_field_id,
 		id_origen AS id_ori,
 		no_origen AS name,
+		CASE WHEN NOT origen_corto IS NULL THEN no_corto END AS view_name,
 		row_number()OVER()-1 AS position
 	FROM dblink (servidor ||' '|| conexion,
-	'SELECT '|| origen_id ||', '|| origen_valor ||' FROM '|| origen_tabla ||' ORDER BY '|| origen_valor) AS P (
+	'SELECT '|| origen_id ||', '|| origen_valor ||', '|| COALESCE(origen_corto, origen_valor) ||
+	' FROM '|| origen_tabla ||' ORDER BY '|| origen_valor) AS P (
 	  id_origen BIGINT,
-	  no_origen VARCHAR(400)
+	  no_origen VARCHAR,
+	  no_corto  VARCHAR
 	);
 	
 	-- Pasando de temporal a fisica
@@ -43,9 +48,10 @@ BEGIN
 
 	UPDATE custom_field_enumerations a
 	SET 
-		name     = b.name,
-		position = b.position,
-		active   = TRUE
+		name      = b.name,
+		view_name = b.view_name,
+		position  = b.position,
+		active    = TRUE
 	FROM custom_field_enumerations_aux b
 	WHERE a.custom_field_id = b.custom_field_id
 	  AND a.id_ori          = b.id_ori
@@ -55,6 +61,7 @@ BEGIN
 		custom_field_id,
 		id_ori,
 		name,
+		view_name,
 		active,
 		position
 	)
@@ -62,6 +69,7 @@ BEGIN
 		custom_field_id,
 		id_ori,
 		name,
+		view_name,
 		TRUE AS active,
 		position
 	FROM custom_field_enumerations_aux
@@ -78,4 +86,4 @@ END
 $BODY$
 LANGUAGE 'plpgsql';
 
---SELECT fn_Carga_Lista('Espacio Físico', 'public.sga_espacio', 'id_espacio', 'ds_referencia')
+--SELECT fn_Carga_Lista('Espacio Físico', 'public.sga_espacio', 'id_espacio', 'ds_referencia', 'co_espacio')

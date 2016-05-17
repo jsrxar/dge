@@ -1,69 +1,79 @@
 <script>
-	document.getElementById("id_accion_edit").addEventListener("change", function(){
-    //alert(this.value);
+	$(document).ready(function(){ fn_carga_valores_accion ($('#id_accion_edit option:selected').val(), false) });
+	$("#id_accion_edit").change(function(){ fn_carga_valores_accion (this.value, true) });
 
-	var datos = {
-		"id_accion": this.value
-	};
+	function fn_carga_valores_accion (accion, defaults) {
+		//alert(accion);
+		var datos = {
+			"id_accion": accion
+		};
 
-	$.ajax({
-		data: datos,
-		url: 'ax_option_espacio.php',
-		type: 'post',
-		success: function(respuesta) {
-			$("#id_espacio_edit").html(respuesta);
-		}
-	});
-	$.ajax({
-		data: datos,
-		url: 'ax_option_bien.php',
-		type: 'post',
-		success: function(respuesta) {
-			$("#id_bien_edit").html(respuesta);
-		}
-	});
-	$.ajax({
-		data: datos,
-		url: 'ax_default_horas.php',
-		type: 'post',
-		success: function(respuesta) {
-			if ($("#auxHoras").length > 0){
-				$( "#auxHoras" ).html(respuesta);
-			} else {
-				$( "#s2id_fe_horas_edit" ).before('<div id="auxHoras">' + respuesta + '</div>');
+		var espacio = $("#id_espacio_edit")[0].value;
+		$.ajax({
+			data: datos,
+			url: 'ax_option_espacio.php',
+			type: 'post',
+			success: function(respuesta) {
+				$("#id_espacio_edit").html(respuesta);
+				if (espacio != "") {
+					$("#id_espacio_edit")[0].value = espacio;
+				}
 			}
-		}
-	});
-	$.ajax({
-		data: datos,
-		url: 'ax_default_personas.php',
-		type: 'post',
-		success: function(respuesta) {
-			if(respuesta) {
-				$("#nu_personas_edit")[0].value = respuesta;
+		});
+		/* No se encuentra habilitada la opción de Bienes
+		$.ajax({
+			data: datos,
+			url: 'ax_option_bien.php',
+			type: 'post',
+			success: function(respuesta) {
+				$("#id_bien_edit").html(respuesta);
 			}
+		});
+		*/
+		if (defaults) {
+			$.ajax({
+				data: datos,
+				url: 'ax_default_horas.php',
+				type: 'post',
+				success: function(respuesta) {
+					if ($("#auxHoras").length > 0){
+						$( "#auxHoras" ).html(respuesta);
+					} else {
+						$( "#s2id_fe_horas_edit" ).before('<div id="auxHoras">' + respuesta + '</div>');
+					}
+				}
+			});
+			$.ajax({
+				data: datos,
+				url: 'ax_default_personas.php',
+				type: 'post',
+				success: function(respuesta) {
+					if(respuesta) {
+						$("#nu_personas_edit")[0].value = respuesta;
+					}
+				}
+			});
+			$.ajax({
+				data: datos,
+				url: 'ax_default_carga_horaria.php',
+				type: 'post',
+				success: function(respuesta) {
+					if(respuesta) {
+						$("#tm_carga_horaria_edit")[0].value = respuesta;
+					}
+				}
+			});
+			$.ajax({
+				data: datos,
+				url: 'ax_default_periodicidad.php',
+				type: 'post',
+				success: function(respuesta) {
+					if(respuesta) {
+						//document.getElementById("id_periodicidad_edit").value = respuesta;
+						$("#id_periodicidad_edit")[0].value = respuesta;
+					}
+				}
+			});
 		}
-	});
-	$.ajax({
-		data: datos,
-		url: 'ax_default_carga_horaria.php',
-		type: 'post',
-		success: function(respuesta) {
-			if(respuesta) {
-				$("#tm_carga_horaria_edit")[0].value = respuesta;
-			}
-		}
-	});
-	$.ajax({
-		data: datos,
-		url: 'ax_default_periodicidad.php',
-		type: 'post',
-		success: function(respuesta) {
-			if(respuesta) {
-				//document.getElementById("id_periodicidad_edit").value = respuesta;
-				$("#id_periodicidad_edit")[0].value = respuesta;
-			}
-		}
-	});
-});
+	}
 </script>

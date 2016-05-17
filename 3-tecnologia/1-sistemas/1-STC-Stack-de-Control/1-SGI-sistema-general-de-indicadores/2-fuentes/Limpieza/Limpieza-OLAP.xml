@@ -1,0 +1,118 @@
+<Schema name="Inspecciones" description="Esquema de inspecciones." measuresCaption="Medidas">
+  <Dimension visible="true" highCardinality="false" name="Espacio">
+    <Hierarchy visible="true" hasAll="true" primaryKey="id_espacio_limpieza">
+      <Table name="dim_espacio_limpieza" schema="public">
+      </Table>
+      <Level name="Espacio" visible="true" column="no_espacio_limpieza" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="Estado Limpieza">
+    <Hierarchy visible="true" hasAll="true" primaryKey="id_estado_limpieza">
+      <Table name="dim_estado_limpieza" schema="public">
+      </Table>
+      <Level name="C&#243;digo Estado" visible="true" column="id_estado_limpieza" type="Numeric" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Estado Limpieza" visible="true" column="no_estado_limpieza" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Estado Insumos" visible="true" column="no_estado_insumos" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="Fecha" caption="Fecha Lectura" description="Fecha de la lectura de la fichada.">
+    <Hierarchy visible="true" hasAll="true" primaryKey="id_fecha">
+      <Table name="dim_fecha" schema="public">
+      </Table>
+      <Level name="Anio" visible="true" column="nu_anio" type="Numeric" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never" caption="A&#241;o" description="A&#241;o de la fecha.">
+      </Level>
+      <Level name="Cuatrimestre" visible="true" column="nu_cuatrimestre" type="Numeric" uniqueMembers="false" levelType="TimeQuarters" hideMemberIf="Never" caption="Cuatrimestre" description="Cuatrimestre de la fecha.">
+      </Level>
+      <Level name="Mes" visible="true" column="nu_mes" type="Numeric" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Mes" description="Mes de la fecha.">
+      </Level>
+      <Level name="Nombre Mes" visible="true" column="no_mes" ordinalColumn="nu_mes" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Nombre Mes" description="Nombre del Mes de la fecha.">
+      </Level>
+      <Level name="Dia" visible="true" column="nu_dia" type="Numeric" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="D&#237;a" description="Dia de la fecha.">
+      </Level>
+      <Level name="Fecha" visible="true" column="tx_fecha" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Fecha" description="Fecha formateada DD/MM/YYYY.">
+      </Level>
+      <Level name="Dia Anio" visible="true" column="nu_dia_ano" type="Numeric" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="D&#237;a A&#241;o" description="N&#250;mero de d&#237;a en el A&#241;o.">
+      </Level>
+      <Level name="Nombre Fecha" visible="true" column="no_fecha" ordinalColumn="id_fecha" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Nombre Fecha" description="Descripci&#243;n de la fecha en formato texto largo.">
+      </Level>
+      <Level name="Feriado" visible="true" column="fl_feriado" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Feriado" description="Si es feriado.">
+      </Level>
+      <Level name="Fin Semana" visible="true" column="fl_fin_semana" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Fin Semana" description="Si es fin de semana.">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Dia Semana" visible="true" hasAll="true" primaryKey="id_fecha" caption="D&#237;a Semana" description="D&#237;a de la semana de la lectura.">
+      <Table name="dim_fecha" schema="public">
+      </Table>
+      <Level name="Dia Semana" visible="true" column="no_dia_semana" ordinalColumn="nu_dia_semana" type="String" uniqueMembers="false" levelType="TimeUndefined" hideMemberIf="Never" caption="D&#237;a Semana" description="Nombre del d&#237;a de la semana">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="Supervisor">
+    <Hierarchy visible="true" hasAll="true" primaryKey="id_supervisor">
+      <Table name="dim_supervisor" schema="public">
+      </Table>
+      <Level name="Supervisor" visible="true" column="no_supervisor" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="Turno">
+    <Hierarchy visible="true" hasAll="true" primaryKey="id_turno">
+      <Table name="dim_turno" schema="public">
+      </Table>
+      <Level name="C&#243;digo Turno" visible="true" column="co_turno" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Nombre Turno" visible="true" column="no_turno" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Cube name="Limpieza Banos" caption="Limpieza Ba&#241;os" visible="true" description="Cubo de inspecci&#243;n de limpieza en los ba&#241;os." cache="true" enabled="true">
+    <Table name="fac_limpieza_banios" schema="public">
+    </Table>
+    <DimensionUsage source="Espacio" name="Espacio" visible="true" foreignKey="id_espacio_limpieza" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Estado Limpieza" name="Estado Limpieza" visible="true" foreignKey="id_estado_limpieza" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Fecha" name="Fecha" visible="true" foreignKey="id_fecha" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Supervisor" name="Supervisor" visible="true" foreignKey="id_supervisor" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Turno" name="Turno" visible="true" foreignKey="id_turno" highCardinality="false">
+    </DimensionUsage>
+    <Measure name="Primera Hora" column="nu_hora" datatype="Numeric" aggregator="min" caption="Primera Hora" description="Horas de la Primera inspecci&#243;n realizada.">
+      <CellFormatter>
+        <Script language="JavaScript">
+          <![CDATA[var seconds = parseInt(value.toString(), 10);
+var hours = Math.floor(seconds/10000);
+second = second - (hours*10000);
+var minutes = Math.floor(second/100);
+second = second - (minutes*100);
+if (hours   < 10) {hours   = "0"+hours;}
+if (minutes < 10) {minutes = "0"+minutes;}
+if (seconds < 10) {seconds = "0"+seconds;}
+return hours+':'+minutes+':'+seconds;]]>
+        </Script>
+      </CellFormatter>
+    </Measure>
+    <Measure name="Ultima Hora" column="nu_hora" datatype="Numeric" aggregator="max" caption="&#218;ltima Hora" description="Horas de la &#218;ltima inspecci&#243;n realizada.">
+      <CellFormatter>
+        <Script language="JavaScript">
+          <![CDATA[var seconds = value;
+var hours = Math.floor(seconds/10000);
+second = second - (hours*10000);
+var minutes = Math.floor(second/100);
+second = second - (minutes*100);
+if (hours   < 10) {hours   = "0"+hours;}
+if (minutes < 10) {minutes = "0"+minutes;}
+if (seconds < 10) {seconds = "0"+seconds;}
+return hours+':'+minutes+':'+seconds;]]>
+        </Script>
+      </CellFormatter>
+    </Measure>
+    <Measure name="Cantidad Inspecciones" column="id_limpieza_banios" formatString="#,###;(#,###)" aggregator="count">
+    </Measure>
+  </Cube>
+</Schema>

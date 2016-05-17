@@ -3,12 +3,14 @@ CREATE SEQUENCE public.dim_turno_sq;
 
 CREATE TABLE public.dim_turno (
                 id_turno SMALLINT NOT NULL DEFAULT nextval('public.dim_turno_sq'),
+                co_turno VARCHAR(3),
                 no_turno VARCHAR(50),
                 tx_banda_horaria VARCHAR(20) NOT NULL,
                 CONSTRAINT dim_turno_pk PRIMARY KEY (id_turno)
 );
 COMMENT ON TABLE public.dim_turno IS 'Turno de trabajo.';
 COMMENT ON COLUMN public.dim_turno.id_turno IS 'Identificador único del turno.';
+COMMENT ON COLUMN public.dim_turno.co_turno IS 'Código del Turno.';
 COMMENT ON COLUMN public.dim_turno.no_turno IS 'Turno del horario de recambio.';
 COMMENT ON COLUMN public.dim_turno.tx_banda_horaria IS 'Banda Horaria del turno.';
 

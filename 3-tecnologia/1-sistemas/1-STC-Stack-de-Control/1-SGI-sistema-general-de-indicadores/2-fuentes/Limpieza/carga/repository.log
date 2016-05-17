@@ -1,0 +1,19 @@
+Rename transformation : Renamed from read-file-names to lee-nombres
+Rename transformation : Renamed from set-var to variables
+Rename transformation : Renamed from process_file to procesa-archivo
+Rename job : Renamed from foreach to ciclo-archivos
+Rename job : Renamed from do-stuff to ejecutar-carga
+Save database : Modification by user
+Save repository element : RRHH Local : Modification by user
+Rename transformation : Renamed from lee-nombres to 1-Lee_Nombres
+Rename transformation : Renamed from variables to 2-Setea_variables
+Rename transformation : Renamed from procesa-archivo to 3-Procesa_Archivo
+Rename job : Renamed from ejecutar-carga to a-Ejecutar_Carga
+Rename transformation : Renamed from 1-Carga_Lecturas to c-Carga_Lecturas
+Rename transformation : Renamed from 2-Carga_ODS to d-Carga_ODS
+Rename transformation : Renamed from 3-Carga_Dimensiones to e-Carga_Dimensiones
+Rename transformation : Renamed from 4-Carga_Hechos to f-Carga_Hechos
+Rename transformation : Renamed from 5-Calcula_Totales to g-Calcula_Totales
+Rename job : Renamed from carga-planillas to Carga_Planillas
+Rename job : Renamed from 2-Ciclo_Archivos to 1-Ciclo_Archivos
+Rename job : Renamed from 1-Ejecutar_Carga to 2-Ejecutar_Carga

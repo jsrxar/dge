@@ -10,3 +10,4 @@ tarea_plan.php
 tipo_accion.php
 tipo_bien.php
 tipo_espacio.php
+ver_espacio.php

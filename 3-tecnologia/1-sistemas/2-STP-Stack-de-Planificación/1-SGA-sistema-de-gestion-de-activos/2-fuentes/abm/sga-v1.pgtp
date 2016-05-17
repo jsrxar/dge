@@ -13,7 +13,30 @@
       <http_authentication/>
     </http_tunnel>
   </ScriptConnectionOptions>
-  <Queries/>
+  <Queries>
+    <Query name="VerEspacio">
+      <SelectStatement>
+SELECT
+	id_espacio,
+	id_tipo_espacio,
+	id_espacio_contenedor,
+	co_espacio,
+	no_espacio,
+	co_plano,
+	id_planta,
+	ds_referencia,
+	id_sector,
+	ds_link_ult_relevam,
+	va_metros2
+FROM sga_espacio      </SelectStatement>
+      <InsertStatements/>
+      <UpdateStatements/>
+      <DeleteStatements/>
+      <PrimaryKeyFields>
+        <Field name="id_espacio"/>
+      </PrimaryKeyFields>
+    </Query>
+  </Queries>
   <FieldContainers/>
   <Presentation disableMagicQuotesRuntime="false" showEnvironmentVariables="false" showExecutedQueries="false" showPHPErrorsAndWarnings="false">
     <Pages>
@@ -2482,6 +2505,302 @@
         <RecordPermissions useRecordPermissions="false"/>
         <PartitionNavigators/>
       </Page>
+      <Page type="query" queryName="VerEspacio" includedIntoPageList="false" fileName="ver_espacio" caption="Espacio" shortCaption="Espacio" groupName="Maestras" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="0" editAbilityMode="0" copyAbilityMode="0" contentEncoding="UTF-8" pageListMode="2" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true">
+        <BeforeGridText/>
+        <Columns>
+          <ViewColumns>
+            <Column fieldName="id_espacio" caption="Id Espacio" visible="false" totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_tipo_espacio" caption="Tipo Espacio" visible="true" totalFunction="0">
+              <Lookup tableName="public.sga_tipo_espacio" linkFieldName="id_tipo_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_espacio_contenedor" caption="Espacio Contenedor" visible="true" totalFunction="0">
+              <Lookup tableName="public.sga_espacio" linkFieldName="id_espacio_contenedor" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="co_espacio" caption="Código Espacio" visible="true" totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_espacio" caption="Nombre Espacio" visible="true" totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="co_plano" caption="Código Plano" visible="false" totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_planta" caption="Planta" visible="true" totalFunction="0">
+              <Lookup tableName="public.sga_planta" linkFieldName="id_planta" displayFieldName="no_planta" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Descripción" visible="false" totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_sector" caption="Sector" visible="true" totalFunction="0">
+              <Lookup tableName="public.sga_sector" linkFieldName="id_sector" displayFieldName="no_sector" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_link_ult_relevam" caption="Último Relevamiento" visible="false" totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="va_metros2" caption="Metros Cuadrados" visible="false" totalFunction="0">
+              <ViewProperties type="text">
+                <Format type="number" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
+              </ViewProperties>
+            </Column>
+          </ViewColumns>
+          <SingleRecordViewColumns>
+            <Column fieldName="id_espacio" caption="Id Espacio" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_tipo_espacio" caption="Tipo Espacio" visible="true">
+              <Lookup tableName="public.sga_tipo_espacio" linkFieldName="id_tipo_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_espacio_contenedor" caption="Espacio Contenedor" visible="true">
+              <Lookup tableName="public.sga_espacio" linkFieldName="id_espacio_contenedor" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="co_espacio" caption="Código Espacio" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_espacio" caption="Nombre Espacio" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="co_plano" caption="Código Plano" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_planta" caption="Planta" visible="true">
+              <Lookup tableName="public.sga_planta" linkFieldName="id_planta" displayFieldName="no_planta" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Descripción" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_sector" caption="Sector" visible="true">
+              <Lookup tableName="public.sga_sector" linkFieldName="id_sector" displayFieldName="no_sector" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_link_ult_relevam" caption="Último Relevamiento" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="va_metros2" caption="Metros Cuadrados" visible="true">
+              <ViewProperties type="text">
+                <Format type="number" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
+              </ViewProperties>
+            </Column>
+          </SingleRecordViewColumns>
+          <EditColumns>
+            <Column fieldName="id_espacio" caption="Id Espacio" visible="false" canSetNull="true" readOnly="true">
+              <EditProperties type="spinEdit" maxValue="100" minValue="0" useConstraints="false" step="1"/>
+            </Column>
+            <Column fieldName="id_tipo_espacio" caption="Tipo Espacio" visible="false" canSetNull="true" readOnly="true">
+              <Lookup tableName="public.sga_tipo_espacio" linkFieldName="id_tipo_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="spinEdit" maxValue="100" minValue="0" useConstraints="false" step="1"/>
+            </Column>
+            <Column fieldName="id_espacio_contenedor" caption="Espacio Contenedor" visible="false" canSetNull="true" readOnly="true">
+              <Lookup tableName="public.sga_espacio" linkFieldName="id_espacio_contenedor" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="spinEdit" maxValue="100" minValue="0" useConstraints="false" step="1"/>
+            </Column>
+            <Column fieldName="co_espacio" caption="Código Espacio" visible="false">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="no_espacio" caption="Nombre Espacio" visible="false">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="co_plano" caption="Código Plano" visible="false">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="id_planta" caption="Planta" visible="false">
+              <Lookup tableName="public.sga_planta" linkFieldName="id_planta" displayFieldName="no_planta" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Descripción" visible="false">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="id_sector" caption="Sector" visible="false">
+              <Lookup tableName="public.sga_sector" linkFieldName="id_sector" displayFieldName="no_sector" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="spinEdit" maxValue="100" minValue="0" useConstraints="false" step="1"/>
+            </Column>
+            <Column fieldName="ds_link_ult_relevam" caption="Último Relevamiento" visible="false">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="va_metros2" caption="Metros Cuadrados" visible="false">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+          </EditColumns>
+          <InsertColumns>
+            <Column fieldName="id_espacio" caption="Id Espacio" visible="false" canSetNull="true" readOnly="true" defaultInsertValue="">
+              <EditProperties type="spinEdit" maxValue="100" minValue="0" useConstraints="false" step="1"/>
+            </Column>
+            <Column fieldName="id_tipo_espacio" caption="Tipo Espacio" visible="false" canSetNull="true" readOnly="true" defaultInsertValue="">
+              <Lookup tableName="public.sga_tipo_espacio" linkFieldName="id_tipo_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="spinEdit" maxValue="100" minValue="0" useConstraints="false" step="1"/>
+            </Column>
+            <Column fieldName="id_espacio_contenedor" caption="Espacio Contenedor" visible="false" canSetNull="true" readOnly="true" defaultInsertValue="">
+              <Lookup tableName="public.sga_espacio" linkFieldName="id_espacio_contenedor" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="spinEdit" maxValue="100" minValue="0" useConstraints="false" step="1"/>
+            </Column>
+            <Column fieldName="co_espacio" caption="Código Espacio" visible="false" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="no_espacio" caption="Nombre Espacio" visible="false" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="co_plano" caption="Código Plano" visible="false" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="id_planta" caption="Planta" visible="false" defaultInsertValue="">
+              <Lookup tableName="public.sga_planta" linkFieldName="id_planta" displayFieldName="no_planta" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Descripción" visible="false" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="id_sector" caption="Sector" visible="false" defaultInsertValue="">
+              <Lookup tableName="public.sga_sector" linkFieldName="id_sector" displayFieldName="no_sector" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="spinEdit" maxValue="100" minValue="0" useConstraints="false" step="1"/>
+            </Column>
+            <Column fieldName="ds_link_ult_relevam" caption="Último Relevamiento" visible="false" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="va_metros2" caption="Metros Cuadrados" visible="false" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+          </InsertColumns>
+          <SimpleSearchColumns>
+            <Column fieldName="id_espacio" caption="Id Espacio" visible="true"/>
+            <Column fieldName="id_tipo_espacio" caption="Tipo Espacio" visible="true">
+              <Lookup tableName="public.sga_tipo_espacio" linkFieldName="id_tipo_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="id_espacio_contenedor" caption="Espacio Contenedor" visible="true">
+              <Lookup tableName="public.sga_espacio" linkFieldName="id_espacio_contenedor" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="co_espacio" caption="Código Espacio" visible="true"/>
+            <Column fieldName="no_espacio" caption="Nombre Espacio" visible="true"/>
+            <Column fieldName="co_plano" caption="Código Plano" visible="true"/>
+            <Column fieldName="id_planta" caption="Planta" visible="true">
+              <Lookup tableName="public.sga_planta" linkFieldName="id_planta" displayFieldName="no_planta" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Descripción" visible="true"/>
+            <Column fieldName="id_sector" caption="Sector" visible="true">
+              <Lookup tableName="public.sga_sector" linkFieldName="id_sector" displayFieldName="no_sector" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="ds_link_ult_relevam" caption="Último Relevamiento" visible="true"/>
+            <Column fieldName="va_metros2" caption="Metros Cuadrados" visible="true"/>
+          </SimpleSearchColumns>
+          <AdvancedSearchColumns>
+            <Column fieldName="id_espacio" caption="Id Espacio" visible="true" useComboBox="false"/>
+            <Column fieldName="id_tipo_espacio" caption="Tipo Espacio" visible="true" useComboBox="false">
+              <Lookup tableName="public.sga_tipo_espacio" linkFieldName="id_tipo_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="id_espacio_contenedor" caption="Espacio Contenedor" visible="true" useComboBox="false">
+              <Lookup tableName="public.sga_espacio" linkFieldName="id_espacio_contenedor" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="co_espacio" caption="Código Espacio" visible="true" useComboBox="false"/>
+            <Column fieldName="no_espacio" caption="Nombre Espacio" visible="true" useComboBox="false"/>
+            <Column fieldName="co_plano" caption="Código Plano" visible="true" useComboBox="false"/>
+            <Column fieldName="id_planta" caption="Planta" visible="true" useComboBox="false">
+              <Lookup tableName="public.sga_planta" linkFieldName="id_planta" displayFieldName="no_planta" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Descripción" visible="true" useComboBox="false"/>
+            <Column fieldName="id_sector" caption="Sector" visible="true" useComboBox="false">
+              <Lookup tableName="public.sga_sector" linkFieldName="id_sector" displayFieldName="no_sector" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="ds_link_ult_relevam" caption="Último Relevamiento" visible="true" useComboBox="false"/>
+            <Column fieldName="va_metros2" caption="Metros Cuadrados" visible="true" useComboBox="false"/>
+          </AdvancedSearchColumns>
+          <ExportColumns>
+            <Column fieldName="id_espacio" caption="Id Espacio" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_tipo_espacio" caption="Tipo Espacio" visible="true">
+              <Lookup tableName="public.sga_tipo_espacio" linkFieldName="id_tipo_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_espacio_contenedor" caption="Espacio Contenedor" visible="true">
+              <Lookup tableName="public.sga_espacio" linkFieldName="id_espacio_contenedor" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="co_espacio" caption="Código Espacio" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_espacio" caption="Nombre Espacio" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="co_plano" caption="Código Plano" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_planta" caption="Planta" visible="true">
+              <Lookup tableName="public.sga_planta" linkFieldName="id_planta" displayFieldName="no_planta" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Descripción" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_sector" caption="Sector" visible="true">
+              <Lookup tableName="public.sga_sector" linkFieldName="id_sector" displayFieldName="no_sector" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_link_ult_relevam" caption="Último Relevamiento" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="va_metros2" caption="Metros Cuadrados" visible="true">
+              <ViewProperties type="text">
+                <Format type="number" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
+              </ViewProperties>
+            </Column>
+          </ExportColumns>
+          <PrintColumns>
+            <Column fieldName="id_espacio" caption="Id Espacio" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_tipo_espacio" caption="Tipo Espacio" visible="true">
+              <Lookup tableName="public.sga_tipo_espacio" linkFieldName="id_tipo_espacio" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_espacio_contenedor" caption="Espacio Contenedor" visible="true">
+              <Lookup tableName="public.sga_espacio" linkFieldName="id_espacio_contenedor" displayFieldName="ds_referencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="co_espacio" caption="Código Espacio" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_espacio" caption="Nombre Espacio" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="co_plano" caption="Código Plano" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_planta" caption="Planta" visible="true">
+              <Lookup tableName="public.sga_planta" linkFieldName="id_planta" displayFieldName="no_planta" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_referencia" caption="Descripción" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_sector" caption="Sector" visible="true">
+              <Lookup tableName="public.sga_sector" linkFieldName="id_sector" displayFieldName="no_sector" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_link_ult_relevam" caption="Último Relevamiento" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="va_metros2" caption="Metros Cuadrados" visible="true">
+              <ViewProperties type="text">
+                <Format type="number" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
+              </ViewProperties>
+            </Column>
+          </PrintColumns>
+        </Columns>
+        <Details/>
+        <RecordPermissions useRecordPermissions="false"/>
+        <PartitionNavigators/>
+      </Page>
     </Pages>
     <UserAuthorization type="hardCoded" passwordEncryption="md5">
       <Users>
@@ -2492,18 +2811,19 @@
         <User name="admin" password="hola1234"/>
       </Users>
     </UserAuthorization>
-    <UserGrants enableGuestAccess="false">
+    <UserGrants enableGuestAccess="true">
       <UserGrant userName="defaultUser"/>
       <UserGrant userName="relevamiento"/>
       <UserGrant userName="servicios-generales"/>
       <UserGrant userName="espacios-fisicos"/>
       <UserGrant userName="ruso"/>
+      <UserGrant userName="guest"/>
       <UserGrant userName="admin" select="1" insert="1" update="1" delete="1" admin="1"/>
       <UserPageGrants>
         <PageGrants userName="defaultUser">
           <PageGrant pageName="public.sga_accion"/>
           <PageGrant pageName="public.sga_tarea_plan"/>
-          <PageGrant pageName="public.sga_espacio" select="1"/>
+          <PageGrant pageName="public.sga_espacio"/>
           <PageGrant pageName="public.sga_bien"/>
           <PageGrant pageName="public.sga_metodologia"/>
           <PageGrant pageName="public.sga_tipo_accion"/>
@@ -2513,6 +2833,7 @@
           <PageGrant pageName="public.sga_sector"/>
           <PageGrant pageName="public.sga_origen"/>
           <PageGrant pageName="public.sga_tipo_espacio"/>
+          <PageGrant pageName="VerEspacio" select="1"/>
         </PageGrants>
         <PageGrants userName="relevamiento">
           <PageGrant pageName="public.sga_accion"/>
@@ -2527,6 +2848,7 @@
           <PageGrant pageName="public.sga_sector"/>
           <PageGrant pageName="public.sga_origen"/>
           <PageGrant pageName="public.sga_tipo_espacio" select="1" insert="1" update="1" delete="1"/>
+          <PageGrant pageName="VerEspacio"/>
         </PageGrants>
         <PageGrants userName="servicios-generales">
           <PageGrant pageName="public.sga_accion" select="1" insert="1" update="1" delete="1"/>
@@ -2541,6 +2863,7 @@
           <PageGrant pageName="public.sga_sector"/>
           <PageGrant pageName="public.sga_origen"/>
           <PageGrant pageName="public.sga_tipo_espacio"/>
+          <PageGrant pageName="VerEspacio"/>
         </PageGrants>
         <PageGrants userName="espacios-fisicos">
           <PageGrant pageName="public.sga_accion"/>
@@ -2555,6 +2878,7 @@
           <PageGrant pageName="public.sga_sector" select="1"/>
           <PageGrant pageName="public.sga_origen"/>
           <PageGrant pageName="public.sga_tipo_espacio" select="1" insert="1" update="1" delete="1"/>
+          <PageGrant pageName="VerEspacio"/>
         </PageGrants>
         <PageGrants userName="ruso">
           <PageGrant pageName="public.sga_accion" select="1" insert="1" update="1" delete="1"/>
@@ -2569,6 +2893,22 @@
           <PageGrant pageName="public.sga_sector" select="1"/>
           <PageGrant pageName="public.sga_origen" select="1"/>
           <PageGrant pageName="public.sga_tipo_espacio" select="1"/>
+          <PageGrant pageName="VerEspacio"/>
+        </PageGrants>
+        <PageGrants userName="guest">
+          <PageGrant pageName="public.sga_accion"/>
+          <PageGrant pageName="public.sga_tarea_plan"/>
+          <PageGrant pageName="public.sga_espacio"/>
+          <PageGrant pageName="public.sga_bien"/>
+          <PageGrant pageName="public.sga_metodologia"/>
+          <PageGrant pageName="public.sga_tipo_accion"/>
+          <PageGrant pageName="public.sga_tipo_bien"/>
+          <PageGrant pageName="public.sga_periodicidad"/>
+          <PageGrant pageName="public.sga_planta"/>
+          <PageGrant pageName="public.sga_sector"/>
+          <PageGrant pageName="public.sga_origen"/>
+          <PageGrant pageName="public.sga_tipo_espacio"/>
+          <PageGrant pageName="VerEspacio" select="1"/>
         </PageGrants>
         <PageGrants userName="admin">
           <PageGrant pageName="public.sga_accion"/>
@@ -2583,6 +2923,7 @@
           <PageGrant pageName="public.sga_sector"/>
           <PageGrant pageName="public.sga_origen"/>
           <PageGrant pageName="public.sga_tipo_espacio"/>
+          <PageGrant pageName="VerEspacio"/>
         </PageGrants>
       </UserPageGrants>
     </UserGrants>

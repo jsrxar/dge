@@ -16,13 +16,13 @@ INSERT INTO dim_tipo_hora (id_tipo_hora, no_tipo_hora, no_turno_hora) VALUES
 --#################
 --####  Turno  ####
 --#################
-INSERT INTO dim_turno (id_turno, no_turno, tx_banda_horaria) VALUES
-(0, 'No Identificado', 'N.I.'),
-(1, 'Mañana', '06:00 a 14:00'),
-(2, 'Tarde',  '14:00 a 22:00'),
-(3, 'Noche',  '22:00 a 06:00'),
-(4, 'Mañana (FS)', '06:00 a 18:00'),
-(5, 'Noche (FS)',  '18:00 a 06:00');
+INSERT INTO dim_turno (id_turno, co_turno, no_turno, tx_banda_horaria) VALUES
+(0, 'NI', 'No Identificado', 'N.I.'),
+(1, 'TM', 'Mañana', '06:00 a 14:00'),
+(2, 'TT', 'Tarde',  '14:00 a 22:00'),
+(3, 'TN', 'Noche',  '22:00 a 06:00'),
+(4, 'FM', 'Mañana (FS)', '06:00 a 18:00'),
+(5, 'FN', 'Noche (FS)',  '18:00 a 06:00');
 
 --#################
 --####  Fecha  ####
