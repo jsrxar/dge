@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<reportRecord xmlns="http://www.pentaho.com">
+    <commonStorageAttributes createdBy="admin" updatedBy="admin" created="2016-03-03T23:28:29.985-03:00" update="2016-04-01T12:40:18.650-03:00">
+        <path name="Agrupado Horas CTO" folder="/home/rrhh/CTO/Agrupado Horas CTO.xanalyzer"/>
+    </commonStorageAttributes>
+    <report catalog="Banda Horaria" cube="HORAS" reportTypeEnum="PIVOT" showRowGrandTotal="false" showColumnGrandTotal="false" useNonVisualTotals="false" showEmptyCells="false" emptyCellDisplay="-" showDrillLinks="false" version="9" autoRefresh="true" freezeColumns="true" freezeRows="true">
+        <measures>
+            <measure formula="[Measures].[Cantidad Dias]" showSum="true" showAggregate="false" showAverage="false" showCount="false" showMax="false" showMin="false" measureTypeEnum="VALUE" sortOrderEnum="NONE" id="[MEASURE:1]"/>
+            <measure formula="[Measures].[Horas Total]" showSum="true" showAggregate="false" showAverage="false" showCount="false" showMax="false" showMin="false" measureTypeEnum="VALUE" sortOrderEnum="NONE" id="[MEASURE:2]" gembarId="measures" gembarOrdinal="2"/>
+        </measures>
+        <columnAttributes>
+            <attribute formula="[Fecha].[Anio]" showSubtotal="false" sortOrderEnum="ASC"/>
+            <attribute formula="[Fecha].[Nombre Mes]" showSubtotal="false" sortOrderEnum="ASC"/>
+        </columnAttributes>
+        <rowAttributes>
+            <attribute formula="[Persona].[Sector]" showSubtotal="true" sortOrderEnum="ASC" gembarId="rows" gembarOrdinal="0"/>
+            <attribute formula="[Persona].[Area]" showSubtotal="false" sortOrderEnum="ASC"/>
+            <attribute formula="[Persona].[Tarea]" showSubtotal="false" sortOrderEnum="ASC"/>
+            <attribute formula="[Persona].[Nombre Persona]" showSubtotal="false" sortOrderEnum="ASC" gembarId="rows" gembarOrdinal="2"/>
+        </rowAttributes>
+        <filters>
+            <filter formula="[Persona].[Tarea]" viewFilterEnum="MULTIPLE">
+                <predicates>
+                    <predicate ordinal="1" operatorEnum="NOT_CONTAIN">
+                        <containsExpression>NULL</containsExpression>
+                    </predicate>
+                </predicates>
+            </filter>
+        </filters>
+        <chartOptions chartType="CUSTOM" customChartType="ccc_bar" legendPosition="RIGHT" showLegend="true" autoRange="true" displayUnits="UNITS_0" autoRangeSecondary="true" displayUnitsSecondary="UNITS_0" lineWidth="2" lineShape="CIRCLE" maxValues="100" backgroundColor="#ffffff" labelColor="#000000" labelSize="12" backgroundFill="NONE" maxChartsPerRow="3" backgroundColorEnd="#ffffff" labelStyle="PLAIN" legendBackgroundColor="#ffffff" legendSize="12" legendColor="#000000" legendStyle="PLAIN" labelFontFamily="Default" legendFontFamily="Default"/>
+        <selectionFilters/>
+        <selectionItems/>
+        <pageSetup excelPageSize="LETTER" pdfPageSize="LETTER" excelOrientation="LANDSCAPE" pdfOrientation="LANDSCAPE" excelScalingType="PERCENT" excelScalingPercent="100" excelScalingPageWide="1" excelScalingPageTall="1" csvIncludeSubtotals="true" csvFormatNumbers="true"/>
+        <drillColumns/>
+    </report>
+    <uiAttributes showFieldList="false" showFieldLayout="false" showFilterPanel="true" fieldListView="CMDVIEWSCHEMA">
+        <rowFieldWidths actualWidths="109,210,187,150">
+            <labelWidth index="0">
+                <width>79</width>
+            </labelWidth>
+            <labelWidth index="2">
+                <width>23</width>
+            </labelWidth>
+            <labelWidth index="3">
+                <width>22</width>
+            </labelWidth>
+        </rowFieldWidths>
+        <columnDataFieldWidths actualWidths="120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120,120">
+            <labelWidth index="0">
+                <width>0</width>
+            </labelWidth>
+            <labelWidth index="1">
+                <width>0</width>
+            </labelWidth>
+            <labelWidth index="2">
+                <width>0</width>
+            </labelWidth>
+            <labelWidth index="3">
+                <width>0</width>
+            </labelWidth>
+            <labelWidth index="4">
+                <width>0</width>
+            </labelWidth>
+            <labelWidth index="5">
+                <width>0</width>
+            </labelWidth>
+            <labelWidth index="6">
+                <width>0</width>
+            </labelWidth>
+            <labelWidth index="7">
+                <width>0</width>
+            </labelWidth>
+            <labelWidth index="8">
+                <width>0</width>
+            </labelWidth>
+            <labelWidth index="9">
+                <width>0</width>
+            </labelWidth>
+            <labelWidth index="10">
+                <width>0</width>
+            </labelWidth>
+            <labelWidth index="11">
+                <width>0</width>
+            </labelWidth>
+            <labelWidth index="12">
+                <width>0</width>
+            </labelWidth>
+            <labelWidth index="13">
+                <width>0</width>
+            </labelWidth>
+            <labelWidth index="14">
+                <width>0</width>
+            </labelWidth>
+            <labelWidth index="15">
+                <width>0</width>
+            </labelWidth>
+            <labelWidth index="16">
+                <width>0</width>
+            </labelWidth>
+            <labelWidth index="17">
+                <width>0</width>
+            </labelWidth>
+            <labelWidth index="18">
+                <width>0</width>
+            </labelWidth>
+            <labelWidth index="19">
+                <width>0</width>
+            </labelWidth>
+            <labelWidth index="20">
+                <width>0</width>
+            </labelWidth>
+            <labelWidth index="21">
+                <width>0</width>
+            </labelWidth>
+        </columnDataFieldWidths>
+        <pluginData>[]</pluginData>
+    </uiAttributes>
+</reportRecord>

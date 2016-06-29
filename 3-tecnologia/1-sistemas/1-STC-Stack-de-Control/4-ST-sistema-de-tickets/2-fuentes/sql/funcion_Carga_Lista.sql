@@ -76,10 +76,12 @@ BEGIN
 	WHERE custom_field_id = id_field
 	  AND id_ori NOT IN ( SELECT id_ori FROM custom_field_enumerations WHERE custom_field_id = id_field );
 
-	-- Actualizando numeracion del campo
+	-- Actualizando numeración del campo
+	/*
 	UPDATE custom_fields
 	SET position = (SELECT COUNT(0) FROM custom_field_enumerations WHERE custom_field_id = id_field)
 	WHERE id = id_field;
+	*/
 
 	RETURN 1;
 END

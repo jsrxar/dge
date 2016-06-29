@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<reportRecord xmlns="http://www.pentaho.com">
+    <commonStorageAttributes createdBy="admin" updatedBy="rrhh" created="2016-03-03T23:28:29.985-03:00" update="2016-04-19T15:06:21.273-03:00">
+        <path name="Detalle Horas" folder="/home/rrhh/Detalle Horas.xanalyzer"/>
+    </commonStorageAttributes>
+    <report catalog="Banda Horaria" cube="HORAS" reportTypeEnum="PIVOT" showRowGrandTotal="false" showColumnGrandTotal="false" useNonVisualTotals="false" showEmptyCells="false" emptyCellDisplay="-" showDrillLinks="false" version="9" autoRefresh="true" freezeColumns="true" freezeRows="true">
+        <measures>
+            <measure formula="[Measures].[Entrada]" showSum="false" showAggregate="false" showAverage="true" showCount="false" showMax="false" showMin="false" measureTypeEnum="VALUE" sortOrderEnum="NONE" id="[MEASURE:0]"/>
+            <measure formula="[Measures].[Salida]" showSum="false" showAggregate="false" showAverage="true" showCount="false" showMax="false" showMin="false" measureTypeEnum="VALUE" sortOrderEnum="NONE" id="[MEASURE:1]"/>
+            <measure formula="[Measures].[Horas Total]" showSum="true" showAggregate="false" showAverage="true" showCount="false" showMax="false" showMin="false" measureTypeEnum="VALUE" sortOrderEnum="NONE" id="[MEASURE:2]"/>
+        </measures>
+        <columnAttributes/>
+        <rowAttributes>
+            <attribute formula="[Persona].[Nombre Persona]" showSubtotal="false" sortOrderEnum="DESC"/>
+            <attribute formula="[Fecha].[Fecha]" showSubtotal="false" sortOrderEnum="ASC"/>
+            <attribute formula="[Fecha.Dia Semana].[Dia Semana]" showSubtotal="false" sortOrderEnum="ASC"/>
+        </rowAttributes>
+        <filters>
+            <filter formula="[Fecha].[Anio]" viewFilterEnum="MULTIPLE">
+                <predicates>
+                    <predicate ordinal="1" operatorEnum="EQUAL">
+                        <member formula="[Fecha].[2016]" caption="2016" pos="0"/>
+                    </predicate>
+                </predicates>
+            </filter>
+            <filter formula="[Persona].[DNI CUIT]" viewFilterEnum="MULTIPLE">
+                <predicates>
+                    <predicate ordinal="1" operatorEnum="EQUAL">
+                        <member formula="[Persona].[DTO].[DIR GRAL TECNICA ADMINISTRATIVA Y LEGAL].[DIRECCION TECNICA OPERATIVA].[CONTROL Y PLANIFICACIÓN].[INVESTIGACION APLICADA].[Equipo Control y Planificación].[24946722]" caption="24946722" pos="0"/>
+                    </predicate>
+                </predicates>
+            </filter>
+        </filters>
+        <chartOptions chartType="CUSTOM" customChartType="ccc_bar" legendPosition="RIGHT" showLegend="true" autoRange="true" displayUnits="UNITS_0" autoRangeSecondary="true" displayUnitsSecondary="UNITS_0" lineWidth="2" lineShape="CIRCLE" maxValues="100" backgroundColor="#ffffff" labelColor="#000000" labelSize="12" backgroundFill="NONE" maxChartsPerRow="3" backgroundColorEnd="#ffffff" labelStyle="PLAIN" legendBackgroundColor="#ffffff" legendSize="12" legendColor="#000000" legendStyle="PLAIN" labelFontFamily="Default" legendFontFamily="Default"/>
+        <selectionFilters/>
+        <selectionItems/>
+        <pageSetup excelPageSize="LETTER" pdfPageSize="LETTER" excelOrientation="LANDSCAPE" pdfOrientation="LANDSCAPE" excelScalingType="PERCENT" excelScalingPercent="100" excelScalingPageWide="1" excelScalingPageTall="1" csvIncludeSubtotals="true" csvFormatNumbers="true"/>
+        <drillColumns/>
+    </report>
+    <uiAttributes showFieldList="true" showFieldLayout="true" showFilterPanel="true" fieldListView="CMDVIEWSCHEMA">
+        <rowFieldWidths actualWidths="113,80,80"/>
+        <columnDataFieldWidths actualWidths="120,120,120">
+            <labelWidth index="0">
+                <width>0</width>
+            </labelWidth>
+            <labelWidth index="1">
+                <width>0</width>
+            </labelWidth>
+            <labelWidth index="2">
+                <width>0</width>
+            </labelWidth>
+        </columnDataFieldWidths>
+        <pluginData>[]</pluginData>
+    </uiAttributes>
+</reportRecord>

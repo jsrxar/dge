@@ -2,7 +2,7 @@
 <script>
 	if ( $( "div.sidebar-nav-fixed" ).length && !$( "#sga_reportes" ).length ) {
 		// Armando arreglo de reportes
-		var rep_dir = 'http://10.13.18.133:8080/pentaho/api/repos/:home:sga';
+		var rep_dir = 'http://reportes.cck.gob.ar:8080/pentaho/api/repos/:home:sga';
 		var rep_nom = [
 			["Orden de Trabajo",     rep_dir, "Orden Trabajo.prpt",          "userid=sga&password=sga"],
 			["Plan General Mensual", rep_dir, "Plan General - Mensual.prpt", "userid=sga&password=sga"],

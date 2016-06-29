@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CDADescriptor>
+   <DataSources>
+      <Connection id="KTR_Limpieza_Areas_Servicio" type="kettle.TransFromFile">
+         <KtrFile>SGA_Limpieza_Areas_Servicio-Banios.ktr</KtrFile>
+      </Connection>
+   </DataSources>
+   <DataAccess access="public" connection="KTR_Limpieza_Areas_Servicio"
+               id="KTR_Limpieza_Areas_Servicio"
+               type="kettle">
+      <Cache duration="3600" enabled="false"/>
+      <Columns/>
+      <Parameters/>
+      <Query>Agrupado2</Query>
+   </DataAccess>
+</CDADescriptor>

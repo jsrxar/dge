@@ -1,0 +1,95 @@
+<Schema name="Control Accesos" measuresCaption="Medidas">
+  <Dimension visible="true" highCardinality="false" name="Persona" caption="Persona" description="Persona que realiza la fichada.">
+    <Hierarchy visible="true" hasAll="true" primaryKey="ACR_CODIG">
+      <Table name="ACREDI" schema="dbo">
+      </Table>
+      <Level name="TIPO ACRED" visible="true" column="ACR_TIPOD" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Tipo Acreditaci&#243;n">
+      </Level>
+      <Level name="EMPRESA AREA" visible="true" column="ACR_DAT03" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Empresa / &#193;rea">
+      </Level>
+      <Level name="DNI CUIT" visible="true" column="ACR_DAT05" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="DNI / CUIT">
+      </Level>
+      <Level name="APELLIDO" visible="true" column="ACR_DAT02" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Apellido">
+      </Level>
+      <Level name="NOMBRE" visible="true" column="ACR_DAT01" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Nombre">
+      </Level>
+      <Level name="EQUIPAMIENTO" visible="true" column="ACR_DAT18" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Equipamiento">
+      </Level>
+      <Level name="FECHA ACRED" visible="true" column="ACR_FEYHO" type="Date" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Fecha Acreditaci&#243;n">
+      </Level>
+      <Level name="FIN ACRED" visible="true" column="ACR_DAT11" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Fin Acreditaci&#243;n">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="Lectura" caption="Detalle Lectura" description="Fichada de la persona.">
+    <Hierarchy visible="true" hasAll="true" primaryKey="LEC_CODIG">
+      <Table name="LECTUR" schema="dbo">
+      </Table>
+      <Level name="DIA" visible="true" column="LEC_FEYHO" ordinalColumn="LEC_CODIG" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="D&#237;a">
+        <KeyExpression>
+          <SQL dialect="mssql">
+            <![CDATA[CONVERT(CHAR(10),lec_feyho,103)]]>
+          </SQL>
+        </KeyExpression>
+        <NameExpression>
+          <SQL dialect="mssql">
+            <![CDATA[CONVERT(CHAR(10),lec_feyho,103)]]>
+          </SQL>
+        </NameExpression>
+        <CaptionExpression>
+          <SQL dialect="mssql">
+            <![CDATA[CONVERT(CHAR(10),lec_feyho,103)]]>
+          </SQL>
+        </CaptionExpression>
+      </Level>
+      <Level name="HORA" visible="true" column="LEC_FEYHO" ordinalColumn="LEC_CODIG" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Hora">
+        <KeyExpression>
+          <SQL dialect="mssql">
+            <![CDATA[CONVERT(CHAR(8),lec_feyho,8)]]>
+          </SQL>
+        </KeyExpression>
+        <NameExpression>
+          <SQL dialect="mssql">
+            <![CDATA[CONVERT(CHAR(8),lec_feyho,8)]]>
+          </SQL>
+        </NameExpression>
+        <CaptionExpression>
+          <SQL dialect="mssql">
+            <![CDATA[CONVERT(CHAR(8),lec_feyho,8)]]>
+          </SQL>
+        </CaptionExpression>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Cube name="On Line" visible="true" cache="true" enabled="true">
+    <Annotations>
+      <Annotation name="AnalyzerFieldListView">
+        <![CDATA[cmdViewSchema]]>
+      </Annotation>
+    </Annotations>
+    <Table name="LECTUR" schema="dbo">
+    </Table>
+    <DimensionUsage source="Persona" name="Persona" visible="true" foreignKey="lec_acred" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Lectura" name="Lectura" visible="true" foreignKey="lec_codig" highCardinality="false">
+    </DimensionUsage>
+    <Measure name="Cantidad" column="lec_codig" formatString="#" aggregator="count">
+    </Measure>
+    <Measure name="Hora Menor" column="lec_feyho" datatype="String" aggregator="min" caption="Menor Hora" visible="true">
+      <CellFormatter>
+        <Script language="JavaScript">
+          <![CDATA[var time = value.toString();
+return time.substring(11, 19);]]>
+        </Script>
+      </CellFormatter>
+    </Measure>
+    <Measure name="Hora Mayor" column="lec_feyho" datatype="String" aggregator="max" caption="Mayor Hora" visible="true">
+      <CellFormatter>
+        <Script language="JavaScript">
+          <![CDATA[var time = value.toString();
+return time.substring(11, 19);]]>
+        </Script>
+      </CellFormatter>
+    </Measure>
+  </Cube>
+</Schema>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CDADescriptor>
+   <DataSources>
+      <Connection id="DS_Lecturas" type="sql.jdbc">
+         <Driver>net.sourceforge.jtds.jdbc.Driver</Driver>
+         <Pass>01234567</Pass>
+         <Url>jdbc:jtds:sqlserver://10.13.17.143:1433/ACREDITACION_CCK;instance=SQLEXPRESS</Url>
+         <User>sa</User>
+      </Connection>
+      <Connection id="DS_Impecable_Dia" type="sql.jdbc">
+         <Driver>net.sourceforge.jtds.jdbc.Driver</Driver>
+         <Pass>01234567</Pass>
+         <Url>jdbc:jtds:sqlserver://10.13.17.143:1433/ACREDITACION_CCK;instance=SQLEXPRESS</Url>
+         <User>sa</User>
+      </Connection>
+      <Connection id="DS_Impecable_Hoy" type="sql.jdbc">
+         <Driver>net.sourceforge.jtds.jdbc.Driver</Driver>
+         <Pass>01234567</Pass>
+         <Url>jdbc:jtds:sqlserver://10.13.17.143:1433/ACREDITACION_CCK;instance=SQLEXPRESS</Url>
+         <User>sa</User>
+      </Connection>
+   </DataSources>
+   <DataAccess access="public" connection="DS_Lecturas" id="DS_Lecturas" type="sql">
+      <Cache duration="10" enabled="false"/>
+      <Columns/>
+      <Parameters/>
+      <Query>SELECT&#xD;
+  CONVERT(varchar, LEC_FEYHO, 8) Hora,&#xD;
+  ACR_DAT05 DNI_CUIT,&#xD;
+  ACR_DAT01 Nombre,&#xD;
+  ACR_DAT02 Apellido,&#xD;
+  ACR_TIPOD Tipo_Acreditacion,&#xD;
+  ACR_DAT03 Empresa_Area&#xD;
+FROM (&#xD;
+  SELECT TOP 30&#xD;
+    le.LEC_FEYHO,&#xD;
+    ac.ACR_DAT05,&#xD;
+    ac.ACR_DAT01,&#xD;
+    ac.ACR_DAT02,&#xD;
+    ac.ACR_TIPOD,&#xD;
+    ac.ACR_DAT03&#xD;
+  FROM LECTUR le LEFT JOIN ACREDI ac&#xD;
+  ON le.LEC_ACRED = ac.ACR_CODIG&#xD;
+  WHERE le.LEC_FEYHO &lt;= GETDATE()&#xD;
+  ORDER BY le.LEC_FEYHO DESC ) LE</Query>
+   </DataAccess>
+   <DataAccess access="public" connection="DS_Impecable_Dia" id="DS_Impecable_Dia" type="sql">
+      <Cache duration="10" enabled="false"/>
+      <Columns/>
+      <Parameters/>
+      <Query>SELECT TOP 10&#xD;
+  CAST(le.LEC_FEYHO AS Date) Dia,&#xD;
+  COUNT(DISTINCT ac.ACR_DAT05) Cantidad&#xD;
+FROM LECTUR le LEFT JOIN ACREDI ac&#xD;
+ON le.LEC_ACRED = ac.ACR_CODIG&#xD;
+WHERE ac.ACR_DAT03 LIKE '%IMPECABLE%'&#xD;
+AND le.LEC_FEYHO &gt; GETDATE()-7&#xD;
+AND le.LEC_FEYHO &lt;= GETDATE()&#xD;
+GROUP BY&#xD;
+  CAST(le.LEC_FEYHO AS Date)</Query>
+   </DataAccess>
+   <DataAccess access="public" connection="DS_Impecable_Hoy" id="DS_Impecable_Hoy" type="sql">
+      <Cache duration="10" enabled="false"/>
+      <Columns/>
+      <Parameters/>
+      <Query>SELECT COUNT(DISTINCT ACR_DAT05)&#xD;
+FROM (&#xD;
+SELECT ac.ACR_DAT05&#xD;
+FROM LECTUR le INNER JOIN ACREDI ac&#xD;
+ON le.LEC_ACRED = ac.ACR_CODIG&#xD;
+WHERE ac.ACR_DAT03 LIKE '%IMPECABLE%'&#xD;
+AND le.LEC_FEYHO BETWEEN DATEADD(HOUR, -12, GETDATE()) AND GETDATE()&#xD;
+EXCEPT&#xD;
+SELECT ac.ACR_DAT05&#xD;
+FROM LECTUR le INNER JOIN ACREDI ac ON le.LEC_ACRED = ac.ACR_CODIG&#xD;
+WHERE ac.ACR_DAT03 LIKE '%IMPECABLE%'&#xD;
+AND le.LEC_FEYHO BETWEEN DATEADD(HOUR, -12, GETDATE()) AND GETDATE()&#xD;
+AND EXISTS (&#xD;
+SELECT 1 FROM LECTUR&#xD;
+WHERE LEC_ACRED = le.LEC_ACRED&#xD;
+AND LEC_FEYHO &lt; le.LEC_FEYHO&#xD;
+AND LEC_FEYHO &gt; DATEADD(HOUR, -12, le.LEC_FEYHO) ) ) a</Query>
+   </DataAccess>
+</CDADescriptor>

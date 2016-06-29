@@ -1,11 +1,11 @@
-select
-	(SELECT name FROM projects  WHERE id = a.project_id) project_name,
-	(SELECT trackers.name FROM trackers INNER JOIN projects_trackers ON trackers.id = projects_trackers.tracker_id
-	 WHERE projects_trackers.project_id = a.project_id
-	   AND trackers.id = a.tracker_id) tracker_name,
+SELECT
+	(SELECT name FROM projects  WHERE id = ss.project_id) project_name,
+	(SELECT tr.name
+	 FROM trackers tr INNER JOIN projects_trackers pt ON tr.id = pt.tracker_id
+	 WHERE pt.project_id = ss.project_id AND tr.id = ss.tracker_id) tracker_name,
 	subject,
-	(SELECT name FROM enumerations WHERE type IN ('IssuePriority') AND id = a.priority_id ) priority_name,
-	(SELECT name FROM issue_statuses WHERE id = a.status_id) status_name,
+	(SELECT name FROM enumerations WHERE type IN ('IssuePriority') AND id = ss.priority_id ) priority_name,
+	(SELECT name FROM issue_statuses WHERE id = ss.status_id) status_name,
 	done_ratio,
 	estimated_hours,
 	created_on,
@@ -13,11 +13,11 @@ select
 	start_date,
 	due_date,
 	closed_on,
-	(SELECT login FROM users WHERE id = a.author_id) author,
-	(SELECT login FROM users WHERE id = a.assigned_to_id) assigned_to,
+	(SELECT login FROM users WHERE id = ss.author_id) author,
+	(SELECT login FROM users WHERE id = ss.assigned_to_id) assigned_to,
 	description
-from issues a
--- order by date(closed_on)
+FROM issues ss
+-- ORDER BY date(closed_on)
 ;
 SELECT * FROM issue_statuses
 ;

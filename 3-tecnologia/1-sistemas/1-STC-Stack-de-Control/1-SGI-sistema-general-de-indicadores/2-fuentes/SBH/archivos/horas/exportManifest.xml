@@ -1,0 +1,1509 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:ExportManifest xmlns:ns2="http://www.pentaho.com/schema/">
+    <ExportManifestInformation exportDate="23-06-2016 05:05:41 GFT" exportBy="admin" rootFolder="/home/" manifestVersion="2"/>
+    <ExportManifestEntity path="rrhh">
+        <ExportManifestProperty>
+            <EntityMetaData name="rrhh" createdDate="2016-01-30T05:20:30.991-03:00" isFolder="true" path="rrhh" isHidden="false" locale="es" title="rrhh"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <aces>
+                    <permissions>ALL</permissions>
+                    <recipient>rrhh</recipient>
+                    <recipientType>USER</recipientType>
+                </aces>
+                <entriesInheriting>false</entriesInheriting>
+                <owner>rrhh</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/Banda Horaria Dia.prpt">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia.prpt" createdDate="2016-03-29T16:59:28.183-03:00" isFolder="false" path="rrhh/Banda Horaria Dia.prpt" isHidden="false" locale="es" description="Banda Horária: Acumulado de lecturas diário" title="Banda Horaria Dia"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/CTO">
+        <ExportManifestProperty>
+            <EntityMetaData name="CTO" createdDate="2016-04-01T12:32:36.207-03:00" isFolder="true" path="rrhh/CTO" isHidden="false" locale="es" title="CTO"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/CTO/Agrupado Horas CTO.xanalyzer">
+        <ExportManifestProperty>
+            <EntityMetaData name="Agrupado Horas CTO.xanalyzer" createdDate="2016-03-05T03:26:35.055-03:00" isFolder="false" path="rrhh/CTO/Agrupado Horas CTO.xanalyzer" isHidden="false" locale="es" title="Agrupado Horas CTO"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/CTO/Detalle Horas CTO.xanalyzer">
+        <ExportManifestProperty>
+            <EntityMetaData name="Detalle Horas CTO.xanalyzer" createdDate="2016-03-03T23:20:49.806-03:00" isFolder="false" path="rrhh/CTO/Detalle Horas CTO.xanalyzer" isHidden="false" locale="es" title="Detalle Horas CTO"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/CTO/Horas Area.prpti">
+        <ExportManifestProperty>
+            <EntityMetaData name="Horas Area.prpti" createdDate="2016-04-22T18:08:30.882-03:00" isFolder="false" path="rrhh/CTO/Horas Area.prpti" isHidden="false" locale="es" description="Horas Area.prpti" title="Horas Area"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>rrhh</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/CTO/Reumen Mensual Fichada CTO 2.prpti">
+        <ExportManifestProperty>
+            <EntityMetaData name="Reumen Mensual Fichada CTO 2.prpti" createdDate="2016-06-22T18:15:25.151-03:00" isFolder="false" path="rrhh/CTO/Reumen Mensual Fichada CTO 2.prpti" isHidden="false" locale="es" description="Reumen Mensual Fichada CTO 2.prpti" title="Reumen Mensual Fichada CTO 2"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/CTO/Reumen Mensual Fichada CTO.prpti">
+        <ExportManifestProperty>
+            <EntityMetaData name="Reumen Mensual Fichada CTO.prpti" createdDate="2016-04-01T12:56:23.510-03:00" isFolder="false" path="rrhh/CTO/Reumen Mensual Fichada CTO.prpti" isHidden="false" locale="es" title="Reumen Mensual Fichada CTO"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/Control de Accesos.xdash">
+        <ExportManifestProperty>
+            <EntityMetaData name="Control de Accesos.xdash" createdDate="2016-04-01T17:47:01.947-03:00" isFolder="false" path="rrhh/Control de Accesos.xdash" isHidden="false" locale="es" description="Control de Accesos.xdash" title="Control de Accesos"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/Detalle Horas.xanalyzer">
+        <ExportManifestProperty>
+            <EntityMetaData name="Detalle Horas.xanalyzer" createdDate="2016-04-19T15:04:27.314-03:00" isFolder="false" path="rrhh/Detalle Horas.xanalyzer" isHidden="false" locale="es" title="Detalle Horas"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/Impecable">
+        <ExportManifestProperty>
+            <EntityMetaData name="Impecable" createdDate="2016-04-01T12:15:13.495-03:00" isFolder="true" path="rrhh/Impecable" isHidden="false" locale="es" title="Impecable"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>rrhh</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/Impecable/Impecable Detallado.prpti">
+        <ExportManifestProperty>
+            <EntityMetaData name="Impecable Detallado.prpti" createdDate="2016-04-01T13:00:12.378-03:00" isFolder="false" path="rrhh/Impecable/Impecable Detallado.prpti" isHidden="false" locale="es" description="Impecable Detallado.prpti" title="Impecable Detallado"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/Impecable/Impecable Inconsistencias.prpt">
+        <ExportManifestProperty>
+            <EntityMetaData name="Impecable Inconsistencias.prpt" createdDate="2016-04-01T12:35:36.635-03:00" isFolder="false" path="rrhh/Impecable/Impecable Inconsistencias.prpt" isHidden="false" locale="es" description="Reporte de inconsistencias en el fichado por empresa y mes" title="Impecable Inconsistencias"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/Impecable/Impecable Listado Mensual.prpti">
+        <ExportManifestProperty>
+            <EntityMetaData name="Impecable Listado Mensual.prpti" createdDate="2016-06-02T15:54:39.417-03:00" isFolder="false" path="rrhh/Impecable/Impecable Listado Mensual.prpti" isHidden="false" locale="es" description="Impecable Listado Mensual.prpti" title="Impecable Listado Mensual"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/Impecable/Impecable Presentismo.prpt">
+        <ExportManifestProperty>
+            <EntityMetaData name="Impecable Presentismo.prpt" createdDate="2016-04-01T12:35:42.068-03:00" isFolder="false" path="rrhh/Impecable/Impecable Presentismo.prpt" isHidden="false" locale="es" description="Reporte de presentismo por empresa y mes" title="Impecable Presentismo"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/Impecable/Presentismo Prueba.prpti">
+        <ExportManifestProperty>
+            <EntityMetaData name="Presentismo Prueba.prpti" createdDate="2016-04-01T13:02:00.611-03:00" isFolder="false" path="rrhh/Impecable/Presentismo Prueba.prpti" isHidden="false" locale="es" description="Presentismo Prueba.prpti" title="Presentismo Prueba"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/Murata Fichada Listado.prpti">
+        <ExportManifestProperty>
+            <EntityMetaData name="Murata Fichada Listado.prpti" createdDate="2016-05-11T14:36:08.160-03:00" isFolder="false" path="rrhh/Murata Fichada Listado.prpti" isHidden="false" locale="es" title="Murata Fichada Listado"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>rrhh</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/Murata General.prpti">
+        <ExportManifestProperty>
+            <EntityMetaData name="Murata General.prpti" createdDate="2016-03-30T12:58:00.165-03:00" isFolder="false" path="rrhh/Murata General.prpti" isHidden="false" locale="es" description="Murata General.prpti" title="Murata General"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>rrhh</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/Murata Listado Mensual.prpti">
+        <ExportManifestProperty>
+            <EntityMetaData name="Murata Listado Mensual.prpti" createdDate="2016-06-02T15:57:32.265-03:00" isFolder="false" path="rrhh/Murata Listado Mensual.prpti" isHidden="false" locale="es" description="Murata Listado Mensual.prpti" title="Murata Listado Mensual"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/OTIS Informe Mensual.prpti">
+        <ExportManifestProperty>
+            <EntityMetaData name="OTIS Informe Mensual.prpti" createdDate="2016-06-21T15:59:51.083-03:00" isFolder="false" path="rrhh/OTIS Informe Mensual.prpti" isHidden="false" locale="es" description="OTIS Informe Mensual.prpti" title="OTIS Informe Mensual"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>rrhh</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/Prueba.prpti">
+        <ExportManifestProperty>
+            <EntityMetaData name="Prueba.prpti" createdDate="2016-03-30T12:15:26.759-03:00" isFolder="false" path="rrhh/Prueba.prpti" isHidden="false" locale="es" description="Prueba.prpti" title="Prueba"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>rrhh</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/Tablero Muestra.xdash">
+        <ExportManifestProperty>
+            <EntityMetaData name="Tablero Muestra.xdash" createdDate="2016-04-01T16:48:36.822-03:00" isFolder="false" path="rrhh/Tablero Muestra.xdash" isHidden="false" locale="es" description="Tablero Muestra.xdash" title="Tablero Muestra"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/Tableros">
+        <ExportManifestProperty>
+            <EntityMetaData name="Tableros" createdDate="2016-04-05T15:43:57.862-03:00" isFolder="true" path="rrhh/Tableros" isHidden="false" locale="es" title="Tableros"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/Tableros/Control de Accesos.cda">
+        <ExportManifestProperty>
+            <EntityMetaData name="Control de Accesos.cda" createdDate="2016-04-04T12:44:57.810-03:00" isFolder="false" path="rrhh/Tableros/Control de Accesos.cda" isHidden="false" locale="es" title="Control de Accesos.cda"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/Tableros/Control de Accesos.cdfde">
+        <ExportManifestProperty>
+            <EntityMetaData name="Control de Accesos.cdfde" createdDate="2016-04-04T12:21:28.482-03:00" isFolder="false" path="rrhh/Tableros/Control de Accesos.cdfde" isHidden="false" locale="es" title="Control de Accesos.cdfde"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/Tableros/Control de Accesos.css">
+        <ExportManifestProperty>
+            <EntityMetaData name="Control de Accesos.css" createdDate="2016-04-04T16:17:50.031-03:00" isFolder="false" path="rrhh/Tableros/Control de Accesos.css" isHidden="false" locale="es" title="Control de Accesos.css"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/Tableros/Control de Accesos.wcdf">
+        <ExportManifestProperty>
+            <EntityMetaData name="Control de Accesos.wcdf" createdDate="2016-04-04T12:21:28.451-03:00" isFolder="false" path="rrhh/Tableros/Control de Accesos.wcdf" isHidden="false" locale="es" description="Control de Accesos al CCK por molinetes de Alem" title="Control de Accesos"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/Tableros/Resultados Varios.cda">
+        <ExportManifestProperty>
+            <EntityMetaData name="Resultados Varios.cda" createdDate="2016-04-05T19:31:54.449-03:00" isFolder="false" path="rrhh/Tableros/Resultados Varios.cda" isHidden="false" locale="es" title="Resultados Varios.cda"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/Tableros/Resultados Varios.cdfde">
+        <ExportManifestProperty>
+            <EntityMetaData name="Resultados Varios.cdfde" createdDate="2016-04-05T17:58:39.556-03:00" isFolder="false" path="rrhh/Tableros/Resultados Varios.cdfde" isHidden="false" locale="es" title="Resultados Varios.cdfde"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/Tableros/Resultados Varios.css">
+        <ExportManifestProperty>
+            <EntityMetaData name="Resultados Varios.css" createdDate="2016-04-05T17:59:23.525-03:00" isFolder="false" path="rrhh/Tableros/Resultados Varios.css" isHidden="false" locale="es" title="Resultados Varios.css"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/Tableros/Resultados Varios.wcdf">
+        <ExportManifestProperty>
+            <EntityMetaData name="Resultados Varios.wcdf" createdDate="2016-04-05T17:58:39.514-03:00" isFolder="false" path="rrhh/Tableros/Resultados Varios.wcdf" isHidden="false" locale="es" description="Resultados Varios" title="Resultados Varios"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/Tableros/SGA_Limpieza_Areas_Servicio-Banios.ktr">
+        <ExportManifestProperty>
+            <EntityMetaData name="SGA_Limpieza_Areas_Servicio-Banios.ktr" createdDate="2016-04-06T18:35:13.636-03:00" isFolder="false" path="rrhh/Tableros/SGA_Limpieza_Areas_Servicio-Banios.ktr" isHidden="true" locale="es" title="SGA_Limpieza_Areas_Servicio-Banios"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados">
+        <ExportManifestProperty>
+            <EntityMetaData name="generados" createdDate="2016-03-28T16:56:07.082-03:00" isFolder="true" path="rrhh/generados" isHidden="false" locale="es" title="generados"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>rrhh</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(10).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(10).xlsx" createdDate="2016-04-08T07:45:01.392-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(10).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(10).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>rrhh</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(11).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(11).xlsx" createdDate="2016-04-09T07:45:00.520-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(11).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(11).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(12).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(12).xlsx" createdDate="2016-04-10T07:45:00.552-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(12).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(12).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(13).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(13).xlsx" createdDate="2016-04-11T07:45:00.615-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(13).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(13).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(14).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(14).xlsx" createdDate="2016-04-12T07:45:01.134-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(14).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(14).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(15).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(15).xlsx" createdDate="2016-04-13T07:45:00.476-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(15).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(15).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(16).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(16).xlsx" createdDate="2016-04-14T07:45:03.656-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(16).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(16).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(17).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(17).xlsx" createdDate="2016-04-15T07:45:01.374-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(17).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(17).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(18).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(18).xlsx" createdDate="2016-04-16T07:45:01.331-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(18).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(18).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(19).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(19).xlsx" createdDate="2016-04-17T07:45:00.532-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(19).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(19).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(2).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(2).xlsx" createdDate="2016-04-01T13:16:44.541-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(2).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(2).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>rrhh</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(20).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(20).xlsx" createdDate="2016-04-18T07:45:00.558-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(20).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(20).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(21).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(21).xlsx" createdDate="2016-04-19T07:45:01.206-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(21).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(21).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(22).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(22).xlsx" createdDate="2016-04-20T07:45:01.137-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(22).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(22).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(23).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(23).xlsx" createdDate="2016-04-21T07:45:04.543-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(23).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(23).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(24).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(24).xlsx" createdDate="2016-04-22T07:45:03.641-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(24).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(24).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(25).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(25).xlsx" createdDate="2016-04-23T07:45:01.258-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(25).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(25).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(26).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(26).xlsx" createdDate="2016-04-24T07:45:00.566-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(26).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(26).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(27).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(27).xlsx" createdDate="2016-04-25T07:45:00.735-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(27).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(27).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(28).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(28).xlsx" createdDate="2016-04-26T07:45:01.332-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(28).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(28).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(29).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(29).xlsx" createdDate="2016-04-27T07:45:00.497-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(29).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(29).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(3).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(3).xlsx" createdDate="2016-04-01T13:20:31.412-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(3).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(3).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>rrhh</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(30).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(30).xlsx" createdDate="2016-04-28T07:45:04.895-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(30).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(30).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(31).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(31).xlsx" createdDate="2016-04-30T07:45:03.333-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(31).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(31).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(32).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(32).xlsx" createdDate="2016-05-01T07:45:00.883-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(32).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(32).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(33).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(33).xlsx" createdDate="2016-05-02T07:45:00.588-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(33).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(33).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(34).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(34).xlsx" createdDate="2016-05-03T07:45:01.723-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(34).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(34).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(35).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(35).xlsx" createdDate="2016-05-04T07:45:00.521-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(35).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(35).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(36).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(36).xlsx" createdDate="2016-05-05T07:45:01.217-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(36).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(36).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(37).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(37).xlsx" createdDate="2016-05-06T07:45:00.529-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(37).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(37).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(38).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(38).xlsx" createdDate="2016-05-07T07:45:01.289-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(38).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(38).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(39).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(39).xlsx" createdDate="2016-05-08T07:45:00.739-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(39).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(39).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(4).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(4).xlsx" createdDate="2016-04-02T07:45:02.289-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(4).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(4).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>rrhh</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(40).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(40).xlsx" createdDate="2016-05-09T07:45:00.640-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(40).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(40).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(41).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(41).xlsx" createdDate="2016-05-10T07:45:01.191-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(41).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(41).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(42).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(42).xlsx" createdDate="2016-05-11T07:45:01.182-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(42).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(42).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(43).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(43).xlsx" createdDate="2016-05-12T07:45:01.180-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(43).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(43).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(44).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(44).xlsx" createdDate="2016-05-13T07:45:01.156-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(44).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(44).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(45).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(45).xlsx" createdDate="2016-05-14T07:45:01.166-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(45).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(45).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(46).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(46).xlsx" createdDate="2016-05-15T07:45:00.620-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(46).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(46).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(47).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(47).xlsx" createdDate="2016-05-16T07:45:00.607-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(47).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(47).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(48).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(48).xlsx" createdDate="2016-05-17T07:45:04.707-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(48).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(48).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(49).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(49).xlsx" createdDate="2016-05-18T07:45:02.014-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(49).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(49).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(5).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(5).xlsx" createdDate="2016-04-03T07:45:00.599-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(5).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(5).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>rrhh</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(50).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(50).xlsx" createdDate="2016-05-19T07:45:01.858-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(50).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(50).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(51).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(51).xlsx" createdDate="2016-05-20T07:45:01.307-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(51).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(51).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(52).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(52).xlsx" createdDate="2016-05-21T07:45:01.161-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(52).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(52).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(53).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(53).xlsx" createdDate="2016-05-22T07:45:00.781-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(53).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(53).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(54).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(54).xlsx" createdDate="2016-05-23T07:45:00.626-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(54).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(54).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(55).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(55).xlsx" createdDate="2016-05-24T07:45:01.226-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(55).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(55).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(56).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(56).xlsx" createdDate="2016-05-25T07:45:01.239-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(56).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(56).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(57).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(57).xlsx" createdDate="2016-05-26T07:45:00.806-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(57).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(57).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(58).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(58).xlsx" createdDate="2016-05-27T07:45:01.178-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(58).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(58).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(59).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(59).xlsx" createdDate="2016-05-28T07:45:01.228-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(59).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(59).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(6).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(6).xlsx" createdDate="2016-04-04T07:45:00.587-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(6).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(6).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>rrhh</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(60).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(60).xlsx" createdDate="2016-05-29T07:45:00.732-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(60).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(60).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(61).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(61).xlsx" createdDate="2016-05-30T07:45:00.584-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(61).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(61).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(62).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(62).xlsx" createdDate="2016-05-31T07:45:01.092-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(62).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(62).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(63).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(63).xlsx" createdDate="2016-06-01T07:45:04.601-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(63).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(63).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(64).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(64).xlsx" createdDate="2016-06-02T07:45:02.007-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(64).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(64).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(65).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(65).xlsx" createdDate="2016-06-03T07:45:01.096-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(65).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(65).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(66).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(66).xlsx" createdDate="2016-06-04T07:45:00.992-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(66).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(66).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(67).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(67).xlsx" createdDate="2016-06-05T07:45:00.613-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(67).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(67).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(68).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(68).xlsx" createdDate="2016-06-06T07:45:00.710-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(68).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(68).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(69).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(69).xlsx" createdDate="2016-06-07T07:45:01.008-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(69).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(69).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(7).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(7).xlsx" createdDate="2016-04-05T07:45:03.494-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(7).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(7).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>rrhh</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(70).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(70).xlsx" createdDate="2016-06-08T07:45:01.071-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(70).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(70).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(71).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(71).xlsx" createdDate="2016-06-09T07:45:01.018-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(71).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(71).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(72).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(72).xlsx" createdDate="2016-06-10T07:45:00.541-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(72).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(72).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(73).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(73).xlsx" createdDate="2016-06-11T07:45:01.151-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(73).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(73).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(74).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(74).xlsx" createdDate="2016-06-12T07:45:00.684-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(74).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(74).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(75).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(75).xlsx" createdDate="2016-06-13T07:45:00.739-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(75).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(75).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(76).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(76).xlsx" createdDate="2016-06-14T07:45:01.033-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(76).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(76).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(77).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(77).xlsx" createdDate="2016-06-15T07:45:00.547-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(77).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(77).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(78).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(78).xlsx" createdDate="2016-06-16T07:45:01.061-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(78).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(78).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(79).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(79).xlsx" createdDate="2016-06-17T07:45:01.033-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(79).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(79).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(8).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(8).xlsx" createdDate="2016-04-06T07:45:03.582-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(8).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(8).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>rrhh</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(80).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(80).xlsx" createdDate="2016-06-18T07:45:00.551-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(80).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(80).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(81).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(81).xlsx" createdDate="2016-06-19T07:45:00.756-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(81).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(81).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(82).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(82).xlsx" createdDate="2016-06-20T07:45:00.638-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(82).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(82).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(83).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(83).xlsx" createdDate="2016-06-21T07:45:00.611-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(83).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(83).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(84).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(84).xlsx" createdDate="2016-06-22T07:45:01.075-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(84).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(84).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(85).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(85).xlsx" createdDate="2016-06-23T07:45:01.032-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(85).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(85).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia(9).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia(9).xlsx" createdDate="2016-04-07T07:45:01.909-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia(9).xlsx" isHidden="false" locale="es" title="Banda Horaria Dia(9).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>rrhh</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Banda Horaria Dia.xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Banda Horaria Dia.xlsx" createdDate="2016-04-01T13:10:02.231-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Banda Horaria Dia.xlsx" isHidden="false" locale="es" title="Banda Horaria Dia.xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>rrhh</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Fichadas Ayer(2).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Fichadas Ayer(2).xlsx" createdDate="2016-03-30T07:45:01.000-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Fichadas Ayer(2).xlsx" isHidden="false" locale="es" title="Fichadas Ayer(2).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Fichadas Ayer(3).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Fichadas Ayer(3).xlsx" createdDate="2016-03-31T07:45:00.988-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Fichadas Ayer(3).xlsx" isHidden="false" locale="es" title="Fichadas Ayer(3).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Fichadas Ayer(4).xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Fichadas Ayer(4).xlsx" createdDate="2016-04-01T07:45:00.965-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Fichadas Ayer(4).xlsx" isHidden="false" locale="es" title="Fichadas Ayer(4).xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Fichadas Ayer.xlsx">
+        <ExportManifestProperty>
+            <EntityMetaData name="Fichadas Ayer.xlsx" createdDate="2016-03-29T17:57:35.461-03:00" createdBy="b690e0b5-a4e1-4b6e-9549-59847f9b5df2" isFolder="false" path="rrhh/generados/Fichadas Ayer.xlsx" isHidden="false" locale="es" title="Fichadas Ayer.xlsx"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/Prueba Marcelito.html">
+        <ExportManifestProperty>
+            <EntityMetaData name="Prueba Marcelito.html" createdDate="2016-03-31T10:41:01.248-03:00" createdBy="4fa4c265-2a36-4fde-8d26-af2d0999973f" isFolder="false" path="rrhh/generados/Prueba Marcelito.html" isHidden="false" locale="es" title="Prueba Marcelito.html"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>rrhh</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/image.png">
+        <ExportManifestProperty>
+            <EntityMetaData name="image.png" createdDate="2016-03-28T17:26:00.977-03:00" isFolder="false" path="rrhh/generados/image.png" isHidden="true" locale="es" title="image.png"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>rrhh</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+    <ExportManifestEntity path="rrhh/generados/style.css">
+        <ExportManifestProperty>
+            <EntityMetaData name="style.css" createdDate="2016-03-28T17:26:00.946-03:00" isFolder="false" path="rrhh/generados/style.css" isHidden="true" locale="es" title="style.css"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>rrhh</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+</ns2:ExportManifest>
