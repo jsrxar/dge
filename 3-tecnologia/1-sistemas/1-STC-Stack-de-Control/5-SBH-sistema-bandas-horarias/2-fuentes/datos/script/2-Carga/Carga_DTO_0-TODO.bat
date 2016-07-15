@@ -1,8 +1,8 @@
 @echo off
 setlocal
 
-set PGHOST=10.13.18.133
-set PDBASE=RRHH
+set PGHOST=monet.myc.ar
+set PDBASE=horas
 set PGUSER=postgres
 set PGPASSWORD=postgres
 set PGOPTIONS=--client-min-messages=warning
@@ -29,8 +29,8 @@ for %%f in (C:\archivos\dto\*.csv) do (
 C:\app\pentaho-ee\postgresql\bin\psql -h %PGHOST% -d %PDBASE% -U %PGUSER% -f Carga_DTO_1b-Stage_Banda.sql
 
 :: Se cambia de usuario de acceso a la base de datos
-set PGUSER=rrhh
-set PGPASSWORD=rrhh
+set PGUSER=horas
+set PGPASSWORD=hola1234
 @echo ==============================(  Cargando Tablas Operacionales  )==============================
 C:\app\pentaho-ee\postgresql\bin\psql -h %PGHOST% -d %PDBASE% -U %PGUSER% -f Carga_DTO_2a-ODS.sql
 

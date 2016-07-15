@@ -1,0 +1,544 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-15">
+<style>
+	  body {
+		font-family: Segoe UI, Arial, sans-serif;
+	  }
+
+	  ul {
+		-webkit-margin-before: 1px;
+        -webkit-margin-after: 5px;
+	  }
+
+	  p {
+		margin: 1px;
+	  }
+
+      .tableNameHeading {
+           margin-top: 2px;
+           margin-bottom: 1px;
+           border-top: 3px solid gray;
+           border-bottom: 1px solid #C0C0C0;
+           background-color:#F5F5FF;
+		   font-size:110%;
+       }
+
+      .tableComment{ background-color:#e4efff; margin-bottom:20px;}
+      .tableDefinition { padding:2px; border-collapse:collapse; margin-top:2px;}
+
+      .tdTableDefinition {
+        padding-right:10px;
+        vertical-align:top;
+        border-bottom:1px solid #C0C0C0;
+      }
+
+      .tdTableHeading {
+        padding:2px;
+        font-weight:bold;
+        vertical-align:top;
+        border-bottom: 1px solid #C0C0C0;
+        background-color: rgb(240,240,240);
+      }
+      
+      .subTitle {
+        font-size:120%;
+		font-weight:bold;
+        background-color:#F5F5FF;
+      }
+    </style>
+<title>SGA</title>
+</head>
+<body>
+<center>
+<h2>SGA</h2>
+</center>
+<h3 class="tableNameHeading">Lista de Entidades</h3>
+<ul style="font-size:80%;">
+<li>
+<a href="#Acci%C3%B3n">Acci&oacute;n</a>
+</li>
+<li>
+<a href="#Bien">Bien</a>
+</li>
+<li>
+<a href="#Espacio">Espacio</a>
+</li>
+<li>
+<a href="#Metodolog%C3%ADa">Metodolog&iacute;a</a>
+</li>
+<li>
+<a href="#Origen">Origen</a>
+</li>
+<li>
+<a href="#Periodicidad">Periodicidad</a>
+</li>
+<li>
+<a href="#Planta">Planta</a>
+</li>
+<li>
+<a href="#Sector">Sector</a>
+</li>
+<li>
+<a href="#Tarea Planificada">Tarea Planificada</a>
+</li>
+<li>
+<a href="#Tipo Acci%C3%B3n">Tipo Acci&oacute;n</a>
+</li>
+<li>
+<a href="#Tipo Bien">Tipo Bien</a>
+</li>
+<li>
+<a href="#Tipo Espacio">Tipo Espacio</a>
+</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Acci%C3%B3n">Acci&oacute;n</a><span> (Tabla: sga_accion)</span>
+<p>Actividad espec&iacute;fica a realizar sobre un tipo de bien y un espacio.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Acci&oacute;n (Clave)</td><td class="tdTableDefinition">id_accion</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico de la acci&oacute;n.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Tipo Espacio</td><td class="tdTableDefinition">id_tipo_espacio</td><td class="tdTableDefinition">SMALLINT</td><td class="tdTableDefinition">Identificador &uacute;nico del tipo de espacio.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Tipo Bien</td><td class="tdTableDefinition">id_tipo_bien</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition">Identificador &uacute;nico del tipo de bien.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Tipo Acci&oacute;n</td><td class="tdTableDefinition">id_tipo_accion</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition">Identificador &uacute;nico del tipo de acci&oacute;n.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Sector</td><td class="tdTableDefinition">id_sector</td><td class="tdTableDefinition">SMALLINT</td><td class="tdTableDefinition">Identificador &uacute;nico del sector.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Origen</td><td class="tdTableDefinition">id_origen</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition">Identificador &uacute;nico de origen.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Metodolog&iacute;a</td><td class="tdTableDefinition">id_metodologia</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition">Identificador &uacute;nico de la metodolog&iacute;a.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Periodicidad</td><td class="tdTableDefinition">id_periodicidad</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition">Identificador &uacute;nico de la periodicidad.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">A demanda?</td><td class="tdTableDefinition">fl_a_demanda</td><td class="tdTableDefinition">BOOLEAN</td><td class="tdTableDefinition">Indicador de si la actividad puede ser realizada a demanda.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Hora Ejecuci&oacute;n</td><td class="tdTableDefinition">fe_horas</td><td class="tdTableDefinition">VARCHAR(600)</td><td class="tdTableDefinition">Horarios de ejecuci&oacute;n de las tareas.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Cantidad Personas</td><td class="tdTableDefinition">nu_personas</td><td class="tdTableDefinition">SMALLINT</td><td class="tdTableDefinition">Cantidad de personas necesarias para la realizaci&oacute;n de la tarea.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Carga Hor&aacute;ria</td><td class="tdTableDefinition">tm_carga_horaria</td><td class="tdTableDefinition">TIME</td><td class="tdTableDefinition">Tiempo estimado de ejecuci&oacute;n de la acci&oacute;n.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Referencia</td><td class="tdTableDefinition">ds_referencia</td><td class="tdTableDefinition">VARCHAR(400)</td><td class="tdTableDefinition">Referencia del registro.</td>
+</tr>
+</table>
+<p class="subTitle">Referencias</p>
+<ul>
+<li>
+<a href="#Tipo Espacio">Tipo Espacio</a> mediante "ID Tipo Espacio"</li>
+<li>
+<a href="#Tipo Bien">Tipo Bien</a> mediante "ID Tipo Bien"</li>
+<li>
+<a href="#Periodicidad">Periodicidad</a> mediante "ID Periodicidad"</li>
+<li>
+<a href="#Metodolog%C3%ADa">Metodolog&iacute;a</a> mediante "ID Metodolog&iacute;a"</li>
+<li>
+<a href="#Origen">Origen</a> mediante "ID Origen"</li>
+<li>
+<a href="#Tipo Acci%C3%B3n">Tipo Acci&oacute;n</a> mediante "ID Tipo Acci&oacute;n"</li>
+<li>
+<a href="#Sector">Sector</a> mediante "ID Sector"</li>
+</ul>
+<p class="subTitle">Referenciado por</p>
+<ul>
+<li>
+<a href="#Tarea Planificada">Tarea Planificada</a> referencia "ID Acci&oacute;n"</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Bien">Bien</a><span> (Tabla: sga_bien)</span>
+<p>Bienes del centro cultural.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Bien (Clave)</td><td class="tdTableDefinition">id_bien</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del bien.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Tipo Bien</td><td class="tdTableDefinition">id_tipo_bien</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del tipo de bien.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Espacio</td><td class="tdTableDefinition">id_espacio</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del espacio.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Cantidad</td><td class="tdTableDefinition">nu_cantidad</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition">Cantidad de bienes del tipo dentro del espacio.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Observaci&oacute;n</td><td class="tdTableDefinition">ds_observacion</td><td class="tdTableDefinition">VARCHAR(400)</td><td class="tdTableDefinition">Observaciones del bien.</td>
+</tr>
+</table>
+<p class="subTitle">Referencias</p>
+<ul>
+<li>
+<a href="#Espacio">Espacio</a> mediante "ID Espacio"</li>
+<li>
+<a href="#Tipo Bien">Tipo Bien</a> mediante "ID Tipo Bien"</li>
+</ul>
+<p class="subTitle">Referenciado por</p>
+<ul>
+<li>
+<a href="#Tarea Planificada">Tarea Planificada</a> referencia "ID Bien"</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Espacio">Espacio</a><span> (Tabla: sga_espacio)</span>
+<p>Espacios f&iacute;sicos dentro del centro cultural.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Espacio Contenedor</td><td class="tdTableDefinition">id_espacio_contenedor</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition">Identificador &uacute;nico del espacio contenedor (padre).</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Sector</td><td class="tdTableDefinition">id_sector</td><td class="tdTableDefinition">SMALLINT</td><td class="tdTableDefinition">Identificador &uacute;nico del sector.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Planta</td><td class="tdTableDefinition">id_planta</td><td class="tdTableDefinition">SMALLINT</td><td class="tdTableDefinition">Identificador &uacute;nico de la planta.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">C&oacute;digo Espacio</td><td class="tdTableDefinition">co_espacio</td><td class="tdTableDefinition">VARCHAR(50) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">C&oacute;digo de espacio.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Nombre Espacio</td><td class="tdTableDefinition">no_espacio</td><td class="tdTableDefinition">VARCHAR(100) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Nombre del espacio.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">C&oacute;digo Plano</td><td class="tdTableDefinition">co_plano</td><td class="tdTableDefinition">VARCHAR(50)</td><td class="tdTableDefinition">Codificaci&oacute;n del espacio en los planos de Espacio F&iacute;sico.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Referencia</td><td class="tdTableDefinition">ds_referencia</td><td class="tdTableDefinition">VARCHAR(400)</td><td class="tdTableDefinition">Referencia del registro.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Metros Cuadrados</td><td class="tdTableDefinition">va_metros2</td><td class="tdTableDefinition">REAL</td><td class="tdTableDefinition">Metros cuadrados del esopacio.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Link &Uacute;lt. Relevamiento</td><td class="tdTableDefinition">ds_link_ult_relevam</td><td class="tdTableDefinition">VARCHAR(200)</td><td class="tdTableDefinition">Link a planilla de &uacute;ltimo relevamiento realizado.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Espacio (Clave)</td><td class="tdTableDefinition">id_espacio</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del espacio.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Tipo Espacio</td><td class="tdTableDefinition">id_tipo_espacio</td><td class="tdTableDefinition">SMALLINT <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del tipo de espacio.</td>
+</tr>
+</table>
+<p class="subTitle">Referencias</p>
+<ul>
+<li>
+<a href="#Espacio">Espacio</a> mediante "ID Espacio Contenedor"</li>
+<li>
+<a href="#Tipo Espacio">Tipo Espacio</a> mediante "ID Tipo Espacio"</li>
+<li>
+<a href="#Planta">Planta</a> mediante "ID Planta"</li>
+<li>
+<a href="#Sector">Sector</a> mediante "ID Sector"</li>
+</ul>
+<p class="subTitle">Referenciado por</p>
+<ul>
+<li>
+<a href="#Espacio">Espacio</a> referencia "ID Espacio"</li>
+<li>
+<a href="#Bien">Bien</a> referencia "ID Espacio"</li>
+<li>
+<a href="#Tarea Planificada">Tarea Planificada</a> referencia "ID Espacio"</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Metodolog%C3%ADa">Metodolog&iacute;a</a><span> (Tabla: sga_metodologia)</span>
+<p>Metodolog&iacute;a de realizaci&oacute;n de la actividad.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Metodolog&iacute;a (Clave)</td><td class="tdTableDefinition">id_metodologia</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico de una metodolog&iacute;a.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Nombre Metodolog&iacute;a</td><td class="tdTableDefinition">no_metodologia</td><td class="tdTableDefinition">VARCHAR(100) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Nombre de la metodolog&iacute;a.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Descripci&oacute;n Metodolog&iacute;a</td><td class="tdTableDefinition">ds_metodologia</td><td class="tdTableDefinition">VARCHAR(4000)</td><td class="tdTableDefinition">Descripci&oacute;n del metodolog&iacute;a.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Origen</td><td class="tdTableDefinition">id_origen</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition">Identificador &uacute;nico de origen.</td>
+</tr>
+</table>
+<p class="subTitle">Referencias</p>
+<ul>
+<li>
+<a href="#Origen">Origen</a> mediante "ID Origen"</li>
+</ul>
+<p class="subTitle">Referenciado por</p>
+<ul>
+<li>
+<a href="#Acci%C3%B3n">Acci&oacute;n</a> referencia "ID Metodolog&iacute;a"</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Origen">Origen</a><span> (Tabla: sga_origen)</span>
+<p>Origen de la especificaci&oacute;n de la actividad/procedimiento.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Origen (Clave)</td><td class="tdTableDefinition">id_origen</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico de origen.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Nombre Origen</td><td class="tdTableDefinition">no_origen</td><td class="tdTableDefinition">VARCHAR(100) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Nombre del origen de la actividad/procedimiento.</td>
+</tr>
+</table>
+<p class="subTitle">Referenciado por</p>
+<ul>
+<li>
+<a href="#Metodolog%C3%ADa">Metodolog&iacute;a</a> referencia "ID Origen"</li>
+<li>
+<a href="#Acci%C3%B3n">Acci&oacute;n</a> referencia "ID Origen"</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Periodicidad">Periodicidad</a><span> (Tabla: sga_periodicidad)</span>
+<p>Periodicidad de realizaci&oacute;n de una tarea.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Periodicidad (Clave)</td><td class="tdTableDefinition">id_periodicidad</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico de la periodicidad.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Periodicidad</td><td class="tdTableDefinition">no_periodicidad</td><td class="tdTableDefinition">VARCHAR(100) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Nombre de la periodicidad.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Frecuencia</td><td class="tdTableDefinition">va_frecuencia</td><td class="tdTableDefinition">REAL <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Frecuencia (en d&iacute;as) de realizaci&oacute;n de la actividad.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Tipo Frecuencia</td><td class="tdTableDefinition">ds_tipo_frecuencia</td><td class="tdTableDefinition">VARCHAR(20) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Unidad en que es medida la frecuencia de ejecuci&oacute;n.</td>
+</tr>
+</table>
+<p class="subTitle">Referenciado por</p>
+<ul>
+<li>
+<a href="#Tarea Planificada">Tarea Planificada</a> referencia "ID Periodicidad"</li>
+<li>
+<a href="#Acci%C3%B3n">Acci&oacute;n</a> referencia "ID Periodicidad"</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Planta">Planta</a><span> (Tabla: sga_planta)</span>
+<p>Planta en la que se encuentra el espacio.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Planta (Clave)</td><td class="tdTableDefinition">id_planta</td><td class="tdTableDefinition">SMALLINT <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico de la planta.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Nombre Planta</td><td class="tdTableDefinition">no_planta</td><td class="tdTableDefinition">VARCHAR(100) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Nombre de la planta.</td>
+</tr>
+</table>
+<p class="subTitle">Referenciado por</p>
+<ul>
+<li>
+<a href="#Espacio">Espacio</a> referencia "ID Planta"</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Sector">Sector</a><span> (Tabla: sga_sector)</span>
+<p>Sector del edificio en que se encuentra el &aacute;rea.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Sector (Clave)</td><td class="tdTableDefinition">id_sector</td><td class="tdTableDefinition">SMALLINT <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del sector.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Nombre Sector</td><td class="tdTableDefinition">no_sector</td><td class="tdTableDefinition">VARCHAR(50) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Nombre del sector (noble, ibndustrial, etc.).</td>
+</tr>
+</table>
+<p class="subTitle">Referenciado por</p>
+<ul>
+<li>
+<a href="#Espacio">Espacio</a> referencia "ID Sector"</li>
+<li>
+<a href="#Acci%C3%B3n">Acci&oacute;n</a> referencia "ID Sector"</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Tarea Planificada">Tarea Planificada</a><span> (Tabla: sga_tarea_plan)</span>
+<p>Planificaci&oacute;n de tareas a realizar sobre el bien.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Tarea Planificada (Clave)</td><td class="tdTableDefinition">id_tarea_plan</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico de la planificaci&oacute;n de la tarea.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Acci&oacute;n</td><td class="tdTableDefinition">id_accion</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico de la acci&oacute;n.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Espacio</td><td class="tdTableDefinition">id_espacio</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition">Identificador &uacute;nico del espacio.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Bien</td><td class="tdTableDefinition">id_bien</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition">Identificador &uacute;nico del bien.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Periodicidad</td><td class="tdTableDefinition">id_periodicidad</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition">Identificador &uacute;nico de la periodicidad.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Fecha In&iacute;cio</td><td class="tdTableDefinition">fe_inicio</td><td class="tdTableDefinition">TIMESTAMP</td><td class="tdTableDefinition">Fecha de in&iacute;cio de la planificaci&oacute;n de la tarea.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Detalle Adicional</td><td class="tdTableDefinition">ds_detalle</td><td class="tdTableDefinition">VARCHAR(4000)</td><td class="tdTableDefinition">Detalles adicionales necesarios para la realizaci&oacute;n de la tarea.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Hora Ejecuci&oacute;n</td><td class="tdTableDefinition">fe_horas</td><td class="tdTableDefinition">VARCHAR(600)</td><td class="tdTableDefinition">Horarios de ejecuci&oacute;n de las tareas.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Cantidad Personas</td><td class="tdTableDefinition">nu_personas</td><td class="tdTableDefinition">SMALLINT</td><td class="tdTableDefinition">Cantidad de personas necesarias para la realizaci&oacute;n de la tarea.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Carga Hor&aacute;ria</td><td class="tdTableDefinition">tm_carga_horaria</td><td class="tdTableDefinition">TIME</td><td class="tdTableDefinition">Tiempo estimado de ejecuci&oacute;n de la acci&oacute;n.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Referencia</td><td class="tdTableDefinition">ds_referencia</td><td class="tdTableDefinition">VARCHAR(400)</td><td class="tdTableDefinition">Referencia del registro.</td>
+</tr>
+</table>
+<p class="subTitle">Referencias</p>
+<ul>
+<li>
+<a href="#Espacio">Espacio</a> mediante "ID Espacio"</li>
+<li>
+<a href="#Bien">Bien</a> mediante "ID Bien"</li>
+<li>
+<a href="#Acci%C3%B3n">Acci&oacute;n</a> mediante "ID Acci&oacute;n"</li>
+<li>
+<a href="#Periodicidad">Periodicidad</a> mediante "ID Periodicidad"</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Tipo Acci%C3%B3n">Tipo Acci&oacute;n</a><span> (Tabla: sga_tipo_accion)</span>
+<p>Tipo de acciones a realizar sobre los bienes.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Actividad (Clave)</td><td class="tdTableDefinition">id_tipo_accion</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del tipo de acci&oacute;n.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Nombre Tipo Acci&oacute;n</td><td class="tdTableDefinition">no_tipo_accion</td><td class="tdTableDefinition">VARCHAR(100) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Nombre del tipo de acci&oacute;n que se puede realizar sobre el bien.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Tipo Acci&oacute;n Padre</td><td class="tdTableDefinition">id_tipo_accion_padre</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition">Identificador &uacute;nico del tipo de acci&oacute;n contenedora.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Referencia</td><td class="tdTableDefinition">ds_referencia</td><td class="tdTableDefinition">VARCHAR(400)</td><td class="tdTableDefinition">Referencia del registro.</td>
+</tr>
+</table>
+<p class="subTitle">Referencias</p>
+<ul>
+<li>
+<a href="#Tipo Acci%C3%B3n">Tipo Acci&oacute;n</a> mediante "ID Tipo Acci&oacute;n Padre"</li>
+</ul>
+<p class="subTitle">Referenciado por</p>
+<ul>
+<li>
+<a href="#Tipo Acci%C3%B3n">Tipo Acci&oacute;n</a> referencia "ID Actividad"</li>
+<li>
+<a href="#Acci%C3%B3n">Acci&oacute;n</a> referencia "ID Actividad"</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Tipo Bien">Tipo Bien</a><span> (Tabla: sga_tipo_bien)</span>
+<p>Tipo de bien.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Tipo Bien (Clave)</td><td class="tdTableDefinition">id_tipo_bien</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del tipo de bien.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Nombre Tipo Bien</td><td class="tdTableDefinition">no_tipo_bien</td><td class="tdTableDefinition">VARCHAR(100) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Nombre del tipo de bien.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Tipo Bien Padre</td><td class="tdTableDefinition">id_tipo_bien_padre</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition">Identificador &uacute;nico del tipo de bien padre (supertipo).</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Referencia</td><td class="tdTableDefinition">ds_referencia</td><td class="tdTableDefinition">VARCHAR(400)</td><td class="tdTableDefinition">Referencia del registro.</td>
+</tr>
+</table>
+<p class="subTitle">Referencias</p>
+<ul>
+<li>
+<a href="#Tipo Bien">Tipo Bien</a> mediante "ID Tipo Bien Padre"</li>
+</ul>
+<p class="subTitle">Referenciado por</p>
+<ul>
+<li>
+<a href="#Bien">Bien</a> referencia "ID Tipo Bien"</li>
+<li>
+<a href="#Tipo Bien">Tipo Bien</a> referencia "ID Tipo Bien"</li>
+<li>
+<a href="#Acci%C3%B3n">Acci&oacute;n</a> referencia "ID Tipo Bien"</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Tipo Espacio">Tipo Espacio</a><span> (Tabla: sga_tipo_espacio)</span>
+<p>Tipo de espacio f&iacute;sico dentro del centro cultural.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Tipo Espacio (Clave)</td><td class="tdTableDefinition">id_tipo_espacio</td><td class="tdTableDefinition">SMALLINT <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del tipo de espacio.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Tipo Espacio</td><td class="tdTableDefinition">no_tipo_espacio</td><td class="tdTableDefinition">VARCHAR(100) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Nombre del tipo de espacio.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Tipo Espacio Padre</td><td class="tdTableDefinition">id_tipo_espacio_padre</td><td class="tdTableDefinition">SMALLINT</td><td class="tdTableDefinition">Identificador &uacute;nico del tipo de espacio padre (supertipo).</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Referencia</td><td class="tdTableDefinition">ds_referencia</td><td class="tdTableDefinition">VARCHAR(400)</td><td class="tdTableDefinition">Referencia del registro.</td>
+</tr>
+</table>
+<p class="subTitle">Referencias</p>
+<ul>
+<li>
+<a href="#Tipo Espacio">Tipo Espacio</a> mediante "ID Tipo Espacio Padre"</li>
+</ul>
+<p class="subTitle">Referenciado por</p>
+<ul>
+<li>
+<a href="#Espacio">Espacio</a> referencia "ID Tipo Espacio"</li>
+<li>
+<a href="#Acci%C3%B3n">Acci&oacute;n</a> referencia "ID Tipo Espacio"</li>
+<li>
+<a href="#Tipo Espacio">Tipo Espacio</a> referencia "ID Tipo Espacio"</li>
+</ul>
+</body>
+</html>

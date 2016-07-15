@@ -1,8 +1,8 @@
 @echo off
 setlocal
 
-set PGHOST=10.13.18.133
-set PDBASE=RRHH
+set PGHOST=monet.myc.ar
+set PDBASE=horas
 @echo ==============================(  Cargando Fichadas  )==============================
 set PGUSER=postgres
 set PGPASSWORD=postgres
@@ -14,8 +14,8 @@ for %%f in (C:\archivos\dto\personal\*.csv) do (
 ::Para mover agregar al FOR: move "%%~dpnxf" "%%~dpfprocesado\%FECHAHORA%.%%~nxf"
 
 @echo ==============================(  Procesando datos cargados  )==============================
-set PGUSER=rrhh
-set PGPASSWORD=rrhh
+set PGUSER=horas
+set PGPASSWORD=hola1234
 C:\app\pentaho-ee\postgresql\bin\psql -h %PGHOST% -d %PDBASE% -U %PGUSER% -f Carga_Personal_CTO.sql
 
 @echo ==============================(  Proceso finalizado  )==============================

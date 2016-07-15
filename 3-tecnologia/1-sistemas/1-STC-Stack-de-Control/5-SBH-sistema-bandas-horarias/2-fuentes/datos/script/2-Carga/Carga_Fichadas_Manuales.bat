@@ -1,8 +1,8 @@
 @echo off
 setlocal
 
-set PGHOST=10.13.18.133
-set PDBASE=RRHH
+set PGHOST=monet.myc.ar
+set PDBASE=horas
 set PGUSER=postgres
 set PGPASSWORD=postgres
 @echo ==============================(  Cargando Fichadas  )==============================
