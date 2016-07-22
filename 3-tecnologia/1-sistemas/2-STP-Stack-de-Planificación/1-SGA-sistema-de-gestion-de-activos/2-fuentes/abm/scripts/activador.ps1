@@ -1,6 +1,7 @@
 ################################################################################
 ## Descripción : Activa y agrega funcionalidades a salida del PHP Generator
 ################################################################################
+[system.text.encoding]::GetEncoding('iso-8859-1')
 
 foreach ($arch in get-content activador.txt) {
 	Write-Host Procesando $arch
@@ -26,7 +27,7 @@ foreach ($arch in get-content activador.txt) {
 			%{$_ -replace 'SetShowBottomPageNavigator\(false\)', 'SetShowBottomPageNavigator(true)'} |
 			%{$_ -replace 'SetAllowDeleteSelected\(false\)', 'SetAllowDeleteSelected(true)'} |
 			%{$_ -replace 'AddBand\(', 'AddBandToBegin('} |
-			%{$_ -replace 'SetRowsPerPage\(.*\)', 'SetRowsPerPage(100)'} | Out-File -Encoding "ASCII" $archtmp
+			%{$_ -replace 'SetRowsPerPage\(.*\)', 'SetRowsPerPage(100)'} | Out-File -Encoding "UTF8" $archtmp
 
 		if ($arch.StartsWith("ver_")) {
 			Write-Host -> No se completa el archivo $arch
@@ -38,6 +39,20 @@ foreach ($arch in get-content activador.txt) {
 				Write-Host -> El archivo ya fue completado
 			}
 		}
+		<#
+		$bytes = [System.IO.File]::ReadAllBytes('C:\Temp\RoboCopyLog.txt')
+		$len = $bytes.Length
+		#Remove the Unicode BOM, and convert to ASCII
+		$text = [System.Text.Encoding]::ASCII.GetString($bytes,2,$len -2)
+		$text
+
+		iconv -f UTF-8 -t ISO-8859-1 in.txt > out.txt
+		$encoding = [Text.Encoding]::GetEncoding('iso-8859-1')
+		$arch88591 = New-Object IO.StreamWriter ($archtmp, $false, $encoding)
+		$xml.Save($arch88591)
+		$arch88591.Close()
+		$arch88591.Dispose()
+		#>
 		Remove-Item $arch
 		Rename-Item $archtmp $arch -Force
 	} else {
