@@ -1,0 +1,48 @@
+################################################################################
+## Descripción : Activa y agrega funcionalidades a salida del PHP Generator
+################################################################################
+
+foreach ($arch in get-content activador.txt) {
+	Write-Host Procesando $arch
+
+	if (Test-Path $arch) {
+		$archtmp = $arch + ".new"
+		$archbase = ([io.fileinfo]$arch).basename + ".cm?"
+
+		get-content $arch | 
+			%{$_ -replace 'SetUseImagesForActions\(false\)', 'SetUseImagesForActions(true)'} |
+			%{$_ -replace 'SetHighlightRowAtHover\(false\)', 'SetHighlightRowAtHover(true)'} |
+			%{$_ -replace 'SetExportToExcelAvailable\(false\)', 'SetExportToExcelAvailable(true)'} |
+			%{$_ -replace 'SetExportToWordAvailable\(false\)', 'SetExportToWordAvailable(true)'} |
+			%{$_ -replace 'SetExportToXmlAvailable\(false\)', 'SetExportToXmlAvailable(true)'} |
+			%{$_ -replace 'SetExportToCsvAvailable\(false\)', 'SetExportToCsvAvailable(true)'} |
+			%{$_ -replace 'SetExportToPdfAvailable\(false\)', 'SetExportToPdfAvailable(true)'} |
+			%{$_ -replace 'SetPrinterFriendlyAvailable\(false\)', 'SetPrinterFriendlyAvailable(true)'} |
+			%{$_ -replace 'SetSimpleSearchAvailable\(false\)', 'SetSimpleSearchAvailable(true)'} |
+			%{$_ -replace 'SetAdvancedSearchAvailable\(false\)', 'SetAdvancedSearchAvailable(true)'} |
+			%{$_ -replace 'SetFilterRowAvailable\(false\)', 'SetFilterRowAvailable(true)'} |
+			%{$_ -replace 'SetVisualEffectsEnabled\(false\)', 'SetVisualEffectsEnabled(true)'} |
+			%{$_ -replace 'SetShowTopPageNavigator\(false\)', 'SetShowTopPageNavigator(true)'} |
+			%{$_ -replace 'SetShowBottomPageNavigator\(false\)', 'SetShowBottomPageNavigator(true)'} |
+			%{$_ -replace 'SetAllowDeleteSelected\(false\)', 'SetAllowDeleteSelected(true)'} |
+			%{$_ -replace 'AddBand\(', 'AddBandToBegin('} |
+			%{$_ -replace 'SetRowsPerPage\(.*\)', 'SetRowsPerPage(100)'} > $archtmp
+
+		if ($arch.StartsWith("ver_")) {
+			Write-Host -> No se completa el archivo $arch
+		} else {
+			if(@( Get-Content $archtmp | Where-Object { $_.Contains("?>") } ).Count -eq 0) {
+				Add-Content $archtmp "include 'general.php'; ?>"
+				Get-Content $archbase -ErrorAction SilentlyContinue | Add-Content $archtmp
+			} else {
+				Write-Host -> El archivo ya fue completado
+			}
+		}
+		Remove-Item $arch
+		Rename-Item $archtmp $arch -Force
+	} else {
+		Write-Host -> El archivo no existe
+	}
+}
+
+Write-Host Proceso finalizado

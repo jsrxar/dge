@@ -1,4 +1,7 @@
 #!/bin/ksh
+################################################################################
+## Descripción : Activa y agrega funcionalidades a salida del PHP Generator
+################################################################################
 
 for arch in `cat activador.txt`;do
 	echo "Procesando ${arch}"
@@ -21,20 +24,23 @@ for arch in `cat activador.txt`;do
 			sed 's/SetAllowDeleteSelected(false)/SetAllowDeleteSelected(true)/g' | \
 			sed 's/AddBand(/AddBandToBegin(/g' | \
 			sed 's/SetRowsPerPage(.*)/SetRowsPerPage(100)/g' > ${arch}.new
-			
+		
 		if [[ ${arch} == ver_* ]]; then
 			echo "-> No se completa el archivo ${arch}"
 			mv ${arch}.new ${arch}
 		else
 			grep "?>" ${arch} >/dev/null 2>&1
 			if [ $? -ne 0 ]; then
-				cat ${arch}.new general.php ${arch%%.*}.cm? >${arch} 2>/dev/null
+				echo "include 'general.php'; ?>" >> ${arch}.new 2>/dev/null
+				cat ${arch}.new ${arch%%.*}.cm? >${arch} 2>/dev/null
 				rm ${arch}.new
 			else
-				echo "-> archivo ya completado"
+				echo "-> El archivo ya fue completado"
 				mv ${arch}.new ${arch}
 			fi
 		fi
+	else
+		echo "-> El archivo no existe"
 	fi
 done
 

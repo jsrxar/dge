@@ -1,12 +1,11 @@
-?>
 <script>
 	if ( $( "div.sidebar-nav-fixed" ).length && !$( "#sga_reportes" ).length ) {
 		// Armando arreglo de reportes
 		var rep_dir = 'http://reportes.cck.gob.ar:8080/pentaho/api/repos/:home:sga';
 		var rep_nom = [
-			["Orden de Trabajo",     rep_dir, "Orden Trabajo.prpt",          "userid=sga&password=sga"],
-			["Plan General Mensual", rep_dir, "Plan General - Mensual.prpt", "userid=sga&password=sga"],
-			["Plan General Semanal", rep_dir, "Plan General - Semanal.prpt", "userid=sga&password=sga"]
+			["Plan General Diario",  rep_dir, "Plan General - Diario.prpt",  "userid=sga&password=sga"],
+			["Plan General Semanal", rep_dir, "Plan General - Semanal.prpt", "userid=sga&password=sga"],
+			["Plan General Mensual", rep_dir, "Plan General - Mensual.prpt", "userid=sga&password=sga"]
 		];
 
 		// Armando HTML de llamada
