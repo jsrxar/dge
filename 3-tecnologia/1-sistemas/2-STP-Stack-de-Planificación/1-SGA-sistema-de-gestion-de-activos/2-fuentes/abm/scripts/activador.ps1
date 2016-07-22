@@ -1,5 +1,5 @@
 ################################################################################
-## DescripciÃ³n : Activa y agrega funcionalidades a salida del PHP Generator
+## Descripción : Activa y agrega funcionalidades a salida del PHP Generator
 ################################################################################
 
 foreach ($arch in get-content activador.txt) {
@@ -26,13 +26,13 @@ foreach ($arch in get-content activador.txt) {
 			%{$_ -replace 'SetShowBottomPageNavigator\(false\)', 'SetShowBottomPageNavigator(true)'} |
 			%{$_ -replace 'SetAllowDeleteSelected\(false\)', 'SetAllowDeleteSelected(true)'} |
 			%{$_ -replace 'AddBand\(', 'AddBandToBegin('} |
-			%{$_ -replace 'SetRowsPerPage\(.*\)', 'SetRowsPerPage(100)'} > $archtmp
+			%{$_ -replace 'SetRowsPerPage\(.*\)', 'SetRowsPerPage(100)'} | Out-File -Encoding "ASCII" $archtmp
 
 		if ($arch.StartsWith("ver_")) {
 			Write-Host -> No se completa el archivo $arch
 		} else {
 			if(@( Get-Content $archtmp | Where-Object { $_.Contains("?>") } ).Count -eq 0) {
-				Add-Content $archtmp "include 'general.php'; ?>"
+				Add-Content $archtmp "include 'general.php'; ?>`n"
 				Get-Content $archbase -ErrorAction SilentlyContinue | Add-Content $archtmp
 			} else {
 				Write-Host -> El archivo ya fue completado
