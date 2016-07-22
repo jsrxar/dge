@@ -7,7 +7,7 @@ foreach ($arch in get-content activador.txt) {
 	Write-Host Procesando $arch
 
 	if (Test-Path $arch) {
-		$archtmp = $arch + ".new"
+		$archtmp = $PSScriptRoot + "\" + $arch + ".borrar"
 		$archbase = ([io.fileinfo]$arch).basename + ".cm?"
 
 		get-content $arch | 
@@ -39,22 +39,18 @@ foreach ($arch in get-content activador.txt) {
 				Write-Host -> El archivo ya fue completado
 			}
 		}
-		<#
-		$bytes = [System.IO.File]::ReadAllBytes('C:\Temp\RoboCopyLog.txt')
-		$len = $bytes.Length
-		#Remove the Unicode BOM, and convert to ASCII
-		$text = [System.Text.Encoding]::ASCII.GetString($bytes,2,$len -2)
-		$text
+		#Convierte la salida de nuevo a ISO-8859-1
+		Start-Process -FilePath "iconv/iconv.exe" `
+		              -ArgumentList "-f UTF-8 -t ISO-8859-1 -c $archtmp" `
+		              -RedirectStandardOutput "$arch" `
+		              -RedirectStandardError "iconv_error.txt" `
+		              -Wait `
+		              -WindowStyle Hidden
+		Remove-Item $archtmp
 
-		iconv -f UTF-8 -t ISO-8859-1 in.txt > out.txt
-		$encoding = [Text.Encoding]::GetEncoding('iso-8859-1')
-		$arch88591 = New-Object IO.StreamWriter ($archtmp, $false, $encoding)
-		$xml.Save($arch88591)
-		$arch88591.Close()
-		$arch88591.Dispose()
-		#>
-		Remove-Item $arch
-		Rename-Item $archtmp $arch -Force
+		# Para que la salida quede como UTF-8
+		#Remove-Item $arch
+		#Rename-Item $archtmp $arch -Force
 	} else {
 		Write-Host -> El archivo no existe
 	}
