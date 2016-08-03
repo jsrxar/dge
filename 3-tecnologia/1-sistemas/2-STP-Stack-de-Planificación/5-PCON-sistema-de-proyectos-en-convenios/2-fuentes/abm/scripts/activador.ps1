@@ -1,13 +1,16 @@
 ################################################################################
 ## Descripción : Activa y agrega funcionalidades a salida del PHP Generator
 ################################################################################
+param(
+[string]$dir
+)
 [system.text.encoding]::GetEncoding('iso-8859-1')
 
 foreach ($arch in get-content activador.txt) {
 	Write-Host Procesando $arch
 
 	if (Test-Path $arch) {
-		$archtmp = $PSScriptRoot + "\" + $arch + ".borrar"
+		$archtmp = $dir + "\" + $arch + ".borrar"
 		$archbase = ([io.fileinfo]$arch).basename + ".cm?"
 
 		get-content $arch | 
@@ -40,12 +43,11 @@ foreach ($arch in get-content activador.txt) {
 			}
 		}
 		#Convierte la salida de nuevo a ISO-8859-1
-		Start-Process -FilePath "iconv/iconv.exe" `
+		Start-Process -FilePath "$dir\iconv\iconv.exe" `
 		              -ArgumentList "-f UTF-8 -t ISO-8859-1 -c $archtmp" `
 		              -RedirectStandardOutput "$arch" `
 		              -RedirectStandardError "iconv_error.txt" `
-		              -Wait `
-		              -WindowStyle Hidden
+		              -Wait
 		Remove-Item $archtmp
 
 		# Para que la salida quede como UTF-8

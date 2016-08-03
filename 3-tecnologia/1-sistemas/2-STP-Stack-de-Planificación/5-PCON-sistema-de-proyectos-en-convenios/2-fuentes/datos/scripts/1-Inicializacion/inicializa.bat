@@ -12,7 +12,7 @@ C:\app\pentaho-ee\postgresql\bin\psql -h %PGHOST% -d %PDBASE% -U %PGUSER% -f 1a-
 @echo ==============================(  1b - Creando Objetos Base  )==============================
 set PGUSER=convenios
 set PGPASSWORD=C0nv3n10s@16
-C:\app\pentaho-ee\postgresql\bin\psql -h %PGHOST% -d %PDBASE% -U %PGUSER% -f 1b-1b-Crea_Objetos.sql
+C:\app\pentaho-ee\postgresql\bin\psql -h %PGHOST% -d %PDBASE% -U %PGUSER% -f 1b-Crea_Objetos.sql
 
 @echo ==============================(  1d - Creando Triggers  )==============================
 C:\app\pentaho-ee\postgresql\bin\psql -h %PGHOST% -d %PDBASE% -U %PGUSER% -f 1c-Crea_Triggers.sql
