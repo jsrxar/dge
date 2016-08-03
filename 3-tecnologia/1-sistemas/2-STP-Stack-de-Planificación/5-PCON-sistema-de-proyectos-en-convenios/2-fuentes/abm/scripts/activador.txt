@@ -1,0 +1,13 @@
+proyecto.php
+item.php
+factura.php
+documento.php
+organismo.php
+convenio.php
+proveedor.php
+lugar.php
+espacio.php
+area_requirente.php
+tipo_documento.php
+tipo_item.php
+tipo_proyecto.php

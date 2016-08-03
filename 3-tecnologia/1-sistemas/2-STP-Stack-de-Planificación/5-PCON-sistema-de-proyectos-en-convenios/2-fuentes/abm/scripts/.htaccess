@@ -1,0 +1,7 @@
+Order Allow,Deny
+Allow from all
+Options +ExecCGI -Indexes
+DirectoryIndex login.php
+DefaultLanguage es-AR
+AddDefaultCharset UTF-8
+ServerSignature Off

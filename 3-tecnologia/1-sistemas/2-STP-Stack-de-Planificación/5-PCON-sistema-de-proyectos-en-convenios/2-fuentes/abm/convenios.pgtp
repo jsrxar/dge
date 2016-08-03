@@ -1,0 +1,2490 @@
+<Project productVersion="14.10.0.11" localizationFileName="C:\app\PostgreSQL PHP Generator\lang.es.php" phpDriver="0" outputPath="C:\app\xampp\htdocs\convenios" copySystemFiles="true" outputFilesExtension="php" colorSchemeName="Cerulean">
+  <ConnectionOptions host="localhost" port="5432" login="convenios" password="VZCV[JOVJ:CKV*FN" database="CONVENIOS" client_encoding="">
+    <ssh_secure secure="false" port="22" authentication_mode="0"/>
+    <http_tunnel tunneling="false" url="">
+      <http_proxy_server use_proxy="false" port="8080"/>
+      <http_authentication/>
+    </http_tunnel>
+  </ConnectionOptions>
+  <ScriptConnectionOptions host="localhost" port="5432" login="convenios" password="VZCV[JOVJ:CKV*FN" database="CONVENIOS" client_encoding="">
+    <ssh_secure secure="false" port="22" authentication_mode="0"/>
+    <http_tunnel tunneling="false" url="">
+      <http_proxy_server use_proxy="false" port="8080"/>
+      <http_authentication/>
+    </http_tunnel>
+  </ScriptConnectionOptions>
+  <Queries/>
+  <FieldContainers/>
+  <Presentation disableMagicQuotesRuntime="false" showEnvironmentVariables="false" showExecutedQueries="false" showPHPErrorsAndWarnings="false">
+    <Pages>
+      <Page type="table" tableName="public.proyecto" fileName="proyecto" caption="Proyecto" shortCaption="Proyecto" groupName="Proyectos" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true">
+        <DefaultSortedColumns>
+          <Column fieldName="id_proyecto" orderType="0"/>
+        </DefaultSortedColumns>
+        <BeforeGridText/>
+        <Columns>
+          <ViewColumns>
+            <Column fieldName="id_proyecto" caption="ID" visible="false" headerHint="Identificador único del proyecto." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nu_proyecto" caption="Número" visible="false" headerHint="Número del proyecto en la planilla." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_proyecto" caption="Nombre" visible="true" headerHint="Nombre del proyecto." totalFunction="0">
+              <ViewProperties type="text" maxLength="75">
+                <DivAttributes align="left" bold="true"/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="id_tipo_proyecto" caption="Tipo" visible="true" headerHint="Tipo del proyecto." totalFunction="0">
+              <Lookup tableName="public.tipo_proyecto" linkFieldName="id_tipo_proyecto" displayFieldName="no_tipo_proyecto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="tipo_proyecto.php?operation=view&amp;pk0=%id_tipo_proyecto%"/>
+            </Column>
+            <Column fieldName="id_convenio" caption="Convenio" visible="false" headerHint="Convenio asociado al proyecto." totalFunction="0">
+              <Lookup tableName="public.convenio" linkFieldName="id_convenio" displayFieldName="no_convenio" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="convenio.php?operation=view&amp;pk0=%id_convenio%"/>
+            </Column>
+            <Column fieldName="id_area_requirente" caption="Area Requirente" visible="true" headerHint="Área requirente del proyecto." totalFunction="0">
+              <Lookup tableName="public.area_requirente" linkFieldName="id_area_requirente" displayFieldName="no_area_requirente" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="area_requirente.php?operation=view&amp;pk0=%id_area_requirente%"/>
+            </Column>
+            <Column fieldName="id_lugar" caption="Lugar" visible="true" headerHint="Lugar donde se ejecuta el proyecto." totalFunction="0">
+              <Lookup tableName="public.lugar" linkFieldName="id_lugar" displayFieldName="no_lugar" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="lugar.php?operation=view&amp;pk0=%id_lugar%"/>
+            </Column>
+            <Column fieldName="va_monto_proyecto" caption="Monto" visible="true" headerHint="Monto del proyecto sin comisión." totalFunction="0">
+              <ViewProperties type="text">
+                <DivAttributes align="right">
+                  <CustomAttributes>
+style=&quot;width:85px&quot;                  </CustomAttributes>
+                </DivAttributes>
+                <Format type="currency" decimalSeparator="," thousandSeparator="." currencySymbol="$ "/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="tx_cronograma" caption="Cronograma" visible="false" headerHint="Cronograma del proyecto." totalFunction="0">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="fl_estado" caption="OK?" visible="true" headerHint="Si el estado está OK." totalFunction="0">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="ds_observaciones" caption="Observaciones" visible="false" headerHint="Observaciones generales sobre el proyecto." totalFunction="0">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+          </ViewColumns>
+          <SingleRecordViewColumns>
+            <Column fieldName="id_proyecto" caption="ID" visible="true" headerHint="Identificador único del proyecto.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nu_proyecto" caption="Número" visible="false" headerHint="Número del proyecto en la planilla.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_proyecto" caption="Nombre" visible="true" headerHint="Nombre del proyecto.">
+              <ViewProperties type="text" maxLength="75">
+                <DivAttributes align="left" bold="true"/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="id_tipo_proyecto" caption="Tipo" visible="true" headerHint="Tipo del proyecto.">
+              <Lookup tableName="public.tipo_proyecto" linkFieldName="id_tipo_proyecto" displayFieldName="no_tipo_proyecto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="tipo_proyecto.php?operation=view&amp;pk0=%id_tipo_proyecto%"/>
+            </Column>
+            <Column fieldName="id_convenio" caption="Convenio" visible="true" headerHint="Convenio asociado al proyecto.">
+              <Lookup tableName="public.convenio" linkFieldName="id_convenio" displayFieldName="no_convenio" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="convenio.php?operation=view&amp;pk0=%id_convenio%"/>
+            </Column>
+            <Column fieldName="id_area_requirente" caption="Area Requirente" visible="true" headerHint="Área requirente del proyecto.">
+              <Lookup tableName="public.area_requirente" linkFieldName="id_area_requirente" displayFieldName="no_area_requirente" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="area_requirente.php?operation=view&amp;pk0=%id_area_requirente%"/>
+            </Column>
+            <Column fieldName="id_lugar" caption="Lugar" visible="true" headerHint="Lugar donde se ejecuta el proyecto.">
+              <Lookup tableName="public.lugar" linkFieldName="id_lugar" displayFieldName="no_lugar" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="lugar.php?operation=view&amp;pk0=%id_lugar%"/>
+            </Column>
+            <Column fieldName="va_monto_proyecto" caption="Monto" visible="true" headerHint="Monto del proyecto sin comisión.">
+              <ViewProperties type="text">
+                <DivAttributes align="right">
+                  <CustomAttributes>
+style=&quot;width:85px&quot;                  </CustomAttributes>
+                </DivAttributes>
+                <Format type="currency" decimalSeparator="," thousandSeparator="." currencySymbol="$ "/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="tx_cronograma" caption="Cronograma" visible="true" headerHint="Cronograma del proyecto.">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="fl_estado" caption="OK?" visible="true" headerHint="Si el estado está OK.">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="ds_observaciones" caption="Observaciones" visible="true" headerHint="Observaciones generales sobre el proyecto.">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+          </SingleRecordViewColumns>
+          <EditColumns>
+            <Column fieldName="id_proyecto" caption="ID" visible="false" readOnly="true">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="nu_proyecto" caption="Número" visible="false" canSetNull="true" readOnly="true" controlVisible="false" enabled="false">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix="">
+                <AdvancedProperties customAttributes="onkeypress='return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57'"/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="no_proyecto" caption="Nombre" visible="true">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="id_tipo_proyecto" caption="Tipo" visible="true">
+              <Lookup tableName="public.tipo_proyecto" linkFieldName="id_tipo_proyecto" displayFieldName="no_tipo_proyecto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="id_convenio" caption="Convenio" visible="true">
+              <Lookup tableName="public.convenio" linkFieldName="id_convenio" displayFieldName="no_convenio" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="id_area_requirente" caption="Area Requirente" visible="true" canSetNull="true">
+              <Lookup tableName="public.area_requirente" linkFieldName="id_area_requirente" displayFieldName="no_area_requirente" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="id_lugar" caption="Lugar" visible="true" canSetNull="true">
+              <Lookup tableName="public.lugar" linkFieldName="id_lugar" displayFieldName="no_lugar" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="va_monto_proyecto" caption="Monto" visible="true" canSetNull="true">
+              <EditProperties type="textBox" HTMLFilterString="audio[pepepe]" size="0" maxLength="0" placeholder="Monto sin comisión" prefix="$" suffix="">
+                <AdvancedProperties inlineStyles="text-align:right" customAttributes="onkeypress='return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57'"/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="tx_cronograma" caption="Cronograma" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="fl_estado" caption="OK?" visible="true" canSetNull="true">
+              <EditProperties type="checkBox"/>
+            </Column>
+            <Column fieldName="ds_observaciones" caption="Observaciones" visible="true" canSetNull="true">
+              <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+            </Column>
+          </EditColumns>
+          <InsertColumns>
+            <Column fieldName="id_proyecto" caption="ID" visible="false" readOnly="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="nu_proyecto" caption="Número" visible="false" canSetNull="true" readOnly="true" controlVisible="false" enabled="false" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix="">
+                <AdvancedProperties customAttributes="onkeypress='return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57'"/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="no_proyecto" caption="Nombre" visible="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="id_tipo_proyecto" caption="Tipo" visible="true" defaultInsertValue="">
+              <Lookup tableName="public.tipo_proyecto" linkFieldName="id_tipo_proyecto" displayFieldName="no_tipo_proyecto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="id_convenio" caption="Convenio" visible="true" defaultInsertValue="">
+              <Lookup tableName="public.convenio" linkFieldName="id_convenio" displayFieldName="no_convenio" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="id_area_requirente" caption="Area Requirente" visible="true" canSetNull="true" defaultInsertValue="">
+              <Lookup tableName="public.area_requirente" linkFieldName="id_area_requirente" displayFieldName="no_area_requirente" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="id_lugar" caption="Lugar" visible="true" canSetNull="true" defaultInsertValue="">
+              <Lookup tableName="public.lugar" linkFieldName="id_lugar" displayFieldName="no_lugar" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="va_monto_proyecto" caption="Monto" visible="true" canSetNull="true" defaultInsertValue="0">
+              <EditProperties type="textBox" HTMLFilterString="audio[pepepe]" size="0" maxLength="0" placeholder="Monto sin comisión" prefix="$" suffix="">
+                <AdvancedProperties inlineStyles="text-align:right" customAttributes="onkeypress='return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57'"/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="tx_cronograma" caption="Cronograma" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="fl_estado" caption="OK?" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="checkBox"/>
+            </Column>
+            <Column fieldName="ds_observaciones" caption="Observaciones" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+            </Column>
+          </InsertColumns>
+          <SimpleSearchColumns>
+            <Column fieldName="id_proyecto" caption="ID" visible="true"/>
+            <Column fieldName="nu_proyecto" caption="Número" visible="false"/>
+            <Column fieldName="no_proyecto" caption="Nombre" visible="true"/>
+            <Column fieldName="id_tipo_proyecto" caption="Tipo" visible="true">
+              <Lookup tableName="public.tipo_proyecto" linkFieldName="id_tipo_proyecto" displayFieldName="no_tipo_proyecto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="id_convenio" caption="Convenio" visible="true">
+              <Lookup tableName="public.convenio" linkFieldName="id_convenio" displayFieldName="no_convenio" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="id_area_requirente" caption="Area Requirente" visible="true">
+              <Lookup tableName="public.area_requirente" linkFieldName="id_area_requirente" displayFieldName="no_area_requirente" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="id_lugar" caption="Lugar" visible="true">
+              <Lookup tableName="public.lugar" linkFieldName="id_lugar" displayFieldName="no_lugar" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="va_monto_proyecto" caption="Monto" visible="true"/>
+            <Column fieldName="tx_cronograma" caption="Cronograma" visible="true"/>
+            <Column fieldName="fl_estado" caption="OK?" visible="true"/>
+            <Column fieldName="ds_observaciones" caption="Observaciones" visible="true"/>
+          </SimpleSearchColumns>
+          <AdvancedSearchColumns>
+            <Column fieldName="id_proyecto" caption="ID" visible="true" useComboBox="false"/>
+            <Column fieldName="nu_proyecto" caption="Número" visible="false" useComboBox="false"/>
+            <Column fieldName="no_proyecto" caption="Nombre" visible="true" useComboBox="false"/>
+            <Column fieldName="id_tipo_proyecto" caption="Tipo" visible="true" useComboBox="false">
+              <Lookup tableName="public.tipo_proyecto" linkFieldName="id_tipo_proyecto" displayFieldName="no_tipo_proyecto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="id_convenio" caption="Convenio" visible="true" useComboBox="false">
+              <Lookup tableName="public.convenio" linkFieldName="id_convenio" displayFieldName="no_convenio" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="id_area_requirente" caption="Area Requirente" visible="true" useComboBox="false">
+              <Lookup tableName="public.area_requirente" linkFieldName="id_area_requirente" displayFieldName="no_area_requirente" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="id_lugar" caption="Lugar" visible="true" useComboBox="false">
+              <Lookup tableName="public.lugar" linkFieldName="id_lugar" displayFieldName="no_lugar" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="va_monto_proyecto" caption="Monto" visible="true" useComboBox="false"/>
+            <Column fieldName="tx_cronograma" caption="Cronograma" visible="true" useComboBox="false"/>
+            <Column fieldName="fl_estado" caption="OK?" visible="true" useComboBox="false"/>
+            <Column fieldName="ds_observaciones" caption="Observaciones" visible="true" useComboBox="false"/>
+          </AdvancedSearchColumns>
+          <ExportColumns>
+            <Column fieldName="id_proyecto" caption="ID" visible="true" headerHint="Identificador único del proyecto.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nu_proyecto" caption="Número" visible="false" headerHint="Número del proyecto en la planilla.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_proyecto" caption="No Proyecto" visible="true" headerHint="Nombre del proyecto.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_tipo_proyecto" caption="Tipo" visible="true" headerHint="Tipo del proyecto.">
+              <Lookup tableName="public.tipo_proyecto" linkFieldName="id_tipo_proyecto" displayFieldName="no_tipo_proyecto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="tipo_proyecto.php?operation=view&amp;pk0=%id_tipo_proyecto%"/>
+            </Column>
+            <Column fieldName="id_convenio" caption="Convenio" visible="true" headerHint="Convenio asociado al proyecto.">
+              <Lookup tableName="public.convenio" linkFieldName="id_convenio" displayFieldName="no_convenio" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="convenio.php?operation=view&amp;pk0=%id_convenio%"/>
+            </Column>
+            <Column fieldName="id_area_requirente" caption="Area Requirente" visible="true" headerHint="Área requirente del proyecto.">
+              <Lookup tableName="public.area_requirente" linkFieldName="id_area_requirente" displayFieldName="no_area_requirente" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="area_requirente.php?operation=view&amp;pk0=%id_area_requirente%"/>
+            </Column>
+            <Column fieldName="id_lugar" caption="Lugar" visible="true" headerHint="Lugar donde se ejecuta el proyecto.">
+              <Lookup tableName="public.lugar" linkFieldName="id_lugar" displayFieldName="no_lugar" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="lugar.php?operation=view&amp;pk0=%id_lugar%"/>
+            </Column>
+            <Column fieldName="va_monto_proyecto" caption="Monto" visible="true" headerHint="Monto del proyecto sin comisión.">
+              <ViewProperties type="text">
+                <DivAttributes align="right">
+                  <CustomAttributes>
+style=&quot;width:85px&quot;                  </CustomAttributes>
+                </DivAttributes>
+                <Format type="currency" decimalSeparator="," thousandSeparator="." currencySymbol="$ "/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="tx_cronograma" caption="Tx Cronograma" visible="true" headerHint="Cronograma del proyecto.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="fl_estado" caption="OK?" visible="true" headerHint="Si el estado está OK.">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="ds_observaciones" caption="Ds Observaciones" visible="true" headerHint="Observaciones generales sobre el proyecto.">
+              <ViewProperties type="text"/>
+            </Column>
+          </ExportColumns>
+          <PrintColumns>
+            <Column fieldName="id_proyecto" caption="ID" visible="true" headerHint="Identificador único del proyecto.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nu_proyecto" caption="Número" visible="false" headerHint="Número del proyecto en la planilla.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_proyecto" caption="No Proyecto" visible="true" headerHint="Nombre del proyecto.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_tipo_proyecto" caption="Tipo" visible="true" headerHint="Tipo del proyecto.">
+              <Lookup tableName="public.tipo_proyecto" linkFieldName="id_tipo_proyecto" displayFieldName="no_tipo_proyecto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="tipo_proyecto.php?operation=view&amp;pk0=%id_tipo_proyecto%"/>
+            </Column>
+            <Column fieldName="id_convenio" caption="Convenio" visible="true" headerHint="Convenio asociado al proyecto.">
+              <Lookup tableName="public.convenio" linkFieldName="id_convenio" displayFieldName="no_convenio" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="convenio.php?operation=view&amp;pk0=%id_convenio%"/>
+            </Column>
+            <Column fieldName="id_area_requirente" caption="Area Requirente" visible="true" headerHint="Área requirente del proyecto.">
+              <Lookup tableName="public.area_requirente" linkFieldName="id_area_requirente" displayFieldName="no_area_requirente" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="area_requirente.php?operation=view&amp;pk0=%id_area_requirente%"/>
+            </Column>
+            <Column fieldName="id_lugar" caption="Lugar" visible="true" headerHint="Lugar donde se ejecuta el proyecto.">
+              <Lookup tableName="public.lugar" linkFieldName="id_lugar" displayFieldName="no_lugar" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="lugar.php?operation=view&amp;pk0=%id_lugar%"/>
+            </Column>
+            <Column fieldName="va_monto_proyecto" caption="Monto" visible="true" headerHint="Monto del proyecto sin comisión.">
+              <ViewProperties type="text">
+                <DivAttributes align="right">
+                  <CustomAttributes>
+style=&quot;width:85px&quot;                  </CustomAttributes>
+                </DivAttributes>
+                <Format type="currency" decimalSeparator="," thousandSeparator="." currencySymbol="$ "/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="tx_cronograma" caption="Tx Cronograma" visible="true" headerHint="Cronograma del proyecto.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="fl_estado" caption="OK?" visible="true" headerHint="Si el estado está OK.">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="ds_observaciones" caption="Ds Observaciones" visible="true" headerHint="Observaciones generales sobre el proyecto.">
+              <ViewProperties type="text"/>
+            </Column>
+          </PrintColumns>
+        </Columns>
+        <Details/>
+        <RecordPermissions useRecordPermissions="false"/>
+        <PartitionNavigators/>
+      </Page>
+      <Page type="table" tableName="public.item" fileName="item" caption="Ítem" shortCaption="Ítem" groupName="Proyectos" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true">
+        <BeforeGridText/>
+        <Columns>
+          <ViewColumns>
+            <Column fieldName="id_item" caption="ID" visible="true" headerHint="Identificador único del ítem." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_proyecto" caption="Proyecto" visible="true" headerHint="Proyecto al que pertenece el ítem." totalFunction="0">
+              <Lookup tableName="public.proyecto" linkFieldName="id_proyecto" displayFieldName="no_proyecto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="proyecto.php?operation=view&amp;pk0=%id_proyecto%"/>
+            </Column>
+            <Column fieldName="id_proveedor" caption="Proveedor" visible="true" headerHint="Proveedor del ítem del proyecto." totalFunction="0">
+              <Lookup tableName="public.proveedor" linkFieldName="id_proveedor" displayFieldName="no_proveedor" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="proveedor.php?operation=view&amp;pk0=%id_proveedor%"/>
+            </Column>
+            <Column fieldName="id_espacio" caption="Espacio" visible="true" headerHint="Espacio de ejecución del ítem." totalFunction="0">
+              <Lookup tableName="public.espacio" linkFieldName="id_espacio" displayFieldName="no_espacio" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="espacio.php?operation=view&amp;pk0=%id_espacio%"/>
+            </Column>
+            <Column fieldName="id_tipo_item" caption="Tipo Ítem" visible="true" headerHint="Tipo del ítem." totalFunction="0">
+              <Lookup tableName="public.tipo_item" linkFieldName="id_tipo_item" displayFieldName="no_tipo_item" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="tipo_item.php?operation=view&amp;pk0=%id_tipo_item%"/>
+            </Column>
+            <Column fieldName="no_item" caption="Nombre Ítem" visible="true" headerHint="Detalle del ítem." totalFunction="0">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="va_importe" caption="Importe" visible="false" headerHint="Importe del ítem." totalFunction="0">
+              <ViewProperties type="text">
+                <DivAttributes align="right">
+                  <CustomAttributes>
+style=&quot;width:85px&quot;                  </CustomAttributes>
+                </DivAttributes>
+                <Format type="currency" decimalSeparator="," thousandSeparator="." currencySymbol="$ "/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="va_iva" caption="Iva" visible="false" headerHint="Valor de IVA sobre el importe del ítem." totalFunction="0">
+              <ViewProperties type="text">
+                <DivAttributes align="right">
+                  <CustomAttributes>
+style=&quot;width:85px&quot;                  </CustomAttributes>
+                </DivAttributes>
+                <Format type="currency" decimalSeparator="," thousandSeparator="." currencySymbol="$ "/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="va_monto_item" caption="Monto Ítem" visible="true" headerHint="Monto total del ítem del proyecto." totalFunction="0">
+              <ViewProperties type="text">
+                <DivAttributes align="right">
+                  <CustomAttributes>
+style=&quot;width:85px&quot;                  </CustomAttributes>
+                </DivAttributes>
+                <Format type="currency" decimalSeparator="," thousandSeparator="." currencySymbol="$ "/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="va_saldo" caption="Saldo" visible="true" headerHint="Saldo con el proveedor." totalFunction="0">
+              <ViewProperties type="text">
+                <DivAttributes align="right">
+                  <CustomAttributes>
+style=&quot;width:85px&quot;                  </CustomAttributes>
+                </DivAttributes>
+                <Format type="currency" decimalSeparator="," thousandSeparator="." currencySymbol="$ "/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="tx_estado" caption="Estado" visible="false" headerHint="Estado del ítem." totalFunction="0">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="tx_expediente" caption="Expediente" visible="false" headerHint="Expediente relacionado con el ítem del proyecto." totalFunction="0">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="id_convenio" caption="Convenio" visible="false" headerHint="Convenio al que pertenece el ítem." totalFunction="0">
+              <Lookup tableName="public.convenio" linkFieldName="id_convenio" displayFieldName="no_convenio" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="convenio.php?operation=view&amp;pk0=%id_convenio%"/>
+            </Column>
+            <Column fieldName="id_factura" caption="Factura" visible="true" headerHint="Factura del proveedor sobre el ítem." totalFunction="0">
+              <Lookup tableName="public.factura" linkFieldName="id_factura" displayFieldName="va_factura" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text">
+                <DivAttributes align="right"/>
+                <Format type="currency" decimalSeparator="," thousandSeparator="." currencySymbol="$ "/>
+              </ViewProperties>
+              <Hyperlink template="factura.php?operation=view&amp;pk0=%id_factura%"/>
+            </Column>
+            <Column fieldName="ds_observaciones" caption="Observaciones" visible="false" headerHint="Observaciones generales sobre el ítem del proyecto." totalFunction="0">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+          </ViewColumns>
+          <SingleRecordViewColumns>
+            <Column fieldName="id_item" caption="ID" visible="true" headerHint="Identificador único del ítem.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_proyecto" caption="Proyecto" visible="true" headerHint="Proyecto al que pertenece el ítem.">
+              <Lookup tableName="public.proyecto" linkFieldName="id_proyecto" displayFieldName="no_proyecto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="proyecto.php?operation=view&amp;pk0=%id_proyecto%"/>
+            </Column>
+            <Column fieldName="id_proveedor" caption="Proveedor" visible="true" headerHint="Proveedor del ítem del proyecto.">
+              <Lookup tableName="public.proveedor" linkFieldName="id_proveedor" displayFieldName="no_proveedor" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="proveedor.php?operation=view&amp;pk0=%id_proveedor%"/>
+            </Column>
+            <Column fieldName="id_espacio" caption="Espacio" visible="true" headerHint="Espacio de ejecución del ítem.">
+              <Lookup tableName="public.espacio" linkFieldName="id_espacio" displayFieldName="no_espacio" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="espacio.php?operation=view&amp;pk0=%id_espacio%"/>
+            </Column>
+            <Column fieldName="id_tipo_item" caption="Tipo Ítem" visible="true" headerHint="Tipo del ítem.">
+              <Lookup tableName="public.tipo_item" linkFieldName="id_tipo_item" displayFieldName="no_tipo_item" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="tipo_item.php?operation=view&amp;pk0=%id_tipo_item%"/>
+            </Column>
+            <Column fieldName="no_item" caption="Nombre Ítem" visible="true" headerHint="Detalle del ítem.">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="va_importe" caption="Importe" visible="true" headerHint="Importe del ítem.">
+              <ViewProperties type="text">
+                <DivAttributes align="right">
+                  <CustomAttributes>
+style=&quot;width:85px&quot;                  </CustomAttributes>
+                </DivAttributes>
+                <Format type="currency" decimalSeparator="," thousandSeparator="." currencySymbol="$ "/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="va_iva" caption="Iva" visible="true" headerHint="Valor de IVA sobre el importe del ítem.">
+              <ViewProperties type="text">
+                <DivAttributes align="right">
+                  <CustomAttributes>
+style=&quot;width:85px&quot;                  </CustomAttributes>
+                </DivAttributes>
+                <Format type="currency" decimalSeparator="," thousandSeparator="." currencySymbol="$ "/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="va_monto_item" caption="Monto Ítem" visible="true" headerHint="Monto total del ítem del proyecto.">
+              <ViewProperties type="text">
+                <DivAttributes align="right">
+                  <CustomAttributes>
+style=&quot;width:85px&quot;                  </CustomAttributes>
+                </DivAttributes>
+                <Format type="currency" decimalSeparator="," thousandSeparator="." currencySymbol="$ "/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="va_saldo" caption="Saldo" visible="true" headerHint="Saldo con el proveedor.">
+              <ViewProperties type="text">
+                <DivAttributes align="right">
+                  <CustomAttributes>
+style=&quot;width:85px&quot;                  </CustomAttributes>
+                </DivAttributes>
+                <Format type="currency" decimalSeparator="," thousandSeparator="." currencySymbol="$ "/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="tx_estado" caption="Estado" visible="true" headerHint="Estado del ítem.">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="tx_expediente" caption="Expediente" visible="true" headerHint="Expediente relacionado con el ítem del proyecto.">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="id_convenio" caption="Convenio" visible="true" headerHint="Convenio al que pertenece el ítem.">
+              <Lookup tableName="public.convenio" linkFieldName="id_convenio" displayFieldName="no_convenio" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="convenio.php?operation=view&amp;pk0=%id_convenio%"/>
+            </Column>
+            <Column fieldName="id_factura" caption="Factura" visible="true" headerHint="Factura del proveedor sobre el ítem.">
+              <Lookup tableName="public.factura" linkFieldName="id_factura" displayFieldName="va_factura" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text">
+                <DivAttributes align="right"/>
+                <Format type="currency" decimalSeparator="," thousandSeparator="." currencySymbol="$ "/>
+              </ViewProperties>
+              <Hyperlink template="factura.php?operation=view&amp;pk0=%id_factura%"/>
+            </Column>
+            <Column fieldName="ds_observaciones" caption="Observaciones" visible="true" headerHint="Observaciones generales sobre el ítem del proyecto.">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+          </SingleRecordViewColumns>
+          <EditColumns>
+            <Column fieldName="id_item" caption="ID" visible="false" readOnly="true">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="id_proyecto" caption="Proyecto" visible="true">
+              <Lookup tableName="public.proyecto" linkFieldName="id_proyecto" displayFieldName="no_proyecto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="id_proveedor" caption="Proveedor" visible="true" canSetNull="true">
+              <Lookup tableName="public.proveedor" linkFieldName="id_proveedor" displayFieldName="no_proveedor" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="id_espacio" caption="Espacio" visible="true" canSetNull="true">
+              <Lookup tableName="public.espacio" linkFieldName="id_espacio" displayFieldName="no_espacio" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="id_tipo_item" caption="Tipo Ítem" visible="true">
+              <Lookup tableName="public.tipo_item" linkFieldName="id_tipo_item" displayFieldName="no_tipo_item" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="no_item" caption="Nombre Ítem" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="va_importe" caption="Importe" visible="true">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="$" suffix="">
+                <AdvancedProperties inlineStyles="text-align:right" customAttributes="onkeypress='return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57'"/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="va_iva" caption="Iva" visible="true">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="$" suffix="">
+                <AdvancedProperties inlineStyles="text-align:right" customAttributes="onkeypress='return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57'"/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="va_monto_item" caption="Monto Ítem" visible="true" readOnly="true">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="$" suffix="">
+                <AdvancedProperties inlineStyles="text-align:right" customAttributes="onkeypress='return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57'"/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="va_saldo" caption="Saldo" visible="true">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="$" suffix="">
+                <AdvancedProperties inlineStyles="text-align:right" customAttributes="onkeypress='return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57'"/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="tx_estado" caption="Estado" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_expediente" caption="Expediente" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="id_convenio" caption="Convenio" visible="true">
+              <Lookup tableName="public.convenio" linkFieldName="id_convenio" displayFieldName="no_convenio" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="id_factura" caption="Factura" visible="true" canSetNull="true">
+              <Lookup tableName="public.factura" linkFieldName="id_factura" displayFieldName="va_factura" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox" itemTemplate="Factura Nº %nu_factura% - Fecha %fe_factura% - Cuota %nu_cuota% - Valor $ %va_factura%">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="ds_observaciones" caption="Observaciones" visible="true" canSetNull="true">
+              <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+            </Column>
+          </EditColumns>
+          <InsertColumns>
+            <Column fieldName="id_item" caption="ID" visible="false" readOnly="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="id_proyecto" caption="Proyecto" visible="true" defaultInsertValue="">
+              <Lookup tableName="public.proyecto" linkFieldName="id_proyecto" displayFieldName="no_proyecto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="id_proveedor" caption="Proveedor" visible="true" canSetNull="true" defaultInsertValue="">
+              <Lookup tableName="public.proveedor" linkFieldName="id_proveedor" displayFieldName="no_proveedor" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="id_espacio" caption="Espacio" visible="true" canSetNull="true" defaultInsertValue="">
+              <Lookup tableName="public.espacio" linkFieldName="id_espacio" displayFieldName="no_espacio" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="id_tipo_item" caption="Tipo Ítem" visible="true" defaultInsertValue="">
+              <Lookup tableName="public.tipo_item" linkFieldName="id_tipo_item" displayFieldName="no_tipo_item" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="no_item" caption="Nombre Ítem" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="va_importe" caption="Importe" visible="true" canSetServerDefault="true" defaultInsertValue="0">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="$" suffix="">
+                <AdvancedProperties inlineStyles="text-align:right" customAttributes="onkeypress='return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57'"/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="va_iva" caption="Iva" visible="true" canSetServerDefault="true" defaultInsertValue="0">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="$" suffix="">
+                <AdvancedProperties inlineStyles="text-align:right" customAttributes="onkeypress='return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57'"/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="va_monto_item" caption="Monto Ítem" visible="true" canSetServerDefault="true" readOnly="true" defaultInsertValue="0">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="$" suffix="">
+                <AdvancedProperties inlineStyles="text-align:right" customAttributes="onkeypress='return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57'"/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="va_saldo" caption="Saldo" visible="true" canSetServerDefault="true" defaultInsertValue="0">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="$" suffix="">
+                <AdvancedProperties inlineStyles="text-align:right" customAttributes="onkeypress='return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57'"/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="tx_estado" caption="Estado" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_expediente" caption="Expediente" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="id_convenio" caption="Convenio" visible="true" defaultInsertValue="">
+              <Lookup tableName="public.convenio" linkFieldName="id_convenio" displayFieldName="no_convenio" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="id_factura" caption="Factura" visible="true" canSetNull="true" defaultInsertValue="">
+              <Lookup tableName="public.factura" linkFieldName="id_factura" displayFieldName="va_factura" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox" itemTemplate="Factura Nº %nu_factura% - Fecha %fe_factura% - Cuota %nu_cuota% - Valor $ %va_factura%">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="ds_observaciones" caption="Observaciones" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+            </Column>
+          </InsertColumns>
+          <SimpleSearchColumns>
+            <Column fieldName="id_item" caption="ID" visible="true"/>
+            <Column fieldName="id_proyecto" caption="Proyecto" visible="true">
+              <Lookup tableName="public.proyecto" linkFieldName="id_proyecto" displayFieldName="no_proyecto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="id_proveedor" caption="Proveedor" visible="true">
+              <Lookup tableName="public.proveedor" linkFieldName="id_proveedor" displayFieldName="no_proveedor" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="id_espacio" caption="Espacio" visible="true">
+              <Lookup tableName="public.espacio" linkFieldName="id_espacio" displayFieldName="no_espacio" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="id_tipo_item" caption="Tipo Ítem" visible="true">
+              <Lookup tableName="public.tipo_item" linkFieldName="id_tipo_item" displayFieldName="no_tipo_item" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="no_item" caption="Nombre Ítem" visible="true"/>
+            <Column fieldName="va_importe" caption="Importe" visible="true"/>
+            <Column fieldName="va_iva" caption="Iva" visible="true"/>
+            <Column fieldName="va_monto_item" caption="Monto Ítem" visible="true"/>
+            <Column fieldName="va_saldo" caption="Saldo" visible="true"/>
+            <Column fieldName="tx_estado" caption="Estado" visible="true"/>
+            <Column fieldName="tx_expediente" caption="Expediente" visible="true"/>
+            <Column fieldName="id_convenio" caption="Convenio" visible="true">
+              <Lookup tableName="public.convenio" linkFieldName="id_convenio" displayFieldName="no_convenio" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="id_factura" caption="Factura" visible="true">
+              <Lookup tableName="public.factura" linkFieldName="id_factura" displayFieldName="va_factura" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="ds_observaciones" caption="Observaciones" visible="true"/>
+          </SimpleSearchColumns>
+          <AdvancedSearchColumns>
+            <Column fieldName="id_item" caption="ID" visible="true" useComboBox="false"/>
+            <Column fieldName="id_proyecto" caption="Proyecto" visible="true" useComboBox="false">
+              <Lookup tableName="public.proyecto" linkFieldName="id_proyecto" displayFieldName="no_proyecto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="id_proveedor" caption="Proveedor" visible="true" useComboBox="false">
+              <Lookup tableName="public.proveedor" linkFieldName="id_proveedor" displayFieldName="no_proveedor" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="id_espacio" caption="Espacio" visible="true" useComboBox="false">
+              <Lookup tableName="public.espacio" linkFieldName="id_espacio" displayFieldName="no_espacio" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="id_tipo_item" caption="Tipo Ítem" visible="true" useComboBox="false">
+              <Lookup tableName="public.tipo_item" linkFieldName="id_tipo_item" displayFieldName="no_tipo_item" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="no_item" caption="Nombre Ítem" visible="true" useComboBox="false"/>
+            <Column fieldName="va_importe" caption="Importe" visible="true" useComboBox="false"/>
+            <Column fieldName="va_iva" caption="Iva" visible="true" useComboBox="false"/>
+            <Column fieldName="va_monto_item" caption="Monto Ítem" visible="true" useComboBox="false"/>
+            <Column fieldName="va_saldo" caption="Saldo" visible="true" useComboBox="false"/>
+            <Column fieldName="tx_estado" caption="Estado" visible="true" useComboBox="false"/>
+            <Column fieldName="tx_expediente" caption="Expediente" visible="true" useComboBox="false"/>
+            <Column fieldName="id_convenio" caption="Convenio" visible="true" useComboBox="false">
+              <Lookup tableName="public.convenio" linkFieldName="id_convenio" displayFieldName="no_convenio" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="id_factura" caption="Factura" visible="true" useComboBox="false">
+              <Lookup tableName="public.factura" linkFieldName="id_factura" displayFieldName="va_factura" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="ds_observaciones" caption="Observaciones" visible="true" useComboBox="false"/>
+          </AdvancedSearchColumns>
+          <ExportColumns>
+            <Column fieldName="id_item" caption="ID" visible="true" headerHint="Identificador único del ítem.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_proyecto" caption="Proyecto" visible="true" headerHint="Proyecto al que pertenece el ítem.">
+              <Lookup tableName="public.proyecto" linkFieldName="id_proyecto" displayFieldName="no_proyecto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="proyecto.php?operation=view&amp;pk0=%id_proyecto%"/>
+            </Column>
+            <Column fieldName="id_proveedor" caption="Proveedor" visible="true" headerHint="Proveedor del ítem del proyecto.">
+              <Lookup tableName="public.proveedor" linkFieldName="id_proveedor" displayFieldName="no_proveedor" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="proveedor.php?operation=view&amp;pk0=%id_proveedor%"/>
+            </Column>
+            <Column fieldName="id_espacio" caption="Espacio" visible="true" headerHint="Espacio de ejecución del ítem.">
+              <Lookup tableName="public.espacio" linkFieldName="id_espacio" displayFieldName="no_espacio" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="espacio.php?operation=view&amp;pk0=%id_espacio%"/>
+            </Column>
+            <Column fieldName="id_tipo_item" caption="Tipo Ítem" visible="true" headerHint="Tipo del ítem.">
+              <Lookup tableName="public.tipo_item" linkFieldName="id_tipo_item" displayFieldName="no_tipo_item" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="tipo_item.php?operation=view&amp;pk0=%id_tipo_item%"/>
+            </Column>
+            <Column fieldName="no_item" caption="No Item" visible="true" headerHint="Detalle del ítem.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="va_importe" caption="Importe" visible="true" headerHint="Importe del ítem.">
+              <ViewProperties type="text">
+                <DivAttributes align="right">
+                  <CustomAttributes>
+style=&quot;width:85px&quot;                  </CustomAttributes>
+                </DivAttributes>
+                <Format type="currency" decimalSeparator="," thousandSeparator="." currencySymbol="$ "/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="va_iva" caption="Iva" visible="true" headerHint="Valor de IVA sobre el importe del ítem.">
+              <ViewProperties type="text">
+                <DivAttributes align="right">
+                  <CustomAttributes>
+style=&quot;width:85px&quot;                  </CustomAttributes>
+                </DivAttributes>
+                <Format type="currency" decimalSeparator="," thousandSeparator="." currencySymbol="$ "/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="va_monto_item" caption="Monto Ítem" visible="true" headerHint="Monto total del ítem del proyecto.">
+              <ViewProperties type="text">
+                <DivAttributes align="right">
+                  <CustomAttributes>
+style=&quot;width:85px&quot;                  </CustomAttributes>
+                </DivAttributes>
+                <Format type="currency" decimalSeparator="," thousandSeparator="." currencySymbol="$ "/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="va_saldo" caption="Saldo" visible="true" headerHint="Saldo con el proveedor.">
+              <ViewProperties type="text">
+                <DivAttributes align="right">
+                  <CustomAttributes>
+style=&quot;width:85px&quot;                  </CustomAttributes>
+                </DivAttributes>
+                <Format type="currency" decimalSeparator="," thousandSeparator="." currencySymbol="$ "/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="tx_estado" caption="Tx Estado" visible="true" headerHint="Estado del ítem.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_expediente" caption="Tx Expediente" visible="true" headerHint="Expediente relacionado con el ítem del proyecto.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_convenio" caption="Convenio" visible="true" headerHint="Convenio al que pertenece el ítem.">
+              <Lookup tableName="public.convenio" linkFieldName="id_convenio" displayFieldName="no_convenio" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="convenio.php?operation=view&amp;pk0=%id_convenio%"/>
+            </Column>
+            <Column fieldName="id_factura" caption="Factura" visible="true" headerHint="Factura del proveedor sobre el ítem.">
+              <Lookup tableName="public.factura" linkFieldName="id_factura" displayFieldName="va_factura" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text">
+                <DivAttributes align="right"/>
+                <Format type="currency" decimalSeparator="," thousandSeparator="." currencySymbol="$ "/>
+              </ViewProperties>
+              <Hyperlink template="factura.php?operation=view&amp;pk0=%id_factura%"/>
+            </Column>
+            <Column fieldName="ds_observaciones" caption="Ds Observaciones" visible="true" headerHint="Observaciones generales sobre el ítem del proyecto.">
+              <ViewProperties type="text"/>
+            </Column>
+          </ExportColumns>
+          <PrintColumns>
+            <Column fieldName="id_item" caption="ID" visible="true" headerHint="Identificador único del ítem.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_proyecto" caption="Proyecto" visible="true" headerHint="Proyecto al que pertenece el ítem.">
+              <Lookup tableName="public.proyecto" linkFieldName="id_proyecto" displayFieldName="no_proyecto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="proyecto.php?operation=view&amp;pk0=%id_proyecto%"/>
+            </Column>
+            <Column fieldName="id_proveedor" caption="Proveedor" visible="true" headerHint="Proveedor del ítem del proyecto.">
+              <Lookup tableName="public.proveedor" linkFieldName="id_proveedor" displayFieldName="no_proveedor" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="proveedor.php?operation=view&amp;pk0=%id_proveedor%"/>
+            </Column>
+            <Column fieldName="id_espacio" caption="Espacio" visible="true" headerHint="Espacio de ejecución del ítem.">
+              <Lookup tableName="public.espacio" linkFieldName="id_espacio" displayFieldName="no_espacio" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="espacio.php?operation=view&amp;pk0=%id_espacio%"/>
+            </Column>
+            <Column fieldName="id_tipo_item" caption="Tipo Ítem" visible="true" headerHint="Tipo del ítem.">
+              <Lookup tableName="public.tipo_item" linkFieldName="id_tipo_item" displayFieldName="no_tipo_item" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="tipo_item.php?operation=view&amp;pk0=%id_tipo_item%"/>
+            </Column>
+            <Column fieldName="no_item" caption="No Item" visible="true" headerHint="Detalle del ítem.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="va_importe" caption="Importe" visible="true" headerHint="Importe del ítem.">
+              <ViewProperties type="text">
+                <DivAttributes align="right">
+                  <CustomAttributes>
+style=&quot;width:85px&quot;                  </CustomAttributes>
+                </DivAttributes>
+                <Format type="currency" decimalSeparator="," thousandSeparator="." currencySymbol="$ "/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="va_iva" caption="Iva" visible="true" headerHint="Valor de IVA sobre el importe del ítem.">
+              <ViewProperties type="text">
+                <DivAttributes align="right">
+                  <CustomAttributes>
+style=&quot;width:85px&quot;                  </CustomAttributes>
+                </DivAttributes>
+                <Format type="currency" decimalSeparator="," thousandSeparator="." currencySymbol="$ "/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="va_monto_item" caption="Monto Ítem" visible="true" headerHint="Monto total del ítem del proyecto.">
+              <ViewProperties type="text">
+                <DivAttributes align="right">
+                  <CustomAttributes>
+style=&quot;width:85px&quot;                  </CustomAttributes>
+                </DivAttributes>
+                <Format type="currency" decimalSeparator="," thousandSeparator="." currencySymbol="$ "/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="va_saldo" caption="Saldo" visible="true" headerHint="Saldo con el proveedor.">
+              <ViewProperties type="text">
+                <DivAttributes align="right">
+                  <CustomAttributes>
+style=&quot;width:85px&quot;                  </CustomAttributes>
+                </DivAttributes>
+                <Format type="currency" decimalSeparator="," thousandSeparator="." currencySymbol="$ "/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="tx_estado" caption="Tx Estado" visible="true" headerHint="Estado del ítem.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_expediente" caption="Tx Expediente" visible="true" headerHint="Expediente relacionado con el ítem del proyecto.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_convenio" caption="Convenio" visible="true" headerHint="Convenio al que pertenece el ítem.">
+              <Lookup tableName="public.convenio" linkFieldName="id_convenio" displayFieldName="no_convenio" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="convenio.php?operation=view&amp;pk0=%id_convenio%"/>
+            </Column>
+            <Column fieldName="id_factura" caption="Factura" visible="true" headerHint="Factura del proveedor sobre el ítem.">
+              <Lookup tableName="public.factura" linkFieldName="id_factura" displayFieldName="va_factura" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text">
+                <DivAttributes align="right"/>
+                <Format type="currency" decimalSeparator="," thousandSeparator="." currencySymbol="$ "/>
+              </ViewProperties>
+              <Hyperlink template="factura.php?operation=view&amp;pk0=%id_factura%"/>
+            </Column>
+            <Column fieldName="ds_observaciones" caption="Ds Observaciones" visible="true" headerHint="Observaciones generales sobre el ítem del proyecto.">
+              <ViewProperties type="text"/>
+            </Column>
+          </PrintColumns>
+        </Columns>
+        <Details/>
+        <RecordPermissions useRecordPermissions="false"/>
+        <PartitionNavigators/>
+      </Page>
+      <Page type="table" tableName="public.factura" fileName="factura" caption="Factura" shortCaption="Factura" groupName="Proyectos" addSeparator="true" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true">
+        <BeforeGridText/>
+        <Columns>
+          <ViewColumns>
+            <Column fieldName="id_factura" caption="ID" visible="true" headerHint="Identificador único de la factura." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_proyecto" caption="Proyecto" visible="true" headerHint="Proyecto al que se memite la factura." totalFunction="0">
+              <Lookup tableName="public.proyecto" linkFieldName="id_proyecto" displayFieldName="no_proyecto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text">
+                <DivAttributes align="left"/>
+              </ViewProperties>
+              <Hyperlink template="proyecto.php?operation=view&amp;pk0=%id_proyecto%"/>
+            </Column>
+            <Column fieldName="nu_factura" caption="Número Factura" visible="true" headerHint="Número de la factura." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="fe_factura" caption="Fecha Factura" visible="true" headerHint="Fecha de la factura." totalFunction="0">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y" dateTimeKind="1"/>
+            </Column>
+            <Column fieldName="nu_cuota" caption="Número Cuota" visible="true" headerHint="Número de cuota de la factura." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="va_factura" caption="Valor Factura" visible="true" headerHint="Importe total facturado." totalFunction="0">
+              <ViewProperties type="text">
+                <DivAttributes align="right">
+                  <CustomAttributes>
+style=&quot;width:85px&quot;                  </CustomAttributes>
+                </DivAttributes>
+                <Format type="currency" decimalSeparator="," thousandSeparator="." currencySymbol="$ "/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="fl_estado_factura" caption="OK?" visible="true" headerHint="Factura OK?" totalFunction="0">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+          </ViewColumns>
+          <SingleRecordViewColumns>
+            <Column fieldName="id_factura" caption="ID" visible="true" headerHint="Identificador único de la factura.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_proyecto" caption="Proyecto" visible="true" headerHint="Proyecto al que se memite la factura.">
+              <Lookup tableName="public.proyecto" linkFieldName="id_proyecto" displayFieldName="no_proyecto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text">
+                <DivAttributes align="left"/>
+              </ViewProperties>
+              <Hyperlink template="proyecto.php?operation=view&amp;pk0=%id_proyecto%"/>
+            </Column>
+            <Column fieldName="nu_factura" caption="Número Factura" visible="true" headerHint="Número de la factura.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="fe_factura" caption="Fecha Factura" visible="true" headerHint="Fecha de la factura.">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y" dateTimeKind="1"/>
+            </Column>
+            <Column fieldName="nu_cuota" caption="Número Cuota" visible="true" headerHint="Número de cuota de la factura.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="va_factura" caption="Valor Factura" visible="true" headerHint="Importe total facturado.">
+              <ViewProperties type="text">
+                <DivAttributes align="right">
+                  <CustomAttributes>
+style=&quot;width:85px&quot;                  </CustomAttributes>
+                </DivAttributes>
+                <Format type="currency" decimalSeparator="," thousandSeparator="." currencySymbol="$ "/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="fl_estado_factura" caption="OK?" visible="true" headerHint="Factura OK?">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+          </SingleRecordViewColumns>
+          <EditColumns>
+            <Column fieldName="id_factura" caption="ID" visible="false" readOnly="true">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="id_proyecto" caption="Proyecto" visible="true" canSetNull="true">
+              <Lookup tableName="public.proyecto" linkFieldName="id_proyecto" displayFieldName="no_proyecto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="nu_factura" caption="Número Factura" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="20" maxLength="20" placeholder="" prefix="" suffix="">
+                <AdvancedProperties customAttributes="onkeypress='return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57'"/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="fe_factura" caption="Fecha Factura" visible="true" canSetNull="true">
+              <EditProperties type="dateTime" showsTime="false" dateTimeFormat="Y-m-d H:i:s" firstDayOfWeek="0"/>
+            </Column>
+            <Column fieldName="nu_cuota" caption="Número Cuota" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="va_factura" caption="Valor Factura" visible="true">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="$" suffix="">
+                <AdvancedProperties customAttributes="onkeypress='return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57'"/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="fl_estado_factura" caption="OK?" visible="true" canSetNull="true">
+              <EditProperties type="checkBox"/>
+            </Column>
+          </EditColumns>
+          <InsertColumns>
+            <Column fieldName="id_factura" caption="ID" visible="false" readOnly="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="id_proyecto" caption="Proyecto" visible="true" canSetNull="true" defaultInsertValue="">
+              <Lookup tableName="public.proyecto" linkFieldName="id_proyecto" displayFieldName="no_proyecto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="nu_factura" caption="Número Factura" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="20" maxLength="20" placeholder="" prefix="" suffix="">
+                <AdvancedProperties customAttributes="onkeypress='return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57'"/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="fe_factura" caption="Fecha Factura" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="dateTime" showsTime="false" dateTimeFormat="Y-m-d H:i:s" firstDayOfWeek="0"/>
+            </Column>
+            <Column fieldName="nu_cuota" caption="Número Cuota" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="va_factura" caption="Valor Factura" visible="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="$" suffix="">
+                <AdvancedProperties customAttributes="onkeypress='return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57'"/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="fl_estado_factura" caption="OK?" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="checkBox"/>
+            </Column>
+          </InsertColumns>
+          <SimpleSearchColumns>
+            <Column fieldName="id_factura" caption="ID" visible="true"/>
+            <Column fieldName="id_proyecto" caption="Proyecto" visible="true">
+              <Lookup tableName="public.proyecto" linkFieldName="id_proyecto" displayFieldName="no_proyecto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="nu_factura" caption="Número Factura" visible="true"/>
+            <Column fieldName="fe_factura" caption="Fecha Factura" visible="true"/>
+            <Column fieldName="nu_cuota" caption="Número Cuota" visible="true"/>
+            <Column fieldName="va_factura" caption="Valor Factura" visible="true"/>
+            <Column fieldName="fl_estado_factura" caption="OK?" visible="true"/>
+          </SimpleSearchColumns>
+          <AdvancedSearchColumns>
+            <Column fieldName="id_factura" caption="ID" visible="true" useComboBox="false"/>
+            <Column fieldName="id_proyecto" caption="Proyecto" visible="true" useComboBox="false">
+              <Lookup tableName="public.proyecto" linkFieldName="id_proyecto" displayFieldName="no_proyecto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="nu_factura" caption="Número Factura" visible="true" useComboBox="false"/>
+            <Column fieldName="fe_factura" caption="Fecha Factura" visible="true" useComboBox="false"/>
+            <Column fieldName="nu_cuota" caption="Número Cuota" visible="true" useComboBox="false"/>
+            <Column fieldName="va_factura" caption="Valor Factura" visible="true" useComboBox="false"/>
+            <Column fieldName="fl_estado_factura" caption="OK?" visible="true" useComboBox="false"/>
+          </AdvancedSearchColumns>
+          <ExportColumns>
+            <Column fieldName="id_factura" caption="ID" visible="true" headerHint="Identificador único de la factura.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_proyecto" caption="Proyecto" visible="true" headerHint="Proyecto al que se memite la factura.">
+              <Lookup tableName="public.proyecto" linkFieldName="id_proyecto" displayFieldName="no_proyecto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text">
+                <DivAttributes align="left"/>
+              </ViewProperties>
+              <Hyperlink template="proyecto.php?operation=view&amp;pk0=%id_proyecto%"/>
+            </Column>
+            <Column fieldName="nu_factura" caption="Número Factura" visible="true" headerHint="Número de la factura.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="fe_factura" caption="Fecha Factura" visible="true" headerHint="Fecha de la factura.">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y" dateTimeKind="1"/>
+            </Column>
+            <Column fieldName="nu_cuota" caption="Número Cuota" visible="true" headerHint="Número de cuota de la factura.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="va_factura" caption="Valor Factura" visible="true" headerHint="Importe total facturado.">
+              <ViewProperties type="text">
+                <DivAttributes align="right">
+                  <CustomAttributes>
+style=&quot;width:85px&quot;                  </CustomAttributes>
+                </DivAttributes>
+                <Format type="currency" decimalSeparator="," thousandSeparator="." currencySymbol="$ "/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="fl_estado_factura" caption="OK?" visible="true" headerHint="Factura OK?">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+          </ExportColumns>
+          <PrintColumns>
+            <Column fieldName="id_factura" caption="ID" visible="true" headerHint="Identificador único de la factura.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_proyecto" caption="Proyecto" visible="true" headerHint="Proyecto al que se memite la factura.">
+              <Lookup tableName="public.proyecto" linkFieldName="id_proyecto" displayFieldName="no_proyecto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text">
+                <DivAttributes align="left"/>
+              </ViewProperties>
+              <Hyperlink template="proyecto.php?operation=view&amp;pk0=%id_proyecto%"/>
+            </Column>
+            <Column fieldName="nu_factura" caption="Número Factura" visible="true" headerHint="Número de la factura.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="fe_factura" caption="Fecha Factura" visible="true" headerHint="Fecha de la factura.">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y" dateTimeKind="1"/>
+            </Column>
+            <Column fieldName="nu_cuota" caption="Número Cuota" visible="true" headerHint="Número de cuota de la factura.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="va_factura" caption="Valor Factura" visible="true" headerHint="Importe total facturado.">
+              <ViewProperties type="text">
+                <DivAttributes align="right">
+                  <CustomAttributes>
+style=&quot;width:85px&quot;                  </CustomAttributes>
+                </DivAttributes>
+                <Format type="currency" decimalSeparator="," thousandSeparator="." currencySymbol="$ "/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="fl_estado_factura" caption="OK?" visible="true" headerHint="Factura OK?">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+          </PrintColumns>
+        </Columns>
+        <Details/>
+        <RecordPermissions useRecordPermissions="false"/>
+        <PartitionNavigators/>
+      </Page>
+      <Page type="table" tableName="public.documento" fileName="documento" caption="Documento" shortCaption="Documento" groupName="Proyectos" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true">
+        <DefaultSortedColumns>
+          <Column fieldName="id_proyecto" orderType="0"/>
+          <Column fieldName="id_tipo_documento" orderType="0"/>
+        </DefaultSortedColumns>
+        <BeforeGridText/>
+        <Columns>
+          <ViewColumns>
+            <Column fieldName="id_documento" caption="ID" visible="true" headerHint="Identificador único del documento." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_documento" caption="Nombre Documento" visible="true" headerHint="Nombre del documento." totalFunction="0">
+              <ViewProperties type="text" maxLength="75">
+                <DivAttributes align="left"/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="id_tipo_documento" caption="Tipo Documento" visible="true" headerHint="Tipo del documento." totalFunction="0">
+              <Lookup tableName="public.tipo_documento" linkFieldName="id_tipo_documento" displayFieldName="no_tipo_documento" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="tipo_documento.php?operation=view&amp;pk0=%id_tipo_documento%"/>
+            </Column>
+            <Column fieldName="id_proyecto" caption="Proyecto" visible="true" headerHint="Proyecto al que pertenece el documento." totalFunction="0">
+              <Lookup tableName="public.proyecto" linkFieldName="id_proyecto" displayFieldName="no_proyecto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text">
+                <DivAttributes align="left"/>
+              </ViewProperties>
+              <Hyperlink template="proyecto.php?operation=view&amp;pk0=%id_proyecto%"/>
+            </Column>
+            <Column fieldName="fi_archivo" caption="Archivo" visible="true" headerHint="Archivo del documento." totalFunction="0">
+              <ViewProperties type="download" forceDownload="false"/>
+            </Column>
+            <Column fieldName="fl_estado" caption="OK?" visible="true" headerHint="Estado OK?" totalFunction="0">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+          </ViewColumns>
+          <SingleRecordViewColumns>
+            <Column fieldName="id_documento" caption="ID" visible="true" headerHint="Identificador único del documento.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_documento" caption="Nombre Documento" visible="true" headerHint="Nombre del documento.">
+              <ViewProperties type="text" maxLength="75">
+                <DivAttributes align="left"/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="id_tipo_documento" caption="Tipo Documento" visible="true" headerHint="Tipo del documento.">
+              <Lookup tableName="public.tipo_documento" linkFieldName="id_tipo_documento" displayFieldName="no_tipo_documento" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="tipo_documento.php?operation=view&amp;pk0=%id_tipo_documento%"/>
+            </Column>
+            <Column fieldName="id_proyecto" caption="Proyecto" visible="true" headerHint="Proyecto al que pertenece el documento.">
+              <Lookup tableName="public.proyecto" linkFieldName="id_proyecto" displayFieldName="no_proyecto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text">
+                <DivAttributes align="left"/>
+              </ViewProperties>
+              <Hyperlink template="proyecto.php?operation=view&amp;pk0=%id_proyecto%"/>
+            </Column>
+            <Column fieldName="fi_archivo" caption="Archivo" visible="true" headerHint="Archivo del documento.">
+              <ViewProperties type="download" forceDownload="false"/>
+            </Column>
+            <Column fieldName="fl_estado" caption="OK?" visible="true" headerHint="Estado OK?">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+          </SingleRecordViewColumns>
+          <EditColumns>
+            <Column fieldName="id_documento" caption="ID" visible="false">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="no_documento" caption="Nombre Documento" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="id_tipo_documento" caption="Tipo Documento" visible="true">
+              <Lookup tableName="public.tipo_documento" linkFieldName="id_tipo_documento" displayFieldName="no_tipo_documento" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="id_proyecto" caption="Proyecto" visible="true">
+              <Lookup tableName="public.proyecto" linkFieldName="id_proyecto" displayFieldName="no_proyecto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="fi_archivo" caption="Archivo" visible="true" canSetNull="true">
+              <EditProperties type="fileUpload" fileNameFieldName="no_documento"/>
+            </Column>
+            <Column fieldName="fl_estado" caption="OK?" visible="true" canSetNull="true">
+              <EditProperties type="checkBox"/>
+            </Column>
+          </EditColumns>
+          <InsertColumns>
+            <Column fieldName="id_documento" caption="ID" visible="false" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="no_documento" caption="Nombre Documento" visible="false" canSetNull="true" defaultInsertValue="%CURRENT_DATETIME%">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="id_tipo_documento" caption="Tipo Documento" visible="true" defaultInsertValue="">
+              <Lookup tableName="public.tipo_documento" linkFieldName="id_tipo_documento" displayFieldName="no_tipo_documento" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="id_proyecto" caption="Proyecto" visible="true" defaultInsertValue="">
+              <Lookup tableName="public.proyecto" linkFieldName="id_proyecto" displayFieldName="no_proyecto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="fi_archivo" caption="Archivo" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="fileUpload" fileNameFieldName="no_documento"/>
+            </Column>
+            <Column fieldName="fl_estado" caption="OK?" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="checkBox"/>
+            </Column>
+          </InsertColumns>
+          <SimpleSearchColumns>
+            <Column fieldName="id_documento" caption="ID" visible="true"/>
+            <Column fieldName="no_documento" caption="Nombre Documento" visible="true"/>
+            <Column fieldName="id_tipo_documento" caption="Tipo Documento" visible="true">
+              <Lookup tableName="public.tipo_documento" linkFieldName="id_tipo_documento" displayFieldName="no_tipo_documento" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="id_proyecto" caption="Proyecto" visible="true">
+              <Lookup tableName="public.proyecto" linkFieldName="id_proyecto" displayFieldName="no_proyecto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="fl_estado" caption="OK?" visible="true"/>
+            <Column fieldName="fi_archivo" caption="Archivo" visible="false"/>
+          </SimpleSearchColumns>
+          <AdvancedSearchColumns>
+            <Column fieldName="id_documento" caption="ID" visible="true" useComboBox="false"/>
+            <Column fieldName="no_documento" caption="Nombre Documento" visible="true" useComboBox="false"/>
+            <Column fieldName="id_tipo_documento" caption="Tipo Documento" visible="true" useComboBox="false">
+              <Lookup tableName="public.tipo_documento" linkFieldName="id_tipo_documento" displayFieldName="no_tipo_documento" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="id_proyecto" caption="Proyecto" visible="true" useComboBox="false">
+              <Lookup tableName="public.proyecto" linkFieldName="id_proyecto" displayFieldName="no_proyecto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="fi_archivo" caption="Archivo" visible="true" useComboBox="false"/>
+            <Column fieldName="fl_estado" caption="OK?" visible="true" useComboBox="false"/>
+          </AdvancedSearchColumns>
+          <ExportColumns>
+            <Column fieldName="id_documento" caption="ID" visible="true" headerHint="Identificador único del documento.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_documento" caption="No Documento" visible="true" headerHint="Nombre del documento.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_tipo_documento" caption="Tipo Documento" visible="true" headerHint="Tipo del documento.">
+              <Lookup tableName="public.tipo_documento" linkFieldName="id_tipo_documento" displayFieldName="no_tipo_documento" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="tipo_documento.php?operation=view&amp;pk0=%id_tipo_documento%"/>
+            </Column>
+            <Column fieldName="id_proyecto" caption="Proyecto" visible="true" headerHint="Proyecto al que pertenece el documento.">
+              <Lookup tableName="public.proyecto" linkFieldName="id_proyecto" displayFieldName="no_proyecto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text">
+                <DivAttributes align="left"/>
+              </ViewProperties>
+              <Hyperlink template="proyecto.php?operation=view&amp;pk0=%id_proyecto%"/>
+            </Column>
+            <Column fieldName="fi_archivo" caption="Archivo" visible="true" headerHint="Archivo del documento.">
+              <ViewProperties type="download" forceDownload="false"/>
+            </Column>
+            <Column fieldName="fl_estado" caption="OK?" visible="true" headerHint="Estado OK?">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+          </ExportColumns>
+          <PrintColumns>
+            <Column fieldName="id_documento" caption="ID" visible="true" headerHint="Identificador único del documento.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_documento" caption="No Documento" visible="true" headerHint="Nombre del documento.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_tipo_documento" caption="Tipo Documento" visible="true" headerHint="Tipo del documento.">
+              <Lookup tableName="public.tipo_documento" linkFieldName="id_tipo_documento" displayFieldName="no_tipo_documento" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="tipo_documento.php?operation=view&amp;pk0=%id_tipo_documento%"/>
+            </Column>
+            <Column fieldName="id_proyecto" caption="Proyecto" visible="true" headerHint="Proyecto al que pertenece el documento.">
+              <Lookup tableName="public.proyecto" linkFieldName="id_proyecto" displayFieldName="no_proyecto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text">
+                <DivAttributes align="left"/>
+              </ViewProperties>
+              <Hyperlink template="proyecto.php?operation=view&amp;pk0=%id_proyecto%"/>
+            </Column>
+            <Column fieldName="fi_archivo" caption="Archivo" visible="true" headerHint="Archivo del documento.">
+              <ViewProperties type="download" forceDownload="false"/>
+            </Column>
+            <Column fieldName="fl_estado" caption="OK?" visible="true" headerHint="Estado OK?">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+          </PrintColumns>
+        </Columns>
+        <Details/>
+        <RecordPermissions useRecordPermissions="false"/>
+        <PartitionNavigators/>
+      </Page>
+      <Page type="table" tableName="public.organismo" fileName="organismo" caption="Organismo" shortCaption="Organismo" groupName="Paramétricas" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true">
+        <BeforeGridText/>
+        <Columns>
+          <ViewColumns>
+            <Column fieldName="id_organismo" caption="ID" visible="true" headerHint="Identificador único del organismo." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_organismo" caption="Nombre" visible="true" headerHint="Nombre del organismo." totalFunction="0">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="ds_organismo" caption="Descripción" visible="true" headerHint="Descripción del organismo (nombre extendido)." totalFunction="0">
+              <ViewProperties type="text" maxLength="75">
+                <DivAttributes align="left"/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="co_cuit" caption="CUIT" visible="true" headerHint="Número de CUIT del organismo." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_direccion" caption="Dirección" visible="false" headerHint="Dirección del organismo." totalFunction="0">
+              <ViewProperties type="text" maxLength="75">
+                <DivAttributes align="left"/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="ds_observaciones" caption="Observaciones" visible="false" headerHint="Observaciones generales sobre el organismo." totalFunction="0">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+          </ViewColumns>
+          <SingleRecordViewColumns>
+            <Column fieldName="id_organismo" caption="ID" visible="true" headerHint="Identificador único del organismo.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_organismo" caption="Nombre" visible="true" headerHint="Nombre del organismo.">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="ds_organismo" caption="Descripción" visible="true" headerHint="Descripción del organismo (nombre extendido).">
+              <ViewProperties type="text" maxLength="75">
+                <DivAttributes align="left"/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="co_cuit" caption="CUIT" visible="true" headerHint="Número de CUIT del organismo.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_direccion" caption="Dirección" visible="true" headerHint="Dirección del organismo.">
+              <ViewProperties type="text" maxLength="75">
+                <DivAttributes align="left"/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="ds_observaciones" caption="Observaciones" visible="true" headerHint="Observaciones generales sobre el organismo.">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+          </SingleRecordViewColumns>
+          <EditColumns>
+            <Column fieldName="id_organismo" caption="ID" visible="false">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="no_organismo" caption="Nombre" visible="true">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="ds_organismo" caption="Descripción" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="co_cuit" caption="CUIT" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="13" maxLength="13" placeholder="" prefix="" suffix="">
+                <AdvancedProperties customAttributes="onkeypress='return (event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57) || event.charCode == 45'"/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="tx_direccion" caption="Dirección" visible="true" canSetNull="true">
+              <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+            </Column>
+            <Column fieldName="ds_observaciones" caption="Observaciones" visible="true" canSetNull="true">
+              <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+            </Column>
+          </EditColumns>
+          <InsertColumns>
+            <Column fieldName="id_organismo" caption="ID" visible="false" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="no_organismo" caption="Nombre" visible="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="ds_organismo" caption="Descripción" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="co_cuit" caption="CUIT" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="13" maxLength="13" placeholder="" prefix="" suffix="">
+                <AdvancedProperties customAttributes="onkeypress='return (event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57) || event.charCode == 45'"/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="tx_direccion" caption="Dirección" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+            </Column>
+            <Column fieldName="ds_observaciones" caption="Observaciones" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+            </Column>
+          </InsertColumns>
+          <SimpleSearchColumns>
+            <Column fieldName="id_organismo" caption="ID" visible="true"/>
+            <Column fieldName="no_organismo" caption="Nombre" visible="true"/>
+            <Column fieldName="ds_organismo" caption="Descripción" visible="true"/>
+            <Column fieldName="co_cuit" caption="CUIT" visible="true"/>
+            <Column fieldName="tx_direccion" caption="Dirección" visible="true"/>
+            <Column fieldName="ds_observaciones" caption="Observaciones" visible="true"/>
+          </SimpleSearchColumns>
+          <AdvancedSearchColumns>
+            <Column fieldName="id_organismo" caption="ID" visible="true" useComboBox="false"/>
+            <Column fieldName="no_organismo" caption="Nombre" visible="true" useComboBox="false"/>
+            <Column fieldName="ds_organismo" caption="Descripción" visible="true" useComboBox="false"/>
+            <Column fieldName="co_cuit" caption="CUIT" visible="true" useComboBox="false"/>
+            <Column fieldName="tx_direccion" caption="Dirección" visible="true" useComboBox="false"/>
+            <Column fieldName="ds_observaciones" caption="Observaciones" visible="true" useComboBox="false"/>
+          </AdvancedSearchColumns>
+          <ExportColumns>
+            <Column fieldName="id_organismo" caption="ID" visible="true" headerHint="Identificador único del organismo.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_organismo" caption="No Organismo" visible="true" headerHint="Nombre del organismo.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_organismo" caption="Ds Organismo" visible="true" headerHint="Descripción del organismo (nombre extendido).">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="co_cuit" caption="CUIT" visible="true" headerHint="Número de CUIT del organismo.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_direccion" caption="Tx Direccion" visible="true" headerHint="Dirección del organismo.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_observaciones" caption="Ds Observaciones" visible="true" headerHint="Observaciones generales sobre el organismo.">
+              <ViewProperties type="text"/>
+            </Column>
+          </ExportColumns>
+          <PrintColumns>
+            <Column fieldName="id_organismo" caption="ID" visible="true" headerHint="Identificador único del organismo.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_organismo" caption="No Organismo" visible="true" headerHint="Nombre del organismo.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_organismo" caption="Ds Organismo" visible="true" headerHint="Descripción del organismo (nombre extendido).">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="co_cuit" caption="CUIT" visible="true" headerHint="Número de CUIT del organismo.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_direccion" caption="Tx Direccion" visible="true" headerHint="Dirección del organismo.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_observaciones" caption="Ds Observaciones" visible="true" headerHint="Observaciones generales sobre el organismo.">
+              <ViewProperties type="text"/>
+            </Column>
+          </PrintColumns>
+        </Columns>
+        <Details/>
+        <RecordPermissions useRecordPermissions="false"/>
+        <PartitionNavigators/>
+      </Page>
+      <Page type="table" tableName="public.convenio" fileName="convenio" caption="Convenio" shortCaption="Convenio" groupName="Paramétricas" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true">
+        <BeforeGridText/>
+        <Columns>
+          <ViewColumns>
+            <Column fieldName="id_convenio" caption="ID" visible="true" headerHint="Identificador único del convenio." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_convenio" caption="Nombre Convenio" visible="true" headerHint="Nombre del convenio." totalFunction="0">
+              <ViewProperties type="text" maxLength="75">
+                <DivAttributes align="left"/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="id_organismo" caption="Organismo" visible="true" headerHint="Organismo al que se encuentra asociado el convenio." totalFunction="0">
+              <Lookup tableName="public.organismo" linkFieldName="id_organismo" displayFieldName="no_organismo" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="organismo?operation=view&amp;pk0=%id_organismo%"/>
+            </Column>
+            <Column fieldName="va_monto" caption="Monto" visible="true" headerHint="Valor del convenio." totalFunction="0">
+              <ViewProperties type="text">
+                <DivAttributes align="right">
+                  <CustomAttributes>
+style=&quot;width:85px&quot;                  </CustomAttributes>
+                </DivAttributes>
+                <Format type="currency" decimalSeparator="," thousandSeparator="." currencySymbol="$ "/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="ds_descripcion" caption="Descripción" visible="false" headerHint="Descripción del convenio." totalFunction="0">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+          </ViewColumns>
+          <SingleRecordViewColumns>
+            <Column fieldName="id_convenio" caption="ID" visible="true" headerHint="Identificador único del convenio.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_convenio" caption="Nombre Convenio" visible="true" headerHint="Nombre del convenio.">
+              <ViewProperties type="text" maxLength="75">
+                <DivAttributes align="left"/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="id_organismo" caption="Organismo" visible="true" headerHint="Organismo al que se encuentra asociado el convenio.">
+              <Lookup tableName="public.organismo" linkFieldName="id_organismo" displayFieldName="no_organismo" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="organismo?operation=view&amp;pk0=%id_organismo%"/>
+            </Column>
+            <Column fieldName="va_monto" caption="Monto" visible="true" headerHint="Valor del convenio.">
+              <ViewProperties type="text">
+                <DivAttributes align="right">
+                  <CustomAttributes>
+style=&quot;width:85px&quot;                  </CustomAttributes>
+                </DivAttributes>
+                <Format type="currency" decimalSeparator="," thousandSeparator="." currencySymbol="$ "/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="ds_descripcion" caption="Descripción" visible="true" headerHint="Descripción del convenio.">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+          </SingleRecordViewColumns>
+          <EditColumns>
+            <Column fieldName="id_convenio" caption="ID" visible="false">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="no_convenio" caption="Nombre Convenio" visible="true">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="id_organismo" caption="Organismo" visible="true" canSetNull="true">
+              <Lookup tableName="public.organismo" linkFieldName="id_organismo" displayFieldName="no_organismo" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="va_monto" caption="Monto" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="$" suffix="">
+                <AdvancedProperties customAttributes="onkeypress='return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57'"/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="ds_descripcion" caption="Descripción" visible="true" canSetNull="true">
+              <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+            </Column>
+          </EditColumns>
+          <InsertColumns>
+            <Column fieldName="id_convenio" caption="ID" visible="false" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="no_convenio" caption="Nombre Convenio" visible="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="id_organismo" caption="Organismo" visible="true" canSetNull="true" defaultInsertValue="">
+              <Lookup tableName="public.organismo" linkFieldName="id_organismo" displayFieldName="no_organismo" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="va_monto" caption="Monto" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="$" suffix="">
+                <AdvancedProperties customAttributes="onkeypress='return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57'"/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="ds_descripcion" caption="Descripción" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+            </Column>
+          </InsertColumns>
+          <SimpleSearchColumns>
+            <Column fieldName="id_convenio" caption="ID" visible="true"/>
+            <Column fieldName="no_convenio" caption="Nombre Convenio" visible="true"/>
+            <Column fieldName="id_organismo" caption="Organismo" visible="true">
+              <Lookup tableName="public.organismo" linkFieldName="id_organismo" displayFieldName="no_organismo" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="va_monto" caption="Monto" visible="true"/>
+            <Column fieldName="ds_descripcion" caption="Descripción" visible="true"/>
+          </SimpleSearchColumns>
+          <AdvancedSearchColumns>
+            <Column fieldName="id_convenio" caption="ID" visible="true" useComboBox="false"/>
+            <Column fieldName="no_convenio" caption="Nombre Convenio" visible="true" useComboBox="false"/>
+            <Column fieldName="id_organismo" caption="Organismo" visible="true" useComboBox="false">
+              <Lookup tableName="public.organismo" linkFieldName="id_organismo" displayFieldName="no_organismo" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="va_monto" caption="Monto" visible="true" useComboBox="false"/>
+            <Column fieldName="ds_descripcion" caption="Descripción" visible="true" useComboBox="false"/>
+          </AdvancedSearchColumns>
+          <ExportColumns>
+            <Column fieldName="id_convenio" caption="ID" visible="true" headerHint="Identificador único del convenio.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_convenio" caption="No Convenio" visible="true" headerHint="Nombre del convenio.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_organismo" caption="Organismo" visible="true" headerHint="Organismo al que se encuentra asociado el convenio.">
+              <Lookup tableName="public.organismo" linkFieldName="id_organismo" displayFieldName="no_organismo" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="organismo?operation=view&amp;pk0=%id_organismo%"/>
+            </Column>
+            <Column fieldName="va_monto" caption="Monto" visible="true" headerHint="Valor del convenio.">
+              <ViewProperties type="text">
+                <DivAttributes align="right">
+                  <CustomAttributes>
+style=&quot;width:85px&quot;                  </CustomAttributes>
+                </DivAttributes>
+                <Format type="currency" decimalSeparator="," thousandSeparator="." currencySymbol="$ "/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="ds_descripcion" caption="Ds Descripcion" visible="true" headerHint="Descripción del convenio.">
+              <ViewProperties type="text"/>
+            </Column>
+          </ExportColumns>
+          <PrintColumns>
+            <Column fieldName="id_convenio" caption="ID" visible="true" headerHint="Identificador único del convenio.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_convenio" caption="No Convenio" visible="true" headerHint="Nombre del convenio.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_organismo" caption="Organismo" visible="true" headerHint="Organismo al que se encuentra asociado el convenio.">
+              <Lookup tableName="public.organismo" linkFieldName="id_organismo" displayFieldName="no_organismo" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="organismo?operation=view&amp;pk0=%id_organismo%"/>
+            </Column>
+            <Column fieldName="va_monto" caption="Monto" visible="true" headerHint="Valor del convenio.">
+              <ViewProperties type="text">
+                <DivAttributes align="right">
+                  <CustomAttributes>
+style=&quot;width:85px&quot;                  </CustomAttributes>
+                </DivAttributes>
+                <Format type="currency" decimalSeparator="," thousandSeparator="." currencySymbol="$ "/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="ds_descripcion" caption="Ds Descripcion" visible="true" headerHint="Descripción del convenio.">
+              <ViewProperties type="text"/>
+            </Column>
+          </PrintColumns>
+        </Columns>
+        <Details/>
+        <RecordPermissions useRecordPermissions="false"/>
+        <PartitionNavigators/>
+      </Page>
+      <Page type="table" tableName="public.proveedor" fileName="proveedor" caption="Proveedor" shortCaption="Proveedor" groupName="Paramétricas" addSeparator="true" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true">
+        <BeforeGridText/>
+        <Columns>
+          <ViewColumns>
+            <Column fieldName="id_proveedor" caption="ID" visible="true" headerHint="Identificador único del proveedor." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_proveedor" caption="Nombre" visible="true" headerHint="Nombre del proveedor." totalFunction="0">
+              <ViewProperties type="text" maxLength="75">
+                <DivAttributes align="left"/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="tx_email_proveedor" caption="E-Mail" visible="false" headerHint="E-Mail del proveedor." totalFunction="0">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="tx_telefono_proveedor" caption="Teléfono" visible="false" headerHint="Número de teléfono del proveedor." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="fl_cuit" caption="CUIT?" visible="true" headerHint="Número de CUIT?." totalFunction="0">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="fl_estatuto" caption="Estatuto?" visible="true" headerHint="Estatuto?." totalFunction="0">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="fl_dni" caption="DNI?" visible="true" headerHint="Documento Nacional de Identidad?" totalFunction="0">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="fl_poder" caption="Poder?" visible="false" headerHint="Poder?" totalFunction="0">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="fl_sipro" caption="SIPRO?" visible="false" headerHint="SIPRO?" totalFunction="0">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="fl_cert_fiscal" caption="Cert. Fiscal?" visible="false" headerHint="Certificado Fiscal?" totalFunction="0">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="fl_cbu" caption="CBU?" visible="true" headerHint="CBU?" totalFunction="0">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="flg_cv" caption="CV?" visible="false" headerHint="CV?" totalFunction="0">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="ds_observaciones" caption="Observaciones" visible="false" headerHint="Observaciones generales sobre el proveedor." totalFunction="0">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+          </ViewColumns>
+          <SingleRecordViewColumns>
+            <Column fieldName="id_proveedor" caption="ID" visible="true" headerHint="Identificador único del proveedor.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_proveedor" caption="Nombre" visible="true" headerHint="Nombre del proveedor.">
+              <ViewProperties type="text" maxLength="75">
+                <DivAttributes align="left"/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="tx_email_proveedor" caption="E-Mail" visible="true" headerHint="E-Mail del proveedor.">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="tx_telefono_proveedor" caption="Teléfono" visible="true" headerHint="Número de teléfono del proveedor.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="fl_cuit" caption="CUIT?" visible="true" headerHint="Número de CUIT?.">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="fl_estatuto" caption="Estatuto?" visible="true" headerHint="Estatuto?.">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="fl_dni" caption="DNI?" visible="true" headerHint="Documento Nacional de Identidad?">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="fl_poder" caption="Poder?" visible="true" headerHint="Poder?">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="fl_sipro" caption="SIPRO?" visible="true" headerHint="SIPRO?">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="fl_cert_fiscal" caption="Cert. Fiscal?" visible="true" headerHint="Certificado Fiscal?">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="fl_cbu" caption="CBU?" visible="true" headerHint="CBU?">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="flg_cv" caption="CV?" visible="true" headerHint="CV?">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="ds_observaciones" caption="Observaciones" visible="true" headerHint="Observaciones generales sobre el proveedor.">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+          </SingleRecordViewColumns>
+          <EditColumns>
+            <Column fieldName="id_proveedor" caption="ID" visible="false">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="no_proveedor" caption="Nombre" visible="true">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_email_proveedor" caption="E-Mail" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_telefono_proveedor" caption="Teléfono" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="50" maxLength="50" placeholder="" prefix="" suffix="">
+                <AdvancedProperties customAttributes="onkeypress='return (event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57) || event.charCode == 32 || event.charCode == 40 || event.charCode == 41 || event.charCode == 43 || event.charCode == 45'"/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="fl_cuit" caption="CUIT?" visible="true" canSetNull="true">
+              <EditProperties type="checkBox"/>
+            </Column>
+            <Column fieldName="fl_estatuto" caption="Estatuto?" visible="true" canSetNull="true">
+              <EditProperties type="checkBox"/>
+            </Column>
+            <Column fieldName="fl_dni" caption="DNI?" visible="true" canSetNull="true">
+              <EditProperties type="checkBox"/>
+            </Column>
+            <Column fieldName="fl_poder" caption="Poder?" visible="true" canSetNull="true">
+              <EditProperties type="checkBox"/>
+            </Column>
+            <Column fieldName="fl_sipro" caption="SIPRO?" visible="true" canSetNull="true">
+              <EditProperties type="checkBox"/>
+            </Column>
+            <Column fieldName="fl_cert_fiscal" caption="Cert. Fiscal?" visible="true" canSetNull="true">
+              <EditProperties type="checkBox"/>
+            </Column>
+            <Column fieldName="fl_cbu" caption="CBU?" visible="true" canSetNull="true">
+              <EditProperties type="checkBox"/>
+            </Column>
+            <Column fieldName="flg_cv" caption="CV?" visible="true" canSetNull="true">
+              <EditProperties type="checkBox"/>
+            </Column>
+            <Column fieldName="ds_observaciones" caption="Observaciones" visible="true" canSetNull="true">
+              <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+            </Column>
+          </EditColumns>
+          <InsertColumns>
+            <Column fieldName="id_proveedor" caption="ID" visible="false" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="no_proveedor" caption="Nombre" visible="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_email_proveedor" caption="E-Mail" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="tx_telefono_proveedor" caption="Teléfono" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="50" maxLength="50" placeholder="" prefix="" suffix="">
+                <AdvancedProperties customAttributes="onkeypress='return (event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57) || event.charCode == 32 || event.charCode == 40 || event.charCode == 41 || event.charCode == 43 || event.charCode == 45'"/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="fl_cuit" caption="CUIT?" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="checkBox"/>
+            </Column>
+            <Column fieldName="fl_estatuto" caption="Estatuto?" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="checkBox"/>
+            </Column>
+            <Column fieldName="fl_dni" caption="DNI?" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="checkBox"/>
+            </Column>
+            <Column fieldName="fl_poder" caption="Poder?" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="checkBox"/>
+            </Column>
+            <Column fieldName="fl_sipro" caption="SIPRO?" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="checkBox"/>
+            </Column>
+            <Column fieldName="fl_cert_fiscal" caption="Cert. Fiscal?" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="checkBox"/>
+            </Column>
+            <Column fieldName="fl_cbu" caption="CBU?" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="checkBox"/>
+            </Column>
+            <Column fieldName="flg_cv" caption="CV?" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="checkBox"/>
+            </Column>
+            <Column fieldName="ds_observaciones" caption="Observaciones" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+            </Column>
+          </InsertColumns>
+          <SimpleSearchColumns>
+            <Column fieldName="id_proveedor" caption="ID" visible="true"/>
+            <Column fieldName="no_proveedor" caption="Nombre" visible="true"/>
+            <Column fieldName="tx_email_proveedor" caption="E-Mail" visible="true"/>
+            <Column fieldName="tx_telefono_proveedor" caption="Teléfono" visible="true"/>
+            <Column fieldName="fl_cuit" caption="CUIT?" visible="true"/>
+            <Column fieldName="fl_estatuto" caption="Estatuto?" visible="true"/>
+            <Column fieldName="fl_dni" caption="DNI?" visible="true"/>
+            <Column fieldName="fl_poder" caption="Poder?" visible="true"/>
+            <Column fieldName="fl_sipro" caption="SIPRO?" visible="true"/>
+            <Column fieldName="fl_cert_fiscal" caption="Cert. Fiscal?" visible="true"/>
+            <Column fieldName="fl_cbu" caption="CBU?" visible="true"/>
+            <Column fieldName="flg_cv" caption="CV?" visible="true"/>
+            <Column fieldName="ds_observaciones" caption="Observaciones" visible="true"/>
+          </SimpleSearchColumns>
+          <AdvancedSearchColumns>
+            <Column fieldName="id_proveedor" caption="ID" visible="true" useComboBox="false"/>
+            <Column fieldName="no_proveedor" caption="Nombre" visible="true" useComboBox="false"/>
+            <Column fieldName="tx_email_proveedor" caption="E-Mail" visible="true" useComboBox="false"/>
+            <Column fieldName="tx_telefono_proveedor" caption="Teléfono" visible="true" useComboBox="false"/>
+            <Column fieldName="fl_cuit" caption="CUIT?" visible="true" useComboBox="false"/>
+            <Column fieldName="fl_estatuto" caption="Estatuto?" visible="true" useComboBox="false"/>
+            <Column fieldName="fl_dni" caption="DNI?" visible="true" useComboBox="false"/>
+            <Column fieldName="fl_poder" caption="Poder?" visible="true" useComboBox="false"/>
+            <Column fieldName="fl_sipro" caption="SIPRO?" visible="true" useComboBox="false"/>
+            <Column fieldName="fl_cert_fiscal" caption="Cert. Fiscal?" visible="true" useComboBox="false"/>
+            <Column fieldName="fl_cbu" caption="CBU?" visible="true" useComboBox="false"/>
+            <Column fieldName="flg_cv" caption="CV?" visible="true" useComboBox="false"/>
+            <Column fieldName="ds_observaciones" caption="Observaciones" visible="true" useComboBox="false"/>
+          </AdvancedSearchColumns>
+          <ExportColumns>
+            <Column fieldName="id_proveedor" caption="ID" visible="true" headerHint="Identificador único del proveedor.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_proveedor" caption="No Proveedor" visible="true" headerHint="Nombre del proveedor.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_email_proveedor" caption="Tx Email Proveedor" visible="true" headerHint="E-Mail del proveedor.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_telefono_proveedor" caption="Teléfono" visible="true" headerHint="Número de teléfono del proveedor.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="fl_cuit" caption="CUIT?" visible="true" headerHint="Número de CUIT?.">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="fl_estatuto" caption="Estatuto?" visible="true" headerHint="Estatuto?.">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="fl_dni" caption="DNI?" visible="true" headerHint="Documento Nacional de Identidad?">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="fl_poder" caption="Poder?" visible="true" headerHint="Poder?">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="fl_sipro" caption="SIPRO?" visible="true" headerHint="SIPRO?">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="fl_cert_fiscal" caption="Cert. Fiscal?" visible="true" headerHint="Certificado Fiscal?">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="fl_cbu" caption="CBU?" visible="true" headerHint="CBU?">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="flg_cv" caption="CV?" visible="true" headerHint="CV?">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="ds_observaciones" caption="Ds Observaciones" visible="true" headerHint="Observaciones generales sobre el proveedor.">
+              <ViewProperties type="text"/>
+            </Column>
+          </ExportColumns>
+          <PrintColumns>
+            <Column fieldName="id_proveedor" caption="ID" visible="true" headerHint="Identificador único del proveedor.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_proveedor" caption="No Proveedor" visible="true" headerHint="Nombre del proveedor.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_email_proveedor" caption="Tx Email Proveedor" visible="true" headerHint="E-Mail del proveedor.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="tx_telefono_proveedor" caption="Teléfono" visible="true" headerHint="Número de teléfono del proveedor.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="fl_cuit" caption="CUIT?" visible="true" headerHint="Número de CUIT?.">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="fl_estatuto" caption="Estatuto?" visible="true" headerHint="Estatuto?.">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="fl_dni" caption="DNI?" visible="true" headerHint="Documento Nacional de Identidad?">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="fl_poder" caption="Poder?" visible="true" headerHint="Poder?">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="fl_sipro" caption="SIPRO?" visible="true" headerHint="SIPRO?">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="fl_cert_fiscal" caption="Cert. Fiscal?" visible="true" headerHint="Certificado Fiscal?">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="fl_cbu" caption="CBU?" visible="true" headerHint="CBU?">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="flg_cv" caption="CV?" visible="true" headerHint="CV?">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="ds_observaciones" caption="Ds Observaciones" visible="true" headerHint="Observaciones generales sobre el proveedor.">
+              <ViewProperties type="text"/>
+            </Column>
+          </PrintColumns>
+        </Columns>
+        <Details/>
+        <RecordPermissions useRecordPermissions="false"/>
+        <PartitionNavigators/>
+      </Page>
+      <Page type="table" tableName="public.lugar" fileName="lugar" caption="Lugar" shortCaption="Lugar" groupName="Paramétricas" addSeparator="true" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true">
+        <BeforeGridText/>
+        <Columns>
+          <ViewColumns>
+            <Column fieldName="id_lugar" caption="ID" visible="true" headerHint="Identificador único del lugar." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_lugar" caption="Nombre Lugar" visible="true" headerHint="Nombre del lugar donde se realiza el proyecto." totalFunction="0">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+          </ViewColumns>
+          <SingleRecordViewColumns>
+            <Column fieldName="id_lugar" caption="ID" visible="true" headerHint="Identificador único del lugar.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_lugar" caption="Nombre Lugar" visible="true" headerHint="Nombre del lugar donde se realiza el proyecto.">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+          </SingleRecordViewColumns>
+          <EditColumns>
+            <Column fieldName="id_lugar" caption="ID" visible="false">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="no_lugar" caption="Nombre Lugar" visible="true">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+          </EditColumns>
+          <InsertColumns>
+            <Column fieldName="id_lugar" caption="ID" visible="false" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="no_lugar" caption="Nombre Lugar" visible="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+          </InsertColumns>
+          <SimpleSearchColumns>
+            <Column fieldName="id_lugar" caption="ID" visible="true"/>
+            <Column fieldName="no_lugar" caption="Nombre Lugar" visible="true"/>
+          </SimpleSearchColumns>
+          <AdvancedSearchColumns>
+            <Column fieldName="id_lugar" caption="ID" visible="true" useComboBox="false"/>
+            <Column fieldName="no_lugar" caption="Nombre Lugar" visible="true" useComboBox="false"/>
+          </AdvancedSearchColumns>
+          <ExportColumns>
+            <Column fieldName="id_lugar" caption="ID" visible="true" headerHint="Identificador único del lugar.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_lugar" caption="No Lugar" visible="true" headerHint="Nombre del lugar donde se realiza el proyecto.">
+              <ViewProperties type="text"/>
+            </Column>
+          </ExportColumns>
+          <PrintColumns>
+            <Column fieldName="id_lugar" caption="ID" visible="true" headerHint="Identificador único del lugar.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_lugar" caption="No Lugar" visible="true" headerHint="Nombre del lugar donde se realiza el proyecto.">
+              <ViewProperties type="text"/>
+            </Column>
+          </PrintColumns>
+        </Columns>
+        <Details/>
+        <RecordPermissions useRecordPermissions="false"/>
+        <PartitionNavigators/>
+      </Page>
+      <Page type="table" tableName="public.espacio" fileName="espacio" caption="Espacio" shortCaption="Espacio" groupName="Paramétricas" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true">
+        <BeforeGridText/>
+        <Columns>
+          <ViewColumns>
+            <Column fieldName="id_espacio" caption="ID" visible="true" headerHint="Identificador único del espacio." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_espacio" caption="Nombre Espacio" visible="true" headerHint="Nombre del espacio." totalFunction="0">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="id_lugar" caption="Lugar" visible="true" headerHint="Lugar al que pertenece el espacio." totalFunction="0">
+              <Lookup tableName="public.lugar" linkFieldName="id_lugar" displayFieldName="no_lugar" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="lugar.php?operation=view&amp;pk0=%id_lugar%"/>
+            </Column>
+          </ViewColumns>
+          <SingleRecordViewColumns>
+            <Column fieldName="id_espacio" caption="ID" visible="true" headerHint="Identificador único del espacio.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_espacio" caption="Nombre Espacio" visible="true" headerHint="Nombre del espacio.">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="id_lugar" caption="Lugar" visible="true" headerHint="Lugar al que pertenece el espacio.">
+              <Lookup tableName="public.lugar" linkFieldName="id_lugar" displayFieldName="no_lugar" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="lugar.php?operation=view&amp;pk0=%id_lugar%"/>
+            </Column>
+          </SingleRecordViewColumns>
+          <EditColumns>
+            <Column fieldName="id_espacio" caption="ID" visible="false">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="no_espacio" caption="Nombre Espacio" visible="true">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="id_lugar" caption="Lugar" visible="true" canSetNull="true">
+              <Lookup tableName="public.lugar" linkFieldName="id_lugar" displayFieldName="no_lugar" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+          </EditColumns>
+          <InsertColumns>
+            <Column fieldName="id_espacio" caption="ID" visible="false" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="no_espacio" caption="Nombre Espacio" visible="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="id_lugar" caption="Lugar" visible="true" canSetNull="true" defaultInsertValue="">
+              <Lookup tableName="public.lugar" linkFieldName="id_lugar" displayFieldName="no_lugar" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+          </InsertColumns>
+          <SimpleSearchColumns>
+            <Column fieldName="id_espacio" caption="ID" visible="true"/>
+            <Column fieldName="no_espacio" caption="Nombre Espacio" visible="true"/>
+            <Column fieldName="id_lugar" caption="Lugar" visible="true">
+              <Lookup tableName="public.lugar" linkFieldName="id_lugar" displayFieldName="no_lugar" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+          </SimpleSearchColumns>
+          <AdvancedSearchColumns>
+            <Column fieldName="id_espacio" caption="ID" visible="true" useComboBox="false"/>
+            <Column fieldName="no_espacio" caption="Nombre Espacio" visible="true" useComboBox="false"/>
+            <Column fieldName="id_lugar" caption="Lugar" visible="true" useComboBox="false">
+              <Lookup tableName="public.lugar" linkFieldName="id_lugar" displayFieldName="no_lugar" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+          </AdvancedSearchColumns>
+          <ExportColumns>
+            <Column fieldName="id_espacio" caption="ID" visible="true" headerHint="Identificador único del espacio.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_espacio" caption="No Espacio" visible="true" headerHint="Nombre del espacio.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_lugar" caption="Lugar" visible="true" headerHint="Lugar al que pertenece el espacio.">
+              <Lookup tableName="public.lugar" linkFieldName="id_lugar" displayFieldName="no_lugar" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="lugar.php?operation=view&amp;pk0=%id_lugar%"/>
+            </Column>
+          </ExportColumns>
+          <PrintColumns>
+            <Column fieldName="id_espacio" caption="ID" visible="true" headerHint="Identificador único del espacio.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_espacio" caption="No Espacio" visible="true" headerHint="Nombre del espacio.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_lugar" caption="Lugar" visible="true" headerHint="Lugar al que pertenece el espacio.">
+              <Lookup tableName="public.lugar" linkFieldName="id_lugar" displayFieldName="no_lugar" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+              <Hyperlink template="lugar.php?operation=view&amp;pk0=%id_lugar%"/>
+            </Column>
+          </PrintColumns>
+        </Columns>
+        <Details/>
+        <RecordPermissions useRecordPermissions="false"/>
+        <PartitionNavigators/>
+      </Page>
+      <Page type="table" tableName="public.area_requirente" fileName="area_requirente" caption="Area Requirente" shortCaption="Area Requirente" groupName="Paramétricas" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true">
+        <BeforeGridText/>
+        <Columns>
+          <ViewColumns>
+            <Column fieldName="id_area_requirente" caption="ID" visible="true" headerHint="Identificador único del área requirente." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_area_requirente" caption="Nombre Área" visible="true" headerHint="Nombre del área requirente." totalFunction="0">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+          </ViewColumns>
+          <SingleRecordViewColumns>
+            <Column fieldName="id_area_requirente" caption="ID" visible="true" headerHint="Identificador único del área requirente.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_area_requirente" caption="Nombre Área" visible="true" headerHint="Nombre del área requirente.">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+          </SingleRecordViewColumns>
+          <EditColumns>
+            <Column fieldName="id_area_requirente" caption="ID" visible="false">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="no_area_requirente" caption="Nombre Área" visible="true">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+          </EditColumns>
+          <InsertColumns>
+            <Column fieldName="id_area_requirente" caption="ID" visible="false" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="no_area_requirente" caption="Nombre Área" visible="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+          </InsertColumns>
+          <SimpleSearchColumns>
+            <Column fieldName="id_area_requirente" caption="ID" visible="true"/>
+            <Column fieldName="no_area_requirente" caption="Nombre Área" visible="true"/>
+          </SimpleSearchColumns>
+          <AdvancedSearchColumns>
+            <Column fieldName="id_area_requirente" caption="ID" visible="true" useComboBox="false"/>
+            <Column fieldName="no_area_requirente" caption="Nombre Área" visible="true" useComboBox="false"/>
+          </AdvancedSearchColumns>
+          <ExportColumns>
+            <Column fieldName="id_area_requirente" caption="ID" visible="true" headerHint="Identificador único del área requirente.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_area_requirente" caption="No Area Requirente" visible="true" headerHint="Nombre del área requirente.">
+              <ViewProperties type="text"/>
+            </Column>
+          </ExportColumns>
+          <PrintColumns>
+            <Column fieldName="id_area_requirente" caption="ID" visible="true" headerHint="Identificador único del área requirente.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_area_requirente" caption="No Area Requirente" visible="true" headerHint="Nombre del área requirente.">
+              <ViewProperties type="text"/>
+            </Column>
+          </PrintColumns>
+        </Columns>
+        <Details/>
+        <RecordPermissions useRecordPermissions="false"/>
+        <PartitionNavigators/>
+      </Page>
+      <Page type="table" tableName="public.tipo_documento" fileName="tipo_documento" caption="Tipo Documento" shortCaption="Tipo Documento" groupName="Paramétricas" addSeparator="true" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true">
+        <BeforeGridText/>
+        <Columns>
+          <ViewColumns>
+            <Column fieldName="id_tipo_documento" caption="ID" visible="true" headerHint="Identificador único del tipo de documento." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_tipo_documento" caption="Nombre Tipo Documento" visible="true" headerHint="Nombre del tipo de documento." totalFunction="0">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+          </ViewColumns>
+          <SingleRecordViewColumns>
+            <Column fieldName="id_tipo_documento" caption="ID" visible="true" headerHint="Identificador único del tipo de documento.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_tipo_documento" caption="Nombre Tipo Documento" visible="true" headerHint="Nombre del tipo de documento.">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+          </SingleRecordViewColumns>
+          <EditColumns>
+            <Column fieldName="id_tipo_documento" caption="ID" visible="false">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="no_tipo_documento" caption="Nombre Tipo Documento" visible="true">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+          </EditColumns>
+          <InsertColumns>
+            <Column fieldName="id_tipo_documento" caption="ID" visible="false" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="no_tipo_documento" caption="Nombre Tipo Documento" visible="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+          </InsertColumns>
+          <SimpleSearchColumns>
+            <Column fieldName="id_tipo_documento" caption="ID" visible="true"/>
+            <Column fieldName="no_tipo_documento" caption="Nombre Tipo Documento" visible="true"/>
+          </SimpleSearchColumns>
+          <AdvancedSearchColumns>
+            <Column fieldName="id_tipo_documento" caption="ID" visible="true" useComboBox="false"/>
+            <Column fieldName="no_tipo_documento" caption="Nombre Tipo Documento" visible="true" useComboBox="false"/>
+          </AdvancedSearchColumns>
+          <ExportColumns>
+            <Column fieldName="id_tipo_documento" caption="ID" visible="true" headerHint="Identificador único del tipo de documento.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_tipo_documento" caption="No Tipo Documento" visible="true" headerHint="Nombre del tipo de documento.">
+              <ViewProperties type="text"/>
+            </Column>
+          </ExportColumns>
+          <PrintColumns>
+            <Column fieldName="id_tipo_documento" caption="ID" visible="true" headerHint="Identificador único del tipo de documento.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_tipo_documento" caption="No Tipo Documento" visible="true" headerHint="Nombre del tipo de documento.">
+              <ViewProperties type="text"/>
+            </Column>
+          </PrintColumns>
+        </Columns>
+        <Details/>
+        <RecordPermissions useRecordPermissions="false"/>
+        <PartitionNavigators/>
+      </Page>
+      <Page type="table" tableName="public.tipo_item" fileName="tipo_item" caption="Tipo Item" shortCaption="Tipo Item" groupName="Paramétricas" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true">
+        <BeforeGridText/>
+        <Columns>
+          <ViewColumns>
+            <Column fieldName="id_tipo_item" caption="ID" visible="true" headerHint="Identificador único del tipo de ítem." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_tipo_item" caption="Nombre Tipo Ítem" visible="true" headerHint="Nombre del tipo de ítem." totalFunction="0">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+          </ViewColumns>
+          <SingleRecordViewColumns>
+            <Column fieldName="id_tipo_item" caption="ID" visible="true" headerHint="Identificador único del tipo de ítem.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_tipo_item" caption="Nombre Tipo Ítem" visible="true" headerHint="Nombre del tipo de ítem.">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+          </SingleRecordViewColumns>
+          <EditColumns>
+            <Column fieldName="id_tipo_item" caption="ID" visible="false">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="no_tipo_item" caption="Nombre Tipo Ítem" visible="true">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+          </EditColumns>
+          <InsertColumns>
+            <Column fieldName="id_tipo_item" caption="ID" visible="false" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="no_tipo_item" caption="Nombre Tipo Ítem" visible="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+          </InsertColumns>
+          <SimpleSearchColumns>
+            <Column fieldName="id_tipo_item" caption="ID" visible="true"/>
+            <Column fieldName="no_tipo_item" caption="Nombre Tipo Ítem" visible="true"/>
+          </SimpleSearchColumns>
+          <AdvancedSearchColumns>
+            <Column fieldName="id_tipo_item" caption="ID" visible="true" useComboBox="false"/>
+            <Column fieldName="no_tipo_item" caption="Nombre Tipo Ítem" visible="true" useComboBox="false"/>
+          </AdvancedSearchColumns>
+          <ExportColumns>
+            <Column fieldName="id_tipo_item" caption="ID" visible="true" headerHint="Identificador único del tipo de ítem.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_tipo_item" caption="No Tipo Item" visible="true" headerHint="Nombre del tipo de ítem.">
+              <ViewProperties type="text"/>
+            </Column>
+          </ExportColumns>
+          <PrintColumns>
+            <Column fieldName="id_tipo_item" caption="ID" visible="true" headerHint="Identificador único del tipo de ítem.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_tipo_item" caption="No Tipo Item" visible="true" headerHint="Nombre del tipo de ítem.">
+              <ViewProperties type="text"/>
+            </Column>
+          </PrintColumns>
+        </Columns>
+        <Details/>
+        <RecordPermissions useRecordPermissions="false"/>
+        <PartitionNavigators/>
+      </Page>
+      <Page type="table" tableName="public.tipo_proyecto" fileName="tipo_proyecto" caption="Tipo Proyecto" shortCaption="Tipo Proyecto" groupName="Paramétricas" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true">
+        <BeforeGridText/>
+        <Columns>
+          <ViewColumns>
+            <Column fieldName="id_tipo_proyecto" caption="ID" visible="true" headerHint="Identificador único del tipo de proyecto." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_tipo_proyecto" caption="Nombre Tipo Proyecto" visible="true" headerHint="Nombre del tipo de proyecto." totalFunction="0">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+          </ViewColumns>
+          <SingleRecordViewColumns>
+            <Column fieldName="id_tipo_proyecto" caption="ID" visible="true" headerHint="Identificador único del tipo de proyecto.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_tipo_proyecto" caption="Nombre Tipo Proyecto" visible="true" headerHint="Nombre del tipo de proyecto.">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+          </SingleRecordViewColumns>
+          <EditColumns>
+            <Column fieldName="id_tipo_proyecto" caption="ID" visible="false">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="no_tipo_proyecto" caption="Nombre Tipo Proyecto" visible="true">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+          </EditColumns>
+          <InsertColumns>
+            <Column fieldName="id_tipo_proyecto" caption="ID" visible="false" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="no_tipo_proyecto" caption="Nombre Tipo Proyecto" visible="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+          </InsertColumns>
+          <SimpleSearchColumns>
+            <Column fieldName="id_tipo_proyecto" caption="ID" visible="true"/>
+            <Column fieldName="no_tipo_proyecto" caption="Nombre Tipo Proyecto" visible="true"/>
+          </SimpleSearchColumns>
+          <AdvancedSearchColumns>
+            <Column fieldName="id_tipo_proyecto" caption="ID" visible="true" useComboBox="false"/>
+            <Column fieldName="no_tipo_proyecto" caption="Nombre Tipo Proyecto" visible="true" useComboBox="false"/>
+          </AdvancedSearchColumns>
+          <ExportColumns>
+            <Column fieldName="id_tipo_proyecto" caption="ID" visible="true" headerHint="Identificador único del tipo de proyecto.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_tipo_proyecto" caption="No Tipo Proyecto" visible="true" headerHint="Nombre del tipo de proyecto.">
+              <ViewProperties type="text"/>
+            </Column>
+          </ExportColumns>
+          <PrintColumns>
+            <Column fieldName="id_tipo_proyecto" caption="ID" visible="true" headerHint="Identificador único del tipo de proyecto.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_tipo_proyecto" caption="No Tipo Proyecto" visible="true" headerHint="Nombre del tipo de proyecto.">
+              <ViewProperties type="text"/>
+            </Column>
+          </PrintColumns>
+        </Columns>
+        <Details/>
+        <RecordPermissions useRecordPermissions="false"/>
+        <PartitionNavigators/>
+      </Page>
+    </Pages>
+    <UserAuthorization type="hardCoded">
+      <Users>
+        <User name="prueba" password="prueba" userId="prueba"/>
+        <User name="admin" password="hola1234"/>
+      </Users>
+    </UserAuthorization>
+    <UserGrants enableGuestAccess="false">
+      <UserGrant userName="defaultUser" select="1"/>
+      <UserGrant userName="guest"/>
+      <UserGrant userName="prueba" select="1" insert="1" update="1" delete="1"/>
+      <UserGrant userName="admin" select="1" insert="1" update="1" delete="1" admin="1"/>
+      <UserPageGrants>
+        <PageGrants userName="defaultUser">
+          <PageGrant pageName="public.proyecto"/>
+          <PageGrant pageName="public.item"/>
+          <PageGrant pageName="public.factura"/>
+          <PageGrant pageName="public.documento"/>
+          <PageGrant pageName="public.organismo"/>
+          <PageGrant pageName="public.convenio"/>
+          <PageGrant pageName="public.proveedor"/>
+          <PageGrant pageName="public.lugar"/>
+          <PageGrant pageName="public.espacio"/>
+          <PageGrant pageName="public.area_requirente"/>
+          <PageGrant pageName="public.tipo_documento"/>
+          <PageGrant pageName="public.tipo_item"/>
+          <PageGrant pageName="public.tipo_proyecto"/>
+        </PageGrants>
+        <PageGrants userName="guest">
+          <PageGrant pageName="public.proyecto"/>
+          <PageGrant pageName="public.item"/>
+          <PageGrant pageName="public.factura"/>
+          <PageGrant pageName="public.documento"/>
+          <PageGrant pageName="public.organismo"/>
+          <PageGrant pageName="public.convenio"/>
+          <PageGrant pageName="public.proveedor"/>
+          <PageGrant pageName="public.lugar"/>
+          <PageGrant pageName="public.espacio"/>
+          <PageGrant pageName="public.area_requirente"/>
+          <PageGrant pageName="public.tipo_documento"/>
+          <PageGrant pageName="public.tipo_item"/>
+          <PageGrant pageName="public.tipo_proyecto"/>
+        </PageGrants>
+        <PageGrants userName="prueba">
+          <PageGrant pageName="public.proyecto"/>
+          <PageGrant pageName="public.item"/>
+          <PageGrant pageName="public.factura"/>
+          <PageGrant pageName="public.documento"/>
+          <PageGrant pageName="public.organismo"/>
+          <PageGrant pageName="public.convenio"/>
+          <PageGrant pageName="public.proveedor"/>
+          <PageGrant pageName="public.lugar"/>
+          <PageGrant pageName="public.espacio"/>
+          <PageGrant pageName="public.area_requirente"/>
+          <PageGrant pageName="public.tipo_documento"/>
+          <PageGrant pageName="public.tipo_item"/>
+          <PageGrant pageName="public.tipo_proyecto"/>
+        </PageGrants>
+        <PageGrants userName="admin">
+          <PageGrant pageName="public.proyecto"/>
+          <PageGrant pageName="public.item"/>
+          <PageGrant pageName="public.factura"/>
+          <PageGrant pageName="public.documento"/>
+          <PageGrant pageName="public.organismo"/>
+          <PageGrant pageName="public.convenio"/>
+          <PageGrant pageName="public.proveedor"/>
+          <PageGrant pageName="public.lugar"/>
+          <PageGrant pageName="public.espacio"/>
+          <PageGrant pageName="public.area_requirente"/>
+          <PageGrant pageName="public.tipo_documento"/>
+          <PageGrant pageName="public.tipo_item"/>
+          <PageGrant pageName="public.tipo_proyecto"/>
+        </PageGrants>
+      </UserPageGrants>
+    </UserGrants>
+    <Header>
+&lt;h1 style=&quot;text-align:center&quot;&gt;Proyectos&lt;/h1&gt;
+&lt;p&gt;Proyectos asociados a convenios&lt;/p&gt;    </Header>
+    <Footer/>
+    <Groups>
+      <Group>
+Proyectos      </Group>
+      <Group>
+Paramétricas      </Group>
+    </Groups>
+  </Presentation>
+  <UserCSS>
+.pgui-null-value {
+  color: LightGray;
+}
+.pull-left {
+  width: 90%;
+}  </UserCSS>
+  <UserJS/>
+  <ExcludedPaths/>
+  <DefaultPageProperties recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true"/>
+  <DefaultDataFormats numberAfterDecimal="2" DecimalSeparator="," ThousandSeparator="." DateTimeFormat="d/m/Y H:i:s" DateFormat="d/m/Y" firstDayOfWeek="0"/>
+</Project>

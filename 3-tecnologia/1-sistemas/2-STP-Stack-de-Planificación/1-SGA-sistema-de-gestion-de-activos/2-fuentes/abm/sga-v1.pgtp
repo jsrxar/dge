@@ -1,12 +1,12 @@
-<Project productVersion="14.10.0.10" localizationFileName="C:\app\PostgreSQL PHP Generator\lang.es.php" phpDriver="0" outputPath="\\10.13.18.133\rcdto" copySystemFiles="true" outputFilesExtension="php" colorSchemeName="Facebook">
-  <ConnectionOptions host="10.13.18.133" port="5432" login="rcdto" password="ZOO\[/&lt;~" database="RCDTO" client_encoding="">
+<Project productVersion="14.10.0.11" localizationFileName="C:\app\PostgreSQL PHP Generator\lang.es.php" phpDriver="0" outputPath="C:\app\xampp\htdocs\RCDTO" copySystemFiles="true" outputFilesExtension="php" colorSchemeName="Facebook">
+  <ConnectionOptions host="localhost" port="5432" login="rcdto" password="ZOO\[/&lt;~" database="RCDTO" client_encoding="">
     <ssh_secure secure="false" port="22" authentication_mode="0"/>
     <http_tunnel tunneling="false" url="">
       <http_proxy_server use_proxy="false" port="8080"/>
       <http_authentication/>
     </http_tunnel>
   </ConnectionOptions>
-  <ScriptConnectionOptions host="10.13.18.133" port="5432" login="rcdto" password="ZOO\[/&lt;~" database="RCDTO" client_encoding="">
+  <ScriptConnectionOptions host="localhost" port="5432" login="rcdto" password="ZOO\[/&lt;~" database="RCDTO" client_encoding="">
     <ssh_secure secure="false" port="22" authentication_mode="0"/>
     <http_tunnel tunneling="false" url="">
       <http_proxy_server use_proxy="false" port="8080"/>
@@ -2812,15 +2812,15 @@ FROM sga_espacio      </SelectStatement>
       </Users>
     </UserAuthorization>
     <UserGrants enableGuestAccess="true">
+      <UserGrant userName="guest"/>
       <UserGrant userName="defaultUser"/>
       <UserGrant userName="relevamiento"/>
       <UserGrant userName="servicios-generales"/>
       <UserGrant userName="espacios-fisicos"/>
       <UserGrant userName="ruso"/>
-      <UserGrant userName="guest"/>
       <UserGrant userName="admin" select="1" insert="1" update="1" delete="1" admin="1"/>
       <UserPageGrants>
-        <PageGrants userName="defaultUser">
+        <PageGrants userName="guest">
           <PageGrant pageName="public.sga_accion"/>
           <PageGrant pageName="public.sga_tarea_plan"/>
           <PageGrant pageName="public.sga_espacio"/>
@@ -2835,7 +2835,7 @@ FROM sga_espacio      </SelectStatement>
           <PageGrant pageName="public.sga_tipo_espacio"/>
           <PageGrant pageName="VerEspacio" select="1"/>
         </PageGrants>
-        <PageGrants userName="relevamiento">
+        <PageGrants userName="defaultUser">
           <PageGrant pageName="public.sga_accion"/>
           <PageGrant pageName="public.sga_tarea_plan"/>
           <PageGrant pageName="public.sga_espacio"/>
@@ -2850,7 +2850,7 @@ FROM sga_espacio      </SelectStatement>
           <PageGrant pageName="public.sga_tipo_espacio" select="1" insert="1" update="1" delete="1"/>
           <PageGrant pageName="VerEspacio"/>
         </PageGrants>
-        <PageGrants userName="servicios-generales">
+        <PageGrants userName="relevamiento">
           <PageGrant pageName="public.sga_accion" select="1" insert="1" update="1" delete="1"/>
           <PageGrant pageName="public.sga_tarea_plan" select="1" insert="1" update="1" delete="1"/>
           <PageGrant pageName="public.sga_espacio" select="1" insert="1" update="1" delete="1"/>
@@ -2865,7 +2865,7 @@ FROM sga_espacio      </SelectStatement>
           <PageGrant pageName="public.sga_tipo_espacio"/>
           <PageGrant pageName="VerEspacio"/>
         </PageGrants>
-        <PageGrants userName="espacios-fisicos">
+        <PageGrants userName="servicios-generales">
           <PageGrant pageName="public.sga_accion"/>
           <PageGrant pageName="public.sga_tarea_plan"/>
           <PageGrant pageName="public.sga_espacio" select="1" insert="1" update="1" delete="1"/>
@@ -2880,7 +2880,7 @@ FROM sga_espacio      </SelectStatement>
           <PageGrant pageName="public.sga_tipo_espacio" select="1" insert="1" update="1" delete="1"/>
           <PageGrant pageName="VerEspacio"/>
         </PageGrants>
-        <PageGrants userName="ruso">
+        <PageGrants userName="espacios-fisicos">
           <PageGrant pageName="public.sga_accion" select="1" insert="1" update="1" delete="1"/>
           <PageGrant pageName="public.sga_tarea_plan" select="1" insert="1" update="1" delete="1"/>
           <PageGrant pageName="public.sga_espacio" select="1"/>
@@ -2895,7 +2895,7 @@ FROM sga_espacio      </SelectStatement>
           <PageGrant pageName="public.sga_tipo_espacio" select="1"/>
           <PageGrant pageName="VerEspacio"/>
         </PageGrants>
-        <PageGrants userName="guest">
+        <PageGrants userName="ruso">
           <PageGrant pageName="public.sga_accion"/>
           <PageGrant pageName="public.sga_tarea_plan"/>
           <PageGrant pageName="public.sga_espacio"/>
