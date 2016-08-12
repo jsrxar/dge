@@ -12,24 +12,6 @@ INSERT INTO lugar (no_lugar) VALUES
 ('FEDERAL'),
 ('EXTERIOR');
 
-INSERT INTO espacio (id_lugar, no_espacio) VALUES
-(2, '525'),
-(2, 'Cartel Espacio de la Memoria'),
-(2, 'Cultura - Neurociencia'),
-(2, 'Dinos'),
-(2, 'Espacio Araucaria'),
-(2, 'Espacio Joven Interior'),
-(2, 'Espacio ZEN'),
-(2, 'Luz de transito'),
-(2, 'Microestadio'),
-(2, 'Ornamentacion'),
-(2, 'Teatrino'),
-(2, 'Teatro Chico 1 (Ex Industria)'),
-(2, 'Teatro Chico 2 (Ex Desarrollo Social)'),
-(2, 'Torre de Comunicaciones'),
-(2, 'Video Juegos (Microestadio)'),
-(2, 'Youtubers');
-
 INSERT INTO tipo_proyecto (no_tipo_proyecto) VALUES
 ('AUDIOVISUAL'),
 ('FEDERAL/LA RIOJA'),
@@ -46,15 +28,12 @@ INSERT INTO tipo_proyecto (no_tipo_proyecto) VALUES
 ('STAND/MUESTRA PAKA PAKA');
 
 INSERT INTO tipo_item (no_tipo_item) VALUES
-('Luces'),
-('Sonido'),
-('Video');
-
-INSERT INTO tipo_documento (no_tipo_documento) VALUES
-('Acta'),
-('Requerimiento'),
-('Aprobación'),
-('Proyecto');
+('Artística'),
+('Logística'),
+('Técnica - General'),
+('Técnica - Luces'),
+('Técnica - Sonido'),
+('Técnica - Video');
 
 INSERT INTO organismo (no_organismo, ds_organismo, co_cuit, tx_direccion, ds_observaciones) VALUES
 ('UNTREF', 'Universidad Nacional de Tres de Febrero', '30-68525606-8', 'Mosconi 2736 - Saenz Peña, Buenos Aires', NULL),

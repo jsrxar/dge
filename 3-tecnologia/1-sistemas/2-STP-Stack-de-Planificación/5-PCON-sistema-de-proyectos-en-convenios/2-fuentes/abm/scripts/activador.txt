@@ -1,13 +1,11 @@
 proyecto.php
-item.php
-factura.php
-documento.php
+item_pago.php
 organismo.php
 convenio.php
+artista.php
 proveedor.php
+contacto_proveedor.php
 lugar.php
-espacio.php
 area_requirente.php
-tipo_documento.php
-tipo_item.php
 tipo_proyecto.php
+tipo_item_pago.php

@@ -1,8 +1,0 @@
-<script>
-	function suma(){
-		$("#va_monto_item_edit").val(Number($("#va_importe_edit").val())+Number($("#va_iva_edit").val()));
-	}
-
-	$("#va_importe_edit").change(function(){ suma()	});
-	$("#va_iva_edit").change(function(){ suma()	});
-</script>

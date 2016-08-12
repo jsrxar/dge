@@ -21,7 +21,7 @@ for arch in `cat activador.txt`;do
 			sed 's/SetVisualEffectsEnabled(false)/SetVisualEffectsEnabled(true)/g' | \
 			sed 's/SetShowTopPageNavigator(false)/SetShowTopPageNavigator(true)/g' | \
 			sed 's/SetShowBottomPageNavigator(false)/SetShowBottomPageNavigator(true)/g' | \
-			sed 's/SetAllowDeleteSelected(false)/SetAllowDeleteSelected(true)/g' | \
+			sed 's/SetAllowDeleteSelected(true)/SetAllowDeleteSelected(false)/g' | \
 			sed 's/AddBand(/AddBandToBegin(/g' | \
 			sed 's/SetRowsPerPage(.*)/SetRowsPerPage(100)/g' > ${arch}.new
 		

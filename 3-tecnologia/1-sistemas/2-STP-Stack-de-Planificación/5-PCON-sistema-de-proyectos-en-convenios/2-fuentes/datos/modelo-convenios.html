@@ -60,19 +60,16 @@
 <a href="#%C3%81rea Requirente">&Aacute;rea Requirente</a>
 </li>
 <li>
+<a href="#Artista">Artista</a>
+</li>
+<li>
+<a href="#Contacto Proveedor">Contacto Proveedor</a>
+</li>
+<li>
 <a href="#Convenio">Convenio</a>
 </li>
 <li>
-<a href="#Documento">Documento</a>
-</li>
-<li>
-<a href="#Espacio">Espacio</a>
-</li>
-<li>
-<a href="#Factura">Factura</a>
-</li>
-<li>
-<a href="#%C3%8Dtem">&Iacute;tem</a>
+<a href="#%C3%8Dtem Pago">&Iacute;tem Pago</a>
 </li>
 <li>
 <a href="#Lugar">Lugar</a>
@@ -85,9 +82,6 @@
 </li>
 <li>
 <a href="#Proyecto">Proyecto</a>
-</li>
-<li>
-<a href="#Tipo Documento">Tipo Documento</a>
 </li>
 <li>
 <a href="#Tipo %C3%8Dtem">Tipo &Iacute;tem</a>
@@ -115,6 +109,58 @@
 <ul>
 <li>
 <a href="#Proyecto">Proyecto</a> referencia "ID Area Requirente"</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Artista">Artista</a><span> (Tabla: artista)</span>
+<p>Artista que se presenta en un proyecto.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Artista (Clave)</td><td class="tdTableDefinition">id_artista</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del artista.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Nombre Artista</td><td class="tdTableDefinition">no_artista</td><td class="tdTableDefinition">VARCHAR(100) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Nombre del artista.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Contrato</td><td class="tdTableDefinition">fi_contrato</td><td class="tdTableDefinition">BLOB</td><td class="tdTableDefinition">Archivo del contrato con el artista.</td>
+</tr>
+</table>
+<p class="subTitle">Referenciado por</p>
+<ul>
+<li>
+<a href="#%C3%8Dtem Pago">&Iacute;tem Pago</a> referencia "ID Artista"</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Contacto Proveedor">Contacto Proveedor</a><span> (Tabla: contacto)</span>
+<p>Contacto del proveedor.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Contacto (Clave)</td><td class="tdTableDefinition">id_contacto</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del contacto del proveedor.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Nombre Contacto</td><td class="tdTableDefinition">no_contacto</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition">Nombre del contacto del proveedor.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Proveedor</td><td class="tdTableDefinition">id_proveedor</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del proveedor.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Tel&eacute;fono</td><td class="tdTableDefinition">tx_telefono_proveedor</td><td class="tdTableDefinition">VARCHAR(50)</td><td class="tdTableDefinition">N&uacute;mero de tel&eacute;fono del contacto del proveedor.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">EMail</td><td class="tdTableDefinition">tx_email_proveedor</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition">E-Mail del contacto del proveedor.</td>
+</tr>
+</table>
+<p class="subTitle">Referencias</p>
+<ul>
+<li>
+<a href="#Proveedor">Proveedor</a> mediante "ID Proveedor"</li>
 </ul>
 <div class="tableNameHeading">
 <a style="font-size:175%;font-weight:bold;" name="Convenio">Convenio</a><span> (Tabla: convenio)</span>
@@ -149,113 +195,9 @@
 <ul>
 <li>
 <a href="#Proyecto">Proyecto</a> referencia "ID Convenio"</li>
-<li>
-<a href="#%C3%8Dtem">&Iacute;tem</a> referencia "ID Convenio"</li>
 </ul>
 <div class="tableNameHeading">
-<a style="font-size:175%;font-weight:bold;" name="Documento">Documento</a><span> (Tabla: documento)</span>
-<p>Documento relacionado con el proyecto.</p>
-</div>
-<table class="tableDefinition" width="100%">
-<tr>
-<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
-</tr>
-<tr>
-<td class="tdTableDefinition">ID Documento (Clave)</td><td class="tdTableDefinition">id_documento</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del documento.</td>
-</tr>
-<tr>
-<td class="tdTableDefinition">Nombre Documento</td><td class="tdTableDefinition">no_documento</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition">Nombre del documento.</td>
-</tr>
-<tr>
-<td class="tdTableDefinition">ID Tipo Documento</td><td class="tdTableDefinition">id_tipo_documento</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del tipo de documento.</td>
-</tr>
-<tr>
-<td class="tdTableDefinition">ID Proyecto</td><td class="tdTableDefinition">id_proyecto</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del proyecto.</td>
-</tr>
-<tr>
-<td class="tdTableDefinition">Archivo</td><td class="tdTableDefinition">fi_archivo</td><td class="tdTableDefinition">BLOB</td><td class="tdTableDefinition">Archivo del documento.</td>
-</tr>
-<tr>
-<td class="tdTableDefinition">Requerido?</td><td class="tdTableDefinition">fl_requerido</td><td class="tdTableDefinition">BOOLEAN</td><td class="tdTableDefinition">Requerido?</td>
-</tr>
-<tr>
-<td class="tdTableDefinition">Aprobado?</td><td class="tdTableDefinition">fl_aprobado</td><td class="tdTableDefinition">BOOLEAN</td><td class="tdTableDefinition">Aprobado?</td>
-</tr>
-</table>
-<p class="subTitle">Referencias</p>
-<ul>
-<li>
-<a href="#Tipo Documento">Tipo Documento</a> mediante "ID Tipo Documento"</li>
-<li>
-<a href="#Proyecto">Proyecto</a> mediante "ID Proyecto"</li>
-</ul>
-<div class="tableNameHeading">
-<a style="font-size:175%;font-weight:bold;" name="Espacio">Espacio</a><span> (Tabla: espacio)</span>
-<p>Espacio dentro del lugar donde se realiza el proyecto.</p>
-</div>
-<table class="tableDefinition" width="100%">
-<tr>
-<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
-</tr>
-<tr>
-<td class="tdTableDefinition">ID Espacio (Clave)</td><td class="tdTableDefinition">id_espacio</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del espacio.</td>
-</tr>
-<tr>
-<td class="tdTableDefinition">Nombre Espacio</td><td class="tdTableDefinition">no_espacio</td><td class="tdTableDefinition">VARCHAR(100) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Nombre del espacio.</td>
-</tr>
-<tr>
-<td class="tdTableDefinition">ID Lugar</td><td class="tdTableDefinition">id_lugar</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition">Identificador &uacute;nico del lugar.</td>
-</tr>
-</table>
-<p class="subTitle">Referencias</p>
-<ul>
-<li>
-<a href="#Lugar">Lugar</a> mediante "ID Lugar"</li>
-</ul>
-<p class="subTitle">Referenciado por</p>
-<ul>
-<li>
-<a href="#%C3%8Dtem">&Iacute;tem</a> referencia "ID Espacio"</li>
-</ul>
-<div class="tableNameHeading">
-<a style="font-size:175%;font-weight:bold;" name="Factura">Factura</a><span> (Tabla: factura)</span>
-<p>Factura relacionada al pago del proyecto.</p>
-</div>
-<table class="tableDefinition" width="100%">
-<tr>
-<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
-</tr>
-<tr>
-<td class="tdTableDefinition">ID Factura (Clave)</td><td class="tdTableDefinition">id_factura</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico de la factura.</td>
-</tr>
-<tr>
-<td class="tdTableDefinition">ID Proyecto</td><td class="tdTableDefinition">id_proyecto</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition">Identificador &uacute;nico del proyecto.</td>
-</tr>
-<tr>
-<td class="tdTableDefinition">N&uacute;mero Factura</td><td class="tdTableDefinition">nu_factura</td><td class="tdTableDefinition">VARCHAR(20) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">N&uacute;mero de la factura.</td>
-</tr>
-<tr>
-<td class="tdTableDefinition">Fecha Factura</td><td class="tdTableDefinition">fe_factura</td><td class="tdTableDefinition">DATE <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Fecha de la factura.</td>
-</tr>
-<tr>
-<td class="tdTableDefinition">Cuota</td><td class="tdTableDefinition">nu_cuota</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition">N&uacute;mero de cuota de la factura.</td>
-</tr>
-<tr>
-<td class="tdTableDefinition">Importe Factura</td><td class="tdTableDefinition">va_factura</td><td class="tdTableDefinition">DOUBLE <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Importe total facturado.</td>
-</tr>
-</table>
-<p class="subTitle">Referencias</p>
-<ul>
-<li>
-<a href="#Proyecto">Proyecto</a> mediante "ID Proyecto"</li>
-</ul>
-<p class="subTitle">Referenciado por</p>
-<ul>
-<li>
-<a href="#%C3%8Dtem">&Iacute;tem</a> referencia "ID Factura"</li>
-</ul>
-<div class="tableNameHeading">
-<a style="font-size:175%;font-weight:bold;" name="%C3%8Dtem">&Iacute;tem</a><span> (Tabla: item)</span>
+<a style="font-size:175%;font-weight:bold;" name="%C3%8Dtem Pago">&Iacute;tem Pago</a><span> (Tabla: item)</span>
 <p>&Iacute;tem de pago dentro del proyecto.</p>
 </div>
 <table class="tableDefinition" width="100%">
@@ -269,40 +211,31 @@
 <td class="tdTableDefinition">ID Proyecto</td><td class="tdTableDefinition">id_proyecto</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del proyecto.</td>
 </tr>
 <tr>
+<td class="tdTableDefinition">ID Tipo &Iacute;tem</td><td class="tdTableDefinition">id_tipo_item</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition">Identificador &uacute;nico del tipo de &iacute;tem.</td>
+</tr>
+<tr>
 <td class="tdTableDefinition">ID Proveedor</td><td class="tdTableDefinition">id_proveedor</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition">Identificador &uacute;nico del proveedor.</td>
 </tr>
 <tr>
-<td class="tdTableDefinition">ID Espacio</td><td class="tdTableDefinition">id_espacio</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition">Identificador &uacute;nico del espacio.</td>
-</tr>
-<tr>
-<td class="tdTableDefinition">ID Tipo &Iacute;tem</td><td class="tdTableDefinition">id_tipo_item</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del tipo de &iacute;tem.</td>
+<td class="tdTableDefinition">ID Artista</td><td class="tdTableDefinition">id_artista</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition">Identificador &uacute;nico del artista.</td>
 </tr>
 <tr>
 <td class="tdTableDefinition">Detalle &Iacute;tem</td><td class="tdTableDefinition">no_item</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition">Detalle del &iacute;tem.</td>
 </tr>
 <tr>
-<td class="tdTableDefinition">Importe</td><td class="tdTableDefinition">va_importe</td><td class="tdTableDefinition">DOUBLE <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Importe del &iacute;tem.</td>
+<td class="tdTableDefinition">Monto &Iacute;tem</td><td class="tdTableDefinition">va_monto_item</td><td class="tdTableDefinition">DOUBLE</td><td class="tdTableDefinition">Monto total del &iacute;tem del proyecto.</td>
 </tr>
 <tr>
-<td class="tdTableDefinition">IVA</td><td class="tdTableDefinition">va_iva</td><td class="tdTableDefinition">DOUBLE <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Valor de IVA sobre el importe del &iacute;tem.</td>
+<td class="tdTableDefinition">Anticipo</td><td class="tdTableDefinition">va_anticipo</td><td class="tdTableDefinition">DOUBLE</td><td class="tdTableDefinition">Anticipo a pagar por el &iacute;tem de pago.</td>
 </tr>
 <tr>
-<td class="tdTableDefinition">Monto &Iacute;tem</td><td class="tdTableDefinition">va_monto_item</td><td class="tdTableDefinition">DOUBLE <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Monto total del &iacute;tem del proyecto.</td>
+<td class="tdTableDefinition">Anticipo OK?</td><td class="tdTableDefinition">fl_anticipo</td><td class="tdTableDefinition">BOOLEAN</td><td class="tdTableDefinition">Pago del anticipo?.</td>
 </tr>
 <tr>
-<td class="tdTableDefinition">Saldo</td><td class="tdTableDefinition">va_saldo</td><td class="tdTableDefinition">DOUBLE <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Saldo con el proveedor.</td>
+<td class="tdTableDefinition">Saldo</td><td class="tdTableDefinition">va_saldo</td><td class="tdTableDefinition">DOUBLE</td><td class="tdTableDefinition">Saldo con el proveedor.</td>
 </tr>
 <tr>
-<td class="tdTableDefinition">Estado</td><td class="tdTableDefinition">tx_estado</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition">Estado del &iacute;tem.</td>
-</tr>
-<tr>
-<td class="tdTableDefinition">Expediente</td><td class="tdTableDefinition">tx_expediente</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition">Expediente relacionado con el &iacute;tem del proyecto.</td>
-</tr>
-<tr>
-<td class="tdTableDefinition">ID Convenio</td><td class="tdTableDefinition">id_convenio</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del convenio.</td>
-</tr>
-<tr>
-<td class="tdTableDefinition">ID Factura</td><td class="tdTableDefinition">id_factura</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition">Identificador &uacute;nico de la factura.</td>
+<td class="tdTableDefinition">Contrato</td><td class="tdTableDefinition">fi_contrato</td><td class="tdTableDefinition">BLOB</td><td class="tdTableDefinition">Archivo del contrato con el artista.</td>
 </tr>
 <tr>
 <td class="tdTableDefinition">Observaciones</td><td class="tdTableDefinition">ds_observaciones</td><td class="tdTableDefinition">VARCHAR(400)</td><td class="tdTableDefinition">Observaciones generales sobre el &iacute;tem del proyecto.</td>
@@ -311,17 +244,13 @@
 <p class="subTitle">Referencias</p>
 <ul>
 <li>
-<a href="#Convenio">Convenio</a> mediante "ID Convenio"</li>
-<li>
 <a href="#Tipo %C3%8Dtem">Tipo &Iacute;tem</a> mediante "ID Tipo &Iacute;tem"</li>
 <li>
 <a href="#Proyecto">Proyecto</a> mediante "ID Proyecto"</li>
 <li>
-<a href="#Espacio">Espacio</a> mediante "ID Espacio"</li>
-<li>
-<a href="#Factura">Factura</a> mediante "ID Factura"</li>
-<li>
 <a href="#Proveedor">Proveedor</a> mediante "ID Proveedor"</li>
+<li>
+<a href="#Artista">Artista</a> mediante "ID Artista"</li>
 </ul>
 <div class="tableNameHeading">
 <a style="font-size:175%;font-weight:bold;" name="Lugar">Lugar</a><span> (Tabla: lugar)</span>
@@ -342,8 +271,6 @@
 <ul>
 <li>
 <a href="#Proyecto">Proyecto</a> referencia "ID Lugar"</li>
-<li>
-<a href="#Espacio">Espacio</a> referencia "ID Lugar"</li>
 </ul>
 <div class="tableNameHeading">
 <a style="font-size:175%;font-weight:bold;" name="Organismo">Organismo</a><span> (Tabla: organismo)</span>
@@ -392,12 +319,6 @@
 <td class="tdTableDefinition">Nombre Proveedor</td><td class="tdTableDefinition">no_proveedor</td><td class="tdTableDefinition">VARCHAR(100) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Nombre del proveedor.</td>
 </tr>
 <tr>
-<td class="tdTableDefinition">EMail</td><td class="tdTableDefinition">tx_email_proveedor</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition">E-Mail del proveedor.</td>
-</tr>
-<tr>
-<td class="tdTableDefinition">Tel&eacute;fono</td><td class="tdTableDefinition">tx_telefono_proveedor</td><td class="tdTableDefinition">VARCHAR(50)</td><td class="tdTableDefinition">N&uacute;mero de tel&eacute;fono del proveedor.</td>
-</tr>
-<tr>
 <td class="tdTableDefinition">CUIT</td><td class="tdTableDefinition">fl_cuit</td><td class="tdTableDefinition">BOOLEAN</td><td class="tdTableDefinition">N&uacute;mero de CUIT?.</td>
 </tr>
 <tr>
@@ -428,7 +349,9 @@
 <p class="subTitle">Referenciado por</p>
 <ul>
 <li>
-<a href="#%C3%8Dtem">&Iacute;tem</a> referencia "ID Proveedor"</li>
+<a href="#%C3%8Dtem Pago">&Iacute;tem Pago</a> referencia "ID Proveedor"</li>
+<li>
+<a href="#Contacto Proveedor">Contacto Proveedor</a> referencia "ID Proveedor"</li>
 </ul>
 <div class="tableNameHeading">
 <a style="font-size:175%;font-weight:bold;" name="Proyecto">Proyecto</a><span> (Tabla: proyecto)</span>
@@ -466,6 +389,9 @@
 <td class="tdTableDefinition">Cronograma</td><td class="tdTableDefinition">tx_cronograma</td><td class="tdTableDefinition">VARCHAR(200)</td><td class="tdTableDefinition">Cronograma del proyecto.</td>
 </tr>
 <tr>
+<td class="tdTableDefinition">Estado?</td><td class="tdTableDefinition">fl_estado</td><td class="tdTableDefinition">BOOLEAN</td><td class="tdTableDefinition">Si el estado est&aacute; OK.</td>
+</tr>
+<tr>
 <td class="tdTableDefinition">Observaciones</td><td class="tdTableDefinition">ds_observaciones</td><td class="tdTableDefinition">VARCHAR(400)</td><td class="tdTableDefinition">Observaciones generales sobre el proyecto.</td>
 </tr>
 </table>
@@ -483,31 +409,7 @@
 <p class="subTitle">Referenciado por</p>
 <ul>
 <li>
-<a href="#Documento">Documento</a> referencia "ID Proyecto"</li>
-<li>
-<a href="#%C3%8Dtem">&Iacute;tem</a> referencia "ID Proyecto"</li>
-<li>
-<a href="#Factura">Factura</a> referencia "ID Proyecto"</li>
-</ul>
-<div class="tableNameHeading">
-<a style="font-size:175%;font-weight:bold;" name="Tipo Documento">Tipo Documento</a><span> (Tabla: tipo_documento)</span>
-<p>Tipo del documento cargado.</p>
-</div>
-<table class="tableDefinition" width="100%">
-<tr>
-<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
-</tr>
-<tr>
-<td class="tdTableDefinition">ID Tipo Documento (Clave)</td><td class="tdTableDefinition">id_tipo_documento</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del tipo de documento.</td>
-</tr>
-<tr>
-<td class="tdTableDefinition">Nombre Tipo Documento</td><td class="tdTableDefinition">no_tipo_documento</td><td class="tdTableDefinition">VARCHAR(100) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Nombre del tipo de documento.</td>
-</tr>
-</table>
-<p class="subTitle">Referenciado por</p>
-<ul>
-<li>
-<a href="#Documento">Documento</a> referencia "ID Tipo Documento"</li>
+<a href="#%C3%8Dtem Pago">&Iacute;tem Pago</a> referencia "ID Proyecto"</li>
 </ul>
 <div class="tableNameHeading">
 <a style="font-size:175%;font-weight:bold;" name="Tipo %C3%8Dtem">Tipo &Iacute;tem</a><span> (Tabla: tipo_item)</span>
@@ -527,7 +429,7 @@
 <p class="subTitle">Referenciado por</p>
 <ul>
 <li>
-<a href="#%C3%8Dtem">&Iacute;tem</a> referencia "ID Tipo &Iacute;tem"</li>
+<a href="#%C3%8Dtem Pago">&Iacute;tem Pago</a> referencia "ID Tipo &Iacute;tem"</li>
 </ul>
 <div class="tableNameHeading">
 <a style="font-size:175%;font-weight:bold;" name="Tipo Proyecto">Tipo Proyecto</a><span> (Tabla: tipo_proyecto)</span>
