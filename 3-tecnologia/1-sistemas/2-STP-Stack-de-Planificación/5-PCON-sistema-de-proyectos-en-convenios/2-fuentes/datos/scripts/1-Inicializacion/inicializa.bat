@@ -1,7 +1,7 @@
 @echo off
 setlocal
 
-set PGHOST=mozart.myc.ar
+set PGHOST=localhost
 set PDBASE=CONVENIOS
 set PGOPTIONS=--client-min-messages=warning
 @echo ==============================(  1a - Creando Esquema  )==============================
