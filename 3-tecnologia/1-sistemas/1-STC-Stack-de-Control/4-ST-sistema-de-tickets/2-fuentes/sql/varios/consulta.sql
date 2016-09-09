@@ -35,5 +35,21 @@ SELECT
 FROM issues i LEFT JOIN projects p ON p.id = i.project_id
 GROUP BY i.project_id, p.name -- , a.assigned_to_id
 order by 1, 2
-
+;
+-- Para tickets de Mesa de Ayuda
+SELECT
+	created_on AS creado,
+	(SELECT login FROM users WHERE id = ss.author_id) autor,
+	(SELECT tr.name
+	 FROM trackers tr INNER JOIN projects_trackers pt ON tr.id = pt.tracker_id
+	 WHERE pt.project_id = ss.project_id AND tr.id = ss.tracker_id) tipo,
+	subject AS asunto,
+	(SELECT name FROM enumerations WHERE type IN ('IssuePriority') AND id = ss.priority_id ) prioridad,
+	(SELECT name FROM issue_statuses WHERE id = ss.status_id) estado,
+	(SELECT value FROM custom_values
+	 WHERE customized_type = 'Issue' AND customized_id = ss.id AND custom_field_id = 42) area_origen,
+	(SELECT value FROM custom_values
+	 WHERE customized_type = 'Issue' AND customized_id = ss.id AND custom_field_id = 36) persona_solicitante
+FROM issues ss
+WHERE ss.project_id = 3 -- Mesa de Ayuda
 

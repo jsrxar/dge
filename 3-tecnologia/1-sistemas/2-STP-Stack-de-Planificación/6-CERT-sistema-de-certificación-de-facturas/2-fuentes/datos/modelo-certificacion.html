@@ -1,0 +1,492 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-15">
+<style>
+	  body {
+		font-family: Segoe UI, Arial, sans-serif;
+	  }
+
+	  ul {
+		-webkit-margin-before: 1px;
+        -webkit-margin-after: 5px;
+	  }
+
+	  p {
+		margin: 1px;
+	  }
+
+      .tableNameHeading {
+           margin-top: 2px;
+           margin-bottom: 1px;
+           border-top: 3px solid gray;
+           border-bottom: 1px solid #C0C0C0;
+           background-color:#F5F5FF;
+		   font-size:110%;
+       }
+
+      .tableComment{ background-color:#e4efff; margin-bottom:20px;}
+      .tableDefinition { padding:2px; border-collapse:collapse; margin-top:2px;}
+
+      .tdTableDefinition {
+        padding-right:10px;
+        vertical-align:top;
+        border-bottom:1px solid #C0C0C0;
+      }
+
+      .tdTableHeading {
+        padding:2px;
+        font-weight:bold;
+        vertical-align:top;
+        border-bottom: 1px solid #C0C0C0;
+        background-color: rgb(240,240,240);
+      }
+      
+      .subTitle {
+        font-size:120%;
+		font-weight:bold;
+        background-color:#F5F5FF;
+      }
+    </style>
+<title>modelo-certificacion</title>
+</head>
+<body>
+<center>
+<h2>modelo-certificacion</h2>
+</center>
+<h3 class="tableNameHeading">Lista de Entidades</h3>
+<ul style="font-size:80%;">
+<li>
+<a href="#Agente">Agente</a>
+</li>
+<li>
+<a href="#Categor%C3%ADa LM">Categor&iacute;a LM</a>
+</li>
+<li>
+<a href="#Contrato">Contrato</a>
+</li>
+<li>
+<a href="#Convenio AT">Convenio AT</a>
+</li>
+<li>
+<a href="#Dependencia">Dependencia</a>
+</li>
+<li>
+<a href="#Factura">Factura</a>
+</li>
+<li>
+<a href="#Mes">Mes</a>
+</li>
+<li>
+<a href="#Puesto">Puesto</a>
+</li>
+<li>
+<a href="#Rango">Rango</a>
+</li>
+<li>
+<a href="#Salario">Salario</a>
+</li>
+<li>
+<a href="#Tipo Contrato">Tipo Contrato</a>
+</li>
+<li>
+<a href="#Ubicaci%C3%B3n F%C3%ADsica">Ubicaci&oacute;n F&iacute;sica</a>
+</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Agente">Agente</a><span> (Tabla: agente)</span>
+<p>Agente que presta servicios.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Agente (Clave)</td><td class="tdTableDefinition">id_agente</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del agente que presta servicios.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Nombre Agente</td><td class="tdTableDefinition">no_agente</td><td class="tdTableDefinition">VARCHAR(100) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Nombre del agente que presta servicios.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Puesto</td><td class="tdTableDefinition">id_puesto</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition">Puesto del agente.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Dependencia</td><td class="tdTableDefinition">id_dependencia</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Dependencia gubernamental del agente.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Ubicaci&oacute;n F&iacute;sica</td><td class="tdTableDefinition">id_ubicacion_fisica</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition">Ubicaci&oacute;n f&iacute;sica de traajo del agente.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Funci&oacute;n</td><td class="tdTableDefinition">ds_funcion</td><td class="tdTableDefinition">VARCHAR(200)</td><td class="tdTableDefinition">Funci&oacute;n del agente en el puesto.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Tipo Documento</td><td class="tdTableDefinition">co_tipo_documento</td><td class="tdTableDefinition">VARCHAR(5)</td><td class="tdTableDefinition">Tipo de documento del agente.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">N&uacute;mero Documento</td><td class="tdTableDefinition">nu_documento</td><td class="tdTableDefinition">[-5] <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">N&uacute;mero de documento del agente.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Imagen Documento</td><td class="tdTableDefinition">ar_documento</td><td class="tdTableDefinition">BLOB</td><td class="tdTableDefinition">Archivo de imagen digital del documento del agente.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">CUIT</td><td class="tdTableDefinition">nu_cuit</td><td class="tdTableDefinition">[-5] <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">N&uacute;mero de CUIT del agente.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Fecha Nacimiento</td><td class="tdTableDefinition">fe_nacimiento</td><td class="tdTableDefinition">DATE</td><td class="tdTableDefinition">Fecha de nacimiento del agente.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Estudios</td><td class="tdTableDefinition">ds_estudios</td><td class="tdTableDefinition">VARCHAR(200)</td><td class="tdTableDefinition">Estudios del agente.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Direcci&oacute;n</td><td class="tdTableDefinition">ds_direccion</td><td class="tdTableDefinition">VARCHAR(200)</td><td class="tdTableDefinition">Direcci&oacute;n del agente.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Tel&eacute;fono</td><td class="tdTableDefinition">ds_telefono</td><td class="tdTableDefinition">VARCHAR(20)</td><td class="tdTableDefinition">Tel&eacute;fono del agente.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Celular</td><td class="tdTableDefinition">ds_celular</td><td class="tdTableDefinition">VARCHAR(20)</td><td class="tdTableDefinition">Tel&eacute;fono celular del agente.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Fecha Ingreso</td><td class="tdTableDefinition">fe_ingreso</td><td class="tdTableDefinition">DATE</td><td class="tdTableDefinition">Fecha de ingreso del agente.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">CV Agente</td><td class="tdTableDefinition">ar_cv_agente</td><td class="tdTableDefinition">BLOB</td><td class="tdTableDefinition">Archivo del CV del agente.</td>
+</tr>
+</table>
+<p class="subTitle">Referencias</p>
+<ul>
+<li>
+<a href="#Dependencia">Dependencia</a> mediante "ID Dependencia"</li>
+<li>
+<a href="#Ubicaci%C3%B3n F%C3%ADsica">Ubicaci&oacute;n F&iacute;sica</a> mediante "ID Ubicaci&oacute;n F&iacute;sica"</li>
+<li>
+<a href="#Puesto">Puesto</a> mediante "ID Puesto"</li>
+</ul>
+<p class="subTitle">Referenciado por</p>
+<ul>
+<li>
+<a href="#Contrato">Contrato</a> referencia "ID Agente"</li>
+<li>
+<a href="#Salario">Salario</a> referencia "ID Agente"</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Categor%C3%ADa LM">Categor&iacute;a LM</a><span> (Tabla: categoria_lm)</span>
+<p>Categor&iacute;a asignada a los agentes contratados por Ley Marco.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Categor&iacute;a LM (Clave)</td><td class="tdTableDefinition">id_categoria_lm</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico de la categor&iacute;a de Ley Marco.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Nombre Categor&iacute;a LM</td><td class="tdTableDefinition">ni_categoria_lm</td><td class="tdTableDefinition">VARCHAR(100) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Nombre de la categor&iacute;a de Ley Marco.</td>
+</tr>
+</table>
+<p class="subTitle">Referenciado por</p>
+<ul>
+<li>
+<a href="#Contrato">Contrato</a> referencia "ID Categor&iacute;a LM"</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Contrato">Contrato</a><span> (Tabla: contrato)</span>
+<p>Contrato con el agente.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Contrato (Clave)</td><td class="tdTableDefinition">id_contrato</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del contrato con el agente.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Agente</td><td class="tdTableDefinition">id_agente</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Agente que presta servicios.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Fecha Inicio</td><td class="tdTableDefinition">fe_inicio</td><td class="tdTableDefinition">DATE</td><td class="tdTableDefinition">Fecha de inicio del contrato.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Fecha Fin</td><td class="tdTableDefinition">fe_fin</td><td class="tdTableDefinition">DATE</td><td class="tdTableDefinition">Fecha de vencimiento del contrato.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Tipo Contrato</td><td class="tdTableDefinition">id_tipo_contrato</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Tipo del contrato con el agete.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Categor&iacute;a LM</td><td class="tdTableDefinition">id_categoria_lm</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition">Identificador &uacute;nico de la categor&iacute;a de Ley Marco.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Convenio AT</td><td class="tdTableDefinition">id_convenio_at</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition">Identificador &uacute;nico del convenio de Asistencia T&eacute;cnica.</td>
+</tr>
+</table>
+<p class="subTitle">Referencias</p>
+<ul>
+<li>
+<a href="#Agente">Agente</a> mediante "ID Agente"</li>
+<li>
+<a href="#Categor%C3%ADa LM">Categor&iacute;a LM</a> mediante "ID Categor&iacute;a LM"</li>
+<li>
+<a href="#Tipo Contrato">Tipo Contrato</a> mediante "ID Tipo Contrato"</li>
+<li>
+<a href="#Convenio AT">Convenio AT</a> mediante "ID Convenio AT"</li>
+</ul>
+<p class="subTitle">Referenciado por</p>
+<ul>
+<li>
+<a href="#Salario">Salario</a> referencia "ID Contrato"</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Convenio AT">Convenio AT</a><span> (Tabla: convenio_at)</span>
+<p>Convenio de los contratos de Asistencia T&eacute;cnica.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Convenio AT (Clave)</td><td class="tdTableDefinition">id_convenio_at</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del convenio de Asistencia T&eacute;cnica.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Nombre Convenio AT</td><td class="tdTableDefinition">no_convenio_at</td><td class="tdTableDefinition">VARCHAR(100) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Nombre del convenio de Asistencia T&eacute;cnica.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Universidad</td><td class="tdTableDefinition">ds_universidad</td><td class="tdTableDefinition">VARCHAR(200)</td><td class="tdTableDefinition">Universidad con la que se encuentra firmado el convenio.</td>
+</tr>
+</table>
+<p class="subTitle">Referenciado por</p>
+<ul>
+<li>
+<a href="#Contrato">Contrato</a> referencia "ID Convenio AT"</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Dependencia">Dependencia</a><span> (Tabla: dependencia)</span>
+<p>Dependencia gubernamental a la que pertenece el agente.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Dependencia (Clave)</td><td class="tdTableDefinition">id_dependencia</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico de la dependencia gubernamental.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Nombre Dependencia</td><td class="tdTableDefinition">no_dependencia</td><td class="tdTableDefinition">VARCHAR(100) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Nombre de la dependencia gubernamental.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Rango</td><td class="tdTableDefinition">id_rango</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Rango de la dependencia gubernamental.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Ubicaci&oacute;n F&iacute;sica</td><td class="tdTableDefinition">id_ubicacion_fisica</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition">Ubicaci&oacute;n F&iacute;sica.</td>
+</tr>
+</table>
+<p class="subTitle">Referencias</p>
+<ul>
+<li>
+<a href="#Rango">Rango</a> mediante "ID Rango"</li>
+<li>
+<a href="#Ubicaci%C3%B3n F%C3%ADsica">Ubicaci&oacute;n F&iacute;sica</a> mediante "ID Ubicaci&oacute;n F&iacute;sica"</li>
+</ul>
+<p class="subTitle">Referenciado por</p>
+<ul>
+<li>
+<a href="#Puesto">Puesto</a> referencia "ID Dependencia"</li>
+<li>
+<a href="#Agente">Agente</a> referencia "ID Dependencia"</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Factura">Factura</a><span> (Tabla: factura)</span>
+<p>Factura del agente asociada a un salario mensual.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Factura (Clave)</td><td class="tdTableDefinition">id_factura</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico de la factura del agente.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Salario</td><td class="tdTableDefinition">id_salario</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Salario del agente al que afecta la factura.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Punto Venta</td><td class="tdTableDefinition">nu_pto_venta</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition">N&uacute;mero del punto de venta de la factura.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">N&uacute;mero Factura</td><td class="tdTableDefinition">nu_factura</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition">N&uacute;mero de la factura.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Fecha Factura</td><td class="tdTableDefinition">fe_factura</td><td class="tdTableDefinition">DATE</td><td class="tdTableDefinition">Fecha de la factura.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Fecha Carga</td><td class="tdTableDefinition">fe_carga</td><td class="tdTableDefinition">DATE <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Fecha de carga de la factura.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Monto Factura</td><td class="tdTableDefinition">va_factura</td><td class="tdTableDefinition">FLOAT</td><td class="tdTableDefinition">Monto de la factura.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Imagen Factura</td><td class="tdTableDefinition">ar_factura</td><td class="tdTableDefinition">BLOB</td><td class="tdTableDefinition">Archivo de imagen de la factura.</td>
+</tr>
+</table>
+<p class="subTitle">Referencias</p>
+<ul>
+<li>
+<a href="#Salario">Salario</a> mediante "ID Salario"</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Mes">Mes</a><span> (Tabla: mes)</span>
+<p>Mes de pago del salario.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Mes (Clave)</td><td class="tdTableDefinition">id_mes</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del mes del salario.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Nombre Mes</td><td class="tdTableDefinition">no_mes</td><td class="tdTableDefinition">VARCHAR(20) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Nombre del mes del salario.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">% Aumento</td><td class="tdTableDefinition">va_pct_aumento</td><td class="tdTableDefinition">FLOAT</td><td class="tdTableDefinition">Porcentaje de aumento en el mes.</td>
+</tr>
+</table>
+<p class="subTitle">Referenciado por</p>
+<ul>
+<li>
+<a href="#Salario">Salario</a> referencia "ID Mes"</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Puesto">Puesto</a><span> (Tabla: puesto)</span>
+<p>Puesto en el que se desenvuelve el agente.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Puesto (Clave)</td><td class="tdTableDefinition">id_puesto</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del puesto del agente.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Nombre Puesto</td><td class="tdTableDefinition">no_puesto</td><td class="tdTableDefinition">VARCHAR(100) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Nombre del puesto del agente.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Dependencia</td><td class="tdTableDefinition">id_dependencia</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition">Dependencia gubernamental.</td>
+</tr>
+</table>
+<p class="subTitle">Referencias</p>
+<ul>
+<li>
+<a href="#Dependencia">Dependencia</a> mediante "ID Dependencia"</li>
+</ul>
+<p class="subTitle">Referenciado por</p>
+<ul>
+<li>
+<a href="#Agente">Agente</a> referencia "ID Puesto"</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Rango">Rango</a><span> (Tabla: rango)</span>
+<p>Rango de la dependencia.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Rango (Clave)</td><td class="tdTableDefinition">id_rango</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del rango de la dependencia.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Nombre Rango</td><td class="tdTableDefinition">no_rango</td><td class="tdTableDefinition">VARCHAR(100) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Nombre del rango de la dependencia.</td>
+</tr>
+</table>
+<p class="subTitle">Referenciado por</p>
+<ul>
+<li>
+<a href="#Dependencia">Dependencia</a> referencia "ID Rango"</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Salario">Salario</a><span> (Tabla: salario)</span>
+<p>Salario del mes del agente.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Salario (Clave)</td><td class="tdTableDefinition">id_salario</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del salario del agente en un mes.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Agente</td><td class="tdTableDefinition">id_agente</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Agente que presta servicios.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Mes</td><td class="tdTableDefinition">id_mes</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Mes del salario.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Contrato</td><td class="tdTableDefinition">id_contrato</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Contrato con el agente.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Valor Salario</td><td class="tdTableDefinition">va_salario</td><td class="tdTableDefinition">FLOAT <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Valor del salario del agente en el mes.</td>
+</tr>
+</table>
+<p class="subTitle">Referencias</p>
+<ul>
+<li>
+<a href="#Agente">Agente</a> mediante "ID Agente"</li>
+<li>
+<a href="#Contrato">Contrato</a> mediante "ID Contrato"</li>
+<li>
+<a href="#Mes">Mes</a> mediante "ID Mes"</li>
+</ul>
+<p class="subTitle">Referenciado por</p>
+<ul>
+<li>
+<a href="#Factura">Factura</a> referencia "ID Salario"</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Tipo Contrato">Tipo Contrato</a><span> (Tabla: tipo_contrato)</span>
+<p>Tipo de contrato de los agentes (AT o LM).</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Tipo Contrato (Clave)</td><td class="tdTableDefinition">id_tipo_contrato</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del tipo de contrato de los agentes.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">C&oacute;digo Tipo Contrato</td><td class="tdTableDefinition">co_tipo_contrato</td><td class="tdTableDefinition">CHAR <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">C&oacute;digo del tipo de contrato (AT o LM).</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Nombre Tipo Contrato</td><td class="tdTableDefinition">no_tipo_contrato</td><td class="tdTableDefinition">VARCHAR(100) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Nombre del tipo de contrato.</td>
+</tr>
+</table>
+<p class="subTitle">Referenciado por</p>
+<ul>
+<li>
+<a href="#Contrato">Contrato</a> referencia "ID Tipo Contrato"</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Ubicaci%C3%B3n F%C3%ADsica">Ubicaci&oacute;n F&iacute;sica</a><span> (Tabla: ubicacion_fisica)</span>
+<p>Ubicaci&oacute;n f&iacute;sica de la dependencia en la que trabaja el agente.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Ubicaci&oacute;n F&iacute;sica (Clave)</td><td class="tdTableDefinition">id_ubicacion_fisica</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico de la ubicaci&oacute;n f&iacute;sica.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Nombre Ubicaci&oacute;n F&iacute;sica</td><td class="tdTableDefinition">no_ubicacion_fisica</td><td class="tdTableDefinition">VARCHAR(100) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Nombre de la ubicaci&oacute;n f&iacute;sica.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Direcci&oacute;n</td><td class="tdTableDefinition">ds_direcci&oacute;n</td><td class="tdTableDefinition">VARCHAR(400)</td><td class="tdTableDefinition">Direcci&oacute;n de la ubicaci&oacute;n f&iacute;sica.</td>
+</tr>
+</table>
+<p class="subTitle">Referenciado por</p>
+<ul>
+<li>
+<a href="#Dependencia">Dependencia</a> referencia "ID Ubicaci&oacute;n F&iacute;sica"</li>
+<li>
+<a href="#Agente">Agente</a> referencia "ID Ubicaci&oacute;n F&iacute;sica"</li>
+</ul>
+</body>
+</html>
