@@ -105,13 +105,18 @@
     <Hierarchy visible="true" hasAll="true" primaryKey="id_lectura">
       <Table name="fac_lectura" schema="public">
       </Table>
-      <Level name="Hora" visible="true" column="ds_hora" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Hora" description="Hora de la lectura.">
+      <Level name="Tipo Lector" visible="true" column="co_lector" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Tipo Lector" description="Tipo de Lector (fijo / manual).">
+        <NameExpression>
+          <SQL dialect="generic">case when co_lector = 100 then 'Fijo' else 'Manual' end</SQL>
+        </NameExpression>  
+      </Level>
+      <Level name="Lector" visible="true" column="co_lector" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Lector" description="C&#243;digo de lector.">
       </Level>
       <Level name="Usuario" visible="true" column="no_usuario" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Usu&#225;rio" description="Usu&#225;rio de la lectura.">
       </Level>
       <Level name="Nombre Usuario" visible="true" column="ds_usuario" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Nombre Usu&#225;rio" description="Descripci&#243;n de usu&#225;rio de la lectura.">
       </Level>
-      <Level name="Lector" visible="true" column="co_lector" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Lector" description="C&#243;digo de lector.">
+      <Level name="Hora" visible="true" column="ds_hora" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Hora" description="Hora de la lectura.">
       </Level>
       <Level name="Observaciones" visible="true" column="ds_observaciones" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Observaciones" description="Observaciones de la lectura.">
       </Level>
@@ -160,6 +165,10 @@
     <DimensionUsage source="Origen" name="Origen" visible="true" foreignKey="id_origen" highCardinality="false">
     </DimensionUsage>
     <Measure name="Cantidad Lecturas" column="nu_lecturas" datatype="Numeric" aggregator="sum" caption="Cantidad Lecturas" description="Cantidad de lecturas hechas en la fecha dada.">
+    </Measure>
+    <Measure name="Cantidad Dias" column="id_fecha" datatype="Numeric" aggregator="distinct-count" caption="Cantidad D&#237;as" description="Cantidad de d&#237;a diferentes en los que se encuentran las lecturas.">
+    </Measure>
+    <Measure name="Cantidad Personas" column="id_persona" datatype="Numeric" aggregator="distinct-count" caption="Cantidad Personas" description="Cantidad de personas diferentes que generaron las lecturas.">
     </Measure>
     <Measure name="Hora Menor" column="fe_hora" datatype="String" aggregator="min" caption="Hora Menor" description="Fecha y Hora de la primera lectura." visible="true">
       <CellFormatter>
