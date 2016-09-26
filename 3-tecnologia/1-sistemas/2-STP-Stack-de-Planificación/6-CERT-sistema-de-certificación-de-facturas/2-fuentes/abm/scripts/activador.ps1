@@ -58,4 +58,9 @@ foreach ($arch in get-content activador.txt) {
 	}
 }
 
+Write-Host Cambiando archivo de estilos CSS
+$oricss = $dir + "\main.css"
+$descss = $dir + "\components\css"
+Copy-Item $oricss -Destination $descss -Force
+
 Write-Host Proceso finalizado

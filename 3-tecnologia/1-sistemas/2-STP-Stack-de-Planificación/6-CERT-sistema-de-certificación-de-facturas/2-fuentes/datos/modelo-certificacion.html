@@ -60,6 +60,9 @@
 <a href="#Agente">Agente</a>
 </li>
 <li>
+<a href="#Base Datos RRHH">Base Datos RRHH</a>
+</li>
+<li>
 <a href="#Categor%C3%ADa LM">Categor&iacute;a LM</a>
 </li>
 <li>
@@ -102,18 +105,6 @@
 <td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
 </tr>
 <tr>
-<td class="tdTableDefinition">ID Agente (Clave)</td><td class="tdTableDefinition">id_agente</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del agente que presta servicios.</td>
-</tr>
-<tr>
-<td class="tdTableDefinition">Nombre Agente</td><td class="tdTableDefinition">no_agente</td><td class="tdTableDefinition">VARCHAR(100) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Nombre del agente que presta servicios.</td>
-</tr>
-<tr>
-<td class="tdTableDefinition">ID Puesto</td><td class="tdTableDefinition">id_puesto</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition">Puesto del agente.</td>
-</tr>
-<tr>
-<td class="tdTableDefinition">ID Dependencia</td><td class="tdTableDefinition">id_dependencia</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Dependencia gubernamental del agente.</td>
-</tr>
-<tr>
 <td class="tdTableDefinition">ID Ubicaci&oacute;n F&iacute;sica</td><td class="tdTableDefinition">id_ubicacion_fisica</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition">Ubicaci&oacute;n f&iacute;sica de traajo del agente.</td>
 </tr>
 <tr>
@@ -152,6 +143,18 @@
 <tr>
 <td class="tdTableDefinition">CV Agente</td><td class="tdTableDefinition">ar_cv_agente</td><td class="tdTableDefinition">BLOB</td><td class="tdTableDefinition">Archivo del CV del agente.</td>
 </tr>
+<tr>
+<td class="tdTableDefinition">ID Agente (Clave)</td><td class="tdTableDefinition">id_agente</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del agente que presta servicios.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Nombre Agente</td><td class="tdTableDefinition">no_agente</td><td class="tdTableDefinition">VARCHAR(100) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Nombre del agente que presta servicios.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Puesto</td><td class="tdTableDefinition">id_puesto</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition">Puesto del agente.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Dependencia</td><td class="tdTableDefinition">id_dependencia</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Dependencia gubernamental del agente.</td>
+</tr>
 </table>
 <p class="subTitle">Referencias</p>
 <ul>
@@ -169,6 +172,126 @@
 <li>
 <a href="#Salario">Salario</a> referencia "ID Agente"</li>
 </ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Base Datos RRHH">Base Datos RRHH</a><span> (Tabla: stg_base_rrhh)</span>
+<p>Base de datos de origen de RRHH.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_secretaria</td><td class="tdTableDefinition">ds_secretaria</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_subsecretaria</td><td class="tdTableDefinition">ds_subsecretaria</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_direccion_area</td><td class="tdTableDefinition">ds_direccion_area</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_area_dependencia</td><td class="tdTableDefinition">ds_area_dependencia</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_sector</td><td class="tdTableDefinition">ds_sector</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_sub_sector</td><td class="tdTableDefinition">ds_sub_sector</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_puesto</td><td class="tdTableDefinition">ds_puesto</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_funcion</td><td class="tdTableDefinition">ds_funcion</td><td class="tdTableDefinition">VARCHAR(200)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_ubicacion_fisica</td><td class="tdTableDefinition">ds_ubicacion_fisica</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_entrega_banelcos</td><td class="tdTableDefinition">ds_entrega_banelcos</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_apellido_nombres</td><td class="tdTableDefinition">ds_apellido_nombres</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_dni</td><td class="tdTableDefinition">ds_dni</td><td class="tdTableDefinition">VARCHAR(20)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_nro</td><td class="tdTableDefinition">ds_nro</td><td class="tdTableDefinition">VARCHAR(20)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_cuit</td><td class="tdTableDefinition">ds_cuit</td><td class="tdTableDefinition">VARCHAR(20)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_f_nacimiento</td><td class="tdTableDefinition">ds_f_nacimiento</td><td class="tdTableDefinition">VARCHAR(20)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_estudios</td><td class="tdTableDefinition">ds_estudios</td><td class="tdTableDefinition">VARCHAR(20)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_direccion</td><td class="tdTableDefinition">ds_direccion</td><td class="tdTableDefinition">VARCHAR(20)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_telefono</td><td class="tdTableDefinition">ds_telefono</td><td class="tdTableDefinition">VARCHAR(20)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_celular</td><td class="tdTableDefinition">ds_celular</td><td class="tdTableDefinition">VARCHAR(20)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_lm_at</td><td class="tdTableDefinition">ds_lm_at</td><td class="tdTableDefinition">VARCHAR(50)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_tipo</td><td class="tdTableDefinition">ds_tipo</td><td class="tdTableDefinition">VARCHAR(20)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_ingreso</td><td class="tdTableDefinition">ds_ingreso</td><td class="tdTableDefinition">VARCHAR(20)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_vto_contrato</td><td class="tdTableDefinition">ds_vto_contrato</td><td class="tdTableDefinition">VARCHAR(20)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_fin_contrato</td><td class="tdTableDefinition">ds_fin_contrato</td><td class="tdTableDefinition">VARCHAR(20)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_categ_lm</td><td class="tdTableDefinition">ds_categ_lm</td><td class="tdTableDefinition">VARCHAR(20)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_universidad</td><td class="tdTableDefinition">ds_universidad</td><td class="tdTableDefinition">VARCHAR(50)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_convenio_at</td><td class="tdTableDefinition">ds_convenio_at</td><td class="tdTableDefinition">VARCHAR(50)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_mayo_2016</td><td class="tdTableDefinition">ds_mayo_2016</td><td class="tdTableDefinition">VARCHAR(20)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_junio_7p</td><td class="tdTableDefinition">ds_junio_7p</td><td class="tdTableDefinition">VARCHAR(20)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_julio_10p</td><td class="tdTableDefinition">ds_julio_10p</td><td class="tdTableDefinition">VARCHAR(20)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_agosto_14p</td><td class="tdTableDefinition">ds_agosto_14p</td><td class="tdTableDefinition">VARCHAR(20)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_sept</td><td class="tdTableDefinition">ds_sept</td><td class="tdTableDefinition">VARCHAR(20)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_oct</td><td class="tdTableDefinition">ds_oct</td><td class="tdTableDefinition">VARCHAR(20)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_nov</td><td class="tdTableDefinition">ds_nov</td><td class="tdTableDefinition">VARCHAR(20)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_dic</td><td class="tdTableDefinition">ds_dic</td><td class="tdTableDefinition">VARCHAR(20)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_posible_letra</td><td class="tdTableDefinition">ds_posible_letra</td><td class="tdTableDefinition">VARCHAR(20)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_presup_2017</td><td class="tdTableDefinition">ds_presup_2017</td><td class="tdTableDefinition">VARCHAR(20)</td><td class="tdTableDefinition"></td>
+</tr>
+</table>
 <div class="tableNameHeading">
 <a style="font-size:175%;font-weight:bold;" name="Categor%C3%ADa LM">Categor&iacute;a LM</a><span> (Tabla: categoria_lm)</span>
 <p>Categor&iacute;a asignada a los agentes contratados por Ley Marco.</p>
@@ -478,7 +601,7 @@
 <td class="tdTableDefinition">Nombre Ubicaci&oacute;n F&iacute;sica</td><td class="tdTableDefinition">no_ubicacion_fisica</td><td class="tdTableDefinition">VARCHAR(100) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Nombre de la ubicaci&oacute;n f&iacute;sica.</td>
 </tr>
 <tr>
-<td class="tdTableDefinition">Direcci&oacute;n</td><td class="tdTableDefinition">ds_direcci&oacute;n</td><td class="tdTableDefinition">VARCHAR(400)</td><td class="tdTableDefinition">Direcci&oacute;n de la ubicaci&oacute;n f&iacute;sica.</td>
+<td class="tdTableDefinition">Direcci&oacute;n</td><td class="tdTableDefinition">ds_direccion</td><td class="tdTableDefinition">VARCHAR(400)</td><td class="tdTableDefinition">Direcci&oacute;n de la ubicaci&oacute;n f&iacute;sica.</td>
 </tr>
 </table>
 <p class="subTitle">Referenciado por</p>

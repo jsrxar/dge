@@ -1,1 +1,0 @@
-carpeta destinada a entregables
