@@ -78,5 +78,5 @@ SELECT
 	no_area,
 	no_puesto,
 	no_tarea
-FROM ods_persona
-WHERE co_dni_cuit NOT IN ( SELECT co_dni_cuit FROM dim_persona );
+FROM ods_persona pe
+WHERE NOT EXISTS ( SELECT 1 FROM dim_persona WHERE co_dni_cuit = pe.co_dni_cuit);
