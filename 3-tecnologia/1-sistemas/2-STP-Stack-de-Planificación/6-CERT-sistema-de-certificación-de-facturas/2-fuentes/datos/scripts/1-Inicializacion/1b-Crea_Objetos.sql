@@ -234,7 +234,6 @@ CREATE SEQUENCE public.salario_sq;
 
 CREATE TABLE public.salario (
                 id_salario INTEGER NOT NULL DEFAULT nextval('public.salario_sq'),
-                id_agente INTEGER NOT NULL,
                 id_mes INTEGER NOT NULL,
                 id_contrato INTEGER NOT NULL,
                 va_salario REAL NOT NULL,
@@ -242,7 +241,6 @@ CREATE TABLE public.salario (
 );
 COMMENT ON TABLE public.salario IS 'Salario del mes del agente.';
 COMMENT ON COLUMN public.salario.id_salario IS 'Identificador único del salario del agente en un mes.';
-COMMENT ON COLUMN public.salario.id_agente IS 'Agente que presta servicios.';
 COMMENT ON COLUMN public.salario.id_mes IS 'Mes del salario.';
 COMMENT ON COLUMN public.salario.id_contrato IS 'Contrato con el agente.';
 COMMENT ON COLUMN public.salario.va_salario IS 'Valor del salario del agente en el mes.';
@@ -344,13 +342,6 @@ ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
 ALTER TABLE public.contrato ADD CONSTRAINT agente_contrato_fk
-FOREIGN KEY (id_agente)
-REFERENCES public.agente (id_agente)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
-NOT DEFERRABLE;
-
-ALTER TABLE public.salario ADD CONSTRAINT agente_salario_fk
 FOREIGN KEY (id_agente)
 REFERENCES public.agente (id_agente)
 ON DELETE NO ACTION

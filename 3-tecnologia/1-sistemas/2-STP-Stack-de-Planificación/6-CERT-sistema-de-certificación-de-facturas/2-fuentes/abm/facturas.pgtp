@@ -34,10 +34,16 @@ ORDER BY id_mes      </SelectStatement>
     <Query name="ver_contrato">
       <SelectStatement>
 SELECT
-id_contrato,
-TRIM(
-(SELECT COALESCE('CUIT: ' || co_cuit || ' (', 'SIN CUIT (') || no_agente || ')' FROM agente WHERE id_agente = co.id_agente) || ' - ' ||
-(SELECT co_tipo_contrato FROM tipo_contrato WHERE id_tipo_contrato = co.id_tipo_contrato)) AS ds_contrato
+      id_contrato,
+      TRIM(
+      (SELECT COALESCE('CUIT: ' || co_cuit || ' (', 'SIN CUIT (')
+              || no_agente || ')'
+       FROM agente
+       WHERE id_agente = co.id_agente) || ' - Contrato ' ||
+      (SELECT co_tipo_contrato
+       FROM tipo_contrato
+       WHERE id_tipo_contrato = co.id_tipo_contrato)) ||
+       TO_CHAR(fe_fin, '&quot; (fin&quot; DD/MM/YY&quot;)&quot;') AS ds_contrato
 FROM public.contrato co
 ORDER BY 2      </SelectStatement>
       <InsertStatements/>
@@ -70,14 +76,16 @@ ORDER BY 2      </SelectStatement>
     <Query name="ver_salario">
       <SelectStatement>
 SELECT
- id_salario,
- TRIM((SELECT
-  (SELECT COALESCE(CAST(co_cuit AS TEXT) || ' (', 'SIN CUIT (') || no_agente || ')' FROM agente WHERE id_agente = co.id_agente) || ' - ' ||
-  (SELECT co_tipo_contrato FROM tipo_contrato WHERE id_tipo_contrato = co.id_tipo_contrato) FROM contrato co WHERE id_contrato = sa.id_contrato) || ' ' ||
- TO_CHAR(TO_DATE(CAST(sa.id_mes AS TEXT), 'YYYYMM'), 'MM/YYYY')  ||
- ' (' || CAST(CAST(sa.va_salario AS NUMERIC) AS MONEY) ||')') AS ds_salario
+      id_salario,
+      id_contrato,
+      (SELECT ag.no_agente
+       FROM agente ag, contrato co
+       WHERE co.id_contrato = sa.id_contrato
+         AND ag.id_agente = co.id_agente) || ' - ' ||
+      TO_CHAR(TO_DATE(CAST(sa.id_mes AS TEXT), 'YYYYMM'), 'MM/YYYY')  ||
+      ' (' || CAST(CAST(sa.va_salario AS NUMERIC) AS MONEY) ||')' AS ds_salario
 FROM salario sa
-ORDER BY 2      </SelectStatement>
+ORDER BY id_mes      </SelectStatement>
       <InsertStatements/>
       <UpdateStatements/>
       <DeleteStatements/>
@@ -96,21 +104,23 @@ ORDER BY 2      </SelectStatement>
             <Column fieldName="id_factura" caption="ID Factura" visible="false" headerHint="Identificador único de la factura del agente." totalFunction="0">
               <ViewProperties type="text"/>
             </Column>
-            <Column fieldName="id_salario" caption="Salario" visible="true" headerHint="Salario del agente al que afecta la factura." totalFunction="0">
+            <Column fieldName="id_salario" caption="Honorario" visible="true" headerHint="Honorario del agente al que afecta la factura." width="500" totalFunction="0">
               <Lookup tableName="ver_salario" linkFieldName="id_salario" displayFieldName="ds_salario" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text">
                 <DivAttributes align="left"/>
               </ViewProperties>
-              <Hyperlink template="salario.php?operation=view&amp;amp;pk0=%id_salario%"/>
+              <Hyperlink template="honorario.php?operation=view&amp;amp;pk0=%id_salario%"/>
             </Column>
             <Column fieldName="nu_pto_venta" caption="Punto Venta" visible="true" headerHint="Número del punto de venta de la factura." totalFunction="0">
-              <ViewProperties type="text">
+              <ViewProperties type="text" maxLength="4" escapeHTMLChars="true" wrapWords="false">
                 <DivAttributes align="right"/>
+                <Format type="number"/>
               </ViewProperties>
             </Column>
             <Column fieldName="nu_factura" caption="Número Factura" visible="true" headerHint="Número de la factura." totalFunction="0">
-              <ViewProperties type="text">
+              <ViewProperties type="text" maxLength="8" escapeHTMLChars="true" wrapWords="false">
                 <DivAttributes align="right"/>
+                <Format type="number"/>
               </ViewProperties>
             </Column>
             <Column fieldName="fe_factura" caption="Fecha Factura" visible="true" headerHint="Fecha de la factura." totalFunction="0">
@@ -122,11 +132,11 @@ ORDER BY 2      </SelectStatement>
             <Column fieldName="va_factura" caption="Monto Factura" visible="true" headerHint="Monto de la factura." totalFunction="0">
               <ViewProperties type="text">
                 <DivAttributes align="right"/>
-                <Format type="currency" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="." currencySymbol=""/>
+                <Format type="currency" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="." currencySymbol="$ "/>
               </ViewProperties>
             </Column>
             <Column fieldName="ar_factura" caption="Archivo Factura" visible="true" headerHint="Archivo de imagen de la factura." totalFunction="0">
-              <ViewProperties type="download"/>
+              <ViewProperties type="download" downloadFileNameTemplate="factura_%nu_pto_venta%-%nu_factura%" forceDownload="false"/>
             </Column>
             <Column fieldName="fl_rechazo" caption="Rechazada?" visible="true" headerHint="Indicador de rechazo de la factura." totalFunction="0">
               <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
@@ -141,21 +151,23 @@ ORDER BY 2      </SelectStatement>
             <Column fieldName="id_factura" caption="ID Factura" visible="true" headerHint="Identificador único de la factura del agente.">
               <ViewProperties type="text"/>
             </Column>
-            <Column fieldName="id_salario" caption="Salario" visible="true" headerHint="Salario del agente al que afecta la factura.">
+            <Column fieldName="id_salario" caption="Honorario" visible="true" headerHint="Honorario del agente al que afecta la factura.">
               <Lookup tableName="ver_salario" linkFieldName="id_salario" displayFieldName="ds_salario" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text">
                 <DivAttributes align="left"/>
               </ViewProperties>
-              <Hyperlink template="salario.php?operation=view&amp;amp;pk0=%id_salario%"/>
+              <Hyperlink template="honorario.php?operation=view&amp;amp;pk0=%id_salario%"/>
             </Column>
             <Column fieldName="nu_pto_venta" caption="Punto Venta" visible="true" headerHint="Número del punto de venta de la factura.">
-              <ViewProperties type="text">
+              <ViewProperties type="text" maxLength="4" escapeHTMLChars="true" wrapWords="false">
                 <DivAttributes align="right"/>
+                <Format type="number"/>
               </ViewProperties>
             </Column>
             <Column fieldName="nu_factura" caption="Número Factura" visible="true" headerHint="Número de la factura.">
-              <ViewProperties type="text">
+              <ViewProperties type="text" maxLength="8" escapeHTMLChars="true" wrapWords="false">
                 <DivAttributes align="right"/>
+                <Format type="number"/>
               </ViewProperties>
             </Column>
             <Column fieldName="fe_factura" caption="Fecha Factura" visible="true" headerHint="Fecha de la factura.">
@@ -167,16 +179,16 @@ ORDER BY 2      </SelectStatement>
             <Column fieldName="va_factura" caption="Monto Factura" visible="true" headerHint="Monto de la factura.">
               <ViewProperties type="text">
                 <DivAttributes align="right"/>
-                <Format type="currency" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="." currencySymbol=""/>
+                <Format type="currency" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="." currencySymbol="$ "/>
               </ViewProperties>
             </Column>
             <Column fieldName="ar_factura" caption="Archivo Factura" visible="true" headerHint="Archivo de imagen de la factura.">
-              <ViewProperties type="download"/>
+              <ViewProperties type="download" downloadFileNameTemplate="factura_%nu_pto_venta%-%nu_factura%" forceDownload="false"/>
             </Column>
             <Column fieldName="fl_rechazo" caption="Rechazada?" visible="true" headerHint="Indicador de rechazo de la factura.">
               <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
             </Column>
-            <Column fieldName="ds_comentario" caption="Comentario Factura" visible="false" headerHint="Comentario de la factura.">
+            <Column fieldName="ds_comentario" caption="Comentario Factura" visible="true" headerHint="Comentario de la factura.">
               <ViewProperties type="text" maxLength="75">
                 <DivAttributes align="left"/>
               </ViewProperties>
@@ -186,19 +198,22 @@ ORDER BY 2      </SelectStatement>
             <Column fieldName="id_factura" caption="ID Factura" visible="false">
               <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
             </Column>
-            <Column fieldName="id_salario" caption="Salario" visible="true">
+            <Column fieldName="id_salario" caption="Honorario" visible="true">
               <Lookup tableName="ver_salario" linkFieldName="id_salario" displayFieldName="ds_salario" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
-              <EditProperties type="comboBox">
-                <MFUItems/>
+              <EditProperties type="multilevelautocomplete" allowClear="false">
+                <AdvancedProperties inlineStyles="width:500px"/>
+                <Levels>
+                  <Level dataSourceName="ver_contrato" idFieldName="id_contrato" captionFieldName="ds_contrato" childFieldName="id_contrato" caption="CUIT"/>
+                </Levels>
               </EditProperties>
             </Column>
             <Column fieldName="nu_pto_venta" caption="Punto Venta" visible="true" canSetNull="true">
-              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="0001" prefix="" suffix="">
                 <AdvancedProperties inlineStyles="text-align:right" customAttributes="onkeypress='return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57'"/>
               </EditProperties>
             </Column>
             <Column fieldName="nu_factura" caption="Número Factura" visible="true" canSetNull="true">
-              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix="">
+              <EditProperties type="textBox" size="0" maxLength="8" placeholder="00000001" prefix="" suffix="">
                 <AdvancedProperties inlineStyles="text-align:right" customAttributes="onkeypress='return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57'"/>
               </EditProperties>
             </Column>
@@ -216,10 +231,10 @@ ORDER BY 2      </SelectStatement>
             <Column fieldName="ar_factura" caption="Archivo Factura" visible="true" canSetNull="true">
               <EditProperties type="fileUpload"/>
             </Column>
-            <Column fieldName="fl_rechazo" caption="Rechazada?" visible="true">
+            <Column fieldName="fl_rechazo" caption="Rechazada?" visible="true" canSetNull="true">
               <EditProperties type="checkBox"/>
             </Column>
-            <Column fieldName="ds_comentario" caption="Comentario Factura" visible="false" canSetNull="true">
+            <Column fieldName="ds_comentario" caption="Comentario Factura" visible="true" canSetNull="true">
               <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
             </Column>
           </EditColumns>
@@ -227,19 +242,22 @@ ORDER BY 2      </SelectStatement>
             <Column fieldName="id_factura" caption="ID Factura" visible="false" defaultInsertValue="">
               <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
             </Column>
-            <Column fieldName="id_salario" caption="Salario" visible="true" defaultInsertValue="">
+            <Column fieldName="id_salario" caption="Honorario" visible="true" defaultInsertValue="">
               <Lookup tableName="ver_salario" linkFieldName="id_salario" displayFieldName="ds_salario" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
-              <EditProperties type="comboBox">
-                <MFUItems/>
+              <EditProperties type="multilevelautocomplete" allowClear="false">
+                <AdvancedProperties inlineStyles="width:500px"/>
+                <Levels>
+                  <Level dataSourceName="ver_contrato" idFieldName="id_contrato" captionFieldName="ds_contrato" childFieldName="id_contrato" caption="CUIT"/>
+                </Levels>
               </EditProperties>
             </Column>
             <Column fieldName="nu_pto_venta" caption="Punto Venta" visible="true" canSetNull="true" defaultInsertValue="">
-              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="0001" prefix="" suffix="">
                 <AdvancedProperties inlineStyles="text-align:right" customAttributes="onkeypress='return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57'"/>
               </EditProperties>
             </Column>
             <Column fieldName="nu_factura" caption="Número Factura" visible="true" canSetNull="true" defaultInsertValue="">
-              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix="">
+              <EditProperties type="textBox" size="0" maxLength="8" placeholder="00000001" prefix="" suffix="">
                 <AdvancedProperties inlineStyles="text-align:right" customAttributes="onkeypress='return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57'"/>
               </EditProperties>
             </Column>
@@ -257,16 +275,16 @@ ORDER BY 2      </SelectStatement>
             <Column fieldName="ar_factura" caption="Archivo Factura" visible="true" canSetNull="true" defaultInsertValue="">
               <EditProperties type="fileUpload"/>
             </Column>
-            <Column fieldName="fl_rechazo" caption="Rechazada?" visible="true" defaultInsertValue="">
+            <Column fieldName="fl_rechazo" caption="Rechazada?" visible="true" canSetNull="true" defaultInsertValue="">
               <EditProperties type="checkBox"/>
             </Column>
-            <Column fieldName="ds_comentario" caption="Comentario Factura" visible="false" canSetNull="true" defaultInsertValue="">
+            <Column fieldName="ds_comentario" caption="Comentario Factura" visible="true" canSetNull="true" defaultInsertValue="">
               <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
             </Column>
           </InsertColumns>
           <SimpleSearchColumns>
             <Column fieldName="id_factura" caption="ID Factura" visible="true"/>
-            <Column fieldName="id_salario" caption="Salario" visible="true">
+            <Column fieldName="id_salario" caption="Honorario" visible="true">
               <Lookup tableName="ver_salario" linkFieldName="id_salario" displayFieldName="ds_salario" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
             <Column fieldName="nu_pto_venta" caption="Punto Venta" visible="true"/>
@@ -276,11 +294,11 @@ ORDER BY 2      </SelectStatement>
             <Column fieldName="va_factura" caption="Monto Factura" visible="true"/>
             <Column fieldName="ar_factura" caption="Archivo Factura" visible="false"/>
             <Column fieldName="fl_rechazo" caption="Rechazada?" visible="true"/>
-            <Column fieldName="ds_comentario" caption="Comentario Factura" visible="false"/>
+            <Column fieldName="ds_comentario" caption="Comentario Factura" visible="true"/>
           </SimpleSearchColumns>
           <AdvancedSearchColumns>
             <Column fieldName="id_factura" caption="ID Factura" visible="true" useComboBox="false"/>
-            <Column fieldName="id_salario" caption="Salario" visible="true" useComboBox="false">
+            <Column fieldName="id_salario" caption="Honorario" visible="true" useComboBox="false">
               <Lookup tableName="ver_salario" linkFieldName="id_salario" displayFieldName="ds_salario" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
             <Column fieldName="nu_pto_venta" caption="Punto Venta" visible="true" useComboBox="false"/>
@@ -290,27 +308,29 @@ ORDER BY 2      </SelectStatement>
             <Column fieldName="va_factura" caption="Monto Factura" visible="true" useComboBox="false"/>
             <Column fieldName="ar_factura" caption="Archivo Factura" visible="true" useComboBox="false"/>
             <Column fieldName="fl_rechazo" caption="Rechazada?" visible="true" useComboBox="false"/>
-            <Column fieldName="ds_comentario" caption="Comentario Factura" visible="false" useComboBox="false"/>
+            <Column fieldName="ds_comentario" caption="Comentario Factura" visible="true" useComboBox="false"/>
           </AdvancedSearchColumns>
           <ExportColumns>
             <Column fieldName="id_factura" caption="ID Factura" visible="true" headerHint="Identificador único de la factura del agente.">
               <ViewProperties type="text"/>
             </Column>
-            <Column fieldName="id_salario" caption="Salario" visible="true" headerHint="Salario del agente al que afecta la factura.">
+            <Column fieldName="id_salario" caption="Honorario" visible="true" headerHint="Honorario del agente al que afecta la factura.">
               <Lookup tableName="ver_salario" linkFieldName="id_salario" displayFieldName="ds_salario" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text">
                 <DivAttributes align="left"/>
               </ViewProperties>
-              <Hyperlink template="salario.php?operation=view&amp;amp;pk0=%id_salario%"/>
+              <Hyperlink template="honorario.php?operation=view&amp;amp;pk0=%id_salario%"/>
             </Column>
             <Column fieldName="nu_pto_venta" caption="Punto Venta" visible="true" headerHint="Número del punto de venta de la factura.">
-              <ViewProperties type="text">
+              <ViewProperties type="text" maxLength="4" escapeHTMLChars="true" wrapWords="false">
                 <DivAttributes align="right"/>
+                <Format type="number"/>
               </ViewProperties>
             </Column>
             <Column fieldName="nu_factura" caption="Número Factura" visible="true" headerHint="Número de la factura.">
-              <ViewProperties type="text">
+              <ViewProperties type="text" maxLength="8" escapeHTMLChars="true" wrapWords="false">
                 <DivAttributes align="right"/>
+                <Format type="number"/>
               </ViewProperties>
             </Column>
             <Column fieldName="fe_factura" caption="Fecha Factura" visible="true" headerHint="Fecha de la factura.">
@@ -322,16 +342,16 @@ ORDER BY 2      </SelectStatement>
             <Column fieldName="va_factura" caption="Monto Factura" visible="true" headerHint="Monto de la factura.">
               <ViewProperties type="text">
                 <DivAttributes align="right"/>
-                <Format type="currency" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="." currencySymbol=""/>
+                <Format type="currency" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="." currencySymbol="$ "/>
               </ViewProperties>
             </Column>
             <Column fieldName="ar_factura" caption="Archivo Factura" visible="true" headerHint="Archivo de imagen de la factura.">
-              <ViewProperties type="download"/>
+              <ViewProperties type="download" downloadFileNameTemplate="factura_%nu_pto_venta%-%nu_factura%" forceDownload="false"/>
             </Column>
             <Column fieldName="fl_rechazo" caption="Rechazada?" visible="true" headerHint="Indicador de rechazo de la factura.">
               <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
             </Column>
-            <Column fieldName="ds_comentario" caption="Ds Comentario" visible="false" headerHint="Comentario de la factura.">
+            <Column fieldName="ds_comentario" caption="Ds Comentario" visible="true" headerHint="Comentario de la factura.">
               <ViewProperties type="text"/>
             </Column>
           </ExportColumns>
@@ -339,21 +359,23 @@ ORDER BY 2      </SelectStatement>
             <Column fieldName="id_factura" caption="ID Factura" visible="true" headerHint="Identificador único de la factura del agente.">
               <ViewProperties type="text"/>
             </Column>
-            <Column fieldName="id_salario" caption="Salario" visible="true" headerHint="Salario del agente al que afecta la factura.">
+            <Column fieldName="id_salario" caption="Honorario" visible="true" headerHint="Honorario del agente al que afecta la factura.">
               <Lookup tableName="ver_salario" linkFieldName="id_salario" displayFieldName="ds_salario" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text">
                 <DivAttributes align="left"/>
               </ViewProperties>
-              <Hyperlink template="salario.php?operation=view&amp;amp;pk0=%id_salario%"/>
+              <Hyperlink template="honorario.php?operation=view&amp;amp;pk0=%id_salario%"/>
             </Column>
             <Column fieldName="nu_pto_venta" caption="Punto Venta" visible="true" headerHint="Número del punto de venta de la factura.">
-              <ViewProperties type="text">
+              <ViewProperties type="text" maxLength="4" escapeHTMLChars="true" wrapWords="false">
                 <DivAttributes align="right"/>
+                <Format type="number"/>
               </ViewProperties>
             </Column>
             <Column fieldName="nu_factura" caption="Número Factura" visible="true" headerHint="Número de la factura.">
-              <ViewProperties type="text">
+              <ViewProperties type="text" maxLength="8" escapeHTMLChars="true" wrapWords="false">
                 <DivAttributes align="right"/>
+                <Format type="number"/>
               </ViewProperties>
             </Column>
             <Column fieldName="fe_factura" caption="Fecha Factura" visible="true" headerHint="Fecha de la factura.">
@@ -365,16 +387,16 @@ ORDER BY 2      </SelectStatement>
             <Column fieldName="va_factura" caption="Monto Factura" visible="true" headerHint="Monto de la factura.">
               <ViewProperties type="text">
                 <DivAttributes align="right"/>
-                <Format type="currency" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="." currencySymbol=""/>
+                <Format type="currency" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="." currencySymbol="$ "/>
               </ViewProperties>
             </Column>
             <Column fieldName="ar_factura" caption="Archivo Factura" visible="true" headerHint="Archivo de imagen de la factura.">
-              <ViewProperties type="download"/>
+              <ViewProperties type="download" downloadFileNameTemplate="factura_%nu_pto_venta%-%nu_factura%" forceDownload="false"/>
             </Column>
             <Column fieldName="fl_rechazo" caption="Rechazada?" visible="true" headerHint="Indicador de rechazo de la factura.">
               <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
             </Column>
-            <Column fieldName="ds_comentario" caption="Ds Comentario" visible="false" headerHint="Comentario de la factura.">
+            <Column fieldName="ds_comentario" caption="Ds Comentario" visible="true" headerHint="Comentario de la factura.">
               <ViewProperties type="text"/>
             </Column>
           </PrintColumns>
@@ -547,21 +569,15 @@ ORDER BY 2      </SelectStatement>
             </Column>
             <Column fieldName="id_puesto" caption="Puesto" visible="true" canSetNull="true">
               <Lookup tableName="public.puesto" linkFieldName="id_puesto" displayFieldName="no_puesto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
-              <EditProperties type="comboBox">
-                <MFUItems/>
-              </EditProperties>
+              <EditProperties type="autocompleteEdit"/>
             </Column>
             <Column fieldName="id_dependencia" caption="Dependencia" visible="true">
               <Lookup tableName="ver_dependencia" linkFieldName="id_dependencia" displayFieldName="ds_dependencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
-              <EditProperties type="comboBox">
-                <MFUItems/>
-              </EditProperties>
+              <EditProperties type="autocompleteEdit"/>
             </Column>
             <Column fieldName="id_ubicacion_fisica" caption="Id Ubicacion Fisica" visible="true" canSetNull="true">
               <Lookup tableName="public.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
-              <EditProperties type="comboBox">
-                <MFUItems/>
-              </EditProperties>
+              <EditProperties type="autocompleteEdit"/>
             </Column>
             <Column fieldName="ds_funcion" caption="Función" visible="true" canSetNull="true">
               <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
@@ -623,21 +639,15 @@ DNI                  </MFUItem>
             </Column>
             <Column fieldName="id_puesto" caption="Puesto" visible="true" canSetNull="true" defaultInsertValue="">
               <Lookup tableName="public.puesto" linkFieldName="id_puesto" displayFieldName="no_puesto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
-              <EditProperties type="comboBox">
-                <MFUItems/>
-              </EditProperties>
+              <EditProperties type="autocompleteEdit"/>
             </Column>
             <Column fieldName="id_dependencia" caption="Dependencia" visible="true" defaultInsertValue="">
               <Lookup tableName="ver_dependencia" linkFieldName="id_dependencia" displayFieldName="ds_dependencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
-              <EditProperties type="comboBox">
-                <MFUItems/>
-              </EditProperties>
+              <EditProperties type="autocompleteEdit"/>
             </Column>
             <Column fieldName="id_ubicacion_fisica" caption="Id Ubicacion Fisica" visible="true" canSetNull="true" defaultInsertValue="">
               <Lookup tableName="public.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
-              <EditProperties type="comboBox">
-                <MFUItems/>
-              </EditProperties>
+              <EditProperties type="autocompleteEdit"/>
             </Column>
             <Column fieldName="ds_funcion" caption="Función" visible="true" canSetNull="true" defaultInsertValue="">
               <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
@@ -1348,26 +1358,21 @@ DNI                  </MFUItem>
         <RecordPermissions useRecordPermissions="false"/>
         <PartitionNavigators/>
       </Page>
-      <Page type="table" tableName="public.salario" fileName="salario" caption="Salario" shortCaption="Salario" groupName="Agentes" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true" showKeyColumnsImagesInGridHeader="false">
+      <Page type="table" tableName="public.salario" fileName="honorario" caption="Honorario" shortCaption="Honorario" groupName="Agentes" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true" showKeyColumnsImagesInGridHeader="false">
         <DefaultSortedColumns>
           <Column fieldName="id_mes" orderType="1"/>
         </DefaultSortedColumns>
         <BeforeGridText/>
         <Columns>
           <ViewColumns>
-            <Column fieldName="id_salario" caption="ID Salario" visible="false" headerHint="Identificador único del salario del agente en un mes." totalFunction="0">
+            <Column fieldName="id_salario" caption="ID Honorario" visible="false" headerHint="Identificador único del salario del agente en un mes." totalFunction="0">
               <ViewProperties type="text"/>
-            </Column>
-            <Column fieldName="id_agente" caption="Agente" visible="true" headerHint="Agente que presta servicios." totalFunction="0">
-              <Lookup tableName="public.agente" linkFieldName="id_agente" displayFieldName="no_agente" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
-              <ViewProperties type="text">
-                <DivAttributes align="left"/>
-              </ViewProperties>
-              <Hyperlink template="agente.php?operation=view&amp;amp;pk0=%id_agente%"/>
             </Column>
             <Column fieldName="id_mes" caption="Mes" visible="true" headerHint="Mes del salario." totalFunction="0">
               <Lookup tableName="ver_mes" linkFieldName="id_mes" displayFieldName="no_mes" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
-              <ViewProperties type="text"/>
+              <ViewProperties type="text">
+                <DivAttributes align="left"/>
+              </ViewProperties>
             </Column>
             <Column fieldName="id_contrato" caption="Contrato" visible="true" headerHint="Contrato con el agente." totalFunction="0">
               <Lookup tableName="ver_contrato" linkFieldName="id_contrato" displayFieldName="ds_contrato" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
@@ -1376,7 +1381,7 @@ DNI                  </MFUItem>
               </ViewProperties>
               <Hyperlink template="contrato.php?operation=view&amp;amp;pk0=%id_contrato%"/>
             </Column>
-            <Column fieldName="va_salario" caption="Salario Mes" visible="true" headerHint="Valor del salario del agente en el mes." totalFunction="0">
+            <Column fieldName="va_salario" caption="Honorario Mes" visible="true" headerHint="Valor del salario del agente en el mes." totalFunction="0">
               <ViewProperties type="text">
                 <DivAttributes align="right"/>
                 <Format type="currency" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="." currencySymbol=""/>
@@ -1384,19 +1389,14 @@ DNI                  </MFUItem>
             </Column>
           </ViewColumns>
           <SingleRecordViewColumns>
-            <Column fieldName="id_salario" caption="ID Salario" visible="true" headerHint="Identificador único del salario del agente en un mes.">
+            <Column fieldName="id_salario" caption="ID Honorario" visible="true" headerHint="Identificador único del salario del agente en un mes.">
               <ViewProperties type="text"/>
-            </Column>
-            <Column fieldName="id_agente" caption="Agente" visible="true" headerHint="Agente que presta servicios.">
-              <Lookup tableName="public.agente" linkFieldName="id_agente" displayFieldName="no_agente" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
-              <ViewProperties type="text">
-                <DivAttributes align="left"/>
-              </ViewProperties>
-              <Hyperlink template="agente.php?operation=view&amp;amp;pk0=%id_agente%"/>
             </Column>
             <Column fieldName="id_mes" caption="Mes" visible="true" headerHint="Mes del salario.">
               <Lookup tableName="ver_mes" linkFieldName="id_mes" displayFieldName="no_mes" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
-              <ViewProperties type="text"/>
+              <ViewProperties type="text">
+                <DivAttributes align="left"/>
+              </ViewProperties>
             </Column>
             <Column fieldName="id_contrato" caption="Contrato" visible="true" headerHint="Contrato con el agente.">
               <Lookup tableName="ver_contrato" linkFieldName="id_contrato" displayFieldName="ds_contrato" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
@@ -1405,7 +1405,7 @@ DNI                  </MFUItem>
               </ViewProperties>
               <Hyperlink template="contrato.php?operation=view&amp;amp;pk0=%id_contrato%"/>
             </Column>
-            <Column fieldName="va_salario" caption="Salario Mes" visible="true" headerHint="Valor del salario del agente en el mes.">
+            <Column fieldName="va_salario" caption="Honorario Mes" visible="true" headerHint="Valor del salario del agente en el mes.">
               <ViewProperties type="text">
                 <DivAttributes align="right"/>
                 <Format type="currency" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="." currencySymbol=""/>
@@ -1413,14 +1413,8 @@ DNI                  </MFUItem>
             </Column>
           </SingleRecordViewColumns>
           <EditColumns>
-            <Column fieldName="id_salario" caption="ID Salario" visible="false">
+            <Column fieldName="id_salario" caption="ID Honorario" visible="false">
               <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
-            </Column>
-            <Column fieldName="id_agente" caption="Agente" visible="true">
-              <Lookup tableName="public.agente" linkFieldName="id_agente" displayFieldName="no_agente" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
-              <EditProperties type="comboBox">
-                <MFUItems/>
-              </EditProperties>
             </Column>
             <Column fieldName="id_mes" caption="Mes" visible="true">
               <Lookup tableName="ver_mes" linkFieldName="id_mes" displayFieldName="no_mes" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
@@ -1430,25 +1424,17 @@ DNI                  </MFUItem>
             </Column>
             <Column fieldName="id_contrato" caption="Contrato" visible="true">
               <Lookup tableName="ver_contrato" linkFieldName="id_contrato" displayFieldName="ds_contrato" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
-              <EditProperties type="comboBox">
-                <MFUItems/>
-              </EditProperties>
+              <EditProperties type="autocompleteEdit"/>
             </Column>
-            <Column fieldName="va_salario" caption="Salario Mes" visible="true">
+            <Column fieldName="va_salario" caption="Honorario Mes" visible="true">
               <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="$" suffix="">
                 <AdvancedProperties inlineStyles="text-align:right" customAttributes="onkeypress='return (event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57) || event.charCode == 44'"/>
               </EditProperties>
             </Column>
           </EditColumns>
           <InsertColumns>
-            <Column fieldName="id_salario" caption="ID Salario" visible="false" defaultInsertValue="">
+            <Column fieldName="id_salario" caption="ID Honorario" visible="false" defaultInsertValue="">
               <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
-            </Column>
-            <Column fieldName="id_agente" caption="Agente" visible="true" defaultInsertValue="">
-              <Lookup tableName="public.agente" linkFieldName="id_agente" displayFieldName="no_agente" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
-              <EditProperties type="comboBox">
-                <MFUItems/>
-              </EditProperties>
             </Column>
             <Column fieldName="id_mes" caption="Mes" visible="true" defaultInsertValue="">
               <Lookup tableName="ver_mes" linkFieldName="id_mes" displayFieldName="no_mes" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
@@ -1458,56 +1444,43 @@ DNI                  </MFUItem>
             </Column>
             <Column fieldName="id_contrato" caption="Contrato" visible="true" defaultInsertValue="">
               <Lookup tableName="ver_contrato" linkFieldName="id_contrato" displayFieldName="ds_contrato" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
-              <EditProperties type="comboBox">
-                <MFUItems/>
-              </EditProperties>
+              <EditProperties type="autocompleteEdit"/>
             </Column>
-            <Column fieldName="va_salario" caption="Salario Mes" visible="true" defaultInsertValue="">
+            <Column fieldName="va_salario" caption="Honorario Mes" visible="true" defaultInsertValue="">
               <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="$" suffix="">
                 <AdvancedProperties inlineStyles="text-align:right" customAttributes="onkeypress='return (event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57) || event.charCode == 44'"/>
               </EditProperties>
             </Column>
           </InsertColumns>
           <SimpleSearchColumns>
-            <Column fieldName="id_salario" caption="ID Salario" visible="true"/>
-            <Column fieldName="id_agente" caption="Agente" visible="true">
-              <Lookup tableName="public.agente" linkFieldName="id_agente" displayFieldName="no_agente" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
-            </Column>
+            <Column fieldName="id_salario" caption="ID Honorario" visible="true"/>
             <Column fieldName="id_mes" caption="Mes" visible="true">
               <Lookup tableName="ver_mes" linkFieldName="id_mes" displayFieldName="no_mes" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
             <Column fieldName="id_contrato" caption="Contrato" visible="true">
               <Lookup tableName="ver_contrato" linkFieldName="id_contrato" displayFieldName="ds_contrato" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
-            <Column fieldName="va_salario" caption="Salario Mes" visible="true"/>
+            <Column fieldName="va_salario" caption="Honorario Mes" visible="true"/>
           </SimpleSearchColumns>
           <AdvancedSearchColumns>
-            <Column fieldName="id_salario" caption="ID Salario" visible="true" useComboBox="false"/>
-            <Column fieldName="id_agente" caption="Agente" visible="true" useComboBox="false">
-              <Lookup tableName="public.agente" linkFieldName="id_agente" displayFieldName="no_agente" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
-            </Column>
+            <Column fieldName="id_salario" caption="ID Honorario" visible="true" useComboBox="false"/>
             <Column fieldName="id_mes" caption="Mes" visible="true" useComboBox="false">
               <Lookup tableName="ver_mes" linkFieldName="id_mes" displayFieldName="no_mes" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
             <Column fieldName="id_contrato" caption="Contrato" visible="true" useComboBox="false">
               <Lookup tableName="ver_contrato" linkFieldName="id_contrato" displayFieldName="ds_contrato" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
-            <Column fieldName="va_salario" caption="Salario Mes" visible="true" useComboBox="false"/>
+            <Column fieldName="va_salario" caption="Honorario Mes" visible="true" useComboBox="false"/>
           </AdvancedSearchColumns>
           <ExportColumns>
-            <Column fieldName="id_salario" caption="ID Salario" visible="true" headerHint="Identificador único del salario del agente en un mes.">
+            <Column fieldName="id_salario" caption="ID Honorario" visible="true" headerHint="Identificador único del salario del agente en un mes.">
               <ViewProperties type="text"/>
-            </Column>
-            <Column fieldName="id_agente" caption="Agente" visible="true" headerHint="Agente que presta servicios.">
-              <Lookup tableName="public.agente" linkFieldName="id_agente" displayFieldName="no_agente" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
-              <ViewProperties type="text">
-                <DivAttributes align="left"/>
-              </ViewProperties>
-              <Hyperlink template="agente.php?operation=view&amp;amp;pk0=%id_agente%"/>
             </Column>
             <Column fieldName="id_mes" caption="Mes" visible="true" headerHint="Mes del salario.">
               <Lookup tableName="ver_mes" linkFieldName="id_mes" displayFieldName="no_mes" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
-              <ViewProperties type="text"/>
+              <ViewProperties type="text">
+                <DivAttributes align="left"/>
+              </ViewProperties>
             </Column>
             <Column fieldName="id_contrato" caption="Contrato" visible="true" headerHint="Contrato con el agente.">
               <Lookup tableName="ver_contrato" linkFieldName="id_contrato" displayFieldName="ds_contrato" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
@@ -1516,7 +1489,7 @@ DNI                  </MFUItem>
               </ViewProperties>
               <Hyperlink template="contrato.php?operation=view&amp;amp;pk0=%id_contrato%"/>
             </Column>
-            <Column fieldName="va_salario" caption="Salario Mes" visible="true" headerHint="Valor del salario del agente en el mes.">
+            <Column fieldName="va_salario" caption="Honorario Mes" visible="true" headerHint="Valor del salario del agente en el mes.">
               <ViewProperties type="text">
                 <DivAttributes align="right"/>
                 <Format type="currency" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="." currencySymbol=""/>
@@ -1524,19 +1497,14 @@ DNI                  </MFUItem>
             </Column>
           </ExportColumns>
           <PrintColumns>
-            <Column fieldName="id_salario" caption="ID Salario" visible="true" headerHint="Identificador único del salario del agente en un mes.">
+            <Column fieldName="id_salario" caption="ID Honorario" visible="true" headerHint="Identificador único del salario del agente en un mes.">
               <ViewProperties type="text"/>
-            </Column>
-            <Column fieldName="id_agente" caption="Agente" visible="true" headerHint="Agente que presta servicios.">
-              <Lookup tableName="public.agente" linkFieldName="id_agente" displayFieldName="no_agente" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
-              <ViewProperties type="text">
-                <DivAttributes align="left"/>
-              </ViewProperties>
-              <Hyperlink template="agente.php?operation=view&amp;amp;pk0=%id_agente%"/>
             </Column>
             <Column fieldName="id_mes" caption="Mes" visible="true" headerHint="Mes del salario.">
               <Lookup tableName="ver_mes" linkFieldName="id_mes" displayFieldName="no_mes" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
-              <ViewProperties type="text"/>
+              <ViewProperties type="text">
+                <DivAttributes align="left"/>
+              </ViewProperties>
             </Column>
             <Column fieldName="id_contrato" caption="Contrato" visible="true" headerHint="Contrato con el agente.">
               <Lookup tableName="ver_contrato" linkFieldName="id_contrato" displayFieldName="ds_contrato" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
@@ -1545,7 +1513,7 @@ DNI                  </MFUItem>
               </ViewProperties>
               <Hyperlink template="contrato.php?operation=view&amp;amp;pk0=%id_contrato%"/>
             </Column>
-            <Column fieldName="va_salario" caption="Salario Mes" visible="true" headerHint="Valor del salario del agente en el mes.">
+            <Column fieldName="va_salario" caption="Honorario Mes" visible="true" headerHint="Valor del salario del agente en el mes.">
               <ViewProperties type="text">
                 <DivAttributes align="right"/>
                 <Format type="currency" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="." currencySymbol=""/>
@@ -1630,9 +1598,7 @@ DNI                  </MFUItem>
             </Column>
             <Column fieldName="id_agente" caption="Agente" visible="true">
               <Lookup tableName="public.agente" linkFieldName="id_agente" displayFieldName="no_agente" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
-              <EditProperties type="comboBox">
-                <MFUItems/>
-              </EditProperties>
+              <EditProperties type="autocompleteEdit"/>
             </Column>
             <Column fieldName="fe_inicio" caption="Fecha Inicio" visible="true" canSetNull="true">
               <EditProperties type="dateTime" showsTime="false" dateTimeFormat="d/m/Y" firstDayOfWeek="0"/>
@@ -1665,9 +1631,7 @@ DNI                  </MFUItem>
             </Column>
             <Column fieldName="id_agente" caption="Agente" visible="true" defaultInsertValue="">
               <Lookup tableName="public.agente" linkFieldName="id_agente" displayFieldName="no_agente" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
-              <EditProperties type="comboBox">
-                <MFUItems/>
-              </EditProperties>
+              <EditProperties type="autocompleteEdit"/>
             </Column>
             <Column fieldName="fe_inicio" caption="Fecha Inicio" visible="true" canSetNull="true" defaultInsertValue="">
               <EditProperties type="dateTime" showsTime="false" dateTimeFormat="d/m/Y" firstDayOfWeek="0"/>
@@ -2452,7 +2416,12 @@ height: 10px;
 .pg-row {
 height: 10px;
 }  </UserCSS>
-  <UserJS/>
+  <UserJS>
+$(document).ready(function(){
+  $(&quot;#id_salario_edit&quot;).bind(&quot;DOMSubtreeModified&quot;, function(){
+    $(&quot;.select2-container&quot;).css(&quot;width&quot;, &quot;500px&quot;);
+  });
+});  </UserJS>
   <ExcludedPaths/>
   <DefaultPageProperties recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true" showKeyColumnsImagesInGridHeader="false"/>
   <DefaultDataFormats numberAfterDecimal="2" DecimalSeparator="," ThousandSeparator="." DateTimeFormat="d/m/Y H:i:s" DateFormat="d/m/Y" firstDayOfWeek="0"/>

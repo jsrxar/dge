@@ -5,6 +5,6 @@ convenio_at.php
 dependencia.php
 factura.php
 puesto.php
-salario.php
+honorario.php
 tipo_contrato.php
 ubicacion_fisica.php
