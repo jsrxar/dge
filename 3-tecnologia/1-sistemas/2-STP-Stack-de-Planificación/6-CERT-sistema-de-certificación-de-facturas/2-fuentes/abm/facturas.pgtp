@@ -1,4 +1,4 @@
-<Project productVersion="14.10.0.11" localizationFileName="C:\app\PostgreSQL PHP Generator\lang.es.php" phpDriver="0" outputPath="\\mozart.myc.ar\facturas" copySystemFiles="true" outputFilesExtension="php" colorSchemeName="Facebook">
+<Project productVersion="14.10.0.11" localizationFileName="C:\app\PostgreSQL PHP Generator\lang.es.php" phpDriver="0" outputPath="C:\app\xampp\htdocs\facturas" copySystemFiles="true" outputFilesExtension="php" colorSchemeName="Facebook">
   <ConnectionOptions host="mozart.myc.ar" port="5432" login="facturas" password="\/?T^:FJJZP~" database="FACTURAS" client_encoding="">
     <ssh_secure secure="false" port="22" authentication_mode="0"/>
     <http_tunnel tunneling="false" url="">
@@ -93,11 +93,40 @@ ORDER BY id_mes      </SelectStatement>
         <Field name="id_salario"/>
       </PrimaryKeyFields>
     </Query>
+    <Query name="estado_lote">
+      <SelectStatement>
+SELECT 'P' AS id, 'PreCertificado' AS nombre
+UNION ALL SELECT 'C', 'Certificado'
+UNION ALL SELECT 'X', 'Anulado'      </SelectStatement>
+      <InsertStatements/>
+      <UpdateStatements/>
+      <DeleteStatements/>
+      <PrimaryKeyFields>
+        <Field name="id"/>
+      </PrimaryKeyFields>
+    </Query>
+    <Query name="ver_lote_cert">
+      <SelectStatement>
+SELECT
+id_certificacion AS id,
+(SELECT no_convenio_at FROM convenio_at WHERE id_convenio_at = ce.id_convenio_at ) ||
+' - Lote ' || id_certificacion ||
+CASE co_estado WHEN 'P' THEN ' (PreCertificado) '
+WHEN 'C' THEN ' (Certificado) ' ELSE ' (Anulado) ' END ||
+TO_CHAR(COALESCE(fe_certificacion, fe_creacion), 'DD/MM/YYYY') AS nombre
+FROM certificacion ce      </SelectStatement>
+      <InsertStatements/>
+      <UpdateStatements/>
+      <DeleteStatements/>
+      <PrimaryKeyFields>
+        <Field name="id"/>
+      </PrimaryKeyFields>
+    </Query>
   </Queries>
   <FieldContainers/>
   <Presentation disableMagicQuotesRuntime="false" showEnvironmentVariables="false" showExecutedQueries="false" showPHPErrorsAndWarnings="false">
     <Pages>
-      <Page type="table" tableName="public.factura" fileName="factura" caption="Factura" shortCaption="Factura" groupName="Facturas" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true" showKeyColumnsImagesInGridHeader="false">
+      <Page type="table" tableName="public.factura" fileName="factura" caption="Factura" shortCaption="Factura" groupName="Facturas" addSeparator="false" horizontalFilterCondition="fl_rechazo IS FALSE" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true" showKeyColumnsImagesInGridHeader="false">
         <BeforeGridText/>
         <Columns>
           <ViewColumns>
@@ -111,13 +140,13 @@ ORDER BY id_mes      </SelectStatement>
               </ViewProperties>
               <Hyperlink template="honorario.php?operation=view&amp;amp;pk0=%id_salario%"/>
             </Column>
-            <Column fieldName="nu_pto_venta" caption="Punto Venta" visible="true" headerHint="Número del punto de venta de la factura." totalFunction="0">
+            <Column fieldName="nu_pto_venta" caption="Punto Venta" visible="false" headerHint="Número del punto de venta de la factura." totalFunction="0">
               <ViewProperties type="text" maxLength="4" escapeHTMLChars="true" wrapWords="false">
                 <DivAttributes align="right"/>
                 <Format type="number"/>
               </ViewProperties>
             </Column>
-            <Column fieldName="nu_factura" caption="Número Factura" visible="true" headerHint="Número de la factura." totalFunction="0">
+            <Column fieldName="nu_factura" caption="Número Factura" visible="false" headerHint="Número de la factura." totalFunction="0">
               <ViewProperties type="text" maxLength="8" escapeHTMLChars="true" wrapWords="false">
                 <DivAttributes align="right"/>
                 <Format type="number"/>
@@ -145,6 +174,14 @@ ORDER BY id_mes      </SelectStatement>
               <ViewProperties type="text" maxLength="75">
                 <DivAttributes align="left"/>
               </ViewProperties>
+            </Column>
+            <Column fieldName="id_certificacion" caption="Lote Certificación" visible="true" headerHint="Lote de certificación de las facturas." totalFunction="0">
+              <Lookup tableName="ver_lote_cert" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true" headerHint="Convenio de Asistencia Técnica asociado a la factura." totalFunction="0">
+              <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
             </Column>
           </ViewColumns>
           <SingleRecordViewColumns>
@@ -193,6 +230,14 @@ ORDER BY id_mes      </SelectStatement>
                 <DivAttributes align="left"/>
               </ViewProperties>
             </Column>
+            <Column fieldName="id_certificacion" caption="Lote Certificación" visible="true" headerHint="Lote de certificación de las facturas.">
+              <Lookup tableName="ver_lote_cert" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true" headerHint="Convenio de Asistencia Técnica asociado a la factura.">
+              <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
           </SingleRecordViewColumns>
           <EditColumns>
             <Column fieldName="id_factura" caption="ID Factura" visible="false">
@@ -236,6 +281,18 @@ ORDER BY id_mes      </SelectStatement>
             </Column>
             <Column fieldName="ds_comentario" caption="Comentario Factura" visible="true" canSetNull="true">
               <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+            </Column>
+            <Column fieldName="id_certificacion" caption="Lote Certificación" visible="true" canSetNull="true">
+              <Lookup tableName="ver_lote_cert" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="id_convenio_at" caption="Convenio AT" visible="false" canSetNull="true" readOnly="true">
+              <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
             </Column>
           </EditColumns>
           <InsertColumns>
@@ -281,6 +338,18 @@ ORDER BY id_mes      </SelectStatement>
             <Column fieldName="ds_comentario" caption="Comentario Factura" visible="true" canSetNull="true" defaultInsertValue="">
               <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
             </Column>
+            <Column fieldName="id_certificacion" caption="Lote Certificación" visible="true" canSetNull="true" defaultInsertValue="">
+              <Lookup tableName="ver_lote_cert" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="id_convenio_at" caption="Convenio AT" visible="false" canSetNull="true" readOnly="true" defaultInsertValue="">
+              <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
           </InsertColumns>
           <SimpleSearchColumns>
             <Column fieldName="id_factura" caption="ID Factura" visible="true"/>
@@ -295,6 +364,12 @@ ORDER BY id_mes      </SelectStatement>
             <Column fieldName="ar_factura" caption="Archivo Factura" visible="false"/>
             <Column fieldName="fl_rechazo" caption="Rechazada?" visible="true"/>
             <Column fieldName="ds_comentario" caption="Comentario Factura" visible="true"/>
+            <Column fieldName="id_certificacion" caption="Lote Certificación" visible="true">
+              <Lookup tableName="ver_lote_cert" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true">
+              <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
           </SimpleSearchColumns>
           <AdvancedSearchColumns>
             <Column fieldName="id_factura" caption="ID Factura" visible="true" useComboBox="false"/>
@@ -309,6 +384,12 @@ ORDER BY id_mes      </SelectStatement>
             <Column fieldName="ar_factura" caption="Archivo Factura" visible="true" useComboBox="false"/>
             <Column fieldName="fl_rechazo" caption="Rechazada?" visible="true" useComboBox="false"/>
             <Column fieldName="ds_comentario" caption="Comentario Factura" visible="true" useComboBox="false"/>
+            <Column fieldName="id_certificacion" caption="Lote Certificación" visible="true" useComboBox="false">
+              <Lookup tableName="ver_lote_cert" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true" useComboBox="false">
+              <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
           </AdvancedSearchColumns>
           <ExportColumns>
             <Column fieldName="id_factura" caption="ID Factura" visible="true" headerHint="Identificador único de la factura del agente.">
@@ -354,6 +435,14 @@ ORDER BY id_mes      </SelectStatement>
             <Column fieldName="ds_comentario" caption="Ds Comentario" visible="true" headerHint="Comentario de la factura.">
               <ViewProperties type="text"/>
             </Column>
+            <Column fieldName="id_certificacion" caption="Lote Certificación" visible="true" headerHint="Lote de certificación de las facturas.">
+              <Lookup tableName="ver_lote_cert" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true" headerHint="Convenio de Asistencia Técnica asociado a la factura.">
+              <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
           </ExportColumns>
           <PrintColumns>
             <Column fieldName="id_factura" caption="ID Factura" visible="true" headerHint="Identificador único de la factura del agente.">
@@ -397,6 +486,186 @@ ORDER BY id_mes      </SelectStatement>
               <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
             </Column>
             <Column fieldName="ds_comentario" caption="Ds Comentario" visible="true" headerHint="Comentario de la factura.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_certificacion" caption="Lote Certificación" visible="true" headerHint="Lote de certificación de las facturas.">
+              <Lookup tableName="ver_lote_cert" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true" headerHint="Convenio de Asistencia Técnica asociado a la factura.">
+              <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
+          </PrintColumns>
+        </Columns>
+        <Details/>
+        <RecordPermissions useRecordPermissions="false"/>
+        <PartitionNavigators/>
+      </Page>
+      <Page type="table" tableName="public.certificacion" fileName="certificacion" caption="Lote Certificación" shortCaption="Lote Certificación" groupName="Facturas" addSeparator="true" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true" showKeyColumnsImagesInGridHeader="false">
+        <BeforeGridText/>
+        <Columns>
+          <ViewColumns>
+            <Column fieldName="id_certificacion" caption="Lote Certificación" visible="true" headerHint="Identificador único del lote de certificación." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true" headerHint="Convenio de Asistencia Técnica." totalFunction="0">
+              <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="fe_creacion" caption="Fecha Creación Lote" visible="true" headerHint="Fecha de creación del lote de certificación." totalFunction="0">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y H:i:s"/>
+            </Column>
+            <Column fieldName="fe_certificacion" caption="Fecha Certificación" visible="true" headerHint="Fecha de certificación del lote de facturas." totalFunction="0">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y H:i:s"/>
+            </Column>
+            <Column fieldName="co_nota" caption="Número Nota" visible="true" headerHint="Nota enviada por la facultad como certificación de las facturas." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="co_estado" caption="Estado Lote" visible="true" headerHint="Estado de la certificación del lote de facturas: P - PreCertificado C - Certificado X - Anulado" totalFunction="0">
+              <Lookup tableName="estado_lote" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
+          </ViewColumns>
+          <SingleRecordViewColumns>
+            <Column fieldName="id_certificacion" caption="Lote Certificación" visible="true" headerHint="Identificador único del lote de certificación.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true" headerHint="Convenio de Asistencia Técnica.">
+              <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="fe_creacion" caption="Fecha Creación Lote" visible="true" headerHint="Fecha de creación del lote de certificación.">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y H:i:s"/>
+            </Column>
+            <Column fieldName="fe_certificacion" caption="Fecha Certificación" visible="true" headerHint="Fecha de certificación del lote de facturas.">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y H:i:s"/>
+            </Column>
+            <Column fieldName="co_nota" caption="Número Nota" visible="true" headerHint="Nota enviada por la facultad como certificación de las facturas.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="co_estado" caption="Estado Lote" visible="true" headerHint="Estado de la certificación del lote de facturas: P - PreCertificado C - Certificado X - Anulado">
+              <Lookup tableName="estado_lote" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
+          </SingleRecordViewColumns>
+          <EditColumns>
+            <Column fieldName="id_certificacion" caption="Lote Certificación" visible="false">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true">
+              <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="fe_creacion" caption="Fecha Creación Lote" visible="true">
+              <EditProperties type="dateTime" showsTime="true" dateTimeFormat="Y-m-d H:i:s" firstDayOfWeek="0"/>
+            </Column>
+            <Column fieldName="fe_certificacion" caption="Fecha Certificación" visible="true" canSetNull="true">
+              <EditProperties type="dateTime" showsTime="true" dateTimeFormat="Y-m-d H:i:s" firstDayOfWeek="0"/>
+            </Column>
+            <Column fieldName="co_nota" caption="Número Nota" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="50" maxLength="50" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="co_estado" caption="Estado Lote" visible="true">
+              <Lookup tableName="estado_lote" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+          </EditColumns>
+          <InsertColumns>
+            <Column fieldName="id_certificacion" caption="Lote Certificación" visible="false" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true" defaultInsertValue="">
+              <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="fe_creacion" caption="Fecha Creación Lote" visible="true" canSetServerDefault="true" defaultInsertValue="">
+              <EditProperties type="dateTime" showsTime="true" dateTimeFormat="Y-m-d H:i:s" firstDayOfWeek="0"/>
+            </Column>
+            <Column fieldName="fe_certificacion" caption="Fecha Certificación" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="dateTime" showsTime="true" dateTimeFormat="Y-m-d H:i:s" firstDayOfWeek="0"/>
+            </Column>
+            <Column fieldName="co_nota" caption="Número Nota" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="50" maxLength="50" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="co_estado" caption="Estado Lote" visible="true" canSetServerDefault="true" defaultInsertValue="">
+              <Lookup tableName="estado_lote" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+          </InsertColumns>
+          <SimpleSearchColumns>
+            <Column fieldName="id_certificacion" caption="Lote Certificación" visible="true"/>
+            <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true">
+              <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="fe_creacion" caption="Fecha Creación Lote" visible="true"/>
+            <Column fieldName="fe_certificacion" caption="Fecha Certificación" visible="true"/>
+            <Column fieldName="co_nota" caption="Número Nota" visible="true"/>
+            <Column fieldName="co_estado" caption="Estado Lote" visible="true">
+              <Lookup tableName="estado_lote" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+          </SimpleSearchColumns>
+          <AdvancedSearchColumns>
+            <Column fieldName="id_certificacion" caption="Lote Certificación" visible="true" useComboBox="false"/>
+            <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true" useComboBox="false">
+              <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="fe_creacion" caption="Fecha Creación Lote" visible="true" useComboBox="false"/>
+            <Column fieldName="fe_certificacion" caption="Fecha Certificación" visible="true" useComboBox="false"/>
+            <Column fieldName="co_nota" caption="Número Nota" visible="true" useComboBox="false"/>
+            <Column fieldName="co_estado" caption="Estado Lote" visible="true" useComboBox="false">
+              <Lookup tableName="estado_lote" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+          </AdvancedSearchColumns>
+          <ExportColumns>
+            <Column fieldName="id_certificacion" caption="Lote Certificación" visible="true" headerHint="Identificador único del lote de certificación.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true" headerHint="Convenio de Asistencia Técnica.">
+              <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="fe_creacion" caption="Fecha Creación Lote" visible="true" headerHint="Fecha de creación del lote de certificación.">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y H:i:s"/>
+            </Column>
+            <Column fieldName="fe_certificacion" caption="Fecha Certificación" visible="true" headerHint="Fecha de certificación del lote de facturas.">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y H:i:s"/>
+            </Column>
+            <Column fieldName="co_nota" caption="Número Nota" visible="true" headerHint="Nota enviada por la facultad como certificación de las facturas.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="co_estado" caption="Estado Lote" visible="true" headerHint="Estado de la certificación del lote de facturas: P - PreCertificado C - Certificado X - Anulado">
+              <Lookup tableName="estado_lote" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
+          </ExportColumns>
+          <PrintColumns>
+            <Column fieldName="id_certificacion" caption="Lote Certificación" visible="true" headerHint="Identificador único del lote de certificación.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true" headerHint="Convenio de Asistencia Técnica.">
+              <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="fe_creacion" caption="Fecha Creación Lote" visible="true" headerHint="Fecha de creación del lote de certificación.">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y H:i:s"/>
+            </Column>
+            <Column fieldName="fe_certificacion" caption="Fecha Certificación" visible="true" headerHint="Fecha de certificación del lote de facturas.">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y H:i:s"/>
+            </Column>
+            <Column fieldName="co_nota" caption="Número Nota" visible="true" headerHint="Nota enviada por la facultad como certificación de las facturas.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="co_estado" caption="Estado Lote" visible="true" headerHint="Estado de la certificación del lote de facturas: P - PreCertificado C - Certificado X - Anulado">
+              <Lookup tableName="estado_lote" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text"/>
             </Column>
           </PrintColumns>
@@ -1549,11 +1818,11 @@ DNI                  </MFUItem>
               <Lookup tableName="public.tipo_contrato" linkFieldName="id_tipo_contrato" displayFieldName="no_tipo_contrato" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text"/>
             </Column>
-            <Column fieldName="id_categoria_lm" caption="Categoria LM" visible="true" headerHint="Identificador único de la categoría de Ley Marco." totalFunction="0">
+            <Column fieldName="id_categoria_lm" caption="Categoria LM" visible="true" headerHint="Categoría de Ley Marco." totalFunction="0">
               <Lookup tableName="public.categoria_lm" linkFieldName="id_categoria_lm" displayFieldName="co_categoria_lm" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text"/>
             </Column>
-            <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true" headerHint="Identificador único del convenio de Asistencia Técnica." totalFunction="0">
+            <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true" headerHint="Convenio de Asistencia Técnica." totalFunction="0">
               <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text">
                 <DivAttributes align="left"/>
@@ -1581,11 +1850,11 @@ DNI                  </MFUItem>
               <Lookup tableName="public.tipo_contrato" linkFieldName="id_tipo_contrato" displayFieldName="no_tipo_contrato" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text"/>
             </Column>
-            <Column fieldName="id_categoria_lm" caption="Categoria LM" visible="true" headerHint="Identificador único de la categoría de Ley Marco.">
+            <Column fieldName="id_categoria_lm" caption="Categoria LM" visible="true" headerHint="Categoría de Ley Marco.">
               <Lookup tableName="public.categoria_lm" linkFieldName="id_categoria_lm" displayFieldName="co_categoria_lm" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text"/>
             </Column>
-            <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true" headerHint="Identificador único del convenio de Asistencia Técnica.">
+            <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true" headerHint="Convenio de Asistencia Técnica.">
               <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text">
                 <DivAttributes align="left"/>
@@ -1713,11 +1982,11 @@ DNI                  </MFUItem>
               <Lookup tableName="public.tipo_contrato" linkFieldName="id_tipo_contrato" displayFieldName="no_tipo_contrato" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text"/>
             </Column>
-            <Column fieldName="id_categoria_lm" caption="Categoria LM" visible="true" headerHint="Identificador único de la categoría de Ley Marco.">
+            <Column fieldName="id_categoria_lm" caption="Categoria LM" visible="true" headerHint="Categoría de Ley Marco.">
               <Lookup tableName="public.categoria_lm" linkFieldName="id_categoria_lm" displayFieldName="co_categoria_lm" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text"/>
             </Column>
-            <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true" headerHint="Identificador único del convenio de Asistencia Técnica.">
+            <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true" headerHint="Convenio de Asistencia Técnica.">
               <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text">
                 <DivAttributes align="left"/>
@@ -1745,11 +2014,11 @@ DNI                  </MFUItem>
               <Lookup tableName="public.tipo_contrato" linkFieldName="id_tipo_contrato" displayFieldName="no_tipo_contrato" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text"/>
             </Column>
-            <Column fieldName="id_categoria_lm" caption="Categoria LM" visible="true" headerHint="Identificador único de la categoría de Ley Marco.">
+            <Column fieldName="id_categoria_lm" caption="Categoria LM" visible="true" headerHint="Categoría de Ley Marco.">
               <Lookup tableName="public.categoria_lm" linkFieldName="id_categoria_lm" displayFieldName="co_categoria_lm" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text"/>
             </Column>
-            <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true" headerHint="Identificador único del convenio de Asistencia Técnica.">
+            <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true" headerHint="Convenio de Asistencia Técnica.">
               <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text">
                 <DivAttributes align="left"/>
@@ -2325,6 +2594,134 @@ DNI                  </MFUItem>
         <RecordPermissions useRecordPermissions="false"/>
         <PartitionNavigators/>
       </Page>
+      <Page type="query" queryName="estado_lote" includedIntoPageList="false" fileName="estado_lote" caption="Estado Lote" shortCaption="Estado Lote" groupName="Administrador" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="0" editAbilityMode="0" copyAbilityMode="0" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true" showKeyColumnsImagesInGridHeader="false">
+        <BeforeGridText/>
+        <Columns>
+          <ViewColumns>
+            <Column fieldName="id" caption="Id" visible="true" totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nombre" caption="Nombre" visible="true" totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+          </ViewColumns>
+          <SingleRecordViewColumns>
+            <Column fieldName="id" caption="Id" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nombre" caption="Nombre" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+          </SingleRecordViewColumns>
+          <EditColumns>
+            <Column fieldName="id" caption="Id" visible="true">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="nombre" caption="Nombre" visible="true">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+          </EditColumns>
+          <InsertColumns>
+            <Column fieldName="id" caption="Id" visible="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="nombre" caption="Nombre" visible="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+          </InsertColumns>
+          <SimpleSearchColumns>
+            <Column fieldName="id" caption="Id" visible="true"/>
+            <Column fieldName="nombre" caption="Nombre" visible="true"/>
+          </SimpleSearchColumns>
+          <AdvancedSearchColumns>
+            <Column fieldName="id" caption="Id" visible="true" useComboBox="false"/>
+            <Column fieldName="nombre" caption="Nombre" visible="true" useComboBox="false"/>
+          </AdvancedSearchColumns>
+          <ExportColumns>
+            <Column fieldName="id" caption="Id" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nombre" caption="Nombre" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+          </ExportColumns>
+          <PrintColumns>
+            <Column fieldName="id" caption="Id" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nombre" caption="Nombre" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+          </PrintColumns>
+        </Columns>
+        <Details/>
+        <RecordPermissions useRecordPermissions="false"/>
+        <PartitionNavigators/>
+      </Page>
+      <Page type="query" queryName="ver_lote_cert" includedIntoPageList="false" fileName="ver_lote_cert" caption="Ver Lote Cert" shortCaption="Ver Lote Cert" groupName="Administrador" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="0" editAbilityMode="0" copyAbilityMode="0" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true" showKeyColumnsImagesInGridHeader="false">
+        <BeforeGridText/>
+        <Columns>
+          <ViewColumns>
+            <Column fieldName="id" caption="Id" visible="true" totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nombre" caption="Nombre" visible="true" totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+          </ViewColumns>
+          <SingleRecordViewColumns>
+            <Column fieldName="id" caption="Id" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nombre" caption="Nombre" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+          </SingleRecordViewColumns>
+          <EditColumns>
+            <Column fieldName="id" caption="Id" visible="true">
+              <EditProperties type="spinEdit" maxValue="100" minValue="0" useConstraints="false" step="1"/>
+            </Column>
+            <Column fieldName="nombre" caption="Nombre" visible="true">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+          </EditColumns>
+          <InsertColumns>
+            <Column fieldName="id" caption="Id" visible="true" defaultInsertValue="">
+              <EditProperties type="spinEdit" maxValue="100" minValue="0" useConstraints="false" step="1"/>
+            </Column>
+            <Column fieldName="nombre" caption="Nombre" visible="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+          </InsertColumns>
+          <SimpleSearchColumns>
+            <Column fieldName="id" caption="Id" visible="true"/>
+            <Column fieldName="nombre" caption="Nombre" visible="true"/>
+          </SimpleSearchColumns>
+          <AdvancedSearchColumns>
+            <Column fieldName="id" caption="Id" visible="true" useComboBox="false"/>
+            <Column fieldName="nombre" caption="Nombre" visible="true" useComboBox="false"/>
+          </AdvancedSearchColumns>
+          <ExportColumns>
+            <Column fieldName="id" caption="Id" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nombre" caption="Nombre" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+          </ExportColumns>
+          <PrintColumns>
+            <Column fieldName="id" caption="Id" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nombre" caption="Nombre" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+          </PrintColumns>
+        </Columns>
+        <Details/>
+        <RecordPermissions useRecordPermissions="false"/>
+        <PartitionNavigators/>
+      </Page>
     </Pages>
     <UserAuthorization type="hardCoded">
       <Users>
@@ -2338,6 +2735,7 @@ DNI                  </MFUItem>
       <UserPageGrants>
         <PageGrants userName="defaultUser">
           <PageGrant pageName="public.factura"/>
+          <PageGrant pageName="public.certificacion"/>
           <PageGrant pageName="public.agente"/>
           <PageGrant pageName="public.dependencia"/>
           <PageGrant pageName="public.ubicacion_fisica"/>
@@ -2351,9 +2749,12 @@ DNI                  </MFUItem>
           <PageGrant pageName="ver_contrato"/>
           <PageGrant pageName="ver_dependencia"/>
           <PageGrant pageName="ver_salario"/>
+          <PageGrant pageName="estado_lote"/>
+          <PageGrant pageName="ver_lote_cert"/>
         </PageGrants>
         <PageGrants userName="guest">
           <PageGrant pageName="public.factura"/>
+          <PageGrant pageName="public.certificacion"/>
           <PageGrant pageName="public.agente"/>
           <PageGrant pageName="public.dependencia"/>
           <PageGrant pageName="public.ubicacion_fisica"/>
@@ -2367,9 +2768,12 @@ DNI                  </MFUItem>
           <PageGrant pageName="ver_contrato"/>
           <PageGrant pageName="ver_dependencia"/>
           <PageGrant pageName="ver_salario"/>
+          <PageGrant pageName="estado_lote"/>
+          <PageGrant pageName="ver_lote_cert"/>
         </PageGrants>
         <PageGrants userName="facturas">
           <PageGrant pageName="public.factura"/>
+          <PageGrant pageName="public.certificacion"/>
           <PageGrant pageName="public.agente"/>
           <PageGrant pageName="public.dependencia"/>
           <PageGrant pageName="public.ubicacion_fisica"/>
@@ -2383,6 +2787,8 @@ DNI                  </MFUItem>
           <PageGrant pageName="ver_contrato"/>
           <PageGrant pageName="ver_dependencia"/>
           <PageGrant pageName="ver_salario"/>
+          <PageGrant pageName="estado_lote"/>
+          <PageGrant pageName="ver_lote_cert"/>
         </PageGrants>
       </UserPageGrants>
     </UserGrants>

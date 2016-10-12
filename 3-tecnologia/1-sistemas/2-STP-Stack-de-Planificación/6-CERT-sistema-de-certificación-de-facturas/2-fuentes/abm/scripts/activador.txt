@@ -1,5 +1,6 @@
 agente.php
 categoria_lm.php
+certificacion.php
 contrato.php
 convenio_at.php
 dependencia.php

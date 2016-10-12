@@ -74,6 +74,31 @@ COMMENT ON COLUMN public.convenio_at.ds_universidad IS 'Universidad con la que s
 
 ALTER SEQUENCE public.convenio_at_sq OWNED BY public.convenio_at.id_convenio_at;
 
+CREATE SEQUENCE public.certificacion_sq;
+
+CREATE TABLE public.certificacion (
+                id_certificacion INTEGER NOT NULL DEFAULT nextval('public.certificacion_sq'),
+                id_convenio_at INTEGER NOT NULL,
+                fe_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+                fe_certificacion TIMESTAMP,
+                co_nota VARCHAR(50),
+                co_estado CHAR(1) DEFAULT 'P' NOT NULL,
+                CONSTRAINT certificacion_pk PRIMARY KEY (id_certificacion)
+);
+COMMENT ON TABLE public.certificacion IS 'Lotes de certificación de facturas para enviar a la universidad.';
+COMMENT ON COLUMN public.certificacion.id_certificacion IS 'Identificador único del lote de certificación.';
+COMMENT ON COLUMN public.certificacion.id_convenio_at IS 'Convenio de Asistencia Técnica.';
+COMMENT ON COLUMN public.certificacion.fe_creacion IS 'Fecha de creación del lote de certificación.';
+COMMENT ON COLUMN public.certificacion.fe_certificacion IS 'Fecha de certificación del lote de facturas.';
+COMMENT ON COLUMN public.certificacion.co_nota IS 'Nota enviada por la facultad como certificación de las facturas.';
+COMMENT ON COLUMN public.certificacion.co_estado IS 'Estado de la certificación del lote de facturas:
+P - PreCertificado
+C - Certificado
+X - Anulado';
+
+
+ALTER SEQUENCE public.certificacion_sq OWNED BY public.certificacion.id_certificacion;
+
 CREATE TABLE public.tipo_contrato (
                 id_tipo_contrato INTEGER NOT NULL,
                 co_tipo_contrato CHAR(2) NOT NULL,
@@ -236,7 +261,7 @@ CREATE TABLE public.salario (
                 id_salario INTEGER NOT NULL DEFAULT nextval('public.salario_sq'),
                 id_mes INTEGER NOT NULL,
                 id_contrato INTEGER NOT NULL,
-                va_salario REAL NOT NULL,
+                va_salario REAL,
                 CONSTRAINT salario_pk PRIMARY KEY (id_salario)
 );
 COMMENT ON TABLE public.salario IS 'Salario del mes del agente.';
@@ -256,9 +281,10 @@ CREATE TABLE public.factura (
                 nu_pto_venta INTEGER,
                 nu_factura INTEGER,
                 fe_factura DATE,
-                fe_carga TIMESTAMP DEFAULT CURRENT_TIMESTAMP  NOT NULL,
+                fe_carga TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
                 va_factura REAL,
                 ar_factura BYTEA,
+                id_certificacion INTEGER,
                 fl_rechazo BOOLEAN DEFAULT FALSE NOT NULL,
                 ds_comentario VARCHAR(400),
                 CONSTRAINT factura_pk PRIMARY KEY (id_factura)
@@ -272,6 +298,7 @@ COMMENT ON COLUMN public.factura.fe_factura IS 'Fecha de la factura.';
 COMMENT ON COLUMN public.factura.fe_carga IS 'Fecha de carga de la factura.';
 COMMENT ON COLUMN public.factura.va_factura IS 'Monto de la factura.';
 COMMENT ON COLUMN public.factura.ar_factura IS 'Archivo de imagen de la factura.';
+COMMENT ON COLUMN public.factura.id_certificacion IS 'Lote de certificación de las facturas.';
 COMMENT ON COLUMN public.factura.fl_rechazo IS 'Indicador de rechazo de la factura.';
 COMMENT ON COLUMN public.factura.ds_comentario IS 'Comentario de la factura.';
 
@@ -288,6 +315,20 @@ NOT DEFERRABLE;
 ALTER TABLE public.contrato ADD CONSTRAINT convenio_at_contrato_fk
 FOREIGN KEY (id_convenio_at)
 REFERENCES public.convenio_at (id_convenio_at)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.certificacion ADD CONSTRAINT convenio_at_certificacion_fk
+FOREIGN KEY (id_convenio_at)
+REFERENCES public.convenio_at (id_convenio_at)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.factura ADD CONSTRAINT certificacion_factura_fk
+FOREIGN KEY (id_certificacion)
+REFERENCES public.certificacion (id_certificacion)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
