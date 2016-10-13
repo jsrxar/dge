@@ -74,12 +74,10 @@ FROM (
 WHERE id_tipo_contrato IS NOT NULL;
 
 INSERT INTO salario (
-	id_agente,
 	id_mes,
 	id_contrato,
 	va_salario )
 SELECT
-	id_agente    AS id_agente,
 	201605       AS id_mes,
 	(SELECT id_contrato FROM contrato WHERE id_agente = cn.id_agente) AS id_contrato,
 	ds_mayo_2016::MONEY::NUMERIC::FLOAT AS va_salario
@@ -93,15 +91,14 @@ FROM (
 	WHERE LENGTH(ds_apellido_nombres) > 0
 	  AND TRIM(ds_mayo_2016) NOT IN ('', '--', '---', '#¡REF!', '.')
  ) cn
- WHERE EXISTS (SELECT 1 FROM contrato WHERE id_agente = cn.id_agente);
+WHERE ds_mayo_2016::MONEY::NUMERIC > 0
+  AND EXISTS (SELECT 1 FROM contrato WHERE id_agente = cn.id_agente);
  
  INSERT INTO salario (
-	id_agente,
 	id_mes,
 	id_contrato,
 	va_salario )
 SELECT
-	id_agente    AS id_agente,
 	201606       AS id_mes,
 	(SELECT id_contrato FROM contrato WHERE id_agente = cn.id_agente) AS id_contrato,
 	ds_junio_7p::MONEY::NUMERIC::FLOAT AS va_salario
@@ -115,15 +112,14 @@ FROM (
 	WHERE LENGTH(ds_apellido_nombres) > 0
 	  AND TRIM(ds_junio_7p) NOT IN ('', '--', '---', '#¡REF!', '.')
  ) cn
- WHERE EXISTS (SELECT 1 FROM contrato WHERE id_agente = cn.id_agente);
+WHERE ds_junio_7p::MONEY::NUMERIC > 0
+  AND EXISTS (SELECT 1 FROM contrato WHERE id_agente = cn.id_agente);
  
  INSERT INTO salario (
-	id_agente,
 	id_mes,
 	id_contrato,
 	va_salario )
 SELECT
-	id_agente    AS id_agente,
 	201607       AS id_mes,
 	(SELECT id_contrato FROM contrato WHERE id_agente = cn.id_agente) AS id_contrato,
 	ds_julio_10p::MONEY::NUMERIC::FLOAT AS va_salario
@@ -137,15 +133,14 @@ FROM (
 	WHERE LENGTH(ds_apellido_nombres) > 0
 	  AND TRIM(ds_julio_10p) NOT IN ('', '--', '---', '#¡REF!', '.')
  ) cn
- WHERE EXISTS (SELECT 1 FROM contrato WHERE id_agente = cn.id_agente);
+WHERE ds_julio_10p::MONEY::NUMERIC > 0
+  AND EXISTS (SELECT 1 FROM contrato WHERE id_agente = cn.id_agente);
  
  INSERT INTO salario (
-	id_agente,
 	id_mes,
 	id_contrato,
 	va_salario )
 SELECT
-	id_agente    AS id_agente,
 	201608       AS id_mes,
 	(SELECT id_contrato FROM contrato WHERE id_agente = cn.id_agente) AS id_contrato,
 	ds_agosto_14p::MONEY::NUMERIC::FLOAT AS va_salario
@@ -159,15 +154,14 @@ FROM (
 	WHERE LENGTH(ds_apellido_nombres) > 0
 	  AND TRIM(ds_agosto_14p) NOT IN ('', '--', '---', '#¡REF!', '.')
  ) cn
- WHERE EXISTS (SELECT 1 FROM contrato WHERE id_agente = cn.id_agente);
+WHERE ds_agosto_14p::MONEY::NUMERIC > 0
+  AND EXISTS (SELECT 1 FROM contrato WHERE id_agente = cn.id_agente);
  
  INSERT INTO salario (
-	id_agente,
 	id_mes,
 	id_contrato,
 	va_salario )
 SELECT
-	id_agente    AS id_agente,
 	201609       AS id_mes,
 	(SELECT id_contrato FROM contrato WHERE id_agente = cn.id_agente) AS id_contrato,
 	ds_sept::MONEY::NUMERIC::FLOAT AS va_salario
@@ -181,15 +175,14 @@ FROM (
 	WHERE LENGTH(ds_apellido_nombres) > 0
 	  AND TRIM(ds_sept) NOT IN ('', '--', '---', '#¡REF!', '.')
  ) cn
- WHERE EXISTS (SELECT 1 FROM contrato WHERE id_agente = cn.id_agente);
+WHERE ds_sept::MONEY::NUMERIC > 0
+  AND EXISTS (SELECT 1 FROM contrato WHERE id_agente = cn.id_agente);
  
  INSERT INTO salario (
-	id_agente,
 	id_mes,
 	id_contrato,
 	va_salario )
 SELECT
-	id_agente    AS id_agente,
 	201610       AS id_mes,
 	(SELECT id_contrato FROM contrato WHERE id_agente = cn.id_agente) AS id_contrato,
 	ds_oct::MONEY::NUMERIC::FLOAT AS va_salario
@@ -203,15 +196,14 @@ FROM (
 	WHERE LENGTH(ds_apellido_nombres) > 0
 	  AND TRIM(ds_oct) NOT IN ('', '--', '---', '#¡REF!', '.')
  ) cn
- WHERE EXISTS (SELECT 1 FROM contrato WHERE id_agente = cn.id_agente);
+WHERE ds_oct::MONEY::NUMERIC > 0
+  AND EXISTS (SELECT 1 FROM contrato WHERE id_agente = cn.id_agente);
  
  INSERT INTO salario (
-	id_agente,
 	id_mes,
 	id_contrato,
 	va_salario )
 SELECT
-	id_agente    AS id_agente,
 	201611       AS id_mes,
 	(SELECT id_contrato FROM contrato WHERE id_agente = cn.id_agente) AS id_contrato,
 	ds_nov::MONEY::NUMERIC::FLOAT AS va_salario
@@ -225,15 +217,14 @@ FROM (
 	WHERE LENGTH(ds_apellido_nombres) > 0
 	  AND TRIM(ds_nov) NOT IN ('', '--', '---', '#¡REF!', '.')
  ) cn
- WHERE EXISTS (SELECT 1 FROM contrato WHERE id_agente = cn.id_agente);
+WHERE ds_nov::MONEY::NUMERIC > 0
+  AND EXISTS (SELECT 1 FROM contrato WHERE id_agente = cn.id_agente);
  
  INSERT INTO salario (
-	id_agente,
 	id_mes,
 	id_contrato,
 	va_salario )
 SELECT
-	id_agente    AS id_agente,
 	201612       AS id_mes,
 	(SELECT id_contrato FROM contrato WHERE id_agente = cn.id_agente) AS id_contrato,
 	ds_dic::MONEY::NUMERIC::FLOAT AS va_salario
@@ -247,6 +238,7 @@ FROM (
 	WHERE LENGTH(ds_apellido_nombres) > 0
 	  AND TRIM(ds_dic) NOT IN ('', '--', '---', '#¡REF!', '.')
  ) cn
- WHERE EXISTS (SELECT 1 FROM contrato WHERE id_agente = cn.id_agente);
- 
+WHERE ds_dic::MONEY::NUMERIC > 0
+  AND EXISTS (SELECT 1 FROM contrato WHERE id_agente = cn.id_agente);
+
  

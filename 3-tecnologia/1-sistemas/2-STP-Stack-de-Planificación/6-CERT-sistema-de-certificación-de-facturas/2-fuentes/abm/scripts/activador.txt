@@ -1,10 +1,11 @@
 agente.php
 categoria_lm.php
+certificacion.php
 contrato.php
 convenio_at.php
 dependencia.php
 factura.php
 puesto.php
-salario.php
+honorario.php
 tipo_contrato.php
 ubicacion_fisica.php

@@ -1,6 +1,6 @@
 SET CLIENT_ENCODING TO 'LATIN1';
 
-----------------------------------------   PROCESO DE DTO   ----------------------------------------
+----------------------------------------   PROCESO DE PERSONAL DTO   ----------------------------------------
 UPDATE stg_dto_personal
 SET
 	no_archivo = '...',
@@ -46,37 +46,3 @@ GROUP BY tx_dni;
 UPDATE stg_dto_personal
 SET co_estado_proceso = 'P'
 WHERE co_estado_proceso = 'C';
-
-UPDATE dim_persona pe
-SET
-	no_persona     = od.no_persona,
-	no_direccion   = od.no_direccion,
-	no_dependencia = od.no_dependencia,
-	no_sector      = od.no_sector,
-	no_area        = od.no_area,
-	no_puesto      = od.no_puesto,
-	no_tarea       = od.no_tarea
-FROM ods_persona od
-WHERE pe.id_persona = od.id_persona;
-
-INSERT INTO dim_persona(
-	co_dni_cuit,
-	no_persona,
-	no_direccion,
-	no_dependencia,
-	no_sector,
-	no_area,
-	no_puesto,
-	no_tarea
-)
-SELECT
-	co_dni_cuit,
-	no_persona,
-	no_direccion,
-	no_dependencia,
-	no_sector,
-	no_area,
-	no_puesto,
-	no_tarea
-FROM ods_persona
-WHERE co_dni_cuit NOT IN ( SELECT co_dni_cuit FROM dim_persona );
