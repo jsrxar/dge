@@ -4,7 +4,16 @@
  <print-settings printerName="RICOH MP C2003" numCopies="1" zoom="0.69" pageNumbersPrinted="true" orientation="0" paperWidth="595.275590551181" paperHeight="841.8897637795276" leftBorder="50.00314960629921" rightBorder="50.00314960629917" topBorder="50.00314960629917" bottomBorder="50.003149606299324" />
  <project-data-sources>
   <data-source id="DS0">
-   <property key="Logical" value="PlayPen Database" />
+   <property key="Logical" value="FACTURAS Servidor" />
+   <property key="Connection Type" value="PostgreSQL" />
+   <property key="JDBC URL" value="jdbc:postgresql://mozart.myc.ar:5432/FACTURAS" />
+   <property key="UID" value="facturas" />
+   <property key="PWD" value="hola1234" />
+   <property key="ca.sqlpower.architect.etl.kettle.database" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.port" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.hostname" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.repos.login" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.repos.password" value="" />
   </data-source>
   <data-source id="DS2">
    <property key="Connection Type" value="PostgreSQL" />
@@ -819,12 +828,12 @@ X - Anulado</remarks>
    <relationship id="REL250" populated="true" UUID="146d5075-c459-456f-912f-589f5769fbda" deferrability="7" deleteRule="3" fk-table-ref="TAB160" fkCardinality="7" identifying="false" name="salario_factura_fk" physicalName="salario_factura_fk" pk-table-ref="TAB153" pkCardinality="2" updateRule="3" >
     <column-mapping id="CMP251" populated="true" UUID="5e82a997-2659-49cb-87c1-e21980cfce3a" fk-column-ref="COL162" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL154" />
    </relationship>
-   <relationship id="REL252" populated="true" UUID="6efe5628-4e63-4e19-a9c3-90b408309914" deferrability="7" deleteRule="3" fk-table-ref="TAB160" fkCardinality="7" identifying="false" name="certificacion_factura_fk" physicalName="certificacion_factura_fk" pk-table-ref="TAB215" pkCardinality="2" updateRule="3" >
-    <column-mapping id="CMP253" populated="true" UUID="04b9ff31-eb16-4c48-9105-de3f0c9f8c24" fk-column-ref="COL170" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL216" />
+   <relationship id="REL252" populated="true" UUID="6efe5628-4e63-4e19-a9c3-90b408309914" deferrability="7" deleteRule="2" fk-table-ref="TAB160" fkCardinality="7" identifying="false" name="certificacion_factura_fk" physicalName="certificacion_factura_fk" pk-table-ref="TAB215" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP253" populated="true" UUID="735dac1f-a7b3-4927-aa93-f08c64165cbe" fk-column-ref="COL170" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL216" />
    </relationship>
   </relationships>
  </target-database>
- <ddl-generator type="ca.sqlpower.architect.ddl.PostgresDDLGenerator" allow-connection="true" target-schema="public"> </ddl-generator>
+ <ddl-generator type="ca.sqlpower.architect.ddl.PostgresDDLGenerator" allow-connection="false" target-schema="public"> </ddl-generator>
  <liquibase-settings useSeparateChangeSets="false" generateId="false" idStart="1"/>
  <compare-dm-settings  ddlGenerator="ca.sqlpower.architect.ddl.PostgresDDLGenerator"  outputFormatAsString="SQL"  saveFlag="true" >
   <source-stuff   datastoreTypeAsString="DATABASE"   connectName="FACTURAS por IP"   filePath=""  />

@@ -1,5 +1,5 @@
 <?php
-$debug = false;
+$debug = true;
 
 function get_param ($parametro) {
 	if (isset($_POST[$parametro]))
@@ -7,6 +7,13 @@ function get_param ($parametro) {
 	elseif (isset($_GET[$parametro]))
 		$param_val = $_GET[$parametro];
 	return $param_val;
+}
+
+//echo "<p>val1: 'K" . md5("f4ct#r4s@".date('Y-m-d')) . "'</p>\n";
+//echo "<p>val2: '" . get_param("idClave") . "'</p>\n";
+if ('K'.md5("f4ct#r4s@".date('Y-m-d')) != get_param("idClave")) {
+	if($debug) echo '<h3>La clave "idClave" no corresponde.</h3>'; 
+	exit;
 }
 
 if($debug) {

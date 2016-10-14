@@ -5,13 +5,13 @@ param(
 [string]$dir
 )
 [system.text.encoding]::GetEncoding('iso-8859-1')
+$diract =  $dir + "\activador"
 
-foreach ($arch in get-content activador.txt) {
+foreach ($arch in get-content "$diract\activador.txt") {
 	Write-Host Procesando $arch
 
 	if (Test-Path $arch) {
 		$archtmp = $dir + "\" + $arch + ".borrar"
-		$archbase = ([io.fileinfo]$arch).basename + ".cm?"
 
 		if ($arch.Equals("factura.php")) {
 			get-content $arch | 
@@ -53,34 +53,21 @@ foreach ($arch in get-content activador.txt) {
 				%{$_ -replace 'SetRowsPerPage\(.*\)', 'SetRowsPerPage(100)'} | Out-File -Encoding "UTF8" $archtmp
 		}
 
-		if ($arch.StartsWith("ver_")) {
-			Write-Host -> No se completa el archivo $arch
-		} else {
-			if(@( Get-Content $archtmp | Where-Object { $_.Contains("?>") } ).Count -eq 0) {
-				Add-Content $archtmp "include 'general.php'; ?>`n"
-				Get-Content $archbase -ErrorAction SilentlyContinue | Add-Content $archtmp
-			} else {
-				Write-Host -> El archivo ya fue completado
-			}
-		}
-		#Convierte la salida de nuevo a ISO-8859-1
-		Start-Process -FilePath "$dir\iconv\iconv.exe" `
+		# Convierte la salida de nuevo a ISO-8859-1
+		Start-Process -FilePath "$diract\iconv.exe" `
 		              -ArgumentList "-f UTF-8 -t ISO-8859-1 -c $archtmp" `
 		              -RedirectStandardOutput "$arch" `
 		              -RedirectStandardError "iconv_error.txt" `
 		              -Wait
 		Remove-Item $archtmp
 
-		# Para que la salida quede como UTF-8
-		#Remove-Item $arch
-		#Rename-Item $archtmp $arch -Force
 	} else {
 		Write-Host -> El archivo no existe
 	}
 }
 
 Write-Host Cambiando archivo de estilos CSS
-$oricss = $dir + "\main.css"
+$oricss = $diract + "\main.css"
 $descss = $dir + "\components\css"
 Copy-Item $oricss -Destination $descss -Force
 

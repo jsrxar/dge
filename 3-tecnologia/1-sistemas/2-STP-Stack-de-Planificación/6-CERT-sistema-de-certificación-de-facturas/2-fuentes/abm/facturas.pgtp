@@ -282,7 +282,7 @@ FROM certificacion ce      </SelectStatement>
             <Column fieldName="ds_comentario" caption="Comentario Factura" visible="true" canSetNull="true">
               <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
             </Column>
-            <Column fieldName="id_certificacion" caption="Lote Certificación" visible="true" canSetNull="true">
+            <Column fieldName="id_certificacion" caption="Lote Certificación" visible="false" canSetNull="true">
               <Lookup tableName="ver_lote_cert" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <EditProperties type="comboBox">
                 <MFUItems/>
@@ -338,7 +338,7 @@ FROM certificacion ce      </SelectStatement>
             <Column fieldName="ds_comentario" caption="Comentario Factura" visible="true" canSetNull="true" defaultInsertValue="">
               <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
             </Column>
-            <Column fieldName="id_certificacion" caption="Lote Certificación" visible="true" canSetNull="true" defaultInsertValue="">
+            <Column fieldName="id_certificacion" caption="Lote Certificación" visible="false" canSetNull="true" defaultInsertValue="">
               <Lookup tableName="ver_lote_cert" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <EditProperties type="comboBox">
                 <MFUItems/>
@@ -2824,9 +2824,17 @@ height: 10px;
 }  </UserCSS>
   <UserJS>
 $(document).ready(function(){
-  $(&quot;#id_salario_edit&quot;).bind(&quot;DOMSubtreeModified&quot;, function(){
-    $(&quot;.select2-container&quot;).css(&quot;width&quot;, &quot;500px&quot;);
-  });
+  $.getScript(&quot;general.js&quot;)
+    .done(function( script, textStatus ) {
+      //console.log('general.js load: ' + textStatus);
+    })
+  var jsfile = window.location.pathname;
+  jsfile = jsfile.substring(jsfile.lastIndexOf('/')+1);
+  jsfile = jsfile.substring(0,jsfile.indexOf('.')) + '.js';
+  $.getScript(jsfile)
+    .done(function( script, textStatus ) {
+      console.log(jsfile + ' load: ' + textStatus);
+    })
 });  </UserJS>
   <ExcludedPaths/>
   <DefaultPageProperties recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true" showKeyColumnsImagesInGridHeader="false"/>

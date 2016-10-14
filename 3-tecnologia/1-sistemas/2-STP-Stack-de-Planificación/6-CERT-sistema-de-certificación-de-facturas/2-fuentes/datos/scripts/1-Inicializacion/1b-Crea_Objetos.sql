@@ -284,6 +284,7 @@ CREATE TABLE public.factura (
                 fe_carga TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
                 va_factura REAL,
                 ar_factura BYTEA,
+                id_convenio_at INTEGER,
                 id_certificacion INTEGER,
                 fl_rechazo BOOLEAN DEFAULT FALSE NOT NULL,
                 ds_comentario VARCHAR(400),
@@ -298,6 +299,7 @@ COMMENT ON COLUMN public.factura.fe_factura IS 'Fecha de la factura.';
 COMMENT ON COLUMN public.factura.fe_carga IS 'Fecha de carga de la factura.';
 COMMENT ON COLUMN public.factura.va_factura IS 'Monto de la factura.';
 COMMENT ON COLUMN public.factura.ar_factura IS 'Archivo de imagen de la factura.';
+COMMENT ON COLUMN public.factura.id_convenio_at IS 'Convenio de Asistencia Técnica asociado a la factura.';
 COMMENT ON COLUMN public.factura.id_certificacion IS 'Lote de certificación de las facturas.';
 COMMENT ON COLUMN public.factura.fl_rechazo IS 'Indicador de rechazo de la factura.';
 COMMENT ON COLUMN public.factura.ds_comentario IS 'Comentario de la factura.';
@@ -326,10 +328,17 @@ ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
+ALTER TABLE public.factura ADD CONSTRAINT convenio_at_factura_fk
+FOREIGN KEY (id_convenio_at)
+REFERENCES public.convenio_at (id_convenio_at)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
 ALTER TABLE public.factura ADD CONSTRAINT certificacion_factura_fk
 FOREIGN KEY (id_certificacion)
 REFERENCES public.certificacion (id_certificacion)
-ON DELETE NO ACTION
+ON DELETE SET NULL
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 

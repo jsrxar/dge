@@ -2,6 +2,9 @@
 	$(document).ready(function(){ fn_funciones_RH () });
 
 	function fn_funciones_RH () {
+		// Agrandar combos de "CUIT" y "Honorarios"
+		$("#id_salario_edit").bind("DOMSubtreeModified", function(){ $(".select2-container").css("width", "500px"); });
+
 		// Cambiar "SetAllowDeleteSelected(false);" por "SetAllowDeleteSelected(true);"
 		$('div.btn-toolbar.pull-left').before('<button class="btn rrhh-certif-selected"><i class="pg-icon-export"></i>Certificar facturas</button>');
 		$('button.delete-selected').hide();

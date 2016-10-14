@@ -143,39 +143,44 @@
 				</div>
 				<div class="container-fluid">
 				<br>
-					<div class="row-fluid">
-						<div class="span6">
-							<table class="table pgui-record-card">
-								<tbody>
 <?php
 include_once dirname(__FILE__) . '\ax_general.php';
 
 if($idsToCertif = get_param("idsToCertif")){
-	$sql =  "SELECT at.no_convenio_at, TO_CHAR(fa.fe_carga, 'DD/MM/YYYY'), ag.no_agente,\n";
-	$sql .= "  LPAD(fa.nu_pto_venta::TEXT, 4, '0')||'-'||LPAD(fa.nu_factura::TEXT, 8, '0'),\n";
-	$sql .= "  TO_CHAR(fa.fe_factura, 'DD/MM/YYYY'),\n";
-	$sql .= "  fa.va_factura::NUMERIC::MONEY\n";
-	$sql .= "FROM factura fa\n";
-	$sql .= "LEFT JOIN salario sa  ON sa.id_salario = fa.id_salario\n";
-	$sql .= "LEFT JOIN contrato co ON co.id_contrato = sa.id_contrato\n";
-	$sql .= "LEFT JOIN agente ag   ON ag.id_agente = co.id_agente\n";
-	$sql .= "LEFT JOIN convenio_at at ON at.id_convenio_at = co.id_convenio_at\n";
-	$sql .= "WHERE fa.fl_rechazo IS FALSE\n";
-	$sql .= "  AND fa.id_certificacion IS NULL\n";
-	$sql .= "  AND fa.id_factura IN (" . $idsToCertif . ")";
+	if($operation = get_param("operation")){
+		if($operation == "view") {
+			$sql =  "SELECT at.id_convenio_at, at.no_convenio_at,\n";
+			$sql .= "  TO_CHAR(fa.fe_carga, 'DD/MM/YYYY'), ag.no_agente,\n";
+			$sql .= "  LPAD(fa.nu_pto_venta::TEXT, 4, '0')||'-'||LPAD(fa.nu_factura::TEXT, 8, '0'),\n";
+			$sql .= "  TO_CHAR(fa.fe_factura, 'DD/MM/YYYY'),\n";
+			$sql .= "  fa.va_factura::NUMERIC::MONEY\n";
+			$sql .= "FROM factura fa\n";
+			$sql .= "LEFT JOIN salario sa  ON sa.id_salario = fa.id_salario\n";
+			$sql .= "LEFT JOIN contrato co ON co.id_contrato = sa.id_contrato\n";
+			$sql .= "LEFT JOIN agente ag   ON ag.id_agente = co.id_agente\n";
+			$sql .= "LEFT JOIN convenio_at at ON at.id_convenio_at = co.id_convenio_at\n";
+			$sql .= "WHERE fa.fl_rechazo IS FALSE\n";
+			$sql .= "  AND fa.id_certificacion IS NULL\n";
+			$sql .= "  AND fa.id_factura IN (" . $idsToCertif . ")";
 
-	echo "<!--p>sql:\n" . $sql . "\n<p-->\n";
+			if($debug) echo "<!--p>sql:\n" . $sql . "\n<p-->\n";
 
-	$result = pg_query($dbc, $sql);
-	if ($result) {
-		$init = true;
-		while ($row = pg_fetch_row($result)) {
-			if($init) {
-				$init = false;
+			$result = pg_query($dbc, $sql);
+			if ($result) {
+				$init = true;
+				while ($row = pg_fetch_row($result)) {
+					if($init) {
+						$init = false;
+						$idConvenioAT = $row[0];
 ?>
-									<tr><td><strong>Nuevo Lote Certificar</strong></td><td></td></tr>
-									<tr><td><strong>Convenio AT</strong></td><td><?php echo $row[0] ?></td></tr>
-									<tr><td><strong>Estado Lote</strong></td><td>PreCertificado</td></tr>
+					<div class="row-fluid">
+						<div class="span6">
+							<table class="table pgui-record-card">
+								<tbody>
+									<tr><td><strong>Nuevo Lote</strong></td><td></td></tr>
+									<tr><td><strong>Convenio AT</strong></td><td><?php echo $row[1] ?></td></tr>
+									<tr><td><strong>Estado Lote</strong></td><td>Nuevo</td></tr>
+									<tr><td><strong>Cantidad Facturas</strong></td><td><?php echo pg_num_rows($result) ?></td></tr>
 								</tbody>
 							</table>
 							<br>
@@ -187,27 +192,69 @@ if($idsToCertif = get_param("idsToCertif")){
 										<td><strong>Fecha Factura</strong></td>
 										<td><strong>Monto</strong></td></tr>
 <?php
-			}
-			echo "<tr><td>".$row[1]."</td><td>".$row[2]."</td><td>".$row[3]."</td><td>".$row[4]."</td><td>".$row[5]."</td></tr>\n";
-		}
-	} else {
-		if($debug) echo "<h3>Problema de ejecución</h3>";
-	}
-} else {
-	if($debug) echo "<h3>Falta el parámetro idsToCertif</h3>";
-}
+					}
+					echo "<tr><td>".$row[2]."</td><td>".$row[3]."</td><td>".$row[4]."</td><td>".$row[5]."</td><td>".$row[6]."</td></tr>\n";
+				}
 ?>
 								</tbody>
 							</table>
 						</div>
 					</div>
-					<div class="row-fluid">
-						<div class="btn-toolbar">
-							<div class="btn-group">
-								<a class="btn btn-primary" href="certificacion.php?operation=return">Regresar</a>
+					<form class="form-horizontal" enctype="multipart/form-data" method="POST" action="certificar_lote.php" novalidate="novalidate">
+						<input type="hidden" name="idClave" value="<?php echo get_param("idClave") ?>">
+						<input type="hidden" name="idsToCertif" value="<?php echo get_param("idsToCertif") ?>">
+						<input type="hidden" name="idConvenioAT" value="<?php echo $idConvenioAT ?>">
+						<input type="hidden" name="operation" value="create">
+						<div class="row-fluid">
+							<div class="btn-toolbar">
+								<div class="btn-group">
+									<button type="submit" id="submit-button" class="btn btn-primary submit-button">Grabar</button>
+									<button class="btn" onclick="window.location.href='certificacion.php?operation=return'; return false;">Cancelar</button>
+								</div>
 							</div>
 						</div>
-					</div>
+					</form>
+<?php
+			} else {
+				if($debug) echo "<h3>Problema de ejecucion en la consulta</h3>";
+			}
+		} else if($operation == "create") {
+			$idConvenioAT = get_param("idConvenioAT");
+
+			$sql =  "INSERT INTO certificacion (id_convenio_at, co_estado) VALUES (" . $idConvenioAT . ", 'P') RETURNING currval('certificacion_sq')";
+			if($debug) echo "<!--p>sql:\n" . $sql . "\n<p-->\n";
+
+			$result = pg_query($dbc, $sql);
+			if ($result) {
+				$idCertif = pg_fetch_row($result);
+
+				$sql =  "UPDATE factura\n";
+				$sql .= "SET id_certificacion = " . $idCertif[0] . "\n";
+				$sql .= "WHERE fl_rechazo IS FALSE\n";
+				$sql .= "  AND id_certificacion IS NULL\n";
+				$sql .= "  AND id_factura IN (" . $idsToCertif . ")";
+				if($debug) echo "<!--p>sql:\n" . $sql . "\n<p-->\n";
+
+				$result = pg_query($dbc, $sql);
+				if ($result) {
+					echo "<script> location.replace('certificacion.php?operation=view&pk0=" . $idCertif[0] . "'); </script>";
+					die();
+				} else {
+					if($debug) echo "<h3>Problema de ejecucion en la actualizacion de las facturas</h3>";
+				}
+			} else {
+				if($debug) echo "<h3>Problema de ejecucion en la creacion del lote</h3>";
+			}
+		} else {
+			if($debug) echo "<h3>Operacion no reconocida</h3>";
+		}
+	} else {
+		if($debug) echo "<h3>Falta el parámetro operation</h3>";
+	}
+} else {
+	if($debug) echo "<h3>Falta el parámetro idsToCertif</h3>";
+}
+?>
 				</div>
 			</div>
 			<hr>
