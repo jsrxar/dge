@@ -13,7 +13,7 @@ if($idLoteCertif = get_param("idLoteCertif")){
 	$sql .= "LEFT JOIN convenio_at at ON at.id_convenio_at = co.id_convenio_at\n";
 	$sql .= "WHERE fa.id_certificacion = " . $idLoteCertif;
 
-	echo "<!--p>sql:\n" . $sql . "\n<p-->\n";
+	if($debug) echo "<!--p>sql:\n" . $sql . "\n<p-->\n";
 
 	$result = pg_query($dbc, $sql);
 	if ($result) {

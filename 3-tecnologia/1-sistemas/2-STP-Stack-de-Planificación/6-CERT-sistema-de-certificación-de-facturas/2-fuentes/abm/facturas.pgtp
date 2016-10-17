@@ -1,4 +1,4 @@
-<Project productVersion="14.10.0.11" localizationFileName="C:\app\PostgreSQL PHP Generator\lang.es.php" phpDriver="0" outputPath="C:\app\xampp\htdocs\facturas" copySystemFiles="true" outputFilesExtension="php" colorSchemeName="Facebook">
+<Project productVersion="14.10.0.11" localizationFileName="C:\app\PostgreSQL PHP Generator\lang.es.php" phpDriver="0" outputPath="\\mozart.myc.ar\facturas" copySystemFiles="true" outputFilesExtension="php" colorSchemeName="Facebook">
   <ConnectionOptions host="mozart.myc.ar" port="5432" login="facturas" password="\/?T^:FJJZP~" database="FACTURAS" client_encoding="">
     <ssh_secure secure="false" port="22" authentication_mode="0"/>
     <http_tunnel tunneling="false" url="">
@@ -183,6 +183,15 @@ FROM certificacion ce      </SelectStatement>
               <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text"/>
             </Column>
+            <Column fieldName="ar_comprobante_cae_cai" caption="Comprobante CAE/CAI" visible="false" headerHint="Constatación de Comprobantes con CAE / CAI." totalFunction="0">
+              <ViewProperties type="download"/>
+            </Column>
+            <Column fieldName="ar_constancia_opcion" caption="Constancia Opción" visible="false" headerHint="Constancia de Opción, del Régimen Simplificado para Pequeños Contribuyentes (AFIP)." totalFunction="0">
+              <ViewProperties type="download"/>
+            </Column>
+            <Column fieldName="ar_informe_tareas" caption="Informe Tareas" visible="false" headerHint="Informe de Tareas del agente." totalFunction="0">
+              <ViewProperties type="download"/>
+            </Column>
           </ViewColumns>
           <SingleRecordViewColumns>
             <Column fieldName="id_factura" caption="ID Factura" visible="true" headerHint="Identificador único de la factura del agente.">
@@ -238,6 +247,15 @@ FROM certificacion ce      </SelectStatement>
               <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text"/>
             </Column>
+            <Column fieldName="ar_comprobante_cae_cai" caption="Comprobante CAE/CAI" visible="true" headerHint="Constatación de Comprobantes con CAE / CAI.">
+              <ViewProperties type="download"/>
+            </Column>
+            <Column fieldName="ar_constancia_opcion" caption="Constancia Opción" visible="true" headerHint="Constancia de Opción, del Régimen Simplificado para Pequeños Contribuyentes (AFIP).">
+              <ViewProperties type="download"/>
+            </Column>
+            <Column fieldName="ar_informe_tareas" caption="Informe Tareas" visible="true" headerHint="Informe de Tareas del agente.">
+              <ViewProperties type="download"/>
+            </Column>
           </SingleRecordViewColumns>
           <EditColumns>
             <Column fieldName="id_factura" caption="ID Factura" visible="false">
@@ -282,7 +300,7 @@ FROM certificacion ce      </SelectStatement>
             <Column fieldName="ds_comentario" caption="Comentario Factura" visible="true" canSetNull="true">
               <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
             </Column>
-            <Column fieldName="id_certificacion" caption="Lote Certificación" visible="false" canSetNull="true">
+            <Column fieldName="id_certificacion" caption="Lote Certificación" visible="false" canSetNull="true" readOnly="true">
               <Lookup tableName="ver_lote_cert" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <EditProperties type="comboBox">
                 <MFUItems/>
@@ -293,6 +311,15 @@ FROM certificacion ce      </SelectStatement>
               <EditProperties type="comboBox">
                 <MFUItems/>
               </EditProperties>
+            </Column>
+            <Column fieldName="ar_comprobante_cae_cai" caption="Comprobante CAE/CAI" visible="true" canSetNull="true">
+              <EditProperties type="fileUpload"/>
+            </Column>
+            <Column fieldName="ar_constancia_opcion" caption="Constancia Opción" visible="true" canSetNull="true">
+              <EditProperties type="fileUpload"/>
+            </Column>
+            <Column fieldName="ar_informe_tareas" caption="Informe Tareas" visible="true" canSetNull="true">
+              <EditProperties type="fileUpload"/>
             </Column>
           </EditColumns>
           <InsertColumns>
@@ -338,7 +365,7 @@ FROM certificacion ce      </SelectStatement>
             <Column fieldName="ds_comentario" caption="Comentario Factura" visible="true" canSetNull="true" defaultInsertValue="">
               <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
             </Column>
-            <Column fieldName="id_certificacion" caption="Lote Certificación" visible="false" canSetNull="true" defaultInsertValue="">
+            <Column fieldName="id_certificacion" caption="Lote Certificación" visible="false" canSetNull="true" readOnly="true" defaultInsertValue="">
               <Lookup tableName="ver_lote_cert" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <EditProperties type="comboBox">
                 <MFUItems/>
@@ -349,6 +376,15 @@ FROM certificacion ce      </SelectStatement>
               <EditProperties type="comboBox">
                 <MFUItems/>
               </EditProperties>
+            </Column>
+            <Column fieldName="ar_comprobante_cae_cai" caption="Comprobante CAE/CAI" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="fileUpload"/>
+            </Column>
+            <Column fieldName="ar_constancia_opcion" caption="Constancia Opción" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="fileUpload"/>
+            </Column>
+            <Column fieldName="ar_informe_tareas" caption="Informe Tareas" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="fileUpload"/>
             </Column>
           </InsertColumns>
           <SimpleSearchColumns>
@@ -370,6 +406,9 @@ FROM certificacion ce      </SelectStatement>
             <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true">
               <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
+            <Column fieldName="ar_comprobante_cae_cai" caption="Comprobante CAE/CAI" visible="true"/>
+            <Column fieldName="ar_constancia_opcion" caption="Constancia Opción" visible="true"/>
+            <Column fieldName="ar_informe_tareas" caption="Informe Tareas" visible="true"/>
           </SimpleSearchColumns>
           <AdvancedSearchColumns>
             <Column fieldName="id_factura" caption="ID Factura" visible="true" useComboBox="false"/>
@@ -390,6 +429,9 @@ FROM certificacion ce      </SelectStatement>
             <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true" useComboBox="false">
               <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
+            <Column fieldName="ar_comprobante_cae_cai" caption="Comprobante CAE/CAI" visible="true" useComboBox="false"/>
+            <Column fieldName="ar_constancia_opcion" caption="Constancia Opción" visible="true" useComboBox="false"/>
+            <Column fieldName="ar_informe_tareas" caption="Informe Tareas" visible="true" useComboBox="false"/>
           </AdvancedSearchColumns>
           <ExportColumns>
             <Column fieldName="id_factura" caption="ID Factura" visible="true" headerHint="Identificador único de la factura del agente.">
@@ -443,6 +485,15 @@ FROM certificacion ce      </SelectStatement>
               <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text"/>
             </Column>
+            <Column fieldName="ar_comprobante_cae_cai" caption="Comprobante CAE/CAI" visible="true" headerHint="Constatación de Comprobantes con CAE / CAI.">
+              <ViewProperties type="download"/>
+            </Column>
+            <Column fieldName="ar_constancia_opcion" caption="Constancia Opción" visible="true" headerHint="Constancia de Opción, del Régimen Simplificado para Pequeños Contribuyentes (AFIP).">
+              <ViewProperties type="download"/>
+            </Column>
+            <Column fieldName="ar_informe_tareas" caption="Informe Tareas" visible="true" headerHint="Informe de Tareas del agente.">
+              <ViewProperties type="download"/>
+            </Column>
           </ExportColumns>
           <PrintColumns>
             <Column fieldName="id_factura" caption="ID Factura" visible="true" headerHint="Identificador único de la factura del agente.">
@@ -495,6 +546,15 @@ FROM certificacion ce      </SelectStatement>
             <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true" headerHint="Convenio de Asistencia Técnica asociado a la factura.">
               <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ar_comprobante_cae_cai" caption="Comprobante CAE/CAI" visible="true" headerHint="Constatación de Comprobantes con CAE / CAI.">
+              <ViewProperties type="download"/>
+            </Column>
+            <Column fieldName="ar_constancia_opcion" caption="Constancia Opción" visible="true" headerHint="Constancia de Opción, del Régimen Simplificado para Pequeños Contribuyentes (AFIP).">
+              <ViewProperties type="download"/>
+            </Column>
+            <Column fieldName="ar_informe_tareas" caption="Informe Tareas" visible="true" headerHint="Informe de Tareas del agente.">
+              <ViewProperties type="download"/>
             </Column>
           </PrintColumns>
         </Columns>

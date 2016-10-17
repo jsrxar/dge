@@ -284,6 +284,9 @@ CREATE TABLE public.factura (
                 fe_carga TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
                 va_factura REAL,
                 ar_factura BYTEA,
+                ar_constancia_opcion BYTEA,
+                ar_informe_tareas BYTEA,
+                ar_comprobante_cae_cai BYTEA,
                 id_convenio_at INTEGER,
                 id_certificacion INTEGER,
                 fl_rechazo BOOLEAN DEFAULT FALSE NOT NULL,
@@ -299,6 +302,9 @@ COMMENT ON COLUMN public.factura.fe_factura IS 'Fecha de la factura.';
 COMMENT ON COLUMN public.factura.fe_carga IS 'Fecha de carga de la factura.';
 COMMENT ON COLUMN public.factura.va_factura IS 'Monto de la factura.';
 COMMENT ON COLUMN public.factura.ar_factura IS 'Archivo de imagen de la factura.';
+COMMENT ON COLUMN public.factura.ar_constancia_opcion IS 'Constancia de Opción, del Régimen Simplificado para Pequeños Contribuyentes (AFIP).';
+COMMENT ON COLUMN public.factura.ar_informe_tareas IS 'Informe de Tareas del agente.';
+COMMENT ON COLUMN public.factura.ar_comprobante_cae_cai IS 'Constatación de Comprobantes con CAE / CAI.';
 COMMENT ON COLUMN public.factura.id_convenio_at IS 'Convenio de Asistencia Técnica asociado a la factura.';
 COMMENT ON COLUMN public.factura.id_certificacion IS 'Lote de certificación de las facturas.';
 COMMENT ON COLUMN public.factura.fl_rechazo IS 'Indicador de rechazo de la factura.';
