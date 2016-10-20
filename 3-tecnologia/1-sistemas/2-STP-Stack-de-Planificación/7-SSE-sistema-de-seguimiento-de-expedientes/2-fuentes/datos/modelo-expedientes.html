@@ -1,0 +1,467 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-15">
+<style>
+	  body {
+		font-family: Segoe UI, Arial, sans-serif;
+	  }
+
+	  ul {
+		-webkit-margin-before: 1px;
+        -webkit-margin-after: 5px;
+	  }
+
+	  p {
+		margin: 1px;
+	  }
+
+      .tableNameHeading {
+           margin-top: 2px;
+           margin-bottom: 1px;
+           border-top: 3px solid gray;
+           border-bottom: 1px solid #C0C0C0;
+           background-color:#F5F5FF;
+		   font-size:110%;
+       }
+
+      .tableComment{ background-color:#e4efff; margin-bottom:20px;}
+      .tableDefinition { padding:2px; border-collapse:collapse; margin-top:2px;}
+
+      .tdTableDefinition {
+        padding-right:10px;
+        vertical-align:top;
+        border-bottom:1px solid #C0C0C0;
+      }
+
+      .tdTableHeading {
+        padding:2px;
+        font-weight:bold;
+        vertical-align:top;
+        border-bottom: 1px solid #C0C0C0;
+        background-color: rgb(240,240,240);
+      }
+      
+      .subTitle {
+        font-size:120%;
+		font-weight:bold;
+        background-color:#F5F5FF;
+      }
+    </style>
+<title>modelo-expedientes</title>
+</head>
+<body>
+<center>
+<h2>modelo-expedientes</h2>
+</center>
+<h3 class="tableNameHeading">Lista de Entidades</h3>
+<ul style="font-size:80%;">
+<li>
+<a href="#Cont / OC">Cont / OC</a>
+</li>
+<li>
+<a href="#Estado">Estado</a>
+</li>
+<li>
+<a href="#Expediente">Expediente</a>
+</li>
+<li>
+<a href="#Finalizado">Finalizado</a>
+</li>
+<li>
+<a href="#Proveedor">Proveedor</a>
+</li>
+<li>
+<a href="#Repartici%C3%B3n">Repartici&oacute;n</a>
+</li>
+<li>
+<a href="#Sector Destino">Sector Destino</a>
+</li>
+<li>
+<a href="#Tabla Stage Expedientes">Tabla Stage Expedientes</a>
+</li>
+<li>
+<a href="#Tipo Bien / Servicio">Tipo Bien / Servicio</a>
+</li>
+<li>
+<a href="#Tipo Contrataci%C3%B3n">Tipo Contrataci&oacute;n</a>
+</li>
+<li>
+<a href="#Ubicaci%C3%B3n Interna">Ubicaci&oacute;n Interna</a>
+</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Cont / OC">Cont / OC</a><span> (Tabla: cont_oc)</span>
+<p>CONT / OC del expediente.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID CONT / OC (Clave)</td><td class="tdTableDefinition">id_cont_oc</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del CONT / OC.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">CONT / OC</td><td class="tdTableDefinition">no_cont_oc</td><td class="tdTableDefinition">VARCHAR(100) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">CONT/OC del proyecto.</td>
+</tr>
+</table>
+<p class="subTitle">Referenciado por</p>
+<ul>
+<li>
+<a href="#Expediente">Expediente</a> referencia "ID CONT / OC"</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Estado">Estado</a><span> (Tabla: estado)</span>
+<p>Estado del expediente.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Estado (Clave)</td><td class="tdTableDefinition">id_estado</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del estado del expediente.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Estado</td><td class="tdTableDefinition">no_estado</td><td class="tdTableDefinition">VARCHAR(100) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Nombre del estado del expediente.</td>
+</tr>
+</table>
+<p class="subTitle">Referenciado por</p>
+<ul>
+<li>
+<a href="#Expediente">Expediente</a> referencia "ID Estado"</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Expediente">Expediente</a><span> (Tabla: expediente)</span>
+<p>Expediente.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">CUIT</td><td class="tdTableDefinition">co_cuit</td><td class="tdTableDefinition">VARCHAR(20)</td><td class="tdTableDefinition">CUIT relacionado con el expediente.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Beneficiario</td><td class="tdTableDefinition">ds_beneficiario</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition">Descripci&oacute;n del N&uacute;mero de Beneficiario.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Facturas</td><td class="tdTableDefinition">ds_facturas</td><td class="tdTableDefinition">VARCHAR(200)</td><td class="tdTableDefinition">Facturas relacionadas con el expediente.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Orden Pago</td><td class="tdTableDefinition">ds_orden_pago</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition">Orden de pago del expediente.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Observaciones</td><td class="tdTableDefinition">ds_observaciones</td><td class="tdTableDefinition">VARCHAR(1000)</td><td class="tdTableDefinition">Observaciones del expediente.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Finalizado</td><td class="tdTableDefinition">id_finalizado</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition">Estado de finalizaci&oacute;n del expediente.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID CONT / OC</td><td class="tdTableDefinition">id_cont_oc</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition">CONT / OC</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Expediente (Clave)</td><td class="tdTableDefinition">id_expediente</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del expediente.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">C&oacute;digo Expediente</td><td class="tdTableDefinition">co_expediente</td><td class="tdTableDefinition">VARCHAR(50)</td><td class="tdTableDefinition">C&oacute;digo del expediente.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Car&aacute;tula</td><td class="tdTableDefinition">no_caratula</td><td class="tdTableDefinition">VARCHAR(100) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Car&aacute;tula del expediente.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Fecha Origen</td><td class="tdTableDefinition">fe_origen</td><td class="tdTableDefinition">DATE</td><td class="tdTableDefinition">Origen Fecha.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Proveedor</td><td class="tdTableDefinition">id_proveedor</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition">Proveedor del expediente.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Monto</td><td class="tdTableDefinition">va_monto</td><td class="tdTableDefinition">FLOAT</td><td class="tdTableDefinition">Monto total del expediente.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Monto Pagado</td><td class="tdTableDefinition">va_monto_pagado</td><td class="tdTableDefinition">FLOAT</td><td class="tdTableDefinition">Monto pagado del expediente.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Tipo Bien / Servicio</td><td class="tdTableDefinition">id_tipo_bien_servicio</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition">Tipo de bien o servicio.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Tipo Contrataci&oacute;n</td><td class="tdTableDefinition">id_tipo_contratacion</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition">Tipo de contrataci&oacute;n.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Repartici&oacute;n Solicitante</td><td class="tdTableDefinition">id_reparticion_solicitante</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition">Repartici&oacute;n solicitante.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Repartici&oacute;n Destino</td><td class="tdTableDefinition">id_reparticion_destino</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition">Repartici&oacute;n destino del expediente.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Fecha Responsable</td><td class="tdTableDefinition">fe_responsable</td><td class="tdTableDefinition">DATE</td><td class="tdTableDefinition">Fecha Responsable.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Fecha Ingreso Compras</td><td class="tdTableDefinition">fe_compras_ingreso</td><td class="tdTableDefinition">DATE</td><td class="tdTableDefinition">Fecha de ingreso a compras del expediente.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Fecha Salida Compras</td><td class="tdTableDefinition">fe_compras_salida</td><td class="tdTableDefinition">DATE</td><td class="tdTableDefinition">Fecha de salida de compras del expediente.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Sector Destino</td><td class="tdTableDefinition">id_sector_destino</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition">Sector de destino del expediente.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Estado</td><td class="tdTableDefinition">id_estado</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition">Estado del expediente.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Detalle Estado</td><td class="tdTableDefinition">ds_estado</td><td class="tdTableDefinition">VARCHAR(1000)</td><td class="tdTableDefinition">Detalle del estado del expediente.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Ubicaci&oacute;n Interna</td><td class="tdTableDefinition">id_ubicacion_interna</td><td class="tdTableDefinition">INTEGER</td><td class="tdTableDefinition">Ubicaci&oacute;n interna del expediente.</td>
+</tr>
+</table>
+<p class="subTitle">Referencias</p>
+<ul>
+<li>
+<a href="#Proveedor">Proveedor</a> mediante "Proveedor"</li>
+<li>
+<a href="#Tipo Bien / Servicio">Tipo Bien / Servicio</a> mediante "Tipo Bien / Servicio"</li>
+<li>
+<a href="#Tipo Contrataci%C3%B3n">Tipo Contrataci&oacute;n</a> mediante "Tipo Contrataci&oacute;n"</li>
+<li>
+<a href="#Repartici%C3%B3n">Repartici&oacute;n</a> mediante "Repartici&oacute;n Solicitante"</li>
+<li>
+<a href="#Repartici%C3%B3n">Repartici&oacute;n</a> mediante "Repartici&oacute;n Destino"</li>
+<li>
+<a href="#Sector Destino">Sector Destino</a> mediante "Sector Destino"</li>
+<li>
+<a href="#Estado">Estado</a> mediante "Estado"</li>
+<li>
+<a href="#Ubicaci%C3%B3n Interna">Ubicaci&oacute;n Interna</a> mediante "Ubicaci&oacute;n Interna"</li>
+<li>
+<a href="#Finalizado">Finalizado</a> mediante "Finalizado"</li>
+<li>
+<a href="#Cont / OC">Cont / OC</a> mediante "ID CONT / OC"</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Finalizado">Finalizado</a><span> (Tabla: finalizado)</span>
+<p>Estado finalizado del expediente.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Finalizado (Clave)</td><td class="tdTableDefinition">id_finalizado</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del estado de finalizaci&oacute;n del expediente.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Finalizado</td><td class="tdTableDefinition">no_finalizado</td><td class="tdTableDefinition">VARCHAR(100) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Nombre del estado de finalizaci&oacute;n del expediente.</td>
+</tr>
+</table>
+<p class="subTitle">Referenciado por</p>
+<ul>
+<li>
+<a href="#Expediente">Expediente</a> referencia "ID Finalizado"</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Proveedor">Proveedor</a><span> (Tabla: proveedor)</span>
+<p>Proveedor asociado al expediente.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Pproveedor (Clave)</td><td class="tdTableDefinition">id_proveedor</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del proveedor.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Proveedor</td><td class="tdTableDefinition">no_proveedor</td><td class="tdTableDefinition">VARCHAR(200) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Nombre del proveedor.</td>
+</tr>
+</table>
+<p class="subTitle">Referenciado por</p>
+<ul>
+<li>
+<a href="#Expediente">Expediente</a> referencia "ID Pproveedor"</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Repartici%C3%B3n">Repartici&oacute;n</a><span> (Tabla: reparticion)</span>
+<p>Nombre de la repartici&oacute;n.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Repartici&oacute;n (Clave)</td><td class="tdTableDefinition">id_reparticion</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico de la repartici&oacute;n.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Repartici&oacute;n</td><td class="tdTableDefinition">no_reparticion</td><td class="tdTableDefinition">VARCHAR(100) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Nombre de la repartici&oacute;n.</td>
+</tr>
+</table>
+<p class="subTitle">Referenciado por</p>
+<ul>
+<li>
+<a href="#Expediente">Expediente</a> referencia "ID Repartici&oacute;n"</li>
+<li>
+<a href="#Expediente">Expediente</a> referencia "ID Repartici&oacute;n"</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Sector Destino">Sector Destino</a><span> (Tabla: sector_destino)</span>
+<p>Sector de destino del env&iacute;o del expediente.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Sector Destino (Clave)</td><td class="tdTableDefinition">id_sector_destino</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del sector de destino.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Sector Destino</td><td class="tdTableDefinition">no_sector_destino</td><td class="tdTableDefinition">VARCHAR(100) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Nombre del sector de destino del expediente.</td>
+</tr>
+</table>
+<p class="subTitle">Referenciado por</p>
+<ul>
+<li>
+<a href="#Expediente">Expediente</a> referencia "ID Sector Destino"</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Tabla Stage Expedientes">Tabla Stage Expedientes</a><span> (Tabla: stg_expedientes)</span>
+<p>Base de datos de expedientes de compras.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_expediente</td><td class="tdTableDefinition">ds_expediente</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_origen_fecha</td><td class="tdTableDefinition">ds_origen_fecha</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_caratula</td><td class="tdTableDefinition">ds_caratula</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_proveedor</td><td class="tdTableDefinition">ds_proveedor</td><td class="tdTableDefinition">VARCHAR(200)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_monto</td><td class="tdTableDefinition">ds_monto</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_tipo_bien_servicio</td><td class="tdTableDefinition">ds_tipo_bien_servicio</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_tipo_contratacion</td><td class="tdTableDefinition">ds_tipo_contratacion</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_reparticion_solicitante</td><td class="tdTableDefinition">ds_reparticion_solicitante</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_reparticion_destino</td><td class="tdTableDefinition">ds_reparticion_destino</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_responsable</td><td class="tdTableDefinition">ds_responsable</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_fecha_ingreso_compras</td><td class="tdTableDefinition">ds_fecha_ingreso_compras</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_fecha_salida_compras</td><td class="tdTableDefinition">ds_fecha_salida_compras</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_envio_a</td><td class="tdTableDefinition">ds_envio_a</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_estado_1</td><td class="tdTableDefinition">ds_estado_1</td><td class="tdTableDefinition">VARCHAR(1000)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_observaciones_1</td><td class="tdTableDefinition">ds_observaciones_1</td><td class="tdTableDefinition">VARCHAR(1000)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_ubicacion_interna</td><td class="tdTableDefinition">ds_ubicacion_interna</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_cuit</td><td class="tdTableDefinition">ds_cuit</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_nro_beneficiario</td><td class="tdTableDefinition">ds_nro_beneficiario</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_nro_facturas</td><td class="tdTableDefinition">ds_nro_facturas</td><td class="tdTableDefinition">VARCHAR(200)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_orden_pago</td><td class="tdTableDefinition">ds_orden_pago</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_monto_pagado</td><td class="tdTableDefinition">ds_monto_pagado</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_estado_2</td><td class="tdTableDefinition">ds_estado_2</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_observaciones_2</td><td class="tdTableDefinition">ds_observaciones_2</td><td class="tdTableDefinition">VARCHAR(1000)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_finalizado</td><td class="tdTableDefinition">ds_finalizado</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ds_cont_oc</td><td class="tdTableDefinition">ds_cont_oc</td><td class="tdTableDefinition">VARCHAR(100)</td><td class="tdTableDefinition"></td>
+</tr>
+</table>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Tipo Bien / Servicio">Tipo Bien / Servicio</a><span> (Tabla: tipo_bien_servicio)</span>
+<p>Tipo de bien o servicio del expediente.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Tipo Bien / Servicio (Clave)</td><td class="tdTableDefinition">id_tipo_bien_servicio</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del tipo de bien o servicio.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Tipo Bien / Servicio</td><td class="tdTableDefinition">no_tipo_bien_servicio</td><td class="tdTableDefinition">VARCHAR(100) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Nombre del tipo de bien o servicio.</td>
+</tr>
+</table>
+<p class="subTitle">Referenciado por</p>
+<ul>
+<li>
+<a href="#Expediente">Expediente</a> referencia "ID Tipo Bien / Servicio"</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Tipo Contrataci%C3%B3n">Tipo Contrataci&oacute;n</a><span> (Tabla: tipo_contratacion)</span>
+<p>Tipo de contrataci&oacute;n del expediente.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Tipo Contrataci&oacute;n (Clave)</td><td class="tdTableDefinition">id_tipo_contratacion</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico del tipo de contrataci&oacute;n.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Tipo Contrataci&oacute;n</td><td class="tdTableDefinition">no_tipo_contratacion</td><td class="tdTableDefinition">VARCHAR(100) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Nombre del tipo de contrataci&oacute;n del expediente.</td>
+</tr>
+</table>
+<p class="subTitle">Referenciado por</p>
+<ul>
+<li>
+<a href="#Expediente">Expediente</a> referencia "ID Tipo Contrataci&oacute;n"</li>
+</ul>
+<div class="tableNameHeading">
+<a style="font-size:175%;font-weight:bold;" name="Ubicaci%C3%B3n Interna">Ubicaci&oacute;n Interna</a><span> (Tabla: ubicacion_interna)</span>
+<p>Ubicaci&oacute;n interna del expediente.</p>
+</div>
+<table class="tableDefinition" width="100%">
+<tr>
+<td class="tdTableHeading">Atributo</td><td class="tdTableHeading">Campo</td><td class="tdTableHeading">Tipo</td><td class="tdTableHeading">Comentario</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">ID Ubicaci&oacute;n Interna (Clave)</td><td class="tdTableDefinition">id_ubicacion_interna</td><td class="tdTableDefinition">INTEGER <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Identificador &uacute;nico de la ubicaci&oacute;n interna del expediente.</td>
+</tr>
+<tr>
+<td class="tdTableDefinition">Ubicaci&oacute;n Interna</td><td class="tdTableDefinition">no_ubicacion_interna</td><td class="tdTableDefinition">VARCHAR(100) <span style="font-style:italic">no vacio</span></td><td class="tdTableDefinition">Nombre de la ubicaci&oacute;n interna del expediente.</td>
+</tr>
+</table>
+<p class="subTitle">Referenciado por</p>
+<ul>
+<li>
+<a href="#Expediente">Expediente</a> referencia "ID Ubicaci&oacute;n Interna"</li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,2334 @@
+<Project version="16.9.0.2" localizationFileName="C:\app\PostgreSQL PHP Generator Professional\lang.es.php" phpDriver="0" outputPath="\\mozart.myc.ar\expedientes" copySystemFiles="false" outputFilesExtension="php" colorSchemeName="default-compact">
+  <ConnectionOptions host="mozart.myc.ar" port="5432" login="expedientes" password="\/?T^:FJJZP~" database="expedientes" client_encoding="">
+    <ssh_secure secure="false" port="22" authentication_mode="0"/>
+    <http_tunnel tunneling="false" url="">
+      <http_proxy_server use_proxy="false" port="8080"/>
+      <http_authentication/>
+    </http_tunnel>
+  </ConnectionOptions>
+  <ScriptConnectionOptions host="mozart.myc.ar" port="5432" login="expedientes" password="\/?T^:FJJZP~" database="expedientes" client_encoding="">
+    <ssh_secure secure="false" port="22" authentication_mode="0"/>
+    <http_tunnel tunneling="false" url="">
+      <http_proxy_server use_proxy="false" port="8080"/>
+      <http_authentication/>
+    </http_tunnel>
+  </ScriptConnectionOptions>
+  <DataSources>
+    <DataSource name="public.expediente"/>
+    <DataSource name="public.proveedor"/>
+    <DataSource name="public.reparticion"/>
+  </DataSources>
+  <Presentation disableMagicQuotesRuntime="false" showEnvironmentVariables="false" showExecutedQueries="false" showPHPErrorsAndWarnings="false">
+    <Pages>
+      <Page type="table" tableName="public.expediente" numberByDataSource="0" fileName="expediente" caption="Expedientes" viewFormCaptionTemplate="Expediente: %co_expediente%" editFormCaptionTemplate="Expediente: %co_expediente%" insertFormCaption="Nuevo expediente" shortCaption="Expedientes" groupName="Default" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable2="5" exportToWordAvailable2="5" exportToXmlAvailable2="5" exportToCsvAvailable2="5" exportToPdfAvailable2="5" printerFriendlyAvailable2="5" highlightRowOnMouseHover="true" useActionImages="true" showKeyColumnsImagesInGridHeader="false">
+        <BeforeGridText>
+Descripción Inline        </BeforeGridText>
+        <DetailedDescription>
+Descripción Detailed        </DetailedDescription>
+        <homePageDescription>
+Descripción Home        </homePageDescription>
+        <ColumnPresentations>
+          <ColumnPresentation fieldName="id_expediente" caption="ID Expediente" headerHint="Identificador único del expediente." showColumnFilter="false" selectedFilterOperators="1573119">
+            <ViewProperties type="text">
+              <Format type="number" thousandSeparator=","/>
+            </ViewProperties>
+            <EditProperties type="textBox" maxLength="0"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="co_expediente" caption="Expediente" headerHint="Código del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+            <ViewProperties type="text"/>
+            <EditProperties type="textBox" maxLength="50"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="nu_expediente" caption="Número" headerHint="Número del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1573119">
+            <ViewProperties type="text">
+              <Format type="number"/>
+            </ViewProperties>
+            <EditProperties type="textBox" maxLength="0"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="nu_anio_expediente" caption="Año" headerHint="Año del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1573119">
+            <ViewProperties type="text">
+              <Format type="number"/>
+            </ViewProperties>
+            <EditProperties type="textBox" maxLength="0"/>
+            <Validators>
+              <NumberClientValidatorInfo enabled="true"/>
+            </Validators>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="no_caratula" caption="Carátula" headerHint="Carátula del expediente." showColumnFilter="false" selectedFilterOperators="1589247">
+            <ViewProperties type="text" maxLength="75"/>
+            <EditProperties type="textBox" maxLength="100"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="fe_origen" caption="Origen Fecha" headerHint="Origen Fecha." canSetNull="true" selectedFilterOperators="2031871">
+            <ViewProperties type="dateTime" dateTimeKind="1"/>
+            <EditProperties type="dateTime" dateTimeFormat="Y-m-d" dateTimeKind="1" firstDayOfWeek="0"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="id_proveedor" caption="Proveedor" headerHint="Proveedor del expediente." canSetNull="true" selectedFilterOperators="1589247">
+            <Lookup tableName="public.proveedor" linkFieldName="id_proveedor" displayFieldName="no_proveedor" lookupFilter="" useLookupOrdering="true" lookupOrdering="0" allowAddNewItemsOnTheFly="true">
+              <OnTheFlyInsertPage numberByDataSource="0" fileName="proveedor" caption="Proveedor" shortCaption="Proveedor" groupName="Default" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" isOnTheFlyInsertPage="true" recordsPerPage="20" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable2="5" exportToWordAvailable2="5" exportToXmlAvailable2="5" exportToCsvAvailable2="5" exportToPdfAvailable2="5" printerFriendlyAvailable2="5" useActionImages="true" showKeyColumnsImagesInGridHeader="false">
+                <BeforeGridText/>
+                <DetailedDescription/>
+                <ColumnPresentations>
+                  <ColumnPresentation fieldName="id_proveedor" caption="ID Proveedor" headerHint="Identificador único del proveedor." showColumnFilter="false" selectedFilterOperators="1573119">
+                    <ViewProperties type="text">
+                      <Format type="number" thousandSeparator=","/>
+                    </ViewProperties>
+                    <EditProperties type="textBox" maxLength="0"/>
+                  </ColumnPresentation>
+                  <ColumnPresentation fieldName="no_proveedor" caption="Proveedor" headerHint="Nombre del proveedor." showColumnFilter="false" selectedFilterOperators="1589247">
+                    <ViewProperties type="text" maxLength="75"/>
+                    <EditProperties type="textBox" maxLength="0"/>
+                  </ColumnPresentation>
+                </ColumnPresentations>
+                <Columns>
+                  <List>
+                    <Column fieldName="id_proveedor"/>
+                    <Column fieldName="no_proveedor"/>
+                  </List>
+                  <View>
+                    <Column fieldName="id_proveedor"/>
+                    <Column fieldName="no_proveedor"/>
+                  </View>
+                  <Edit>
+                    <Column fieldName="id_proveedor" visible="false"/>
+                    <Column fieldName="no_proveedor"/>
+                  </Edit>
+                  <Insert>
+                    <Column fieldName="id_proveedor" visible="false"/>
+                    <Column fieldName="no_proveedor"/>
+                  </Insert>
+                  <QuickFilter>
+                    <Column fieldName="id_proveedor"/>
+                    <Column fieldName="no_proveedor"/>
+                  </QuickFilter>
+                  <FilterBuilder>
+                    <Column fieldName="id_proveedor"/>
+                    <Column fieldName="no_proveedor"/>
+                  </FilterBuilder>
+                  <Print>
+                    <Column fieldName="id_proveedor"/>
+                    <Column fieldName="no_proveedor"/>
+                  </Print>
+                  <Export>
+                    <Column fieldName="id_proveedor"/>
+                    <Column fieldName="no_proveedor"/>
+                  </Export>
+                  <Compare>
+                    <Column fieldName="id_proveedor" visible="false"/>
+                    <Column fieldName="no_proveedor"/>
+                  </Compare>
+                </Columns>
+                <Details/>
+                <RecordPermissions useRecordPermissions="false"/>
+                <PartitionNavigators/>
+              </OnTheFlyInsertPage>
+            </Lookup>
+            <ViewProperties type="text" maxLength="75"/>
+            <EditProperties type="comboBox"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="ds_emp_sugeridas" caption="Empresas Sugeridas" headerHint="Empresas sugeridas como proveedor." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+            <ViewProperties type="text" maxLength="75"/>
+            <EditProperties type="textBox" maxLength="0"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="va_monto" caption="Monto" headerHint="Monto total del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1573119">
+            <ViewProperties type="text">
+              <Format type="currency" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
+            </ViewProperties>
+            <EditProperties type="textBox" maxLength="0" prefix="$"/>
+            <Validators>
+              <NumberClientValidatorInfo enabled="true"/>
+            </Validators>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="va_monto_pagado" caption="Va Monto Pagado" headerHint="Monto pagado del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1573119">
+            <ViewProperties type="text">
+              <Format type="currency" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
+            </ViewProperties>
+            <EditProperties type="textBox" maxLength="0" prefix="$"/>
+            <Validators>
+              <NumberClientValidatorInfo enabled="true"/>
+            </Validators>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="id_tipo_bien_servicio" caption="Tipo Bien / Servicio" headerHint="Tipo de bien o servicio." canSetNull="true" selectedFilterOperators="1589247">
+            <Lookup tableName="public.tipo_bien_servicio" linkFieldName="id_tipo_bien_servicio" displayFieldName="no_tipo_bien_servicio" lookupFilter="" useLookupOrdering="true" lookupOrdering="0" allowAddNewItemsOnTheFly="true">
+              <OnTheFlyInsertPage numberByDataSource="0" fileName="tipo_bien_servicio" caption="Tipo Bien Servicio" shortCaption="Tipo Bien Servicio" groupName="Default" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" isOnTheFlyInsertPage="true" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable2="5" exportToWordAvailable2="5" exportToXmlAvailable2="5" exportToCsvAvailable2="5" exportToPdfAvailable2="5" printerFriendlyAvailable2="5" highlightRowOnMouseHover="true" useActionImages="true" showKeyColumnsImagesInGridHeader="false" condensedTable="true">
+                <BeforeGridText/>
+                <DetailedDescription/>
+                <ColumnPresentations>
+                  <ColumnPresentation fieldName="id_tipo_bien_servicio" caption="Id Tipo Bien Servicio" headerHint="Identificador único del tipo de bien o servicio." showColumnFilter="false" selectedFilterOperators="1573119">
+                    <ViewProperties type="text">
+                      <Format type="number" thousandSeparator="."/>
+                    </ViewProperties>
+                    <EditProperties type="textBox" maxLength="0"/>
+                  </ColumnPresentation>
+                  <ColumnPresentation fieldName="no_tipo_bien_servicio" caption="Tipo Bien Servicio" headerHint="Nombre del tipo de bien o servicio." showColumnFilter="false" selectedFilterOperators="1589247">
+                    <ViewProperties type="text" maxLength="75"/>
+                    <EditProperties type="textBox" maxLength="100"/>
+                  </ColumnPresentation>
+                </ColumnPresentations>
+                <Columns>
+                  <List>
+                    <Column fieldName="id_tipo_bien_servicio"/>
+                    <Column fieldName="no_tipo_bien_servicio"/>
+                  </List>
+                  <View>
+                    <Column fieldName="id_tipo_bien_servicio"/>
+                    <Column fieldName="no_tipo_bien_servicio"/>
+                  </View>
+                  <Edit>
+                    <Column fieldName="id_tipo_bien_servicio" visible="false"/>
+                    <Column fieldName="no_tipo_bien_servicio"/>
+                  </Edit>
+                  <Insert>
+                    <Column fieldName="id_tipo_bien_servicio" visible="false"/>
+                    <Column fieldName="no_tipo_bien_servicio"/>
+                  </Insert>
+                  <QuickFilter>
+                    <Column fieldName="id_tipo_bien_servicio"/>
+                    <Column fieldName="no_tipo_bien_servicio"/>
+                  </QuickFilter>
+                  <FilterBuilder>
+                    <Column fieldName="id_tipo_bien_servicio"/>
+                    <Column fieldName="no_tipo_bien_servicio"/>
+                  </FilterBuilder>
+                  <Print>
+                    <Column fieldName="id_tipo_bien_servicio"/>
+                    <Column fieldName="no_tipo_bien_servicio"/>
+                  </Print>
+                  <Export>
+                    <Column fieldName="id_tipo_bien_servicio"/>
+                    <Column fieldName="no_tipo_bien_servicio"/>
+                  </Export>
+                  <Compare>
+                    <Column fieldName="id_tipo_bien_servicio" visible="false"/>
+                    <Column fieldName="no_tipo_bien_servicio"/>
+                  </Compare>
+                </Columns>
+                <Details/>
+                <RecordPermissions useRecordPermissions="false"/>
+                <PartitionNavigators/>
+              </OnTheFlyInsertPage>
+            </Lookup>
+            <ViewProperties type="text" maxLength="75"/>
+            <EditProperties type="comboBox"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="id_tipo_contratacion" caption="Tipo Contratación" headerHint="Tipo de contratación." canSetNull="true" selectedFilterOperators="1589247">
+            <Lookup tableName="public.tipo_contratacion" linkFieldName="id_tipo_contratacion" displayFieldName="no_tipo_contratacion" lookupFilter="" useLookupOrdering="true" lookupOrdering="0" allowAddNewItemsOnTheFly="true">
+              <OnTheFlyInsertPage numberByDataSource="0" fileName="tipo_contratacion" caption="Tipo Contratacion" shortCaption="Tipo Contratacion" groupName="Default" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" isOnTheFlyInsertPage="true" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable2="5" exportToWordAvailable2="5" exportToXmlAvailable2="5" exportToCsvAvailable2="5" exportToPdfAvailable2="5" printerFriendlyAvailable2="5" highlightRowOnMouseHover="true" useActionImages="true" showKeyColumnsImagesInGridHeader="false" condensedTable="true">
+                <BeforeGridText/>
+                <DetailedDescription/>
+                <ColumnPresentations>
+                  <ColumnPresentation fieldName="id_tipo_contratacion" caption="Id Tipo Contratacion" headerHint="Identificador único del tipo de contratación." showColumnFilter="false" selectedFilterOperators="1573119">
+                    <ViewProperties type="text">
+                      <Format type="number" thousandSeparator="."/>
+                    </ViewProperties>
+                    <EditProperties type="textBox" maxLength="0"/>
+                  </ColumnPresentation>
+                  <ColumnPresentation fieldName="no_tipo_contratacion" caption="Tipo Contratación" headerHint="Nombre del tipo de contratación del expediente." showColumnFilter="false" selectedFilterOperators="1589247">
+                    <ViewProperties type="text" maxLength="75"/>
+                    <EditProperties type="textBox" maxLength="100"/>
+                  </ColumnPresentation>
+                </ColumnPresentations>
+                <Columns>
+                  <List>
+                    <Column fieldName="id_tipo_contratacion"/>
+                    <Column fieldName="no_tipo_contratacion"/>
+                  </List>
+                  <View>
+                    <Column fieldName="id_tipo_contratacion"/>
+                    <Column fieldName="no_tipo_contratacion"/>
+                  </View>
+                  <Edit>
+                    <Column fieldName="id_tipo_contratacion" visible="false"/>
+                    <Column fieldName="no_tipo_contratacion"/>
+                  </Edit>
+                  <Insert>
+                    <Column fieldName="id_tipo_contratacion" visible="false"/>
+                    <Column fieldName="no_tipo_contratacion"/>
+                  </Insert>
+                  <QuickFilter>
+                    <Column fieldName="id_tipo_contratacion"/>
+                    <Column fieldName="no_tipo_contratacion"/>
+                  </QuickFilter>
+                  <FilterBuilder>
+                    <Column fieldName="id_tipo_contratacion"/>
+                    <Column fieldName="no_tipo_contratacion"/>
+                  </FilterBuilder>
+                  <Print>
+                    <Column fieldName="id_tipo_contratacion"/>
+                    <Column fieldName="no_tipo_contratacion"/>
+                  </Print>
+                  <Export>
+                    <Column fieldName="id_tipo_contratacion"/>
+                    <Column fieldName="no_tipo_contratacion"/>
+                  </Export>
+                  <Compare>
+                    <Column fieldName="id_tipo_contratacion" visible="false"/>
+                    <Column fieldName="no_tipo_contratacion"/>
+                  </Compare>
+                </Columns>
+                <Details/>
+                <RecordPermissions useRecordPermissions="false"/>
+                <PartitionNavigators/>
+              </OnTheFlyInsertPage>
+            </Lookup>
+            <ViewProperties type="text" maxLength="75"/>
+            <EditProperties type="comboBox"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="id_reparticion_solicitante" caption="Reparticion Solicitante" headerHint="Repartición solicitante." canSetNull="true" selectedFilterOperators="1589247">
+            <Lookup tableName="public.reparticion" linkFieldName="id_reparticion" displayFieldName="no_reparticion" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            <ViewProperties type="text" maxLength="75"/>
+            <EditProperties type="comboBox"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="id_reparticion_destino" caption="¿para que Repartición es?" headerHint="Repartición destino del expediente." canSetNull="true" selectedFilterOperators="1589247">
+            <Lookup tableName="public.reparticion" linkFieldName="id_reparticion" displayFieldName="no_reparticion" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            <ViewProperties type="text" maxLength="75"/>
+            <EditProperties type="comboBox"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="fe_responsable" caption="Responsable" headerHint="Fecha Responsable." canSetNull="true" selectedFilterOperators="2031871">
+            <ViewProperties type="dateTime" dateTimeKind="1"/>
+            <EditProperties type="dateTime" dateTimeFormat="Y-m-d" dateTimeKind="1" firstDayOfWeek="0"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="fe_compras_ingreso" caption="Fecha Ingreso Compras" headerHint="Fecha de ingreso a compras del expediente." canSetNull="true" selectedFilterOperators="2031871">
+            <ViewProperties type="dateTime" dateTimeKind="1"/>
+            <EditProperties type="dateTime" dateTimeFormat="Y-m-d" dateTimeKind="1" firstDayOfWeek="0"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="fe_compras_salida" caption="Fecha Salida Compras" headerHint="Fecha de salida de compras del expediente." canSetNull="true" selectedFilterOperators="2031871">
+            <ViewProperties type="dateTime" dateTimeKind="1"/>
+            <EditProperties type="dateTime" dateTimeFormat="Y-m-d" dateTimeKind="1" firstDayOfWeek="0"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="id_sector_destino" caption="Sector Destino" headerHint="Sector de destino del expediente." canSetNull="true" selectedFilterOperators="1589247">
+            <Lookup tableName="public.sector_destino" linkFieldName="id_sector_destino" displayFieldName="no_sector_destino" lookupFilter="" useLookupOrdering="true" lookupOrdering="0" allowAddNewItemsOnTheFly="true">
+              <OnTheFlyInsertPage numberByDataSource="0" fileName="sector_destino" caption="Sector Destino" shortCaption="Sector Destino" groupName="Default" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" isOnTheFlyInsertPage="true" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable2="5" exportToWordAvailable2="5" exportToXmlAvailable2="5" exportToCsvAvailable2="5" exportToPdfAvailable2="5" printerFriendlyAvailable2="5" highlightRowOnMouseHover="true" useActionImages="true" showKeyColumnsImagesInGridHeader="false" condensedTable="true">
+                <BeforeGridText/>
+                <DetailedDescription/>
+                <ColumnPresentations>
+                  <ColumnPresentation fieldName="id_sector_destino" caption="Id Sector Destino" headerHint="Identificador único del sector de destino." showColumnFilter="false" selectedFilterOperators="1573119">
+                    <ViewProperties type="text">
+                      <Format type="number" thousandSeparator="."/>
+                    </ViewProperties>
+                    <EditProperties type="textBox" maxLength="0"/>
+                  </ColumnPresentation>
+                  <ColumnPresentation fieldName="no_sector_destino" caption="Sector Destino" headerHint="Nombre del sector de destino del expediente." showColumnFilter="false" selectedFilterOperators="1589247">
+                    <ViewProperties type="text" maxLength="75"/>
+                    <EditProperties type="textBox" maxLength="100"/>
+                  </ColumnPresentation>
+                </ColumnPresentations>
+                <Columns>
+                  <List>
+                    <Column fieldName="id_sector_destino"/>
+                    <Column fieldName="no_sector_destino"/>
+                  </List>
+                  <View>
+                    <Column fieldName="id_sector_destino"/>
+                    <Column fieldName="no_sector_destino"/>
+                  </View>
+                  <Edit>
+                    <Column fieldName="id_sector_destino" visible="false"/>
+                    <Column fieldName="no_sector_destino"/>
+                  </Edit>
+                  <Insert>
+                    <Column fieldName="id_sector_destino" visible="false"/>
+                    <Column fieldName="no_sector_destino"/>
+                  </Insert>
+                  <QuickFilter>
+                    <Column fieldName="id_sector_destino"/>
+                    <Column fieldName="no_sector_destino"/>
+                  </QuickFilter>
+                  <FilterBuilder>
+                    <Column fieldName="id_sector_destino"/>
+                    <Column fieldName="no_sector_destino"/>
+                  </FilterBuilder>
+                  <Print>
+                    <Column fieldName="id_sector_destino"/>
+                    <Column fieldName="no_sector_destino"/>
+                  </Print>
+                  <Export>
+                    <Column fieldName="id_sector_destino"/>
+                    <Column fieldName="no_sector_destino"/>
+                  </Export>
+                  <Compare>
+                    <Column fieldName="id_sector_destino" visible="false"/>
+                    <Column fieldName="no_sector_destino"/>
+                  </Compare>
+                </Columns>
+                <Details/>
+                <RecordPermissions useRecordPermissions="false"/>
+                <PartitionNavigators/>
+              </OnTheFlyInsertPage>
+            </Lookup>
+            <ViewProperties type="text" maxLength="75"/>
+            <EditProperties type="comboBox"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="id_estado" caption="Estado" headerHint="Estado del expediente." canSetNull="true" selectedFilterOperators="1589247">
+            <Lookup tableName="public.estado" linkFieldName="id_estado" displayFieldName="no_estado" lookupFilter="" useLookupOrdering="true" lookupOrdering="0" allowAddNewItemsOnTheFly="true">
+              <OnTheFlyInsertPage numberByDataSource="0" fileName="estado" caption="Estado" shortCaption="Estado" groupName="Default" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" isOnTheFlyInsertPage="true" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable2="5" exportToWordAvailable2="5" exportToXmlAvailable2="5" exportToCsvAvailable2="5" exportToPdfAvailable2="5" printerFriendlyAvailable2="5" highlightRowOnMouseHover="true" useActionImages="true" showKeyColumnsImagesInGridHeader="false" condensedTable="true">
+                <BeforeGridText/>
+                <DetailedDescription/>
+                <ColumnPresentations>
+                  <ColumnPresentation fieldName="id_estado" caption="Id Estado" headerHint="Identificador único del estado del expediente." showColumnFilter="false" selectedFilterOperators="1573119">
+                    <ViewProperties type="text">
+                      <Format type="number" thousandSeparator="."/>
+                    </ViewProperties>
+                    <EditProperties type="textBox" maxLength="0"/>
+                  </ColumnPresentation>
+                  <ColumnPresentation fieldName="no_estado" caption="Estado" headerHint="Nombre del estado del expediente." showColumnFilter="false" selectedFilterOperators="1589247">
+                    <ViewProperties type="text" maxLength="75"/>
+                    <EditProperties type="textBox" maxLength="100"/>
+                  </ColumnPresentation>
+                </ColumnPresentations>
+                <Columns>
+                  <List>
+                    <Column fieldName="id_estado"/>
+                    <Column fieldName="no_estado"/>
+                  </List>
+                  <View>
+                    <Column fieldName="id_estado"/>
+                    <Column fieldName="no_estado"/>
+                  </View>
+                  <Edit>
+                    <Column fieldName="id_estado" visible="false"/>
+                    <Column fieldName="no_estado"/>
+                  </Edit>
+                  <Insert>
+                    <Column fieldName="id_estado" visible="false"/>
+                    <Column fieldName="no_estado"/>
+                  </Insert>
+                  <QuickFilter>
+                    <Column fieldName="id_estado"/>
+                    <Column fieldName="no_estado"/>
+                  </QuickFilter>
+                  <FilterBuilder>
+                    <Column fieldName="id_estado"/>
+                    <Column fieldName="no_estado"/>
+                  </FilterBuilder>
+                  <Print>
+                    <Column fieldName="id_estado"/>
+                    <Column fieldName="no_estado"/>
+                  </Print>
+                  <Export>
+                    <Column fieldName="id_estado"/>
+                    <Column fieldName="no_estado"/>
+                  </Export>
+                  <Compare>
+                    <Column fieldName="id_estado" visible="false"/>
+                    <Column fieldName="no_estado"/>
+                  </Compare>
+                </Columns>
+                <Details/>
+                <RecordPermissions useRecordPermissions="false"/>
+                <PartitionNavigators/>
+              </OnTheFlyInsertPage>
+            </Lookup>
+            <ViewProperties type="text" maxLength="75"/>
+            <EditProperties type="comboBox"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="ds_estado" caption="Detalles Estado" headerHint="Detalle del estado del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+            <ViewProperties type="text" maxLength="75"/>
+            <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="id_ubicacion_interna" caption="Ubicación Interna" headerHint="Ubicación interna del expediente." canSetNull="true" selectedFilterOperators="1589247">
+            <Lookup tableName="public.ubicacion_interna" linkFieldName="id_ubicacion_interna" displayFieldName="no_ubicacion_interna" lookupFilter="" useLookupOrdering="true" lookupOrdering="0" allowAddNewItemsOnTheFly="true">
+              <OnTheFlyInsertPage numberByDataSource="0" fileName="ubicacion_interna" caption="Ubicacion Interna" shortCaption="Ubicacion Interna" groupName="Default" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" isOnTheFlyInsertPage="true" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable2="5" exportToWordAvailable2="5" exportToXmlAvailable2="5" exportToCsvAvailable2="5" exportToPdfAvailable2="5" printerFriendlyAvailable2="5" highlightRowOnMouseHover="true" useActionImages="true" showKeyColumnsImagesInGridHeader="false" condensedTable="true">
+                <BeforeGridText/>
+                <DetailedDescription/>
+                <ColumnPresentations>
+                  <ColumnPresentation fieldName="id_ubicacion_interna" caption="Id Ubicacion Interna" headerHint="Identificador único de la ubicación interna del expediente." showColumnFilter="false" selectedFilterOperators="1573119">
+                    <ViewProperties type="text">
+                      <Format type="number" thousandSeparator="."/>
+                    </ViewProperties>
+                    <EditProperties type="textBox" maxLength="0"/>
+                  </ColumnPresentation>
+                  <ColumnPresentation fieldName="no_ubicacion_interna" caption="Ubicación Interna" headerHint="Nombre de la ubicación interna del expediente." showColumnFilter="false" selectedFilterOperators="1589247">
+                    <ViewProperties type="text" maxLength="75"/>
+                    <EditProperties type="textBox" maxLength="100"/>
+                  </ColumnPresentation>
+                </ColumnPresentations>
+                <Columns>
+                  <List>
+                    <Column fieldName="id_ubicacion_interna"/>
+                    <Column fieldName="no_ubicacion_interna"/>
+                  </List>
+                  <View>
+                    <Column fieldName="id_ubicacion_interna"/>
+                    <Column fieldName="no_ubicacion_interna"/>
+                  </View>
+                  <Edit>
+                    <Column fieldName="id_ubicacion_interna" visible="false"/>
+                    <Column fieldName="no_ubicacion_interna"/>
+                  </Edit>
+                  <Insert>
+                    <Column fieldName="id_ubicacion_interna" visible="false"/>
+                    <Column fieldName="no_ubicacion_interna"/>
+                  </Insert>
+                  <QuickFilter>
+                    <Column fieldName="id_ubicacion_interna"/>
+                    <Column fieldName="no_ubicacion_interna"/>
+                  </QuickFilter>
+                  <FilterBuilder>
+                    <Column fieldName="id_ubicacion_interna"/>
+                    <Column fieldName="no_ubicacion_interna"/>
+                  </FilterBuilder>
+                  <Print>
+                    <Column fieldName="id_ubicacion_interna"/>
+                    <Column fieldName="no_ubicacion_interna"/>
+                  </Print>
+                  <Export>
+                    <Column fieldName="id_ubicacion_interna"/>
+                    <Column fieldName="no_ubicacion_interna"/>
+                  </Export>
+                  <Compare>
+                    <Column fieldName="id_ubicacion_interna" visible="false"/>
+                    <Column fieldName="no_ubicacion_interna"/>
+                  </Compare>
+                </Columns>
+                <Details/>
+                <RecordPermissions useRecordPermissions="false"/>
+                <PartitionNavigators/>
+              </OnTheFlyInsertPage>
+            </Lookup>
+            <ViewProperties type="text" maxLength="75"/>
+            <EditProperties type="comboBox"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="co_cuit" caption="CUIT" headerHint="CUIT relacionado con el expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+            <ViewProperties type="text" maxLength="75"/>
+            <EditProperties type="textBox" maxLength="100"/>
+            <Validators>
+              <RegExpClientValidatorInfo enabled="true" expression="^[0-9][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9]$"/>
+            </Validators>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="ds_beneficiario" caption="Beneficiario" headerHint="Descripción del Número de Beneficiario." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+            <ViewProperties type="text" maxLength="75"/>
+            <EditProperties type="textBox" maxLength="100"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="ds_facturas" caption="Facturas" headerHint="Facturas relacionadas con el expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+            <ViewProperties type="text" maxLength="75"/>
+            <EditProperties type="textArea" columnCount="50" rowCount="4" placeholder=""/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="ds_orden_pago" caption="Ds Orden Pago" headerHint="Orden de pago del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+            <ViewProperties type="text" maxLength="75"/>
+            <EditProperties type="textBox" maxLength="100"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="ds_observaciones" caption="Ds Observaciones" headerHint="Observaciones del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+            <ViewProperties type="text" maxLength="75"/>
+            <EditProperties type="textArea" columnCount="50" rowCount="6" placeholder=""/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="id_finalizado" caption="Finalizado" headerHint="Estado de finalización del expediente." canSetNull="true" selectedFilterOperators="1589247">
+            <Lookup tableName="public.finalizado" linkFieldName="id_finalizado" displayFieldName="no_finalizado" lookupFilter="" useLookupOrdering="true" lookupOrdering="0" allowAddNewItemsOnTheFly="true">
+              <OnTheFlyInsertPage numberByDataSource="0" fileName="finalizado" caption="Finalizado" shortCaption="Finalizado" groupName="Default" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" isOnTheFlyInsertPage="true" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable2="5" exportToWordAvailable2="5" exportToXmlAvailable2="5" exportToCsvAvailable2="5" exportToPdfAvailable2="5" printerFriendlyAvailable2="5" highlightRowOnMouseHover="true" useActionImages="true" showKeyColumnsImagesInGridHeader="false" condensedTable="true">
+                <BeforeGridText/>
+                <DetailedDescription/>
+                <ColumnPresentations>
+                  <ColumnPresentation fieldName="id_finalizado" caption="Id Finalizado" headerHint="Identificador único del estado de finalización del expediente." showColumnFilter="false" selectedFilterOperators="1573119">
+                    <ViewProperties type="text">
+                      <Format type="number" thousandSeparator="."/>
+                    </ViewProperties>
+                    <EditProperties type="textBox" maxLength="0"/>
+                  </ColumnPresentation>
+                  <ColumnPresentation fieldName="no_finalizado" caption="Finalizado" headerHint="Nombre del estado de finalización del expediente." showColumnFilter="false" selectedFilterOperators="1589247">
+                    <ViewProperties type="text" maxLength="75"/>
+                    <EditProperties type="textBox" maxLength="100"/>
+                  </ColumnPresentation>
+                </ColumnPresentations>
+                <Columns>
+                  <List>
+                    <Column fieldName="id_finalizado"/>
+                    <Column fieldName="no_finalizado"/>
+                  </List>
+                  <View>
+                    <Column fieldName="id_finalizado"/>
+                    <Column fieldName="no_finalizado"/>
+                  </View>
+                  <Edit>
+                    <Column fieldName="id_finalizado" visible="false"/>
+                    <Column fieldName="no_finalizado"/>
+                  </Edit>
+                  <Insert>
+                    <Column fieldName="id_finalizado" visible="false"/>
+                    <Column fieldName="no_finalizado"/>
+                  </Insert>
+                  <QuickFilter>
+                    <Column fieldName="id_finalizado"/>
+                    <Column fieldName="no_finalizado"/>
+                  </QuickFilter>
+                  <FilterBuilder>
+                    <Column fieldName="id_finalizado"/>
+                    <Column fieldName="no_finalizado"/>
+                  </FilterBuilder>
+                  <Print>
+                    <Column fieldName="id_finalizado"/>
+                    <Column fieldName="no_finalizado"/>
+                  </Print>
+                  <Export>
+                    <Column fieldName="id_finalizado"/>
+                    <Column fieldName="no_finalizado"/>
+                  </Export>
+                  <Compare>
+                    <Column fieldName="id_finalizado" visible="false"/>
+                    <Column fieldName="no_finalizado"/>
+                  </Compare>
+                </Columns>
+                <Details/>
+                <RecordPermissions useRecordPermissions="false"/>
+                <PartitionNavigators/>
+              </OnTheFlyInsertPage>
+            </Lookup>
+            <ViewProperties type="text" maxLength="75"/>
+            <EditProperties type="comboBox"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="id_cont_oc" caption="CONT/OC" headerHint="CONT / OC" canSetNull="true" selectedFilterOperators="1589247">
+            <Lookup tableName="public.cont_oc" linkFieldName="id_cont_oc" displayFieldName="no_cont_oc" lookupFilter="" useLookupOrdering="true" lookupOrdering="0" allowAddNewItemsOnTheFly="true">
+              <OnTheFlyInsertPage numberByDataSource="0" fileName="cont_oc" caption="Cont Oc" shortCaption="Cont Oc" groupName="Default" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" isOnTheFlyInsertPage="true" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable2="5" exportToWordAvailable2="5" exportToXmlAvailable2="5" exportToCsvAvailable2="5" exportToPdfAvailable2="5" printerFriendlyAvailable2="5" highlightRowOnMouseHover="true" useActionImages="true" showKeyColumnsImagesInGridHeader="false" condensedTable="true">
+                <BeforeGridText/>
+                <DetailedDescription/>
+                <ColumnPresentations>
+                  <ColumnPresentation fieldName="id_cont_oc" caption="Id Cont Oc" headerHint="Identificador único del CONT / OC." showColumnFilter="false" selectedFilterOperators="1573119">
+                    <ViewProperties type="text">
+                      <Format type="number" thousandSeparator="."/>
+                    </ViewProperties>
+                    <EditProperties type="textBox" maxLength="0"/>
+                  </ColumnPresentation>
+                  <ColumnPresentation fieldName="no_cont_oc" caption="CONT/OC" headerHint="CONT/OC del proyecto." showColumnFilter="false" selectedFilterOperators="1589247">
+                    <ViewProperties type="text" maxLength="75"/>
+                    <EditProperties type="textBox" maxLength="100"/>
+                  </ColumnPresentation>
+                </ColumnPresentations>
+                <Columns>
+                  <List>
+                    <Column fieldName="id_cont_oc"/>
+                    <Column fieldName="no_cont_oc"/>
+                  </List>
+                  <View>
+                    <Column fieldName="id_cont_oc"/>
+                    <Column fieldName="no_cont_oc"/>
+                  </View>
+                  <Edit>
+                    <Column fieldName="id_cont_oc" visible="false"/>
+                    <Column fieldName="no_cont_oc"/>
+                  </Edit>
+                  <Insert>
+                    <Column fieldName="id_cont_oc" visible="false"/>
+                    <Column fieldName="no_cont_oc"/>
+                  </Insert>
+                  <QuickFilter>
+                    <Column fieldName="id_cont_oc"/>
+                    <Column fieldName="no_cont_oc"/>
+                  </QuickFilter>
+                  <FilterBuilder>
+                    <Column fieldName="id_cont_oc"/>
+                    <Column fieldName="no_cont_oc"/>
+                  </FilterBuilder>
+                  <Print>
+                    <Column fieldName="id_cont_oc"/>
+                    <Column fieldName="no_cont_oc"/>
+                  </Print>
+                  <Export>
+                    <Column fieldName="id_cont_oc"/>
+                    <Column fieldName="no_cont_oc"/>
+                  </Export>
+                  <Compare>
+                    <Column fieldName="id_cont_oc" visible="false"/>
+                    <Column fieldName="no_cont_oc"/>
+                  </Compare>
+                </Columns>
+                <Details/>
+                <RecordPermissions useRecordPermissions="false"/>
+                <PartitionNavigators/>
+              </OnTheFlyInsertPage>
+            </Lookup>
+            <ViewProperties type="text" maxLength="75"/>
+            <EditProperties type="comboBox"/>
+          </ColumnPresentation>
+        </ColumnPresentations>
+        <Columns>
+          <List>
+            <Column fieldName="id_expediente" visible="false"/>
+            <Column fieldName="co_expediente"/>
+            <Column fieldName="nu_expediente"/>
+            <Column fieldName="nu_anio_expediente"/>
+            <Column fieldName="no_caratula"/>
+            <Column fieldName="fe_origen"/>
+            <Column fieldName="id_proveedor"/>
+            <Column fieldName="ds_emp_sugeridas"/>
+            <Column fieldName="va_monto"/>
+            <Column fieldName="va_monto_pagado"/>
+            <Column fieldName="id_tipo_bien_servicio"/>
+            <Column fieldName="id_tipo_contratacion"/>
+            <Column fieldName="id_reparticion_solicitante"/>
+            <Column fieldName="id_reparticion_destino"/>
+            <Column fieldName="fe_responsable"/>
+            <Column fieldName="fe_compras_ingreso"/>
+            <Column fieldName="fe_compras_salida"/>
+            <Column fieldName="id_sector_destino"/>
+            <Column fieldName="id_estado"/>
+            <Column fieldName="ds_estado"/>
+            <Column fieldName="id_ubicacion_interna"/>
+            <Column fieldName="co_cuit"/>
+            <Column fieldName="ds_beneficiario"/>
+            <Column fieldName="ds_facturas"/>
+            <Column fieldName="ds_orden_pago"/>
+            <Column fieldName="ds_observaciones"/>
+            <Column fieldName="id_finalizado"/>
+            <Column fieldName="id_cont_oc"/>
+          </List>
+          <View>
+            <Column fieldName="id_expediente"/>
+            <Column fieldName="co_expediente"/>
+            <Column fieldName="nu_expediente"/>
+            <Column fieldName="nu_anio_expediente"/>
+            <Column fieldName="no_caratula"/>
+            <Column fieldName="fe_origen"/>
+            <Column fieldName="id_proveedor"/>
+            <Column fieldName="ds_emp_sugeridas"/>
+            <Column fieldName="va_monto"/>
+            <Column fieldName="va_monto_pagado"/>
+            <Column fieldName="id_tipo_bien_servicio"/>
+            <Column fieldName="id_tipo_contratacion"/>
+            <Column fieldName="id_reparticion_solicitante"/>
+            <Column fieldName="id_reparticion_destino"/>
+            <Column fieldName="fe_responsable"/>
+            <Column fieldName="fe_compras_ingreso"/>
+            <Column fieldName="fe_compras_salida"/>
+            <Column fieldName="id_sector_destino"/>
+            <Column fieldName="id_estado"/>
+            <Column fieldName="ds_estado"/>
+            <Column fieldName="id_ubicacion_interna"/>
+            <Column fieldName="co_cuit"/>
+            <Column fieldName="ds_beneficiario"/>
+            <Column fieldName="ds_facturas"/>
+            <Column fieldName="ds_orden_pago"/>
+            <Column fieldName="ds_observaciones"/>
+            <Column fieldName="id_finalizado"/>
+            <Column fieldName="id_cont_oc"/>
+          </View>
+          <Edit>
+            <Column fieldName="id_expediente" visible="false"/>
+            <Column fieldName="co_expediente" visible="false"/>
+            <Column fieldName="nu_expediente"/>
+            <Column fieldName="nu_anio_expediente"/>
+            <Column fieldName="no_caratula"/>
+            <Column fieldName="fe_origen"/>
+            <Column fieldName="id_proveedor"/>
+            <Column fieldName="ds_emp_sugeridas"/>
+            <Column fieldName="va_monto"/>
+            <Column fieldName="va_monto_pagado"/>
+            <Column fieldName="id_tipo_bien_servicio"/>
+            <Column fieldName="id_tipo_contratacion"/>
+            <Column fieldName="id_reparticion_solicitante"/>
+            <Column fieldName="id_reparticion_destino"/>
+            <Column fieldName="fe_responsable"/>
+            <Column fieldName="fe_compras_ingreso"/>
+            <Column fieldName="fe_compras_salida"/>
+            <Column fieldName="id_sector_destino"/>
+            <Column fieldName="id_estado"/>
+            <Column fieldName="ds_estado"/>
+            <Column fieldName="id_ubicacion_interna"/>
+            <Column fieldName="co_cuit"/>
+            <Column fieldName="ds_beneficiario"/>
+            <Column fieldName="ds_facturas"/>
+            <Column fieldName="ds_orden_pago"/>
+            <Column fieldName="ds_observaciones"/>
+            <Column fieldName="id_finalizado"/>
+            <Column fieldName="id_cont_oc"/>
+          </Edit>
+          <Insert>
+            <Column fieldName="id_expediente" visible="false"/>
+            <Column fieldName="co_expediente" visible="false"/>
+            <Column fieldName="nu_expediente"/>
+            <Column fieldName="nu_anio_expediente"/>
+            <Column fieldName="no_caratula"/>
+            <Column fieldName="fe_origen"/>
+            <Column fieldName="id_proveedor"/>
+            <Column fieldName="ds_emp_sugeridas"/>
+            <Column fieldName="va_monto"/>
+            <Column fieldName="va_monto_pagado"/>
+            <Column fieldName="id_tipo_bien_servicio"/>
+            <Column fieldName="id_tipo_contratacion"/>
+            <Column fieldName="id_reparticion_solicitante"/>
+            <Column fieldName="id_reparticion_destino"/>
+            <Column fieldName="fe_responsable"/>
+            <Column fieldName="fe_compras_ingreso"/>
+            <Column fieldName="fe_compras_salida"/>
+            <Column fieldName="id_sector_destino"/>
+            <Column fieldName="id_estado"/>
+            <Column fieldName="ds_estado"/>
+            <Column fieldName="id_ubicacion_interna"/>
+            <Column fieldName="co_cuit"/>
+            <Column fieldName="ds_beneficiario"/>
+            <Column fieldName="ds_facturas"/>
+            <Column fieldName="ds_orden_pago"/>
+            <Column fieldName="ds_observaciones"/>
+            <Column fieldName="id_finalizado"/>
+            <Column fieldName="id_cont_oc"/>
+          </Insert>
+          <QuickFilter>
+            <Column fieldName="id_expediente"/>
+            <Column fieldName="co_expediente"/>
+            <Column fieldName="nu_expediente"/>
+            <Column fieldName="nu_anio_expediente"/>
+            <Column fieldName="no_caratula"/>
+            <Column fieldName="fe_origen"/>
+            <Column fieldName="id_proveedor"/>
+            <Column fieldName="ds_emp_sugeridas"/>
+            <Column fieldName="va_monto"/>
+            <Column fieldName="va_monto_pagado"/>
+            <Column fieldName="id_tipo_bien_servicio"/>
+            <Column fieldName="id_tipo_contratacion"/>
+            <Column fieldName="id_reparticion_solicitante"/>
+            <Column fieldName="id_reparticion_destino"/>
+            <Column fieldName="fe_responsable"/>
+            <Column fieldName="fe_compras_ingreso"/>
+            <Column fieldName="fe_compras_salida"/>
+            <Column fieldName="id_sector_destino"/>
+            <Column fieldName="id_estado"/>
+            <Column fieldName="ds_estado"/>
+            <Column fieldName="id_ubicacion_interna"/>
+            <Column fieldName="co_cuit"/>
+            <Column fieldName="ds_beneficiario"/>
+            <Column fieldName="ds_facturas"/>
+            <Column fieldName="ds_orden_pago"/>
+            <Column fieldName="ds_observaciones"/>
+            <Column fieldName="id_finalizado"/>
+            <Column fieldName="id_cont_oc"/>
+          </QuickFilter>
+          <FilterBuilder>
+            <Column fieldName="id_expediente"/>
+            <Column fieldName="co_expediente"/>
+            <Column fieldName="nu_expediente"/>
+            <Column fieldName="nu_anio_expediente"/>
+            <Column fieldName="no_caratula"/>
+            <Column fieldName="fe_origen"/>
+            <Column fieldName="id_proveedor"/>
+            <Column fieldName="ds_emp_sugeridas"/>
+            <Column fieldName="va_monto"/>
+            <Column fieldName="va_monto_pagado"/>
+            <Column fieldName="id_tipo_bien_servicio"/>
+            <Column fieldName="id_tipo_contratacion"/>
+            <Column fieldName="id_reparticion_solicitante"/>
+            <Column fieldName="id_reparticion_destino"/>
+            <Column fieldName="fe_responsable"/>
+            <Column fieldName="fe_compras_ingreso"/>
+            <Column fieldName="fe_compras_salida"/>
+            <Column fieldName="id_sector_destino"/>
+            <Column fieldName="id_estado"/>
+            <Column fieldName="ds_estado"/>
+            <Column fieldName="id_ubicacion_interna"/>
+            <Column fieldName="co_cuit"/>
+            <Column fieldName="ds_beneficiario"/>
+            <Column fieldName="ds_facturas"/>
+            <Column fieldName="ds_orden_pago"/>
+            <Column fieldName="ds_observaciones"/>
+            <Column fieldName="id_finalizado"/>
+            <Column fieldName="id_cont_oc"/>
+          </FilterBuilder>
+          <Print>
+            <Column fieldName="id_expediente"/>
+            <Column fieldName="co_expediente"/>
+            <Column fieldName="nu_expediente"/>
+            <Column fieldName="nu_anio_expediente"/>
+            <Column fieldName="no_caratula"/>
+            <Column fieldName="fe_origen"/>
+            <Column fieldName="id_proveedor"/>
+            <Column fieldName="ds_emp_sugeridas"/>
+            <Column fieldName="va_monto"/>
+            <Column fieldName="va_monto_pagado"/>
+            <Column fieldName="id_tipo_bien_servicio"/>
+            <Column fieldName="id_tipo_contratacion"/>
+            <Column fieldName="id_reparticion_solicitante"/>
+            <Column fieldName="id_reparticion_destino"/>
+            <Column fieldName="fe_responsable"/>
+            <Column fieldName="fe_compras_ingreso"/>
+            <Column fieldName="fe_compras_salida"/>
+            <Column fieldName="id_sector_destino"/>
+            <Column fieldName="id_estado"/>
+            <Column fieldName="ds_estado"/>
+            <Column fieldName="id_ubicacion_interna"/>
+            <Column fieldName="co_cuit"/>
+            <Column fieldName="ds_beneficiario"/>
+            <Column fieldName="ds_facturas"/>
+            <Column fieldName="ds_orden_pago"/>
+            <Column fieldName="ds_observaciones"/>
+            <Column fieldName="id_finalizado"/>
+            <Column fieldName="id_cont_oc"/>
+          </Print>
+          <Export>
+            <Column fieldName="id_expediente"/>
+            <Column fieldName="co_expediente"/>
+            <Column fieldName="nu_expediente"/>
+            <Column fieldName="nu_anio_expediente"/>
+            <Column fieldName="no_caratula"/>
+            <Column fieldName="fe_origen"/>
+            <Column fieldName="id_proveedor"/>
+            <Column fieldName="ds_emp_sugeridas"/>
+            <Column fieldName="va_monto"/>
+            <Column fieldName="va_monto_pagado"/>
+            <Column fieldName="id_tipo_bien_servicio"/>
+            <Column fieldName="id_tipo_contratacion"/>
+            <Column fieldName="id_reparticion_solicitante"/>
+            <Column fieldName="id_reparticion_destino"/>
+            <Column fieldName="fe_responsable"/>
+            <Column fieldName="fe_compras_ingreso"/>
+            <Column fieldName="fe_compras_salida"/>
+            <Column fieldName="id_sector_destino"/>
+            <Column fieldName="id_estado"/>
+            <Column fieldName="ds_estado"/>
+            <Column fieldName="id_ubicacion_interna"/>
+            <Column fieldName="co_cuit"/>
+            <Column fieldName="ds_beneficiario"/>
+            <Column fieldName="ds_facturas"/>
+            <Column fieldName="ds_orden_pago"/>
+            <Column fieldName="ds_observaciones"/>
+            <Column fieldName="id_finalizado"/>
+            <Column fieldName="id_cont_oc"/>
+          </Export>
+          <Compare>
+            <Column fieldName="id_expediente" visible="false"/>
+            <Column fieldName="co_expediente"/>
+            <Column fieldName="nu_expediente"/>
+            <Column fieldName="nu_anio_expediente"/>
+            <Column fieldName="no_caratula"/>
+            <Column fieldName="fe_origen"/>
+            <Column fieldName="id_proveedor"/>
+            <Column fieldName="ds_emp_sugeridas"/>
+            <Column fieldName="va_monto"/>
+            <Column fieldName="va_monto_pagado"/>
+            <Column fieldName="id_tipo_bien_servicio"/>
+            <Column fieldName="id_tipo_contratacion"/>
+            <Column fieldName="id_reparticion_solicitante"/>
+            <Column fieldName="id_reparticion_destino"/>
+            <Column fieldName="fe_responsable"/>
+            <Column fieldName="fe_compras_ingreso"/>
+            <Column fieldName="fe_compras_salida"/>
+            <Column fieldName="id_sector_destino"/>
+            <Column fieldName="id_estado"/>
+            <Column fieldName="ds_estado"/>
+            <Column fieldName="id_ubicacion_interna"/>
+            <Column fieldName="co_cuit"/>
+            <Column fieldName="ds_beneficiario"/>
+            <Column fieldName="ds_facturas"/>
+            <Column fieldName="ds_orden_pago"/>
+            <Column fieldName="ds_observaciones"/>
+            <Column fieldName="id_finalizado"/>
+            <Column fieldName="id_cont_oc"/>
+          </Compare>
+        </Columns>
+        <Details/>
+        <RecordPermissions useRecordPermissions="false"/>
+        <PartitionNavigators/>
+      </Page>
+      <Page type="table" tableName="public.proveedor" numberByDataSource="0" fileName="proveedor" caption="Proveedor" shortCaption="Proveedor" groupName="Otros Datos" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable2="5" exportToWordAvailable2="5" exportToXmlAvailable2="5" exportToCsvAvailable2="5" exportToPdfAvailable2="5" printerFriendlyAvailable2="5" highlightRowOnMouseHover="true" useActionImages="true" showKeyColumnsImagesInGridHeader="false">
+        <BeforeGridText/>
+        <DetailedDescription/>
+        <ColumnPresentations>
+          <ColumnPresentation fieldName="id_proveedor" caption="ID Proveedor" headerHint="Identificador único del proveedor." showColumnFilter="false" selectedFilterOperators="1573119">
+            <ViewProperties type="text">
+              <Format type="number" thousandSeparator=","/>
+            </ViewProperties>
+            <EditProperties type="textBox" maxLength="0"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="no_proveedor" caption="Nombre Proveedor" headerHint="Nombre del proveedor." showColumnFilter="false" selectedFilterOperators="1589247">
+            <ViewProperties type="text" maxLength="75"/>
+            <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+          </ColumnPresentation>
+        </ColumnPresentations>
+        <Columns>
+          <List>
+            <Column fieldName="id_proveedor"/>
+            <Column fieldName="no_proveedor"/>
+          </List>
+          <View>
+            <Column fieldName="id_proveedor"/>
+            <Column fieldName="no_proveedor"/>
+          </View>
+          <Edit>
+            <Column fieldName="id_proveedor" visible="false"/>
+            <Column fieldName="no_proveedor"/>
+          </Edit>
+          <Insert>
+            <Column fieldName="id_proveedor" visible="false"/>
+            <Column fieldName="no_proveedor"/>
+          </Insert>
+          <QuickFilter>
+            <Column fieldName="id_proveedor"/>
+            <Column fieldName="no_proveedor"/>
+          </QuickFilter>
+          <FilterBuilder>
+            <Column fieldName="id_proveedor"/>
+            <Column fieldName="no_proveedor"/>
+          </FilterBuilder>
+          <Print>
+            <Column fieldName="id_proveedor"/>
+            <Column fieldName="no_proveedor"/>
+          </Print>
+          <Export>
+            <Column fieldName="id_proveedor"/>
+            <Column fieldName="no_proveedor"/>
+          </Export>
+          <Compare>
+            <Column fieldName="id_proveedor" visible="false"/>
+            <Column fieldName="no_proveedor"/>
+          </Compare>
+        </Columns>
+        <Details>
+          <Detail caption="Expedientes">
+            <Page type="table" tableName="public.expediente" numberByDataSource="0" fileName="" caption="Expedientes" shortCaption="Expedientes" groupName="Default" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable2="5" exportToWordAvailable2="5" exportToXmlAvailable2="5" exportToCsvAvailable2="5" exportToPdfAvailable2="5" printerFriendlyAvailable2="5" highlightRowOnMouseHover="true" useActionImages="true" showKeyColumnsImagesInGridHeader="false">
+              <BeforeGridText/>
+              <DetailedDescription/>
+              <ColumnPresentations>
+                <ColumnPresentation fieldName="id_expediente" caption="Id Expediente" headerHint="Identificador único del expediente." showColumnFilter="false" selectedFilterOperators="1573119">
+                  <ViewProperties type="text">
+                    <Format type="number" thousandSeparator=","/>
+                  </ViewProperties>
+                  <EditProperties type="textBox" maxLength="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="co_expediente" caption="Co Expediente" headerHint="Código del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+                  <ViewProperties type="text"/>
+                  <EditProperties type="textBox" maxLength="50"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="nu_expediente" caption="Nu Expediente" headerHint="Número del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1573119">
+                  <ViewProperties type="text">
+                    <Format type="number" thousandSeparator=","/>
+                  </ViewProperties>
+                  <EditProperties type="textBox" maxLength="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="nu_anio_expediente" caption="Nu Anio Expediente" headerHint="Año del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1573119">
+                  <ViewProperties type="text">
+                    <Format type="number" thousandSeparator=","/>
+                  </ViewProperties>
+                  <EditProperties type="textBox" maxLength="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="no_caratula" caption="No Caratula" headerHint="Carátula del expediente." showColumnFilter="false" selectedFilterOperators="1589247">
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textBox" maxLength="100"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="fe_origen" caption="Fe Origen" headerHint="Origen Fecha." canSetNull="true" selectedFilterOperators="2031871">
+                  <ViewProperties type="dateTime" dateTimeKind="1"/>
+                  <EditProperties type="dateTime" dateTimeFormat="Y-m-d" dateTimeKind="1" firstDayOfWeek="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="id_proveedor" caption="Id Proveedor" headerHint="Proveedor del expediente." canSetNull="true" selectedFilterOperators="1589247">
+                  <Lookup tableName="public.proveedor" linkFieldName="id_proveedor" displayFieldName="no_proveedor" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textBox" maxLength="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="ds_emp_sugeridas" caption="Ds Emp Sugeridas" headerHint="Empresas sugeridas como proveedor." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="va_monto" caption="Va Monto" headerHint="Monto total del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1573119">
+                  <ViewProperties type="text">
+                    <Format type="number" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
+                  </ViewProperties>
+                  <EditProperties type="textBox" maxLength="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="va_monto_pagado" caption="Va Monto Pagado" headerHint="Monto pagado del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1573119">
+                  <ViewProperties type="text">
+                    <Format type="number" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
+                  </ViewProperties>
+                  <EditProperties type="textBox" maxLength="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="id_tipo_bien_servicio" caption="Id Tipo Bien Servicio" headerHint="Tipo de bien o servicio." canSetNull="true" selectedFilterOperators="1589247">
+                  <Lookup tableName="public.tipo_bien_servicio" linkFieldName="id_tipo_bien_servicio" displayFieldName="no_tipo_bien_servicio" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textBox" maxLength="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="id_tipo_contratacion" caption="Id Tipo Contratacion" headerHint="Tipo de contratación." canSetNull="true" selectedFilterOperators="1589247">
+                  <Lookup tableName="public.tipo_contratacion" linkFieldName="id_tipo_contratacion" displayFieldName="no_tipo_contratacion" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textBox" maxLength="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="id_reparticion_solicitante" caption="Id Reparticion Solicitante" headerHint="Repartición solicitante." canSetNull="true" selectedFilterOperators="1589247">
+                  <Lookup tableName="public.reparticion" linkFieldName="id_reparticion" displayFieldName="no_reparticion" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textBox" maxLength="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="id_reparticion_destino" caption="Id Reparticion Destino" headerHint="Repartición destino del expediente." canSetNull="true" selectedFilterOperators="1589247">
+                  <Lookup tableName="public.reparticion" linkFieldName="id_reparticion" displayFieldName="no_reparticion" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textBox" maxLength="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="fe_responsable" caption="Fe Responsable" headerHint="Fecha Responsable." canSetNull="true" selectedFilterOperators="2031871">
+                  <ViewProperties type="dateTime" dateTimeKind="1"/>
+                  <EditProperties type="dateTime" dateTimeFormat="Y-m-d" dateTimeKind="1" firstDayOfWeek="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="fe_compras_ingreso" caption="Fe Compras Ingreso" headerHint="Fecha de ingreso a compras del expediente." canSetNull="true" selectedFilterOperators="2031871">
+                  <ViewProperties type="dateTime" dateTimeKind="1"/>
+                  <EditProperties type="dateTime" dateTimeFormat="Y-m-d" dateTimeKind="1" firstDayOfWeek="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="fe_compras_salida" caption="Fe Compras Salida" headerHint="Fecha de salida de compras del expediente." canSetNull="true" selectedFilterOperators="2031871">
+                  <ViewProperties type="dateTime" dateTimeKind="1"/>
+                  <EditProperties type="dateTime" dateTimeFormat="Y-m-d" dateTimeKind="1" firstDayOfWeek="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="id_sector_destino" caption="Id Sector Destino" headerHint="Sector de destino del expediente." canSetNull="true" selectedFilterOperators="1589247">
+                  <Lookup tableName="public.sector_destino" linkFieldName="id_sector_destino" displayFieldName="no_sector_destino" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textBox" maxLength="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="id_estado" caption="Id Estado" headerHint="Estado del expediente." canSetNull="true" selectedFilterOperators="1589247">
+                  <Lookup tableName="public.estado" linkFieldName="id_estado" displayFieldName="no_estado" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textBox" maxLength="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="ds_estado" caption="Ds Estado" headerHint="Detalle del estado del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="id_ubicacion_interna" caption="Id Ubicacion Interna" headerHint="Ubicación interna del expediente." canSetNull="true" selectedFilterOperators="1589247">
+                  <Lookup tableName="public.ubicacion_interna" linkFieldName="id_ubicacion_interna" displayFieldName="no_ubicacion_interna" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textBox" maxLength="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="co_cuit" caption="Co Cuit" headerHint="CUIT relacionado con el expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textBox" maxLength="100"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="ds_beneficiario" caption="Ds Beneficiario" headerHint="Descripción del Número de Beneficiario." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textBox" maxLength="100"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="ds_facturas" caption="Ds Facturas" headerHint="Facturas relacionadas con el expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="ds_orden_pago" caption="Ds Orden Pago" headerHint="Orden de pago del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textBox" maxLength="100"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="ds_observaciones" caption="Ds Observaciones" headerHint="Observaciones del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="id_finalizado" caption="Id Finalizado" headerHint="Estado de finalización del expediente." canSetNull="true" selectedFilterOperators="1589247">
+                  <Lookup tableName="public.finalizado" linkFieldName="id_finalizado" displayFieldName="no_finalizado" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textBox" maxLength="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="id_cont_oc" caption="Id Cont Oc" headerHint="CONT / OC" canSetNull="true" selectedFilterOperators="1589247">
+                  <Lookup tableName="public.cont_oc" linkFieldName="id_cont_oc" displayFieldName="no_cont_oc" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textBox" maxLength="0"/>
+                </ColumnPresentation>
+              </ColumnPresentations>
+              <Columns>
+                <List>
+                  <Column fieldName="id_expediente"/>
+                  <Column fieldName="co_expediente"/>
+                  <Column fieldName="nu_expediente"/>
+                  <Column fieldName="nu_anio_expediente"/>
+                  <Column fieldName="no_caratula"/>
+                  <Column fieldName="fe_origen"/>
+                  <Column fieldName="id_proveedor"/>
+                  <Column fieldName="ds_emp_sugeridas"/>
+                  <Column fieldName="va_monto"/>
+                  <Column fieldName="va_monto_pagado"/>
+                  <Column fieldName="id_tipo_bien_servicio"/>
+                  <Column fieldName="id_tipo_contratacion"/>
+                  <Column fieldName="id_reparticion_solicitante"/>
+                  <Column fieldName="id_reparticion_destino"/>
+                  <Column fieldName="fe_responsable"/>
+                  <Column fieldName="fe_compras_ingreso"/>
+                  <Column fieldName="fe_compras_salida"/>
+                  <Column fieldName="id_sector_destino"/>
+                  <Column fieldName="id_estado"/>
+                  <Column fieldName="ds_estado"/>
+                  <Column fieldName="id_ubicacion_interna"/>
+                  <Column fieldName="co_cuit"/>
+                  <Column fieldName="ds_beneficiario"/>
+                  <Column fieldName="ds_facturas"/>
+                  <Column fieldName="ds_orden_pago"/>
+                  <Column fieldName="ds_observaciones"/>
+                  <Column fieldName="id_finalizado"/>
+                  <Column fieldName="id_cont_oc"/>
+                </List>
+                <View>
+                  <Column fieldName="id_expediente"/>
+                  <Column fieldName="co_expediente"/>
+                  <Column fieldName="nu_expediente"/>
+                  <Column fieldName="nu_anio_expediente"/>
+                  <Column fieldName="no_caratula"/>
+                  <Column fieldName="fe_origen"/>
+                  <Column fieldName="id_proveedor"/>
+                  <Column fieldName="ds_emp_sugeridas"/>
+                  <Column fieldName="va_monto"/>
+                  <Column fieldName="va_monto_pagado"/>
+                  <Column fieldName="id_tipo_bien_servicio"/>
+                  <Column fieldName="id_tipo_contratacion"/>
+                  <Column fieldName="id_reparticion_solicitante"/>
+                  <Column fieldName="id_reparticion_destino"/>
+                  <Column fieldName="fe_responsable"/>
+                  <Column fieldName="fe_compras_ingreso"/>
+                  <Column fieldName="fe_compras_salida"/>
+                  <Column fieldName="id_sector_destino"/>
+                  <Column fieldName="id_estado"/>
+                  <Column fieldName="ds_estado"/>
+                  <Column fieldName="id_ubicacion_interna"/>
+                  <Column fieldName="co_cuit"/>
+                  <Column fieldName="ds_beneficiario"/>
+                  <Column fieldName="ds_facturas"/>
+                  <Column fieldName="ds_orden_pago"/>
+                  <Column fieldName="ds_observaciones"/>
+                  <Column fieldName="id_finalizado"/>
+                  <Column fieldName="id_cont_oc"/>
+                </View>
+                <Edit>
+                  <Column fieldName="id_expediente" visible="false"/>
+                  <Column fieldName="co_expediente"/>
+                  <Column fieldName="nu_expediente"/>
+                  <Column fieldName="nu_anio_expediente"/>
+                  <Column fieldName="no_caratula"/>
+                  <Column fieldName="fe_origen"/>
+                  <Column fieldName="id_proveedor"/>
+                  <Column fieldName="ds_emp_sugeridas"/>
+                  <Column fieldName="va_monto"/>
+                  <Column fieldName="va_monto_pagado"/>
+                  <Column fieldName="id_tipo_bien_servicio"/>
+                  <Column fieldName="id_tipo_contratacion"/>
+                  <Column fieldName="id_reparticion_solicitante"/>
+                  <Column fieldName="id_reparticion_destino"/>
+                  <Column fieldName="fe_responsable"/>
+                  <Column fieldName="fe_compras_ingreso"/>
+                  <Column fieldName="fe_compras_salida"/>
+                  <Column fieldName="id_sector_destino"/>
+                  <Column fieldName="id_estado"/>
+                  <Column fieldName="ds_estado"/>
+                  <Column fieldName="id_ubicacion_interna"/>
+                  <Column fieldName="co_cuit"/>
+                  <Column fieldName="ds_beneficiario"/>
+                  <Column fieldName="ds_facturas"/>
+                  <Column fieldName="ds_orden_pago"/>
+                  <Column fieldName="ds_observaciones"/>
+                  <Column fieldName="id_finalizado"/>
+                  <Column fieldName="id_cont_oc"/>
+                </Edit>
+                <Insert>
+                  <Column fieldName="id_expediente" visible="false"/>
+                  <Column fieldName="co_expediente"/>
+                  <Column fieldName="nu_expediente"/>
+                  <Column fieldName="nu_anio_expediente"/>
+                  <Column fieldName="no_caratula"/>
+                  <Column fieldName="fe_origen"/>
+                  <Column fieldName="id_proveedor"/>
+                  <Column fieldName="ds_emp_sugeridas"/>
+                  <Column fieldName="va_monto"/>
+                  <Column fieldName="va_monto_pagado"/>
+                  <Column fieldName="id_tipo_bien_servicio"/>
+                  <Column fieldName="id_tipo_contratacion"/>
+                  <Column fieldName="id_reparticion_solicitante"/>
+                  <Column fieldName="id_reparticion_destino"/>
+                  <Column fieldName="fe_responsable"/>
+                  <Column fieldName="fe_compras_ingreso"/>
+                  <Column fieldName="fe_compras_salida"/>
+                  <Column fieldName="id_sector_destino"/>
+                  <Column fieldName="id_estado"/>
+                  <Column fieldName="ds_estado"/>
+                  <Column fieldName="id_ubicacion_interna"/>
+                  <Column fieldName="co_cuit"/>
+                  <Column fieldName="ds_beneficiario"/>
+                  <Column fieldName="ds_facturas"/>
+                  <Column fieldName="ds_orden_pago"/>
+                  <Column fieldName="ds_observaciones"/>
+                  <Column fieldName="id_finalizado"/>
+                  <Column fieldName="id_cont_oc"/>
+                </Insert>
+                <QuickFilter>
+                  <Column fieldName="id_expediente"/>
+                  <Column fieldName="co_expediente"/>
+                  <Column fieldName="nu_expediente"/>
+                  <Column fieldName="nu_anio_expediente"/>
+                  <Column fieldName="no_caratula"/>
+                  <Column fieldName="fe_origen"/>
+                  <Column fieldName="id_proveedor"/>
+                  <Column fieldName="ds_emp_sugeridas"/>
+                  <Column fieldName="va_monto"/>
+                  <Column fieldName="va_monto_pagado"/>
+                  <Column fieldName="id_tipo_bien_servicio"/>
+                  <Column fieldName="id_tipo_contratacion"/>
+                  <Column fieldName="id_reparticion_solicitante"/>
+                  <Column fieldName="id_reparticion_destino"/>
+                  <Column fieldName="fe_responsable"/>
+                  <Column fieldName="fe_compras_ingreso"/>
+                  <Column fieldName="fe_compras_salida"/>
+                  <Column fieldName="id_sector_destino"/>
+                  <Column fieldName="id_estado"/>
+                  <Column fieldName="ds_estado"/>
+                  <Column fieldName="id_ubicacion_interna"/>
+                  <Column fieldName="co_cuit"/>
+                  <Column fieldName="ds_beneficiario"/>
+                  <Column fieldName="ds_facturas"/>
+                  <Column fieldName="ds_orden_pago"/>
+                  <Column fieldName="ds_observaciones"/>
+                  <Column fieldName="id_finalizado"/>
+                  <Column fieldName="id_cont_oc"/>
+                </QuickFilter>
+                <FilterBuilder>
+                  <Column fieldName="id_expediente"/>
+                  <Column fieldName="co_expediente"/>
+                  <Column fieldName="nu_expediente"/>
+                  <Column fieldName="nu_anio_expediente"/>
+                  <Column fieldName="no_caratula"/>
+                  <Column fieldName="fe_origen"/>
+                  <Column fieldName="id_proveedor"/>
+                  <Column fieldName="ds_emp_sugeridas"/>
+                  <Column fieldName="va_monto"/>
+                  <Column fieldName="va_monto_pagado"/>
+                  <Column fieldName="id_tipo_bien_servicio"/>
+                  <Column fieldName="id_tipo_contratacion"/>
+                  <Column fieldName="id_reparticion_solicitante"/>
+                  <Column fieldName="id_reparticion_destino"/>
+                  <Column fieldName="fe_responsable"/>
+                  <Column fieldName="fe_compras_ingreso"/>
+                  <Column fieldName="fe_compras_salida"/>
+                  <Column fieldName="id_sector_destino"/>
+                  <Column fieldName="id_estado"/>
+                  <Column fieldName="ds_estado"/>
+                  <Column fieldName="id_ubicacion_interna"/>
+                  <Column fieldName="co_cuit"/>
+                  <Column fieldName="ds_beneficiario"/>
+                  <Column fieldName="ds_facturas"/>
+                  <Column fieldName="ds_orden_pago"/>
+                  <Column fieldName="ds_observaciones"/>
+                  <Column fieldName="id_finalizado"/>
+                  <Column fieldName="id_cont_oc"/>
+                </FilterBuilder>
+                <Print>
+                  <Column fieldName="id_expediente"/>
+                  <Column fieldName="co_expediente"/>
+                  <Column fieldName="nu_expediente"/>
+                  <Column fieldName="nu_anio_expediente"/>
+                  <Column fieldName="no_caratula"/>
+                  <Column fieldName="fe_origen"/>
+                  <Column fieldName="id_proveedor"/>
+                  <Column fieldName="ds_emp_sugeridas"/>
+                  <Column fieldName="va_monto"/>
+                  <Column fieldName="va_monto_pagado"/>
+                  <Column fieldName="id_tipo_bien_servicio"/>
+                  <Column fieldName="id_tipo_contratacion"/>
+                  <Column fieldName="id_reparticion_solicitante"/>
+                  <Column fieldName="id_reparticion_destino"/>
+                  <Column fieldName="fe_responsable"/>
+                  <Column fieldName="fe_compras_ingreso"/>
+                  <Column fieldName="fe_compras_salida"/>
+                  <Column fieldName="id_sector_destino"/>
+                  <Column fieldName="id_estado"/>
+                  <Column fieldName="ds_estado"/>
+                  <Column fieldName="id_ubicacion_interna"/>
+                  <Column fieldName="co_cuit"/>
+                  <Column fieldName="ds_beneficiario"/>
+                  <Column fieldName="ds_facturas"/>
+                  <Column fieldName="ds_orden_pago"/>
+                  <Column fieldName="ds_observaciones"/>
+                  <Column fieldName="id_finalizado"/>
+                  <Column fieldName="id_cont_oc"/>
+                </Print>
+                <Export>
+                  <Column fieldName="id_expediente"/>
+                  <Column fieldName="co_expediente"/>
+                  <Column fieldName="nu_expediente"/>
+                  <Column fieldName="nu_anio_expediente"/>
+                  <Column fieldName="no_caratula"/>
+                  <Column fieldName="fe_origen"/>
+                  <Column fieldName="id_proveedor"/>
+                  <Column fieldName="ds_emp_sugeridas"/>
+                  <Column fieldName="va_monto"/>
+                  <Column fieldName="va_monto_pagado"/>
+                  <Column fieldName="id_tipo_bien_servicio"/>
+                  <Column fieldName="id_tipo_contratacion"/>
+                  <Column fieldName="id_reparticion_solicitante"/>
+                  <Column fieldName="id_reparticion_destino"/>
+                  <Column fieldName="fe_responsable"/>
+                  <Column fieldName="fe_compras_ingreso"/>
+                  <Column fieldName="fe_compras_salida"/>
+                  <Column fieldName="id_sector_destino"/>
+                  <Column fieldName="id_estado"/>
+                  <Column fieldName="ds_estado"/>
+                  <Column fieldName="id_ubicacion_interna"/>
+                  <Column fieldName="co_cuit"/>
+                  <Column fieldName="ds_beneficiario"/>
+                  <Column fieldName="ds_facturas"/>
+                  <Column fieldName="ds_orden_pago"/>
+                  <Column fieldName="ds_observaciones"/>
+                  <Column fieldName="id_finalizado"/>
+                  <Column fieldName="id_cont_oc"/>
+                </Export>
+                <Compare>
+                  <Column fieldName="id_expediente" visible="false"/>
+                  <Column fieldName="co_expediente"/>
+                  <Column fieldName="nu_expediente"/>
+                  <Column fieldName="nu_anio_expediente"/>
+                  <Column fieldName="no_caratula"/>
+                  <Column fieldName="fe_origen"/>
+                  <Column fieldName="id_proveedor"/>
+                  <Column fieldName="ds_emp_sugeridas"/>
+                  <Column fieldName="va_monto"/>
+                  <Column fieldName="va_monto_pagado"/>
+                  <Column fieldName="id_tipo_bien_servicio"/>
+                  <Column fieldName="id_tipo_contratacion"/>
+                  <Column fieldName="id_reparticion_solicitante"/>
+                  <Column fieldName="id_reparticion_destino"/>
+                  <Column fieldName="fe_responsable"/>
+                  <Column fieldName="fe_compras_ingreso"/>
+                  <Column fieldName="fe_compras_salida"/>
+                  <Column fieldName="id_sector_destino"/>
+                  <Column fieldName="id_estado"/>
+                  <Column fieldName="ds_estado"/>
+                  <Column fieldName="id_ubicacion_interna"/>
+                  <Column fieldName="co_cuit"/>
+                  <Column fieldName="ds_beneficiario"/>
+                  <Column fieldName="ds_facturas"/>
+                  <Column fieldName="ds_orden_pago"/>
+                  <Column fieldName="ds_observaciones"/>
+                  <Column fieldName="id_finalizado"/>
+                  <Column fieldName="id_cont_oc"/>
+                </Compare>
+              </Columns>
+              <Details/>
+              <RecordPermissions useRecordPermissions="false"/>
+              <PartitionNavigators/>
+            </Page>
+            <MasterForeignKeyColumnMap>
+              <FieldMap masterColumnName="id_proveedor" foreginColumnName="id_proveedor"/>
+            </MasterForeignKeyColumnMap>
+          </Detail>
+        </Details>
+        <RecordPermissions useRecordPermissions="false"/>
+        <PartitionNavigators/>
+      </Page>
+      <Page type="table" tableName="public.reparticion" numberByDataSource="0" fileName="reparticion" caption="Repartición" shortCaption="Repartición" groupName="Otros Datos" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable2="5" exportToWordAvailable2="5" exportToXmlAvailable2="5" exportToCsvAvailable2="5" exportToPdfAvailable2="5" printerFriendlyAvailable2="5" highlightRowOnMouseHover="true" useActionImages="true" showKeyColumnsImagesInGridHeader="false">
+        <BeforeGridText/>
+        <DetailedDescription/>
+        <ColumnPresentations>
+          <ColumnPresentation fieldName="id_reparticion" caption="ID Repartición" headerHint="Identificador único de la repartición." showColumnFilter="false" selectedFilterOperators="1573119">
+            <ViewProperties type="text">
+              <Format type="number" thousandSeparator=","/>
+            </ViewProperties>
+            <EditProperties type="textBox" maxLength="0"/>
+          </ColumnPresentation>
+          <ColumnPresentation fieldName="no_reparticion" caption="Nombre Repartición" headerHint="Nombre de la repartición." showColumnFilter="false" selectedFilterOperators="1589247">
+            <ViewProperties type="text" maxLength="75"/>
+            <EditProperties type="textBox" maxLength="100"/>
+          </ColumnPresentation>
+        </ColumnPresentations>
+        <Columns>
+          <List>
+            <Column fieldName="id_reparticion"/>
+            <Column fieldName="no_reparticion"/>
+          </List>
+          <View>
+            <Column fieldName="id_reparticion"/>
+            <Column fieldName="no_reparticion"/>
+          </View>
+          <Edit>
+            <Column fieldName="id_reparticion" visible="false"/>
+            <Column fieldName="no_reparticion"/>
+          </Edit>
+          <Insert>
+            <Column fieldName="id_reparticion" visible="false"/>
+            <Column fieldName="no_reparticion"/>
+          </Insert>
+          <QuickFilter>
+            <Column fieldName="id_reparticion"/>
+            <Column fieldName="no_reparticion"/>
+          </QuickFilter>
+          <FilterBuilder>
+            <Column fieldName="id_reparticion"/>
+            <Column fieldName="no_reparticion"/>
+          </FilterBuilder>
+          <Print>
+            <Column fieldName="id_reparticion"/>
+            <Column fieldName="no_reparticion"/>
+          </Print>
+          <Export>
+            <Column fieldName="id_reparticion"/>
+            <Column fieldName="no_reparticion"/>
+          </Export>
+          <Compare>
+            <Column fieldName="id_reparticion" visible="false"/>
+            <Column fieldName="no_reparticion"/>
+          </Compare>
+        </Columns>
+        <Details>
+          <Detail caption="Expedientes Solicitados">
+            <Page type="table" tableName="public.expediente" numberByDataSource="0" fileName="" caption="Expedientes Solicitados" shortCaption="Expedientes Solicitados" groupName="Default" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable2="5" exportToWordAvailable2="5" exportToXmlAvailable2="5" exportToCsvAvailable2="5" exportToPdfAvailable2="5" printerFriendlyAvailable2="5" highlightRowOnMouseHover="true" useActionImages="true" showKeyColumnsImagesInGridHeader="false">
+              <BeforeGridText/>
+              <DetailedDescription/>
+              <ColumnPresentations>
+                <ColumnPresentation fieldName="id_expediente" caption="Id Expediente" headerHint="Identificador único del expediente." showColumnFilter="false" selectedFilterOperators="1573119">
+                  <ViewProperties type="text">
+                    <Format type="number" thousandSeparator=","/>
+                  </ViewProperties>
+                  <EditProperties type="textBox" maxLength="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="co_expediente" caption="Co Expediente" headerHint="Código del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+                  <ViewProperties type="text"/>
+                  <EditProperties type="textBox" maxLength="50"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="nu_expediente" caption="Nu Expediente" headerHint="Número del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1573119">
+                  <ViewProperties type="text">
+                    <Format type="number" thousandSeparator=","/>
+                  </ViewProperties>
+                  <EditProperties type="textBox" maxLength="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="nu_anio_expediente" caption="Nu Anio Expediente" headerHint="Año del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1573119">
+                  <ViewProperties type="text">
+                    <Format type="number" thousandSeparator=","/>
+                  </ViewProperties>
+                  <EditProperties type="textBox" maxLength="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="no_caratula" caption="No Caratula" headerHint="Carátula del expediente." showColumnFilter="false" selectedFilterOperators="1589247">
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textBox" maxLength="100"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="fe_origen" caption="Fe Origen" headerHint="Origen Fecha." canSetNull="true" selectedFilterOperators="2031871">
+                  <ViewProperties type="dateTime" dateTimeKind="1"/>
+                  <EditProperties type="dateTime" dateTimeFormat="Y-m-d" dateTimeKind="1" firstDayOfWeek="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="id_proveedor" caption="Id Proveedor" headerHint="Proveedor del expediente." canSetNull="true" selectedFilterOperators="1589247">
+                  <Lookup tableName="public.proveedor" linkFieldName="id_proveedor" displayFieldName="no_proveedor" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textBox" maxLength="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="ds_emp_sugeridas" caption="Ds Emp Sugeridas" headerHint="Empresas sugeridas como proveedor." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="va_monto" caption="Va Monto" headerHint="Monto total del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1573119">
+                  <ViewProperties type="text">
+                    <Format type="number" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
+                  </ViewProperties>
+                  <EditProperties type="textBox" maxLength="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="va_monto_pagado" caption="Va Monto Pagado" headerHint="Monto pagado del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1573119">
+                  <ViewProperties type="text">
+                    <Format type="number" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
+                  </ViewProperties>
+                  <EditProperties type="textBox" maxLength="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="id_tipo_bien_servicio" caption="Id Tipo Bien Servicio" headerHint="Tipo de bien o servicio." canSetNull="true" selectedFilterOperators="1589247">
+                  <Lookup tableName="public.tipo_bien_servicio" linkFieldName="id_tipo_bien_servicio" displayFieldName="no_tipo_bien_servicio" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textBox" maxLength="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="id_tipo_contratacion" caption="Id Tipo Contratacion" headerHint="Tipo de contratación." canSetNull="true" selectedFilterOperators="1589247">
+                  <Lookup tableName="public.tipo_contratacion" linkFieldName="id_tipo_contratacion" displayFieldName="no_tipo_contratacion" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textBox" maxLength="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="id_reparticion_solicitante" caption="Id Reparticion Solicitante" headerHint="Repartición solicitante." canSetNull="true" selectedFilterOperators="1589247">
+                  <Lookup tableName="public.reparticion" linkFieldName="id_reparticion" displayFieldName="no_reparticion" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textBox" maxLength="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="id_reparticion_destino" caption="Id Reparticion Destino" headerHint="Repartición destino del expediente." canSetNull="true" selectedFilterOperators="1589247">
+                  <Lookup tableName="public.reparticion" linkFieldName="id_reparticion" displayFieldName="no_reparticion" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textBox" maxLength="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="fe_responsable" caption="Fe Responsable" headerHint="Fecha Responsable." canSetNull="true" selectedFilterOperators="2031871">
+                  <ViewProperties type="dateTime" dateTimeKind="1"/>
+                  <EditProperties type="dateTime" dateTimeFormat="Y-m-d" dateTimeKind="1" firstDayOfWeek="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="fe_compras_ingreso" caption="Fe Compras Ingreso" headerHint="Fecha de ingreso a compras del expediente." canSetNull="true" selectedFilterOperators="2031871">
+                  <ViewProperties type="dateTime" dateTimeKind="1"/>
+                  <EditProperties type="dateTime" dateTimeFormat="Y-m-d" dateTimeKind="1" firstDayOfWeek="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="fe_compras_salida" caption="Fe Compras Salida" headerHint="Fecha de salida de compras del expediente." canSetNull="true" selectedFilterOperators="2031871">
+                  <ViewProperties type="dateTime" dateTimeKind="1"/>
+                  <EditProperties type="dateTime" dateTimeFormat="Y-m-d" dateTimeKind="1" firstDayOfWeek="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="id_sector_destino" caption="Id Sector Destino" headerHint="Sector de destino del expediente." canSetNull="true" selectedFilterOperators="1589247">
+                  <Lookup tableName="public.sector_destino" linkFieldName="id_sector_destino" displayFieldName="no_sector_destino" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textBox" maxLength="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="id_estado" caption="Id Estado" headerHint="Estado del expediente." canSetNull="true" selectedFilterOperators="1589247">
+                  <Lookup tableName="public.estado" linkFieldName="id_estado" displayFieldName="no_estado" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textBox" maxLength="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="ds_estado" caption="Ds Estado" headerHint="Detalle del estado del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="id_ubicacion_interna" caption="Id Ubicacion Interna" headerHint="Ubicación interna del expediente." canSetNull="true" selectedFilterOperators="1589247">
+                  <Lookup tableName="public.ubicacion_interna" linkFieldName="id_ubicacion_interna" displayFieldName="no_ubicacion_interna" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textBox" maxLength="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="co_cuit" caption="Co Cuit" headerHint="CUIT relacionado con el expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textBox" maxLength="100"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="ds_beneficiario" caption="Ds Beneficiario" headerHint="Descripción del Número de Beneficiario." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textBox" maxLength="100"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="ds_facturas" caption="Ds Facturas" headerHint="Facturas relacionadas con el expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="ds_orden_pago" caption="Ds Orden Pago" headerHint="Orden de pago del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textBox" maxLength="100"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="ds_observaciones" caption="Ds Observaciones" headerHint="Observaciones del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="id_finalizado" caption="Id Finalizado" headerHint="Estado de finalización del expediente." canSetNull="true" selectedFilterOperators="1589247">
+                  <Lookup tableName="public.finalizado" linkFieldName="id_finalizado" displayFieldName="no_finalizado" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textBox" maxLength="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="id_cont_oc" caption="Id Cont Oc" headerHint="CONT / OC" canSetNull="true" selectedFilterOperators="1589247">
+                  <Lookup tableName="public.cont_oc" linkFieldName="id_cont_oc" displayFieldName="no_cont_oc" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textBox" maxLength="0"/>
+                </ColumnPresentation>
+              </ColumnPresentations>
+              <Columns>
+                <List>
+                  <Column fieldName="id_expediente"/>
+                  <Column fieldName="co_expediente"/>
+                  <Column fieldName="nu_expediente"/>
+                  <Column fieldName="nu_anio_expediente"/>
+                  <Column fieldName="no_caratula"/>
+                  <Column fieldName="fe_origen"/>
+                  <Column fieldName="id_proveedor"/>
+                  <Column fieldName="ds_emp_sugeridas"/>
+                  <Column fieldName="va_monto"/>
+                  <Column fieldName="va_monto_pagado"/>
+                  <Column fieldName="id_tipo_bien_servicio"/>
+                  <Column fieldName="id_tipo_contratacion"/>
+                  <Column fieldName="id_reparticion_solicitante"/>
+                  <Column fieldName="id_reparticion_destino"/>
+                  <Column fieldName="fe_responsable"/>
+                  <Column fieldName="fe_compras_ingreso"/>
+                  <Column fieldName="fe_compras_salida"/>
+                  <Column fieldName="id_sector_destino"/>
+                  <Column fieldName="id_estado"/>
+                  <Column fieldName="ds_estado"/>
+                  <Column fieldName="id_ubicacion_interna"/>
+                  <Column fieldName="co_cuit"/>
+                  <Column fieldName="ds_beneficiario"/>
+                  <Column fieldName="ds_facturas"/>
+                  <Column fieldName="ds_orden_pago"/>
+                  <Column fieldName="ds_observaciones"/>
+                  <Column fieldName="id_finalizado"/>
+                  <Column fieldName="id_cont_oc"/>
+                </List>
+                <View>
+                  <Column fieldName="id_expediente"/>
+                  <Column fieldName="co_expediente"/>
+                  <Column fieldName="nu_expediente"/>
+                  <Column fieldName="nu_anio_expediente"/>
+                  <Column fieldName="no_caratula"/>
+                  <Column fieldName="fe_origen"/>
+                  <Column fieldName="id_proveedor"/>
+                  <Column fieldName="ds_emp_sugeridas"/>
+                  <Column fieldName="va_monto"/>
+                  <Column fieldName="va_monto_pagado"/>
+                  <Column fieldName="id_tipo_bien_servicio"/>
+                  <Column fieldName="id_tipo_contratacion"/>
+                  <Column fieldName="id_reparticion_solicitante"/>
+                  <Column fieldName="id_reparticion_destino"/>
+                  <Column fieldName="fe_responsable"/>
+                  <Column fieldName="fe_compras_ingreso"/>
+                  <Column fieldName="fe_compras_salida"/>
+                  <Column fieldName="id_sector_destino"/>
+                  <Column fieldName="id_estado"/>
+                  <Column fieldName="ds_estado"/>
+                  <Column fieldName="id_ubicacion_interna"/>
+                  <Column fieldName="co_cuit"/>
+                  <Column fieldName="ds_beneficiario"/>
+                  <Column fieldName="ds_facturas"/>
+                  <Column fieldName="ds_orden_pago"/>
+                  <Column fieldName="ds_observaciones"/>
+                  <Column fieldName="id_finalizado"/>
+                  <Column fieldName="id_cont_oc"/>
+                </View>
+                <Edit>
+                  <Column fieldName="id_expediente" visible="false"/>
+                  <Column fieldName="co_expediente"/>
+                  <Column fieldName="nu_expediente"/>
+                  <Column fieldName="nu_anio_expediente"/>
+                  <Column fieldName="no_caratula"/>
+                  <Column fieldName="fe_origen"/>
+                  <Column fieldName="id_proveedor"/>
+                  <Column fieldName="ds_emp_sugeridas"/>
+                  <Column fieldName="va_monto"/>
+                  <Column fieldName="va_monto_pagado"/>
+                  <Column fieldName="id_tipo_bien_servicio"/>
+                  <Column fieldName="id_tipo_contratacion"/>
+                  <Column fieldName="id_reparticion_solicitante"/>
+                  <Column fieldName="id_reparticion_destino"/>
+                  <Column fieldName="fe_responsable"/>
+                  <Column fieldName="fe_compras_ingreso"/>
+                  <Column fieldName="fe_compras_salida"/>
+                  <Column fieldName="id_sector_destino"/>
+                  <Column fieldName="id_estado"/>
+                  <Column fieldName="ds_estado"/>
+                  <Column fieldName="id_ubicacion_interna"/>
+                  <Column fieldName="co_cuit"/>
+                  <Column fieldName="ds_beneficiario"/>
+                  <Column fieldName="ds_facturas"/>
+                  <Column fieldName="ds_orden_pago"/>
+                  <Column fieldName="ds_observaciones"/>
+                  <Column fieldName="id_finalizado"/>
+                  <Column fieldName="id_cont_oc"/>
+                </Edit>
+                <Insert>
+                  <Column fieldName="id_expediente" visible="false"/>
+                  <Column fieldName="co_expediente"/>
+                  <Column fieldName="nu_expediente"/>
+                  <Column fieldName="nu_anio_expediente"/>
+                  <Column fieldName="no_caratula"/>
+                  <Column fieldName="fe_origen"/>
+                  <Column fieldName="id_proveedor"/>
+                  <Column fieldName="ds_emp_sugeridas"/>
+                  <Column fieldName="va_monto"/>
+                  <Column fieldName="va_monto_pagado"/>
+                  <Column fieldName="id_tipo_bien_servicio"/>
+                  <Column fieldName="id_tipo_contratacion"/>
+                  <Column fieldName="id_reparticion_solicitante"/>
+                  <Column fieldName="id_reparticion_destino"/>
+                  <Column fieldName="fe_responsable"/>
+                  <Column fieldName="fe_compras_ingreso"/>
+                  <Column fieldName="fe_compras_salida"/>
+                  <Column fieldName="id_sector_destino"/>
+                  <Column fieldName="id_estado"/>
+                  <Column fieldName="ds_estado"/>
+                  <Column fieldName="id_ubicacion_interna"/>
+                  <Column fieldName="co_cuit"/>
+                  <Column fieldName="ds_beneficiario"/>
+                  <Column fieldName="ds_facturas"/>
+                  <Column fieldName="ds_orden_pago"/>
+                  <Column fieldName="ds_observaciones"/>
+                  <Column fieldName="id_finalizado"/>
+                  <Column fieldName="id_cont_oc"/>
+                </Insert>
+                <QuickFilter>
+                  <Column fieldName="id_expediente"/>
+                  <Column fieldName="co_expediente"/>
+                  <Column fieldName="nu_expediente"/>
+                  <Column fieldName="nu_anio_expediente"/>
+                  <Column fieldName="no_caratula"/>
+                  <Column fieldName="fe_origen"/>
+                  <Column fieldName="id_proveedor"/>
+                  <Column fieldName="ds_emp_sugeridas"/>
+                  <Column fieldName="va_monto"/>
+                  <Column fieldName="va_monto_pagado"/>
+                  <Column fieldName="id_tipo_bien_servicio"/>
+                  <Column fieldName="id_tipo_contratacion"/>
+                  <Column fieldName="id_reparticion_solicitante"/>
+                  <Column fieldName="id_reparticion_destino"/>
+                  <Column fieldName="fe_responsable"/>
+                  <Column fieldName="fe_compras_ingreso"/>
+                  <Column fieldName="fe_compras_salida"/>
+                  <Column fieldName="id_sector_destino"/>
+                  <Column fieldName="id_estado"/>
+                  <Column fieldName="ds_estado"/>
+                  <Column fieldName="id_ubicacion_interna"/>
+                  <Column fieldName="co_cuit"/>
+                  <Column fieldName="ds_beneficiario"/>
+                  <Column fieldName="ds_facturas"/>
+                  <Column fieldName="ds_orden_pago"/>
+                  <Column fieldName="ds_observaciones"/>
+                  <Column fieldName="id_finalizado"/>
+                  <Column fieldName="id_cont_oc"/>
+                </QuickFilter>
+                <FilterBuilder>
+                  <Column fieldName="id_expediente"/>
+                  <Column fieldName="co_expediente"/>
+                  <Column fieldName="nu_expediente"/>
+                  <Column fieldName="nu_anio_expediente"/>
+                  <Column fieldName="no_caratula"/>
+                  <Column fieldName="fe_origen"/>
+                  <Column fieldName="id_proveedor"/>
+                  <Column fieldName="ds_emp_sugeridas"/>
+                  <Column fieldName="va_monto"/>
+                  <Column fieldName="va_monto_pagado"/>
+                  <Column fieldName="id_tipo_bien_servicio"/>
+                  <Column fieldName="id_tipo_contratacion"/>
+                  <Column fieldName="id_reparticion_solicitante"/>
+                  <Column fieldName="id_reparticion_destino"/>
+                  <Column fieldName="fe_responsable"/>
+                  <Column fieldName="fe_compras_ingreso"/>
+                  <Column fieldName="fe_compras_salida"/>
+                  <Column fieldName="id_sector_destino"/>
+                  <Column fieldName="id_estado"/>
+                  <Column fieldName="ds_estado"/>
+                  <Column fieldName="id_ubicacion_interna"/>
+                  <Column fieldName="co_cuit"/>
+                  <Column fieldName="ds_beneficiario"/>
+                  <Column fieldName="ds_facturas"/>
+                  <Column fieldName="ds_orden_pago"/>
+                  <Column fieldName="ds_observaciones"/>
+                  <Column fieldName="id_finalizado"/>
+                  <Column fieldName="id_cont_oc"/>
+                </FilterBuilder>
+                <Print>
+                  <Column fieldName="id_expediente"/>
+                  <Column fieldName="co_expediente"/>
+                  <Column fieldName="nu_expediente"/>
+                  <Column fieldName="nu_anio_expediente"/>
+                  <Column fieldName="no_caratula"/>
+                  <Column fieldName="fe_origen"/>
+                  <Column fieldName="id_proveedor"/>
+                  <Column fieldName="ds_emp_sugeridas"/>
+                  <Column fieldName="va_monto"/>
+                  <Column fieldName="va_monto_pagado"/>
+                  <Column fieldName="id_tipo_bien_servicio"/>
+                  <Column fieldName="id_tipo_contratacion"/>
+                  <Column fieldName="id_reparticion_solicitante"/>
+                  <Column fieldName="id_reparticion_destino"/>
+                  <Column fieldName="fe_responsable"/>
+                  <Column fieldName="fe_compras_ingreso"/>
+                  <Column fieldName="fe_compras_salida"/>
+                  <Column fieldName="id_sector_destino"/>
+                  <Column fieldName="id_estado"/>
+                  <Column fieldName="ds_estado"/>
+                  <Column fieldName="id_ubicacion_interna"/>
+                  <Column fieldName="co_cuit"/>
+                  <Column fieldName="ds_beneficiario"/>
+                  <Column fieldName="ds_facturas"/>
+                  <Column fieldName="ds_orden_pago"/>
+                  <Column fieldName="ds_observaciones"/>
+                  <Column fieldName="id_finalizado"/>
+                  <Column fieldName="id_cont_oc"/>
+                </Print>
+                <Export>
+                  <Column fieldName="id_expediente"/>
+                  <Column fieldName="co_expediente"/>
+                  <Column fieldName="nu_expediente"/>
+                  <Column fieldName="nu_anio_expediente"/>
+                  <Column fieldName="no_caratula"/>
+                  <Column fieldName="fe_origen"/>
+                  <Column fieldName="id_proveedor"/>
+                  <Column fieldName="ds_emp_sugeridas"/>
+                  <Column fieldName="va_monto"/>
+                  <Column fieldName="va_monto_pagado"/>
+                  <Column fieldName="id_tipo_bien_servicio"/>
+                  <Column fieldName="id_tipo_contratacion"/>
+                  <Column fieldName="id_reparticion_solicitante"/>
+                  <Column fieldName="id_reparticion_destino"/>
+                  <Column fieldName="fe_responsable"/>
+                  <Column fieldName="fe_compras_ingreso"/>
+                  <Column fieldName="fe_compras_salida"/>
+                  <Column fieldName="id_sector_destino"/>
+                  <Column fieldName="id_estado"/>
+                  <Column fieldName="ds_estado"/>
+                  <Column fieldName="id_ubicacion_interna"/>
+                  <Column fieldName="co_cuit"/>
+                  <Column fieldName="ds_beneficiario"/>
+                  <Column fieldName="ds_facturas"/>
+                  <Column fieldName="ds_orden_pago"/>
+                  <Column fieldName="ds_observaciones"/>
+                  <Column fieldName="id_finalizado"/>
+                  <Column fieldName="id_cont_oc"/>
+                </Export>
+                <Compare>
+                  <Column fieldName="id_expediente" visible="false"/>
+                  <Column fieldName="co_expediente"/>
+                  <Column fieldName="nu_expediente"/>
+                  <Column fieldName="nu_anio_expediente"/>
+                  <Column fieldName="no_caratula"/>
+                  <Column fieldName="fe_origen"/>
+                  <Column fieldName="id_proveedor"/>
+                  <Column fieldName="ds_emp_sugeridas"/>
+                  <Column fieldName="va_monto"/>
+                  <Column fieldName="va_monto_pagado"/>
+                  <Column fieldName="id_tipo_bien_servicio"/>
+                  <Column fieldName="id_tipo_contratacion"/>
+                  <Column fieldName="id_reparticion_solicitante"/>
+                  <Column fieldName="id_reparticion_destino"/>
+                  <Column fieldName="fe_responsable"/>
+                  <Column fieldName="fe_compras_ingreso"/>
+                  <Column fieldName="fe_compras_salida"/>
+                  <Column fieldName="id_sector_destino"/>
+                  <Column fieldName="id_estado"/>
+                  <Column fieldName="ds_estado"/>
+                  <Column fieldName="id_ubicacion_interna"/>
+                  <Column fieldName="co_cuit"/>
+                  <Column fieldName="ds_beneficiario"/>
+                  <Column fieldName="ds_facturas"/>
+                  <Column fieldName="ds_orden_pago"/>
+                  <Column fieldName="ds_observaciones"/>
+                  <Column fieldName="id_finalizado"/>
+                  <Column fieldName="id_cont_oc"/>
+                </Compare>
+              </Columns>
+              <Details/>
+              <RecordPermissions useRecordPermissions="false"/>
+              <PartitionNavigators/>
+            </Page>
+            <MasterForeignKeyColumnMap>
+              <FieldMap masterColumnName="id_reparticion" foreginColumnName="id_reparticion_solicitante"/>
+            </MasterForeignKeyColumnMap>
+          </Detail>
+          <Detail caption="Expedientes Recibidos">
+            <Page type="table" tableName="public.expediente" numberByDataSource="1" fileName="" caption="Expedientes Recibidos" shortCaption="Expedientes Recibidos" groupName="Default" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable2="5" exportToWordAvailable2="5" exportToXmlAvailable2="5" exportToCsvAvailable2="5" exportToPdfAvailable2="5" printerFriendlyAvailable2="5" highlightRowOnMouseHover="true" useActionImages="true" showKeyColumnsImagesInGridHeader="false">
+              <BeforeGridText/>
+              <DetailedDescription/>
+              <ColumnPresentations>
+                <ColumnPresentation fieldName="id_expediente" caption="Id Expediente" headerHint="Identificador único del expediente." showColumnFilter="false" selectedFilterOperators="1573119">
+                  <ViewProperties type="text">
+                    <Format type="number" thousandSeparator=","/>
+                  </ViewProperties>
+                  <EditProperties type="textBox" maxLength="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="co_expediente" caption="Co Expediente" headerHint="Código del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+                  <ViewProperties type="text"/>
+                  <EditProperties type="textBox" maxLength="50"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="nu_expediente" caption="Nu Expediente" headerHint="Número del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1573119">
+                  <ViewProperties type="text">
+                    <Format type="number" thousandSeparator=","/>
+                  </ViewProperties>
+                  <EditProperties type="textBox" maxLength="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="nu_anio_expediente" caption="Nu Anio Expediente" headerHint="Año del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1573119">
+                  <ViewProperties type="text">
+                    <Format type="number" thousandSeparator=","/>
+                  </ViewProperties>
+                  <EditProperties type="textBox" maxLength="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="no_caratula" caption="No Caratula" headerHint="Carátula del expediente." showColumnFilter="false" selectedFilterOperators="1589247">
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textBox" maxLength="100"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="fe_origen" caption="Fe Origen" headerHint="Origen Fecha." canSetNull="true" selectedFilterOperators="2031871">
+                  <ViewProperties type="dateTime" dateTimeKind="1"/>
+                  <EditProperties type="dateTime" dateTimeFormat="Y-m-d" dateTimeKind="1" firstDayOfWeek="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="id_proveedor" caption="Id Proveedor" headerHint="Proveedor del expediente." canSetNull="true" selectedFilterOperators="1589247">
+                  <Lookup tableName="public.proveedor" linkFieldName="id_proveedor" displayFieldName="no_proveedor" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textBox" maxLength="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="ds_emp_sugeridas" caption="Ds Emp Sugeridas" headerHint="Empresas sugeridas como proveedor." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="va_monto" caption="Va Monto" headerHint="Monto total del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1573119">
+                  <ViewProperties type="text">
+                    <Format type="number" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
+                  </ViewProperties>
+                  <EditProperties type="textBox" maxLength="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="va_monto_pagado" caption="Va Monto Pagado" headerHint="Monto pagado del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1573119">
+                  <ViewProperties type="text">
+                    <Format type="number" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
+                  </ViewProperties>
+                  <EditProperties type="textBox" maxLength="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="id_tipo_bien_servicio" caption="Id Tipo Bien Servicio" headerHint="Tipo de bien o servicio." canSetNull="true" selectedFilterOperators="1589247">
+                  <Lookup tableName="public.tipo_bien_servicio" linkFieldName="id_tipo_bien_servicio" displayFieldName="no_tipo_bien_servicio" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textBox" maxLength="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="id_tipo_contratacion" caption="Id Tipo Contratacion" headerHint="Tipo de contratación." canSetNull="true" selectedFilterOperators="1589247">
+                  <Lookup tableName="public.tipo_contratacion" linkFieldName="id_tipo_contratacion" displayFieldName="no_tipo_contratacion" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textBox" maxLength="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="id_reparticion_solicitante" caption="Id Reparticion Solicitante" headerHint="Repartición solicitante." canSetNull="true" selectedFilterOperators="1589247">
+                  <Lookup tableName="public.reparticion" linkFieldName="id_reparticion" displayFieldName="no_reparticion" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textBox" maxLength="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="id_reparticion_destino" caption="Id Reparticion Destino" headerHint="Repartición destino del expediente." canSetNull="true" selectedFilterOperators="1589247">
+                  <Lookup tableName="public.reparticion" linkFieldName="id_reparticion" displayFieldName="no_reparticion" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textBox" maxLength="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="fe_responsable" caption="Fe Responsable" headerHint="Fecha Responsable." canSetNull="true" selectedFilterOperators="2031871">
+                  <ViewProperties type="dateTime" dateTimeKind="1"/>
+                  <EditProperties type="dateTime" dateTimeFormat="Y-m-d" dateTimeKind="1" firstDayOfWeek="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="fe_compras_ingreso" caption="Fe Compras Ingreso" headerHint="Fecha de ingreso a compras del expediente." canSetNull="true" selectedFilterOperators="2031871">
+                  <ViewProperties type="dateTime" dateTimeKind="1"/>
+                  <EditProperties type="dateTime" dateTimeFormat="Y-m-d" dateTimeKind="1" firstDayOfWeek="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="fe_compras_salida" caption="Fe Compras Salida" headerHint="Fecha de salida de compras del expediente." canSetNull="true" selectedFilterOperators="2031871">
+                  <ViewProperties type="dateTime" dateTimeKind="1"/>
+                  <EditProperties type="dateTime" dateTimeFormat="Y-m-d" dateTimeKind="1" firstDayOfWeek="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="id_sector_destino" caption="Id Sector Destino" headerHint="Sector de destino del expediente." canSetNull="true" selectedFilterOperators="1589247">
+                  <Lookup tableName="public.sector_destino" linkFieldName="id_sector_destino" displayFieldName="no_sector_destino" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textBox" maxLength="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="id_estado" caption="Id Estado" headerHint="Estado del expediente." canSetNull="true" selectedFilterOperators="1589247">
+                  <Lookup tableName="public.estado" linkFieldName="id_estado" displayFieldName="no_estado" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textBox" maxLength="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="ds_estado" caption="Ds Estado" headerHint="Detalle del estado del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="id_ubicacion_interna" caption="Id Ubicacion Interna" headerHint="Ubicación interna del expediente." canSetNull="true" selectedFilterOperators="1589247">
+                  <Lookup tableName="public.ubicacion_interna" linkFieldName="id_ubicacion_interna" displayFieldName="no_ubicacion_interna" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textBox" maxLength="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="co_cuit" caption="Co Cuit" headerHint="CUIT relacionado con el expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textBox" maxLength="100"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="ds_beneficiario" caption="Ds Beneficiario" headerHint="Descripción del Número de Beneficiario." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textBox" maxLength="100"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="ds_facturas" caption="Ds Facturas" headerHint="Facturas relacionadas con el expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="ds_orden_pago" caption="Ds Orden Pago" headerHint="Orden de pago del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textBox" maxLength="100"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="ds_observaciones" caption="Ds Observaciones" headerHint="Observaciones del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="id_finalizado" caption="Id Finalizado" headerHint="Estado de finalización del expediente." canSetNull="true" selectedFilterOperators="1589247">
+                  <Lookup tableName="public.finalizado" linkFieldName="id_finalizado" displayFieldName="no_finalizado" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textBox" maxLength="0"/>
+                </ColumnPresentation>
+                <ColumnPresentation fieldName="id_cont_oc" caption="Id Cont Oc" headerHint="CONT / OC" canSetNull="true" selectedFilterOperators="1589247">
+                  <Lookup tableName="public.cont_oc" linkFieldName="id_cont_oc" displayFieldName="no_cont_oc" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+                  <ViewProperties type="text" maxLength="75"/>
+                  <EditProperties type="textBox" maxLength="0"/>
+                </ColumnPresentation>
+              </ColumnPresentations>
+              <Columns>
+                <List>
+                  <Column fieldName="id_expediente"/>
+                  <Column fieldName="co_expediente"/>
+                  <Column fieldName="nu_expediente"/>
+                  <Column fieldName="nu_anio_expediente"/>
+                  <Column fieldName="no_caratula"/>
+                  <Column fieldName="fe_origen"/>
+                  <Column fieldName="id_proveedor"/>
+                  <Column fieldName="ds_emp_sugeridas"/>
+                  <Column fieldName="va_monto"/>
+                  <Column fieldName="va_monto_pagado"/>
+                  <Column fieldName="id_tipo_bien_servicio"/>
+                  <Column fieldName="id_tipo_contratacion"/>
+                  <Column fieldName="id_reparticion_solicitante"/>
+                  <Column fieldName="id_reparticion_destino"/>
+                  <Column fieldName="fe_responsable"/>
+                  <Column fieldName="fe_compras_ingreso"/>
+                  <Column fieldName="fe_compras_salida"/>
+                  <Column fieldName="id_sector_destino"/>
+                  <Column fieldName="id_estado"/>
+                  <Column fieldName="ds_estado"/>
+                  <Column fieldName="id_ubicacion_interna"/>
+                  <Column fieldName="co_cuit"/>
+                  <Column fieldName="ds_beneficiario"/>
+                  <Column fieldName="ds_facturas"/>
+                  <Column fieldName="ds_orden_pago"/>
+                  <Column fieldName="ds_observaciones"/>
+                  <Column fieldName="id_finalizado"/>
+                  <Column fieldName="id_cont_oc"/>
+                </List>
+                <View>
+                  <Column fieldName="id_expediente"/>
+                  <Column fieldName="co_expediente"/>
+                  <Column fieldName="nu_expediente"/>
+                  <Column fieldName="nu_anio_expediente"/>
+                  <Column fieldName="no_caratula"/>
+                  <Column fieldName="fe_origen"/>
+                  <Column fieldName="id_proveedor"/>
+                  <Column fieldName="ds_emp_sugeridas"/>
+                  <Column fieldName="va_monto"/>
+                  <Column fieldName="va_monto_pagado"/>
+                  <Column fieldName="id_tipo_bien_servicio"/>
+                  <Column fieldName="id_tipo_contratacion"/>
+                  <Column fieldName="id_reparticion_solicitante"/>
+                  <Column fieldName="id_reparticion_destino"/>
+                  <Column fieldName="fe_responsable"/>
+                  <Column fieldName="fe_compras_ingreso"/>
+                  <Column fieldName="fe_compras_salida"/>
+                  <Column fieldName="id_sector_destino"/>
+                  <Column fieldName="id_estado"/>
+                  <Column fieldName="ds_estado"/>
+                  <Column fieldName="id_ubicacion_interna"/>
+                  <Column fieldName="co_cuit"/>
+                  <Column fieldName="ds_beneficiario"/>
+                  <Column fieldName="ds_facturas"/>
+                  <Column fieldName="ds_orden_pago"/>
+                  <Column fieldName="ds_observaciones"/>
+                  <Column fieldName="id_finalizado"/>
+                  <Column fieldName="id_cont_oc"/>
+                </View>
+                <Edit>
+                  <Column fieldName="id_expediente" visible="false"/>
+                  <Column fieldName="co_expediente"/>
+                  <Column fieldName="nu_expediente"/>
+                  <Column fieldName="nu_anio_expediente"/>
+                  <Column fieldName="no_caratula"/>
+                  <Column fieldName="fe_origen"/>
+                  <Column fieldName="id_proveedor"/>
+                  <Column fieldName="ds_emp_sugeridas"/>
+                  <Column fieldName="va_monto"/>
+                  <Column fieldName="va_monto_pagado"/>
+                  <Column fieldName="id_tipo_bien_servicio"/>
+                  <Column fieldName="id_tipo_contratacion"/>
+                  <Column fieldName="id_reparticion_solicitante"/>
+                  <Column fieldName="id_reparticion_destino"/>
+                  <Column fieldName="fe_responsable"/>
+                  <Column fieldName="fe_compras_ingreso"/>
+                  <Column fieldName="fe_compras_salida"/>
+                  <Column fieldName="id_sector_destino"/>
+                  <Column fieldName="id_estado"/>
+                  <Column fieldName="ds_estado"/>
+                  <Column fieldName="id_ubicacion_interna"/>
+                  <Column fieldName="co_cuit"/>
+                  <Column fieldName="ds_beneficiario"/>
+                  <Column fieldName="ds_facturas"/>
+                  <Column fieldName="ds_orden_pago"/>
+                  <Column fieldName="ds_observaciones"/>
+                  <Column fieldName="id_finalizado"/>
+                  <Column fieldName="id_cont_oc"/>
+                </Edit>
+                <Insert>
+                  <Column fieldName="id_expediente" visible="false"/>
+                  <Column fieldName="co_expediente"/>
+                  <Column fieldName="nu_expediente"/>
+                  <Column fieldName="nu_anio_expediente"/>
+                  <Column fieldName="no_caratula"/>
+                  <Column fieldName="fe_origen"/>
+                  <Column fieldName="id_proveedor"/>
+                  <Column fieldName="ds_emp_sugeridas"/>
+                  <Column fieldName="va_monto"/>
+                  <Column fieldName="va_monto_pagado"/>
+                  <Column fieldName="id_tipo_bien_servicio"/>
+                  <Column fieldName="id_tipo_contratacion"/>
+                  <Column fieldName="id_reparticion_solicitante"/>
+                  <Column fieldName="id_reparticion_destino"/>
+                  <Column fieldName="fe_responsable"/>
+                  <Column fieldName="fe_compras_ingreso"/>
+                  <Column fieldName="fe_compras_salida"/>
+                  <Column fieldName="id_sector_destino"/>
+                  <Column fieldName="id_estado"/>
+                  <Column fieldName="ds_estado"/>
+                  <Column fieldName="id_ubicacion_interna"/>
+                  <Column fieldName="co_cuit"/>
+                  <Column fieldName="ds_beneficiario"/>
+                  <Column fieldName="ds_facturas"/>
+                  <Column fieldName="ds_orden_pago"/>
+                  <Column fieldName="ds_observaciones"/>
+                  <Column fieldName="id_finalizado"/>
+                  <Column fieldName="id_cont_oc"/>
+                </Insert>
+                <QuickFilter>
+                  <Column fieldName="id_expediente"/>
+                  <Column fieldName="co_expediente"/>
+                  <Column fieldName="nu_expediente"/>
+                  <Column fieldName="nu_anio_expediente"/>
+                  <Column fieldName="no_caratula"/>
+                  <Column fieldName="fe_origen"/>
+                  <Column fieldName="id_proveedor"/>
+                  <Column fieldName="ds_emp_sugeridas"/>
+                  <Column fieldName="va_monto"/>
+                  <Column fieldName="va_monto_pagado"/>
+                  <Column fieldName="id_tipo_bien_servicio"/>
+                  <Column fieldName="id_tipo_contratacion"/>
+                  <Column fieldName="id_reparticion_solicitante"/>
+                  <Column fieldName="id_reparticion_destino"/>
+                  <Column fieldName="fe_responsable"/>
+                  <Column fieldName="fe_compras_ingreso"/>
+                  <Column fieldName="fe_compras_salida"/>
+                  <Column fieldName="id_sector_destino"/>
+                  <Column fieldName="id_estado"/>
+                  <Column fieldName="ds_estado"/>
+                  <Column fieldName="id_ubicacion_interna"/>
+                  <Column fieldName="co_cuit"/>
+                  <Column fieldName="ds_beneficiario"/>
+                  <Column fieldName="ds_facturas"/>
+                  <Column fieldName="ds_orden_pago"/>
+                  <Column fieldName="ds_observaciones"/>
+                  <Column fieldName="id_finalizado"/>
+                  <Column fieldName="id_cont_oc"/>
+                </QuickFilter>
+                <FilterBuilder>
+                  <Column fieldName="id_expediente"/>
+                  <Column fieldName="co_expediente"/>
+                  <Column fieldName="nu_expediente"/>
+                  <Column fieldName="nu_anio_expediente"/>
+                  <Column fieldName="no_caratula"/>
+                  <Column fieldName="fe_origen"/>
+                  <Column fieldName="id_proveedor"/>
+                  <Column fieldName="ds_emp_sugeridas"/>
+                  <Column fieldName="va_monto"/>
+                  <Column fieldName="va_monto_pagado"/>
+                  <Column fieldName="id_tipo_bien_servicio"/>
+                  <Column fieldName="id_tipo_contratacion"/>
+                  <Column fieldName="id_reparticion_solicitante"/>
+                  <Column fieldName="id_reparticion_destino"/>
+                  <Column fieldName="fe_responsable"/>
+                  <Column fieldName="fe_compras_ingreso"/>
+                  <Column fieldName="fe_compras_salida"/>
+                  <Column fieldName="id_sector_destino"/>
+                  <Column fieldName="id_estado"/>
+                  <Column fieldName="ds_estado"/>
+                  <Column fieldName="id_ubicacion_interna"/>
+                  <Column fieldName="co_cuit"/>
+                  <Column fieldName="ds_beneficiario"/>
+                  <Column fieldName="ds_facturas"/>
+                  <Column fieldName="ds_orden_pago"/>
+                  <Column fieldName="ds_observaciones"/>
+                  <Column fieldName="id_finalizado"/>
+                  <Column fieldName="id_cont_oc"/>
+                </FilterBuilder>
+                <Print>
+                  <Column fieldName="id_expediente"/>
+                  <Column fieldName="co_expediente"/>
+                  <Column fieldName="nu_expediente"/>
+                  <Column fieldName="nu_anio_expediente"/>
+                  <Column fieldName="no_caratula"/>
+                  <Column fieldName="fe_origen"/>
+                  <Column fieldName="id_proveedor"/>
+                  <Column fieldName="ds_emp_sugeridas"/>
+                  <Column fieldName="va_monto"/>
+                  <Column fieldName="va_monto_pagado"/>
+                  <Column fieldName="id_tipo_bien_servicio"/>
+                  <Column fieldName="id_tipo_contratacion"/>
+                  <Column fieldName="id_reparticion_solicitante"/>
+                  <Column fieldName="id_reparticion_destino"/>
+                  <Column fieldName="fe_responsable"/>
+                  <Column fieldName="fe_compras_ingreso"/>
+                  <Column fieldName="fe_compras_salida"/>
+                  <Column fieldName="id_sector_destino"/>
+                  <Column fieldName="id_estado"/>
+                  <Column fieldName="ds_estado"/>
+                  <Column fieldName="id_ubicacion_interna"/>
+                  <Column fieldName="co_cuit"/>
+                  <Column fieldName="ds_beneficiario"/>
+                  <Column fieldName="ds_facturas"/>
+                  <Column fieldName="ds_orden_pago"/>
+                  <Column fieldName="ds_observaciones"/>
+                  <Column fieldName="id_finalizado"/>
+                  <Column fieldName="id_cont_oc"/>
+                </Print>
+                <Export>
+                  <Column fieldName="id_expediente"/>
+                  <Column fieldName="co_expediente"/>
+                  <Column fieldName="nu_expediente"/>
+                  <Column fieldName="nu_anio_expediente"/>
+                  <Column fieldName="no_caratula"/>
+                  <Column fieldName="fe_origen"/>
+                  <Column fieldName="id_proveedor"/>
+                  <Column fieldName="ds_emp_sugeridas"/>
+                  <Column fieldName="va_monto"/>
+                  <Column fieldName="va_monto_pagado"/>
+                  <Column fieldName="id_tipo_bien_servicio"/>
+                  <Column fieldName="id_tipo_contratacion"/>
+                  <Column fieldName="id_reparticion_solicitante"/>
+                  <Column fieldName="id_reparticion_destino"/>
+                  <Column fieldName="fe_responsable"/>
+                  <Column fieldName="fe_compras_ingreso"/>
+                  <Column fieldName="fe_compras_salida"/>
+                  <Column fieldName="id_sector_destino"/>
+                  <Column fieldName="id_estado"/>
+                  <Column fieldName="ds_estado"/>
+                  <Column fieldName="id_ubicacion_interna"/>
+                  <Column fieldName="co_cuit"/>
+                  <Column fieldName="ds_beneficiario"/>
+                  <Column fieldName="ds_facturas"/>
+                  <Column fieldName="ds_orden_pago"/>
+                  <Column fieldName="ds_observaciones"/>
+                  <Column fieldName="id_finalizado"/>
+                  <Column fieldName="id_cont_oc"/>
+                </Export>
+                <Compare>
+                  <Column fieldName="id_expediente" visible="false"/>
+                  <Column fieldName="co_expediente"/>
+                  <Column fieldName="nu_expediente"/>
+                  <Column fieldName="nu_anio_expediente"/>
+                  <Column fieldName="no_caratula"/>
+                  <Column fieldName="fe_origen"/>
+                  <Column fieldName="id_proveedor"/>
+                  <Column fieldName="ds_emp_sugeridas"/>
+                  <Column fieldName="va_monto"/>
+                  <Column fieldName="va_monto_pagado"/>
+                  <Column fieldName="id_tipo_bien_servicio"/>
+                  <Column fieldName="id_tipo_contratacion"/>
+                  <Column fieldName="id_reparticion_solicitante"/>
+                  <Column fieldName="id_reparticion_destino"/>
+                  <Column fieldName="fe_responsable"/>
+                  <Column fieldName="fe_compras_ingreso"/>
+                  <Column fieldName="fe_compras_salida"/>
+                  <Column fieldName="id_sector_destino"/>
+                  <Column fieldName="id_estado"/>
+                  <Column fieldName="ds_estado"/>
+                  <Column fieldName="id_ubicacion_interna"/>
+                  <Column fieldName="co_cuit"/>
+                  <Column fieldName="ds_beneficiario"/>
+                  <Column fieldName="ds_facturas"/>
+                  <Column fieldName="ds_orden_pago"/>
+                  <Column fieldName="ds_observaciones"/>
+                  <Column fieldName="id_finalizado"/>
+                  <Column fieldName="id_cont_oc"/>
+                </Compare>
+              </Columns>
+              <Details/>
+              <RecordPermissions useRecordPermissions="false"/>
+              <PartitionNavigators/>
+            </Page>
+            <MasterForeignKeyColumnMap>
+              <FieldMap masterColumnName="id_reparticion" foreginColumnName="id_reparticion_destino"/>
+            </MasterForeignKeyColumnMap>
+          </Detail>
+        </Details>
+        <RecordPermissions useRecordPermissions="false"/>
+        <PartitionNavigators/>
+      </Page>
+    </Pages>
+    <UserAuthorization type="tableBased" tableName="public.usuario" userNameField="no_usuario" passwordField="co_usuario" userIdField="id_usuario" allowUserToChangePassword="true"/>
+    <UserGrants enableGuestAccess="false">
+      <UserGrant userName="defaultUser"/>
+      <UserGrant userName="prueba" admin="1"/>
+      <UserGrant userName="expedientes" admin="1"/>
+      <UserPageGrants>
+        <PageGrants userName="defaultUser">
+          <PageGrant pageName="public.expediente"/>
+          <PageGrant pageName="public.proveedor"/>
+          <PageGrant pageName="public.proveedor.public.expediente"/>
+          <PageGrant pageName="public.reparticion"/>
+          <PageGrant pageName="public.reparticion.public.expediente"/>
+          <PageGrant pageName="public.reparticion.public.expediente01"/>
+        </PageGrants>
+        <PageGrants userName="prueba">
+          <PageGrant pageName="public.expediente"/>
+          <PageGrant pageName="public.proveedor"/>
+          <PageGrant pageName="public.proveedor.public.expediente"/>
+          <PageGrant pageName="public.reparticion"/>
+          <PageGrant pageName="public.reparticion.public.expediente"/>
+          <PageGrant pageName="public.reparticion.public.expediente01"/>
+        </PageGrants>
+        <PageGrants userName="expedientes">
+          <PageGrant pageName="public.expediente"/>
+          <PageGrant pageName="public.proveedor"/>
+          <PageGrant pageName="public.proveedor.public.expediente"/>
+          <PageGrant pageName="public.reparticion"/>
+          <PageGrant pageName="public.reparticion.public.expediente"/>
+          <PageGrant pageName="public.reparticion.public.expediente01"/>
+        </PageGrants>
+      </UserPageGrants>
+    </UserGrants>
+    <Header>
+&lt;div class=&quot;alert alert-danger SQLGeneratorEvaluationVersion&quot;&gt;&lt;h3 class=&quot;SQLGeneratorEvaluationVersion-head&quot;&gt;This website was created by evaluation version of &lt;a href=&quot;http://www.sqlmaestro.com/products/postgresql/phpgenerator/&quot; class=&quot;alert-link&quot;&gt;PostgreSQL PHP Generator Professional&lt;/a&gt;.&lt;/h3&gt;&lt;img class=&quot;SQLGeneratorEvaluationVersion-justify&quot; src=&quot;components/assets/img/btn-loading.png&quot;&gt;&lt;/div&gt;    </Header>
+    <Footer>
+&lt;p align=&quot;right&quot;&gt;(C) &lt;span&gt;2002-&lt;script type=&quot;text/javascript&quot;&gt;document.write(new Date().getFullYear().toString())&lt;/script&gt;&lt;/span&gt;&lt;a href=&quot;http://www.sqlmaestro.com/products/postgresql/phpgenerator/&quot;&gt; SQL Maestro Group&lt;/a&gt;.&lt;/p&gt;    </Footer>
+    <PHPOptions/>
+    <Groups>
+      <Group>
+Otros Datos      </Group>
+    </Groups>
+  </Presentation>
+  <UserCSS/>
+  <UserJS/>
+  <ExcludedPaths/>
+  <DefaultPageProperties recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable2="5" exportToWordAvailable2="5" exportToXmlAvailable2="5" exportToCsvAvailable2="5" exportToPdfAvailable2="5" printerFriendlyAvailable2="5" highlightRowOnMouseHover="true" useActionImages="true" showKeyColumnsImagesInGridHeader="false"/>
+  <DefaultDataFormats numberAfterDecimal="2" DecimalSeparator="," ThousandSeparator="." DateTimeFormat="Y-m-d H:i:s" DateFormat="Y-m-d" firstDayOfWeek="0" getStringForDisplayingNullsFromLocalizationFile="false" nullLabel="-"/>
+</Project>

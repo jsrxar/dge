@@ -2,7 +2,7 @@
 setlocal
 
 set PGHOST=mozart.myc.ar
-set PDBASE=FACTURAS
+set PDBASE=expedientes
 set PGOPTIONS=--client-min-messages=warning
 @echo ==============================(  1a - Creando Esquema  )==============================
 set PGUSER=postgres
@@ -10,7 +10,7 @@ set PGPASSWORD=postgres
 C:\app\pentaho-ee\postgresql\bin\psql -h %PGHOST% -d %PDBASE% -U %PGUSER% -f 1a-Crea_Esquema.sql
 
 @echo ==============================(  1b - Creando Objetos Base  )==============================
-set PGUSER=facturas
+set PGUSER=expedientes
 set PGPASSWORD=hola1234
 C:\app\pentaho-ee\postgresql\bin\psql -h %PGHOST% -d %PDBASE% -U %PGUSER% -f 1b-Crea_Objetos.sql
 

@@ -1,0 +1,4 @@
+DROP SCHEMA audit CASCADE;
+CREATE SCHEMA audit;
+ALTER SCHEMA audit OWNER TO facturas;
+REVOKE ALL ON SCHEMA audit FROM public;
