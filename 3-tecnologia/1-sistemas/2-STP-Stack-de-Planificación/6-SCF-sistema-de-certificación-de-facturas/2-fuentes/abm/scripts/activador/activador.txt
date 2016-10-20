@@ -1,4 +1,5 @@
 agente.php
+auditoria.php
 categoria_lm.php
 certificacion.php
 contrato.php

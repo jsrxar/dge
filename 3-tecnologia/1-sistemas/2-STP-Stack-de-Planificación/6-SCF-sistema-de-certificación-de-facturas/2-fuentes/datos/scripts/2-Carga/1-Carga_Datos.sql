@@ -240,5 +240,3 @@ FROM (
  ) cn
 WHERE ds_dic::MONEY::NUMERIC > 0
   AND EXISTS (SELECT 1 FROM contrato WHERE id_agente = cn.id_agente);
-
- 

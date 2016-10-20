@@ -9,6 +9,7 @@ set PGUSER=postgres
 set PGPASSWORD=postgres
 C:\app\pentaho-ee\postgresql\bin\psql -h %PGHOST% -d %PDBASE% -U %PGUSER% -f 1a-Crea_Esquema.sql
 C:\app\pentaho-ee\postgresql\bin\psql -h %PGHOST% -d %PDBASE% -U %PGUSER% -f audit.sql
+C:\app\pentaho-ee\postgresql\bin\psql -h %PGHOST% -d %PDBASE% -U %PGUSER% -c "GRANT SELECT ON TABLE audit.logged_actions TO facturas;"
 
 @echo ==============================(  1b - Creando Objetos Base  )==============================
 set PGUSER=facturas

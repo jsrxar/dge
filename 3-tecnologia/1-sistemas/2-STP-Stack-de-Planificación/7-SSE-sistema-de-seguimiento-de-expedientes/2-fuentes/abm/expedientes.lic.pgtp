@@ -1,4 +1,4 @@
-<Project version="16.9.0.2" localizationFileName="C:\app\PostgreSQL PHP Generator Professional\lang.es.php" phpDriver="0" outputPath="\\mozart.myc.ar\expedientes" copySystemFiles="false" outputFilesExtension="php" colorSchemeName="default-compact">
+<Project version="16.9.0.2" localizationFileName="C:\app\PostgreSQL PHP Generator Professional\lang.es.php" phpDriver="0" outputPath="\\mozart.myc.ar\expedientes\lic" copySystemFiles="true" outputFilesExtension="php" colorSchemeName="cerulean-compact">
   <ConnectionOptions host="mozart.myc.ar" port="5432" login="expedientes" password="\/?T^:FJJZP~" database="expedientes" client_encoding="">
     <ssh_secure secure="false" port="22" authentication_mode="0"/>
     <http_tunnel tunneling="false" url="">
@@ -20,13 +20,9 @@
   </DataSources>
   <Presentation disableMagicQuotesRuntime="false" showEnvironmentVariables="false" showExecutedQueries="false" showPHPErrorsAndWarnings="false">
     <Pages>
-      <Page type="table" tableName="public.expediente" numberByDataSource="0" fileName="expediente" caption="Expedientes" viewFormCaptionTemplate="Expediente: %co_expediente%" editFormCaptionTemplate="Expediente: %co_expediente%" insertFormCaption="Nuevo expediente" shortCaption="Expedientes" groupName="Default" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable2="5" exportToWordAvailable2="5" exportToXmlAvailable2="5" exportToCsvAvailable2="5" exportToPdfAvailable2="5" printerFriendlyAvailable2="5" highlightRowOnMouseHover="true" useActionImages="true" showKeyColumnsImagesInGridHeader="false">
-        <BeforeGridText>
-Descripción Inline        </BeforeGridText>
-        <DetailedDescription>
-Descripción Detailed        </DetailedDescription>
-        <homePageDescription>
-Descripción Home        </homePageDescription>
+      <Page type="table" tableName="public.expediente" numberByDataSource="0" fileName="expediente" caption="Expedientes" viewFormCaptionTemplate="Expediente: %co_expediente%" editFormCaptionTemplate="Expediente: %co_expediente%" insertFormCaption="Nuevo expediente" shortCaption="Expedientes" groupName="Default" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable2="5" exportToWordAvailable2="5" exportToXmlAvailable2="5" exportToCsvAvailable2="5" exportToPdfAvailable2="5" printerFriendlyAvailable2="5" highlightRowOnMouseHover="true" useActionImages="true" useFixedGridHeader="true" showKeyColumnsImagesInGridHeader="false">
+        <BeforeGridText/>
+        <DetailedDescription/>
         <ColumnPresentations>
           <ColumnPresentation fieldName="id_expediente" caption="ID Expediente" headerHint="Identificador único del expediente." showColumnFilter="false" selectedFilterOperators="1573119">
             <ViewProperties type="text">
@@ -34,21 +30,31 @@ Descripción Home        </homePageDescription>
             </ViewProperties>
             <EditProperties type="textBox" maxLength="0"/>
           </ColumnPresentation>
-          <ColumnPresentation fieldName="co_expediente" caption="Expediente" headerHint="Código del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+          <ColumnPresentation fieldName="co_expediente" caption="Expediente" headerHint="Código del expediente." showColumnFilter="false" selectedFilterOperators="1589247">
             <ViewProperties type="text"/>
-            <EditProperties type="textBox" maxLength="50"/>
+            <EditProperties type="textBox" maxLength="0" placeholder="000000/2016"/>
+            <Validators>
+              <RegExpClientValidatorInfo enabled="true" expression="^[0-9]+/[0-9][0-9][0-9][0-9]$"/>
+            </Validators>
           </ColumnPresentation>
-          <ColumnPresentation fieldName="nu_expediente" caption="Número" headerHint="Número del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1573119">
+          <ColumnPresentation fieldName="nu_expediente" caption="Número" headerHint="Número del expediente." showColumnFilter="false" controlVisible="false" selectedFilterOperators="1573119">
             <ViewProperties type="text">
               <Format type="number"/>
             </ViewProperties>
-            <EditProperties type="textBox" maxLength="0"/>
+            <EditProperties type="textBox" maxLength="10" placeholder="0000000" suffix="/">
+              <AdvancedProperties max_width="30%"/>
+            </EditProperties>
+            <Validators>
+              <NumberClientValidatorInfo enabled="true"/>
+            </Validators>
           </ColumnPresentation>
-          <ColumnPresentation fieldName="nu_anio_expediente" caption="Año" headerHint="Año del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1573119">
+          <ColumnPresentation fieldName="nu_anio_expediente" caption="Año" headerHint="Año del expediente." showColumnFilter="false" controlVisible="false" selectedFilterOperators="1573119">
             <ViewProperties type="text">
               <Format type="number"/>
             </ViewProperties>
-            <EditProperties type="textBox" maxLength="0"/>
+            <EditProperties type="textBox" maxLength="4" placeholder="2016" prefix="/">
+              <AdvancedProperties max_width="20%"/>
+            </EditProperties>
             <Validators>
               <NumberClientValidatorInfo enabled="true"/>
             </Validators>
@@ -57,7 +63,7 @@ Descripción Home        </homePageDescription>
             <ViewProperties type="text" maxLength="75"/>
             <EditProperties type="textBox" maxLength="100"/>
           </ColumnPresentation>
-          <ColumnPresentation fieldName="fe_origen" caption="Origen Fecha" headerHint="Origen Fecha." canSetNull="true" selectedFilterOperators="2031871">
+          <ColumnPresentation fieldName="fe_origen" caption="Ori.Fecha" headerHint="Origen Fecha." canSetNull="true" selectedFilterOperators="2031871">
             <ViewProperties type="dateTime" dateTimeKind="1"/>
             <EditProperties type="dateTime" dateTimeFormat="Y-m-d" dateTimeKind="1" firstDayOfWeek="0"/>
           </ColumnPresentation>
@@ -122,7 +128,7 @@ Descripción Home        </homePageDescription>
               </OnTheFlyInsertPage>
             </Lookup>
             <ViewProperties type="text" maxLength="75"/>
-            <EditProperties type="comboBox"/>
+            <EditProperties type="autocompleteEdit"/>
           </ColumnPresentation>
           <ColumnPresentation fieldName="ds_emp_sugeridas" caption="Empresas Sugeridas" headerHint="Empresas sugeridas como proveedor." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
             <ViewProperties type="text" maxLength="75"/>
@@ -137,16 +143,16 @@ Descripción Home        </homePageDescription>
               <NumberClientValidatorInfo enabled="true"/>
             </Validators>
           </ColumnPresentation>
-          <ColumnPresentation fieldName="va_monto_pagado" caption="Va Monto Pagado" headerHint="Monto pagado del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1573119">
+          <ColumnPresentation fieldName="va_monto_pagado" caption="Monto Pagado" headerHint="Monto pagado del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1573119">
             <ViewProperties type="text">
-              <Format type="currency" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
+              <Format type="number" numberAfterDecimal="2" decimalSeparator="." thousandSeparator=","/>
             </ViewProperties>
             <EditProperties type="textBox" maxLength="0" prefix="$"/>
             <Validators>
               <NumberClientValidatorInfo enabled="true"/>
             </Validators>
           </ColumnPresentation>
-          <ColumnPresentation fieldName="id_tipo_bien_servicio" caption="Tipo Bien / Servicio" headerHint="Tipo de bien o servicio." canSetNull="true" selectedFilterOperators="1589247">
+          <ColumnPresentation fieldName="id_tipo_bien_servicio" caption="Bien/Servicio" headerHint="Tipo de bien o servicio." canSetNull="true" selectedFilterOperators="1589247">
             <Lookup tableName="public.tipo_bien_servicio" linkFieldName="id_tipo_bien_servicio" displayFieldName="no_tipo_bien_servicio" lookupFilter="" useLookupOrdering="true" lookupOrdering="0" allowAddNewItemsOnTheFly="true">
               <OnTheFlyInsertPage numberByDataSource="0" fileName="tipo_bien_servicio" caption="Tipo Bien Servicio" shortCaption="Tipo Bien Servicio" groupName="Default" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" isOnTheFlyInsertPage="true" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable2="5" exportToWordAvailable2="5" exportToXmlAvailable2="5" exportToCsvAvailable2="5" exportToPdfAvailable2="5" printerFriendlyAvailable2="5" highlightRowOnMouseHover="true" useActionImages="true" showKeyColumnsImagesInGridHeader="false" condensedTable="true">
                 <BeforeGridText/>
@@ -209,7 +215,7 @@ Descripción Home        </homePageDescription>
             <ViewProperties type="text" maxLength="75"/>
             <EditProperties type="comboBox"/>
           </ColumnPresentation>
-          <ColumnPresentation fieldName="id_tipo_contratacion" caption="Tipo Contratación" headerHint="Tipo de contratación." canSetNull="true" selectedFilterOperators="1589247">
+          <ColumnPresentation fieldName="id_tipo_contratacion" caption="Contratación" headerHint="Tipo de contratación." canSetNull="true" selectedFilterOperators="1589247">
             <Lookup tableName="public.tipo_contratacion" linkFieldName="id_tipo_contratacion" displayFieldName="no_tipo_contratacion" lookupFilter="" useLookupOrdering="true" lookupOrdering="0" allowAddNewItemsOnTheFly="true">
               <OnTheFlyInsertPage numberByDataSource="0" fileName="tipo_contratacion" caption="Tipo Contratacion" shortCaption="Tipo Contratacion" groupName="Default" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" isOnTheFlyInsertPage="true" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable2="5" exportToWordAvailable2="5" exportToXmlAvailable2="5" exportToCsvAvailable2="5" exportToPdfAvailable2="5" printerFriendlyAvailable2="5" highlightRowOnMouseHover="true" useActionImages="true" showKeyColumnsImagesInGridHeader="false" condensedTable="true">
                 <BeforeGridText/>
@@ -641,30 +647,30 @@ Descripción Home        </homePageDescription>
           <List>
             <Column fieldName="id_expediente" visible="false"/>
             <Column fieldName="co_expediente"/>
-            <Column fieldName="nu_expediente"/>
-            <Column fieldName="nu_anio_expediente"/>
+            <Column fieldName="nu_expediente" visible="false"/>
+            <Column fieldName="nu_anio_expediente" visible="false"/>
             <Column fieldName="no_caratula"/>
             <Column fieldName="fe_origen"/>
             <Column fieldName="id_proveedor"/>
-            <Column fieldName="ds_emp_sugeridas"/>
+            <Column fieldName="ds_emp_sugeridas" visible="false"/>
             <Column fieldName="va_monto"/>
-            <Column fieldName="va_monto_pagado"/>
+            <Column fieldName="va_monto_pagado" visible="false"/>
             <Column fieldName="id_tipo_bien_servicio"/>
             <Column fieldName="id_tipo_contratacion"/>
             <Column fieldName="id_reparticion_solicitante"/>
-            <Column fieldName="id_reparticion_destino"/>
-            <Column fieldName="fe_responsable"/>
-            <Column fieldName="fe_compras_ingreso"/>
-            <Column fieldName="fe_compras_salida"/>
-            <Column fieldName="id_sector_destino"/>
+            <Column fieldName="id_reparticion_destino" visible="false"/>
+            <Column fieldName="fe_responsable" visible="false"/>
+            <Column fieldName="fe_compras_ingreso" visible="false"/>
+            <Column fieldName="fe_compras_salida" visible="false"/>
+            <Column fieldName="id_sector_destino" visible="false"/>
             <Column fieldName="id_estado"/>
-            <Column fieldName="ds_estado"/>
-            <Column fieldName="id_ubicacion_interna"/>
-            <Column fieldName="co_cuit"/>
-            <Column fieldName="ds_beneficiario"/>
-            <Column fieldName="ds_facturas"/>
-            <Column fieldName="ds_orden_pago"/>
-            <Column fieldName="ds_observaciones"/>
+            <Column fieldName="ds_estado" visible="false"/>
+            <Column fieldName="id_ubicacion_interna" visible="false"/>
+            <Column fieldName="co_cuit" visible="false"/>
+            <Column fieldName="ds_beneficiario" visible="false"/>
+            <Column fieldName="ds_facturas" visible="false"/>
+            <Column fieldName="ds_orden_pago" visible="false"/>
+            <Column fieldName="ds_observaciones" visible="false"/>
             <Column fieldName="id_finalizado"/>
             <Column fieldName="id_cont_oc"/>
           </List>
@@ -700,7 +706,7 @@ Descripción Home        </homePageDescription>
           </View>
           <Edit>
             <Column fieldName="id_expediente" visible="false"/>
-            <Column fieldName="co_expediente" visible="false"/>
+            <Column fieldName="co_expediente"/>
             <Column fieldName="nu_expediente"/>
             <Column fieldName="nu_anio_expediente"/>
             <Column fieldName="no_caratula"/>
@@ -730,7 +736,7 @@ Descripción Home        </homePageDescription>
           </Edit>
           <Insert>
             <Column fieldName="id_expediente" visible="false"/>
-            <Column fieldName="co_expediente" visible="false"/>
+            <Column fieldName="co_expediente"/>
             <Column fieldName="nu_expediente"/>
             <Column fieldName="nu_anio_expediente"/>
             <Column fieldName="no_caratula"/>
@@ -913,7 +919,7 @@ Descripción Home        </homePageDescription>
         <RecordPermissions useRecordPermissions="false"/>
         <PartitionNavigators/>
       </Page>
-      <Page type="table" tableName="public.proveedor" numberByDataSource="0" fileName="proveedor" caption="Proveedor" shortCaption="Proveedor" groupName="Otros Datos" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable2="5" exportToWordAvailable2="5" exportToXmlAvailable2="5" exportToCsvAvailable2="5" exportToPdfAvailable2="5" printerFriendlyAvailable2="5" highlightRowOnMouseHover="true" useActionImages="true" showKeyColumnsImagesInGridHeader="false">
+      <Page type="table" tableName="public.proveedor" numberByDataSource="0" fileName="proveedor" caption="Proveedor" shortCaption="Proveedor" groupName="Otros Datos" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable2="5" exportToWordAvailable2="5" exportToXmlAvailable2="5" exportToCsvAvailable2="5" exportToPdfAvailable2="5" printerFriendlyAvailable2="5" highlightRowOnMouseHover="true" useActionImages="true" useFixedGridHeader="true" showKeyColumnsImagesInGridHeader="false">
         <BeforeGridText/>
         <DetailedDescription/>
         <ColumnPresentations>
@@ -968,7 +974,7 @@ Descripción Home        </homePageDescription>
         </Columns>
         <Details>
           <Detail caption="Expedientes">
-            <Page type="table" tableName="public.expediente" numberByDataSource="0" fileName="" caption="Expedientes" shortCaption="Expedientes" groupName="Default" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable2="5" exportToWordAvailable2="5" exportToXmlAvailable2="5" exportToCsvAvailable2="5" exportToPdfAvailable2="5" printerFriendlyAvailable2="5" highlightRowOnMouseHover="true" useActionImages="true" showKeyColumnsImagesInGridHeader="false">
+            <Page type="table" tableName="public.expediente" numberByDataSource="0" fileName="" caption="Expedientes" shortCaption="Expedientes" groupName="Default" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable2="5" exportToWordAvailable2="5" exportToXmlAvailable2="5" exportToCsvAvailable2="5" exportToPdfAvailable2="5" printerFriendlyAvailable2="5" highlightRowOnMouseHover="true" useActionImages="true" useFixedGridHeader="true" showKeyColumnsImagesInGridHeader="false">
               <BeforeGridText/>
               <DetailedDescription/>
               <ColumnPresentations>
@@ -1005,7 +1011,7 @@ Descripción Home        </homePageDescription>
                 <ColumnPresentation fieldName="id_proveedor" caption="Id Proveedor" headerHint="Proveedor del expediente." canSetNull="true" selectedFilterOperators="1589247">
                   <Lookup tableName="public.proveedor" linkFieldName="id_proveedor" displayFieldName="no_proveedor" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
                   <ViewProperties type="text" maxLength="75"/>
-                  <EditProperties type="textBox" maxLength="0"/>
+                  <EditProperties type="comboBox"/>
                 </ColumnPresentation>
                 <ColumnPresentation fieldName="ds_emp_sugeridas" caption="Ds Emp Sugeridas" headerHint="Empresas sugeridas como proveedor." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
                   <ViewProperties type="text" maxLength="75"/>
@@ -1026,22 +1032,22 @@ Descripción Home        </homePageDescription>
                 <ColumnPresentation fieldName="id_tipo_bien_servicio" caption="Id Tipo Bien Servicio" headerHint="Tipo de bien o servicio." canSetNull="true" selectedFilterOperators="1589247">
                   <Lookup tableName="public.tipo_bien_servicio" linkFieldName="id_tipo_bien_servicio" displayFieldName="no_tipo_bien_servicio" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
                   <ViewProperties type="text" maxLength="75"/>
-                  <EditProperties type="textBox" maxLength="0"/>
+                  <EditProperties type="comboBox"/>
                 </ColumnPresentation>
                 <ColumnPresentation fieldName="id_tipo_contratacion" caption="Id Tipo Contratacion" headerHint="Tipo de contratación." canSetNull="true" selectedFilterOperators="1589247">
                   <Lookup tableName="public.tipo_contratacion" linkFieldName="id_tipo_contratacion" displayFieldName="no_tipo_contratacion" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
                   <ViewProperties type="text" maxLength="75"/>
-                  <EditProperties type="textBox" maxLength="0"/>
+                  <EditProperties type="comboBox"/>
                 </ColumnPresentation>
                 <ColumnPresentation fieldName="id_reparticion_solicitante" caption="Id Reparticion Solicitante" headerHint="Repartición solicitante." canSetNull="true" selectedFilterOperators="1589247">
                   <Lookup tableName="public.reparticion" linkFieldName="id_reparticion" displayFieldName="no_reparticion" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
                   <ViewProperties type="text" maxLength="75"/>
-                  <EditProperties type="textBox" maxLength="0"/>
+                  <EditProperties type="comboBox"/>
                 </ColumnPresentation>
                 <ColumnPresentation fieldName="id_reparticion_destino" caption="Id Reparticion Destino" headerHint="Repartición destino del expediente." canSetNull="true" selectedFilterOperators="1589247">
                   <Lookup tableName="public.reparticion" linkFieldName="id_reparticion" displayFieldName="no_reparticion" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
                   <ViewProperties type="text" maxLength="75"/>
-                  <EditProperties type="textBox" maxLength="0"/>
+                  <EditProperties type="comboBox"/>
                 </ColumnPresentation>
                 <ColumnPresentation fieldName="fe_responsable" caption="Fe Responsable" headerHint="Fecha Responsable." canSetNull="true" selectedFilterOperators="2031871">
                   <ViewProperties type="dateTime" dateTimeKind="1"/>
@@ -1058,12 +1064,12 @@ Descripción Home        </homePageDescription>
                 <ColumnPresentation fieldName="id_sector_destino" caption="Id Sector Destino" headerHint="Sector de destino del expediente." canSetNull="true" selectedFilterOperators="1589247">
                   <Lookup tableName="public.sector_destino" linkFieldName="id_sector_destino" displayFieldName="no_sector_destino" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
                   <ViewProperties type="text" maxLength="75"/>
-                  <EditProperties type="textBox" maxLength="0"/>
+                  <EditProperties type="comboBox"/>
                 </ColumnPresentation>
                 <ColumnPresentation fieldName="id_estado" caption="Id Estado" headerHint="Estado del expediente." canSetNull="true" selectedFilterOperators="1589247">
                   <Lookup tableName="public.estado" linkFieldName="id_estado" displayFieldName="no_estado" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
                   <ViewProperties type="text" maxLength="75"/>
-                  <EditProperties type="textBox" maxLength="0"/>
+                  <EditProperties type="comboBox"/>
                 </ColumnPresentation>
                 <ColumnPresentation fieldName="ds_estado" caption="Ds Estado" headerHint="Detalle del estado del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
                   <ViewProperties type="text" maxLength="75"/>
@@ -1072,7 +1078,7 @@ Descripción Home        </homePageDescription>
                 <ColumnPresentation fieldName="id_ubicacion_interna" caption="Id Ubicacion Interna" headerHint="Ubicación interna del expediente." canSetNull="true" selectedFilterOperators="1589247">
                   <Lookup tableName="public.ubicacion_interna" linkFieldName="id_ubicacion_interna" displayFieldName="no_ubicacion_interna" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
                   <ViewProperties type="text" maxLength="75"/>
-                  <EditProperties type="textBox" maxLength="0"/>
+                  <EditProperties type="comboBox"/>
                 </ColumnPresentation>
                 <ColumnPresentation fieldName="co_cuit" caption="Co Cuit" headerHint="CUIT relacionado con el expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
                   <ViewProperties type="text" maxLength="75"/>
@@ -1097,44 +1103,44 @@ Descripción Home        </homePageDescription>
                 <ColumnPresentation fieldName="id_finalizado" caption="Id Finalizado" headerHint="Estado de finalización del expediente." canSetNull="true" selectedFilterOperators="1589247">
                   <Lookup tableName="public.finalizado" linkFieldName="id_finalizado" displayFieldName="no_finalizado" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
                   <ViewProperties type="text" maxLength="75"/>
-                  <EditProperties type="textBox" maxLength="0"/>
+                  <EditProperties type="comboBox"/>
                 </ColumnPresentation>
                 <ColumnPresentation fieldName="id_cont_oc" caption="Id Cont Oc" headerHint="CONT / OC" canSetNull="true" selectedFilterOperators="1589247">
                   <Lookup tableName="public.cont_oc" linkFieldName="id_cont_oc" displayFieldName="no_cont_oc" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
                   <ViewProperties type="text" maxLength="75"/>
-                  <EditProperties type="textBox" maxLength="0"/>
+                  <EditProperties type="comboBox"/>
                 </ColumnPresentation>
               </ColumnPresentations>
               <Columns>
                 <List>
-                  <Column fieldName="id_expediente"/>
+                  <Column fieldName="id_expediente" visible="false"/>
                   <Column fieldName="co_expediente"/>
-                  <Column fieldName="nu_expediente"/>
-                  <Column fieldName="nu_anio_expediente"/>
+                  <Column fieldName="nu_expediente" visible="false"/>
+                  <Column fieldName="nu_anio_expediente" visible="false"/>
                   <Column fieldName="no_caratula"/>
-                  <Column fieldName="fe_origen"/>
+                  <Column fieldName="fe_origen" visible="false"/>
                   <Column fieldName="id_proveedor"/>
-                  <Column fieldName="ds_emp_sugeridas"/>
+                  <Column fieldName="ds_emp_sugeridas" visible="false"/>
                   <Column fieldName="va_monto"/>
-                  <Column fieldName="va_monto_pagado"/>
-                  <Column fieldName="id_tipo_bien_servicio"/>
-                  <Column fieldName="id_tipo_contratacion"/>
-                  <Column fieldName="id_reparticion_solicitante"/>
-                  <Column fieldName="id_reparticion_destino"/>
-                  <Column fieldName="fe_responsable"/>
-                  <Column fieldName="fe_compras_ingreso"/>
-                  <Column fieldName="fe_compras_salida"/>
-                  <Column fieldName="id_sector_destino"/>
+                  <Column fieldName="va_monto_pagado" visible="false"/>
+                  <Column fieldName="id_tipo_bien_servicio" visible="false"/>
+                  <Column fieldName="id_tipo_contratacion" visible="false"/>
+                  <Column fieldName="id_reparticion_solicitante" visible="false"/>
+                  <Column fieldName="id_reparticion_destino" visible="false"/>
+                  <Column fieldName="fe_responsable" visible="false"/>
+                  <Column fieldName="fe_compras_ingreso" visible="false"/>
+                  <Column fieldName="fe_compras_salida" visible="false"/>
+                  <Column fieldName="id_sector_destino" visible="false"/>
                   <Column fieldName="id_estado"/>
-                  <Column fieldName="ds_estado"/>
-                  <Column fieldName="id_ubicacion_interna"/>
-                  <Column fieldName="co_cuit"/>
-                  <Column fieldName="ds_beneficiario"/>
-                  <Column fieldName="ds_facturas"/>
-                  <Column fieldName="ds_orden_pago"/>
-                  <Column fieldName="ds_observaciones"/>
-                  <Column fieldName="id_finalizado"/>
-                  <Column fieldName="id_cont_oc"/>
+                  <Column fieldName="ds_estado" visible="false"/>
+                  <Column fieldName="id_ubicacion_interna" visible="false"/>
+                  <Column fieldName="co_cuit" visible="false"/>
+                  <Column fieldName="ds_beneficiario" visible="false"/>
+                  <Column fieldName="ds_facturas" visible="false"/>
+                  <Column fieldName="ds_orden_pago" visible="false"/>
+                  <Column fieldName="ds_observaciones" visible="false"/>
+                  <Column fieldName="id_finalizado" visible="false"/>
+                  <Column fieldName="id_cont_oc" visible="false"/>
                 </List>
                 <View>
                   <Column fieldName="id_expediente"/>
@@ -1389,7 +1395,7 @@ Descripción Home        </homePageDescription>
         <RecordPermissions useRecordPermissions="false"/>
         <PartitionNavigators/>
       </Page>
-      <Page type="table" tableName="public.reparticion" numberByDataSource="0" fileName="reparticion" caption="Repartición" shortCaption="Repartición" groupName="Otros Datos" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable2="5" exportToWordAvailable2="5" exportToXmlAvailable2="5" exportToCsvAvailable2="5" exportToPdfAvailable2="5" printerFriendlyAvailable2="5" highlightRowOnMouseHover="true" useActionImages="true" showKeyColumnsImagesInGridHeader="false">
+      <Page type="table" tableName="public.reparticion" numberByDataSource="0" fileName="reparticion" caption="Repartición" shortCaption="Repartición" groupName="Otros Datos" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable2="5" exportToWordAvailable2="5" exportToXmlAvailable2="5" exportToCsvAvailable2="5" exportToPdfAvailable2="5" printerFriendlyAvailable2="5" highlightRowOnMouseHover="true" useActionImages="true" useFixedGridHeader="true" showKeyColumnsImagesInGridHeader="false">
         <BeforeGridText/>
         <DetailedDescription/>
         <ColumnPresentations>
@@ -1444,13 +1450,13 @@ Descripción Home        </homePageDescription>
         </Columns>
         <Details>
           <Detail caption="Expedientes Solicitados">
-            <Page type="table" tableName="public.expediente" numberByDataSource="0" fileName="" caption="Expedientes Solicitados" shortCaption="Expedientes Solicitados" groupName="Default" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable2="5" exportToWordAvailable2="5" exportToXmlAvailable2="5" exportToCsvAvailable2="5" exportToPdfAvailable2="5" printerFriendlyAvailable2="5" highlightRowOnMouseHover="true" useActionImages="true" showKeyColumnsImagesInGridHeader="false">
+            <Page type="table" tableName="public.expediente" numberByDataSource="1" fileName="" caption="Expedientes Solicitados" shortCaption="Expedientes Solicitado" groupName="Default" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable2="5" exportToWordAvailable2="5" exportToXmlAvailable2="5" exportToCsvAvailable2="5" exportToPdfAvailable2="5" printerFriendlyAvailable2="5" highlightRowOnMouseHover="true" useActionImages="true" useFixedGridHeader="true" showKeyColumnsImagesInGridHeader="false">
               <BeforeGridText/>
               <DetailedDescription/>
               <ColumnPresentations>
                 <ColumnPresentation fieldName="id_expediente" caption="Id Expediente" headerHint="Identificador único del expediente." showColumnFilter="false" selectedFilterOperators="1573119">
                   <ViewProperties type="text">
-                    <Format type="number" thousandSeparator=","/>
+                    <Format type="number" thousandSeparator="."/>
                   </ViewProperties>
                   <EditProperties type="textBox" maxLength="0"/>
                 </ColumnPresentation>
@@ -1460,13 +1466,13 @@ Descripción Home        </homePageDescription>
                 </ColumnPresentation>
                 <ColumnPresentation fieldName="nu_expediente" caption="Nu Expediente" headerHint="Número del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1573119">
                   <ViewProperties type="text">
-                    <Format type="number" thousandSeparator=","/>
+                    <Format type="number" thousandSeparator="."/>
                   </ViewProperties>
                   <EditProperties type="textBox" maxLength="0"/>
                 </ColumnPresentation>
                 <ColumnPresentation fieldName="nu_anio_expediente" caption="Nu Anio Expediente" headerHint="Año del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1573119">
                   <ViewProperties type="text">
-                    <Format type="number" thousandSeparator=","/>
+                    <Format type="number" thousandSeparator="."/>
                   </ViewProperties>
                   <EditProperties type="textBox" maxLength="0"/>
                 </ColumnPresentation>
@@ -1481,7 +1487,7 @@ Descripción Home        </homePageDescription>
                 <ColumnPresentation fieldName="id_proveedor" caption="Id Proveedor" headerHint="Proveedor del expediente." canSetNull="true" selectedFilterOperators="1589247">
                   <Lookup tableName="public.proveedor" linkFieldName="id_proveedor" displayFieldName="no_proveedor" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
                   <ViewProperties type="text" maxLength="75"/>
-                  <EditProperties type="textBox" maxLength="0"/>
+                  <EditProperties type="comboBox"/>
                 </ColumnPresentation>
                 <ColumnPresentation fieldName="ds_emp_sugeridas" caption="Ds Emp Sugeridas" headerHint="Empresas sugeridas como proveedor." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
                   <ViewProperties type="text" maxLength="75"/>
@@ -1502,22 +1508,22 @@ Descripción Home        </homePageDescription>
                 <ColumnPresentation fieldName="id_tipo_bien_servicio" caption="Id Tipo Bien Servicio" headerHint="Tipo de bien o servicio." canSetNull="true" selectedFilterOperators="1589247">
                   <Lookup tableName="public.tipo_bien_servicio" linkFieldName="id_tipo_bien_servicio" displayFieldName="no_tipo_bien_servicio" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
                   <ViewProperties type="text" maxLength="75"/>
-                  <EditProperties type="textBox" maxLength="0"/>
+                  <EditProperties type="comboBox"/>
                 </ColumnPresentation>
                 <ColumnPresentation fieldName="id_tipo_contratacion" caption="Id Tipo Contratacion" headerHint="Tipo de contratación." canSetNull="true" selectedFilterOperators="1589247">
                   <Lookup tableName="public.tipo_contratacion" linkFieldName="id_tipo_contratacion" displayFieldName="no_tipo_contratacion" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
                   <ViewProperties type="text" maxLength="75"/>
-                  <EditProperties type="textBox" maxLength="0"/>
+                  <EditProperties type="comboBox"/>
                 </ColumnPresentation>
                 <ColumnPresentation fieldName="id_reparticion_solicitante" caption="Id Reparticion Solicitante" headerHint="Repartición solicitante." canSetNull="true" selectedFilterOperators="1589247">
                   <Lookup tableName="public.reparticion" linkFieldName="id_reparticion" displayFieldName="no_reparticion" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
                   <ViewProperties type="text" maxLength="75"/>
-                  <EditProperties type="textBox" maxLength="0"/>
+                  <EditProperties type="comboBox"/>
                 </ColumnPresentation>
                 <ColumnPresentation fieldName="id_reparticion_destino" caption="Id Reparticion Destino" headerHint="Repartición destino del expediente." canSetNull="true" selectedFilterOperators="1589247">
                   <Lookup tableName="public.reparticion" linkFieldName="id_reparticion" displayFieldName="no_reparticion" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
                   <ViewProperties type="text" maxLength="75"/>
-                  <EditProperties type="textBox" maxLength="0"/>
+                  <EditProperties type="comboBox"/>
                 </ColumnPresentation>
                 <ColumnPresentation fieldName="fe_responsable" caption="Fe Responsable" headerHint="Fecha Responsable." canSetNull="true" selectedFilterOperators="2031871">
                   <ViewProperties type="dateTime" dateTimeKind="1"/>
@@ -1534,12 +1540,12 @@ Descripción Home        </homePageDescription>
                 <ColumnPresentation fieldName="id_sector_destino" caption="Id Sector Destino" headerHint="Sector de destino del expediente." canSetNull="true" selectedFilterOperators="1589247">
                   <Lookup tableName="public.sector_destino" linkFieldName="id_sector_destino" displayFieldName="no_sector_destino" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
                   <ViewProperties type="text" maxLength="75"/>
-                  <EditProperties type="textBox" maxLength="0"/>
+                  <EditProperties type="comboBox"/>
                 </ColumnPresentation>
                 <ColumnPresentation fieldName="id_estado" caption="Id Estado" headerHint="Estado del expediente." canSetNull="true" selectedFilterOperators="1589247">
                   <Lookup tableName="public.estado" linkFieldName="id_estado" displayFieldName="no_estado" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
                   <ViewProperties type="text" maxLength="75"/>
-                  <EditProperties type="textBox" maxLength="0"/>
+                  <EditProperties type="comboBox"/>
                 </ColumnPresentation>
                 <ColumnPresentation fieldName="ds_estado" caption="Ds Estado" headerHint="Detalle del estado del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
                   <ViewProperties type="text" maxLength="75"/>
@@ -1548,7 +1554,7 @@ Descripción Home        </homePageDescription>
                 <ColumnPresentation fieldName="id_ubicacion_interna" caption="Id Ubicacion Interna" headerHint="Ubicación interna del expediente." canSetNull="true" selectedFilterOperators="1589247">
                   <Lookup tableName="public.ubicacion_interna" linkFieldName="id_ubicacion_interna" displayFieldName="no_ubicacion_interna" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
                   <ViewProperties type="text" maxLength="75"/>
-                  <EditProperties type="textBox" maxLength="0"/>
+                  <EditProperties type="comboBox"/>
                 </ColumnPresentation>
                 <ColumnPresentation fieldName="co_cuit" caption="Co Cuit" headerHint="CUIT relacionado con el expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
                   <ViewProperties type="text" maxLength="75"/>
@@ -1573,44 +1579,44 @@ Descripción Home        </homePageDescription>
                 <ColumnPresentation fieldName="id_finalizado" caption="Id Finalizado" headerHint="Estado de finalización del expediente." canSetNull="true" selectedFilterOperators="1589247">
                   <Lookup tableName="public.finalizado" linkFieldName="id_finalizado" displayFieldName="no_finalizado" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
                   <ViewProperties type="text" maxLength="75"/>
-                  <EditProperties type="textBox" maxLength="0"/>
+                  <EditProperties type="comboBox"/>
                 </ColumnPresentation>
                 <ColumnPresentation fieldName="id_cont_oc" caption="Id Cont Oc" headerHint="CONT / OC" canSetNull="true" selectedFilterOperators="1589247">
                   <Lookup tableName="public.cont_oc" linkFieldName="id_cont_oc" displayFieldName="no_cont_oc" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
                   <ViewProperties type="text" maxLength="75"/>
-                  <EditProperties type="textBox" maxLength="0"/>
+                  <EditProperties type="comboBox"/>
                 </ColumnPresentation>
               </ColumnPresentations>
               <Columns>
                 <List>
-                  <Column fieldName="id_expediente"/>
+                  <Column fieldName="id_expediente" visible="false"/>
                   <Column fieldName="co_expediente"/>
-                  <Column fieldName="nu_expediente"/>
-                  <Column fieldName="nu_anio_expediente"/>
+                  <Column fieldName="nu_expediente" visible="false"/>
+                  <Column fieldName="nu_anio_expediente" visible="false"/>
                   <Column fieldName="no_caratula"/>
-                  <Column fieldName="fe_origen"/>
+                  <Column fieldName="fe_origen" visible="false"/>
                   <Column fieldName="id_proveedor"/>
-                  <Column fieldName="ds_emp_sugeridas"/>
+                  <Column fieldName="ds_emp_sugeridas" visible="false"/>
                   <Column fieldName="va_monto"/>
-                  <Column fieldName="va_monto_pagado"/>
-                  <Column fieldName="id_tipo_bien_servicio"/>
-                  <Column fieldName="id_tipo_contratacion"/>
-                  <Column fieldName="id_reparticion_solicitante"/>
-                  <Column fieldName="id_reparticion_destino"/>
-                  <Column fieldName="fe_responsable"/>
-                  <Column fieldName="fe_compras_ingreso"/>
-                  <Column fieldName="fe_compras_salida"/>
-                  <Column fieldName="id_sector_destino"/>
+                  <Column fieldName="va_monto_pagado" visible="false"/>
+                  <Column fieldName="id_tipo_bien_servicio" visible="false"/>
+                  <Column fieldName="id_tipo_contratacion" visible="false"/>
+                  <Column fieldName="id_reparticion_solicitante" visible="false"/>
+                  <Column fieldName="id_reparticion_destino" visible="false"/>
+                  <Column fieldName="fe_responsable" visible="false"/>
+                  <Column fieldName="fe_compras_ingreso" visible="false"/>
+                  <Column fieldName="fe_compras_salida" visible="false"/>
+                  <Column fieldName="id_sector_destino" visible="false"/>
                   <Column fieldName="id_estado"/>
-                  <Column fieldName="ds_estado"/>
-                  <Column fieldName="id_ubicacion_interna"/>
-                  <Column fieldName="co_cuit"/>
-                  <Column fieldName="ds_beneficiario"/>
-                  <Column fieldName="ds_facturas"/>
-                  <Column fieldName="ds_orden_pago"/>
-                  <Column fieldName="ds_observaciones"/>
-                  <Column fieldName="id_finalizado"/>
-                  <Column fieldName="id_cont_oc"/>
+                  <Column fieldName="ds_estado" visible="false"/>
+                  <Column fieldName="id_ubicacion_interna" visible="false"/>
+                  <Column fieldName="co_cuit" visible="false"/>
+                  <Column fieldName="ds_beneficiario" visible="false"/>
+                  <Column fieldName="ds_facturas" visible="false"/>
+                  <Column fieldName="ds_orden_pago" visible="false"/>
+                  <Column fieldName="ds_observaciones" visible="false"/>
+                  <Column fieldName="id_finalizado" visible="false"/>
+                  <Column fieldName="id_cont_oc" visible="false"/>
                 </List>
                 <View>
                   <Column fieldName="id_expediente"/>
@@ -1862,13 +1868,13 @@ Descripción Home        </homePageDescription>
             </MasterForeignKeyColumnMap>
           </Detail>
           <Detail caption="Expedientes Recibidos">
-            <Page type="table" tableName="public.expediente" numberByDataSource="1" fileName="" caption="Expedientes Recibidos" shortCaption="Expedientes Recibidos" groupName="Default" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable2="5" exportToWordAvailable2="5" exportToXmlAvailable2="5" exportToCsvAvailable2="5" exportToPdfAvailable2="5" printerFriendlyAvailable2="5" highlightRowOnMouseHover="true" useActionImages="true" showKeyColumnsImagesInGridHeader="false">
+            <Page type="table" tableName="public.expediente" numberByDataSource="2" fileName="" caption="Expedientes Recibidos" shortCaption="Expedientes Recibidos" groupName="Default" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable2="5" exportToWordAvailable2="5" exportToXmlAvailable2="5" exportToCsvAvailable2="5" exportToPdfAvailable2="5" printerFriendlyAvailable2="5" highlightRowOnMouseHover="true" useActionImages="true" useFixedGridHeader="true" showKeyColumnsImagesInGridHeader="false">
               <BeforeGridText/>
               <DetailedDescription/>
               <ColumnPresentations>
                 <ColumnPresentation fieldName="id_expediente" caption="Id Expediente" headerHint="Identificador único del expediente." showColumnFilter="false" selectedFilterOperators="1573119">
                   <ViewProperties type="text">
-                    <Format type="number" thousandSeparator=","/>
+                    <Format type="number" thousandSeparator="."/>
                   </ViewProperties>
                   <EditProperties type="textBox" maxLength="0"/>
                 </ColumnPresentation>
@@ -1878,13 +1884,13 @@ Descripción Home        </homePageDescription>
                 </ColumnPresentation>
                 <ColumnPresentation fieldName="nu_expediente" caption="Nu Expediente" headerHint="Número del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1573119">
                   <ViewProperties type="text">
-                    <Format type="number" thousandSeparator=","/>
+                    <Format type="number" thousandSeparator="."/>
                   </ViewProperties>
                   <EditProperties type="textBox" maxLength="0"/>
                 </ColumnPresentation>
                 <ColumnPresentation fieldName="nu_anio_expediente" caption="Nu Anio Expediente" headerHint="Año del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1573119">
                   <ViewProperties type="text">
-                    <Format type="number" thousandSeparator=","/>
+                    <Format type="number" thousandSeparator="."/>
                   </ViewProperties>
                   <EditProperties type="textBox" maxLength="0"/>
                 </ColumnPresentation>
@@ -1899,7 +1905,7 @@ Descripción Home        </homePageDescription>
                 <ColumnPresentation fieldName="id_proveedor" caption="Id Proveedor" headerHint="Proveedor del expediente." canSetNull="true" selectedFilterOperators="1589247">
                   <Lookup tableName="public.proveedor" linkFieldName="id_proveedor" displayFieldName="no_proveedor" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
                   <ViewProperties type="text" maxLength="75"/>
-                  <EditProperties type="textBox" maxLength="0"/>
+                  <EditProperties type="comboBox"/>
                 </ColumnPresentation>
                 <ColumnPresentation fieldName="ds_emp_sugeridas" caption="Ds Emp Sugeridas" headerHint="Empresas sugeridas como proveedor." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
                   <ViewProperties type="text" maxLength="75"/>
@@ -1920,22 +1926,22 @@ Descripción Home        </homePageDescription>
                 <ColumnPresentation fieldName="id_tipo_bien_servicio" caption="Id Tipo Bien Servicio" headerHint="Tipo de bien o servicio." canSetNull="true" selectedFilterOperators="1589247">
                   <Lookup tableName="public.tipo_bien_servicio" linkFieldName="id_tipo_bien_servicio" displayFieldName="no_tipo_bien_servicio" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
                   <ViewProperties type="text" maxLength="75"/>
-                  <EditProperties type="textBox" maxLength="0"/>
+                  <EditProperties type="comboBox"/>
                 </ColumnPresentation>
                 <ColumnPresentation fieldName="id_tipo_contratacion" caption="Id Tipo Contratacion" headerHint="Tipo de contratación." canSetNull="true" selectedFilterOperators="1589247">
                   <Lookup tableName="public.tipo_contratacion" linkFieldName="id_tipo_contratacion" displayFieldName="no_tipo_contratacion" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
                   <ViewProperties type="text" maxLength="75"/>
-                  <EditProperties type="textBox" maxLength="0"/>
+                  <EditProperties type="comboBox"/>
                 </ColumnPresentation>
                 <ColumnPresentation fieldName="id_reparticion_solicitante" caption="Id Reparticion Solicitante" headerHint="Repartición solicitante." canSetNull="true" selectedFilterOperators="1589247">
                   <Lookup tableName="public.reparticion" linkFieldName="id_reparticion" displayFieldName="no_reparticion" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
                   <ViewProperties type="text" maxLength="75"/>
-                  <EditProperties type="textBox" maxLength="0"/>
+                  <EditProperties type="comboBox"/>
                 </ColumnPresentation>
                 <ColumnPresentation fieldName="id_reparticion_destino" caption="Id Reparticion Destino" headerHint="Repartición destino del expediente." canSetNull="true" selectedFilterOperators="1589247">
                   <Lookup tableName="public.reparticion" linkFieldName="id_reparticion" displayFieldName="no_reparticion" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
                   <ViewProperties type="text" maxLength="75"/>
-                  <EditProperties type="textBox" maxLength="0"/>
+                  <EditProperties type="comboBox"/>
                 </ColumnPresentation>
                 <ColumnPresentation fieldName="fe_responsable" caption="Fe Responsable" headerHint="Fecha Responsable." canSetNull="true" selectedFilterOperators="2031871">
                   <ViewProperties type="dateTime" dateTimeKind="1"/>
@@ -1952,12 +1958,12 @@ Descripción Home        </homePageDescription>
                 <ColumnPresentation fieldName="id_sector_destino" caption="Id Sector Destino" headerHint="Sector de destino del expediente." canSetNull="true" selectedFilterOperators="1589247">
                   <Lookup tableName="public.sector_destino" linkFieldName="id_sector_destino" displayFieldName="no_sector_destino" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
                   <ViewProperties type="text" maxLength="75"/>
-                  <EditProperties type="textBox" maxLength="0"/>
+                  <EditProperties type="comboBox"/>
                 </ColumnPresentation>
                 <ColumnPresentation fieldName="id_estado" caption="Id Estado" headerHint="Estado del expediente." canSetNull="true" selectedFilterOperators="1589247">
                   <Lookup tableName="public.estado" linkFieldName="id_estado" displayFieldName="no_estado" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
                   <ViewProperties type="text" maxLength="75"/>
-                  <EditProperties type="textBox" maxLength="0"/>
+                  <EditProperties type="comboBox"/>
                 </ColumnPresentation>
                 <ColumnPresentation fieldName="ds_estado" caption="Ds Estado" headerHint="Detalle del estado del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
                   <ViewProperties type="text" maxLength="75"/>
@@ -1966,7 +1972,7 @@ Descripción Home        </homePageDescription>
                 <ColumnPresentation fieldName="id_ubicacion_interna" caption="Id Ubicacion Interna" headerHint="Ubicación interna del expediente." canSetNull="true" selectedFilterOperators="1589247">
                   <Lookup tableName="public.ubicacion_interna" linkFieldName="id_ubicacion_interna" displayFieldName="no_ubicacion_interna" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
                   <ViewProperties type="text" maxLength="75"/>
-                  <EditProperties type="textBox" maxLength="0"/>
+                  <EditProperties type="comboBox"/>
                 </ColumnPresentation>
                 <ColumnPresentation fieldName="co_cuit" caption="Co Cuit" headerHint="CUIT relacionado con el expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
                   <ViewProperties type="text" maxLength="75"/>
@@ -1991,44 +1997,44 @@ Descripción Home        </homePageDescription>
                 <ColumnPresentation fieldName="id_finalizado" caption="Id Finalizado" headerHint="Estado de finalización del expediente." canSetNull="true" selectedFilterOperators="1589247">
                   <Lookup tableName="public.finalizado" linkFieldName="id_finalizado" displayFieldName="no_finalizado" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
                   <ViewProperties type="text" maxLength="75"/>
-                  <EditProperties type="textBox" maxLength="0"/>
+                  <EditProperties type="comboBox"/>
                 </ColumnPresentation>
                 <ColumnPresentation fieldName="id_cont_oc" caption="Id Cont Oc" headerHint="CONT / OC" canSetNull="true" selectedFilterOperators="1589247">
                   <Lookup tableName="public.cont_oc" linkFieldName="id_cont_oc" displayFieldName="no_cont_oc" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
                   <ViewProperties type="text" maxLength="75"/>
-                  <EditProperties type="textBox" maxLength="0"/>
+                  <EditProperties type="comboBox"/>
                 </ColumnPresentation>
               </ColumnPresentations>
               <Columns>
                 <List>
-                  <Column fieldName="id_expediente"/>
+                  <Column fieldName="id_expediente" visible="false"/>
                   <Column fieldName="co_expediente"/>
-                  <Column fieldName="nu_expediente"/>
-                  <Column fieldName="nu_anio_expediente"/>
+                  <Column fieldName="nu_expediente" visible="false"/>
+                  <Column fieldName="nu_anio_expediente" visible="false"/>
                   <Column fieldName="no_caratula"/>
-                  <Column fieldName="fe_origen"/>
+                  <Column fieldName="fe_origen" visible="false"/>
                   <Column fieldName="id_proveedor"/>
-                  <Column fieldName="ds_emp_sugeridas"/>
+                  <Column fieldName="ds_emp_sugeridas" visible="false"/>
                   <Column fieldName="va_monto"/>
-                  <Column fieldName="va_monto_pagado"/>
-                  <Column fieldName="id_tipo_bien_servicio"/>
-                  <Column fieldName="id_tipo_contratacion"/>
-                  <Column fieldName="id_reparticion_solicitante"/>
-                  <Column fieldName="id_reparticion_destino"/>
-                  <Column fieldName="fe_responsable"/>
-                  <Column fieldName="fe_compras_ingreso"/>
-                  <Column fieldName="fe_compras_salida"/>
-                  <Column fieldName="id_sector_destino"/>
+                  <Column fieldName="va_monto_pagado" visible="false"/>
+                  <Column fieldName="id_tipo_bien_servicio" visible="false"/>
+                  <Column fieldName="id_tipo_contratacion" visible="false"/>
+                  <Column fieldName="id_reparticion_solicitante" visible="false"/>
+                  <Column fieldName="id_reparticion_destino" visible="false"/>
+                  <Column fieldName="fe_responsable" visible="false"/>
+                  <Column fieldName="fe_compras_ingreso" visible="false"/>
+                  <Column fieldName="fe_compras_salida" visible="false"/>
+                  <Column fieldName="id_sector_destino" visible="false"/>
                   <Column fieldName="id_estado"/>
-                  <Column fieldName="ds_estado"/>
-                  <Column fieldName="id_ubicacion_interna"/>
-                  <Column fieldName="co_cuit"/>
-                  <Column fieldName="ds_beneficiario"/>
-                  <Column fieldName="ds_facturas"/>
-                  <Column fieldName="ds_orden_pago"/>
-                  <Column fieldName="ds_observaciones"/>
-                  <Column fieldName="id_finalizado"/>
-                  <Column fieldName="id_cont_oc"/>
+                  <Column fieldName="ds_estado" visible="false"/>
+                  <Column fieldName="id_ubicacion_interna" visible="false"/>
+                  <Column fieldName="co_cuit" visible="false"/>
+                  <Column fieldName="ds_beneficiario" visible="false"/>
+                  <Column fieldName="ds_facturas" visible="false"/>
+                  <Column fieldName="ds_orden_pago" visible="false"/>
+                  <Column fieldName="ds_observaciones" visible="false"/>
+                  <Column fieldName="id_finalizado" visible="false"/>
+                  <Column fieldName="id_cont_oc" visible="false"/>
                 </List>
                 <View>
                   <Column fieldName="id_expediente"/>
@@ -2295,24 +2301,24 @@ Descripción Home        </homePageDescription>
           <PageGrant pageName="public.proveedor"/>
           <PageGrant pageName="public.proveedor.public.expediente"/>
           <PageGrant pageName="public.reparticion"/>
-          <PageGrant pageName="public.reparticion.public.expediente"/>
           <PageGrant pageName="public.reparticion.public.expediente01"/>
+          <PageGrant pageName="public.reparticion.public.expediente02"/>
         </PageGrants>
         <PageGrants userName="prueba">
           <PageGrant pageName="public.expediente"/>
           <PageGrant pageName="public.proveedor"/>
           <PageGrant pageName="public.proveedor.public.expediente"/>
           <PageGrant pageName="public.reparticion"/>
-          <PageGrant pageName="public.reparticion.public.expediente"/>
           <PageGrant pageName="public.reparticion.public.expediente01"/>
+          <PageGrant pageName="public.reparticion.public.expediente02"/>
         </PageGrants>
         <PageGrants userName="expedientes">
           <PageGrant pageName="public.expediente"/>
           <PageGrant pageName="public.proveedor"/>
           <PageGrant pageName="public.proveedor.public.expediente"/>
           <PageGrant pageName="public.reparticion"/>
-          <PageGrant pageName="public.reparticion.public.expediente"/>
           <PageGrant pageName="public.reparticion.public.expediente01"/>
+          <PageGrant pageName="public.reparticion.public.expediente02"/>
         </PageGrants>
       </UserPageGrants>
     </UserGrants>
@@ -2327,8 +2333,11 @@ Otros Datos      </Group>
     </Groups>
   </Presentation>
   <UserCSS/>
-  <UserJS/>
+  <UserJS>
+$(document).ready(function(){
+  $(&quot;.SQLGeneratorEvaluationVersion,.SQLGeneratorEvaluationVersion-head,.SQLGeneratorEvaluationVersion-justify&quot;).css({&quot;height&quot;:&quot;1px&quot;,&quot;visibility&quot;:&quot;hidden&quot;});
+});  </UserJS>
   <ExcludedPaths/>
-  <DefaultPageProperties recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable2="5" exportToWordAvailable2="5" exportToXmlAvailable2="5" exportToCsvAvailable2="5" exportToPdfAvailable2="5" printerFriendlyAvailable2="5" highlightRowOnMouseHover="true" useActionImages="true" showKeyColumnsImagesInGridHeader="false"/>
+  <DefaultPageProperties recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable2="5" exportToWordAvailable2="5" exportToXmlAvailable2="5" exportToCsvAvailable2="5" exportToPdfAvailable2="5" printerFriendlyAvailable2="5" highlightRowOnMouseHover="true" useActionImages="true" useFixedGridHeader="true" showKeyColumnsImagesInGridHeader="false"/>
   <DefaultDataFormats numberAfterDecimal="2" DecimalSeparator="," ThousandSeparator="." DateTimeFormat="Y-m-d H:i:s" DateFormat="Y-m-d" firstDayOfWeek="0" getStringForDisplayingNullsFromLocalizationFile="false" nullLabel="-"/>
 </Project>

@@ -207,6 +207,7 @@ CREATE TABLE public.agente (
                 ds_celular VARCHAR(20),
                 fe_ingreso DATE,
                 ar_cv_agente BYTEA,
+                ds_cv_agente VARCHAR(10),
                 CONSTRAINT agente_pk PRIMARY KEY (id_agente)
 );
 COMMENT ON TABLE public.agente IS 'Agente que presta servicios.';
@@ -227,6 +228,7 @@ COMMENT ON COLUMN public.agente.ds_telefono IS 'Teléfono del agente.';
 COMMENT ON COLUMN public.agente.ds_celular IS 'Teléfono celular del agente.';
 COMMENT ON COLUMN public.agente.fe_ingreso IS 'Fecha de ingreso del agente.';
 COMMENT ON COLUMN public.agente.ar_cv_agente IS 'Archivo del CV del agente.';
+COMMENT ON COLUMN public.agente.ds_cv_agente IS 'Tipo de CV del agente.';
 
 
 ALTER SEQUENCE public.agente_sq OWNED BY public.agente.id_agente;

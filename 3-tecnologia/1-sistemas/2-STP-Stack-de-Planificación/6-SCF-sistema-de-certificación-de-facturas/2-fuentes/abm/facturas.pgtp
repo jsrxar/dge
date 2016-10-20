@@ -1,4 +1,4 @@
-<Project productVersion="14.10.0.11" localizationFileName="C:\app\PostgreSQL PHP Generator\lang.es.php" phpDriver="0" outputPath="\\mozart.myc.ar\facturas" copySystemFiles="true" outputFilesExtension="php" colorSchemeName="Facebook">
+<Project productVersion="14.10.0.11" localizationFileName="C:\app\PostgreSQL PHP Generator\lang.es.php" phpDriver="0" outputPath="\\mozart.myc.ar\facturas" copySystemFiles="false" outputFilesExtension="php" colorSchemeName="Facebook">
   <ConnectionOptions host="mozart.myc.ar" port="5432" login="facturas" password="\/?T^:FJJZP~" database="FACTURAS" client_encoding="">
     <ssh_secure secure="false" port="22" authentication_mode="0"/>
     <http_tunnel tunneling="false" url="">
@@ -2782,6 +2782,373 @@ DNI                  </MFUItem>
         <RecordPermissions useRecordPermissions="false"/>
         <PartitionNavigators/>
       </Page>
+      <Page type="table" tableName="audit.logged_actions" fileName="auditoria" caption="Auditoría" shortCaption="Auditoría" groupName="Administrador" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true" showKeyColumnsImagesInGridHeader="false">
+        <DefaultSortedColumns>
+          <Column fieldName="event_id" orderType="1"/>
+        </DefaultSortedColumns>
+        <BeforeGridText/>
+        <Columns>
+          <ViewColumns>
+            <Column fieldName="event_id" caption="Event ID" visible="false" headerHint="Unique identifier for each auditable event" totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="schema_name" caption="Schema Name" visible="false" headerHint="Database schema audited table for this event is in" totalFunction="0">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="table_name" caption="Table Name" visible="true" headerHint="Non-schema-qualified table name of table event occured in" totalFunction="0">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="relid" caption="Relid" visible="false" headerHint="Table OID. Changes with drop/create. Get with 'tablename'::regclass" totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="session_user_name" caption="Session User Name" visible="true" headerHint="Login / session user whose statement caused the audited event" totalFunction="0">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="action_tstamp_tx" caption="Action Tstamp Tx" visible="false" headerHint="Transaction start timestamp for tx in which audited event occurred" totalFunction="0">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y H:i:s"/>
+            </Column>
+            <Column fieldName="action_tstamp_stm" caption="Action Tstamp Stm" visible="true" headerHint="Statement start timestamp for tx in which audited event occurred" totalFunction="0">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y H:i:s"/>
+            </Column>
+            <Column fieldName="action_tstamp_clk" caption="Action Tstamp Clk" visible="false" headerHint="Wall clock time at which audited event's trigger call occurred" totalFunction="0">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y H:i:s"/>
+            </Column>
+            <Column fieldName="transaction_id" caption="Transaction Id" visible="false" headerHint="Identifier of transaction that made the change. May wrap, but unique paired with action_tstamp_tx." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="application_name" caption="Application Name" visible="true" headerHint="Application name set when this audit event occurred. Can be changed in-session by client." totalFunction="0">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="client_addr" caption="Client Addr" visible="false" headerHint="IP address of client that issued query. Null for unix domain socket." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="client_port" caption="Client Port" visible="false" headerHint="Remote peer IP port address of client that issued query. Undefined for unix socket." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="client_query" caption="Client Query" visible="true" headerHint="Top-level query that caused this auditable event. May be more than one statement." totalFunction="0">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="action" caption="Action" visible="true" headerHint="Action type; I = insert, D = delete, U = update, T = truncate" totalFunction="0">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="row_data" caption="Row Data" visible="false" headerHint="Record value. Null for statement-level trigger. For INSERT this is the new tuple. For DELETE and UPDATE it is the old tuple." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="changed_fields" caption="Changed Fields" visible="false" headerHint="New values of fields changed by UPDATE. Null except for row-level UPDATE events." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="statement_only" caption="Statement Only" visible="false" headerHint="'t' if audit event is from an FOR EACH STATEMENT trigger, 'f' for FOR EACH ROW" totalFunction="0">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+          </ViewColumns>
+          <SingleRecordViewColumns>
+            <Column fieldName="event_id" caption="Event ID" visible="true" headerHint="Unique identifier for each auditable event">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="schema_name" caption="Schema Name" visible="true" headerHint="Database schema audited table for this event is in">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="table_name" caption="Table Name" visible="true" headerHint="Non-schema-qualified table name of table event occured in">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="relid" caption="Relid" visible="true" headerHint="Table OID. Changes with drop/create. Get with 'tablename'::regclass">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="session_user_name" caption="Session User Name" visible="true" headerHint="Login / session user whose statement caused the audited event">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="action_tstamp_tx" caption="Action Tstamp Tx" visible="true" headerHint="Transaction start timestamp for tx in which audited event occurred">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y H:i:s"/>
+            </Column>
+            <Column fieldName="action_tstamp_stm" caption="Action Tstamp Stm" visible="true" headerHint="Statement start timestamp for tx in which audited event occurred">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y H:i:s"/>
+            </Column>
+            <Column fieldName="action_tstamp_clk" caption="Action Tstamp Clk" visible="true" headerHint="Wall clock time at which audited event's trigger call occurred">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y H:i:s"/>
+            </Column>
+            <Column fieldName="transaction_id" caption="Transaction Id" visible="true" headerHint="Identifier of transaction that made the change. May wrap, but unique paired with action_tstamp_tx.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="application_name" caption="Application Name" visible="true" headerHint="Application name set when this audit event occurred. Can be changed in-session by client.">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="client_addr" caption="Client Addr" visible="true" headerHint="IP address of client that issued query. Null for unix domain socket.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="client_port" caption="Client Port" visible="true" headerHint="Remote peer IP port address of client that issued query. Undefined for unix socket.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="client_query" caption="Client Query" visible="true" headerHint="Top-level query that caused this auditable event. May be more than one statement.">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="action" caption="Action" visible="true" headerHint="Action type; I = insert, D = delete, U = update, T = truncate">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="row_data" caption="Row Data" visible="true" headerHint="Record value. Null for statement-level trigger. For INSERT this is the new tuple. For DELETE and UPDATE it is the old tuple.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="changed_fields" caption="Changed Fields" visible="true" headerHint="New values of fields changed by UPDATE. Null except for row-level UPDATE events.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="statement_only" caption="Statement Only" visible="true" headerHint="'t' if audit event is from an FOR EACH STATEMENT trigger, 'f' for FOR EACH ROW">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+          </SingleRecordViewColumns>
+          <EditColumns>
+            <Column fieldName="event_id" caption="Event ID" visible="false">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="schema_name" caption="Schema Name" visible="true">
+              <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+            </Column>
+            <Column fieldName="table_name" caption="Table Name" visible="true">
+              <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+            </Column>
+            <Column fieldName="relid" caption="Relid" visible="true">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="session_user_name" caption="Session User Name" visible="true" canSetNull="true">
+              <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+            </Column>
+            <Column fieldName="action_tstamp_tx" caption="Action Tstamp Tx" visible="true">
+              <EditProperties type="dateTime" showsTime="true" dateTimeFormat="Y-m-d H:i:s" firstDayOfWeek="0"/>
+            </Column>
+            <Column fieldName="action_tstamp_stm" caption="Action Tstamp Stm" visible="true">
+              <EditProperties type="dateTime" showsTime="true" dateTimeFormat="Y-m-d H:i:s" firstDayOfWeek="0"/>
+            </Column>
+            <Column fieldName="action_tstamp_clk" caption="Action Tstamp Clk" visible="true">
+              <EditProperties type="dateTime" showsTime="true" dateTimeFormat="Y-m-d H:i:s" firstDayOfWeek="0"/>
+            </Column>
+            <Column fieldName="transaction_id" caption="Transaction Id" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="application_name" caption="Application Name" visible="true" canSetNull="true">
+              <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+            </Column>
+            <Column fieldName="client_addr" caption="Client Addr" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="client_port" caption="Client Port" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="client_query" caption="Client Query" visible="true" canSetNull="true">
+              <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+            </Column>
+            <Column fieldName="action" caption="Action" visible="true">
+              <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+            </Column>
+            <Column fieldName="row_data" caption="Row Data" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="changed_fields" caption="Changed Fields" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="statement_only" caption="Statement Only" visible="true">
+              <EditProperties type="checkBox"/>
+            </Column>
+          </EditColumns>
+          <InsertColumns>
+            <Column fieldName="event_id" caption="Event ID" visible="false" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="schema_name" caption="Schema Name" visible="true" defaultInsertValue="">
+              <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+            </Column>
+            <Column fieldName="table_name" caption="Table Name" visible="true" defaultInsertValue="">
+              <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+            </Column>
+            <Column fieldName="relid" caption="Relid" visible="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="session_user_name" caption="Session User Name" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+            </Column>
+            <Column fieldName="action_tstamp_tx" caption="Action Tstamp Tx" visible="true" defaultInsertValue="">
+              <EditProperties type="dateTime" showsTime="true" dateTimeFormat="Y-m-d H:i:s" firstDayOfWeek="0"/>
+            </Column>
+            <Column fieldName="action_tstamp_stm" caption="Action Tstamp Stm" visible="true" defaultInsertValue="">
+              <EditProperties type="dateTime" showsTime="true" dateTimeFormat="Y-m-d H:i:s" firstDayOfWeek="0"/>
+            </Column>
+            <Column fieldName="action_tstamp_clk" caption="Action Tstamp Clk" visible="true" defaultInsertValue="">
+              <EditProperties type="dateTime" showsTime="true" dateTimeFormat="Y-m-d H:i:s" firstDayOfWeek="0"/>
+            </Column>
+            <Column fieldName="transaction_id" caption="Transaction Id" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="application_name" caption="Application Name" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+            </Column>
+            <Column fieldName="client_addr" caption="Client Addr" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="client_port" caption="Client Port" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="client_query" caption="Client Query" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+            </Column>
+            <Column fieldName="action" caption="Action" visible="true" defaultInsertValue="">
+              <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+            </Column>
+            <Column fieldName="row_data" caption="Row Data" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="changed_fields" caption="Changed Fields" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="statement_only" caption="Statement Only" visible="true" defaultInsertValue="">
+              <EditProperties type="checkBox"/>
+            </Column>
+          </InsertColumns>
+          <SimpleSearchColumns>
+            <Column fieldName="event_id" caption="Event ID" visible="true"/>
+            <Column fieldName="schema_name" caption="Schema Name" visible="true"/>
+            <Column fieldName="table_name" caption="Table Name" visible="true"/>
+            <Column fieldName="relid" caption="Relid" visible="true"/>
+            <Column fieldName="session_user_name" caption="Session User Name" visible="true"/>
+            <Column fieldName="action_tstamp_tx" caption="Action Tstamp Tx" visible="true"/>
+            <Column fieldName="action_tstamp_stm" caption="Action Tstamp Stm" visible="true"/>
+            <Column fieldName="action_tstamp_clk" caption="Action Tstamp Clk" visible="true"/>
+            <Column fieldName="transaction_id" caption="Transaction Id" visible="true"/>
+            <Column fieldName="application_name" caption="Application Name" visible="true"/>
+            <Column fieldName="client_addr" caption="Client Addr" visible="true"/>
+            <Column fieldName="client_port" caption="Client Port" visible="true"/>
+            <Column fieldName="client_query" caption="Client Query" visible="true"/>
+            <Column fieldName="action" caption="Action" visible="true"/>
+            <Column fieldName="row_data" caption="Row Data" visible="true"/>
+            <Column fieldName="changed_fields" caption="Changed Fields" visible="true"/>
+            <Column fieldName="statement_only" caption="Statement Only" visible="true"/>
+          </SimpleSearchColumns>
+          <AdvancedSearchColumns>
+            <Column fieldName="event_id" caption="Event ID" visible="true" useComboBox="false"/>
+            <Column fieldName="schema_name" caption="Schema Name" visible="true" useComboBox="false"/>
+            <Column fieldName="table_name" caption="Table Name" visible="true" useComboBox="false"/>
+            <Column fieldName="relid" caption="Relid" visible="true" useComboBox="false"/>
+            <Column fieldName="session_user_name" caption="Session User Name" visible="true" useComboBox="false"/>
+            <Column fieldName="action_tstamp_tx" caption="Action Tstamp Tx" visible="true" useComboBox="false"/>
+            <Column fieldName="action_tstamp_stm" caption="Action Tstamp Stm" visible="true" useComboBox="false"/>
+            <Column fieldName="action_tstamp_clk" caption="Action Tstamp Clk" visible="true" useComboBox="false"/>
+            <Column fieldName="transaction_id" caption="Transaction Id" visible="true" useComboBox="false"/>
+            <Column fieldName="application_name" caption="Application Name" visible="true" useComboBox="false"/>
+            <Column fieldName="client_addr" caption="Client Addr" visible="true" useComboBox="false"/>
+            <Column fieldName="client_port" caption="Client Port" visible="true" useComboBox="false"/>
+            <Column fieldName="client_query" caption="Client Query" visible="true" useComboBox="false"/>
+            <Column fieldName="action" caption="Action" visible="true" useComboBox="false"/>
+            <Column fieldName="row_data" caption="Row Data" visible="true" useComboBox="false"/>
+            <Column fieldName="changed_fields" caption="Changed Fields" visible="true" useComboBox="false"/>
+            <Column fieldName="statement_only" caption="Statement Only" visible="true" useComboBox="false"/>
+          </AdvancedSearchColumns>
+          <ExportColumns>
+            <Column fieldName="event_id" caption="Event ID" visible="true" headerHint="Unique identifier for each auditable event">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="schema_name" caption="Schema Name" visible="true" headerHint="Database schema audited table for this event is in">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="table_name" caption="Table Name" visible="true" headerHint="Non-schema-qualified table name of table event occured in">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="relid" caption="Relid" visible="true" headerHint="Table OID. Changes with drop/create. Get with 'tablename'::regclass">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="session_user_name" caption="Session User Name" visible="true" headerHint="Login / session user whose statement caused the audited event">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="action_tstamp_tx" caption="Action Tstamp Tx" visible="true" headerHint="Transaction start timestamp for tx in which audited event occurred">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y H:i:s"/>
+            </Column>
+            <Column fieldName="action_tstamp_stm" caption="Action Tstamp Stm" visible="true" headerHint="Statement start timestamp for tx in which audited event occurred">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y H:i:s"/>
+            </Column>
+            <Column fieldName="action_tstamp_clk" caption="Action Tstamp Clk" visible="true" headerHint="Wall clock time at which audited event's trigger call occurred">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y H:i:s"/>
+            </Column>
+            <Column fieldName="transaction_id" caption="Transaction Id" visible="true" headerHint="Identifier of transaction that made the change. May wrap, but unique paired with action_tstamp_tx.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="application_name" caption="Application Name" visible="true" headerHint="Application name set when this audit event occurred. Can be changed in-session by client.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="client_addr" caption="Client Addr" visible="true" headerHint="IP address of client that issued query. Null for unix domain socket.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="client_port" caption="Client Port" visible="true" headerHint="Remote peer IP port address of client that issued query. Undefined for unix socket.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="client_query" caption="Client Query" visible="true" headerHint="Top-level query that caused this auditable event. May be more than one statement.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="action" caption="Action" visible="true" headerHint="Action type; I = insert, D = delete, U = update, T = truncate">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="row_data" caption="Row Data" visible="true" headerHint="Record value. Null for statement-level trigger. For INSERT this is the new tuple. For DELETE and UPDATE it is the old tuple.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="changed_fields" caption="Changed Fields" visible="true" headerHint="New values of fields changed by UPDATE. Null except for row-level UPDATE events.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="statement_only" caption="Statement Only" visible="true" headerHint="'t' if audit event is from an FOR EACH STATEMENT trigger, 'f' for FOR EACH ROW">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+          </ExportColumns>
+          <PrintColumns>
+            <Column fieldName="event_id" caption="Event ID" visible="true" headerHint="Unique identifier for each auditable event">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="schema_name" caption="Schema Name" visible="true" headerHint="Database schema audited table for this event is in">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="table_name" caption="Table Name" visible="true" headerHint="Non-schema-qualified table name of table event occured in">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="relid" caption="Relid" visible="true" headerHint="Table OID. Changes with drop/create. Get with 'tablename'::regclass">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="session_user_name" caption="Session User Name" visible="true" headerHint="Login / session user whose statement caused the audited event">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="action_tstamp_tx" caption="Action Tstamp Tx" visible="true" headerHint="Transaction start timestamp for tx in which audited event occurred">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y H:i:s"/>
+            </Column>
+            <Column fieldName="action_tstamp_stm" caption="Action Tstamp Stm" visible="true" headerHint="Statement start timestamp for tx in which audited event occurred">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y H:i:s"/>
+            </Column>
+            <Column fieldName="action_tstamp_clk" caption="Action Tstamp Clk" visible="true" headerHint="Wall clock time at which audited event's trigger call occurred">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y H:i:s"/>
+            </Column>
+            <Column fieldName="transaction_id" caption="Transaction Id" visible="true" headerHint="Identifier of transaction that made the change. May wrap, but unique paired with action_tstamp_tx.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="application_name" caption="Application Name" visible="true" headerHint="Application name set when this audit event occurred. Can be changed in-session by client.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="client_addr" caption="Client Addr" visible="true" headerHint="IP address of client that issued query. Null for unix domain socket.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="client_port" caption="Client Port" visible="true" headerHint="Remote peer IP port address of client that issued query. Undefined for unix socket.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="client_query" caption="Client Query" visible="true" headerHint="Top-level query that caused this auditable event. May be more than one statement.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="action" caption="Action" visible="true" headerHint="Action type; I = insert, D = delete, U = update, T = truncate">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="row_data" caption="Row Data" visible="true" headerHint="Record value. Null for statement-level trigger. For INSERT this is the new tuple. For DELETE and UPDATE it is the old tuple.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="changed_fields" caption="Changed Fields" visible="true" headerHint="New values of fields changed by UPDATE. Null except for row-level UPDATE events.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="statement_only" caption="Statement Only" visible="true" headerHint="'t' if audit event is from an FOR EACH STATEMENT trigger, 'f' for FOR EACH ROW">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+          </PrintColumns>
+        </Columns>
+        <Details/>
+        <RecordPermissions useRecordPermissions="false"/>
+        <PartitionNavigators/>
+      </Page>
     </Pages>
     <UserAuthorization type="hardCoded">
       <Users>
@@ -2811,6 +3178,7 @@ DNI                  </MFUItem>
           <PageGrant pageName="ver_salario"/>
           <PageGrant pageName="estado_lote"/>
           <PageGrant pageName="ver_lote_cert"/>
+          <PageGrant pageName="audit.logged_actions"/>
         </PageGrants>
         <PageGrants userName="guest">
           <PageGrant pageName="public.factura"/>
@@ -2830,6 +3198,7 @@ DNI                  </MFUItem>
           <PageGrant pageName="ver_salario"/>
           <PageGrant pageName="estado_lote"/>
           <PageGrant pageName="ver_lote_cert"/>
+          <PageGrant pageName="audit.logged_actions"/>
         </PageGrants>
         <PageGrants userName="facturas">
           <PageGrant pageName="public.factura"/>
@@ -2849,6 +3218,7 @@ DNI                  </MFUItem>
           <PageGrant pageName="ver_salario"/>
           <PageGrant pageName="estado_lote"/>
           <PageGrant pageName="ver_lote_cert"/>
+          <PageGrant pageName="audit.logged_actions"/>
         </PageGrants>
       </UserPageGrants>
     </UserGrants>
