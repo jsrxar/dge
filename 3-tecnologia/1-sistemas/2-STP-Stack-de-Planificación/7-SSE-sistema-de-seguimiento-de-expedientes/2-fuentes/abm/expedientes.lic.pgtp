@@ -1,4 +1,4 @@
-<Project version="16.9.0.2" localizationFileName="C:\app\PostgreSQL PHP Generator Professional\lang.es.php" phpDriver="0" outputPath="\\mozart.myc.ar\expedientes\lic" copySystemFiles="true" outputFilesExtension="php" colorSchemeName="cerulean-compact">
+<Project version="16.9.0.2" localizationFileName="C:\app\PostgreSQL PHP Generator Professional\lang.es.php" phpDriver="0" outputPath="\\mozart.myc.ar\expedientes\lic" copySystemFiles="false" outputFilesExtension="php" colorSchemeName="facebook">
   <ConnectionOptions host="mozart.myc.ar" port="5432" login="expedientes" password="\/?T^:FJJZP~" database="expedientes" client_encoding="">
     <ssh_secure secure="false" port="22" authentication_mode="0"/>
     <http_tunnel tunneling="false" url="">
@@ -20,9 +20,18 @@
   </DataSources>
   <Presentation disableMagicQuotesRuntime="false" showEnvironmentVariables="false" showExecutedQueries="false" showPHPErrorsAndWarnings="false">
     <Pages>
-      <Page type="table" tableName="public.expediente" numberByDataSource="0" fileName="expediente" caption="Expedientes" viewFormCaptionTemplate="Expediente: %co_expediente%" editFormCaptionTemplate="Expediente: %co_expediente%" insertFormCaption="Nuevo expediente" shortCaption="Expedientes" groupName="Default" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable2="5" exportToWordAvailable2="5" exportToXmlAvailable2="5" exportToCsvAvailable2="5" exportToPdfAvailable2="5" printerFriendlyAvailable2="5" highlightRowOnMouseHover="true" useActionImages="true" useFixedGridHeader="true" showKeyColumnsImagesInGridHeader="false">
+      <Page type="table" tableName="public.expediente" numberByDataSource="0" fileName="expediente" caption="Expedientes" viewFormCaptionTemplate="Detalles expediente %co_expediente%" editFormCaptionTemplate="Edición expediente %co_expediente%" insertFormCaption="Nuevo expediente" shortCaption="Expedientes" groupName="Default" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="3" viewAbilityMode="3" editAbilityMode="3" deleteAbilityMode="3" copyAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable2="5" exportToWordAvailable2="5" exportToXmlAvailable2="5" exportToCsvAvailable2="5" exportToPdfAvailable2="5" printerFriendlyAvailable2="7" highlightRowOnMouseHover="true" useActionImages="true" useFixedGridHeader="true" showKeyColumnsImagesInGridHeader="false">
+        <DefaultSortedColumns>
+          <Column fieldName="co_expediente" orderType="0"/>
+        </DefaultSortedColumns>
+        <CompareHeaderColumns>
+          <Column fieldName="co_expediente"/>
+        </CompareHeaderColumns>
         <BeforeGridText/>
-        <DetailedDescription/>
+        <DetailedDescription>
+Detalles del expediente %co_expediente%        </DetailedDescription>
+        <homePageDescription>
+Lista de expedientes del Sistema Federal de Medios        </homePageDescription>
         <ColumnPresentations>
           <ColumnPresentation fieldName="id_expediente" caption="ID Expediente" headerHint="Identificador único del expediente." showColumnFilter="false" selectedFilterOperators="1573119">
             <ViewProperties type="text">
@@ -60,10 +69,12 @@
             </Validators>
           </ColumnPresentation>
           <ColumnPresentation fieldName="no_caratula" caption="Carátula" headerHint="Carátula del expediente." showColumnFilter="false" selectedFilterOperators="1589247">
-            <ViewProperties type="text" maxLength="75"/>
+            <ViewProperties type="text" maxLength="75">
+              <DivAttributes align="left"/>
+            </ViewProperties>
             <EditProperties type="textBox" maxLength="100"/>
           </ColumnPresentation>
-          <ColumnPresentation fieldName="fe_origen" caption="Ori.Fecha" headerHint="Origen Fecha." canSetNull="true" selectedFilterOperators="2031871">
+          <ColumnPresentation fieldName="fe_origen" caption="Origen Fecha" headerHint="Origen Fecha." canSetNull="true" selectedFilterOperators="2031871">
             <ViewProperties type="dateTime" dateTimeKind="1"/>
             <EditProperties type="dateTime" dateTimeFormat="Y-m-d" dateTimeKind="1" firstDayOfWeek="0"/>
           </ColumnPresentation>
@@ -127,15 +138,18 @@
                 <PartitionNavigators/>
               </OnTheFlyInsertPage>
             </Lookup>
-            <ViewProperties type="text" maxLength="75"/>
+            <ViewProperties type="text" maxLength="75">
+              <DivAttributes align="left"/>
+            </ViewProperties>
             <EditProperties type="autocompleteEdit"/>
           </ColumnPresentation>
           <ColumnPresentation fieldName="ds_emp_sugeridas" caption="Empresas Sugeridas" headerHint="Empresas sugeridas como proveedor." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
             <ViewProperties type="text" maxLength="75"/>
             <EditProperties type="textBox" maxLength="0"/>
           </ColumnPresentation>
-          <ColumnPresentation fieldName="va_monto" caption="Monto" headerHint="Monto total del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1573119">
+          <ColumnPresentation fieldName="va_monto" caption="Monto Total" headerHint="Monto total del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1573119">
             <ViewProperties type="text">
+              <DivAttributes align="right"/>
               <Format type="currency" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
             </ViewProperties>
             <EditProperties type="textBox" maxLength="0" prefix="$"/>
@@ -145,7 +159,8 @@
           </ColumnPresentation>
           <ColumnPresentation fieldName="va_monto_pagado" caption="Monto Pagado" headerHint="Monto pagado del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1573119">
             <ViewProperties type="text">
-              <Format type="number" numberAfterDecimal="2" decimalSeparator="." thousandSeparator=","/>
+              <DivAttributes align="right"/>
+              <Format type="currency" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
             </ViewProperties>
             <EditProperties type="textBox" maxLength="0" prefix="$"/>
             <Validators>
@@ -428,7 +443,7 @@
           </ColumnPresentation>
           <ColumnPresentation fieldName="ds_estado" caption="Detalles Estado" headerHint="Detalle del estado del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
             <ViewProperties type="text" maxLength="75"/>
-            <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+            <EditProperties type="textArea" columnCount="50" rowCount="2" placeholder=""/>
           </ColumnPresentation>
           <ColumnPresentation fieldName="id_ubicacion_interna" caption="Ubicación Interna" headerHint="Ubicación interna del expediente." canSetNull="true" selectedFilterOperators="1589247">
             <Lookup tableName="public.ubicacion_interna" linkFieldName="id_ubicacion_interna" displayFieldName="no_ubicacion_interna" lookupFilter="" useLookupOrdering="true" lookupOrdering="0" allowAddNewItemsOnTheFly="true">
@@ -506,15 +521,15 @@
           </ColumnPresentation>
           <ColumnPresentation fieldName="ds_facturas" caption="Facturas" headerHint="Facturas relacionadas con el expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
             <ViewProperties type="text" maxLength="75"/>
-            <EditProperties type="textArea" columnCount="50" rowCount="4" placeholder=""/>
+            <EditProperties type="textBox" maxLength="0"/>
           </ColumnPresentation>
-          <ColumnPresentation fieldName="ds_orden_pago" caption="Ds Orden Pago" headerHint="Orden de pago del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+          <ColumnPresentation fieldName="ds_orden_pago" caption="Orden Pago" headerHint="Orden de pago del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
             <ViewProperties type="text" maxLength="75"/>
             <EditProperties type="textBox" maxLength="100"/>
           </ColumnPresentation>
-          <ColumnPresentation fieldName="ds_observaciones" caption="Ds Observaciones" headerHint="Observaciones del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
+          <ColumnPresentation fieldName="ds_observaciones" caption="Observaciones" headerHint="Observaciones del expediente." showColumnFilter="false" canSetNull="true" selectedFilterOperators="1589247">
             <ViewProperties type="text" maxLength="75"/>
-            <EditProperties type="textArea" columnCount="50" rowCount="6" placeholder=""/>
+            <EditProperties type="textBox" maxLength="0"/>
           </ColumnPresentation>
           <ColumnPresentation fieldName="id_finalizado" caption="Finalizado" headerHint="Estado de finalización del expediente." canSetNull="true" selectedFilterOperators="1589247">
             <Lookup tableName="public.finalizado" linkFieldName="id_finalizado" displayFieldName="no_finalizado" lookupFilter="" useLookupOrdering="true" lookupOrdering="0" allowAddNewItemsOnTheFly="true">
@@ -645,19 +660,19 @@
         </ColumnPresentations>
         <Columns>
           <List>
-            <Column fieldName="id_expediente" visible="false"/>
-            <Column fieldName="co_expediente"/>
+            <Column fieldName="id_expediente" caption="ID" visible="false"/>
+            <Column fieldName="co_expediente" caption="Número/Año"/>
             <Column fieldName="nu_expediente" visible="false"/>
             <Column fieldName="nu_anio_expediente" visible="false"/>
             <Column fieldName="no_caratula"/>
-            <Column fieldName="fe_origen"/>
+            <Column fieldName="fe_origen" caption="Origen"/>
             <Column fieldName="id_proveedor"/>
             <Column fieldName="ds_emp_sugeridas" visible="false"/>
-            <Column fieldName="va_monto"/>
-            <Column fieldName="va_monto_pagado" visible="false"/>
-            <Column fieldName="id_tipo_bien_servicio"/>
-            <Column fieldName="id_tipo_contratacion"/>
-            <Column fieldName="id_reparticion_solicitante"/>
+            <Column fieldName="va_monto" caption="Total"/>
+            <Column fieldName="va_monto_pagado" caption="Pagado"/>
+            <Column fieldName="id_tipo_bien_servicio" visible="false"/>
+            <Column fieldName="id_tipo_contratacion" visible="false"/>
+            <Column fieldName="id_reparticion_solicitante" visible="false"/>
             <Column fieldName="id_reparticion_destino" visible="false"/>
             <Column fieldName="fe_responsable" visible="false"/>
             <Column fieldName="fe_compras_ingreso" visible="false"/>
@@ -672,7 +687,7 @@
             <Column fieldName="ds_orden_pago" visible="false"/>
             <Column fieldName="ds_observaciones" visible="false"/>
             <Column fieldName="id_finalizado"/>
-            <Column fieldName="id_cont_oc"/>
+            <Column fieldName="id_cont_oc" visible="false"/>
           </List>
           <View>
             <Column fieldName="id_expediente"/>
@@ -916,10 +931,110 @@
           </Compare>
         </Columns>
         <Details/>
+        <EventHandlers>
+          <OnPrepareChart enabled="true">
+$chart-&gt;setOptions(array(
+  'hAxis' =&gt; array('format' =&gt; '0'),
+  'legend' =&gt; 'none',
+  'vAxis' =&gt; array('format' =&gt; '0')
+));          </OnPrepareChart>
+          <OnPrepareColumnFilter enabled="true">
+$columnFilter-&gt;setOptionsFor(
+    'va_monto',
+    array(
+        &quot;Hasta 0,5M&quot;     =&gt; FilterCondition::lessThan(500000),
+        &quot;Entre 0,5 y 1M&quot; =&gt; FilterCondition::between(  500000,  1000000),
+        &quot;Entre 1 y 2M&quot;   =&gt; FilterCondition::between( 1000000,  2000000),
+        &quot;Entre 2 y 5M&quot;   =&gt; FilterCondition::between( 2000000,  5000000),
+        &quot;Entre 5 y 10M&quot;  =&gt; FilterCondition::between( 5000000, 10000000),
+        &quot;Entre 10 y 20M&quot; =&gt; FilterCondition::between(10000000, 20000000),
+        &quot;Entre 20 y 50M&quot; =&gt; FilterCondition::between(20000000, 50000000),
+        &quot;Mas de 50M&quot;     =&gt; FilterCondition::greaterThan(50000000)
+    ),
+    false // no default values
+);          </OnPrepareColumnFilter>
+          <OnGetCustomColumnGroup enabled="true">
+$columnGroup-&gt;add(new ViewColumnGroup('Expediente',
+        array(
+            $columns['co_expediente'],
+            $columns['no_caratula'],
+            $columns['id_proveedor']
+        )
+    )
+);
+$columnGroup-&gt;add(new ViewColumnGroup('Fecha',
+        array(
+            $columns['fe_origen']
+        )
+    )
+);
+$columnGroup-&gt;add(new ViewColumnGroup('Montos',
+        array(
+            $columns['va_monto'],
+            $columns['va_monto_pagado']
+        )
+    )
+);
+$columnGroup-&gt;add(new ViewColumnGroup('Situaci&amp;oacute;n',
+        array(
+            $columns['id_estado'],
+            $columns['id_finalizado']
+        )
+    )
+);          </OnGetCustomColumnGroup>
+        </EventHandlers>
         <RecordPermissions useRecordPermissions="false"/>
-        <PartitionNavigators/>
+        <PartitionNavigators>
+          <PartitionNavigator type="listBased" name="partition" caption="Año Expediente" allowViewAllRecords="true" expression="nu_anio_expediente">
+            <Partition caption="2013">
+              <Values>
+                <Value>
+2013                </Value>
+              </Values>
+            </Partition>
+            <Partition caption="2014">
+              <Values>
+                <Value>
+2014                </Value>
+              </Values>
+            </Partition>
+            <Partition caption="2015">
+              <Values>
+                <Value>
+2015                </Value>
+              </Values>
+            </Partition>
+            <Partition caption="2016">
+              <Values>
+                <Value>
+2016                </Value>
+              </Values>
+            </Partition>
+          </PartitionNavigator>
+        </PartitionNavigators>
+        <Charts>
+          <Chart name="Chart01" title="Montos por Año (millones)" type="1" positionTop="false" domainColumnName="nu_anio_expediente" domainColumnLabel="Año del Expediente" domainColumnType="int">
+            <DataColumns>
+              <Column name="monto_total" label="Total" type="float" tooltipColumnName="monto_total" annotationColumnName="nu_anio_expediente" annotationTextColumnName="monto_total"/>
+            </DataColumns>
+            <SelectStatement>
+SELECT
+      nu_anio_expediente,
+      ROUND(CAST(SUM(va_monto)/1000000 AS NUMERIC), 1) AS monto_total
+FROM (%source%) a
+GROUP BY nu_anio_expediente
+ORDER BY nu_anio_expediente            </SelectStatement>
+          </Chart>
+        </Charts>
       </Page>
-      <Page type="table" tableName="public.proveedor" numberByDataSource="0" fileName="proveedor" caption="Proveedor" shortCaption="Proveedor" groupName="Otros Datos" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable2="5" exportToWordAvailable2="5" exportToXmlAvailable2="5" exportToCsvAvailable2="5" exportToPdfAvailable2="5" printerFriendlyAvailable2="5" highlightRowOnMouseHover="true" useActionImages="true" useFixedGridHeader="true" showKeyColumnsImagesInGridHeader="false">
+      <Page type="table" tableName="public.proveedor" numberByDataSource="0" fileName="proveedor" caption="Proveedor" shortCaption="Proveedor" groupName="Otros Datos" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="3" viewAbilityMode="3" editAbilityMode="3" deleteAbilityMode="3" copyAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable2="5" exportToWordAvailable2="5" exportToXmlAvailable2="5" exportToCsvAvailable2="5" exportToPdfAvailable2="5" printerFriendlyAvailable2="5" highlightRowOnMouseHover="true" useActionImages="true" useFixedGridHeader="true" showKeyColumnsImagesInGridHeader="false" condensedTable="true">
+        <DefaultSortedColumns>
+          <Column fieldName="no_proveedor" orderType="0"/>
+        </DefaultSortedColumns>
+        <CompareHeaderColumns>
+          <Column fieldName="id_proveedor"/>
+          <Column fieldName="no_proveedor"/>
+        </CompareHeaderColumns>
         <BeforeGridText/>
         <DetailedDescription/>
         <ColumnPresentations>
@@ -929,14 +1044,16 @@
             </ViewProperties>
             <EditProperties type="textBox" maxLength="0"/>
           </ColumnPresentation>
-          <ColumnPresentation fieldName="no_proveedor" caption="Nombre Proveedor" headerHint="Nombre del proveedor." showColumnFilter="false" selectedFilterOperators="1589247">
-            <ViewProperties type="text" maxLength="75"/>
-            <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+          <ColumnPresentation fieldName="no_proveedor" caption="Proveedor" headerHint="Nombre del proveedor." showColumnFilter="false" selectedFilterOperators="1589055">
+            <ViewProperties type="text" maxLength="75">
+              <DivAttributes align="left"/>
+            </ViewProperties>
+            <EditProperties type="textBox" maxLength="0"/>
           </ColumnPresentation>
         </ColumnPresentations>
         <Columns>
           <List>
-            <Column fieldName="id_proveedor"/>
+            <Column fieldName="id_proveedor" visible="false"/>
             <Column fieldName="no_proveedor"/>
           </List>
           <View>
@@ -974,7 +1091,7 @@
         </Columns>
         <Details>
           <Detail caption="Expedientes">
-            <Page type="table" tableName="public.expediente" numberByDataSource="0" fileName="" caption="Expedientes" shortCaption="Expedientes" groupName="Default" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable2="5" exportToWordAvailable2="5" exportToXmlAvailable2="5" exportToCsvAvailable2="5" exportToPdfAvailable2="5" printerFriendlyAvailable2="5" highlightRowOnMouseHover="true" useActionImages="true" useFixedGridHeader="true" showKeyColumnsImagesInGridHeader="false">
+            <Page type="table" tableName="public.expediente" numberByDataSource="0" fileName="" caption="Expedientes" shortCaption="Expedientes" groupName="Default" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="3" viewAbilityMode="3" editAbilityMode="3" deleteAbilityMode="3" copyAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable2="5" exportToWordAvailable2="5" exportToXmlAvailable2="5" exportToCsvAvailable2="5" exportToPdfAvailable2="5" printerFriendlyAvailable2="5" highlightRowOnMouseHover="true" useActionImages="true" useFixedGridHeader="true" showKeyColumnsImagesInGridHeader="false" condensedTable="true">
               <BeforeGridText/>
               <DetailedDescription/>
               <ColumnPresentations>
@@ -1395,7 +1512,14 @@
         <RecordPermissions useRecordPermissions="false"/>
         <PartitionNavigators/>
       </Page>
-      <Page type="table" tableName="public.reparticion" numberByDataSource="0" fileName="reparticion" caption="Repartición" shortCaption="Repartición" groupName="Otros Datos" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable2="5" exportToWordAvailable2="5" exportToXmlAvailable2="5" exportToCsvAvailable2="5" exportToPdfAvailable2="5" printerFriendlyAvailable2="5" highlightRowOnMouseHover="true" useActionImages="true" useFixedGridHeader="true" showKeyColumnsImagesInGridHeader="false">
+      <Page type="table" tableName="public.reparticion" numberByDataSource="0" fileName="reparticion" caption="Repartición" shortCaption="Repartición" groupName="Otros Datos" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="3" viewAbilityMode="3" editAbilityMode="3" deleteAbilityMode="3" copyAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable2="5" exportToWordAvailable2="5" exportToXmlAvailable2="5" exportToCsvAvailable2="5" exportToPdfAvailable2="5" printerFriendlyAvailable2="5" highlightRowOnMouseHover="true" useActionImages="true" useFixedGridHeader="true" showKeyColumnsImagesInGridHeader="false">
+        <DefaultSortedColumns>
+          <Column fieldName="no_reparticion" orderType="0"/>
+        </DefaultSortedColumns>
+        <CompareHeaderColumns>
+          <Column fieldName="id_reparticion"/>
+          <Column fieldName="no_reparticion"/>
+        </CompareHeaderColumns>
         <BeforeGridText/>
         <DetailedDescription/>
         <ColumnPresentations>
@@ -1405,14 +1529,16 @@
             </ViewProperties>
             <EditProperties type="textBox" maxLength="0"/>
           </ColumnPresentation>
-          <ColumnPresentation fieldName="no_reparticion" caption="Nombre Repartición" headerHint="Nombre de la repartición." showColumnFilter="false" selectedFilterOperators="1589247">
-            <ViewProperties type="text" maxLength="75"/>
+          <ColumnPresentation fieldName="no_reparticion" caption="Repartición" headerHint="Nombre de la repartición." showColumnFilter="false" selectedFilterOperators="1589247">
+            <ViewProperties type="text" maxLength="75">
+              <DivAttributes align="left"/>
+            </ViewProperties>
             <EditProperties type="textBox" maxLength="100"/>
           </ColumnPresentation>
         </ColumnPresentations>
         <Columns>
           <List>
-            <Column fieldName="id_reparticion"/>
+            <Column fieldName="id_reparticion" visible="false"/>
             <Column fieldName="no_reparticion"/>
           </List>
           <View>
@@ -1450,7 +1576,7 @@
         </Columns>
         <Details>
           <Detail caption="Expedientes Solicitados">
-            <Page type="table" tableName="public.expediente" numberByDataSource="1" fileName="" caption="Expedientes Solicitados" shortCaption="Expedientes Solicitado" groupName="Default" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable2="5" exportToWordAvailable2="5" exportToXmlAvailable2="5" exportToCsvAvailable2="5" exportToPdfAvailable2="5" printerFriendlyAvailable2="5" highlightRowOnMouseHover="true" useActionImages="true" useFixedGridHeader="true" showKeyColumnsImagesInGridHeader="false">
+            <Page type="table" tableName="public.expediente" numberByDataSource="1" fileName="" caption="Expedientes Solicitados" shortCaption="Expedientes Solicitado" groupName="Default" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="3" viewAbilityMode="3" editAbilityMode="3" deleteAbilityMode="3" copyAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable2="5" exportToWordAvailable2="5" exportToXmlAvailable2="5" exportToCsvAvailable2="5" exportToPdfAvailable2="5" printerFriendlyAvailable2="5" highlightRowOnMouseHover="true" useActionImages="true" useFixedGridHeader="true" showKeyColumnsImagesInGridHeader="false" condensedTable="true">
               <BeforeGridText/>
               <DetailedDescription/>
               <ColumnPresentations>
@@ -1868,7 +1994,7 @@
             </MasterForeignKeyColumnMap>
           </Detail>
           <Detail caption="Expedientes Recibidos">
-            <Page type="table" tableName="public.expediente" numberByDataSource="2" fileName="" caption="Expedientes Recibidos" shortCaption="Expedientes Recibidos" groupName="Default" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable2="5" exportToWordAvailable2="5" exportToXmlAvailable2="5" exportToCsvAvailable2="5" exportToPdfAvailable2="5" printerFriendlyAvailable2="5" highlightRowOnMouseHover="true" useActionImages="true" useFixedGridHeader="true" showKeyColumnsImagesInGridHeader="false">
+            <Page type="table" tableName="public.expediente" numberByDataSource="2" fileName="" caption="Expedientes Recibidos" shortCaption="Expedientes Recibidos" groupName="Default" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="3" viewAbilityMode="3" editAbilityMode="3" deleteAbilityMode="3" copyAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable2="5" exportToWordAvailable2="5" exportToXmlAvailable2="5" exportToCsvAvailable2="5" exportToPdfAvailable2="5" printerFriendlyAvailable2="5" highlightRowOnMouseHover="true" useActionImages="true" useFixedGridHeader="true" showKeyColumnsImagesInGridHeader="false" condensedTable="true">
               <BeforeGridText/>
               <DetailedDescription/>
               <ColumnPresentations>
@@ -2335,9 +2461,9 @@ Otros Datos      </Group>
   <UserCSS/>
   <UserJS>
 $(document).ready(function(){
-  $(&quot;.SQLGeneratorEvaluationVersion,.SQLGeneratorEvaluationVersion-head,.SQLGeneratorEvaluationVersion-justify&quot;).css({&quot;height&quot;:&quot;1px&quot;,&quot;visibility&quot;:&quot;hidden&quot;});
+ $(&quot;.SQLGeneratorEvaluationVersion,.SQLGeneratorEvaluationVersion-head,.SQLGeneratorEvaluationVersion-justify&quot;).css({&quot;height&quot;:&quot;1px&quot;,&quot;visibility&quot;:&quot;hidden&quot;});
 });  </UserJS>
   <ExcludedPaths/>
-  <DefaultPageProperties recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable2="5" exportToWordAvailable2="5" exportToXmlAvailable2="5" exportToCsvAvailable2="5" exportToPdfAvailable2="5" printerFriendlyAvailable2="5" highlightRowOnMouseHover="true" useActionImages="true" useFixedGridHeader="true" showKeyColumnsImagesInGridHeader="false"/>
+  <DefaultPageProperties recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="3" viewAbilityMode="3" editAbilityMode="3" deleteAbilityMode="3" copyAbilityMode="3" deleteSelectedAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable2="5" exportToWordAvailable2="5" exportToXmlAvailable2="5" exportToCsvAvailable2="5" exportToPdfAvailable2="5" printerFriendlyAvailable2="5" highlightRowOnMouseHover="true" useActionImages="true" useFixedGridHeader="true" showKeyColumnsImagesInGridHeader="false" condensedTable="true"/>
   <DefaultDataFormats numberAfterDecimal="2" DecimalSeparator="," ThousandSeparator="." DateTimeFormat="Y-m-d H:i:s" DateFormat="Y-m-d" firstDayOfWeek="0" getStringForDisplayingNullsFromLocalizationFile="false" nullLabel="-"/>
 </Project>
