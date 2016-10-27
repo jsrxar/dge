@@ -2,19 +2,22 @@
 ## Descripción : Activa y agrega funcionalidades a salida del PHP Generator
 ################################################################################
 param(
-[string]$dir
+	[string]$dir
 )
+Write-Host Procesando el directorio $dir
+
 [system.text.encoding]::GetEncoding('iso-8859-1')
-$diract =  $dir + "\activador"
+$diract = $dir + "\activador"
 
 foreach ($arch in get-content "$diract\activador.txt") {
+	$archori = $dir + "\" + $arch
 	Write-Host Procesando $arch
 
-	if (Test-Path $arch) {
-		$archtmp = $dir + "\" + $arch + ".borrar"
+	if (Test-Path $archori) {
+		$archtmp = $archori + ".borrar"
 
 		if ($arch.Equals("factura.php")) {
-			get-content $arch | 
+			get-content $archori | 
 				%{$_ -replace 'SetUseImagesForActions\(false\)', 'SetUseImagesForActions(true)'} |
 				%{$_ -replace 'SetHighlightRowAtHover\(false\)', 'SetHighlightRowAtHover(true)'} |
 				%{$_ -replace 'SetExportToExcelAvailable\(false\)', 'SetExportToExcelAvailable(true)'} |
@@ -33,7 +36,7 @@ foreach ($arch in get-content "$diract\activador.txt") {
 				%{$_ -replace 'AddBand\(', 'AddBandToBegin('} |
 				%{$_ -replace 'SetRowsPerPage\(.*\)', 'SetRowsPerPage(100)'} | Out-File -Encoding "UTF8" $archtmp
 		} else {
-			get-content $arch | 
+			get-content $archori | 
 				%{$_ -replace 'SetUseImagesForActions\(false\)', 'SetUseImagesForActions(true)'} |
 				%{$_ -replace 'SetHighlightRowAtHover\(false\)', 'SetHighlightRowAtHover(true)'} |
 				%{$_ -replace 'SetExportToExcelAvailable\(false\)', 'SetExportToExcelAvailable(true)'} |
@@ -56,7 +59,7 @@ foreach ($arch in get-content "$diract\activador.txt") {
 		# Convierte la salida de nuevo a ISO-8859-1
 		Start-Process -FilePath "$diract\iconv.exe" `
 		              -ArgumentList "-f UTF-8 -t ISO-8859-1 -c $archtmp" `
-		              -RedirectStandardOutput "$arch" `
+		              -RedirectStandardOutput "$archori" `
 		              -RedirectStandardError "iconv_error.txt" `
 		              -Wait
 		Remove-Item $archtmp

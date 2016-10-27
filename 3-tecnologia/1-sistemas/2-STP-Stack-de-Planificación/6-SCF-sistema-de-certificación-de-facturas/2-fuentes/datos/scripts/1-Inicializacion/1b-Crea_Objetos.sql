@@ -42,20 +42,27 @@ CREATE TABLE public.stg_base_rrhh (
 COMMENT ON TABLE public.stg_base_rrhh IS 'Base de datos de origen de RRHH.';
 
 
-CREATE TABLE public.mes (
-                id_mes INTEGER NOT NULL,
-                nu_mes SMALLINT NOT NULL,
-                no_mes VARCHAR(20) NOT NULL,
-                nu_anio_mes SMALLINT NOT NULL,
+CREATE TABLE public.tipo_honorario (
+                id_tipo_honorario INTEGER NOT NULL,
+                no_tipo_honorario VARCHAR(20) NOT NULL,
+                co_categ_honorario CHAR(1) DEFAULT 'M' NOT NULL,
+                nu_mes_honorario SMALLINT,
+                nu_anio_honorario SMALLINT,
                 va_pct_aumento REAL,
-                CONSTRAINT mes_pk PRIMARY KEY (id_mes)
+                CONSTRAINT tipo_honorario_pk PRIMARY KEY (id_tipo_honorario)
 );
-COMMENT ON TABLE public.mes IS 'Mes de pago del salario.';
-COMMENT ON COLUMN public.mes.id_mes IS 'Identificador único del mes del salario.';
-COMMENT ON COLUMN public.mes.nu_mes IS 'Número de mes.';
-COMMENT ON COLUMN public.mes.no_mes IS 'Nombre del mes del salario.';
-COMMENT ON COLUMN public.mes.nu_anio_mes IS 'Año del mes.';
-COMMENT ON COLUMN public.mes.va_pct_aumento IS 'Porcentaje de aumento en el mes.';
+COMMENT ON TABLE public.tipo_honorario IS 'Tipo del honorario de pago al agente (normalmente el mes del mismo)';
+COMMENT ON COLUMN public.tipo_honorario.id_tipo_honorario IS 'Identificador único del tipo de honorario.';
+COMMENT ON COLUMN public.tipo_honorario.no_tipo_honorario IS 'Nombre del tipo de honorario (normalmente del mes).';
+COMMENT ON COLUMN public.tipo_honorario.co_categ_honorario IS 'Categoría del honorário:
+M=Mensual
+A=Adicional
+E=Extra
+B=Bono
+O=Otro';
+COMMENT ON COLUMN public.tipo_honorario.nu_mes_honorario IS 'Mes del honorario.';
+COMMENT ON COLUMN public.tipo_honorario.nu_anio_honorario IS 'Año del honorario.';
+COMMENT ON COLUMN public.tipo_honorario.va_pct_aumento IS 'Porcentaje de aumento en el honorario.';
 
 
 CREATE SEQUENCE public.convenio_at_sq;
@@ -257,29 +264,29 @@ COMMENT ON COLUMN public.contrato.id_convenio_at IS 'Identificador único del con
 
 ALTER SEQUENCE public.contrato_sq OWNED BY public.contrato.id_contrato;
 
-CREATE SEQUENCE public.salario_sq;
+CREATE SEQUENCE public.honorario_sq;
 
-CREATE TABLE public.salario (
-                id_salario INTEGER NOT NULL DEFAULT nextval('public.salario_sq'),
-                id_mes INTEGER NOT NULL,
+CREATE TABLE public.honorario (
+                id_honorario INTEGER NOT NULL DEFAULT nextval('public.honorario_sq'),
+                id_tipo_honorario INTEGER NOT NULL,
                 id_contrato INTEGER NOT NULL,
-                va_salario REAL,
-                CONSTRAINT salario_pk PRIMARY KEY (id_salario)
+                va_honorario REAL,
+                CONSTRAINT honorario_pk PRIMARY KEY (id_honorario)
 );
-COMMENT ON TABLE public.salario IS 'Salario del mes del agente.';
-COMMENT ON COLUMN public.salario.id_salario IS 'Identificador único del salario del agente en un mes.';
-COMMENT ON COLUMN public.salario.id_mes IS 'Mes del salario.';
-COMMENT ON COLUMN public.salario.id_contrato IS 'Contrato con el agente.';
-COMMENT ON COLUMN public.salario.va_salario IS 'Valor del salario del agente en el mes.';
+COMMENT ON TABLE public.honorario IS 'Honorario del agente (normalmente mensual).';
+COMMENT ON COLUMN public.honorario.id_honorario IS 'Identificador único del honorario del agente.';
+COMMENT ON COLUMN public.honorario.id_tipo_honorario IS 'Tipo del honorario (normalmente el mes del mismo).';
+COMMENT ON COLUMN public.honorario.id_contrato IS 'Contrato con el agente.';
+COMMENT ON COLUMN public.honorario.va_honorario IS 'Valor del honorario del agente.';
 
 
-ALTER SEQUENCE public.salario_sq OWNED BY public.salario.id_salario;
+ALTER SEQUENCE public.honorario_sq OWNED BY public.honorario.id_honorario;
 
 CREATE SEQUENCE public.factura_sq;
 
 CREATE TABLE public.factura (
                 id_factura INTEGER NOT NULL DEFAULT nextval('public.factura_sq'),
-                id_salario INTEGER NOT NULL,
+                id_honorario INTEGER NOT NULL,
                 nu_pto_venta INTEGER,
                 nu_factura INTEGER,
                 fe_factura DATE,
@@ -295,9 +302,9 @@ CREATE TABLE public.factura (
                 ds_comentario VARCHAR(400),
                 CONSTRAINT factura_pk PRIMARY KEY (id_factura)
 );
-COMMENT ON TABLE public.factura IS 'Factura del agente asociada a un salario mensual.';
+COMMENT ON TABLE public.factura IS 'Factura del agente asociada a un honorario mensual.';
 COMMENT ON COLUMN public.factura.id_factura IS 'Identificador único de la factura del agente.';
-COMMENT ON COLUMN public.factura.id_salario IS 'Salario del agente al que afecta la factura.';
+COMMENT ON COLUMN public.factura.id_honorario IS 'Honorario del agente al que afecta la factura.';
 COMMENT ON COLUMN public.factura.nu_pto_venta IS 'Número del punto de venta de la factura.';
 COMMENT ON COLUMN public.factura.nu_factura IS 'Número de la factura.';
 COMMENT ON COLUMN public.factura.fe_factura IS 'Fecha de la factura.';
@@ -315,9 +322,9 @@ COMMENT ON COLUMN public.factura.ds_comentario IS 'Comentario de la factura.';
 
 ALTER SEQUENCE public.factura_sq OWNED BY public.factura.id_factura;
 
-ALTER TABLE public.salario ADD CONSTRAINT mes_salario_fk
-FOREIGN KEY (id_mes)
-REFERENCES public.mes (id_mes)
+ALTER TABLE public.honorario ADD CONSTRAINT tipo_honorario_honorario_fk
+FOREIGN KEY (id_tipo_honorario)
+REFERENCES public.tipo_honorario (id_tipo_honorario)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
@@ -406,16 +413,16 @@ ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE public.salario ADD CONSTRAINT contrato_salario_fk
+ALTER TABLE public.honorario ADD CONSTRAINT contrato_honorario_fk
 FOREIGN KEY (id_contrato)
 REFERENCES public.contrato (id_contrato)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE public.factura ADD CONSTRAINT salario_factura_fk
-FOREIGN KEY (id_salario)
-REFERENCES public.salario (id_salario)
+ALTER TABLE public.factura ADD CONSTRAINT honorario_factura_fk
+FOREIGN KEY (id_honorario)
+REFERENCES public.honorario (id_honorario)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;

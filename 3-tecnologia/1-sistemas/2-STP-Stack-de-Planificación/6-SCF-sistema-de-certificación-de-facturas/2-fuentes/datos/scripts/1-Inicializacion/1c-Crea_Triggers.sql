@@ -5,8 +5,8 @@ CREATE OR REPLACE FUNCTION fn_factura_tg() RETURNS trigger
 BEGIN
   NEW.id_convenio_at = (
     SELECT co.id_convenio_at
-    FROM salario sa LEFT JOIN contrato co ON co.id_contrato = sa.id_contrato
-    WHERE sa.id_salario = NEW.id_salario );
+    FROM honorario ho LEFT JOIN contrato co ON co.id_contrato = ho.id_contrato
+    WHERE ho.id_honorario = NEW.id_honorario );
   RETURN NEW;
 END;
 $$;
@@ -25,7 +25,7 @@ SELECT audit.audit_table('public.dependencia');
 SELECT audit.audit_table('public.factura');
 SELECT audit.audit_table('public.mes');
 SELECT audit.audit_table('public.puesto');
-SELECT audit.audit_table('public.salario');
+SELECT audit.audit_table('public.honorario');
 SELECT audit.audit_table('public.tipo_contrato');
 SELECT audit.audit_table('public.ubicacion_fisica');
 

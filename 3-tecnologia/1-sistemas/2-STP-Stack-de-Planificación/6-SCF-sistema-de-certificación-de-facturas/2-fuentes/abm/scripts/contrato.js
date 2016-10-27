@@ -1,5 +1,21 @@
- $(document).ready(function(){ ver_campos() });
- $("#id_tipo_contrato_edit").change(function(){ ver_campos() });
+switch($.urlParam('operation')) {
+    case 'copy':
+    case 'edit':
+    case 'insert':
+		// Edición de registro
+        fn_contrato_edit();
+        break;
+    case 'view':
+        // Nada
+        break;
+    default:
+        // Nada
+}
+
+function fn_contrato_edit () {
+	$(document).ready(function(){ ver_campos() });
+	$("#id_tipo_contrato_edit").change(function(){ ver_campos() });
+}
 
 function ver_campos () {
 	var tipo = $("#id_tipo_contrato_edit").val();

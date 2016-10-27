@@ -155,9 +155,9 @@ if($idsToCertif = get_param("idsToCertif")){
 			$sql .= "  TO_CHAR(fa.fe_factura, 'DD/MM/YYYY'),\n";
 			$sql .= "  fa.va_factura::NUMERIC::MONEY\n";
 			$sql .= "FROM factura fa\n";
-			$sql .= "LEFT JOIN salario sa  ON sa.id_salario = fa.id_salario\n";
-			$sql .= "LEFT JOIN contrato co ON co.id_contrato = sa.id_contrato\n";
-			$sql .= "LEFT JOIN agente ag   ON ag.id_agente = co.id_agente\n";
+			$sql .= "LEFT JOIN honorario sa ON sa.id_honorario = fa.id_honorario\n";
+			$sql .= "LEFT JOIN contrato co  ON co.id_contrato = sa.id_contrato\n";
+			$sql .= "LEFT JOIN agente ag    ON ag.id_agente = co.id_agente\n";
 			$sql .= "LEFT JOIN convenio_at at ON at.id_convenio_at = co.id_convenio_at\n";
 			$sql .= "WHERE fa.fl_rechazo IS FALSE\n";
 			$sql .= "  AND fa.id_certificacion IS NULL\n";

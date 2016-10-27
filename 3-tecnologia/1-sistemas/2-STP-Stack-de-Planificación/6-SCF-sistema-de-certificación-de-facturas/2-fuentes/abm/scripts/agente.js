@@ -1,4 +1,26 @@
-if($.urlParam('operation') == 'view') {
+switch($.urlParam('operation')) {
+    case 'copy':
+    case 'edit':
+    case 'insert':
+		// Edición de registro
+        fn_agente_edit();
+        break;
+    case 'view':
+		// Visualización de registro
+        fn_agente_view();
+        break;
+    default:
+        // Nada
+}
+
+function fn_agente_edit () {
+	$("#id_ubicacion_fisica_edit").bind("DOMSubtreeModified", function() {
+		// Agrandar combos de "Puesto" y "Dependencia"
+		$(".select2-container").css("width", "532px");
+	});
+}
+
+function fn_agente_view () {
 	var today = new Date();
 
 	var datos = {

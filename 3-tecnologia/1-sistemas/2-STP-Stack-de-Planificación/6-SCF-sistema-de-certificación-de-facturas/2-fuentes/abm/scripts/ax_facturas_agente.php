@@ -7,8 +7,8 @@ if($idAgente = get_param("idAgente")){
 	$sql .= "  fa.va_factura::NUMERIC::MONEY,\n";
 	$sql .= "  TO_CHAR(fa.fe_carga, 'DD/MM/YYYY')\n";
 	$sql .= "FROM contrato co\n";
-	$sql .= "LEFT JOIN salario sa ON co.id_contrato = sa.id_contrato\n";
-	$sql .= "INNER JOIN factura fa ON sa.id_salario = fa.id_salario\n";
+	$sql .= "LEFT JOIN honorario sa ON co.id_contrato = sa.id_contrato\n";
+	$sql .= "INNER JOIN factura fa  ON sa.id_honorario = fa.id_honorario\n";
 	$sql .= "WHERE co.id_agente = " . $idAgente . "\n";
 	$sql .= "ORDER BY fa.fe_factura";
 

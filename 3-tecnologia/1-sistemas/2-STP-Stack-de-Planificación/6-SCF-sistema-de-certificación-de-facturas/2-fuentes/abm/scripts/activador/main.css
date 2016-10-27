@@ -58,7 +58,7 @@ sub {
   bottom: -0.25em;
 }
 img {
-  max-width: 100%;
+  max-width: 300px;
   vertical-align: middle;
   border: 0;
   -ms-interpolation-mode: bicubic;
@@ -6155,7 +6155,7 @@ table.pgui-grid > tbody > tr.detail > td > .detail-loading {
   background: white url('../../images/loading.gif') no-repeat center center;
 }
 table.pgui-grid > tbody > tr > td {
-  padding: 4px;
+  padding: 3px;
 }
 table.pgui-grid > thead > tr.header th {
   color: white;

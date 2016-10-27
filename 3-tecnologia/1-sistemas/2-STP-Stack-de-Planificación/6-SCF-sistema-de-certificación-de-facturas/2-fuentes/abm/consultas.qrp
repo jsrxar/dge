@@ -1,0 +1,135 @@
+<Queries>
+  <Query name="ver_tipo_honorario">
+    <SelectStatement>
+SELECT
+id_tipo_honorario,
+CASE co_categ_honorario
+WHEN 'M' THEN 'Mes '
+WHEN 'A' THEN 'Adicional '
+WHEN 'E' THEN 'Extra '
+WHEN 'B' THEN 'Bono '
+ELSE '' END ||
+no_tipo_honorario ||
+(CASE WHEN va_pct_aumento &gt; 0
+THEN ' (ajuste '||va_pct_aumento||'%)'
+ELSE '' END) AS no_tipo_honorario
+FROM tipo_honorario
+ORDER BY id_tipo_honorario    </SelectStatement>
+    <InsertStatements/>
+    <UpdateStatements/>
+    <DeleteStatements/>
+  </Query>
+  <Query name="ver_contrato_factura">
+    <SelectStatement>
+SELECT
+      id_contrato,
+      TRIM(
+      (SELECT COALESCE('CUIT: ' || co_cuit || ' (', 'SIN CUIT (')
+              || no_agente || ')'
+       FROM agente
+       WHERE id_agente = co.id_agente) ||
+       TO_CHAR(fe_fin, '&quot; - Fin contrato&quot; DD/MM/YY')) AS ds_contrato
+FROM public.contrato co
+INNER JOIN public.tipo_contrato tc ON tc.id_tipo_contrato = co.id_tipo_contrato
+WHERE NOW() BETWEEN COALESCE(fe_inicio, CURRENT_DATE - 1) AND COALESCE(fe_fin, CURRENT_DATE + 1)
+AND tc.co_tipo_contrato IN ('AT', 'CO')
+ORDER BY 2    </SelectStatement>
+    <InsertStatements/>
+    <UpdateStatements/>
+    <DeleteStatements/>
+  </Query>
+  <Query name="ver_dependencia">
+    <SelectStatement>
+SELECT
+id_dependencia,
+TRIM(COALESCE(no_ministerio, '-') ||
+COALESCE(' | ' || no_secretaria, '') ||
+COALESCE(' | ' || no_subsecretaria, '') ||
+COALESCE(' | ' || no_direccion_area, '') ||
+COALESCE(' | ' || no_area_dependencia, '') ||
+COALESCE(' | ' || no_sector, '') ||
+COALESCE(' | ' || no_subsector, '')) AS ds_dependencia
+FROM dependencia
+ORDER BY 2    </SelectStatement>
+    <InsertStatements/>
+    <UpdateStatements/>
+    <DeleteStatements/>
+  </Query>
+  <Query name="ver_honorario">
+    <SelectStatement>
+SELECT
+      id_honorario,
+      id_contrato,
+      (SELECT ag.no_agente
+       FROM agente ag, contrato co
+       WHERE co.id_contrato = sa.id_contrato
+         AND ag.id_agente = co.id_agente) || ' - ' ||
+      (SELECT no_tipo_honorario
+       FROM tipo_honorario
+       WHERE id_tipo_honorario = sa.id_tipo_honorario) ||
+      ' (' || CAST(CAST(sa.va_honorario AS NUMERIC) AS MONEY) ||')' ||
+      (SELECT CASE
+       WHEN COUNT(DISTINCT id_factura) = 0 THEN ''
+       WHEN COUNT(DISTINCT id_factura) = 1 THEN ' &lt;!--1 factura asociada--&gt;'
+       ELSE ' &lt;!--' || COUNT(DISTINCT id_factura) || ' facturas asociadas--&gt;' END
+       FROM factura fa WHERE fa.id_honorario = sa.id_honorario AND NOT fl_rechazo ) AS ds_honorario
+FROM honorario sa
+ORDER BY ds_honorario    </SelectStatement>
+    <InsertStatements/>
+    <UpdateStatements/>
+    <DeleteStatements/>
+  </Query>
+  <Query name="estado_lote">
+    <SelectStatement>
+SELECT 'P' AS id, 'PreCertificado' AS nombre
+UNION ALL SELECT 'C', 'Certificado'
+UNION ALL SELECT 'X', 'Anulado'    </SelectStatement>
+    <InsertStatements/>
+    <UpdateStatements/>
+    <DeleteStatements/>
+  </Query>
+  <Query name="ver_lote_cert">
+    <SelectStatement>
+SELECT
+id_certificacion AS id,
+(SELECT no_convenio_at FROM convenio_at
+ WHERE id_convenio_at = ce.id_convenio_at ) ||
+' #' || CAST(id_certificacion AS TEXT) ||
+CASE co_estado WHEN 'P' THEN ' (PreCertif. '
+WHEN 'C' THEN ' (Certificado ' ELSE ' (Anulado ' END ||
+TO_CHAR(COALESCE(fe_certificacion, fe_creacion), 'DD/MM/YY&quot;)&quot;') AS nombre
+FROM certificacion ce    </SelectStatement>
+    <InsertStatements/>
+    <UpdateStatements/>
+    <DeleteStatements/>
+  </Query>
+  <Query name="ver_categ_honorario">
+    <SelectStatement>
+SELECT 'M' AS id, 'Mensual' AS nombre
+UNION ALL SELECT 'A', 'Adicional'
+UNION ALL SELECT 'E', 'Extra'
+UNION ALL SELECT 'B', 'Bono'
+UNION ALL SELECT 'O', 'Otro'    </SelectStatement>
+    <InsertStatements/>
+    <UpdateStatements/>
+    <DeleteStatements/>
+  </Query>
+  <Query name="ver_contrato">
+    <SelectStatement>
+SELECT
+      id_contrato,
+      TRIM(
+      (SELECT COALESCE('CUIT: ' || co_cuit || ' (', 'SIN CUIT (')
+              || no_agente || ')'
+       FROM agente
+       WHERE id_agente = co.id_agente) ||
+       ' Contrato ' || tc.co_tipo_contrato ||
+       TO_CHAR(fe_fin, '&quot; (fin &quot;DD/MM/YY&quot;)&quot;')) AS ds_contrato
+FROM public.contrato co
+INNER JOIN public.tipo_contrato tc ON tc.id_tipo_contrato = co.id_tipo_contrato
+ORDER BY 2    </SelectStatement>
+    <InsertStatements/>
+    <UpdateStatements/>
+    <DeleteStatements/>
+  </Query>
+</Queries>

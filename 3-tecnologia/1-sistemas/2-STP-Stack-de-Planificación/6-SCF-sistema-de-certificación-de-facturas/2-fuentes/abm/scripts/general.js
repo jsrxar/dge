@@ -2,5 +2,5 @@ var MD5=function(s){function L(k,d){return(k<<d)|(k>>>(32-d))}function K(G,k){va
 
 $.urlParam = function(name){
 	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-	return results[1] || 0;
+	return ( results? results[1] : '');
 }

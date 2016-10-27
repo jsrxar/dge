@@ -1,8 +1,34 @@
-$(document).ready(function(){ fn_funciones_RH () });
+switch($.urlParam('operation')) {
+    case 'copy':
+    case 'edit':
+    case 'insert':
+		// Edición de registro
+        fn_factura_edit();
+        break;
+    case 'view':
+        // Nada
+        break;
+    default:
+		// Certificación de Facturas
+        fn_factura_grid();
+}
 
-function fn_funciones_RH () {
-	// Agrandar combos de "CUIT" y "Honorarios"
-	$("#id_salario_edit").bind("DOMSubtreeModified", function(){ $(".select2-container").css("width", "500px"); });
+function fn_factura_edit () {
+	$("#id_honorario_edit").bind("DOMSubtreeModified", function(){
+		// Agrandar combos de "CUIT" y "Honorarios"
+		$(".select2-container").css("width", "532px");
+		// Poniendo monto por defecto
+		if($("#select2-chosen-4").html().indexOf("$") > 0 ) {
+			var monto = $("#select2-chosen-4").html().split("(")[1];
+			monto = monto.split(")")[0];
+			$("#va_factura_edit").val(monto.replace("$","").replace(".",""));
+		}
+	});
+}
+
+function fn_factura_grid () {
+	//$("#public_facturaGrid").css("min-width", "1200px");
+	$("table.pgui-grid > tbody > tr > td").css("padding", "1px");
 
 	// Cambiar "SetAllowDeleteSelected(false);" por "SetAllowDeleteSelected(true);"
 	$('div.btn-toolbar.pull-left').before('<button class="btn rrhh-certif-selected"><i class="pg-icon-export"></i>Certificar facturas</button>');
