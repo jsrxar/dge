@@ -10,7 +10,8 @@ switch($.urlParam('operation')) {
         fn_agente_view();
         break;
     default:
-        // Nada
+		// Visualizaciones generales
+		fn_agente_grid();
 }
 
 function fn_agente_edit () {
@@ -18,9 +19,20 @@ function fn_agente_edit () {
 		// Agrandar combos de "Puesto" y "Dependencia"
 		$(".select2-container").css("width", "532px");
 	});
+	// Si cambia "Nombre" o "Apellido" colocamos el "Nombre Completo"
+	$("#no_nombre_edit").on("input",function(e){
+		$("#no_agente_edit").val($("#no_apellido_edit").val() + ", " + $("#no_nombre_edit").val());
+	});
+	$("#no_apellido_edit").on("input",function(e){
+		$("#no_agente_edit").val($("#no_apellido_edit").val() + ", " + $("#no_nombre_edit").val());
+	});
 }
 
 function fn_agente_view () {
+	var span = "span12";
+	$('div.span6').addClass(span);
+	$('div.' + span).removeClass("span6");
+
 	var today = new Date();
 
 	var datos = {
@@ -36,8 +48,12 @@ function fn_agente_view () {
 			if ($("#auxFactAgente").length > 0){
 				$("#auxFactAgente").html(respuesta);
 			} else {
-				$("div.span6").append('<div id="auxFactAgente">' + respuesta + '</div>');
+				$("div." + span).append('<div id="auxFactAgente">' + respuesta + '</div>');
 			}
 		}
 	});
+}
+
+function fn_agente_grid () {
+	$('td[data-column-name="no_agente"]').css("font-weight","bold");
 }

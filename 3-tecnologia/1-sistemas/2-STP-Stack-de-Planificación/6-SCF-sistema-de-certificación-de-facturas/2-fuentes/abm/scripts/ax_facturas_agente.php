@@ -2,15 +2,24 @@
 include_once dirname(__FILE__) . '/' . 'ax_general.php';
 
 if($idAgente = get_param("idAgente")){
-	$sql =  "SELECT LPAD(fa.nu_pto_venta::TEXT, 4, '0')||'-'||LPAD(fa.nu_factura::TEXT, 8, '0'),\n";
-	$sql .= "  TO_CHAR(fa.fe_factura, 'DD/MM/YYYY'),\n";
-	$sql .= "  fa.va_factura::NUMERIC::MONEY,\n";
-	$sql .= "  TO_CHAR(fa.fe_carga, 'DD/MM/YYYY')\n";
+	$sql =  "SELECT TO_CHAR(fa.fe_factura, 'DD/MM/YYYY'),\n";
+	$sql .= "LPAD(fa.nu_pto_venta::TEXT, 4, '0')||'-'||LPAD(fa.nu_factura::TEXT, 8, '0'),\n";
+	$sql .= "fa.va_factura::NUMERIC::MONEY,\n";
+	$sql .= "CASE co_categ_honorario\nWHEN 'M' THEN 'Mes '\nWHEN 'A' THEN 'Adicional '\n";
+	$sql .= "WHEN 'E' THEN 'Extra '\nWHEN 'B' THEN 'Bono '\nELSE '' END || no_tipo_honorario,\n";
+	$sql .= "TO_CHAR(fa.fe_carga, 'DD/MM/YYYY'),\n";
+	$sql .= "(SELECT no_convenio_at FROM convenio_at WHERE id_convenio_at = ce.id_convenio_at )||\n";
+	$sql .= "' #' || CAST(ce.id_certificacion AS TEXT) ||\n";
+	$sql .= "CASE ce.co_estado WHEN 'P' THEN ' (PreCertif. '\n";
+	$sql .= "WHEN 'C' THEN ' (Certificado ' ELSE ' (Anulado ' END ||\n";
+	$sql .= "TO_CHAR(COALESCE(ce.fe_certificacion, ce.fe_creacion), 'DD/MM/YY\")\"') AS nombre\n";
 	$sql .= "FROM contrato co\n";
-	$sql .= "LEFT JOIN honorario sa ON co.id_contrato = sa.id_contrato\n";
-	$sql .= "INNER JOIN factura fa  ON sa.id_honorario = fa.id_honorario\n";
+	$sql .= "LEFT JOIN honorario ho ON co.id_contrato = ho.id_contrato\n";
+	$sql .= "INNER JOIN tipo_honorario th ON ho.id_tipo_honorario = th.id_tipo_honorario\n";
+	$sql .= "INNER JOIN factura fa ON ho.id_honorario = fa.id_honorario\n";
+	$sql .= "LEFT JOIN certificacion ce ON fa.id_certificacion = ce.id_certificacion\n";
 	$sql .= "WHERE co.id_agente = " . $idAgente . "\n";
-	$sql .= "ORDER BY fa.fe_factura";
+	$sql .= "ORDER BY fa.fe_factura DESC";
 
 	 echo "<!--p>sql:\n" . $sql . "\n<p-->\n";
 
@@ -24,16 +33,20 @@ if($idAgente = get_param("idAgente")){
 ?>
 <table class="table pgui-record-card">
 	<tbody>
-		<tr><td><strong>Nro Factura</strong></td>
-			<td><strong>Fecha Factura</strong></td>
+		<tr><td><strong>Honorario</strong></td>
+			<td><strong>Entrega Factura</strong></td>
+			<td><strong>Nro Factura</strong></td>
 			<td><strong>Monto</strong></td>
-			<td><strong>Fecha Carga</strong></td></tr>
+			<td><strong>Fecha Carga</strong></td>
+			<td><strong>Lote Certificación</strong></td></tr>
 <?php
 				}
-				echo "\t\t<tr><td>".$row[0]."</td>\n";
+				echo "\t\t<tr><td>".$row[3]."</td>\n";
+				echo "\t\t\t<td>".$row[0]."</td>\n";
 				echo "\t\t\t<td>".$row[1]."</td>\n";
 				echo "\t\t\t<td>".$row[2]."</td>\n";
-				echo "\t\t\t<td>".$row[3]."</td></tr>\n";
+				echo "\t\t\t<td>".$row[4]."</td>\n";
+				echo "\t\t\t<td>".$row[5]."</td></tr>\n";
 			}
 ?>
 		</tbody>

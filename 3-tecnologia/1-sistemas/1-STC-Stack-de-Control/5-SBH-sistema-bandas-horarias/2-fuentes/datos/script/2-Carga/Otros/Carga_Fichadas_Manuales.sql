@@ -55,7 +55,7 @@ SELECT
     co_lugar                AS co_lugar,
     'M'                     AS co_origen,
     'Carga Manual'          AS no_tipo_acreditacion,
-    'IMPECABLE'             AS no_empresa_area,
+    'NO IDENTIFICADO'       AS no_empresa_area,
     'Manual'                AS no_usuario,
     'Carga Manual'          AS ds_observaciones
 FROM stg_fichadas fi

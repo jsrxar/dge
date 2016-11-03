@@ -1,12 +1,12 @@
-<Project productVersion="14.10.0.11" localizationFileName="C:\app\PostgreSQL PHP Generator\lang.es.php" phpDriver="0" outputPath="\\monet.myc.ar\facturas" copySystemFiles="true" outputFilesExtension="php" colorSchemeName="Facebook">
-  <ConnectionOptions host="monet.myc.ar" port="5432" login="facturas" password="WJS[[+OJK.O8JJBIK@~~" database="sfmycp" client_encoding="">
+<Project productVersion="14.10.0.11" localizationFileName="C:\app\PostgreSQL PHP Generator\lang.es.php" phpDriver="0" outputPath="\\mozart.myc.ar\facturas" copySystemFiles="false" outputFilesExtension="php" colorSchemeName="Facebook">
+  <ConnectionOptions host="mozart.myc.ar" port="5432" login="facturas" password="\/?T^:FJJZP~" database="FACTURAS" client_encoding="">
     <ssh_secure secure="false" port="22" authentication_mode="0"/>
     <http_tunnel tunneling="false" url="">
       <http_proxy_server use_proxy="false" port="8080"/>
       <http_authentication/>
     </http_tunnel>
   </ConnectionOptions>
-  <ScriptConnectionOptions host="monet.myc.ar" port="5432" login="facturas" password="WJS[[+OJK.O8JJBIK@~~" database="sfmycp" client_encoding="">
+  <ScriptConnectionOptions host="mozart.myc.ar" port="5432" login="facturas" password="\/?T^:FJJZP~" database="FACTURAS" client_encoding="">
     <ssh_secure secure="false" port="22" authentication_mode="0"/>
     <http_tunnel tunneling="false" url="">
       <http_proxy_server use_proxy="false" port="8080"/>
@@ -28,7 +28,7 @@ no_tipo_honorario ||
 (CASE WHEN va_pct_aumento &gt; 0
 THEN ' (ajuste '||va_pct_aumento||'%)'
 ELSE '' END) AS no_tipo_honorario
-FROM facturas.tipo_honorario
+FROM tipo_honorario
 ORDER BY id_tipo_honorario      </SelectStatement>
       <InsertStatements/>
       <UpdateStatements/>
@@ -44,11 +44,11 @@ SELECT
       TRIM(
       (SELECT COALESCE('CUIT: ' || co_cuit || ' (', 'SIN CUIT (')
               || no_agente || ')'
-       FROM facturas.agente
+       FROM agente
        WHERE id_agente = co.id_agente) ||
        TO_CHAR(fe_fin, '&quot; - Fin contrato&quot; DD/MM/YY')) AS ds_contrato
-FROM facturas.contrato co
-INNER JOIN facturas.tipo_contrato tc ON tc.id_tipo_contrato = co.id_tipo_contrato
+FROM public.contrato co
+INNER JOIN public.tipo_contrato tc ON tc.id_tipo_contrato = co.id_tipo_contrato
 WHERE NOW() BETWEEN COALESCE(fe_inicio, CURRENT_DATE - 1) AND COALESCE(fe_fin, CURRENT_DATE + 1)
 AND tc.co_tipo_contrato IN ('AT', 'CO')
 ORDER BY 2      </SelectStatement>
@@ -70,7 +70,7 @@ COALESCE(' | ' || no_direccion_area, '') ||
 COALESCE(' | ' || no_area_dependencia, '') ||
 COALESCE(' | ' || no_sector, '') ||
 COALESCE(' | ' || no_subsector, '')) AS ds_dependencia
-FROM facturas.dependencia
+FROM dependencia
 ORDER BY 2      </SelectStatement>
       <InsertStatements/>
       <UpdateStatements/>
@@ -85,19 +85,19 @@ SELECT
       id_honorario,
       id_contrato,
       (SELECT ag.no_agente
-       FROM facturas.agente ag, facturas.contrato co
+       FROM agente ag, contrato co
        WHERE co.id_contrato = sa.id_contrato
          AND ag.id_agente = co.id_agente) || ' - ' ||
       (SELECT no_tipo_honorario
-       FROM facturas.tipo_honorario
+       FROM tipo_honorario
        WHERE id_tipo_honorario = sa.id_tipo_honorario) ||
       ' (' || CAST(CAST(sa.va_honorario AS NUMERIC) AS MONEY) ||')' ||
       (SELECT CASE
        WHEN COUNT(DISTINCT id_factura) = 0 THEN ''
        WHEN COUNT(DISTINCT id_factura) = 1 THEN ' &lt;!--1 factura asociada--&gt;'
        ELSE ' &lt;!--' || COUNT(DISTINCT id_factura) || ' facturas asociadas--&gt;' END
-       FROM facturas.factura fa WHERE fa.id_honorario = sa.id_honorario AND NOT fl_rechazo ) AS ds_honorario
-FROM facturas.honorario sa
+       FROM factura fa WHERE fa.id_honorario = sa.id_honorario AND NOT fl_rechazo ) AS ds_honorario
+FROM honorario sa
 ORDER BY ds_honorario      </SelectStatement>
       <InsertStatements/>
       <UpdateStatements/>
@@ -122,13 +122,13 @@ UNION ALL SELECT 'X', 'Anulado'      </SelectStatement>
       <SelectStatement>
 SELECT
 id_certificacion AS id,
-(SELECT no_convenio_at FROM facturas.convenio_at
+(SELECT no_convenio_at FROM convenio_at
  WHERE id_convenio_at = ce.id_convenio_at ) ||
 ' #' || CAST(id_certificacion AS TEXT) ||
 CASE co_estado WHEN 'P' THEN ' (PreCertif. '
 WHEN 'C' THEN ' (Certificado ' ELSE ' (Anulado ' END ||
 TO_CHAR(COALESCE(fe_certificacion, fe_creacion), 'DD/MM/YY&quot;)&quot;') AS nombre
-FROM facturas.certificacion ce
+FROM certificacion ce
 ORDER BY fe_certificacion DESC, fe_creacion DESC      </SelectStatement>
       <InsertStatements/>
       <UpdateStatements/>
@@ -158,12 +158,12 @@ SELECT
       TRIM(
       (SELECT COALESCE('CUIT: ' || co_cuit || ' (', 'SIN CUIT (')
               || no_agente || ')'
-       FROM facturas.agente
+       FROM agente
        WHERE id_agente = co.id_agente) ||
        ' Contrato ' || tc.co_tipo_contrato ||
        TO_CHAR(fe_fin, '&quot; (fin &quot;DD/MM/YY&quot;)&quot;')) AS ds_contrato
-FROM facturas.contrato co
-INNER JOIN facturas.tipo_contrato tc ON tc.id_tipo_contrato = co.id_tipo_contrato
+FROM public.contrato co
+INNER JOIN public.tipo_contrato tc ON tc.id_tipo_contrato = co.id_tipo_contrato
 ORDER BY 2      </SelectStatement>
       <InsertStatements/>
       <UpdateStatements/>
@@ -176,7 +176,7 @@ ORDER BY 2      </SelectStatement>
   <FieldContainers/>
   <Presentation disableMagicQuotesRuntime="false" showEnvironmentVariables="false" showExecutedQueries="false" showPHPErrorsAndWarnings="false">
     <Pages>
-      <Page type="table" tableName="facturas.factura" fileName="factura" caption="Factura" shortCaption="Factura" groupName="Facturas" addSeparator="false" horizontalFilterCondition="fl_rechazo IS FALSE" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" copyAbilityMode="0" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true" showKeyColumnsImagesInGridHeader="false">
+      <Page type="table" tableName="public.factura" fileName="factura" caption="Factura" shortCaption="Factura" groupName="Facturas" addSeparator="false" horizontalFilterCondition="fl_rechazo IS FALSE" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" copyAbilityMode="0" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true" showKeyColumnsImagesInGridHeader="false">
         <BeforeGridText/>
         <Columns>
           <ViewColumns>
@@ -230,7 +230,7 @@ ORDER BY 2      </SelectStatement>
               <ViewProperties type="text"/>
             </Column>
             <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true" headerHint="Convenio de Asistencia Técnica asociado a la factura." totalFunction="0">
-              <Lookup tableName="facturas.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text"/>
             </Column>
             <Column fieldName="ar_comprobante_cae_cai" caption="Comprobante CAE/CAI" visible="false" headerHint="Constatación de Comprobantes con CAE / CAI." totalFunction="0">
@@ -294,7 +294,7 @@ ORDER BY 2      </SelectStatement>
               <ViewProperties type="text"/>
             </Column>
             <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true" headerHint="Convenio de Asistencia Técnica asociado a la factura.">
-              <Lookup tableName="facturas.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text"/>
             </Column>
             <Column fieldName="ar_comprobante_cae_cai" caption="Comprobante CAE/CAI" visible="true" headerHint="Constatación de Comprobantes con CAE / CAI.">
@@ -365,7 +365,7 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
               </EditProperties>
             </Column>
             <Column fieldName="id_convenio_at" caption="Convenio AT" visible="false" canSetNull="true" readOnly="true">
-              <Lookup tableName="facturas.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <EditProperties type="comboBox">
                 <MFUItems/>
               </EditProperties>
@@ -438,7 +438,7 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
               </EditProperties>
             </Column>
             <Column fieldName="id_convenio_at" caption="Convenio AT" visible="false" canSetNull="true" readOnly="true" defaultInsertValue="">
-              <Lookup tableName="facturas.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <EditProperties type="comboBox">
                 <MFUItems/>
               </EditProperties>
@@ -470,7 +470,7 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
               <Lookup tableName="ver_lote_cert" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
             <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true">
-              <Lookup tableName="facturas.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
             <Column fieldName="ar_comprobante_cae_cai" caption="Comprobante CAE/CAI" visible="true"/>
             <Column fieldName="ar_constancia_opcion" caption="Constancia Opción" visible="true"/>
@@ -493,7 +493,7 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
               <Lookup tableName="ver_lote_cert" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
             <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true" useComboBox="false">
-              <Lookup tableName="facturas.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
             <Column fieldName="ar_comprobante_cae_cai" caption="Comprobante CAE/CAI" visible="true" useComboBox="false"/>
             <Column fieldName="ar_constancia_opcion" caption="Constancia Opción" visible="true" useComboBox="false"/>
@@ -548,7 +548,7 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
               <ViewProperties type="text"/>
             </Column>
             <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true" headerHint="Convenio de Asistencia Técnica asociado a la factura.">
-              <Lookup tableName="facturas.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text"/>
             </Column>
             <Column fieldName="ar_comprobante_cae_cai" caption="Comprobante CAE/CAI" visible="true" headerHint="Constatación de Comprobantes con CAE / CAI.">
@@ -610,7 +610,7 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
               <ViewProperties type="text"/>
             </Column>
             <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true" headerHint="Convenio de Asistencia Técnica asociado a la factura.">
-              <Lookup tableName="facturas.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text"/>
             </Column>
             <Column fieldName="ar_comprobante_cae_cai" caption="Comprobante CAE/CAI" visible="true" headerHint="Constatación de Comprobantes con CAE / CAI.">
@@ -628,7 +628,7 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
         <RecordPermissions useRecordPermissions="false"/>
         <PartitionNavigators/>
       </Page>
-      <Page type="table" tableName="facturas.certificacion" fileName="certificacion" caption="Lote Certificación" shortCaption="Lote Certificación" groupName="Facturas" addSeparator="true" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="0" deleteAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true" showKeyColumnsImagesInGridHeader="false">
+      <Page type="table" tableName="public.certificacion" fileName="certificacion" caption="Lote Certificación" shortCaption="Lote Certificación" groupName="Facturas" addSeparator="true" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="0" deleteAbilityMode="3" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true" showKeyColumnsImagesInGridHeader="false">
         <BeforeGridText/>
         <Columns>
           <ViewColumns>
@@ -638,7 +638,7 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
               </ViewProperties>
             </Column>
             <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true" headerHint="Convenio de Asistencia Técnica." totalFunction="0">
-              <Lookup tableName="facturas.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text"/>
             </Column>
             <Column fieldName="fe_creacion" caption="Fecha Creación" visible="true" headerHint="Fecha de creación del lote de certificación." totalFunction="0">
@@ -662,7 +662,7 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
               </ViewProperties>
             </Column>
             <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true" headerHint="Convenio de Asistencia Técnica.">
-              <Lookup tableName="facturas.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text"/>
             </Column>
             <Column fieldName="fe_creacion" caption="Fecha Creación" visible="true" headerHint="Fecha de creación del lote de certificación.">
@@ -684,7 +684,7 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
               <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
             </Column>
             <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true" enabled="false">
-              <Lookup tableName="facturas.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <EditProperties type="comboBox">
                 <MFUItems/>
               </EditProperties>
@@ -710,7 +710,7 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
               <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
             </Column>
             <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true" enabled="false" defaultInsertValue="">
-              <Lookup tableName="facturas.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <EditProperties type="comboBox">
                 <MFUItems/>
               </EditProperties>
@@ -734,7 +734,7 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
           <SimpleSearchColumns>
             <Column fieldName="id_certificacion" caption="Nº Lote" visible="true"/>
             <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true">
-              <Lookup tableName="facturas.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
             <Column fieldName="fe_creacion" caption="Fecha Creación" visible="true"/>
             <Column fieldName="fe_certificacion" caption="Fecha Certificación" visible="true"/>
@@ -746,7 +746,7 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
           <AdvancedSearchColumns>
             <Column fieldName="id_certificacion" caption="Nº Lote" visible="true" useComboBox="false"/>
             <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true" useComboBox="false">
-              <Lookup tableName="facturas.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
             <Column fieldName="fe_creacion" caption="Fecha Creación" visible="true" useComboBox="false"/>
             <Column fieldName="fe_certificacion" caption="Fecha Certificación" visible="true" useComboBox="false"/>
@@ -762,7 +762,7 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
               </ViewProperties>
             </Column>
             <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true" headerHint="Convenio de Asistencia Técnica.">
-              <Lookup tableName="facturas.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text"/>
             </Column>
             <Column fieldName="fe_creacion" caption="Fecha Creación" visible="true" headerHint="Fecha de creación del lote de certificación.">
@@ -786,7 +786,7 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
               </ViewProperties>
             </Column>
             <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true" headerHint="Convenio de Asistencia Técnica.">
-              <Lookup tableName="facturas.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text"/>
             </Column>
             <Column fieldName="fe_creacion" caption="Fecha Creación" visible="true" headerHint="Fecha de creación del lote de certificación.">
@@ -808,7 +808,7 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
         <RecordPermissions useRecordPermissions="false"/>
         <PartitionNavigators/>
       </Page>
-      <Page type="table" tableName="facturas.agente" fileName="agente" caption="Agente" shortCaption="Agente" groupName="Contratos de Agentes" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" copyAbilityMode="0" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true" showKeyColumnsImagesInGridHeader="false" gridWidth="8" gridWidthUnits="em">
+      <Page type="table" tableName="public.agente" fileName="agente" caption="Agente" shortCaption="Agente" groupName="Contratos de Agentes" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" deleteAbilityMode="3" copyAbilityMode="0" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true" showKeyColumnsImagesInGridHeader="false" gridWidth="8" gridWidthUnits="em">
         <DefaultSortedColumns>
           <Column fieldName="no_agente" orderType="0"/>
         </DefaultSortedColumns>
@@ -830,7 +830,7 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
               </ViewProperties>
             </Column>
             <Column fieldName="id_puesto" caption="Puesto" visible="false" headerHint="Puesto del agente." totalFunction="0">
-              <Lookup tableName="facturas.puesto" linkFieldName="id_puesto" displayFieldName="no_puesto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.puesto" linkFieldName="id_puesto" displayFieldName="no_puesto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text">
                 <DivAttributes align="left"/>
               </ViewProperties>
@@ -843,7 +843,7 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
               <Hyperlink template="dependencia.php?operation=view&amp;amp;pk0=%id_dependencia%"/>
             </Column>
             <Column fieldName="id_ubicacion_fisica" caption="Ubicación Fisica" visible="false" headerHint="Ubicación física de traajo del agente." totalFunction="0">
-              <Lookup tableName="facturas.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text">
                 <DivAttributes align="left"/>
               </ViewProperties>
@@ -917,7 +917,7 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
               </ViewProperties>
             </Column>
             <Column fieldName="id_puesto" caption="Puesto" visible="true" headerHint="Puesto del agente.">
-              <Lookup tableName="facturas.puesto" linkFieldName="id_puesto" displayFieldName="no_puesto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.puesto" linkFieldName="id_puesto" displayFieldName="no_puesto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text">
                 <DivAttributes align="left"/>
               </ViewProperties>
@@ -930,7 +930,7 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
               <Hyperlink template="dependencia.php?operation=view&amp;amp;pk0=%id_dependencia%"/>
             </Column>
             <Column fieldName="id_ubicacion_fisica" caption="Ubicación Fisica" visible="true" headerHint="Ubicación física de traajo del agente.">
-              <Lookup tableName="facturas.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text">
                 <DivAttributes align="left"/>
               </ViewProperties>
@@ -1002,7 +1002,7 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
               <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
             </Column>
             <Column fieldName="id_puesto" caption="Puesto" visible="true" canSetNull="true">
-              <Lookup tableName="facturas.puesto" linkFieldName="id_puesto" displayFieldName="no_puesto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.puesto" linkFieldName="id_puesto" displayFieldName="no_puesto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <EditProperties type="autocompleteEdit"/>
             </Column>
             <Column fieldName="id_dependencia" caption="Dependencia" visible="true">
@@ -1010,7 +1010,7 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
               <EditProperties type="autocompleteEdit"/>
             </Column>
             <Column fieldName="id_ubicacion_fisica" caption="Ubicación Fisica" visible="true" canSetNull="true">
-              <Lookup tableName="facturas.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <EditProperties type="autocompleteEdit"/>
             </Column>
             <Column fieldName="ds_funcion" caption="Función" visible="true" canSetNull="true">
@@ -1081,7 +1081,7 @@ DNI                  </MFUItem>
               <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
             </Column>
             <Column fieldName="id_puesto" caption="Puesto" visible="true" canSetNull="true" defaultInsertValue="">
-              <Lookup tableName="facturas.puesto" linkFieldName="id_puesto" displayFieldName="no_puesto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.puesto" linkFieldName="id_puesto" displayFieldName="no_puesto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <EditProperties type="autocompleteEdit"/>
             </Column>
             <Column fieldName="id_dependencia" caption="Dependencia" visible="true" defaultInsertValue="">
@@ -1089,7 +1089,7 @@ DNI                  </MFUItem>
               <EditProperties type="autocompleteEdit"/>
             </Column>
             <Column fieldName="id_ubicacion_fisica" caption="Ubicación Fisica" visible="true" canSetNull="true" defaultInsertValue="">
-              <Lookup tableName="facturas.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <EditProperties type="autocompleteEdit"/>
             </Column>
             <Column fieldName="ds_funcion" caption="Función" visible="true" canSetNull="true" defaultInsertValue="">
@@ -1152,13 +1152,13 @@ DNI                  </MFUItem>
             <Column fieldName="no_nombre" caption="Nombre/s" visible="true"/>
             <Column fieldName="no_agente" caption="Nombre Completo" visible="true"/>
             <Column fieldName="id_puesto" caption="Puesto" visible="true">
-              <Lookup tableName="facturas.puesto" linkFieldName="id_puesto" displayFieldName="no_puesto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.puesto" linkFieldName="id_puesto" displayFieldName="no_puesto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
             <Column fieldName="id_dependencia" caption="Dependencia" visible="true">
               <Lookup tableName="ver_dependencia" linkFieldName="id_dependencia" displayFieldName="ds_dependencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
             <Column fieldName="id_ubicacion_fisica" caption="Ubicación Fisica" visible="true">
-              <Lookup tableName="facturas.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
             <Column fieldName="ds_funcion" caption="Función" visible="true"/>
             <Column fieldName="co_tipo_documento" caption="Tipo Documento" visible="true"/>
@@ -1180,13 +1180,13 @@ DNI                  </MFUItem>
             <Column fieldName="no_nombre" caption="Nombre/s" visible="true" useComboBox="false"/>
             <Column fieldName="no_agente" caption="Nombre Completo" visible="true" useComboBox="false"/>
             <Column fieldName="id_puesto" caption="Puesto" visible="true" useComboBox="false">
-              <Lookup tableName="facturas.puesto" linkFieldName="id_puesto" displayFieldName="no_puesto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.puesto" linkFieldName="id_puesto" displayFieldName="no_puesto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
             <Column fieldName="id_dependencia" caption="Dependencia" visible="true" useComboBox="false">
               <Lookup tableName="ver_dependencia" linkFieldName="id_dependencia" displayFieldName="ds_dependencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
             <Column fieldName="id_ubicacion_fisica" caption="Ubicación Fisica" visible="true" useComboBox="false">
-              <Lookup tableName="facturas.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
             <Column fieldName="ds_funcion" caption="Función" visible="true" useComboBox="false"/>
             <Column fieldName="co_tipo_documento" caption="Tipo Documento" visible="true" useComboBox="false"/>
@@ -1216,7 +1216,7 @@ DNI                  </MFUItem>
               <ViewProperties type="text"/>
             </Column>
             <Column fieldName="id_puesto" caption="Puesto" visible="true" headerHint="Puesto del agente.">
-              <Lookup tableName="facturas.puesto" linkFieldName="id_puesto" displayFieldName="no_puesto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.puesto" linkFieldName="id_puesto" displayFieldName="no_puesto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text">
                 <DivAttributes align="left"/>
               </ViewProperties>
@@ -1229,7 +1229,7 @@ DNI                  </MFUItem>
               <Hyperlink template="dependencia.php?operation=view&amp;amp;pk0=%id_dependencia%"/>
             </Column>
             <Column fieldName="id_ubicacion_fisica" caption="Ubicación Fisica" visible="true" headerHint="Ubicación física de traajo del agente.">
-              <Lookup tableName="facturas.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text">
                 <DivAttributes align="left"/>
               </ViewProperties>
@@ -1295,7 +1295,7 @@ DNI                  </MFUItem>
               <ViewProperties type="text"/>
             </Column>
             <Column fieldName="id_puesto" caption="Puesto" visible="true" headerHint="Puesto del agente.">
-              <Lookup tableName="facturas.puesto" linkFieldName="id_puesto" displayFieldName="no_puesto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.puesto" linkFieldName="id_puesto" displayFieldName="no_puesto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text">
                 <DivAttributes align="left"/>
               </ViewProperties>
@@ -1308,7 +1308,7 @@ DNI                  </MFUItem>
               <Hyperlink template="dependencia.php?operation=view&amp;amp;pk0=%id_dependencia%"/>
             </Column>
             <Column fieldName="id_ubicacion_fisica" caption="Ubicación Fisica" visible="true" headerHint="Ubicación física de traajo del agente.">
-              <Lookup tableName="facturas.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text">
                 <DivAttributes align="left"/>
               </ViewProperties>
@@ -1365,7 +1365,7 @@ DNI                  </MFUItem>
         <RecordPermissions useRecordPermissions="false"/>
         <PartitionNavigators/>
       </Page>
-      <Page type="table" tableName="facturas.dependencia" fileName="dependencia" caption="Dependencia" shortCaption="Dependencia" groupName="Contratos de Agentes" addSeparator="true" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" copyAbilityMode="0" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true" showKeyColumnsImagesInGridHeader="false">
+      <Page type="table" tableName="public.dependencia" fileName="dependencia" caption="Dependencia" shortCaption="Dependencia" groupName="Contratos de Agentes" addSeparator="true" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" copyAbilityMode="0" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true" showKeyColumnsImagesInGridHeader="false">
         <BeforeGridText/>
         <Columns>
           <ViewColumns>
@@ -1408,7 +1408,7 @@ DNI                  </MFUItem>
               </ViewProperties>
             </Column>
             <Column fieldName="id_ubicacion_fisica" caption="Ubicacion Física" visible="false" headerHint="Ubicación Física." totalFunction="0">
-              <Lookup tableName="facturas.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text">
                 <DivAttributes align="left"/>
               </ViewProperties>
@@ -1455,7 +1455,7 @@ DNI                  </MFUItem>
               </ViewProperties>
             </Column>
             <Column fieldName="id_ubicacion_fisica" caption="Ubicacion Física" visible="true" headerHint="Ubicación Física.">
-              <Lookup tableName="facturas.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text">
                 <DivAttributes align="left"/>
               </ViewProperties>
@@ -1488,7 +1488,7 @@ DNI                  </MFUItem>
               <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
             </Column>
             <Column fieldName="id_ubicacion_fisica" caption="Ubicacion Física" visible="true" canSetNull="true">
-              <Lookup tableName="facturas.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <EditProperties type="comboBox">
                 <MFUItems/>
               </EditProperties>
@@ -1520,7 +1520,7 @@ DNI                  </MFUItem>
               <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
             </Column>
             <Column fieldName="id_ubicacion_fisica" caption="Ubicacion Física" visible="true" canSetNull="true" defaultInsertValue="">
-              <Lookup tableName="facturas.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <EditProperties type="comboBox">
                 <MFUItems/>
               </EditProperties>
@@ -1536,7 +1536,7 @@ DNI                  </MFUItem>
             <Column fieldName="no_sector" caption="Sector" visible="true"/>
             <Column fieldName="no_subsector" caption="Sub Sector" visible="true"/>
             <Column fieldName="id_ubicacion_fisica" caption="Ubicacion Física" visible="true">
-              <Lookup tableName="facturas.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
           </SimpleSearchColumns>
           <AdvancedSearchColumns>
@@ -1549,7 +1549,7 @@ DNI                  </MFUItem>
             <Column fieldName="no_sector" caption="Sector" visible="true" useComboBox="false"/>
             <Column fieldName="no_subsector" caption="Sub Sector" visible="true" useComboBox="false"/>
             <Column fieldName="id_ubicacion_fisica" caption="Ubicacion Física" visible="true" useComboBox="false">
-              <Lookup tableName="facturas.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
           </AdvancedSearchColumns>
           <ExportColumns>
@@ -1578,7 +1578,7 @@ DNI                  </MFUItem>
               <ViewProperties type="text"/>
             </Column>
             <Column fieldName="id_ubicacion_fisica" caption="Ubicacion Física" visible="true" headerHint="Ubicación Física.">
-              <Lookup tableName="facturas.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text">
                 <DivAttributes align="left"/>
               </ViewProperties>
@@ -1611,7 +1611,7 @@ DNI                  </MFUItem>
               <ViewProperties type="text"/>
             </Column>
             <Column fieldName="id_ubicacion_fisica" caption="Ubicacion Física" visible="true" headerHint="Ubicación Física.">
-              <Lookup tableName="facturas.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text">
                 <DivAttributes align="left"/>
               </ViewProperties>
@@ -1623,7 +1623,7 @@ DNI                  </MFUItem>
         <RecordPermissions useRecordPermissions="false"/>
         <PartitionNavigators/>
       </Page>
-      <Page type="table" tableName="facturas.ubicacion_fisica" fileName="ubicacion_fisica" caption="Ubicacion Fisica" shortCaption="Ubicacion Fisica" groupName="Contratos de Agentes" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" copyAbilityMode="0" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true" showKeyColumnsImagesInGridHeader="false">
+      <Page type="table" tableName="public.ubicacion_fisica" fileName="ubicacion_fisica" caption="Ubicacion Fisica" shortCaption="Ubicacion Fisica" groupName="Contratos de Agentes" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" copyAbilityMode="0" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true" showKeyColumnsImagesInGridHeader="false">
         <BeforeGridText/>
         <Columns>
           <ViewColumns>
@@ -1715,7 +1715,7 @@ DNI                  </MFUItem>
         <RecordPermissions useRecordPermissions="false"/>
         <PartitionNavigators/>
       </Page>
-      <Page type="table" tableName="facturas.puesto" fileName="puesto" caption="Puesto" shortCaption="Puesto" groupName="Contratos de Agentes" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" copyAbilityMode="0" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true" showKeyColumnsImagesInGridHeader="false">
+      <Page type="table" tableName="public.puesto" fileName="puesto" caption="Puesto" shortCaption="Puesto" groupName="Contratos de Agentes" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" copyAbilityMode="0" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true" showKeyColumnsImagesInGridHeader="false">
         <DefaultSortedColumns>
           <Column fieldName="no_puesto" orderType="0"/>
         </DefaultSortedColumns>
@@ -1832,7 +1832,7 @@ DNI                  </MFUItem>
         <RecordPermissions useRecordPermissions="false"/>
         <PartitionNavigators/>
       </Page>
-      <Page type="table" tableName="facturas.convenio_at" fileName="convenio_at" caption="Convenio Asistencia Tecnica" shortCaption="Convenio AT" groupName="Contratos de Agentes" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" copyAbilityMode="0" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true" showKeyColumnsImagesInGridHeader="false">
+      <Page type="table" tableName="public.convenio_at" fileName="convenio_at" caption="Convenio Asistencia Tecnica" shortCaption="Convenio AT" groupName="Contratos de Agentes" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" copyAbilityMode="0" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true" showKeyColumnsImagesInGridHeader="false">
         <BeforeGridText/>
         <Columns>
           <ViewColumns>
@@ -1924,7 +1924,7 @@ DNI                  </MFUItem>
         <RecordPermissions useRecordPermissions="false"/>
         <PartitionNavigators/>
       </Page>
-      <Page type="table" tableName="facturas.tipo_contrato" fileName="tipo_contrato" caption="Tipo Contrato" shortCaption="Tipo Contrato" groupName="Contratos de Agentes" addSeparator="true" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" copyAbilityMode="0" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true" showKeyColumnsImagesInGridHeader="false">
+      <Page type="table" tableName="public.tipo_contrato" fileName="tipo_contrato" caption="Tipo Contrato" shortCaption="Tipo Contrato" groupName="Contratos de Agentes" addSeparator="true" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" copyAbilityMode="0" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true" showKeyColumnsImagesInGridHeader="false">
         <BeforeGridText/>
         <Columns>
           <ViewColumns>
@@ -2012,7 +2012,7 @@ DNI                  </MFUItem>
         <RecordPermissions useRecordPermissions="false"/>
         <PartitionNavigators/>
       </Page>
-      <Page type="table" tableName="facturas.contrato" fileName="contrato" caption="Contrato" shortCaption="Contrato" groupName="Contratos de Agentes" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" copyAbilityMode="0" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true" showKeyColumnsImagesInGridHeader="false">
+      <Page type="table" tableName="public.contrato" fileName="contrato" caption="Contrato" shortCaption="Contrato" groupName="Contratos de Agentes" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" copyAbilityMode="0" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true" showKeyColumnsImagesInGridHeader="false">
         <BeforeGridText/>
         <Columns>
           <ViewColumns>
@@ -2020,7 +2020,7 @@ DNI                  </MFUItem>
               <ViewProperties type="text"/>
             </Column>
             <Column fieldName="id_agente" caption="Agente" visible="true" headerHint="Agente que presta servicios." totalFunction="0">
-              <Lookup tableName="facturas.agente" linkFieldName="id_agente" displayFieldName="no_agente" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.agente" linkFieldName="id_agente" displayFieldName="no_agente" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text">
                 <DivAttributes align="left"/>
               </ViewProperties>
@@ -2033,15 +2033,15 @@ DNI                  </MFUItem>
               <ViewProperties type="dateTime" dateTimeFormat="d/m/Y" dateTimeKind="1"/>
             </Column>
             <Column fieldName="id_tipo_contrato" caption="Tipo Contrato" visible="true" headerHint="Tipo del contrato con el agete." totalFunction="0">
-              <Lookup tableName="facturas.tipo_contrato" linkFieldName="id_tipo_contrato" displayFieldName="no_tipo_contrato" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.tipo_contrato" linkFieldName="id_tipo_contrato" displayFieldName="no_tipo_contrato" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text"/>
             </Column>
             <Column fieldName="id_categoria_lm" caption="Categoria LM" visible="true" headerHint="Categoría de Ley Marco." totalFunction="0">
-              <Lookup tableName="facturas.categoria_lm" linkFieldName="id_categoria_lm" displayFieldName="co_categoria_lm" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.categoria_lm" linkFieldName="id_categoria_lm" displayFieldName="co_categoria_lm" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text"/>
             </Column>
             <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true" headerHint="Convenio de Asistencia Técnica." totalFunction="0">
-              <Lookup tableName="facturas.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text">
                 <DivAttributes align="left"/>
               </ViewProperties>
@@ -2052,7 +2052,7 @@ DNI                  </MFUItem>
               <ViewProperties type="text"/>
             </Column>
             <Column fieldName="id_agente" caption="Agente" visible="true" headerHint="Agente que presta servicios.">
-              <Lookup tableName="facturas.agente" linkFieldName="id_agente" displayFieldName="no_agente" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.agente" linkFieldName="id_agente" displayFieldName="no_agente" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text">
                 <DivAttributes align="left"/>
               </ViewProperties>
@@ -2065,15 +2065,15 @@ DNI                  </MFUItem>
               <ViewProperties type="dateTime" dateTimeFormat="d/m/Y" dateTimeKind="1"/>
             </Column>
             <Column fieldName="id_tipo_contrato" caption="Tipo Contrato" visible="true" headerHint="Tipo del contrato con el agete.">
-              <Lookup tableName="facturas.tipo_contrato" linkFieldName="id_tipo_contrato" displayFieldName="no_tipo_contrato" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.tipo_contrato" linkFieldName="id_tipo_contrato" displayFieldName="no_tipo_contrato" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text"/>
             </Column>
             <Column fieldName="id_categoria_lm" caption="Categoria LM" visible="true" headerHint="Categoría de Ley Marco.">
-              <Lookup tableName="facturas.categoria_lm" linkFieldName="id_categoria_lm" displayFieldName="co_categoria_lm" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.categoria_lm" linkFieldName="id_categoria_lm" displayFieldName="co_categoria_lm" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text"/>
             </Column>
             <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true" headerHint="Convenio de Asistencia Técnica.">
-              <Lookup tableName="facturas.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text">
                 <DivAttributes align="left"/>
               </ViewProperties>
@@ -2084,7 +2084,7 @@ DNI                  </MFUItem>
               <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
             </Column>
             <Column fieldName="id_agente" caption="Agente" visible="true">
-              <Lookup tableName="facturas.agente" linkFieldName="id_agente" displayFieldName="no_agente" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.agente" linkFieldName="id_agente" displayFieldName="no_agente" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <EditProperties type="autocompleteEdit"/>
             </Column>
             <Column fieldName="fe_inicio" caption="Fecha Inicio" visible="true" canSetNull="true">
@@ -2094,19 +2094,19 @@ DNI                  </MFUItem>
               <EditProperties type="dateTime" showsTime="false" dateTimeFormat="d/m/Y" firstDayOfWeek="0"/>
             </Column>
             <Column fieldName="id_tipo_contrato" caption="Tipo Contrato" visible="true">
-              <Lookup tableName="facturas.tipo_contrato" linkFieldName="id_tipo_contrato" displayFieldName="no_tipo_contrato" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.tipo_contrato" linkFieldName="id_tipo_contrato" displayFieldName="no_tipo_contrato" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <EditProperties type="comboBox">
                 <MFUItems/>
               </EditProperties>
             </Column>
             <Column fieldName="id_categoria_lm" caption="Categoria LM" visible="true" canSetNull="true">
-              <Lookup tableName="facturas.categoria_lm" linkFieldName="id_categoria_lm" displayFieldName="co_categoria_lm" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.categoria_lm" linkFieldName="id_categoria_lm" displayFieldName="co_categoria_lm" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <EditProperties type="comboBox">
                 <MFUItems/>
               </EditProperties>
             </Column>
             <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true" canSetNull="true">
-              <Lookup tableName="facturas.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <EditProperties type="comboBox">
                 <MFUItems/>
               </EditProperties>
@@ -2117,7 +2117,7 @@ DNI                  </MFUItem>
               <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
             </Column>
             <Column fieldName="id_agente" caption="Agente" visible="true" defaultInsertValue="">
-              <Lookup tableName="facturas.agente" linkFieldName="id_agente" displayFieldName="no_agente" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.agente" linkFieldName="id_agente" displayFieldName="no_agente" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <EditProperties type="autocompleteEdit"/>
             </Column>
             <Column fieldName="fe_inicio" caption="Fecha Inicio" visible="true" canSetNull="true" defaultInsertValue="">
@@ -2127,19 +2127,19 @@ DNI                  </MFUItem>
               <EditProperties type="dateTime" showsTime="false" dateTimeFormat="d/m/Y" firstDayOfWeek="0"/>
             </Column>
             <Column fieldName="id_tipo_contrato" caption="Tipo Contrato" visible="true" defaultInsertValue="">
-              <Lookup tableName="facturas.tipo_contrato" linkFieldName="id_tipo_contrato" displayFieldName="no_tipo_contrato" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.tipo_contrato" linkFieldName="id_tipo_contrato" displayFieldName="no_tipo_contrato" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <EditProperties type="comboBox">
                 <MFUItems/>
               </EditProperties>
             </Column>
             <Column fieldName="id_categoria_lm" caption="Categoria LM" visible="true" canSetNull="true" defaultInsertValue="">
-              <Lookup tableName="facturas.categoria_lm" linkFieldName="id_categoria_lm" displayFieldName="co_categoria_lm" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.categoria_lm" linkFieldName="id_categoria_lm" displayFieldName="co_categoria_lm" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <EditProperties type="comboBox">
                 <MFUItems/>
               </EditProperties>
             </Column>
             <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true" canSetNull="true" defaultInsertValue="">
-              <Lookup tableName="facturas.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <EditProperties type="comboBox">
                 <MFUItems/>
               </EditProperties>
@@ -2148,35 +2148,35 @@ DNI                  </MFUItem>
           <SimpleSearchColumns>
             <Column fieldName="id_contrato" caption="ID Contrato" visible="true"/>
             <Column fieldName="id_agente" caption="Agente" visible="true">
-              <Lookup tableName="facturas.agente" linkFieldName="id_agente" displayFieldName="no_agente" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.agente" linkFieldName="id_agente" displayFieldName="no_agente" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
             <Column fieldName="fe_inicio" caption="Fecha Inicio" visible="true"/>
             <Column fieldName="fe_fin" caption="Fecha Fin" visible="true"/>
             <Column fieldName="id_tipo_contrato" caption="Tipo Contrato" visible="true">
-              <Lookup tableName="facturas.tipo_contrato" linkFieldName="id_tipo_contrato" displayFieldName="no_tipo_contrato" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.tipo_contrato" linkFieldName="id_tipo_contrato" displayFieldName="no_tipo_contrato" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
             <Column fieldName="id_categoria_lm" caption="Categoria LM" visible="true">
-              <Lookup tableName="facturas.categoria_lm" linkFieldName="id_categoria_lm" displayFieldName="co_categoria_lm" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.categoria_lm" linkFieldName="id_categoria_lm" displayFieldName="co_categoria_lm" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
             <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true">
-              <Lookup tableName="facturas.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
           </SimpleSearchColumns>
           <AdvancedSearchColumns>
             <Column fieldName="id_contrato" caption="ID Contrato" visible="true" useComboBox="false"/>
             <Column fieldName="id_agente" caption="Agente" visible="true" useComboBox="false">
-              <Lookup tableName="facturas.agente" linkFieldName="id_agente" displayFieldName="no_agente" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.agente" linkFieldName="id_agente" displayFieldName="no_agente" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
             <Column fieldName="fe_inicio" caption="Fecha Inicio" visible="true" useComboBox="false"/>
             <Column fieldName="fe_fin" caption="Fecha Fin" visible="true" useComboBox="false"/>
             <Column fieldName="id_tipo_contrato" caption="Tipo Contrato" visible="true" useComboBox="false">
-              <Lookup tableName="facturas.tipo_contrato" linkFieldName="id_tipo_contrato" displayFieldName="no_tipo_contrato" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.tipo_contrato" linkFieldName="id_tipo_contrato" displayFieldName="no_tipo_contrato" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
             <Column fieldName="id_categoria_lm" caption="Categoria LM" visible="true" useComboBox="false">
-              <Lookup tableName="facturas.categoria_lm" linkFieldName="id_categoria_lm" displayFieldName="co_categoria_lm" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.categoria_lm" linkFieldName="id_categoria_lm" displayFieldName="co_categoria_lm" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
             <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true" useComboBox="false">
-              <Lookup tableName="facturas.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
           </AdvancedSearchColumns>
           <ExportColumns>
@@ -2184,7 +2184,7 @@ DNI                  </MFUItem>
               <ViewProperties type="text"/>
             </Column>
             <Column fieldName="id_agente" caption="Agente" visible="true" headerHint="Agente que presta servicios.">
-              <Lookup tableName="facturas.agente" linkFieldName="id_agente" displayFieldName="no_agente" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.agente" linkFieldName="id_agente" displayFieldName="no_agente" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text">
                 <DivAttributes align="left"/>
               </ViewProperties>
@@ -2197,15 +2197,15 @@ DNI                  </MFUItem>
               <ViewProperties type="dateTime" dateTimeFormat="d/m/Y" dateTimeKind="1"/>
             </Column>
             <Column fieldName="id_tipo_contrato" caption="Tipo Contrato" visible="true" headerHint="Tipo del contrato con el agete.">
-              <Lookup tableName="facturas.tipo_contrato" linkFieldName="id_tipo_contrato" displayFieldName="no_tipo_contrato" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.tipo_contrato" linkFieldName="id_tipo_contrato" displayFieldName="no_tipo_contrato" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text"/>
             </Column>
             <Column fieldName="id_categoria_lm" caption="Categoria LM" visible="true" headerHint="Categoría de Ley Marco.">
-              <Lookup tableName="facturas.categoria_lm" linkFieldName="id_categoria_lm" displayFieldName="co_categoria_lm" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.categoria_lm" linkFieldName="id_categoria_lm" displayFieldName="co_categoria_lm" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text"/>
             </Column>
             <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true" headerHint="Convenio de Asistencia Técnica.">
-              <Lookup tableName="facturas.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text">
                 <DivAttributes align="left"/>
               </ViewProperties>
@@ -2216,7 +2216,7 @@ DNI                  </MFUItem>
               <ViewProperties type="text"/>
             </Column>
             <Column fieldName="id_agente" caption="Agente" visible="true" headerHint="Agente que presta servicios.">
-              <Lookup tableName="facturas.agente" linkFieldName="id_agente" displayFieldName="no_agente" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.agente" linkFieldName="id_agente" displayFieldName="no_agente" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text">
                 <DivAttributes align="left"/>
               </ViewProperties>
@@ -2229,15 +2229,15 @@ DNI                  </MFUItem>
               <ViewProperties type="dateTime" dateTimeFormat="d/m/Y" dateTimeKind="1"/>
             </Column>
             <Column fieldName="id_tipo_contrato" caption="Tipo Contrato" visible="true" headerHint="Tipo del contrato con el agete.">
-              <Lookup tableName="facturas.tipo_contrato" linkFieldName="id_tipo_contrato" displayFieldName="no_tipo_contrato" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.tipo_contrato" linkFieldName="id_tipo_contrato" displayFieldName="no_tipo_contrato" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text"/>
             </Column>
             <Column fieldName="id_categoria_lm" caption="Categoria LM" visible="true" headerHint="Categoría de Ley Marco.">
-              <Lookup tableName="facturas.categoria_lm" linkFieldName="id_categoria_lm" displayFieldName="co_categoria_lm" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.categoria_lm" linkFieldName="id_categoria_lm" displayFieldName="co_categoria_lm" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text"/>
             </Column>
             <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true" headerHint="Convenio de Asistencia Técnica.">
-              <Lookup tableName="facturas.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="public.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text">
                 <DivAttributes align="left"/>
               </ViewProperties>
@@ -2248,7 +2248,7 @@ DNI                  </MFUItem>
         <RecordPermissions useRecordPermissions="false"/>
         <PartitionNavigators/>
       </Page>
-      <Page type="table" tableName="facturas.tipo_honorario" fileName="tipo_honorario" caption="Tipo Honorario" shortCaption="Tipo Honorario" groupName="Contratos de Agentes" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" copyAbilityMode="0" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true" showKeyColumnsImagesInGridHeader="false">
+      <Page type="table" tableName="public.tipo_honorario" fileName="tipo_honorario" caption="Tipo Honorario" shortCaption="Tipo Honorario" groupName="Contratos de Agentes" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" copyAbilityMode="0" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true" showKeyColumnsImagesInGridHeader="false">
         <DefaultSortedColumns>
           <Column fieldName="id_tipo_honorario" orderType="0"/>
         </DefaultSortedColumns>
@@ -2417,7 +2417,7 @@ DNI                  </MFUItem>
         <RecordPermissions useRecordPermissions="false"/>
         <PartitionNavigators/>
       </Page>
-      <Page type="table" tableName="facturas.honorario" fileName="honorario" caption="Honorario" shortCaption="Honorario" groupName="Contratos de Agentes" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" copyAbilityMode="0" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true" showKeyColumnsImagesInGridHeader="false">
+      <Page type="table" tableName="public.honorario" fileName="honorario" caption="Honorario" shortCaption="Honorario" groupName="Contratos de Agentes" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" copyAbilityMode="0" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true" showKeyColumnsImagesInGridHeader="false">
         <DefaultSortedColumns>
           <Column fieldName="id_tipo_honorario" orderType="1"/>
         </DefaultSortedColumns>
@@ -2477,7 +2477,9 @@ DNI                  </MFUItem>
             </Column>
             <Column fieldName="id_tipo_honorario" caption="Tipo Honorario" visible="true">
               <Lookup tableName="ver_tipo_honorario" linkFieldName="id_tipo_honorario" displayFieldName="no_tipo_honorario" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
-              <EditProperties type="autocompleteEdit" allowClear="false"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
             </Column>
             <Column fieldName="id_contrato" caption="Contrato" visible="true">
               <Lookup tableName="ver_contrato" linkFieldName="id_contrato" displayFieldName="ds_contrato" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
@@ -2495,7 +2497,9 @@ DNI                  </MFUItem>
             </Column>
             <Column fieldName="id_tipo_honorario" caption="Tipo Honorario" visible="true" defaultInsertValue="">
               <Lookup tableName="ver_tipo_honorario" linkFieldName="id_tipo_honorario" displayFieldName="no_tipo_honorario" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
-              <EditProperties type="autocompleteEdit" allowClear="false"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
             </Column>
             <Column fieldName="id_contrato" caption="Contrato" visible="true" defaultInsertValue="">
               <Lookup tableName="ver_contrato" linkFieldName="id_contrato" displayFieldName="ds_contrato" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
@@ -2580,7 +2584,7 @@ DNI                  </MFUItem>
         <RecordPermissions useRecordPermissions="false"/>
         <PartitionNavigators/>
       </Page>
-      <Page type="table" tableName="facturas.categoria_lm" fileName="categoria_lm" caption="Categoria Ley Marco" shortCaption="Categoria LM" groupName="Contratos de Agentes" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" copyAbilityMode="0" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true" showKeyColumnsImagesInGridHeader="false">
+      <Page type="table" tableName="public.categoria_lm" fileName="categoria_lm" caption="Categoria Ley Marco" shortCaption="Categoria LM" groupName="Contratos de Agentes" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" copyAbilityMode="0" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true" showKeyColumnsImagesInGridHeader="false">
         <BeforeGridText/>
         <Columns>
           <ViewColumns>
@@ -3599,18 +3603,18 @@ DNI                  </MFUItem>
       <UserGrant userName="facturas" select="1" insert="1" update="1" delete="1" admin="1"/>
       <UserPageGrants>
         <PageGrants userName="defaultUser">
-          <PageGrant pageName="facturas.factura"/>
-          <PageGrant pageName="facturas.certificacion"/>
-          <PageGrant pageName="facturas.agente"/>
-          <PageGrant pageName="facturas.dependencia"/>
-          <PageGrant pageName="facturas.ubicacion_fisica"/>
-          <PageGrant pageName="facturas.puesto"/>
-          <PageGrant pageName="facturas.convenio_at"/>
-          <PageGrant pageName="facturas.tipo_contrato"/>
-          <PageGrant pageName="facturas.contrato"/>
-          <PageGrant pageName="facturas.tipo_honorario"/>
-          <PageGrant pageName="facturas.honorario"/>
-          <PageGrant pageName="facturas.categoria_lm"/>
+          <PageGrant pageName="public.factura"/>
+          <PageGrant pageName="public.certificacion"/>
+          <PageGrant pageName="public.agente"/>
+          <PageGrant pageName="public.dependencia"/>
+          <PageGrant pageName="public.ubicacion_fisica"/>
+          <PageGrant pageName="public.puesto"/>
+          <PageGrant pageName="public.convenio_at"/>
+          <PageGrant pageName="public.tipo_contrato"/>
+          <PageGrant pageName="public.contrato"/>
+          <PageGrant pageName="public.tipo_honorario"/>
+          <PageGrant pageName="public.honorario"/>
+          <PageGrant pageName="public.categoria_lm"/>
           <PageGrant pageName="audit.logged_actions"/>
           <PageGrant pageName="estado_lote"/>
           <PageGrant pageName="ver_tipo_honorario"/>
@@ -3622,18 +3626,18 @@ DNI                  </MFUItem>
           <PageGrant pageName="ver_contrato"/>
         </PageGrants>
         <PageGrants userName="guest">
-          <PageGrant pageName="facturas.factura"/>
-          <PageGrant pageName="facturas.certificacion"/>
-          <PageGrant pageName="facturas.agente"/>
-          <PageGrant pageName="facturas.dependencia"/>
-          <PageGrant pageName="facturas.ubicacion_fisica"/>
-          <PageGrant pageName="facturas.puesto"/>
-          <PageGrant pageName="facturas.convenio_at"/>
-          <PageGrant pageName="facturas.tipo_contrato"/>
-          <PageGrant pageName="facturas.contrato"/>
-          <PageGrant pageName="facturas.tipo_honorario"/>
-          <PageGrant pageName="facturas.honorario"/>
-          <PageGrant pageName="facturas.categoria_lm"/>
+          <PageGrant pageName="public.factura"/>
+          <PageGrant pageName="public.certificacion"/>
+          <PageGrant pageName="public.agente"/>
+          <PageGrant pageName="public.dependencia"/>
+          <PageGrant pageName="public.ubicacion_fisica"/>
+          <PageGrant pageName="public.puesto"/>
+          <PageGrant pageName="public.convenio_at"/>
+          <PageGrant pageName="public.tipo_contrato"/>
+          <PageGrant pageName="public.contrato"/>
+          <PageGrant pageName="public.tipo_honorario"/>
+          <PageGrant pageName="public.honorario"/>
+          <PageGrant pageName="public.categoria_lm"/>
           <PageGrant pageName="audit.logged_actions"/>
           <PageGrant pageName="estado_lote"/>
           <PageGrant pageName="ver_tipo_honorario"/>
@@ -3645,18 +3649,18 @@ DNI                  </MFUItem>
           <PageGrant pageName="ver_contrato"/>
         </PageGrants>
         <PageGrants userName="facturas">
-          <PageGrant pageName="facturas.factura"/>
-          <PageGrant pageName="facturas.certificacion"/>
-          <PageGrant pageName="facturas.agente"/>
-          <PageGrant pageName="facturas.dependencia"/>
-          <PageGrant pageName="facturas.ubicacion_fisica"/>
-          <PageGrant pageName="facturas.puesto"/>
-          <PageGrant pageName="facturas.convenio_at"/>
-          <PageGrant pageName="facturas.tipo_contrato"/>
-          <PageGrant pageName="facturas.contrato"/>
-          <PageGrant pageName="facturas.tipo_honorario"/>
-          <PageGrant pageName="facturas.honorario"/>
-          <PageGrant pageName="facturas.categoria_lm"/>
+          <PageGrant pageName="public.factura"/>
+          <PageGrant pageName="public.certificacion"/>
+          <PageGrant pageName="public.agente"/>
+          <PageGrant pageName="public.dependencia"/>
+          <PageGrant pageName="public.ubicacion_fisica"/>
+          <PageGrant pageName="public.puesto"/>
+          <PageGrant pageName="public.convenio_at"/>
+          <PageGrant pageName="public.tipo_contrato"/>
+          <PageGrant pageName="public.contrato"/>
+          <PageGrant pageName="public.tipo_honorario"/>
+          <PageGrant pageName="public.honorario"/>
+          <PageGrant pageName="public.categoria_lm"/>
           <PageGrant pageName="audit.logged_actions"/>
           <PageGrant pageName="estado_lote"/>
           <PageGrant pageName="ver_tipo_honorario"/>

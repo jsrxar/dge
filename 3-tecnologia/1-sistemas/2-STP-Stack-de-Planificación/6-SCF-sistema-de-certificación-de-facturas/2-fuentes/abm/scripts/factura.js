@@ -1,7 +1,10 @@
 switch($.urlParam('operation')) {
     case 'copy':
-    case 'edit':
     case 'insert':
+		// Inserción de registro
+        fn_factura_insert();
+        break;
+    case 'edit':
 		// Edición de registro
         fn_factura_edit();
         break;
@@ -13,11 +16,38 @@ switch($.urlParam('operation')) {
         fn_factura_grid();
 }
 
-function fn_factura_edit () {
+function fn_factura_insert () {
+	// Ocultar campo "Rechazada?" en creación
+	$('label[for="fl_rechazo_edit"]').hide();
+	$('#fl_rechazo_edit').hide();
+
+	// Ocultar la botonera de carga de archivo
+	$('div.btn-group[data-toggle="buttons-radio"]').hide();
+	$('div.controls > br').hide();
+	$('input[type="file"]').css({"width":"+=60px","vertical-align":"middle"});
+
+	// Al cambiar honorario...
 	$("#id_honorario_edit").bind("DOMSubtreeModified", function(){
 		// Agrandar combos de "CUIT" y "Honorarios"
 		$(".select2-container").css("width", "532px");
-		// Poniendo monto por defecto
+		// Poner monto por defecto
+		if($("#select2-chosen-4").html().indexOf("$") > 0 ) {
+			var monto = $("#select2-chosen-4").html().split("(")[1];
+			monto = monto.split(")")[0];
+			$("#va_factura_edit").val(monto.replace("$","").replace(".",""));
+		}
+	});
+}
+
+function fn_factura_edit () {
+	// Modifica ancho de mensaje de archivo
+	$('input[type="file"]').css({"width":"+=60px","vertical-align":"middle"});
+	
+	// Al cambiar honorario...
+	$("#id_honorario_edit").bind("DOMSubtreeModified", function(){
+		// Agrandar combos de "CUIT" y "Honorarios"
+		$(".select2-container").css("width", "532px");
+		// Poner monto por defecto
 		if($("#select2-chosen-4").html().indexOf("$") > 0 ) {
 			var monto = $("#select2-chosen-4").html().split("(")[1];
 			monto = monto.split(")")[0];
@@ -28,7 +58,7 @@ function fn_factura_edit () {
 
 function fn_factura_grid () {
 	//$("#public_facturaGrid").css("min-width", "1200px");
-	$("table.pgui-grid > tbody > tr > td").css("padding", "1px");
+	$("table.pgui-grid > tbody > tr > td").css({"padding":"0px","padding-left":"2px","padding-right":"2px"});
 
 	// Cambiar "SetAllowDeleteSelected(false);" por "SetAllowDeleteSelected(true);"
 	$('div.btn-toolbar.pull-left').before('<button class="btn rrhh-certif-selected"><i class="pg-icon-export"></i>Certificar facturas</button>');

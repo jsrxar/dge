@@ -1,4 +1,4 @@
-INSERT INTO dependencia (no_ministerio, no_secretaria, no_subsecretaria, no_direccion_area, no_area_dependencia, no_sector, no_subsector) VALUES
+INSERT INTO facturas.dependencia (no_ministerio, no_secretaria, no_subsecretaria, no_direccion_area, no_area_dependencia, no_sector, no_subsector) VALUES
 ('SFMyCP', NULL, NULL, NULL, NULL, NULL, NULL),
 ('SFMyCP', NULL, NULL, 'DIR GRAL TECNICA ADMINISTRATIVA Y LEGAL', NULL, NULL, NULL),
 ('SFMyCP', NULL, NULL, 'DIR GRAL TECNICA ADMINISTRATIVA Y LEGAL', 'CIBERSALUD', NULL, NULL),
@@ -119,19 +119,19 @@ INSERT INTO dependencia (no_ministerio, no_secretaria, no_subsecretaria, no_dire
 ('SFMyCP', 'SEC CONTENIDOS PUBLICOS', 'SUBSEC CENTROS TEMATICOS Y EXP FEDERALES', 'UNIDAD SUBSECRETARIO', NULL, NULL, NULL),
 ('SFMyCP', 'SEC MEDIOS PUBLICOS', NULL, 'UNIDAD SECRETARÍA', NULL, NULL, NULL);
 
-INSERT INTO tipo_contrato (id_tipo_contrato, co_tipo_contrato, no_tipo_contrato) VALUES
+INSERT INTO facturas.tipo_contrato (id_tipo_contrato, co_tipo_contrato, no_tipo_contrato) VALUES
 (1, 'LM', 'LEY MARCO'),
 (2, 'AT', 'ASISTENCIA TÉCNICA'),
 (3, 'CO', 'ASISTENCIA TÉCNICA (CO)');
 
-INSERT INTO ubicacion_fisica (no_ubicacion_fisica, ds_direccion) VALUES
+INSERT INTO facturas.ubicacion_fisica (no_ubicacion_fisica, ds_direccion) VALUES
 ('CABILDO',      'Cabildo 65, C.A.B.A.'),
 ('CCK',          'Alem 351, C.A.B.A.'),
 ('ESMERALDA',    'Esmeralda 255, C.A.B.A.'),
 ('CILO PALPALÁ', 'Alfonso de Vera, Palpalá, Jujuy'),
 ('TECNÓPOLIS',   'Av. General Paz y Constituyentes, Vicente López');
 
-INSERT INTO convenio_at (ds_universidad, no_convenio_at) VALUES
+INSERT INTO facturas.convenio_at (ds_universidad, no_convenio_at) VALUES
 (NULL, 'B2'),
 ('U. LA MATANZA', 'LEY MARCO '),
 ('U. SAN MARTÍN', 'UNSAM'),
@@ -150,7 +150,7 @@ INSERT INTO convenio_at (ds_universidad, no_convenio_at) VALUES
 ('UNTREF', 'UNSAM-TDA'),
 ('UNTREF', 'UNTREF');
 			
-INSERT INTO categoria_lm (id_categoria_lm, co_categoria_lm, co_letra_lm, co_nivel_lm) VALUES
+INSERT INTO facturas.categoria_lm (id_categoria_lm, co_categoria_lm, co_letra_lm, co_nivel_lm) VALUES
 (100, 'A0',  'A',  0),
 (101, 'A1',  'A',  1),
 (102, 'A2',  'A',  2),
@@ -218,18 +218,20 @@ INSERT INTO categoria_lm (id_categoria_lm, co_categoria_lm, co_letra_lm, co_nive
 (609, 'F9',  'F',  9),
 (610, 'F10', 'F', 10);
 
-INSERT INTO mes (
-	id_mes,
-	nu_anio_mes,
-	nu_mes,
-	no_mes,
+INSERT INTO facturas.tipo_honorario (
+	id_tipo_honorario,
+	nu_mes_honorario,
+	nu_anio_honorario,
+	no_tipo_honorario,
+	co_categ_honorario,
 	va_pct_aumento )
 SELECT
-	TO_CHAR(datum, 'YYYYMM')::INT AS id_mes,
-	EXTRACT(YEAR FROM datum)      AS nu_anio,
-	EXTRACT(MONTH FROM datum)     AS nu_mes,
-	TO_CHAR(datum, 'TMMonth')     AS no_mes,
-	0                             AS va_pct_aumento
+	TO_CHAR(datum, 'YYYYMM"0"')::INT AS id_tipo_honorario,
+	EXTRACT(MONTH FROM datum)        AS nu_mes_honorario,
+	EXTRACT(YEAR FROM datum)         AS nu_anio_honorario,
+	TO_CHAR(datum, 'YYYY/MM')        AS no_tipo_honorario,
+	'M'                              AS co_categ_honorario,
+	0                                AS va_pct_aumento
 FROM (
 	-- There are 3 leap years in this range, so calculate 365 * 20 + 5 records
 	SELECT '2015-01-01'::DATE + (SEQUENCE.DAY::TEXT || ' MONTH')::INTERVAL AS datum
@@ -237,11 +239,11 @@ FROM (
 	GROUP BY SEQUENCE.DAY
      ) DQ;
 
-UPDATE mes SET va_pct_aumento =  7 WHERE id_mes = 201606;
-UPDATE mes SET va_pct_aumento = 10 WHERE id_mes = 201607;
-UPDATE mes SET va_pct_aumento = 14 WHERE id_mes = 201608;
+UPDATE facturas.tipo_honorario SET va_pct_aumento =  7 WHERE id_tipo_honorario = 2016060;
+UPDATE facturas.tipo_honorario SET va_pct_aumento = 10 WHERE id_tipo_honorario = 2016070;
+UPDATE facturas.tipo_honorario SET va_pct_aumento = 14 WHERE id_tipo_honorario = 2016080;
 
-INSERT INTO puesto (no_puesto) VALUES
+INSERT INTO facturas.puesto (no_puesto) VALUES
 ('ACUA FEDERAL'),
 ('ACUA MAYOR'),
 ('ADMINISTRACIÓN'),
