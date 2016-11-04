@@ -174,7 +174,7 @@ if($idsToCertif = get_param("idsToCertif")){
 						$idConvenioAT = $row[0];
 ?>
 					<div class="row-fluid">
-						<div class="span6">
+						<div class="span10">
 							<table class="table pgui-record-card">
 								<tbody>
 									<tr><td><strong>Nuevo Lote</strong></td><td></td></tr>

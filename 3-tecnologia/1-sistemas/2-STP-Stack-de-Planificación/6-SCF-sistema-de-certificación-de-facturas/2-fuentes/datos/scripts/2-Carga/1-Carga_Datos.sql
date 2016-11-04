@@ -80,7 +80,7 @@ INSERT INTO facturas.honorario (
 SELECT
 	2016050       AS id_tipo_honorario,
 	(SELECT id_contrato FROM facturas.contrato WHERE id_agente = cn.id_agente) AS id_contrato,
-	ds_mayo_2016::MONEY::NUMERIC::FLOAT AS va_honorario
+	ENCRYPT(ds_mayo_2016::MONEY::TEXT::BYTEA, RPAD(:pKey, 24, '*')::BYTEA, 'AES') AS va_honorario
 FROM (
 	SELECT
 		(SELECT id_agente FROM facturas.agente
@@ -101,7 +101,7 @@ WHERE ds_mayo_2016::MONEY::NUMERIC > 0
 SELECT
 	2016060       AS id_tipo_honorario,
 	(SELECT id_contrato FROM facturas.contrato WHERE id_agente = cn.id_agente) AS id_contrato,
-	ds_junio_7p::MONEY::NUMERIC::FLOAT AS va_honorario
+	ENCRYPT(ds_junio_7p::MONEY::TEXT::BYTEA, RPAD(:pKey, 24, '*')::BYTEA, 'AES') AS va_honorario
 FROM (
 	SELECT
 		(SELECT id_agente FROM facturas.agente
@@ -122,7 +122,7 @@ WHERE ds_junio_7p::MONEY::NUMERIC > 0
 SELECT
 	2016070       AS id_tipo_honorario,
 	(SELECT id_contrato FROM facturas.contrato WHERE id_agente = cn.id_agente) AS id_contrato,
-	ds_julio_10p::MONEY::NUMERIC::FLOAT AS va_honorario
+	ENCRYPT(ds_julio_10p::MONEY::TEXT::BYTEA, RPAD(:pKey, 24, '*')::BYTEA, 'AES') AS va_honorario
 FROM (
 	SELECT
 		(SELECT id_agente FROM facturas.agente
@@ -143,7 +143,7 @@ WHERE ds_julio_10p::MONEY::NUMERIC > 0
 SELECT
 	2016080       AS id_tipo_honorario,
 	(SELECT id_contrato FROM facturas.contrato WHERE id_agente = cn.id_agente) AS id_contrato,
-	ds_agosto_14p::MONEY::NUMERIC::FLOAT AS va_honorario
+	ENCRYPT(ds_agosto_14p::MONEY::TEXT::BYTEA, RPAD(:pKey, 24, '*')::BYTEA, 'AES') AS va_honorario
 FROM (
 	SELECT
 		(SELECT id_agente FROM facturas.agente
@@ -164,7 +164,7 @@ WHERE ds_agosto_14p::MONEY::NUMERIC > 0
 SELECT
 	2016090       AS id_tipo_honorario,
 	(SELECT id_contrato FROM facturas.contrato WHERE id_agente = cn.id_agente) AS id_contrato,
-	ds_sept::MONEY::NUMERIC::FLOAT AS va_honorario
+	ENCRYPT(ds_sept::MONEY::TEXT::BYTEA, RPAD(:pKey, 24, '*')::BYTEA, 'AES') AS va_honorario
 FROM (
 	SELECT
 		(SELECT id_agente FROM facturas.agente
@@ -185,7 +185,7 @@ WHERE ds_sept::MONEY::NUMERIC > 0
 SELECT
 	2016100       AS id_tipo_honorario,
 	(SELECT id_contrato FROM facturas.contrato WHERE id_agente = cn.id_agente) AS id_contrato,
-	ds_oct::MONEY::NUMERIC::FLOAT AS va_honorario
+	ENCRYPT(ds_oct::MONEY::TEXT::BYTEA, RPAD(:pKey, 24, '*')::BYTEA, 'AES') AS va_honorario
 FROM (
 	SELECT
 		(SELECT id_agente FROM facturas.agente
@@ -206,7 +206,7 @@ WHERE ds_oct::MONEY::NUMERIC > 0
 SELECT
 	2016110       AS id_tipo_honorario,
 	(SELECT id_contrato FROM facturas.contrato WHERE id_agente = cn.id_agente) AS id_contrato,
-	ds_nov::MONEY::NUMERIC::FLOAT AS va_honorario
+	ENCRYPT(ds_nov::MONEY::TEXT::BYTEA, RPAD(:pKey, 24, '*')::BYTEA, 'AES') AS va_honorario
 FROM (
 	SELECT
 		(SELECT id_agente FROM facturas.agente
@@ -227,7 +227,7 @@ WHERE ds_nov::MONEY::NUMERIC > 0
 SELECT
 	2016120       AS id_tipo_honorario,
 	(SELECT id_contrato FROM facturas.contrato WHERE id_agente = cn.id_agente) AS id_contrato,
-	ds_dic::MONEY::NUMERIC::FLOAT AS va_honorario
+	ENCRYPT(ds_dic::MONEY::TEXT::BYTEA, RPAD(:pKey, 24, '*')::BYTEA, 'AES') AS va_honorario
 FROM (
 	SELECT
 		(SELECT id_agente FROM facturas.agente
@@ -240,3 +240,7 @@ FROM (
  ) cn
 WHERE ds_dic::MONEY::NUMERIC > 0
   AND EXISTS (SELECT 1 FROM facturas.contrato WHERE id_agente = cn.id_agente);
+
+TRUNCATE TABLE facturas.stg_base_rrhh;
+/*DELETE FROM facturas.stg_base_rrhh;*/
+  

@@ -576,7 +576,7 @@ O=Otro</remarks>
     <column id="COL160" populated="true" UUID="a64bd663-e573-4760-96e6-d9441b1c4b14" autoIncrement="false" autoIncrementSequenceName="honorario_id_contrato_seq" defaultValue="" name="ID Contrato" nullable="0" physicalName="id_contrato" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks>Contrato con el agente.</remarks>
     </column>
-    <column id="COL161" populated="true" UUID="057b09ed-c743-41f6-997d-102b7e1b5120" autoIncrement="false" autoIncrementSequenceName="honorario_va_honorario_seq" defaultValue="" name="Valor Honorario" nullable="1" physicalName="va_honorario" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="6" userDefinedTypeUUID="7e55bcd0-7606-4153-b749-9c397f12c4d8" >
+    <column id="COL161" populated="true" UUID="057b09ed-c743-41f6-997d-102b7e1b5120" autoIncrement="false" autoIncrementSequenceName="honorario_va_honorario_seq" defaultValue="" name="Valor Honorario" nullable="0" physicalName="va_honorario" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="-2" userDefinedTypeUUID="fc731466-848e-411a-82af-e7f5e1d504bb" >
      <remarks>Valor del honorario del agente.</remarks>
     </column>
     </folder>
@@ -611,7 +611,7 @@ O=Otro</remarks>
     <column id="COL170" populated="true" UUID="9419f325-ac6a-468c-a384-7b8f8bcc54e8" autoIncrement="false" autoIncrementSequenceName="factura_fe_carga_seq" defaultValue="CURRENT_TIMESTAMP" name="Fecha Carga" nullable="0" physicalName="fe_carga" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="93" userDefinedTypeUUID="6497d8de-0e00-40d6-a42e-e2adca83be64" >
      <remarks>Fecha de carga de la factura.</remarks>
     </column>
-    <column id="COL171" populated="true" UUID="c8728722-7d51-4a68-bbad-deae42490dd5" autoIncrement="false" autoIncrementSequenceName="factura_va_factura_seq" defaultValue="" name="Monto Factura" nullable="1" physicalName="va_factura" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="6" userDefinedTypeUUID="7e55bcd0-7606-4153-b749-9c397f12c4d8" >
+    <column id="COL171" populated="true" UUID="c8728722-7d51-4a68-bbad-deae42490dd5" autoIncrement="false" autoIncrementSequenceName="factura_va_factura_seq" defaultValue="" name="Monto Factura" nullable="0" physicalName="va_factura" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="-2" userDefinedTypeUUID="fc731466-848e-411a-82af-e7f5e1d504bb" >
      <remarks>Monto de la factura.</remarks>
     </column>
     <column id="COL172" populated="true" UUID="69a878cd-3b78-423e-8ace-d266db8705d0" autoIncrement="false" autoIncrementSequenceName="factura_ar_factura_seq" defaultValue="" name="Imagen Factura" nullable="1" physicalName="ar_factura" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="2004" userDefinedTypeUUID="5c50e616-a448-40e1-abcd-5bfc04dcc607" >

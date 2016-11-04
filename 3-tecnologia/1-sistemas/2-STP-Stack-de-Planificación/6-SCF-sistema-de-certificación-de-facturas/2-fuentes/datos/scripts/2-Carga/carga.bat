@@ -22,7 +22,7 @@ for %%f in (C:\archivos\facturas\inicial\*.csv) do (
 :: Para mover agregar al FOR: move "%%~dpnxf" "%%~dpfprocesado\%FECHAHORA%.%%~nxf"
 
 @echo Completando datos
-C:\app\pentaho-ee\postgresql\bin\psql -h %PGHOST% -d %PDBASE% -U %PGUSER% -f 1-Carga_Datos.sql
+C:\app\pentaho-ee\postgresql\bin\psql -h %PGHOST% -d %PDBASE% -U %PGUSER% -f 1-Carga_Datos.sql -v pKey='%PGPASSWORD%'
 
 @echo ==============================(  Proceso finalizado  )==============================
 

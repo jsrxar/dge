@@ -1,4 +1,4 @@
-<Project productVersion="14.10.0.11" localizationFileName="C:\app\PostgreSQL PHP Generator\lang.es.php" phpDriver="0" outputPath="\\monet.myc.ar\facturas" copySystemFiles="true" outputFilesExtension="php" colorSchemeName="Facebook">
+<Project productVersion="14.10.0.11" localizationFileName="C:\app\PostgreSQL PHP Generator\lang.es.php" phpDriver="0" outputPath="\\monet.myc.ar\facturas" copySystemFiles="false" outputFilesExtension="php" colorSchemeName="Facebook">
   <ConnectionOptions host="monet.myc.ar" port="5432" login="facturas" password="WJS[[+OJK.O8JJBIK@~~" database="sfmycp" client_encoding="">
     <ssh_secure secure="false" port="22" authentication_mode="0"/>
     <http_tunnel tunneling="false" url="">
@@ -6,7 +6,7 @@
       <http_authentication/>
     </http_tunnel>
   </ConnectionOptions>
-  <ScriptConnectionOptions host="monet.myc.ar" port="5432" login="facturas" password="WJS[[+OJK.O8JJBIK@~~" database="sfmycp" client_encoding="">
+  <ScriptConnectionOptions host="localhost" port="5432" login="facturas" password="WJS[[+OJK.O8JJBIK@~~" database="sfmycp" client_encoding="">
     <ssh_secure secure="false" port="22" authentication_mode="0"/>
     <http_tunnel tunneling="false" url="">
       <http_proxy_server use_proxy="false" port="8080"/>
@@ -91,12 +91,7 @@ SELECT
       (SELECT no_tipo_honorario
        FROM facturas.tipo_honorario
        WHERE id_tipo_honorario = sa.id_tipo_honorario) ||
-      ' (' || CAST(CAST(sa.va_honorario AS NUMERIC) AS MONEY) ||')' ||
-      (SELECT CASE
-       WHEN COUNT(DISTINCT id_factura) = 0 THEN ''
-       WHEN COUNT(DISTINCT id_factura) = 1 THEN ' &lt;!--1 factura asociada--&gt;'
-       ELSE ' &lt;!--' || COUNT(DISTINCT id_factura) || ' facturas asociadas--&gt;' END
-       FROM facturas.factura fa WHERE fa.id_honorario = sa.id_honorario AND NOT fl_rechazo ) AS ds_honorario
+      ' (' || CAST(CAST(CONVERT_FROM(DECRYPT(sa.va_honorario,'F4ct#r4s@2016','AES'),'SQL_ASCII') AS TEXT) AS MONEY) ||')' AS ds_honorario
 FROM facturas.honorario sa
 ORDER BY ds_honorario      </SelectStatement>
       <InsertStatements/>
@@ -211,7 +206,7 @@ ORDER BY 2      </SelectStatement>
             <Column fieldName="va_factura" caption="Monto Factura" visible="true" headerHint="Monto de la factura." totalFunction="0">
               <ViewProperties type="text">
                 <DivAttributes align="right"/>
-                <Format type="currency" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="." currencySymbol="$ "/>
+                <Format type="string" transformFunctionName="decrypt_aes"/>
               </ViewProperties>
             </Column>
             <Column fieldName="ar_factura" caption="Archivo Factura" visible="false" headerHint="Archivo de imagen de la factura." totalFunction="0">
@@ -275,7 +270,7 @@ ORDER BY 2      </SelectStatement>
             <Column fieldName="va_factura" caption="Monto Factura" visible="true" headerHint="Monto de la factura.">
               <ViewProperties type="text">
                 <DivAttributes align="right"/>
-                <Format type="currency" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="." currencySymbol="$ "/>
+                <Format type="string" transformFunctionName="decrypt_aes"/>
               </ViewProperties>
             </Column>
             <Column fieldName="ar_factura" caption="Archivo Factura" visible="true" headerHint="Archivo de imagen de la factura.">
@@ -358,7 +353,7 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
             <Column fieldName="ds_comentario" caption="Comentario Factura" visible="true" canSetNull="true">
               <EditProperties type="textArea" columnCount="45" rowCount="3" placeholder=""/>
             </Column>
-            <Column fieldName="id_certificacion" caption="Lote Certificación" visible="false" canSetNull="true" readOnly="true">
+            <Column fieldName="id_certificacion" caption="Lote Certificación" visible="true" canSetNull="true" readOnly="true">
               <Lookup tableName="ver_lote_cert" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <EditProperties type="comboBox">
                 <MFUItems/>
@@ -425,7 +420,7 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
             <Column fieldName="ar_factura" caption="Archivo Factura" visible="true" canSetNull="true" defaultInsertValue="">
               <EditProperties type="fileUpload"/>
             </Column>
-            <Column fieldName="fl_rechazo" caption="Rechazada?" visible="true" canSetNull="true" defaultInsertValue="">
+            <Column fieldName="fl_rechazo" caption="Rechazada?" visible="false" canSetNull="true" defaultInsertValue="">
               <EditProperties type="checkBox"/>
             </Column>
             <Column fieldName="ds_comentario" caption="Comentario Factura" visible="true" canSetNull="true" defaultInsertValue="">
@@ -531,7 +526,7 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
             <Column fieldName="va_factura" caption="Monto Factura" visible="true" headerHint="Monto de la factura.">
               <ViewProperties type="text">
                 <DivAttributes align="right"/>
-                <Format type="currency" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="." currencySymbol="$ "/>
+                <Format type="string" transformFunctionName="decrypt_aes"/>
               </ViewProperties>
             </Column>
             <Column fieldName="ar_factura" caption="Archivo Factura" visible="true" headerHint="Archivo de imagen de la factura.">
@@ -593,7 +588,7 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
             <Column fieldName="va_factura" caption="Monto Factura" visible="true" headerHint="Monto de la factura.">
               <ViewProperties type="text">
                 <DivAttributes align="right"/>
-                <Format type="currency" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="." currencySymbol="$ "/>
+                <Format type="string" transformFunctionName="decrypt_aes"/>
               </ViewProperties>
             </Column>
             <Column fieldName="ar_factura" caption="Archivo Factura" visible="true" headerHint="Archivo de imagen de la factura.">
@@ -2443,7 +2438,7 @@ DNI                  </MFUItem>
             <Column fieldName="va_honorario" caption="Monto" visible="true" headerHint="Valor del honorario del agente." totalFunction="0">
               <ViewProperties type="text">
                 <DivAttributes align="right"/>
-                <Format type="currency" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
+                <Format type="string" transformFunctionName="decrypt_aes"/>
               </ViewProperties>
             </Column>
           </ViewColumns>
@@ -2467,7 +2462,7 @@ DNI                  </MFUItem>
             <Column fieldName="va_honorario" caption="Monto" visible="true" headerHint="Valor del honorario del agente.">
               <ViewProperties type="text">
                 <DivAttributes align="right"/>
-                <Format type="currency" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
+                <Format type="string" transformFunctionName="decrypt_aes"/>
               </ViewProperties>
             </Column>
           </SingleRecordViewColumns>
@@ -2547,7 +2542,7 @@ DNI                  </MFUItem>
             <Column fieldName="va_honorario" caption="Monto" visible="true" headerHint="Valor del honorario del agente.">
               <ViewProperties type="text">
                 <DivAttributes align="right"/>
-                <Format type="currency" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
+                <Format type="string" transformFunctionName="decrypt_aes"/>
               </ViewProperties>
             </Column>
           </ExportColumns>
@@ -2571,7 +2566,7 @@ DNI                  </MFUItem>
             <Column fieldName="va_honorario" caption="Monto" visible="true" headerHint="Valor del honorario del agente.">
               <ViewProperties type="text">
                 <DivAttributes align="right"/>
-                <Format type="currency" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
+                <Format type="string" transformFunctionName="decrypt_aes"/>
               </ViewProperties>
             </Column>
           </PrintColumns>
@@ -3588,14 +3583,15 @@ DNI                  </MFUItem>
         <PartitionNavigators/>
       </Page>
     </Pages>
-    <UserAuthorization type="hardCoded">
+    <UserAuthorization type="hardCoded" passwordEncryption="md5">
       <Users>
+        <User name="eze" password="eze" userId="eze"/>
         <User name="facturas" password="facturas"/>
       </Users>
     </UserAuthorization>
     <UserGrants enableGuestAccess="false">
-      <UserGrant userName="defaultUser" select="1"/>
-      <UserGrant userName="guest"/>
+      <UserGrant userName="defaultUser"/>
+      <UserGrant userName="eze"/>
       <UserGrant userName="facturas" select="1" insert="1" update="1" delete="1" admin="1"/>
       <UserPageGrants>
         <PageGrants userName="defaultUser">
@@ -3621,8 +3617,8 @@ DNI                  </MFUItem>
           <PageGrant pageName="ver_categ_honorario"/>
           <PageGrant pageName="ver_contrato"/>
         </PageGrants>
-        <PageGrants userName="guest">
-          <PageGrant pageName="facturas.factura"/>
+        <PageGrants userName="eze">
+          <PageGrant pageName="facturas.factura" select="1" admin="1"/>
           <PageGrant pageName="facturas.certificacion"/>
           <PageGrant pageName="facturas.agente"/>
           <PageGrant pageName="facturas.dependencia"/>
@@ -3938,6 +3934,10 @@ function loadJs(jsFile) {
     })
 }  </UserJS>
   <ExcludedPaths/>
+  <AdditionalOutputPaths>
+    <Path>
+C:\app\xampp\htdocs\facturas    </Path>
+  </AdditionalOutputPaths>
   <DefaultPageProperties recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" copyAbilityMode="0" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true" showKeyColumnsImagesInGridHeader="false"/>
   <DefaultDataFormats numberAfterDecimal="2" DecimalSeparator="," ThousandSeparator="." DateTimeFormat="d/m/Y H:i:s" DateFormat="d/m/Y" firstDayOfWeek="0"/>
 </Project>

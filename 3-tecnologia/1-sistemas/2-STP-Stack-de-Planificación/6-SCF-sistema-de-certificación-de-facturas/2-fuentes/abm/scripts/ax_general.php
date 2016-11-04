@@ -1,5 +1,13 @@
 <?php
-$debug = false;
+$debug = true;
+
+//include_once dirname(__FILE__) . '/' . 'components/utils/check_utils.php';
+//CheckPHPVersion();
+//CheckTemplatesCacheFolderIsExistsAndWritable();
+//include_once dirname(__FILE__) . '/' . 'phpgen_settings.php';
+include_once dirname(__FILE__) . '/' . 'database_engine/pgsql_engine.php';
+//include_once dirname(__FILE__) . '/' . 'components/page.php';
+include_once dirname(__FILE__) . '/' . 'authorization.php';
 
 function get_param ($parametro) {
 	if (isset($_POST[$parametro]))
@@ -28,7 +36,6 @@ if($debug) {
 // Conectamos a la base de datos 
 include_once dirname(__FILE__) . '/' . 'phpgen_settings.php';
 $dbo = GetGlobalConnectionOptions();
-
 //echo "<!--p>\nhost=" . $dbo['server'] . "\ndbname=" . $dbo['database'] . "\nuser=" . $dbo['username'] . "\npassword=" . $dbo['password'] . "\n<p-->\n";
 $dbc = pg_pconnect('host=' . $dbo['server'] . ' dbname=' . $dbo['database'] . ' user=' . $dbo['username'] . ' password=' . $dbo['password']);
 if (!$dbc) {

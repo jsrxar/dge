@@ -38,7 +38,7 @@ function fn_certif_edit () {
 }
 
 function fn_certif_view () {
-	var span = "span8";
+	var span = "span10";
 	$('div.span6').append('<div id="auxLoteCert"><h2 style="text-align:center;color:grey">Cargando Lote</h2><br></div>');
 	$('div.span6').addClass(span);
 	$('div.' + span).removeClass('span6');

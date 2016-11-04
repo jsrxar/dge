@@ -72,10 +72,13 @@ foreach ($arch in get-content "$diract\activador.txt") {
 	}
 }
 
-Write-Host Cambiando archivo de estilos CSS
-$oricss = $diract + "\main.css"
-$descss = $dir + "\components\css"
-Copy-Item $oricss -Destination $descss -Force
+Write-Host Cambiando archivo de estilos CSS y conexión DB
+$origen = $diract + "\main.css"
+$destino = $dir + "\components\css"
+Copy-Item $origen -Destination $destino -Force
+$origen = $diract + "\pgsql_engine.php"
+$destino = $dir + "\database_engine"
+Copy-Item $origen -Destination $destino -Force
 
 Write-Host Agregando funciones nuevas
 $phpaux = $diract + "\general.php"

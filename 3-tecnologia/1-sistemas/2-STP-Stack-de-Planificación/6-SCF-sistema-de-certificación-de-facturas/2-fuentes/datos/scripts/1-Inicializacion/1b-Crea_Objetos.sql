@@ -274,7 +274,7 @@ CREATE TABLE facturas.honorario (
                 id_honorario INTEGER NOT NULL DEFAULT nextval('facturas.honorario_sq'),
                 id_tipo_honorario INTEGER NOT NULL,
                 id_contrato INTEGER NOT NULL,
-                va_honorario REAL,
+                va_honorario BYTEA NOT NULL,
                 CONSTRAINT honorario_pk PRIMARY KEY (id_honorario)
 );
 COMMENT ON TABLE facturas.honorario IS 'Honorario del agente (normalmente mensual).';
@@ -295,7 +295,7 @@ CREATE TABLE facturas.factura (
                 nu_factura INTEGER,
                 fe_factura DATE,
                 fe_carga TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-                va_factura REAL,
+                va_factura BYTEA NOT NULL,
                 ar_factura BYTEA,
                 ar_constancia_opcion BYTEA,
                 ar_informe_tareas BYTEA,
