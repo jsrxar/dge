@@ -91,7 +91,7 @@ SELECT
       (SELECT no_tipo_honorario
        FROM facturas.tipo_honorario
        WHERE id_tipo_honorario = sa.id_tipo_honorario) ||
-      ' (' || CAST(CAST(CONVERT_FROM(DECRYPT(sa.va_honorario,'F4ct#r4s@2016','AES'),'SQL_ASCII') AS TEXT) AS MONEY) ||')' AS ds_honorario
+      ' (' || CAST(CAST(CONVERT_FROM(DECRYPT(sa.va_honorario,CAST(RPAD('F4ct#r4s@2016', 24, '*') AS BYTEA),'AES'),'SQL_ASCII') AS TEXT) AS MONEY) ||')' AS ds_honorario
 FROM facturas.honorario sa
 ORDER BY ds_honorario      </SelectStatement>
       <InsertStatements/>
@@ -132,7 +132,7 @@ ORDER BY fe_certificacion DESC, fe_creacion DESC      </SelectStatement>
         <Field name="id"/>
       </PrimaryKeyFields>
     </Query>
-    <Query name="ver_categ_honorario">
+    <Query name="ver_tipo">
       <SelectStatement>
 SELECT 'M' AS id, 'Mensual' AS nombre
 UNION ALL SELECT 'A', 'Adicional'
@@ -341,7 +341,7 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
             </Column>
             <Column fieldName="va_factura" caption="Monto Factura" visible="true" canSetNull="true">
               <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="$" suffix="">
-                <AdvancedProperties inlineStyles="text-align:right" customAttributes="onkeypress='return (event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57) || event.charCode == 44'"/>
+                <AdvancedProperties inlineStyles="text-align:right" customAttributes="onkeypress='return (event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57) || event.charCode == 46'"/>
               </EditProperties>
             </Column>
             <Column fieldName="ar_factura" caption="Archivo Factura" visible="true" canSetNull="true">
@@ -414,7 +414,7 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
             </Column>
             <Column fieldName="va_factura" caption="Monto Factura" visible="true" canSetNull="true" defaultInsertValue="">
               <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="$" suffix="">
-                <AdvancedProperties inlineStyles="text-align:right" customAttributes="onkeypress='return (event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57) || event.charCode == 44'"/>
+                <AdvancedProperties inlineStyles="text-align:right" customAttributes="onkeypress='return (event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57) || event.charCode == 46'"/>
               </EditProperties>
             </Column>
             <Column fieldName="ar_factura" caption="Archivo Factura" visible="true" canSetNull="true" defaultInsertValue="">
@@ -813,13 +813,13 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
             <Column fieldName="id_agente" caption="ID Agente" visible="false" headerHint="Identificador único del agente que presta servicios." totalFunction="0">
               <ViewProperties type="text"/>
             </Column>
-            <Column fieldName="no_apellido" caption="Apellido/s" visible="true" headerHint="Apellidos del agente." totalFunction="0">
+            <Column fieldName="no_apellido" caption="Apellido/s" visible="false" headerHint="Apellidos del agente." totalFunction="0">
               <ViewProperties type="text" maxLength="75"/>
             </Column>
-            <Column fieldName="no_nombre" caption="Nombre/s" visible="true" headerHint="Nombre del agente." totalFunction="0">
+            <Column fieldName="no_nombre" caption="Nombre/s" visible="false" headerHint="Nombre del agente." totalFunction="0">
               <ViewProperties type="text" maxLength="75"/>
             </Column>
-            <Column fieldName="no_agente" caption="Nombre Completo" visible="false" headerHint="Nombre del agente que presta servicios." totalFunction="0">
+            <Column fieldName="no_agente" caption="Nombre" visible="true" headerHint="Nombre del agente que presta servicios." totalFunction="0">
               <ViewProperties type="text" maxLength="75">
                 <DivAttributes align="left"/>
               </ViewProperties>
@@ -889,24 +889,27 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
             <Column fieldName="fe_ingreso" caption="Fecha Ingreso" visible="true" headerHint="Fecha de ingreso del agente." totalFunction="0">
               <ViewProperties type="dateTime" dateTimeFormat="d/m/Y" dateTimeKind="1"/>
             </Column>
-            <Column fieldName="ar_cv_agente" caption="CV Agente" visible="true" headerHint="Archivo del CV del agente." totalFunction="0">
+            <Column fieldName="ar_cv_agente" caption="CV Agente" visible="false" headerHint="Archivo del CV del agente." totalFunction="0">
               <ViewProperties type="download" downloadFileNameTemplate="CV_%co_cuit%.%ds_cv_agente%" contentTypeTemplate="%ds_cv_agente%"/>
             </Column>
             <Column fieldName="ds_cv_agente" caption="Tipo CV" visible="false" totalFunction="0">
               <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="fe_carga" caption="Carga" visible="true" headerHint="Fecha de carga de la factura." totalFunction="0">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/y"/>
             </Column>
           </ViewColumns>
           <SingleRecordViewColumns>
             <Column fieldName="id_agente" caption="ID Agente" visible="true" headerHint="Identificador único del agente que presta servicios.">
               <ViewProperties type="text"/>
             </Column>
-            <Column fieldName="no_apellido" caption="Apellido/s" visible="true" headerHint="Apellidos del agente.">
+            <Column fieldName="no_apellido" caption="Apellido/s" visible="false" headerHint="Apellidos del agente.">
               <ViewProperties type="text" maxLength="75"/>
             </Column>
-            <Column fieldName="no_nombre" caption="Nombre/s" visible="true" headerHint="Nombre del agente.">
+            <Column fieldName="no_nombre" caption="Nombre/s" visible="false" headerHint="Nombre del agente.">
               <ViewProperties type="text" maxLength="75"/>
             </Column>
-            <Column fieldName="no_agente" caption="Nombre Completo" visible="true" headerHint="Nombre del agente que presta servicios.">
+            <Column fieldName="no_agente" caption="Nombre" visible="true" headerHint="Nombre del agente que presta servicios.">
               <ViewProperties type="text" maxLength="75">
                 <DivAttributes align="left"/>
               </ViewProperties>
@@ -982,18 +985,21 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
             <Column fieldName="ds_cv_agente" caption="Tipo CV" visible="false">
               <ViewProperties type="text"/>
             </Column>
+            <Column fieldName="fe_carga" caption="Carga" visible="true" headerHint="Fecha de carga de la factura.">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/y"/>
+            </Column>
           </SingleRecordViewColumns>
           <EditColumns>
             <Column fieldName="id_agente" caption="ID Agente" visible="false">
               <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
             </Column>
-            <Column fieldName="no_apellido" caption="Apellido/s" visible="true">
+            <Column fieldName="no_apellido" caption="Apellido/s" visible="false">
               <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
             </Column>
-            <Column fieldName="no_nombre" caption="Nombre/s" visible="true">
+            <Column fieldName="no_nombre" caption="Nombre/s" visible="false">
               <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
             </Column>
-            <Column fieldName="no_agente" caption="Nombre Completo" visible="true" canSetNull="true" readOnly="true">
+            <Column fieldName="no_agente" caption="Nombre" visible="true" canSetNull="true">
               <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
             </Column>
             <Column fieldName="id_puesto" caption="Puesto" visible="true" canSetNull="true">
@@ -1061,18 +1067,21 @@ DNI                  </MFUItem>
             <Column fieldName="ds_cv_agente" caption="Tipo CV" visible="false" canSetNull="true">
               <EditProperties type="textBox" size="10" maxLength="10" placeholder="" prefix="" suffix=""/>
             </Column>
+            <Column fieldName="fe_carga" caption="Carga" visible="true" readOnly="true">
+              <EditProperties type="dateTime" showsTime="true" dateTimeFormat="Y-m-d H:i:s" firstDayOfWeek="0"/>
+            </Column>
           </EditColumns>
           <InsertColumns>
             <Column fieldName="id_agente" caption="ID Agente" visible="false" defaultInsertValue="">
               <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
             </Column>
-            <Column fieldName="no_apellido" caption="Apellido/s" visible="true" defaultInsertValue="">
+            <Column fieldName="no_apellido" caption="Apellido/s" visible="false" defaultInsertValue="">
               <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
             </Column>
-            <Column fieldName="no_nombre" caption="Nombre/s" visible="true" defaultInsertValue="">
+            <Column fieldName="no_nombre" caption="Nombre/s" visible="false" defaultInsertValue="">
               <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
             </Column>
-            <Column fieldName="no_agente" caption="Nombre Completo" visible="true" canSetNull="true" readOnly="true" defaultInsertValue="">
+            <Column fieldName="no_agente" caption="Nombre" visible="true" canSetNull="true" defaultInsertValue="">
               <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
             </Column>
             <Column fieldName="id_puesto" caption="Puesto" visible="true" canSetNull="true" defaultInsertValue="">
@@ -1140,12 +1149,15 @@ DNI                  </MFUItem>
             <Column fieldName="ds_cv_agente" caption="Tipo CV" visible="false" canSetNull="true" defaultInsertValue="">
               <EditProperties type="textBox" size="10" maxLength="10" placeholder="" prefix="" suffix=""/>
             </Column>
+            <Column fieldName="fe_carga" caption="Carga" visible="true" readOnly="true" defaultInsertValue="">
+              <EditProperties type="dateTime" showsTime="true" dateTimeFormat="Y-m-d H:i:s" firstDayOfWeek="0"/>
+            </Column>
           </InsertColumns>
           <SimpleSearchColumns>
             <Column fieldName="id_agente" caption="ID Agente" visible="true"/>
-            <Column fieldName="no_apellido" caption="Apellido/s" visible="true"/>
-            <Column fieldName="no_nombre" caption="Nombre/s" visible="true"/>
-            <Column fieldName="no_agente" caption="Nombre Completo" visible="true"/>
+            <Column fieldName="no_apellido" caption="Apellido/s" visible="false"/>
+            <Column fieldName="no_nombre" caption="Nombre/s" visible="false"/>
+            <Column fieldName="no_agente" caption="Nombre" visible="true"/>
             <Column fieldName="id_puesto" caption="Puesto" visible="true">
               <Lookup tableName="facturas.puesto" linkFieldName="id_puesto" displayFieldName="no_puesto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
@@ -1168,12 +1180,13 @@ DNI                  </MFUItem>
             <Column fieldName="ar_documento" caption="Archivo Documento" visible="false"/>
             <Column fieldName="ar_cv_agente" caption="CV Agente" visible="false"/>
             <Column fieldName="ds_cv_agente" caption="Tipo CV" visible="false"/>
+            <Column fieldName="fe_carga" caption="Carga" visible="true"/>
           </SimpleSearchColumns>
           <AdvancedSearchColumns>
             <Column fieldName="id_agente" caption="ID Agente" visible="true" useComboBox="false"/>
-            <Column fieldName="no_apellido" caption="Apellido/s" visible="true" useComboBox="false"/>
-            <Column fieldName="no_nombre" caption="Nombre/s" visible="true" useComboBox="false"/>
-            <Column fieldName="no_agente" caption="Nombre Completo" visible="true" useComboBox="false"/>
+            <Column fieldName="no_apellido" caption="Apellido/s" visible="false" useComboBox="false"/>
+            <Column fieldName="no_nombre" caption="Nombre/s" visible="false" useComboBox="false"/>
+            <Column fieldName="no_agente" caption="Nombre" visible="true" useComboBox="false"/>
             <Column fieldName="id_puesto" caption="Puesto" visible="true" useComboBox="false">
               <Lookup tableName="facturas.puesto" linkFieldName="id_puesto" displayFieldName="no_puesto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
@@ -1196,15 +1209,16 @@ DNI                  </MFUItem>
             <Column fieldName="fe_ingreso" caption="Fecha Ingreso" visible="true" useComboBox="false"/>
             <Column fieldName="ar_cv_agente" caption="CV Agente" visible="true" useComboBox="false"/>
             <Column fieldName="ds_cv_agente" caption="Tipo CV" visible="false" useComboBox="false"/>
+            <Column fieldName="fe_carga" caption="Carga" visible="true" useComboBox="false"/>
           </AdvancedSearchColumns>
           <ExportColumns>
             <Column fieldName="id_agente" caption="ID Agente" visible="true" headerHint="Identificador único del agente que presta servicios.">
               <ViewProperties type="text"/>
             </Column>
-            <Column fieldName="no_apellido" caption="No Apellido" visible="true" headerHint="Apellidos del agente.">
+            <Column fieldName="no_apellido" caption="No Apellido" visible="false" headerHint="Apellidos del agente.">
               <ViewProperties type="text"/>
             </Column>
-            <Column fieldName="no_nombre" caption="No Nombre" visible="true" headerHint="Nombre del agente.">
+            <Column fieldName="no_nombre" caption="No Nombre" visible="false" headerHint="Nombre del agente.">
               <ViewProperties type="text"/>
             </Column>
             <Column fieldName="no_agente" caption="No Agente" visible="true" headerHint="Nombre del agente que presta servicios.">
@@ -1274,16 +1288,19 @@ DNI                  </MFUItem>
             </Column>
             <Column fieldName="ds_cv_agente" caption="Tipo CV" visible="false">
               <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="fe_carga" caption="Carga" visible="true" headerHint="Fecha de carga de la factura.">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/y"/>
             </Column>
           </ExportColumns>
           <PrintColumns>
             <Column fieldName="id_agente" caption="ID Agente" visible="true" headerHint="Identificador único del agente que presta servicios.">
               <ViewProperties type="text"/>
             </Column>
-            <Column fieldName="no_apellido" caption="No Apellido" visible="true" headerHint="Apellidos del agente.">
+            <Column fieldName="no_apellido" caption="No Apellido" visible="false" headerHint="Apellidos del agente.">
               <ViewProperties type="text"/>
             </Column>
-            <Column fieldName="no_nombre" caption="No Nombre" visible="true" headerHint="Nombre del agente.">
+            <Column fieldName="no_nombre" caption="No Nombre" visible="false" headerHint="Nombre del agente.">
               <ViewProperties type="text"/>
             </Column>
             <Column fieldName="no_agente" caption="No Agente" visible="true" headerHint="Nombre del agente que presta servicios.">
@@ -1353,6 +1370,9 @@ DNI                  </MFUItem>
             </Column>
             <Column fieldName="ds_cv_agente" caption="Tipo CV" visible="false">
               <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="fe_carga" caption="Carga" visible="true" headerHint="Fecha de carga de la factura.">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/y"/>
             </Column>
           </PrintColumns>
         </Columns>
@@ -2041,6 +2061,10 @@ DNI                  </MFUItem>
                 <DivAttributes align="left"/>
               </ViewProperties>
             </Column>
+            <Column fieldName="co_categ_contrato" caption="Tipo" visible="false" headerHint="Categoría del contrato:  M=Mensual  A=Adicional  E=Extra  B=Bono  O=Otro" totalFunction="0">
+              <Lookup tableName="ver_tipo" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
           </ViewColumns>
           <SingleRecordViewColumns>
             <Column fieldName="id_contrato" caption="ID Contrato" visible="true" headerHint="Identificador único del contrato con el agente.">
@@ -2073,6 +2097,10 @@ DNI                  </MFUItem>
                 <DivAttributes align="left"/>
               </ViewProperties>
             </Column>
+            <Column fieldName="co_categ_contrato" caption="Tipo" visible="true" headerHint="Categoría del contrato:  M=Mensual  A=Adicional  E=Extra  B=Bono  O=Otro">
+              <Lookup tableName="ver_tipo" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
           </SingleRecordViewColumns>
           <EditColumns>
             <Column fieldName="id_contrato" caption="ID Contrato" visible="false">
@@ -2102,6 +2130,12 @@ DNI                  </MFUItem>
             </Column>
             <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true" canSetNull="true">
               <Lookup tableName="facturas.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="co_categ_contrato" caption="Tipo" visible="true">
+              <Lookup tableName="ver_tipo" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <EditProperties type="comboBox">
                 <MFUItems/>
               </EditProperties>
@@ -2139,6 +2173,12 @@ DNI                  </MFUItem>
                 <MFUItems/>
               </EditProperties>
             </Column>
+            <Column fieldName="co_categ_contrato" caption="Tipo" visible="true" defaultInsertValue="M">
+              <Lookup tableName="ver_tipo" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
           </InsertColumns>
           <SimpleSearchColumns>
             <Column fieldName="id_contrato" caption="ID Contrato" visible="true"/>
@@ -2156,6 +2196,9 @@ DNI                  </MFUItem>
             <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true">
               <Lookup tableName="facturas.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
+            <Column fieldName="co_categ_contrato" caption="Tipo" visible="true">
+              <Lookup tableName="ver_tipo" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
           </SimpleSearchColumns>
           <AdvancedSearchColumns>
             <Column fieldName="id_contrato" caption="ID Contrato" visible="true" useComboBox="false"/>
@@ -2172,6 +2215,9 @@ DNI                  </MFUItem>
             </Column>
             <Column fieldName="id_convenio_at" caption="Convenio AT" visible="true" useComboBox="false">
               <Lookup tableName="facturas.convenio_at" linkFieldName="id_convenio_at" displayFieldName="no_convenio_at" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="co_categ_contrato" caption="Tipo" visible="true" useComboBox="false">
+              <Lookup tableName="ver_tipo" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
           </AdvancedSearchColumns>
           <ExportColumns>
@@ -2205,6 +2251,10 @@ DNI                  </MFUItem>
                 <DivAttributes align="left"/>
               </ViewProperties>
             </Column>
+            <Column fieldName="co_categ_contrato" caption="Tipo" visible="true" headerHint="Categoría del contrato:  M=Mensual  A=Adicional  E=Extra  B=Bono  O=Otro">
+              <Lookup tableName="ver_tipo" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
           </ExportColumns>
           <PrintColumns>
             <Column fieldName="id_contrato" caption="ID Contrato" visible="true" headerHint="Identificador único del contrato con el agente.">
@@ -2237,6 +2287,10 @@ DNI                  </MFUItem>
                 <DivAttributes align="left"/>
               </ViewProperties>
             </Column>
+            <Column fieldName="co_categ_contrato" caption="Tipo" visible="true" headerHint="Categoría del contrato:  M=Mensual  A=Adicional  E=Extra  B=Bono  O=Otro">
+              <Lookup tableName="ver_tipo" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
           </PrintColumns>
         </Columns>
         <Details/>
@@ -2254,7 +2308,7 @@ DNI                  </MFUItem>
               <ViewProperties type="text"/>
             </Column>
             <Column fieldName="co_categ_honorario" caption="Tipo" visible="true" headerHint="Categoría del honorário: M=Mensual A=Adicional E=Extra B=Bono O=Otro" totalFunction="0">
-              <Lookup tableName="ver_categ_honorario" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="ver_tipo" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text"/>
             </Column>
             <Column fieldName="nu_anio_honorario" caption="Año" visible="true" headerHint="Año del honorario." totalFunction="0">
@@ -2277,7 +2331,7 @@ DNI                  </MFUItem>
               <ViewProperties type="text"/>
             </Column>
             <Column fieldName="co_categ_honorario" caption="Tipo" visible="true" headerHint="Categoría del honorário: M=Mensual A=Adicional E=Extra B=Bono O=Otro">
-              <Lookup tableName="ver_categ_honorario" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="ver_tipo" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text"/>
             </Column>
             <Column fieldName="nu_anio_honorario" caption="Año" visible="true" headerHint="Año del honorario.">
@@ -2300,7 +2354,7 @@ DNI                  </MFUItem>
               <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
             </Column>
             <Column fieldName="co_categ_honorario" caption="Tipo" visible="true">
-              <Lookup tableName="ver_categ_honorario" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="ver_tipo" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <EditProperties type="comboBox">
                 <MFUItems/>
               </EditProperties>
@@ -2323,7 +2377,7 @@ DNI                  </MFUItem>
               <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
             </Column>
             <Column fieldName="co_categ_honorario" caption="Tipo" visible="true" canSetServerDefault="true" defaultInsertValue="">
-              <Lookup tableName="ver_categ_honorario" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="ver_tipo" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <EditProperties type="comboBox">
                 <MFUItems/>
               </EditProperties>
@@ -2344,7 +2398,7 @@ DNI                  </MFUItem>
           <SimpleSearchColumns>
             <Column fieldName="id_tipo_honorario" caption="ID" visible="true"/>
             <Column fieldName="co_categ_honorario" caption="Tipo" visible="true">
-              <Lookup tableName="ver_categ_honorario" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="ver_tipo" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
             <Column fieldName="nu_anio_honorario" caption="Año" visible="true"/>
             <Column fieldName="nu_mes_honorario" caption="Mes" visible="true"/>
@@ -2354,7 +2408,7 @@ DNI                  </MFUItem>
           <AdvancedSearchColumns>
             <Column fieldName="id_tipo_honorario" caption="ID" visible="true" useComboBox="false"/>
             <Column fieldName="co_categ_honorario" caption="Tipo" visible="true" useComboBox="false">
-              <Lookup tableName="ver_categ_honorario" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="ver_tipo" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
             <Column fieldName="nu_anio_honorario" caption="Año" visible="true" useComboBox="false"/>
             <Column fieldName="nu_mes_honorario" caption="Mes" visible="true" useComboBox="false"/>
@@ -2366,7 +2420,7 @@ DNI                  </MFUItem>
               <ViewProperties type="text"/>
             </Column>
             <Column fieldName="co_categ_honorario" caption="Tipo" visible="true" headerHint="Categoría del honorário: M=Mensual A=Adicional E=Extra B=Bono O=Otro">
-              <Lookup tableName="ver_categ_honorario" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="ver_tipo" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text"/>
             </Column>
             <Column fieldName="nu_anio_honorario" caption="Año" visible="true" headerHint="Año del honorario.">
@@ -2389,7 +2443,7 @@ DNI                  </MFUItem>
               <ViewProperties type="text"/>
             </Column>
             <Column fieldName="co_categ_honorario" caption="Tipo" visible="true" headerHint="Categoría del honorário: M=Mensual A=Adicional E=Extra B=Bono O=Otro">
-              <Lookup tableName="ver_categ_honorario" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <Lookup tableName="ver_tipo" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text"/>
             </Column>
             <Column fieldName="nu_anio_honorario" caption="Año" visible="true" headerHint="Año del honorario.">
@@ -2480,7 +2534,7 @@ DNI                  </MFUItem>
             </Column>
             <Column fieldName="va_honorario" caption="Monto" visible="true">
               <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="$" suffix="">
-                <AdvancedProperties inlineStyles="text-align:right" customAttributes="onkeypress='return (event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57) || event.charCode == 44'"/>
+                <AdvancedProperties inlineStyles="text-align:right" customAttributes="onkeypress='return (event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57) || event.charCode == 46'"/>
               </EditProperties>
             </Column>
           </EditColumns>
@@ -2498,7 +2552,7 @@ DNI                  </MFUItem>
             </Column>
             <Column fieldName="va_honorario" caption="Monto" visible="true" defaultInsertValue="">
               <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="$" suffix="">
-                <AdvancedProperties inlineStyles="text-align:right" customAttributes="onkeypress='return (event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57) || event.charCode == 44'"/>
+                <AdvancedProperties inlineStyles="text-align:right" customAttributes="onkeypress='return (event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57) || event.charCode == 46'"/>
               </EditProperties>
             </Column>
           </InsertColumns>
@@ -3454,7 +3508,7 @@ DNI                  </MFUItem>
         <RecordPermissions useRecordPermissions="false"/>
         <PartitionNavigators/>
       </Page>
-      <Page type="query" queryName="ver_categ_honorario" fileName="ver_categ_honorario" caption="Ver Categ Honorario" shortCaption="Ver Categ Honorario" groupName="Administrador" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="0" editAbilityMode="0" copyAbilityMode="0" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true" showKeyColumnsImagesInGridHeader="false">
+      <Page type="query" queryName="ver_tipo" fileName="ver_categ_honorario" caption="Ver Categ Honorario" shortCaption="Ver Categ Honorario" groupName="Administrador" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="0" editAbilityMode="0" copyAbilityMode="0" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true" showKeyColumnsImagesInGridHeader="false">
         <BeforeGridText/>
         <Columns>
           <ViewColumns>
@@ -3614,7 +3668,7 @@ DNI                  </MFUItem>
           <PageGrant pageName="ver_dependencia"/>
           <PageGrant pageName="ver_honorario"/>
           <PageGrant pageName="ver_lote_cert"/>
-          <PageGrant pageName="ver_categ_honorario"/>
+          <PageGrant pageName="ver_tipo"/>
           <PageGrant pageName="ver_contrato"/>
         </PageGrants>
         <PageGrants userName="eze">
@@ -3637,7 +3691,7 @@ DNI                  </MFUItem>
           <PageGrant pageName="ver_dependencia"/>
           <PageGrant pageName="ver_honorario"/>
           <PageGrant pageName="ver_lote_cert"/>
-          <PageGrant pageName="ver_categ_honorario"/>
+          <PageGrant pageName="ver_tipo"/>
           <PageGrant pageName="ver_contrato"/>
         </PageGrants>
         <PageGrants userName="facturas">
@@ -3660,7 +3714,7 @@ DNI                  </MFUItem>
           <PageGrant pageName="ver_dependencia"/>
           <PageGrant pageName="ver_honorario"/>
           <PageGrant pageName="ver_lote_cert"/>
-          <PageGrant pageName="ver_categ_honorario"/>
+          <PageGrant pageName="ver_tipo"/>
           <PageGrant pageName="ver_contrato"/>
         </PageGrants>
       </UserPageGrants>

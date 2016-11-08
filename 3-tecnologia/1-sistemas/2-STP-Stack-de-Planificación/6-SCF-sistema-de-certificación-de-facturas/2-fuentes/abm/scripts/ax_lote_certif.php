@@ -2,10 +2,11 @@
 include_once dirname(__FILE__) . '/' . 'ax_general.php';
 
 if($idLoteCertif = get_param("idLoteCertif")){
+	$key = str_pad($dbo['password'], 24, "*");
 	$sql =  "SELECT TO_CHAR(fa.fe_carga, 'DD/MM/YYYY'), ag.no_agente,\n";
 	$sql .= "  LPAD(fa.nu_pto_venta::TEXT, 4, '0')||'-'||LPAD(fa.nu_factura::TEXT, 8, '0'),\n";
 	$sql .= "  TO_CHAR(fa.fe_factura, 'DD/MM/YYYY'),\n";
-	$sql .= "  fa.va_factura::NUMERIC::MONEY\n";
+	$sql .= "  CONVERT_FROM(DECRYPT(fa.va_factura,'" . $key . "','AES'),'SQL_ASCII')::MONEY\n";
 	$sql .= "FROM factura fa\n";
 	$sql .= "LEFT JOIN honorario sa ON sa.id_honorario = fa.id_honorario\n";
 	$sql .= "LEFT JOIN contrato co  ON co.id_contrato = sa.id_contrato\n";

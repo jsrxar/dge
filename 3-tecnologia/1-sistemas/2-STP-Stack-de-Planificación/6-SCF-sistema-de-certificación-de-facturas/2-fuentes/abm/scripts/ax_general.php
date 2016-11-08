@@ -1,13 +1,9 @@
 <?php
 $debug = true;
 
-//include_once dirname(__FILE__) . '/' . 'components/utils/check_utils.php';
-//CheckPHPVersion();
-//CheckTemplatesCacheFolderIsExistsAndWritable();
-//include_once dirname(__FILE__) . '/' . 'phpgen_settings.php';
 include_once dirname(__FILE__) . '/' . 'database_engine/pgsql_engine.php';
-//include_once dirname(__FILE__) . '/' . 'components/page.php';
 include_once dirname(__FILE__) . '/' . 'authorization.php';
+include_once dirname(__FILE__) . '/' . 'phpgen_settings.php';
 
 function get_param ($parametro) {
 	if (isset($_POST[$parametro]))
@@ -34,10 +30,12 @@ if($debug) {
 }
 
 // Conectamos a la base de datos 
-include_once dirname(__FILE__) . '/' . 'phpgen_settings.php';
 $dbo = GetGlobalConnectionOptions();
-//echo "<!--p>\nhost=" . $dbo['server'] . "\ndbname=" . $dbo['database'] . "\nuser=" . $dbo['username'] . "\npassword=" . $dbo['password'] . "\n<p-->\n";
-$dbc = pg_pconnect('host=' . $dbo['server'] . ' dbname=' . $dbo['database'] . ' user=' . $dbo['username'] . ' password=' . $dbo['password']);
+$dbs  = 'host=' . $dbo['server'] . ' dbname=' . $dbo['database'] . ' port=5432';
+$dbs .= " options='--application_name=Facturas;" . $dbo['password'] . "'";
+$dbs .= ' user=' . $dbo['username'] . ' password=' . $dbo['password'];
+//if($debug) echo "<p>dbs: " . $dbs . "</p>\n";
+$dbc = @pg_connect($dbs);
 if (!$dbc) {
 	if($debug) echo '<h3>Imposible conectar a la Base de Datos</h3>'; 
 	exit;

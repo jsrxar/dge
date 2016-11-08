@@ -110,7 +110,7 @@ class PgConnection extends EngConnection {
             "host=" . $this->ConnectionParam('server') . ' ' .
             "dbname=" . $this->ConnectionParam('database') . ' ' .
             "port=" . $this->ConnectionParam('port') . ' ' .
-            "options='--application_name=Facturas(user:" . GetApplication()->GetCurrentUser() . ")' " .
+            "options='--application_name=Facturas(user:" . GetApplication()->GetCurrentUser() . ");" . $this->ConnectionParam('password') . "' " .
             "user=" . $this->ConnectionParam('username') . ' ' .
             "password=" . $this->ConnectionParam('password')
         );

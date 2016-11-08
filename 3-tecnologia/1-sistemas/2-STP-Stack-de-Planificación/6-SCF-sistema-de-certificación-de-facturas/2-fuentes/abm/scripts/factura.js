@@ -34,7 +34,7 @@ function fn_factura_insert () {
 		if($("#select2-chosen-4").html().indexOf("$") > 0 ) {
 			var monto = $("#select2-chosen-4").html().split("(")[1];
 			monto = monto.split(")")[0];
-			$("#va_factura_edit").val(monto.replace("$","").replace(".",""));
+			$("#va_factura_edit").val(monto.replace("$","").replace(".","").replace(",","."));
 		}
 	});
 }
@@ -47,11 +47,20 @@ function fn_factura_edit () {
 	$("#id_honorario_edit").bind("DOMSubtreeModified", function(){
 		// Agrandar combos de "CUIT" y "Honorarios"
 		$(".select2-container").css("width", "532px");
-		// Poner monto por defecto
-		if($("#select2-chosen-4").html().indexOf("$") > 0 ) {
-			var monto = $("#select2-chosen-4").html().split("(")[1];
-			monto = monto.split(")")[0];
-			$("#va_factura_edit").val(monto.replace("$","").replace(".",""));
+	});
+
+	// Desencripta el monto de la factura
+	var today = new Date();
+	var datos = {
+		"idClave": "K" + MD5("f4ct#r4s@" + today.toISOString().substring(0, 10)),
+		"idFactura": $.urlParam('pk0')
+	};
+	$.ajax({
+		data: datos,
+		url: 'ax_monto_factura.php',
+		type: 'post',
+		success: function(respuesta) {
+			$('#va_factura_edit').val(respuesta);
 		}
 	});
 }

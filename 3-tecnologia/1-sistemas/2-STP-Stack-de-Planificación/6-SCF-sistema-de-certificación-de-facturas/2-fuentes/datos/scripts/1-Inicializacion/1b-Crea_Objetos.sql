@@ -217,6 +217,7 @@ CREATE TABLE facturas.agente (
                 fe_ingreso DATE,
                 ar_cv_agente BYTEA,
                 ds_cv_agente VARCHAR(10),
+                fe_carga TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
                 CONSTRAINT agente_pk PRIMARY KEY (id_agente)
 );
 COMMENT ON TABLE facturas.agente IS 'Agente que presta servicios.';
@@ -240,6 +241,7 @@ COMMENT ON COLUMN facturas.agente.ds_celular IS 'Teléfono celular del agente.';
 COMMENT ON COLUMN facturas.agente.fe_ingreso IS 'Fecha de ingreso del agente.';
 COMMENT ON COLUMN facturas.agente.ar_cv_agente IS 'Archivo del CV del agente.';
 COMMENT ON COLUMN facturas.agente.ds_cv_agente IS 'Tipo de CV del agente.';
+COMMENT ON COLUMN facturas.agente.fe_carga IS 'Fecha de carga de la factura.';
 
 
 ALTER SEQUENCE facturas.agente_sq OWNED BY facturas.agente.id_agente;
@@ -254,6 +256,7 @@ CREATE TABLE facturas.contrato (
                 id_tipo_contrato INTEGER NOT NULL,
                 id_categoria_lm INTEGER,
                 id_convenio_at INTEGER,
+                co_categ_contrato CHAR(1) DEFAULT 'M' NOT NULL,
                 CONSTRAINT contrato_pk PRIMARY KEY (id_contrato)
 );
 COMMENT ON TABLE facturas.contrato IS 'Contrato con el agente.';
@@ -264,6 +267,12 @@ COMMENT ON COLUMN facturas.contrato.fe_fin IS 'Fecha de vencimiento del contrato
 COMMENT ON COLUMN facturas.contrato.id_tipo_contrato IS 'Tipo del contrato con el agete.';
 COMMENT ON COLUMN facturas.contrato.id_categoria_lm IS 'Identificador único de la categoría de Ley Marco.';
 COMMENT ON COLUMN facturas.contrato.id_convenio_at IS 'Identificador único del convenio de Asistencia Técnica.';
+COMMENT ON COLUMN facturas.contrato.co_categ_contrato IS 'Categoría del contrato:
+M=Mensual
+A=Adicional
+E=Extra
+B=Bono
+O=Otro';
 
 
 ALTER SEQUENCE facturas.contrato_sq OWNED BY facturas.contrato.id_contrato;
@@ -304,6 +313,7 @@ CREATE TABLE facturas.factura (
                 id_certificacion INTEGER,
                 fl_rechazo BOOLEAN DEFAULT FALSE NOT NULL,
                 ds_comentario VARCHAR(400),
+                id_ubicacion_fisica INTEGER,
                 CONSTRAINT factura_pk PRIMARY KEY (id_factura)
 );
 COMMENT ON TABLE facturas.factura IS 'Factura del agente asociada a un honorario mensual.';
@@ -322,6 +332,7 @@ COMMENT ON COLUMN facturas.factura.id_convenio_at IS 'Convenio de Asistencia Téc
 COMMENT ON COLUMN facturas.factura.id_certificacion IS 'Lote de certificación de las facturas.';
 COMMENT ON COLUMN facturas.factura.fl_rechazo IS 'Indicador de rechazo de la factura.';
 COMMENT ON COLUMN facturas.factura.ds_comentario IS 'Comentario de la factura.';
+COMMENT ON COLUMN facturas.factura.id_ubicacion_fisica IS 'Ubicación física de traajo del agente.';
 
 
 ALTER SEQUENCE facturas.factura_sq OWNED BY facturas.factura.id_factura;
