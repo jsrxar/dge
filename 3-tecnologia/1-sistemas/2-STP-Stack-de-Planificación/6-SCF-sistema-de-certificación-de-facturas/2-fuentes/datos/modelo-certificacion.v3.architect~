@@ -4,8 +4,8 @@
  <print-settings printerName="RICOH MP C2003" numCopies="1" zoom="0.69" pageNumbersPrinted="true" orientation="0" paperWidth="595.275590551181" paperHeight="841.8897637795276" leftBorder="50.00314960629921" rightBorder="50.00314960629917" topBorder="50.00314960629917" bottomBorder="50.003149606299324" />
  <project-data-sources>
   <data-source id="DS0">
-   <property key="Logical" value="FACTURAS Servidor" />
    <property key="Connection Type" value="PostgreSQL" />
+   <property key="Logical" value="PlayPen Database" />
    <property key="JDBC URL" value="jdbc:postgresql://monet.myc.ar:5432/sfmycp" />
    <property key="UID" value="facturas" />
    <property key="PWD" value="F4ct#r4s@2016" />
@@ -884,7 +884,7 @@ X - Anulado</remarks>
    </relationship>
   </relationships>
  </target-database>
- <ddl-generator type="ca.sqlpower.architect.ddl.PostgresDDLGenerator" allow-connection="false" target-schema="facturas"> </ddl-generator>
+ <ddl-generator type="ca.sqlpower.architect.ddl.PostgresDDLGenerator" allow-connection="true" target-schema="facturas"> </ddl-generator>
  <liquibase-settings useSeparateChangeSets="false" generateId="false" idStart="1"/>
  <compare-dm-settings  ddlGenerator="ca.sqlpower.architect.ddl.PostgresDDLGenerator"  outputFormatAsString="SQL"  saveFlag="true" >
   <source-stuff   datastoreTypeAsString="DATABASE"   connectName="FACTURAS Servidor"   filePath="C:\Users\c\Downloads\borrar.sql"  />

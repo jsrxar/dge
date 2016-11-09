@@ -40,6 +40,12 @@ BEGIN
     FROM facturas.honorario ho
 	LEFT JOIN facturas.contrato co ON co.id_contrato = ho.id_contrato
     WHERE ho.id_honorario = NEW.id_honorario );
+  NEW.id_ubicacion_fisica = (
+    SELECT ag.id_ubicacion_fisica
+    FROM facturas.honorario ho
+    LEFT JOIN facturas.contrato co ON co.id_contrato = ho.id_contrato
+    LEFT JOIN facturas.agente ag ON ag.id_agente = co.id_agente
+    WHERE ho.id_honorario = NEW.id_honorario );
   RETURN NEW;
 END;
 $$;

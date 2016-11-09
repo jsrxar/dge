@@ -4,11 +4,28 @@
 param(
 	[string]$dir
 )
+
 Write-Host Procesando el directorio $dir
 
 [system.text.encoding]::GetEncoding('iso-8859-1')
 $diract = $dir + "\activador"
 
+Write-Host Cambiando los estilos CSS y la conexión DB
+$origen = $diract + "\main.css"
+$destino = $dir + "\components\css"
+Copy-Item $origen -Destination $destino -Force
+$origen = $diract + "\pgsql_engine.php"
+$destino = $dir + "\database_engine"
+Copy-Item $origen -Destination $destino -Force
+
+Write-Host Agregando nuevas funciones PHP
+$phpaux = $diract + "\general.php"
+$phpfunc = $dir + "\phpgen_settings.php"
+if(@( Get-Content $phpfunc | Where-Object { $_.Contains("/* Funciones Generales PHP */") } ).Count -eq 0) {
+	Add-Content -path $phpfunc -value (Get-Content $phpaux)
+}
+
+Write-Host Procesando los archivos PHP
 foreach ($arch in get-content "$diract\activador.txt") {
 	$archori = $dir + "\" + $arch
 	Write-Host Procesando $arch
@@ -70,21 +87,6 @@ foreach ($arch in get-content "$diract\activador.txt") {
 	} else {
 		Write-Host -> El archivo no existe
 	}
-}
-
-Write-Host Cambiando archivo de estilos CSS y conexión DB
-$origen = $diract + "\main.css"
-$destino = $dir + "\components\css"
-Copy-Item $origen -Destination $destino -Force
-$origen = $diract + "\pgsql_engine.php"
-$destino = $dir + "\database_engine"
-Copy-Item $origen -Destination $destino -Force
-
-Write-Host Agregando funciones nuevas
-$phpaux = $diract + "\general.php"
-$phpfunc = $dir + "\phpgen_settings.php"
-if(@( Get-Content $phpfunc | Where-Object { $_.Contains("/* Funciones Generales PHP */") } ).Count -eq 0) {
-	Add-Content -path $phpfunc -value (Get-Content $phpaux)
 }
 
 Write-Host Proceso finalizado

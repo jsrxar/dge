@@ -1,5 +1,5 @@
 <?php
-$debug = true;
+$debug = false;
 
 include_once dirname(__FILE__) . '/' . 'database_engine/pgsql_engine.php';
 include_once dirname(__FILE__) . '/' . 'authorization.php';

@@ -153,24 +153,10 @@ INSERT INTO facturas.ubicacion_fisica (no_ubicacion_fisica, ds_direccion) VALUES
 ('TECNÓPOLIS',   'Av. General Paz y Constituyentes, Vicente López');
 
 INSERT INTO facturas.convenio_at (ds_universidad, no_convenio_at) VALUES
+('UNTREF', 'UNTREF'),
 (NULL, 'B2'),
-('U. LA MATANZA', 'LEY MARCO '),
-('U. SAN MARTÍN', 'UNSAM'),
-('UNTREF', NULL),
-('UNTREF', 'CULTURA'),
-('UNTREF', 'UNLAM -TDA'),
-('UNTREF', 'UNLAM- BICENTENARIO'),
-('UNTREF', 'UNLAM- DGA'),
-('UNTREF', 'UNLAM- FUSION'),
-('UNTREF', 'UNLAM- INFO'),
-('UNTREF', 'UNLAM- TDA'),
-('UNTREF', 'UNLAM- dga'),
-('UNTREF', 'UNSAM'),
-('UNTREF', 'UNSAM- LADA'),
-('UNTREF', 'UNSAM-MINPLAN'),
-('UNTREF', 'UNSAM-TDA'),
-('UNTREF', 'UNTREF');
-			
+('U. LA MATANZA', 'LEY MARCO ');
+
 INSERT INTO facturas.categoria_lm (id_categoria_lm, co_categoria_lm, co_letra_lm, co_nivel_lm) VALUES
 (100, 'A0',  'A',  0),
 (101, 'A1',  'A',  1),
@@ -245,14 +231,14 @@ INSERT INTO facturas.tipo_honorario (
 	nu_anio_honorario,
 	no_tipo_honorario,
 	co_categ_honorario,
-	va_pct_aumento )
+	va_pct_ajuste )
 SELECT
 	TO_CHAR(datum, 'YYYYMM"0"')::INT AS id_tipo_honorario,
 	EXTRACT(MONTH FROM datum)        AS nu_mes_honorario,
 	EXTRACT(YEAR FROM datum)         AS nu_anio_honorario,
 	TO_CHAR(datum, 'YYYY/MM')        AS no_tipo_honorario,
 	'M'                              AS co_categ_honorario,
-	0                                AS va_pct_aumento
+	0                                AS va_pct_ajuste
 FROM (
 	-- There are 3 leap years in this range, so calculate 365 * 20 + 5 records
 	SELECT '2015-01-01'::DATE + (SEQUENCE.DAY::TEXT || ' MONTH')::INTERVAL AS datum
@@ -260,9 +246,9 @@ FROM (
 	GROUP BY SEQUENCE.DAY
      ) DQ;
 
-UPDATE facturas.tipo_honorario SET va_pct_aumento =  7 WHERE id_tipo_honorario = 2016060;
-UPDATE facturas.tipo_honorario SET va_pct_aumento = 10 WHERE id_tipo_honorario = 2016070;
-UPDATE facturas.tipo_honorario SET va_pct_aumento = 14 WHERE id_tipo_honorario = 2016080;
+UPDATE facturas.tipo_honorario SET va_pct_ajuste =  7 WHERE id_tipo_honorario = 2016060;
+UPDATE facturas.tipo_honorario SET va_pct_ajuste = 10 WHERE id_tipo_honorario = 2016070;
+UPDATE facturas.tipo_honorario SET va_pct_ajuste = 14 WHERE id_tipo_honorario = 2016080;
 
 INSERT INTO facturas.puesto (no_puesto) VALUES
 ('ACUA FEDERAL'),

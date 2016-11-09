@@ -25,8 +25,8 @@ WHEN 'E' THEN 'Extra '
 WHEN 'B' THEN 'Bono '
 ELSE '' END ||
 no_tipo_honorario ||
-(CASE WHEN va_pct_aumento &gt; 0
-THEN ' (ajuste '||va_pct_aumento||'%)'
+(CASE WHEN va_pct_ajuste &gt; 0
+THEN ' (ajuste '||va_pct_ajuste||'%)'
 ELSE '' END) AS no_tipo_honorario
 FROM facturas.tipo_honorario
 ORDER BY id_tipo_honorario      </SelectStatement>
@@ -82,8 +82,8 @@ ORDER BY 2      </SelectStatement>
     <Query name="ver_honorario">
       <SelectStatement>
 SELECT
-      id_honorario,
-      id_contrato,
+      sa.id_honorario,
+      CASE WHEN fa.id_factura IS NULL THEN sa.id_contrato ELSE NULL END AS id_contrato,
       (SELECT ag.no_agente
        FROM facturas.agente ag, facturas.contrato co
        WHERE co.id_contrato = sa.id_contrato
@@ -93,6 +93,7 @@ SELECT
        WHERE id_tipo_honorario = sa.id_tipo_honorario) ||
       ' (' || CAST(CAST(CONVERT_FROM(DECRYPT(sa.va_honorario,CAST(RPAD('F4ct#r4s@2016', 24, '*') AS BYTEA),'AES'),'SQL_ASCII') AS TEXT) AS MONEY) ||')' AS ds_honorario
 FROM facturas.honorario sa
+LEFT JOIN factura fa ON fa.id_honorario = sa.id_honorario AND NOT fa.fl_rechazo
 ORDER BY ds_honorario      </SelectStatement>
       <InsertStatements/>
       <UpdateStatements/>
@@ -167,11 +168,22 @@ ORDER BY 2      </SelectStatement>
         <Field name="id_contrato"/>
       </PrimaryKeyFields>
     </Query>
+    <Query name="ver_tipo_certificacion">
+      <SelectStatement>
+SELECT 'R' AS id, 'Regular' AS nombre
+UNION ALL SELECT 'C', 'Complementaria'      </SelectStatement>
+      <InsertStatements/>
+      <UpdateStatements/>
+      <DeleteStatements/>
+      <PrimaryKeyFields>
+        <Field name="id"/>
+      </PrimaryKeyFields>
+    </Query>
   </Queries>
   <FieldContainers/>
   <Presentation disableMagicQuotesRuntime="false" showEnvironmentVariables="false" showExecutedQueries="false" showPHPErrorsAndWarnings="false">
     <Pages>
-      <Page type="table" tableName="facturas.factura" fileName="factura" caption="Factura" shortCaption="Factura" groupName="Facturas" addSeparator="false" horizontalFilterCondition="fl_rechazo IS FALSE" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" copyAbilityMode="0" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true" showKeyColumnsImagesInGridHeader="false">
+      <Page type="table" tableName="facturas.factura" fileName="factura" caption="Factura" shortCaption="Factura" groupName="Facturas" addSeparator="false" horizontalFilterCondition="fl_rechazo IS FALSE" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" viewAbilityMode="3" copyAbilityMode="0" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true" showKeyColumnsImagesInGridHeader="false">
         <BeforeGridText/>
         <Columns>
           <ViewColumns>
@@ -197,7 +209,7 @@ ORDER BY 2      </SelectStatement>
                 <Format type="number"/>
               </ViewProperties>
             </Column>
-            <Column fieldName="fe_factura" caption="Fecha Entrega Factura" visible="true" headerHint="Fecha de la factura." totalFunction="0">
+            <Column fieldName="fe_factura" caption="Entrega Factura" visible="true" headerHint="Fecha de entrega de la factura a Recursos Humanos." totalFunction="0">
               <ViewProperties type="dateTime" dateTimeFormat="d/m/Y" dateTimeKind="1"/>
             </Column>
             <Column fieldName="fe_carga" caption="Fecha Carga" visible="false" headerHint="Fecha de carga de la factura." totalFunction="0">
@@ -235,7 +247,11 @@ ORDER BY 2      </SelectStatement>
               <ViewProperties type="download"/>
             </Column>
             <Column fieldName="ar_informe_tareas" caption="Informe Tareas" visible="false" headerHint="Informe de Tareas del agente." totalFunction="0">
-              <ViewProperties type="download"/>
+              <ViewProperties type="download" downloadFileNameTemplate="Informe_Tareas.doc" contentTypeTemplate="application/msword"/>
+            </Column>
+            <Column fieldName="id_ubicacion_fisica" caption="Lugar" visible="true" headerHint="Ubicación física de traajo del agente." totalFunction="0">
+              <Lookup tableName="facturas.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
             </Column>
           </ViewColumns>
           <SingleRecordViewColumns>
@@ -261,7 +277,7 @@ ORDER BY 2      </SelectStatement>
                 <Format type="number"/>
               </ViewProperties>
             </Column>
-            <Column fieldName="fe_factura" caption="Fecha Entrega Factura" visible="true" headerHint="Fecha de la factura.">
+            <Column fieldName="fe_factura" caption="Entrega Factura" visible="true" headerHint="Fecha de entrega de la factura a Recursos Humanos.">
               <ViewProperties type="dateTime" dateTimeFormat="d/m/Y" dateTimeKind="1"/>
             </Column>
             <Column fieldName="fe_carga" caption="Fecha Carga" visible="true" headerHint="Fecha de carga de la factura.">
@@ -299,7 +315,11 @@ ORDER BY 2      </SelectStatement>
               <ViewProperties type="download"/>
             </Column>
             <Column fieldName="ar_informe_tareas" caption="Informe Tareas" visible="true" headerHint="Informe de Tareas del agente.">
-              <ViewProperties type="download"/>
+              <ViewProperties type="download" downloadFileNameTemplate="Informe_Tareas.doc" contentTypeTemplate="application/msword"/>
+            </Column>
+            <Column fieldName="id_ubicacion_fisica" caption="Lugar" visible="true" headerHint="Ubicación física de traajo del agente.">
+              <Lookup tableName="facturas.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
             </Column>
           </SingleRecordViewColumns>
           <EditColumns>
@@ -310,36 +330,41 @@ ORDER BY 2      </SelectStatement>
               <Lookup tableName="ver_honorario" linkFieldName="id_honorario" displayFieldName="ds_honorario" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <EditProperties type="multilevelautocomplete" allowClear="false">
                 <RootLevelFormatSelection>
-//alert(JSON.stringify(item, null, 2));
-return item.text.replace(&quot;&lt;!--&quot;, &quot;&lt;strong style='color:red'&gt;&quot;).replace(&quot;--&gt;&quot;, &quot;&lt;/strong&gt;&quot;);                </RootLevelFormatSelection>
+if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
+  return item.text;
+} else {
+  return false;
+  //return item.text.replace(&quot;&lt;!--&quot;, &quot;&lt;strong style='color:red'&gt;&quot;).replace(&quot;--&gt;&quot;, &quot;&lt;/strong&gt;&quot;);
+}                </RootLevelFormatSelection>
                 <RootLevelFormatResult>
 if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
   return item.text;
 } else {
-  return item.text.replace(&quot;&lt;!--&quot;, &quot;&lt;strong style='color:red'&gt;&quot;).replace(&quot;--&gt;&quot;, &quot;&lt;/strong&gt;&quot;);
+  return false;
+  //return item.text.replace(&quot;&lt;!--&quot;, &quot;&lt;strong style='color:red'&gt;&quot;).replace(&quot;--&gt;&quot;, &quot;&lt;/strong&gt;&quot;);
 }                </RootLevelFormatResult>
                 <Levels>
-                  <Level dataSourceName="ver_contrato_factura" idFieldName="id_contrato" captionFieldName="ds_contrato" childFieldName="id_contrato" caption="CUIT"/>
+                  <Level dataSourceName="ver_contrato_factura" idFieldName="id_contrato" captionFieldName="ds_contrato" childFieldName="id_contrato" caption="Agente"/>
                 </Levels>
               </EditProperties>
             </Column>
-            <Column fieldName="nu_pto_venta" caption="Punto Venta" visible="true" canSetNull="true">
+            <Column fieldName="nu_pto_venta" caption="Punto Venta" visible="true">
               <EditProperties type="textBox" size="0" maxLength="0" placeholder="0001" prefix="" suffix="">
                 <AdvancedProperties inlineStyles="text-align:right" customAttributes="onkeypress='return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57'"/>
               </EditProperties>
             </Column>
-            <Column fieldName="nu_factura" caption="Número Factura" visible="true" canSetNull="true">
+            <Column fieldName="nu_factura" caption="Número Factura" visible="true">
               <EditProperties type="textBox" size="0" maxLength="8" placeholder="00000001" prefix="" suffix="">
                 <AdvancedProperties inlineStyles="text-align:right" customAttributes="onkeypress='return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57'"/>
               </EditProperties>
             </Column>
-            <Column fieldName="fe_factura" caption="Fecha Entrega Factura" visible="true" canSetNull="true">
+            <Column fieldName="fe_factura" caption="Entrega Factura" visible="true">
               <EditProperties type="dateTime" showsTime="false" dateTimeFormat="d/m/Y" firstDayOfWeek="0"/>
             </Column>
             <Column fieldName="fe_carga" caption="Fecha Carga" visible="false">
               <EditProperties type="dateTime" showsTime="false" dateTimeFormat="d/m/Y" firstDayOfWeek="0"/>
             </Column>
-            <Column fieldName="va_factura" caption="Monto Factura" visible="true" canSetNull="true">
+            <Column fieldName="va_factura" caption="Monto Factura" visible="true">
               <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="$" suffix="">
                 <AdvancedProperties inlineStyles="text-align:right" customAttributes="onkeypress='return (event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57) || event.charCode == 46'"/>
               </EditProperties>
@@ -374,6 +399,12 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
             <Column fieldName="ar_informe_tareas" caption="Informe Tareas" visible="true" canSetNull="true">
               <EditProperties type="fileUpload"/>
             </Column>
+            <Column fieldName="id_ubicacion_fisica" caption="Lugar" visible="false" canSetNull="true" readOnly="true">
+              <Lookup tableName="facturas.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
           </EditColumns>
           <InsertColumns>
             <Column fieldName="id_factura" caption="ID Factura" visible="false" defaultInsertValue="">
@@ -383,36 +414,41 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
               <Lookup tableName="ver_honorario" linkFieldName="id_honorario" displayFieldName="ds_honorario" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <EditProperties type="multilevelautocomplete" allowClear="false">
                 <RootLevelFormatSelection>
-//alert(JSON.stringify(item, null, 2));
-return item.text.replace(&quot;&lt;!--&quot;, &quot;&lt;strong style='color:red'&gt;&quot;).replace(&quot;--&gt;&quot;, &quot;&lt;/strong&gt;&quot;);                </RootLevelFormatSelection>
+if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
+  return item.text;
+} else {
+  return false;
+  //return item.text.replace(&quot;&lt;!--&quot;, &quot;&lt;strong style='color:red'&gt;&quot;).replace(&quot;--&gt;&quot;, &quot;&lt;/strong&gt;&quot;);
+}                </RootLevelFormatSelection>
                 <RootLevelFormatResult>
 if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
   return item.text;
 } else {
-  return item.text.replace(&quot;&lt;!--&quot;, &quot;&lt;strong style='color:red'&gt;&quot;).replace(&quot;--&gt;&quot;, &quot;&lt;/strong&gt;&quot;);
+  return false;
+  //return item.text.replace(&quot;&lt;!--&quot;, &quot;&lt;strong style='color:red'&gt;&quot;).replace(&quot;--&gt;&quot;, &quot;&lt;/strong&gt;&quot;);
 }                </RootLevelFormatResult>
                 <Levels>
-                  <Level dataSourceName="ver_contrato_factura" idFieldName="id_contrato" captionFieldName="ds_contrato" childFieldName="id_contrato" caption="CUIT"/>
+                  <Level dataSourceName="ver_contrato_factura" idFieldName="id_contrato" captionFieldName="ds_contrato" childFieldName="id_contrato" caption="Agente"/>
                 </Levels>
               </EditProperties>
             </Column>
-            <Column fieldName="nu_pto_venta" caption="Punto Venta" visible="true" canSetNull="true" defaultInsertValue="">
+            <Column fieldName="nu_pto_venta" caption="Punto Venta" visible="true" defaultInsertValue="">
               <EditProperties type="textBox" size="0" maxLength="0" placeholder="0001" prefix="" suffix="">
                 <AdvancedProperties inlineStyles="text-align:right" customAttributes="onkeypress='return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57'"/>
               </EditProperties>
             </Column>
-            <Column fieldName="nu_factura" caption="Número Factura" visible="true" canSetNull="true" defaultInsertValue="">
+            <Column fieldName="nu_factura" caption="Número Factura" visible="true" defaultInsertValue="">
               <EditProperties type="textBox" size="0" maxLength="8" placeholder="00000001" prefix="" suffix="">
                 <AdvancedProperties inlineStyles="text-align:right" customAttributes="onkeypress='return event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57'"/>
               </EditProperties>
             </Column>
-            <Column fieldName="fe_factura" caption="Fecha Entrega Factura" visible="true" canSetNull="true" defaultInsertValue="%CURRENT_DATE%">
+            <Column fieldName="fe_factura" caption="Entrega Factura" visible="true" defaultInsertValue="%CURRENT_DATE%">
               <EditProperties type="dateTime" showsTime="false" dateTimeFormat="d/m/Y" firstDayOfWeek="0"/>
             </Column>
             <Column fieldName="fe_carga" caption="Fe Carga" visible="false" defaultInsertValue="%CURRENT_DATETIME%">
               <EditProperties type="dateTime" showsTime="false" dateTimeFormat="d/m/Y" firstDayOfWeek="0"/>
             </Column>
-            <Column fieldName="va_factura" caption="Monto Factura" visible="true" canSetNull="true" defaultInsertValue="">
+            <Column fieldName="va_factura" caption="Monto Factura" visible="true" defaultInsertValue="">
               <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="$" suffix="">
                 <AdvancedProperties inlineStyles="text-align:right" customAttributes="onkeypress='return (event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57) || event.charCode == 46'"/>
               </EditProperties>
@@ -447,6 +483,12 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
             <Column fieldName="ar_informe_tareas" caption="Informe Tareas" visible="true" canSetNull="true" defaultInsertValue="">
               <EditProperties type="fileUpload"/>
             </Column>
+            <Column fieldName="id_ubicacion_fisica" caption="Lugar" visible="false" canSetNull="true" readOnly="true" defaultInsertValue="">
+              <Lookup tableName="facturas.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
           </InsertColumns>
           <SimpleSearchColumns>
             <Column fieldName="id_factura" caption="ID Factura" visible="true"/>
@@ -455,7 +497,7 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
             </Column>
             <Column fieldName="nu_pto_venta" caption="Punto Venta" visible="true"/>
             <Column fieldName="nu_factura" caption="Número Factura" visible="true"/>
-            <Column fieldName="fe_factura" caption="Fecha Entrega Factura" visible="true"/>
+            <Column fieldName="fe_factura" caption="Entrega Factura" visible="true"/>
             <Column fieldName="fe_carga" caption="Fecha Carga" visible="true"/>
             <Column fieldName="va_factura" caption="Monto Factura" visible="true"/>
             <Column fieldName="ar_factura" caption="Archivo Factura" visible="false"/>
@@ -470,6 +512,9 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
             <Column fieldName="ar_comprobante_cae_cai" caption="Comprobante CAE/CAI" visible="true"/>
             <Column fieldName="ar_constancia_opcion" caption="Constancia Opción" visible="true"/>
             <Column fieldName="ar_informe_tareas" caption="Informe Tareas" visible="true"/>
+            <Column fieldName="id_ubicacion_fisica" caption="Lugar" visible="true">
+              <Lookup tableName="facturas.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
           </SimpleSearchColumns>
           <AdvancedSearchColumns>
             <Column fieldName="id_factura" caption="ID Factura" visible="true" useComboBox="false"/>
@@ -478,7 +523,7 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
             </Column>
             <Column fieldName="nu_pto_venta" caption="Punto Venta" visible="true" useComboBox="false"/>
             <Column fieldName="nu_factura" caption="Número Factura" visible="true" useComboBox="false"/>
-            <Column fieldName="fe_factura" caption="Fecha Entrega Factura" visible="true" useComboBox="false"/>
+            <Column fieldName="fe_factura" caption="Entrega Factura" visible="true" useComboBox="false"/>
             <Column fieldName="fe_carga" caption="Fecha Carga" visible="true" useComboBox="false"/>
             <Column fieldName="va_factura" caption="Monto Factura" visible="true" useComboBox="false"/>
             <Column fieldName="ar_factura" caption="Archivo Factura" visible="true" useComboBox="false"/>
@@ -493,6 +538,9 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
             <Column fieldName="ar_comprobante_cae_cai" caption="Comprobante CAE/CAI" visible="true" useComboBox="false"/>
             <Column fieldName="ar_constancia_opcion" caption="Constancia Opción" visible="true" useComboBox="false"/>
             <Column fieldName="ar_informe_tareas" caption="Informe Tareas" visible="true" useComboBox="false"/>
+            <Column fieldName="id_ubicacion_fisica" caption="Lugar" visible="true" useComboBox="false">
+              <Lookup tableName="facturas.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
           </AdvancedSearchColumns>
           <ExportColumns>
             <Column fieldName="id_factura" caption="ID Factura" visible="true" headerHint="Identificador único de la factura del agente.">
@@ -517,7 +565,7 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
                 <Format type="number"/>
               </ViewProperties>
             </Column>
-            <Column fieldName="fe_factura" caption="Fecha Entrega Factura" visible="true" headerHint="Fecha de la factura.">
+            <Column fieldName="fe_factura" caption="Entrega Factura" visible="true" headerHint="Fecha de entrega de la factura a Recursos Humanos.">
               <ViewProperties type="dateTime" dateTimeFormat="d/m/Y" dateTimeKind="1"/>
             </Column>
             <Column fieldName="fe_carga" caption="Fecha Carga" visible="true" headerHint="Fecha de carga de la factura.">
@@ -553,7 +601,11 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
               <ViewProperties type="download"/>
             </Column>
             <Column fieldName="ar_informe_tareas" caption="Informe Tareas" visible="true" headerHint="Informe de Tareas del agente.">
-              <ViewProperties type="download"/>
+              <ViewProperties type="download" downloadFileNameTemplate="Informe_Tareas.doc" contentTypeTemplate="application/msword"/>
+            </Column>
+            <Column fieldName="id_ubicacion_fisica" caption="Lugar" visible="true" headerHint="Ubicación física de traajo del agente.">
+              <Lookup tableName="facturas.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
             </Column>
           </ExportColumns>
           <PrintColumns>
@@ -579,7 +631,7 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
                 <Format type="number"/>
               </ViewProperties>
             </Column>
-            <Column fieldName="fe_factura" caption="Fecha Entrega Factura" visible="true" headerHint="Fecha de la factura.">
+            <Column fieldName="fe_factura" caption="Entrega Factura" visible="true" headerHint="Fecha de entrega de la factura a Recursos Humanos.">
               <ViewProperties type="dateTime" dateTimeFormat="d/m/Y" dateTimeKind="1"/>
             </Column>
             <Column fieldName="fe_carga" caption="Fecha Carga" visible="true" headerHint="Fecha de carga de la factura.">
@@ -615,7 +667,11 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
               <ViewProperties type="download"/>
             </Column>
             <Column fieldName="ar_informe_tareas" caption="Informe Tareas" visible="true" headerHint="Informe de Tareas del agente.">
-              <ViewProperties type="download"/>
+              <ViewProperties type="download" downloadFileNameTemplate="Informe_Tareas.doc" contentTypeTemplate="application/msword"/>
+            </Column>
+            <Column fieldName="id_ubicacion_fisica" caption="Lugar" visible="true" headerHint="Ubicación física de traajo del agente.">
+              <Lookup tableName="facturas.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
             </Column>
           </PrintColumns>
         </Columns>
@@ -649,6 +705,10 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
               <Lookup tableName="estado_lote" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text"/>
             </Column>
+            <Column fieldName="co_tipo_certificacion" caption="Tipo Certificación" visible="true" headerHint="Tipo de Certificación:  R=Regular  C=Complementaria" totalFunction="0">
+              <Lookup tableName="ver_tipo_certificacion" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
           </ViewColumns>
           <SingleRecordViewColumns>
             <Column fieldName="id_certificacion" caption="Nº Lote" visible="true" headerHint="Identificador único del lote de certificación.">
@@ -673,6 +733,10 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
               <Lookup tableName="estado_lote" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text"/>
             </Column>
+            <Column fieldName="co_tipo_certificacion" caption="Tipo Certificación" visible="true" headerHint="Tipo de Certificación:  R=Regular  C=Complementaria">
+              <Lookup tableName="ver_tipo_certificacion" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
           </SingleRecordViewColumns>
           <EditColumns>
             <Column fieldName="id_certificacion" caption="Nº Lote" visible="true" enabled="false">
@@ -695,6 +759,12 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
             </Column>
             <Column fieldName="co_estado" caption="Estado Lote" visible="true" readOnly="true">
               <Lookup tableName="estado_lote" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="co_tipo_certificacion" caption="Tipo Certificación" visible="true">
+              <Lookup tableName="ver_tipo_certificacion" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <EditProperties type="comboBox">
                 <MFUItems/>
               </EditProperties>
@@ -725,6 +795,12 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
                 <MFUItems/>
               </EditProperties>
             </Column>
+            <Column fieldName="co_tipo_certificacion" caption="Tipo Certificación" visible="true" defaultInsertValue="">
+              <Lookup tableName="ver_tipo_certificacion" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
           </InsertColumns>
           <SimpleSearchColumns>
             <Column fieldName="id_certificacion" caption="Nº Lote" visible="true"/>
@@ -737,6 +813,9 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
             <Column fieldName="co_estado" caption="Estado Lote" visible="true">
               <Lookup tableName="estado_lote" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
+            <Column fieldName="co_tipo_certificacion" caption="Tipo Certificación" visible="true">
+              <Lookup tableName="ver_tipo_certificacion" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
           </SimpleSearchColumns>
           <AdvancedSearchColumns>
             <Column fieldName="id_certificacion" caption="Nº Lote" visible="true" useComboBox="false"/>
@@ -748,6 +827,9 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
             <Column fieldName="co_nota" caption="Número Nota" visible="true" useComboBox="false"/>
             <Column fieldName="co_estado" caption="Estado Lote" visible="true" useComboBox="false">
               <Lookup tableName="estado_lote" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="co_tipo_certificacion" caption="Tipo Certificación" visible="true" useComboBox="false">
+              <Lookup tableName="ver_tipo_certificacion" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
           </AdvancedSearchColumns>
           <ExportColumns>
@@ -773,6 +855,10 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
               <Lookup tableName="estado_lote" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text"/>
             </Column>
+            <Column fieldName="co_tipo_certificacion" caption="Tipo Certificación" visible="true" headerHint="Tipo de Certificación:  R=Regular  C=Complementaria">
+              <Lookup tableName="ver_tipo_certificacion" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
           </ExportColumns>
           <PrintColumns>
             <Column fieldName="id_certificacion" caption="Nº Lote" visible="true" headerHint="Identificador único del lote de certificación.">
@@ -795,6 +881,10 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
             </Column>
             <Column fieldName="co_estado" caption="Estado Lote" visible="true" headerHint="Estado de la certificación del lote de facturas: P - PreCertificado C - Certificado X - Anulado">
               <Lookup tableName="estado_lote" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="co_tipo_certificacion" caption="Tipo Certificación" visible="true" headerHint="Tipo de Certificación:  R=Regular  C=Complementaria">
+              <Lookup tableName="ver_tipo_certificacion" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text"/>
             </Column>
           </PrintColumns>
@@ -830,14 +920,14 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
                 <DivAttributes align="left"/>
               </ViewProperties>
             </Column>
-            <Column fieldName="id_dependencia" caption="Dependencia" visible="true" headerHint="Dependencia gubernamental del agente." totalFunction="0">
+            <Column fieldName="id_dependencia" caption="Dependencia" visible="false" headerHint="Dependencia gubernamental del agente." totalFunction="0">
               <Lookup tableName="ver_dependencia" linkFieldName="id_dependencia" displayFieldName="ds_dependencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text" maxLength="50" wrapWords="false">
                 <DivAttributes align="left"/>
               </ViewProperties>
               <Hyperlink template="dependencia.php?operation=view&amp;amp;pk0=%id_dependencia%"/>
             </Column>
-            <Column fieldName="id_ubicacion_fisica" caption="Ubicación Fisica" visible="false" headerHint="Ubicación física de traajo del agente." totalFunction="0">
+            <Column fieldName="id_ubicacion_fisica" caption="Lugar" visible="true" headerHint="Ubicación física de traajo del agente." totalFunction="0">
               <Lookup tableName="facturas.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text">
                 <DivAttributes align="left"/>
@@ -927,7 +1017,7 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
               </ViewProperties>
               <Hyperlink template="dependencia.php?operation=view&amp;amp;pk0=%id_dependencia%"/>
             </Column>
-            <Column fieldName="id_ubicacion_fisica" caption="Ubicación Fisica" visible="true" headerHint="Ubicación física de traajo del agente.">
+            <Column fieldName="id_ubicacion_fisica" caption="Lugar" visible="true" headerHint="Ubicación física de traajo del agente.">
               <Lookup tableName="facturas.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text">
                 <DivAttributes align="left"/>
@@ -1010,7 +1100,7 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
               <Lookup tableName="ver_dependencia" linkFieldName="id_dependencia" displayFieldName="ds_dependencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <EditProperties type="autocompleteEdit"/>
             </Column>
-            <Column fieldName="id_ubicacion_fisica" caption="Ubicación Fisica" visible="true" canSetNull="true">
+            <Column fieldName="id_ubicacion_fisica" caption="Lugar" visible="true" canSetNull="true">
               <Lookup tableName="facturas.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <EditProperties type="autocompleteEdit"/>
             </Column>
@@ -1092,7 +1182,7 @@ DNI                  </MFUItem>
               <Lookup tableName="ver_dependencia" linkFieldName="id_dependencia" displayFieldName="ds_dependencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <EditProperties type="autocompleteEdit"/>
             </Column>
-            <Column fieldName="id_ubicacion_fisica" caption="Ubicación Fisica" visible="true" canSetNull="true" defaultInsertValue="">
+            <Column fieldName="id_ubicacion_fisica" caption="Lugar" visible="true" canSetNull="true" defaultInsertValue="">
               <Lookup tableName="facturas.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <EditProperties type="autocompleteEdit"/>
             </Column>
@@ -1164,7 +1254,7 @@ DNI                  </MFUItem>
             <Column fieldName="id_dependencia" caption="Dependencia" visible="true">
               <Lookup tableName="ver_dependencia" linkFieldName="id_dependencia" displayFieldName="ds_dependencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
-            <Column fieldName="id_ubicacion_fisica" caption="Ubicación Fisica" visible="true">
+            <Column fieldName="id_ubicacion_fisica" caption="Lugar" visible="true">
               <Lookup tableName="facturas.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
             <Column fieldName="ds_funcion" caption="Función" visible="true"/>
@@ -1193,7 +1283,7 @@ DNI                  </MFUItem>
             <Column fieldName="id_dependencia" caption="Dependencia" visible="true" useComboBox="false">
               <Lookup tableName="ver_dependencia" linkFieldName="id_dependencia" displayFieldName="ds_dependencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
-            <Column fieldName="id_ubicacion_fisica" caption="Ubicación Fisica" visible="true" useComboBox="false">
+            <Column fieldName="id_ubicacion_fisica" caption="Lugar" visible="true" useComboBox="false">
               <Lookup tableName="facturas.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
             <Column fieldName="ds_funcion" caption="Función" visible="true" useComboBox="false"/>
@@ -1237,7 +1327,7 @@ DNI                  </MFUItem>
               </ViewProperties>
               <Hyperlink template="dependencia.php?operation=view&amp;amp;pk0=%id_dependencia%"/>
             </Column>
-            <Column fieldName="id_ubicacion_fisica" caption="Ubicación Fisica" visible="true" headerHint="Ubicación física de traajo del agente.">
+            <Column fieldName="id_ubicacion_fisica" caption="Lugar" visible="true" headerHint="Ubicación física de traajo del agente.">
               <Lookup tableName="facturas.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text">
                 <DivAttributes align="left"/>
@@ -1319,7 +1409,7 @@ DNI                  </MFUItem>
               </ViewProperties>
               <Hyperlink template="dependencia.php?operation=view&amp;amp;pk0=%id_dependencia%"/>
             </Column>
-            <Column fieldName="id_ubicacion_fisica" caption="Ubicación Fisica" visible="true" headerHint="Ubicación física de traajo del agente.">
+            <Column fieldName="id_ubicacion_fisica" caption="Lugar" visible="true" headerHint="Ubicación física de traajo del agente.">
               <Lookup tableName="facturas.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text">
                 <DivAttributes align="left"/>
@@ -1638,14 +1728,14 @@ DNI                  </MFUItem>
         <RecordPermissions useRecordPermissions="false"/>
         <PartitionNavigators/>
       </Page>
-      <Page type="table" tableName="facturas.ubicacion_fisica" fileName="ubicacion_fisica" caption="Ubicacion Fisica" shortCaption="Ubicacion Fisica" groupName="Contratos de Agentes" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" copyAbilityMode="0" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true" showKeyColumnsImagesInGridHeader="false">
+      <Page type="table" tableName="facturas.ubicacion_fisica" fileName="ubicacion_fisica" caption="Lugar (ubicacion fisica)" shortCaption="Lugar" groupName="Contratos de Agentes" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="1" viewAbilityMode="3" deleteAbilityMode="3" copyAbilityMode="0" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true" showKeyColumnsImagesInGridHeader="false">
         <BeforeGridText/>
         <Columns>
           <ViewColumns>
-            <Column fieldName="id_ubicacion_fisica" caption="ID Ubicación Física" visible="false" headerHint="Identificador único de la ubicación física." totalFunction="0">
+            <Column fieldName="id_ubicacion_fisica" caption="ID Lugar" visible="false" headerHint="Identificador único de la ubicación física." totalFunction="0">
               <ViewProperties type="text"/>
             </Column>
-            <Column fieldName="no_ubicacion_fisica" caption="Nombre Ubicación Física" visible="true" headerHint="Nombre de la ubicación física." totalFunction="0">
+            <Column fieldName="no_ubicacion_fisica" caption="Nombre Lugar" visible="true" headerHint="Nombre de la ubicación física." totalFunction="0">
               <ViewProperties type="text" maxLength="75">
                 <DivAttributes align="left"/>
               </ViewProperties>
@@ -1657,10 +1747,10 @@ DNI                  </MFUItem>
             </Column>
           </ViewColumns>
           <SingleRecordViewColumns>
-            <Column fieldName="id_ubicacion_fisica" caption="ID Ubicación Física" visible="true" headerHint="Identificador único de la ubicación física.">
+            <Column fieldName="id_ubicacion_fisica" caption="ID Lugar" visible="true" headerHint="Identificador único de la ubicación física.">
               <ViewProperties type="text"/>
             </Column>
-            <Column fieldName="no_ubicacion_fisica" caption="Nombre Ubicación Física" visible="true" headerHint="Nombre de la ubicación física.">
+            <Column fieldName="no_ubicacion_fisica" caption="Nombre Lugar" visible="true" headerHint="Nombre de la ubicación física.">
               <ViewProperties type="text" maxLength="75">
                 <DivAttributes align="left"/>
               </ViewProperties>
@@ -1672,10 +1762,10 @@ DNI                  </MFUItem>
             </Column>
           </SingleRecordViewColumns>
           <EditColumns>
-            <Column fieldName="id_ubicacion_fisica" caption="ID Ubicación Física" visible="false">
+            <Column fieldName="id_ubicacion_fisica" caption="ID Lugar" visible="false">
               <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
             </Column>
-            <Column fieldName="no_ubicacion_fisica" caption="Nombre Ubicación Física" visible="true">
+            <Column fieldName="no_ubicacion_fisica" caption="Nombre Lugar" visible="true">
               <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
             </Column>
             <Column fieldName="ds_direccion" caption="Dirección" visible="true" canSetNull="true">
@@ -1683,10 +1773,10 @@ DNI                  </MFUItem>
             </Column>
           </EditColumns>
           <InsertColumns>
-            <Column fieldName="id_ubicacion_fisica" caption="ID Ubicación Física" visible="false" defaultInsertValue="">
+            <Column fieldName="id_ubicacion_fisica" caption="ID Lugar" visible="false" defaultInsertValue="">
               <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
             </Column>
-            <Column fieldName="no_ubicacion_fisica" caption="Nombre Ubicación Física" visible="true" defaultInsertValue="">
+            <Column fieldName="no_ubicacion_fisica" caption="Nombre Lugar" visible="true" defaultInsertValue="">
               <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
             </Column>
             <Column fieldName="ds_direccion" caption="Dirección" visible="true" canSetNull="true" defaultInsertValue="">
@@ -1694,17 +1784,17 @@ DNI                  </MFUItem>
             </Column>
           </InsertColumns>
           <SimpleSearchColumns>
-            <Column fieldName="id_ubicacion_fisica" caption="ID Ubicación Física" visible="true"/>
-            <Column fieldName="no_ubicacion_fisica" caption="Nombre Ubicación Física" visible="true"/>
+            <Column fieldName="id_ubicacion_fisica" caption="ID Lugar" visible="true"/>
+            <Column fieldName="no_ubicacion_fisica" caption="Nombre Lugar" visible="true"/>
             <Column fieldName="ds_direccion" caption="Dirección" visible="true"/>
           </SimpleSearchColumns>
           <AdvancedSearchColumns>
-            <Column fieldName="id_ubicacion_fisica" caption="ID Ubicación Física" visible="true" useComboBox="false"/>
-            <Column fieldName="no_ubicacion_fisica" caption="Nombre Ubicación Física" visible="true" useComboBox="false"/>
+            <Column fieldName="id_ubicacion_fisica" caption="ID Lugar" visible="true" useComboBox="false"/>
+            <Column fieldName="no_ubicacion_fisica" caption="Nombre Lugar" visible="true" useComboBox="false"/>
             <Column fieldName="ds_direccion" caption="Dirección" visible="true" useComboBox="false"/>
           </AdvancedSearchColumns>
           <ExportColumns>
-            <Column fieldName="id_ubicacion_fisica" caption="ID Ubicación Física" visible="true" headerHint="Identificador único de la ubicación física.">
+            <Column fieldName="id_ubicacion_fisica" caption="ID Lugar" visible="true" headerHint="Identificador único de la ubicación física.">
               <ViewProperties type="text"/>
             </Column>
             <Column fieldName="no_ubicacion_fisica" caption="No Ubicacion Fisica" visible="true" headerHint="Nombre de la ubicación física.">
@@ -1715,7 +1805,7 @@ DNI                  </MFUItem>
             </Column>
           </ExportColumns>
           <PrintColumns>
-            <Column fieldName="id_ubicacion_fisica" caption="ID Ubicación Física" visible="true" headerHint="Identificador único de la ubicación física.">
+            <Column fieldName="id_ubicacion_fisica" caption="ID Lugar" visible="true" headerHint="Identificador único de la ubicación física.">
               <ViewProperties type="text"/>
             </Column>
             <Column fieldName="no_ubicacion_fisica" caption="No Ubicacion Fisica" visible="true" headerHint="Nombre de la ubicación física.">
@@ -1888,7 +1978,7 @@ DNI                  </MFUItem>
               <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
             </Column>
             <Column fieldName="ds_universidad" caption="Universidad Convenio" visible="true" canSetNull="true">
-              <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+              <EditProperties type="textArea" columnCount="45" rowCount="2" placeholder=""/>
             </Column>
           </EditColumns>
           <InsertColumns>
@@ -1899,7 +1989,7 @@ DNI                  </MFUItem>
               <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
             </Column>
             <Column fieldName="ds_universidad" caption="Universidad Convenio" visible="true" canSetNull="true" defaultInsertValue="">
-              <EditProperties type="textArea" columnCount="50" rowCount="8" placeholder=""/>
+              <EditProperties type="textArea" columnCount="45" rowCount="2" placeholder=""/>
             </Column>
           </InsertColumns>
           <SimpleSearchColumns>
@@ -2495,6 +2585,11 @@ DNI                  </MFUItem>
                 <Format type="string" transformFunctionName="decrypt_aes"/>
               </ViewProperties>
             </Column>
+            <Column fieldName="va_pct_ajuste" caption="% Ajuste" visible="false" headerHint="Porcentaje de ajuste en el honorario." totalFunction="0">
+              <ViewProperties type="text">
+                <Format type="number" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
+              </ViewProperties>
+            </Column>
           </ViewColumns>
           <SingleRecordViewColumns>
             <Column fieldName="id_honorario" caption="ID Honorario" visible="true" headerHint="Identificador único del honorario del agente.">
@@ -2519,6 +2614,11 @@ DNI                  </MFUItem>
                 <Format type="string" transformFunctionName="decrypt_aes"/>
               </ViewProperties>
             </Column>
+            <Column fieldName="va_pct_ajuste" caption="% Ajuste" visible="true" headerHint="Porcentaje de ajuste en el honorario.">
+              <ViewProperties type="text">
+                <Format type="number" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
+              </ViewProperties>
+            </Column>
           </SingleRecordViewColumns>
           <EditColumns>
             <Column fieldName="id_honorario" caption="ID Honorario" visible="false">
@@ -2536,6 +2636,9 @@ DNI                  </MFUItem>
               <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="$" suffix="">
                 <AdvancedProperties inlineStyles="text-align:right" customAttributes="onkeypress='return (event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57) || event.charCode == 46'"/>
               </EditProperties>
+            </Column>
+            <Column fieldName="va_pct_ajuste" caption="% Ajuste" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="-2" maxLength="2" placeholder="" prefix="" suffix="%"/>
             </Column>
           </EditColumns>
           <InsertColumns>
@@ -2555,6 +2658,9 @@ DNI                  </MFUItem>
                 <AdvancedProperties inlineStyles="text-align:right" customAttributes="onkeypress='return (event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57) || event.charCode == 46'"/>
               </EditProperties>
             </Column>
+            <Column fieldName="va_pct_ajuste" caption="% Ajuste" visible="true" canSetNull="true" defaultInsertValue="0">
+              <EditProperties type="textBox" size="-2" maxLength="2" placeholder="" prefix="" suffix="%"/>
+            </Column>
           </InsertColumns>
           <SimpleSearchColumns>
             <Column fieldName="id_honorario" caption="ID Honorario" visible="true"/>
@@ -2565,6 +2671,7 @@ DNI                  </MFUItem>
               <Lookup tableName="ver_contrato" linkFieldName="id_contrato" displayFieldName="ds_contrato" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
             <Column fieldName="va_honorario" caption="Monto" visible="true"/>
+            <Column fieldName="va_pct_ajuste" caption="% Ajuste" visible="true"/>
           </SimpleSearchColumns>
           <AdvancedSearchColumns>
             <Column fieldName="id_honorario" caption="ID Honorario" visible="true" useComboBox="false"/>
@@ -2575,6 +2682,7 @@ DNI                  </MFUItem>
               <Lookup tableName="ver_contrato" linkFieldName="id_contrato" displayFieldName="ds_contrato" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
             <Column fieldName="va_honorario" caption="Monto" visible="true" useComboBox="false"/>
+            <Column fieldName="va_pct_ajuste" caption="% Ajuste" visible="true" useComboBox="false"/>
           </AdvancedSearchColumns>
           <ExportColumns>
             <Column fieldName="id_honorario" caption="ID Honorario" visible="true" headerHint="Identificador único del honorario del agente.">
@@ -2599,6 +2707,11 @@ DNI                  </MFUItem>
                 <Format type="string" transformFunctionName="decrypt_aes"/>
               </ViewProperties>
             </Column>
+            <Column fieldName="va_pct_ajuste" caption="% Ajuste" visible="true" headerHint="Porcentaje de ajuste en el honorario.">
+              <ViewProperties type="text">
+                <Format type="number" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
+              </ViewProperties>
+            </Column>
           </ExportColumns>
           <PrintColumns>
             <Column fieldName="id_honorario" caption="ID Honorario" visible="true" headerHint="Identificador único del honorario del agente.">
@@ -2621,6 +2734,11 @@ DNI                  </MFUItem>
               <ViewProperties type="text">
                 <DivAttributes align="right"/>
                 <Format type="string" transformFunctionName="decrypt_aes"/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="va_pct_ajuste" caption="% Ajuste" visible="true" headerHint="Porcentaje de ajuste en el honorario.">
+              <ViewProperties type="text">
+                <Format type="number" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
               </ViewProperties>
             </Column>
           </PrintColumns>
@@ -3636,16 +3754,80 @@ DNI                  </MFUItem>
         <RecordPermissions useRecordPermissions="false"/>
         <PartitionNavigators/>
       </Page>
+      <Page type="query" queryName="ver_tipo_certificacion" fileName="ver_tipo_certificacion" caption="Ver Tipo Certificacion" shortCaption="Ver Tipo Certificacion" groupName="Administrador" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="0" viewAbilityMode="3" editAbilityMode="0" copyAbilityMode="0" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true" showKeyColumnsImagesInGridHeader="false">
+        <BeforeGridText/>
+        <Columns>
+          <ViewColumns>
+            <Column fieldName="id" caption="Id" visible="true" totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nombre" caption="Nombre" visible="true" totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+          </ViewColumns>
+          <SingleRecordViewColumns>
+            <Column fieldName="id" caption="Id" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nombre" caption="Nombre" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+          </SingleRecordViewColumns>
+          <EditColumns>
+            <Column fieldName="id" caption="Id" visible="true">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="nombre" caption="Nombre" visible="true">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+          </EditColumns>
+          <InsertColumns>
+            <Column fieldName="id" caption="Id" visible="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="nombre" caption="Nombre" visible="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+          </InsertColumns>
+          <SimpleSearchColumns>
+            <Column fieldName="id" caption="Id" visible="true"/>
+            <Column fieldName="nombre" caption="Nombre" visible="true"/>
+          </SimpleSearchColumns>
+          <AdvancedSearchColumns>
+            <Column fieldName="id" caption="Id" visible="true" useComboBox="false"/>
+            <Column fieldName="nombre" caption="Nombre" visible="true" useComboBox="false"/>
+          </AdvancedSearchColumns>
+          <ExportColumns>
+            <Column fieldName="id" caption="Id" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nombre" caption="Nombre" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+          </ExportColumns>
+          <PrintColumns>
+            <Column fieldName="id" caption="Id" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nombre" caption="Nombre" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+          </PrintColumns>
+        </Columns>
+        <Details/>
+        <RecordPermissions useRecordPermissions="false"/>
+        <PartitionNavigators/>
+      </Page>
     </Pages>
     <UserAuthorization type="hardCoded" passwordEncryption="md5">
       <Users>
-        <User name="eze" password="eze" userId="eze"/>
-        <User name="facturas" password="facturas"/>
+        <User name="gdiaz" password="gabriel#16" userId="gdiaz"/>
+        <User name="facturas" password="F4ct#r4s@2016"/>
       </Users>
     </UserAuthorization>
     <UserGrants enableGuestAccess="false">
       <UserGrant userName="defaultUser"/>
-      <UserGrant userName="eze"/>
+      <UserGrant userName="gdiaz"/>
       <UserGrant userName="facturas" select="1" insert="1" update="1" delete="1" admin="1"/>
       <UserPageGrants>
         <PageGrants userName="defaultUser">
@@ -3670,19 +3852,20 @@ DNI                  </MFUItem>
           <PageGrant pageName="ver_lote_cert"/>
           <PageGrant pageName="ver_tipo"/>
           <PageGrant pageName="ver_contrato"/>
+          <PageGrant pageName="ver_tipo_certificacion"/>
         </PageGrants>
-        <PageGrants userName="eze">
-          <PageGrant pageName="facturas.factura" select="1" admin="1"/>
-          <PageGrant pageName="facturas.certificacion"/>
-          <PageGrant pageName="facturas.agente"/>
-          <PageGrant pageName="facturas.dependencia"/>
-          <PageGrant pageName="facturas.ubicacion_fisica"/>
-          <PageGrant pageName="facturas.puesto"/>
-          <PageGrant pageName="facturas.convenio_at"/>
-          <PageGrant pageName="facturas.tipo_contrato"/>
-          <PageGrant pageName="facturas.contrato"/>
-          <PageGrant pageName="facturas.tipo_honorario"/>
-          <PageGrant pageName="facturas.honorario"/>
+        <PageGrants userName="gdiaz">
+          <PageGrant pageName="facturas.factura" admin="1"/>
+          <PageGrant pageName="facturas.certificacion" admin="1"/>
+          <PageGrant pageName="facturas.agente" admin="1"/>
+          <PageGrant pageName="facturas.dependencia" admin="1"/>
+          <PageGrant pageName="facturas.ubicacion_fisica" admin="1"/>
+          <PageGrant pageName="facturas.puesto" admin="1"/>
+          <PageGrant pageName="facturas.convenio_at" admin="1"/>
+          <PageGrant pageName="facturas.tipo_contrato" admin="1"/>
+          <PageGrant pageName="facturas.contrato" admin="1"/>
+          <PageGrant pageName="facturas.tipo_honorario" admin="1"/>
+          <PageGrant pageName="facturas.honorario" admin="1"/>
           <PageGrant pageName="facturas.categoria_lm"/>
           <PageGrant pageName="audit.logged_actions"/>
           <PageGrant pageName="estado_lote"/>
@@ -3693,6 +3876,7 @@ DNI                  </MFUItem>
           <PageGrant pageName="ver_lote_cert"/>
           <PageGrant pageName="ver_tipo"/>
           <PageGrant pageName="ver_contrato"/>
+          <PageGrant pageName="ver_tipo_certificacion"/>
         </PageGrants>
         <PageGrants userName="facturas">
           <PageGrant pageName="facturas.factura"/>
@@ -3716,6 +3900,7 @@ DNI                  </MFUItem>
           <PageGrant pageName="ver_lote_cert"/>
           <PageGrant pageName="ver_tipo"/>
           <PageGrant pageName="ver_contrato"/>
+          <PageGrant pageName="ver_tipo_certificacion"/>
         </PageGrants>
       </UserPageGrants>
     </UserGrants>
