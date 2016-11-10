@@ -149,11 +149,12 @@ include_once dirname(__FILE__) . '\ax_general.php';
 if($idsToCertif = get_param("idsToCertif")){
 	if($operation = get_param("operation")){
 		if($operation == "view") {
+			$key = str_pad($dbo['password'], 24, "*");
 			$sql =  "SELECT at.id_convenio_at, at.no_convenio_at,\n";
 			$sql .= "  TO_CHAR(fa.fe_carga, 'DD/MM/YYYY'), ag.no_agente,\n";
 			$sql .= "  LPAD(fa.nu_pto_venta::TEXT, 4, '0')||'-'||LPAD(fa.nu_factura::TEXT, 8, '0'),\n";
 			$sql .= "  TO_CHAR(fa.fe_factura, 'DD/MM/YYYY'),\n";
-			$sql .= "  fa.va_factura::NUMERIC::MONEY\n";
+			$sql .= "  CONVERT_FROM(DECRYPT(fa.va_factura,'" . $key . "','AES'),'SQL_ASCII')::MONEY\n";
 			$sql .= "FROM factura fa\n";
 			$sql .= "LEFT JOIN honorario sa ON sa.id_honorario = fa.id_honorario\n";
 			$sql .= "LEFT JOIN contrato co  ON co.id_contrato = sa.id_contrato\n";
@@ -173,38 +174,43 @@ if($idsToCertif = get_param("idsToCertif")){
 						$init = false;
 						$idConvenioAT = $row[0];
 ?>
-					<div class="row-fluid">
-						<div class="span6">
-							<table class="table pgui-record-card">
-								<tbody>
-									<tr><td><strong>Nuevo Lote</strong></td><td></td></tr>
-									<tr><td><strong>Convenio AT</strong></td><td><?php echo $row[1] ?></td></tr>
-									<tr><td><strong>Estado Lote</strong></td><td>Nuevo</td></tr>
-									<tr><td><strong>Cantidad Facturas</strong></td><td><?php echo pg_num_rows($result) ?></td></tr>
-								</tbody>
-							</table>
-							<br>
-							<table class="table pgui-record-card">
-								<tbody>
-									<tr><td><strong>Carga</strong></td>
-										<td><strong>Agente</strong></td>
-										<td><strong>Nro Factura</strong></td>
-										<td><strong>Fecha Factura</strong></td>
-										<td><strong>Monto</strong></td></tr>
-<?php
-					}
-					echo "<tr><td>".$row[2]."</td><td>".$row[3]."</td><td>".$row[4]."</td><td>".$row[5]."</td><td>".$row[6]."</td></tr>\n";
-				}
-?>
-								</tbody>
-							</table>
-						</div>
-					</div>
 					<form class="form-horizontal" enctype="multipart/form-data" method="POST" action="certificar_lote.php" novalidate="novalidate">
 						<input type="hidden" name="idClave" value="<?php echo get_param("idClave") ?>">
 						<input type="hidden" name="idsToCertif" value="<?php echo get_param("idsToCertif") ?>">
 						<input type="hidden" name="idConvenioAT" value="<?php echo $idConvenioAT ?>">
 						<input type="hidden" name="operation" value="create">
+						<div class="row-fluid">
+							<div class="span10">
+								<table class="table pgui-record-card">
+									<tbody>
+										<tr><td><strong>Nuevo Lote</strong></td><td></td></tr>
+										<tr><td><strong>Convenio AT</strong></td><td><?php echo $row[1] ?></td></tr>
+										<tr><td><strong>Estado Lote</strong></td><td>Nuevo</td></tr>
+										<tr><td><strong>Cantidad Facturas</strong></td><td><?php echo pg_num_rows($result) ?></td></tr>
+										<tr><td><strong>Tipo Certificación</strong></td>
+										<td><select name="coTipoCertif">
+												<option value="R">Regular</option>
+												<option value="C">Complementaria</option>
+											</select></td></tr>
+									</tbody>
+								</table>
+								<br>
+								<table class="table pgui-record-card">
+									<tbody>
+										<tr><td><strong>Carga</strong></td>
+											<td><strong>Agente</strong></td>
+											<td><strong>Nro Factura</strong></td>
+											<td><strong>Fecha Factura</strong></td>
+											<td><strong>Monto</strong></td></tr>
+<?php
+					}
+					echo "<tr><td>".$row[2]."</td><td>".$row[3]."</td><td>".$row[4]."</td><td>".$row[5]."</td><td>".$row[6]."</td></tr>\n";
+				}
+?>
+									</tbody>
+								</table>
+							</div>
+						</div>
 						<div class="row-fluid">
 							<div class="btn-toolbar">
 								<div class="btn-group">
@@ -220,8 +226,10 @@ if($idsToCertif = get_param("idsToCertif")){
 			}
 		} else if($operation == "create") {
 			$idConvenioAT = get_param("idConvenioAT");
-
-			$sql =  "INSERT INTO certificacion (id_convenio_at, co_estado) VALUES (" . $idConvenioAT . ", 'P') RETURNING currval('certificacion_sq')";
+			$coTipoCertif = get_param("coTipoCertif");
+			
+			$sql  = "INSERT INTO certificacion (id_convenio_at, co_tipo_certificacion, co_estado)\n";
+			$sql .= "VALUES (" . $idConvenioAT . ", '" . $coTipoCertif . "', 'P') RETURNING currval('certificacion_sq')";
 			if($debug) echo "<!--p>sql:\n" . $sql . "\n<p-->\n";
 
 			$result = pg_query($dbc, $sql);

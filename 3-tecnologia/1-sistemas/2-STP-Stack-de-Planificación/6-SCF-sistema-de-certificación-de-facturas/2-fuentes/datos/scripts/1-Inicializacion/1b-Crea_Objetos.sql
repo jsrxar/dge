@@ -24,6 +24,7 @@ CREATE TABLE facturas.stg_base_rrhh (
                 ds_tipo VARCHAR(20),
                 ds_ingreso VARCHAR(20),
                 ds_vto_contrato VARCHAR(20),
+                ds_ini_contrato VARCHAR(20),
                 ds_fin_contrato VARCHAR(20),
                 ds_categ_lm VARCHAR(20),
                 ds_universidad VARCHAR(50),
@@ -48,7 +49,7 @@ CREATE TABLE facturas.tipo_honorario (
                 co_categ_honorario CHAR(1) DEFAULT 'M' NOT NULL,
                 nu_mes_honorario SMALLINT,
                 nu_anio_honorario SMALLINT,
-                va_pct_aumento REAL,
+                va_pct_ajuste REAL DEFAULT 0,
                 CONSTRAINT tipo_honorario_pk PRIMARY KEY (id_tipo_honorario)
 );
 COMMENT ON TABLE facturas.tipo_honorario IS 'Tipo del honorario de pago al agente (normalmente el mes del mismo)';
@@ -62,7 +63,7 @@ B=Bono
 O=Otro';
 COMMENT ON COLUMN facturas.tipo_honorario.nu_mes_honorario IS 'Mes del honorario.';
 COMMENT ON COLUMN facturas.tipo_honorario.nu_anio_honorario IS 'Año del honorario.';
-COMMENT ON COLUMN facturas.tipo_honorario.va_pct_aumento IS 'Porcentaje de aumento en el honorario.';
+COMMENT ON COLUMN facturas.tipo_honorario.va_pct_ajuste IS 'Porcentaje de ajuste en el honorario.';
 
 
 CREATE SEQUENCE facturas.convenio_at_sq;
@@ -88,6 +89,7 @@ CREATE TABLE facturas.certificacion (
                 id_convenio_at INTEGER NOT NULL,
                 fe_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
                 fe_certificacion TIMESTAMP,
+                co_tipo_certificacion CHAR(1) DEFAULT 'R' NOT NULL,
                 co_nota VARCHAR(50),
                 co_estado CHAR(1) DEFAULT 'P' NOT NULL,
                 CONSTRAINT certificacion_pk PRIMARY KEY (id_certificacion)
@@ -97,6 +99,9 @@ COMMENT ON COLUMN facturas.certificacion.id_certificacion IS 'Identificador únic
 COMMENT ON COLUMN facturas.certificacion.id_convenio_at IS 'Convenio de Asistencia Técnica.';
 COMMENT ON COLUMN facturas.certificacion.fe_creacion IS 'Fecha de creación del lote de certificación.';
 COMMENT ON COLUMN facturas.certificacion.fe_certificacion IS 'Fecha de certificación del lote de facturas.';
+COMMENT ON COLUMN facturas.certificacion.co_tipo_certificacion IS 'Tipo de Certificación:
+R=Regular
+C=Complementaria';
 COMMENT ON COLUMN facturas.certificacion.co_nota IS 'Nota enviada por la facultad como certificación de las facturas.';
 COMMENT ON COLUMN facturas.certificacion.co_estado IS 'Estado de la certificación del lote de facturas:
 P - PreCertificado
@@ -217,6 +222,7 @@ CREATE TABLE facturas.agente (
                 fe_ingreso DATE,
                 ar_cv_agente BYTEA,
                 ds_cv_agente VARCHAR(10),
+                fe_carga TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
                 CONSTRAINT agente_pk PRIMARY KEY (id_agente)
 );
 COMMENT ON TABLE facturas.agente IS 'Agente que presta servicios.';
@@ -240,6 +246,7 @@ COMMENT ON COLUMN facturas.agente.ds_celular IS 'Teléfono celular del agente.';
 COMMENT ON COLUMN facturas.agente.fe_ingreso IS 'Fecha de ingreso del agente.';
 COMMENT ON COLUMN facturas.agente.ar_cv_agente IS 'Archivo del CV del agente.';
 COMMENT ON COLUMN facturas.agente.ds_cv_agente IS 'Tipo de CV del agente.';
+COMMENT ON COLUMN facturas.agente.fe_carga IS 'Fecha de carga de la factura.';
 
 
 ALTER SEQUENCE facturas.agente_sq OWNED BY facturas.agente.id_agente;
@@ -254,6 +261,7 @@ CREATE TABLE facturas.contrato (
                 id_tipo_contrato INTEGER NOT NULL,
                 id_categoria_lm INTEGER,
                 id_convenio_at INTEGER,
+                co_categ_contrato CHAR(1) DEFAULT 'M' NOT NULL,
                 CONSTRAINT contrato_pk PRIMARY KEY (id_contrato)
 );
 COMMENT ON TABLE facturas.contrato IS 'Contrato con el agente.';
@@ -264,6 +272,12 @@ COMMENT ON COLUMN facturas.contrato.fe_fin IS 'Fecha de vencimiento del contrato
 COMMENT ON COLUMN facturas.contrato.id_tipo_contrato IS 'Tipo del contrato con el agete.';
 COMMENT ON COLUMN facturas.contrato.id_categoria_lm IS 'Identificador único de la categoría de Ley Marco.';
 COMMENT ON COLUMN facturas.contrato.id_convenio_at IS 'Identificador único del convenio de Asistencia Técnica.';
+COMMENT ON COLUMN facturas.contrato.co_categ_contrato IS 'Categoría del contrato:
+M=Mensual
+A=Adicional
+E=Extra
+B=Bono
+O=Otro';
 
 
 ALTER SEQUENCE facturas.contrato_sq OWNED BY facturas.contrato.id_contrato;
@@ -274,13 +288,15 @@ CREATE TABLE facturas.honorario (
                 id_honorario INTEGER NOT NULL DEFAULT nextval('facturas.honorario_sq'),
                 id_tipo_honorario INTEGER NOT NULL,
                 id_contrato INTEGER NOT NULL,
-                va_honorario REAL,
+                va_pct_ajuste REAL DEFAULT 0,
+                va_honorario BYTEA NOT NULL,
                 CONSTRAINT honorario_pk PRIMARY KEY (id_honorario)
 );
 COMMENT ON TABLE facturas.honorario IS 'Honorario del agente (normalmente mensual).';
 COMMENT ON COLUMN facturas.honorario.id_honorario IS 'Identificador único del honorario del agente.';
 COMMENT ON COLUMN facturas.honorario.id_tipo_honorario IS 'Tipo del honorario (normalmente el mes del mismo).';
 COMMENT ON COLUMN facturas.honorario.id_contrato IS 'Contrato con el agente.';
+COMMENT ON COLUMN facturas.honorario.va_pct_ajuste IS 'Porcentaje de ajuste en el honorario.';
 COMMENT ON COLUMN facturas.honorario.va_honorario IS 'Valor del honorario del agente.';
 
 
@@ -295,7 +311,7 @@ CREATE TABLE facturas.factura (
                 nu_factura INTEGER,
                 fe_factura DATE,
                 fe_carga TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-                va_factura REAL,
+                va_factura BYTEA NOT NULL,
                 ar_factura BYTEA,
                 ar_constancia_opcion BYTEA,
                 ar_informe_tareas BYTEA,
@@ -304,6 +320,7 @@ CREATE TABLE facturas.factura (
                 id_certificacion INTEGER,
                 fl_rechazo BOOLEAN DEFAULT FALSE NOT NULL,
                 ds_comentario VARCHAR(400),
+                id_ubicacion_fisica INTEGER,
                 CONSTRAINT factura_pk PRIMARY KEY (id_factura)
 );
 COMMENT ON TABLE facturas.factura IS 'Factura del agente asociada a un honorario mensual.';
@@ -322,6 +339,7 @@ COMMENT ON COLUMN facturas.factura.id_convenio_at IS 'Convenio de Asistencia Téc
 COMMENT ON COLUMN facturas.factura.id_certificacion IS 'Lote de certificación de las facturas.';
 COMMENT ON COLUMN facturas.factura.fl_rechazo IS 'Indicador de rechazo de la factura.';
 COMMENT ON COLUMN facturas.factura.ds_comentario IS 'Comentario de la factura.';
+COMMENT ON COLUMN facturas.factura.id_ubicacion_fisica IS 'Ubicación física de traajo del agente.';
 
 
 ALTER SEQUENCE facturas.factura_sq OWNED BY facturas.factura.id_factura;

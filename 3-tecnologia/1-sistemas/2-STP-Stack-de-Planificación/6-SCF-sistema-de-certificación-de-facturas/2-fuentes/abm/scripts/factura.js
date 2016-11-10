@@ -17,6 +17,13 @@ switch($.urlParam('operation')) {
 }
 
 function fn_factura_insert () {
+	// Crea campo auxiliar de monto
+	if ($("#va_factura_aux").length > 0){
+		$("#va_factura_aux").val(monto);
+	} else {
+		$("#va_factura_edit").before('<input type="hidden" id="va_factura_aux" value="">');
+	}
+
 	// Ocultar campo "Rechazada?" en creación
 	$('label[for="fl_rechazo_edit"]').hide();
 	$('#fl_rechazo_edit').hide();
@@ -30,12 +37,20 @@ function fn_factura_insert () {
 	$("#id_honorario_edit").bind("DOMSubtreeModified", function(){
 		// Agrandar combos de "CUIT" y "Honorarios"
 		$(".select2-container").css("width", "532px");
+		
 		// Poner monto por defecto
 		if($("#select2-chosen-4").html().indexOf("$") > 0 ) {
 			var monto = $("#select2-chosen-4").html().split("(")[1];
 			monto = monto.split(")")[0];
-			$("#va_factura_edit").val(monto.replace("$","").replace(".",""));
+			monto = monto.replace("$","").replace(".","").replace(",",".");
+			$("#va_factura_edit").val(monto);
+			$("#va_factura_aux").val(monto);
+			commentOblig (false);
 		}
+	});
+	
+	$("#va_factura_edit").focusout(function() {
+		commentOblig ($("#va_factura_edit").val() != $("#va_factura_aux").val());
 	});
 }
 
@@ -47,11 +62,25 @@ function fn_factura_edit () {
 	$("#id_honorario_edit").bind("DOMSubtreeModified", function(){
 		// Agrandar combos de "CUIT" y "Honorarios"
 		$(".select2-container").css("width", "532px");
-		// Poner monto por defecto
-		if($("#select2-chosen-4").html().indexOf("$") > 0 ) {
-			var monto = $("#select2-chosen-4").html().split("(")[1];
-			monto = monto.split(")")[0];
-			$("#va_factura_edit").val(monto.replace("$","").replace(".",""));
+	});
+
+	// Al hacer click en "Rechazada?" hace obligatorio el comentario
+	$('#fl_rechazo_edit').change(function(){
+		commentOblig ($('#fl_rechazo_edit').prop('checked'));
+	});
+
+	// Desencripta el monto de la factura
+	var today = new Date();
+	var datos = {
+		"idClave": "K" + MD5("f4ct#r4s@" + today.toISOString().substring(0, 10)),
+		"idFactura": $.urlParam('pk0')
+	};
+	$.ajax({
+		data: datos,
+		url: 'ax_monto_factura.php',
+		type: 'post',
+		success: function(respuesta) {
+			$('#va_factura_edit').val(respuesta);
 		}
 	});
 }
@@ -73,6 +102,20 @@ function fn_factura_grid () {
 			});
 		});
 	});
+}
+
+function commentOblig (obligat) {
+	if(obligat) {
+		if (!$('label.control-label[for="ds_comentario_edit"] > span.required-mark').length > 0){
+			$('label.control-label[for="ds_comentario_edit"]').append('<span class="required-mark">*</span>');
+		}
+		$('#ds_comentario_edit').attr('data-validation','required');
+		$('#ds_comentario_edit').attr('data-required-error-message','Comentario Factura es obligatorio.');
+	} else {
+		$('label.control-label[for="ds_comentario_edit"] > span.required-mark').remove();
+		$('#ds_comentario_edit').removeAttr('data-validation');
+		$('#ds_comentario_edit').removeAttr('data-required-error-message');
+	}
 }
 
 function certifSelectRows() {

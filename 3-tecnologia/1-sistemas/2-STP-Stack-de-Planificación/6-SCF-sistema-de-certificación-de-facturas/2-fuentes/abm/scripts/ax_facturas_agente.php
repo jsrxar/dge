@@ -1,3 +1,4 @@
+
 <?php
 include_once dirname(__FILE__) . '/' . 'ax_general.php';
 
@@ -12,7 +13,9 @@ if($idAgente = get_param("idAgente")){
 	$sql .= "' #' || CAST(ce.id_certificacion AS TEXT) ||\n";
 	$sql .= "CASE ce.co_estado WHEN 'P' THEN ' (PreCertif. '\n";
 	$sql .= "WHEN 'C' THEN ' (Certificado ' ELSE ' (Anulado ' END ||\n";
-	$sql .= "TO_CHAR(COALESCE(ce.fe_certificacion, ce.fe_creacion), 'DD/MM/YY\")\"') AS nombre\n";
+	$sql .= "TO_CHAR(COALESCE(ce.fe_certificacion, ce.fe_creacion), 'DD/MM/YY\")\"'),\n";
+	$sql .= "fa.id_factura,\n";
+	$sql .= "CASE WHEN fa.fl_rechazo IS TRUE THEN 'tachado' ELSE '' END\n";
 	$sql .= "FROM contrato co\n";
 	$sql .= "LEFT JOIN honorario ho ON co.id_contrato = ho.id_contrato\n";
 	$sql .= "INNER JOIN tipo_honorario th ON ho.id_tipo_honorario = th.id_tipo_honorario\n";
@@ -31,6 +34,7 @@ if($idAgente = get_param("idAgente")){
 				if($init) {
 					$init = false;
 ?>
+<style type="text/css">.tachado{text-decoration:line-through;color:Grey;}</style>
 <table class="table pgui-record-card">
 	<tbody>
 		<tr><td><strong>Honorario</strong></td>
@@ -41,12 +45,14 @@ if($idAgente = get_param("idAgente")){
 			<td><strong>Lote Certificación</strong></td></tr>
 <?php
 				}
-				echo "\t\t<tr><td>".$row[3]."</td>\n";
+				echo "\t\t<tr class='" . $row[7] . "'>\n";
+				echo "\t\t\t<td>".$row[3]."</td>\n";
 				echo "\t\t\t<td>".$row[0]."</td>\n";
-				echo "\t\t\t<td>".$row[1]."</td>\n";
+				echo "\t\t\t<td><a href='factura.php?operation=view&amp;pk0=".$row[6]."'>".$row[1]."</a></td>\n";
 				echo "\t\t\t<td>".$row[2]."</td>\n";
 				echo "\t\t\t<td>".$row[4]."</td>\n";
-				echo "\t\t\t<td>".$row[5]."</td></tr>\n";
+				echo "\t\t\t<td>".$row[5]."</td>\n";
+				echo "\t\t</tr>\n";
 			}
 ?>
 		</tbody>

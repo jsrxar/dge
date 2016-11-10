@@ -13,4 +13,3 @@ $('div.span8 > div.alert > strong').ready(function() {
 		window.location.href = "login.php";
 	}
 });
-	
