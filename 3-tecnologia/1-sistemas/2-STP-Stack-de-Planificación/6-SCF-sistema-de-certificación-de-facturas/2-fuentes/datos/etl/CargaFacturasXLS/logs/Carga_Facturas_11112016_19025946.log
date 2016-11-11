@@ -1,0 +1,591 @@
+Proceso ejecutado el dia 11/11/2016 a las 19:02:59,46 
+DEBUG: Using PENTAHO_JAVA_HOME
+DEBUG: _PENTAHO_JAVA_HOME=C:\app\pentaho-ee\java
+DEBUG: _PENTAHO_JAVA=C:\app\pentaho-ee\java\bin\java.exe
+
+C:\app\pentaho-ce\data-integration>"C:\app\pentaho-ee\java\bin\java.exe"  "-Xms1024m" "-Xmx2048m" "-XX:MaxPermSize=256m" "-Dhttps.protocols=TLSv1,TLSv1.1,TLSv1.2" "-Djava.library.path=libswt\win64" "-DKETTLE_HOME=" "-DKETTLE_REPOSITORY=" "-DKETTLE_USER=" "-DKETTLE_PASSWORD=" "-DKETTLE_PLUGIN_PACKAGES=" "-DKETTLE_LOG_SIZE_LIMIT=" "-DKETTLE_JNDI_ROOT=" -jar launcher\pentaho-application-launcher-6.1.0.1-196.jar -lib ..\libswt\win64  -main org.pentaho.di.kitchen.Kitchen /rep:"Carga Facturas XLS" /job:"Carga_Facturas" /level:Detailed 
+19:03:11,099 INFO  [KarafInstance] 
+*******************************************************************************
+*** Karaf Instance Number: 1 at C:\app\pentaho-ce\data-integration\.\system ***
+***   \karaf\caches\default\data-1                                          ***
+*** Karaf Port:8802                                                         ***
+*** OSGI Service Port:9051                                                  ***
+*******************************************************************************
+19:03:11,099 INFO  [KarafBoot] Checking to see if org.pentaho.clean.karaf.cache is enabled
+nov 11, 2016 7:03:16 PM org.apache.karaf.main.Main$KarafLockCallback lockAquired
+INFORMACIÓN: Lock acquired. Setting startlevel to 100
+2016/11/11 19:03:17 - Kitchen - Nivel de registro: Registro detallado
+2016/11/11 19:03:17 - Kitchen - Comienzo de la ejecución.
+2016/11/11 19:03:17 - RepositoriesMeta - No repositories file found in the local directory: C:\app\pentaho-ce\data-integration\repositories.xml
+2016/11/11 19:03:17 - RepositoriesMeta - Reading repositories XML file: C:\Users\c\.kettle\repositories.xml
+2016/11/11 19:03:20 - cfgbuilder - Warning: The configuration parameter [org] is not supported by the default configuration builder for scheme: sftp
+nov 11, 2016 7:03:20 PM org.pentaho.caching.impl.PentahoCacheManagerFactory$RegistrationHandler$1 onSuccess
+INFORMACIÓN: New Caching Service registered
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/C:/app/pentaho-ce/data-integration/launcher/../lib/slf4j-log4j12-1.7.7.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/C:/app/pentaho-ce/data-integration/plugins/pentaho-big-data-plugin/lib/slf4j-log4j12-1.7.3.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+2016/11/11 19:03:30 - Carga_Facturas - Ejecución del trabajo comenzada
+2016/11/11 19:03:30 - Carga_Facturas - exec(0, 0, START.0)
+2016/11/11 19:03:30 - START - Starting job entry
+2016/11/11 19:03:30 - Carga_Facturas - Entrada de comienzo [Nombra Archivo]
+2016/11/11 19:03:30 - Carga_Facturas - exec(1, 0, Nombra Archivo.0)
+2016/11/11 19:03:30 - Nombra Archivo - Starting job entry
+2016/11/11 19:03:30 - Nombra Archivo - Establecer el valor [C:\archivos\facturas] para la variablee [dir.path]
+2016/11/11 19:03:30 - Nombra Archivo - Establecer el valor [invalid] para la variablee [filename]
+2016/11/11 19:03:30 - Nombra Archivo - Establecer el valor [\.xlsx] para la variablee [dir.wildcard]
+2016/11/11 19:03:30 - Carga_Facturas - Entrada de comienzo [Log Datos]
+2016/11/11 19:03:30 - Carga_Facturas - exec(2, 0, Log Datos.0)
+2016/11/11 19:03:30 - Log Datos - Starting job entry
+2016/11/11 19:03:30 - Carga_Facturas - Entrada de comienzo [Lee Nombres]
+2016/11/11 19:03:30 - Carga_Facturas - exec(3, 0, Lee Nombres.0)
+2016/11/11 19:03:30 - Lee Nombres - Starting job entry
+2016/11/11 19:03:30 - Lee Nombres - Abriendo transformación [null] en el directorio [/Proceso]
+2016/11/11 19:03:30 - Lee Nombres - Cargando transformación del repositorio [a-Lee_Nombres] en el directorio [/Proceso]
+2016/11/11 19:03:31 - Lee Nombres - Iniciando la transformación (archivo=null, nombre=Lee Nombres, repinfo=Lee nombre del archivo de entrada)
+2016/11/11 19:03:31 - a-Lee_Nombres - Se ha precargado la transformación.
+2016/11/11 19:03:31 - a-Lee_Nombres - Iniciado despacho de la transformación [a-Lee_Nombres]
+2016/11/11 19:03:31 - a-Lee_Nombres - Número de argumentos detectados: 0 
+2016/11/11 19:03:31 - a-Lee_Nombres - Esta no es una transformación de repetición
+2016/11/11 19:03:31 - a-Lee_Nombres - Se han encontrado 3 pasos distintos para ejecutar.
+2016/11/11 19:03:31 - a-Lee_Nombres - Preparando grupos de filas...
+2016/11/11 19:03:31 - a-Lee_Nombres -  Preparando grupos de filas para el paso 0 --> Toma Nombre
+2016/11/11 19:03:31 - a-Lee_Nombres -   1 copias previas, 1 copias siguientes
+2016/11/11 19:03:31 - a-Lee_Nombres - La transformación ha asignado el nuevo grupo de filas [Toma Nombre.0 - Escribe Log.0]
+2016/11/11 19:03:31 - a-Lee_Nombres -  Se han asignado 1 grupos de filas para el paso 0 --> Toma Nombre  
+2016/11/11 19:03:31 - a-Lee_Nombres -  Preparando grupos de filas para el paso 1 --> Escribe Log
+2016/11/11 19:03:31 - a-Lee_Nombres -   1 copias previas, 1 copias siguientes
+2016/11/11 19:03:31 - a-Lee_Nombres - La transformación ha asignado el nuevo grupo de filas [Escribe Log.0 - Copiar Resultado.0]
+2016/11/11 19:03:31 - a-Lee_Nombres -  Se han asignado 2 grupos de filas para el paso 1 --> Escribe Log  
+2016/11/11 19:03:31 - a-Lee_Nombres -  Preparando grupos de filas para el paso 2 --> Copiar Resultado
+2016/11/11 19:03:31 - a-Lee_Nombres -  Se han asignado 2 grupos de filas para el paso 2 --> Copiar Resultado  
+2016/11/11 19:03:31 - a-Lee_Nombres - Preparando Pasos y Datos de Pasos...
+2016/11/11 19:03:31 - a-Lee_Nombres -  La transformación va a asignar el paso [Toma Nombre] de tipo [GetFileNames]
+2016/11/11 19:03:31 - Toma Nombre.0 - distribución activada
+2016/11/11 19:03:31 - Toma Nombre.0 - Iniciando asignación de buffers & nuevos hilos...
+2016/11/11 19:03:31 - Toma Nombre.0 - Información del paso: entradas=0 salidas=1
+2016/11/11 19:03:31 - Toma Nombre.0 - relación de salida es  1:1
+2016/11/11 19:03:31 - Toma Nombre.0 - Se ha encontrado el grupo de filas de salida [Toma Nombre.0 - Escribe Log.0]
+2016/11/11 19:03:31 - Toma Nombre.0 - Despacho terminado
+2016/11/11 19:03:31 - a-Lee_Nombres -  La transformación ha asignado un paso nuevo: [Toma Nombre].0
+2016/11/11 19:03:31 - a-Lee_Nombres -  La transformación va a asignar el paso [Escribe Log] de tipo [WriteToLog]
+2016/11/11 19:03:31 - Escribe Log.0 - distribución activada
+2016/11/11 19:03:31 - Escribe Log.0 - Iniciando asignación de buffers & nuevos hilos...
+2016/11/11 19:03:31 - Escribe Log.0 - Información del paso: entradas=1 salidas=1
+2016/11/11 19:03:31 - Escribe Log.0 - Se obtuve el paso anterior de [Escribe Log] #0 --> Toma Nombre
+2016/11/11 19:03:31 - Escribe Log.0 - relación de entrada es 1:1
+2016/11/11 19:03:31 - Escribe Log.0 - Se ha encontrado el grupo de filas de entrada [Toma Nombre.0 - Escribe Log.0]
+2016/11/11 19:03:31 - Escribe Log.0 - relación de salida es  1:1
+2016/11/11 19:03:31 - Escribe Log.0 - Se ha encontrado el grupo de filas de salida [Escribe Log.0 - Copiar Resultado.0]
+2016/11/11 19:03:31 - Escribe Log.0 - Despacho terminado
+2016/11/11 19:03:31 - a-Lee_Nombres -  La transformación ha asignado un paso nuevo: [Escribe Log].0
+2016/11/11 19:03:31 - a-Lee_Nombres -  La transformación va a asignar el paso [Copiar Resultado] de tipo [RowsToResult]
+2016/11/11 19:03:31 - Copiar Resultado.0 - distribución activada
+2016/11/11 19:03:31 - Copiar Resultado.0 - Iniciando asignación de buffers & nuevos hilos...
+2016/11/11 19:03:31 - Copiar Resultado.0 - Información del paso: entradas=1 salidas=0
+2016/11/11 19:03:31 - Copiar Resultado.0 - Se obtuve el paso anterior de [Copiar Resultado] #0 --> Escribe Log
+2016/11/11 19:03:31 - Copiar Resultado.0 - relación de entrada es 1:1
+2016/11/11 19:03:31 - Copiar Resultado.0 - Se ha encontrado el grupo de filas de entrada [Escribe Log.0 - Copiar Resultado.0]
+2016/11/11 19:03:31 - Copiar Resultado.0 - Despacho terminado
+2016/11/11 19:03:31 - a-Lee_Nombres -  La transformación ha asignado un paso nuevo: [Copiar Resultado].0
+2016/11/11 19:03:31 - a-Lee_Nombres - Esta transformación se puede repetir con fecha: 2016/11/11 19:03:31
+2016/11/11 19:03:31 - a-Lee_Nombres - Inicializando 3 pasos...
+2016/11/11 19:03:31 - Toma Nombre.0 - Released server socket on port 0
+2016/11/11 19:03:31 - Escribe Log.0 - Released server socket on port 0
+2016/11/11 19:03:31 - Copiar Resultado.0 - Released server socket on port 0
+2016/11/11 19:03:31 - a-Lee_Nombres - El paso [Toma Nombre.0] se ha inicializado correctamente.
+2016/11/11 19:03:31 - a-Lee_Nombres - El paso [Escribe Log.0] se ha inicializado correctamente.
+2016/11/11 19:03:31 - a-Lee_Nombres - El paso [Copiar Resultado.0] se ha inicializado correctamente.
+2016/11/11 19:03:31 - Toma Nombre.0 - Iniciando ejecución...
+2016/11/11 19:03:31 - Copiar Resultado.0 - Iniciando ejecución...
+2016/11/11 19:03:31 - Escribe Log.0 - Iniciando ejecución...
+2016/11/11 19:03:31 - a-Lee_Nombres - La transformación ha asignado 3 hilos y 2 grupos de filas.
+2016/11/11 19:03:31 - Toma Nombre.0 - Procesamiento finalizado (EN=0, SA=0, LE=0, ES=1, AC=0, ER=0)
+2016/11/11 19:03:31 - Escribe Log.0 - 
+2016/11/11 19:03:31 - Escribe Log.0 - ------------> Linenr 1------------------------------
+2016/11/11 19:03:31 - Escribe Log.0 - filename = C:\archivos\facturas\Copia de Certificación UNTREF OCTUBRE 2016 - PRUEBA.xlsx
+2016/11/11 19:03:31 - Escribe Log.0 - short_filename = Copia de Certificación UNTREF OCTUBRE 2016 - PRUEBA.xlsx
+2016/11/11 19:03:31 - Escribe Log.0 - path = C:\archivos\facturas
+2016/11/11 19:03:31 - Escribe Log.0 - 
+2016/11/11 19:03:31 - Escribe Log.0 - ====================
+2016/11/11 19:03:31 - Escribe Log.0 - Procesamiento finalizado (EN=0, SA=0, LE=1, ES=1, AC=0, ER=0)
+2016/11/11 19:03:31 - Copiar Resultado.0 - Procesamiento finalizado (EN=0, SA=0, LE=1, ES=1, AC=0, ER=0)
+2016/11/11 19:03:31 - Carga_Facturas - Entrada de comienzo [Ciclo Archivos]
+2016/11/11 19:03:31 - Carga_Facturas - exec(4, 0, Ciclo Archivos.0)
+2016/11/11 19:03:31 - Ciclo Archivos - Starting job entry
+2016/11/11 19:03:31 - Ciclo Archivos - Loading job from repository : [/Proceso : 1-Ciclo_Archivos]
+2016/11/11 19:03:31 - 1-Ciclo_Archivos - exec(5, 0, START.0)
+2016/11/11 19:03:31 - START - Starting job entry
+2016/11/11 19:03:31 - 1-Ciclo_Archivos - Entrada de comienzo [Setea Variables]
+2016/11/11 19:03:31 - 1-Ciclo_Archivos - exec(6, 0, Setea Variables.0)
+2016/11/11 19:03:31 - Setea Variables - Starting job entry
+2016/11/11 19:03:31 - Setea Variables - Abriendo transformación [null] en el directorio [/Proceso]
+2016/11/11 19:03:31 - Setea Variables - Cargando transformación del repositorio [b-Setea_variables] en el directorio [/Proceso]
+2016/11/11 19:03:31 - Setea Variables - Iniciando la transformación (archivo=null, nombre=Setea Variables, repinfo=Da valor a las variables del proceso)
+2016/11/11 19:03:31 - b-Setea_variables - Se ha precargado la transformación.
+2016/11/11 19:03:31 - b-Setea_variables - Iniciado despacho de la transformación [b-Setea_variables]
+2016/11/11 19:03:31 - b-Setea_variables - Número de argumentos detectados: 0 
+2016/11/11 19:03:31 - b-Setea_variables - Esta no es una transformación de repetición
+2016/11/11 19:03:31 - b-Setea_variables - Se han encontrado 3 pasos distintos para ejecutar.
+2016/11/11 19:03:31 - b-Setea_variables - Preparando grupos de filas...
+2016/11/11 19:03:31 - b-Setea_variables -  Preparando grupos de filas para el paso 0 --> Toma Resultados
+2016/11/11 19:03:31 - b-Setea_variables -   1 copias previas, 1 copias siguientes
+2016/11/11 19:03:31 - b-Setea_variables - La transformación ha asignado el nuevo grupo de filas [Toma Resultados.0 - Escribe Log.0]
+2016/11/11 19:03:31 - b-Setea_variables -  Se han asignado 1 grupos de filas para el paso 0 --> Toma Resultados  
+2016/11/11 19:03:31 - b-Setea_variables -  Preparando grupos de filas para el paso 1 --> Escribe Log
+2016/11/11 19:03:31 - b-Setea_variables -   1 copias previas, 1 copias siguientes
+2016/11/11 19:03:31 - b-Setea_variables - La transformación ha asignado el nuevo grupo de filas [Escribe Log.0 - Set Variables.0]
+2016/11/11 19:03:31 - b-Setea_variables -  Se han asignado 2 grupos de filas para el paso 1 --> Escribe Log  
+2016/11/11 19:03:31 - b-Setea_variables -  Preparando grupos de filas para el paso 2 --> Set Variables
+2016/11/11 19:03:31 - b-Setea_variables -  Se han asignado 2 grupos de filas para el paso 2 --> Set Variables  
+2016/11/11 19:03:31 - b-Setea_variables - Preparando Pasos y Datos de Pasos...
+2016/11/11 19:03:31 - b-Setea_variables -  La transformación va a asignar el paso [Toma Resultados] de tipo [RowsFromResult]
+2016/11/11 19:03:31 - Toma Resultados.0 - distribución activada
+2016/11/11 19:03:31 - Toma Resultados.0 - Iniciando asignación de buffers & nuevos hilos...
+2016/11/11 19:03:31 - Toma Resultados.0 - Información del paso: entradas=0 salidas=1
+2016/11/11 19:03:31 - Toma Resultados.0 - relación de salida es  1:1
+2016/11/11 19:03:31 - Toma Resultados.0 - Se ha encontrado el grupo de filas de salida [Toma Resultados.0 - Escribe Log.0]
+2016/11/11 19:03:31 - Toma Resultados.0 - Despacho terminado
+2016/11/11 19:03:31 - b-Setea_variables -  La transformación ha asignado un paso nuevo: [Toma Resultados].0
+2016/11/11 19:03:31 - b-Setea_variables -  La transformación va a asignar el paso [Escribe Log] de tipo [WriteToLog]
+2016/11/11 19:03:31 - Escribe Log.0 - distribución activada
+2016/11/11 19:03:31 - Escribe Log.0 - Iniciando asignación de buffers & nuevos hilos...
+2016/11/11 19:03:31 - Escribe Log.0 - Información del paso: entradas=1 salidas=1
+2016/11/11 19:03:31 - Escribe Log.0 - Se obtuve el paso anterior de [Escribe Log] #0 --> Toma Resultados
+2016/11/11 19:03:31 - Escribe Log.0 - relación de entrada es 1:1
+2016/11/11 19:03:31 - Escribe Log.0 - Se ha encontrado el grupo de filas de entrada [Toma Resultados.0 - Escribe Log.0]
+2016/11/11 19:03:31 - Escribe Log.0 - relación de salida es  1:1
+2016/11/11 19:03:31 - Escribe Log.0 - Se ha encontrado el grupo de filas de salida [Escribe Log.0 - Set Variables.0]
+2016/11/11 19:03:31 - Escribe Log.0 - Despacho terminado
+2016/11/11 19:03:31 - b-Setea_variables -  La transformación ha asignado un paso nuevo: [Escribe Log].0
+2016/11/11 19:03:31 - b-Setea_variables -  La transformación va a asignar el paso [Set Variables] de tipo [SetVariable]
+2016/11/11 19:03:31 - Set Variables.0 - distribución activada
+2016/11/11 19:03:31 - Set Variables.0 - Iniciando asignación de buffers & nuevos hilos...
+2016/11/11 19:03:31 - Set Variables.0 - Información del paso: entradas=1 salidas=0
+2016/11/11 19:03:31 - Set Variables.0 - Se obtuve el paso anterior de [Set Variables] #0 --> Escribe Log
+2016/11/11 19:03:31 - Set Variables.0 - relación de entrada es 1:1
+2016/11/11 19:03:31 - Set Variables.0 - Se ha encontrado el grupo de filas de entrada [Escribe Log.0 - Set Variables.0]
+2016/11/11 19:03:31 - Set Variables.0 - Despacho terminado
+2016/11/11 19:03:31 - b-Setea_variables -  La transformación ha asignado un paso nuevo: [Set Variables].0
+2016/11/11 19:03:31 - b-Setea_variables - Esta transformación se puede repetir con fecha: 2016/11/11 19:03:31
+2016/11/11 19:03:31 - b-Setea_variables - Inicializando 3 pasos...
+2016/11/11 19:03:31 - Toma Resultados.0 - Released server socket on port 0
+2016/11/11 19:03:31 - Set Variables.0 - Released server socket on port 0
+2016/11/11 19:03:31 - Escribe Log.0 - Released server socket on port 0
+2016/11/11 19:03:31 - b-Setea_variables - El paso [Toma Resultados.0] se ha inicializado correctamente.
+2016/11/11 19:03:31 - b-Setea_variables - El paso [Escribe Log.0] se ha inicializado correctamente.
+2016/11/11 19:03:31 - b-Setea_variables - El paso [Set Variables.0] se ha inicializado correctamente.
+2016/11/11 19:03:31 - Toma Resultados.0 - Iniciando ejecución...
+2016/11/11 19:03:31 - Set Variables.0 - Iniciando ejecución...
+2016/11/11 19:03:31 - b-Setea_variables - La transformación ha asignado 3 hilos y 2 grupos de filas.
+2016/11/11 19:03:31 - Escribe Log.0 - Iniciando ejecución...
+2016/11/11 19:03:31 - Toma Resultados.0 - Procesamiento finalizado (EN=0, SA=0, LE=1, ES=1, AC=0, ER=0)
+2016/11/11 19:03:31 - Set Variables.0 - Setting environment variables...
+2016/11/11 19:03:31 - Set Variables.0 - Set variable filename to value [C:\archivos\facturas\Copia de Certificación UNTREF OCTUBRE 2016 - PRUEBA.xlsx]
+2016/11/11 19:03:31 - Set Variables.0 - Set variable short_filename to value [Copia de Certificación UNTREF OCTUBRE 2016 - PRUEBA.xlsx]
+2016/11/11 19:03:31 - Set Variables.0 - Set variable path to value [C:\archivos\facturas]
+2016/11/11 19:03:31 - Escribe Log.0 - Procesamiento finalizado (EN=0, SA=0, LE=1, ES=1, AC=0, ER=0)
+2016/11/11 19:03:31 - Set Variables.0 - Finished after 1 rows.
+2016/11/11 19:03:31 - Set Variables.0 - Procesamiento finalizado (EN=0, SA=0, LE=1, ES=1, AC=0, ER=0)
+2016/11/11 19:03:31 - 1-Ciclo_Archivos - Entrada de comienzo [Ejecutar Carga]
+2016/11/11 19:03:31 - 1-Ciclo_Archivos - exec(7, 0, Ejecutar Carga.0)
+2016/11/11 19:03:31 - Ejecutar Carga - Starting job entry
+2016/11/11 19:03:31 - Ejecutar Carga - Loading job from repository : [/Proceso : 2-Ejecutar_Carga]
+2016/11/11 19:03:31 - 2-Ejecutar_Carga - exec(8, 0, START.0)
+2016/11/11 19:03:31 - START - Starting job entry
+2016/11/11 19:03:31 - 2-Ejecutar_Carga - Entrada de comienzo [Log]
+2016/11/11 19:03:31 - 2-Ejecutar_Carga - exec(9, 0, Log.0)
+2016/11/11 19:03:31 - Log - Starting job entry
+2016/11/11 19:03:31 - Procesando el archivo: C:\archivos\facturas\Copia de Certificación UNTREF OCTUBRE 2016 - PRUEBA.xlsx - Procesando el archivo: C:\archivos\facturas\Copia de Certificación UNTREF OCTUBRE 2016 - PRUEBA.xlsx
+2016/11/11 19:03:31 - 2-Ejecutar_Carga - Entrada de comienzo [filename existe?]
+2016/11/11 19:03:31 - 2-Ejecutar_Carga - exec(10, 0, filename existe?.0)
+2016/11/11 19:03:31 - filename existe? - Starting job entry
+2016/11/11 19:03:31 - filename existe? - Verificando la variable [${filename}]...
+2016/11/11 19:03:31 - filename existe? - El valor a evaluar es C:\archivos\facturas\Copia de Certificación UNTREF OCTUBRE 2016 - PRUEBA.xlsx
+2016/11/11 19:03:31 - 2-Ejecutar_Carga - Entrada de comienzo [Carga STG]
+2016/11/11 19:03:31 - 2-Ejecutar_Carga - exec(11, 0, Carga STG.0)
+2016/11/11 19:03:31 - Carga STG - Starting job entry
+2016/11/11 19:03:31 - Carga STG - Abriendo transformación [null] en el directorio [/Proceso]
+2016/11/11 19:03:31 - Carga STG - Cargando transformación del repositorio [c-Procesa_Archivo] en el directorio [/Proceso]
+2016/11/11 19:03:31 - Carga STG - Iniciando la transformación (archivo=null, nombre=Carga STG, repinfo=Ejecuta la carga del archivo)
+2016/11/11 19:03:31 - c-Procesa_Archivo - Se ha precargado la transformación.
+2016/11/11 19:03:31 - c-Procesa_Archivo - Iniciado despacho de la transformación [c-Procesa_Archivo]
+2016/11/11 19:03:31 - c-Procesa_Archivo - Número de argumentos detectados: 0 
+2016/11/11 19:03:31 - c-Procesa_Archivo - Esta no es una transformación de repetición
+2016/11/11 19:03:31 - c-Procesa_Archivo - Se han encontrado 2 pasos distintos para ejecutar.
+2016/11/11 19:03:31 - c-Procesa_Archivo - Preparando grupos de filas...
+2016/11/11 19:03:31 - c-Procesa_Archivo -  Preparando grupos de filas para el paso 0 --> Lee Planilla Revisión
+2016/11/11 19:03:31 - c-Procesa_Archivo -   1 copias previas, 1 copias siguientes
+2016/11/11 19:03:31 - c-Procesa_Archivo - La transformación ha asignado el nuevo grupo de filas [Lee Planilla Revisión.0 - Carga Tabla Stage.0]
+2016/11/11 19:03:31 - c-Procesa_Archivo -  Se han asignado 1 grupos de filas para el paso 0 --> Lee Planilla Revisión  
+2016/11/11 19:03:31 - c-Procesa_Archivo -  Preparando grupos de filas para el paso 1 --> Carga Tabla Stage
+2016/11/11 19:03:31 - c-Procesa_Archivo -  Se han asignado 1 grupos de filas para el paso 1 --> Carga Tabla Stage  
+2016/11/11 19:03:31 - c-Procesa_Archivo - Preparando Pasos y Datos de Pasos...
+2016/11/11 19:03:31 - c-Procesa_Archivo -  La transformación va a asignar el paso [Lee Planilla Revisión] de tipo [ExcelInput]
+2016/11/11 19:03:31 - Lee Planilla Revisión.0 - distribución activada
+2016/11/11 19:03:31 - Lee Planilla Revisión.0 - Iniciando asignación de buffers & nuevos hilos...
+2016/11/11 19:03:31 - Lee Planilla Revisión.0 - Información del paso: entradas=0 salidas=1
+2016/11/11 19:03:31 - Lee Planilla Revisión.0 - relación de salida es  1:1
+2016/11/11 19:03:31 - Lee Planilla Revisión.0 - Se ha encontrado el grupo de filas de salida [Lee Planilla Revisión.0 - Carga Tabla Stage.0]
+2016/11/11 19:03:31 - Lee Planilla Revisión.0 - Despacho terminado
+2016/11/11 19:03:31 - c-Procesa_Archivo -  La transformación ha asignado un paso nuevo: [Lee Planilla Revisión].0
+2016/11/11 19:03:31 - c-Procesa_Archivo -  La transformación va a asignar el paso [Carga Tabla Stage] de tipo [TableOutput]
+2016/11/11 19:03:31 - Carga Tabla Stage.0 - distribución activada
+2016/11/11 19:03:31 - Carga Tabla Stage.0 - Iniciando asignación de buffers & nuevos hilos...
+2016/11/11 19:03:31 - Carga Tabla Stage.0 - Información del paso: entradas=1 salidas=0
+2016/11/11 19:03:31 - Carga Tabla Stage.0 - Se obtuve el paso anterior de [Carga Tabla Stage] #0 --> Lee Planilla Revisión
+2016/11/11 19:03:31 - Carga Tabla Stage.0 - relación de entrada es 1:1
+2016/11/11 19:03:31 - Carga Tabla Stage.0 - Se ha encontrado el grupo de filas de entrada [Lee Planilla Revisión.0 - Carga Tabla Stage.0]
+2016/11/11 19:03:31 - Carga Tabla Stage.0 - Despacho terminado
+2016/11/11 19:03:31 - c-Procesa_Archivo -  La transformación ha asignado un paso nuevo: [Carga Tabla Stage].0
+2016/11/11 19:03:31 - c-Procesa_Archivo - Esta transformación se puede repetir con fecha: 2016/11/11 19:03:31
+2016/11/11 19:03:31 - c-Procesa_Archivo - Inicializando 2 pasos...
+2016/11/11 19:03:31 - Lee Planilla Revisión.0 - Released server socket on port 0
+2016/11/11 19:03:31 - Carga Tabla Stage.0 - Released server socket on port 0
+2016/11/11 19:03:31 - Facturas Mozart - New database connection defined
+2016/11/11 19:03:31 - Carga Tabla Stage.0 - Connected to database [Facturas Mozart] (commit=1000)
+2016/11/11 19:03:31 - Facturas Mozart - Auto commit off
+2016/11/11 19:03:31 - c-Procesa_Archivo - El paso [Lee Planilla Revisión.0] se ha inicializado correctamente.
+2016/11/11 19:03:31 - c-Procesa_Archivo - El paso [Carga Tabla Stage.0] se ha inicializado correctamente.
+2016/11/11 19:03:31 - cfgbuilder - Warning: The configuration parameter [org] is not supported by the default configuration builder for scheme: sftp
+2016/11/11 19:03:31 - Lee Planilla Revisión.0 - Iniciando ejecución...
+2016/11/11 19:03:31 - Carga Tabla Stage.0 - Iniciando ejecución...
+2016/11/11 19:03:31 - c-Procesa_Archivo - La transformación ha asignado 2 hilos y 1 grupos de filas.
+2016/11/11 19:03:31 - Lee Planilla Revisión.0 - Abriendo archivo #0 : C:\archivos\facturas\Copia de Certificación UNTREF OCTUBRE 2016 - PRUEBA.xlsx
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Carga Tabla Stage.0 - Prepared statement : INSERT INTO "public".stg_xls_facturas (no_archivo, fe_modif, no_hoja, nu_fila, ds_nombre, ds_cuit, ds_mes, ds_importe, ds_factura_numero, ds_area, ds_observaciones) VALUES ( ?,  ?,  ?,  ?,  ?,  ?,  ?,  ?,  ?,  ?,  ?)
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Tipo desconocido: EMPTY : [null]
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - No hay más archivos para procesar (1 archivos procesado)
+2016/11/11 19:03:32 - Lee Planilla Revisión.0 - Procesamiento finalizado (EN=162, SA=0, LE=0, ES=162, AC=0, ER=0)
+2016/11/11 19:03:33 - Carga Tabla Stage.0 - Procesamiento finalizado (EN=0, SA=162, LE=162, ES=162, AC=0, ER=0)
+2016/11/11 19:03:33 - c-Procesa_Archivo - Todas las transacciones de la conexión de base de datos "Facturas Mozart" fueron ejecutadas.
+2016/11/11 19:03:33 - Facturas Mozart - Connection to database closed!
+2016/11/11 19:03:33 - 2-Ejecutar_Carga - Entrada de comienzo [Archivo a Procesado]
+2016/11/11 19:03:33 - 2-Ejecutar_Carga - exec(12, 0, Archivo a Procesado.0)
+2016/11/11 19:03:33 - Archivo a Procesado - Starting job entry
+2016/11/11 19:03:33 - Archivo a Procesado - Procesando fila de origen. Archivo/directorio origen: [${filename}]. Archivo/directorio destino: [${path}\procesado]. Comodín: [null]
+2016/11/11 19:03:33 - Archivo a Procesado - El archivo [file:///C:/archivos/facturas/Copia de Certificación UNTREF OCTUBRE 2016 - PRUEBA.xlsx] fue movido a [file:///C:/archivos/facturas/procesado/Copia de Certificación UNTREF OCTUBRE 2016 - PRUEBA.20161111_190333.xlsx]
+2016/11/11 19:03:33 - Archivo a Procesado - =======================================
+2016/11/11 19:03:33 - Archivo a Procesado - Total de archivos con error: 0
+2016/11/11 19:03:33 - Archivo a Procesado - Total de archivos procesados exitosamente: 1
+2016/11/11 19:03:33 - Archivo a Procesado - =======================================
+2016/11/11 19:03:33 - 2-Ejecutar_Carga - Entrada de comienzo [Correcto]
+2016/11/11 19:03:33 - 2-Ejecutar_Carga - exec(13, 0, Correcto.0)
+2016/11/11 19:03:33 - Correcto - Starting job entry
+2016/11/11 19:03:33 - 2-Ejecutar_Carga - Finalizó la entrada de trabajo [Correcto] (resultado=[true])
+2016/11/11 19:03:33 - 2-Ejecutar_Carga - Finalizó la entrada de trabajo [Archivo a Procesado] (resultado=[true])
+2016/11/11 19:03:33 - 2-Ejecutar_Carga - Finalizó la entrada de trabajo [Carga STG] (resultado=[true])
+2016/11/11 19:03:33 - 2-Ejecutar_Carga - Finalizó la entrada de trabajo [filename existe?] (resultado=[true])
+2016/11/11 19:03:33 - 2-Ejecutar_Carga - Finalizó la entrada de trabajo [Log] (resultado=[true])
+2016/11/11 19:03:33 - 1-Ciclo_Archivos - Entrada de comienzo [Correcto]
+2016/11/11 19:03:33 - 1-Ciclo_Archivos - exec(8, 0, Correcto.0)
+2016/11/11 19:03:33 - Correcto - Starting job entry
+2016/11/11 19:03:33 - 1-Ciclo_Archivos - Finalizó la entrada de trabajo [Correcto] (resultado=[true])
+2016/11/11 19:03:33 - 1-Ciclo_Archivos - Finalizó la entrada de trabajo [Ejecutar Carga] (resultado=[true])
+2016/11/11 19:03:33 - 1-Ciclo_Archivos - Finalizó la entrada de trabajo [Setea Variables] (resultado=[true])
+2016/11/11 19:03:33 - Carga_Facturas - Entrada de comienzo [Carga DW]
+2016/11/11 19:03:33 - Carga_Facturas - exec(5, 0, Carga DW.0)
+2016/11/11 19:03:33 - Carga DW - Starting job entry
+2016/11/11 19:03:33 - Carga DW - Abriendo transformación [null] en el directorio [/Proceso]
+2016/11/11 19:03:33 - Carga DW - Cargando transformación del repositorio [d-Carga_DW] en el directorio [/Proceso]
+2016/11/11 19:03:33 - Carga DW - Iniciando la transformación (archivo=null, nombre=Carga DW, repinfo=Ejecuta la carga del archivo)
+2016/11/11 19:03:33 - d-Carga_DW - Se ha precargado la transformación.
+2016/11/11 19:03:33 - d-Carga_DW - Iniciado despacho de la transformación [d-Carga_DW]
+2016/11/11 19:03:33 - d-Carga_DW - Número de argumentos detectados: 0 
+2016/11/11 19:03:33 - d-Carga_DW - Esta no es una transformación de repetición
+2016/11/11 19:03:33 - d-Carga_DW - Se han encontrado 1 pasos distintos para ejecutar.
+2016/11/11 19:03:33 - d-Carga_DW - Preparando grupos de filas...
+2016/11/11 19:03:33 - d-Carga_DW -  Preparando grupos de filas para el paso 0 --> Carga DW
+2016/11/11 19:03:33 - d-Carga_DW -  Se han asignado 0 grupos de filas para el paso 0 --> Carga DW  
+2016/11/11 19:03:33 - d-Carga_DW - Preparando Pasos y Datos de Pasos...
+2016/11/11 19:03:33 - d-Carga_DW -  La transformación va a asignar el paso [Carga DW] de tipo [ExecSQL]
+2016/11/11 19:03:33 - Carga DW.0 - distribución activada
+2016/11/11 19:03:33 - Carga DW.0 - Iniciando asignación de buffers & nuevos hilos...
+2016/11/11 19:03:33 - Carga DW.0 - Información del paso: entradas=0 salidas=0
+2016/11/11 19:03:33 - Carga DW.0 - Despacho terminado
+2016/11/11 19:03:33 - d-Carga_DW -  La transformación ha asignado un paso nuevo: [Carga DW].0
+2016/11/11 19:03:33 - d-Carga_DW - Esta transformación se puede repetir con fecha: 2016/11/11 19:03:33
+2016/11/11 19:03:33 - d-Carga_DW - Inicializando 1 pasos...
+2016/11/11 19:03:33 - Carga DW.0 - Released server socket on port 0
+2016/11/11 19:03:33 - Facturas Mozart - New database connection defined
+2016/11/11 19:03:33 - Carga DW.0 - Conectado a la base de datos...
+2016/11/11 19:03:35 - d-Carga_DW - El paso [Carga DW.0] se ha inicializado correctamente.
+2016/11/11 19:03:35 - d-Carga_DW - La transformación ha asignado 1 hilos y 0 grupos de filas.
+2016/11/11 19:03:35 - Carga DW.0 - Iniciando ejecución...
+2016/11/11 19:03:35 - Carga DW.0 - Terminado la lectura de la consulta, cerrando conexión.
+2016/11/11 19:03:35 - Facturas Mozart - Connection to database closed!
+2016/11/11 19:03:35 - Carga DW.0 - Procesamiento finalizado (EN=0, SA=0, LE=0, ES=1, AC=0, ER=0)
+2016/11/11 19:03:35 - Carga_Facturas - Entrada de comienzo [Correcto]
+2016/11/11 19:03:35 - Carga_Facturas - exec(6, 0, Correcto.0)
+2016/11/11 19:03:35 - Correcto - Starting job entry
+2016/11/11 19:03:35 - Carga_Facturas - Finalizó la entrada de trabajo [Correcto] (resultado=[true])
+2016/11/11 19:03:35 - Carga_Facturas - Finalizó la entrada de trabajo [Carga DW] (resultado=[true])
+2016/11/11 19:03:35 - Carga_Facturas - Finalizó la entrada de trabajo [Ciclo Archivos] (resultado=[true])
+2016/11/11 19:03:35 - Carga_Facturas - Finalizó la entrada de trabajo [Lee Nombres] (resultado=[true])
+2016/11/11 19:03:35 - Carga_Facturas - Finalizó la entrada de trabajo [Log Datos] (resultado=[true])
+2016/11/11 19:03:35 - Carga_Facturas - Finalizó la entrada de trabajo [Nombra Archivo] (resultado=[true])
+2016/11/11 19:03:35 - Carga_Facturas - Ejecución del trabajo finalizada
+2016/11/11 19:03:35 - Kitchen - ¡Finalizado!
+2016/11/11 19:03:35 - Kitchen - Comienzo=2016/11/11 19:03:17.032, Final=2016/11/11 19:03:35.354
+2016/11/11 19:03:35 - Kitchen - El procesamiento terminó luego de 18 segundos.
+Proceso Finalizado 

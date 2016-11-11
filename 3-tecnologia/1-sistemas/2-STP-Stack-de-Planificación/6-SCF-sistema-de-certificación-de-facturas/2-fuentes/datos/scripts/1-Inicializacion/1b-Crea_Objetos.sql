@@ -1,4 +1,15 @@
 
+CREATE TABLE facturas.stg_xls_facturas (
+                ds_nombre VARCHAR(100),
+                ds_cuit VARCHAR(100),
+                ds_mes VARCHAR(100),
+                ds_importe VARCHAR(100),
+                ds_factura_numero VARCHAR(100),
+                ds_area VARCHAR(100),
+                ds_observaciones VARCHAR(100)
+);
+
+
 CREATE TABLE facturas.stg_base_rrhh (
                 ds_ministerio VARCHAR(100),
                 ds_secretaria VARCHAR(100),

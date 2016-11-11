@@ -15,7 +15,7 @@ BEGIN
       RETURN ENCRYPT(vVal::NUMERIC::MONEY::TEXT::BYTEA, vKey, 'AES');
     END IF;
   ELSE
-    RETURN vVal::BYTEA;
+    RETURN pVal;
   END IF;
   RETURN NEW;
 END;
