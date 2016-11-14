@@ -1,3 +1,42 @@
+CREATE SEQUENCE stg_carga_nro_sq;
+ALTER TABLE stg_carga_nro_sq OWNER TO facturas;
+
+------------------------------ Funciones Generales ------------------------------
+CREATE OR REPLACE FUNCTION facturas.fn_nu_carga(IN p_full BOOLEAN DEFAULT FALSE) RETURNS TEXT
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+	r_cargas RECORD;
+	v_cargas INTEGER := 0;
+BEGIN
+	RAISE NOTICE 'Numerando las cargas...';
+	FOR r_cargas IN
+		SELECT
+			nextval('stg_carga_nro_sq'::regclass) AS nu_carga,
+			no_archivo,
+			fe_carga
+		FROM facturas.stg_xls_facturas
+		WHERE p_full IS TRUE
+		   OR nu_carga IS NULL
+		GROUP BY fe_carga, no_archivo
+		ORDER BY fe_carga
+	LOOP
+		RAISE NOTICE 'Nro % para el archivo "%" cargado el "%" ...',
+			r_cargas.nu_carga::TEXT,
+			r_cargas.no_archivo,
+			r_cargas.fe_carga::TEXT;
+		UPDATE facturas.stg_xls_facturas
+		SET nu_carga = r_cargas.nu_carga
+		WHERE no_archivo = r_cargas.no_archivo
+		  AND fe_carga   = r_cargas.fe_carga;
+		v_cargas = v_cargas + 1;
+	END LOOP;
+	RAISE NOTICE 'Numeración colocada';
+
+	RETURN 'Cargas numeradas: ' || v_cargas::TEXT;
+END;
+$$;
+
 ------------------------------ Funciones de Tablas ------------------------------
 CREATE OR REPLACE FUNCTION facturas.fn_encrypt(pVal BYTEA) RETURNS BYTEA
     LANGUAGE plpgsql
