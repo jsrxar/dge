@@ -1,14 +1,50 @@
 
+CREATE SEQUENCE facturas.stg_carga_sq;
+
 CREATE TABLE facturas.stg_xls_facturas (
+                id_carga BIGINT NOT NULL DEFAULT nextval('facturas.stg_carga_sq'),
+                no_archivo VARCHAR(100),
+                nu_carga INTEGER,
+                fe_modif TIMESTAMP,
+                fe_carga TIMESTAMP DEFAULT now() NOT NULL,
+                no_hoja VARCHAR(250),
+                nu_fila BIGINT,
+                co_estado_proceso CHAR(1) DEFAULT 'C'::bpchar NOT NULL,
                 ds_nombre VARCHAR(100),
                 ds_cuit VARCHAR(100),
                 ds_mes VARCHAR(100),
                 ds_importe VARCHAR(100),
                 ds_factura_numero VARCHAR(100),
                 ds_area VARCHAR(100),
-                ds_observaciones VARCHAR(100)
+                ds_observaciones VARCHAR(100),
+                nm_id_tipo_honora INTEGER,
+                nm_id_honorario INTEGER,
+                nm_nu_pto_venta INTEGER,
+                nm_nu_factura INTEGER,
+                nm_va_factura BYTEA,
+                nm_no_agente VARCHAR(100),
+                nm_id_agente INTEGER,
+                nm_mensaje VARCHAR(100),
+                CONSTRAINT stg_xls_facturas_pk PRIMARY KEY (id_carga)
 );
+COMMENT ON TABLE facturas.stg_xls_facturas IS 'Tabla de Stage para carga de planilla Excel de facturas de Tecnópolis y TDA';
+COMMENT ON COLUMN facturas.stg_xls_facturas.id_carga IS 'Identificador único de tabla stage de facturas.';
+COMMENT ON COLUMN facturas.stg_xls_facturas.no_archivo IS 'Nombre del archivo excel cargado.';
+COMMENT ON COLUMN facturas.stg_xls_facturas.fe_modif IS 'Fecha de última modificación de la planilla Excel.';
+COMMENT ON COLUMN facturas.stg_xls_facturas.fe_carga IS 'Fecha de carga de la planilla.';
+COMMENT ON COLUMN facturas.stg_xls_facturas.no_hoja IS 'Nombre de la hoja de Excel cargada.';
+COMMENT ON COLUMN facturas.stg_xls_facturas.nu_fila IS 'Número de fila dentro de la planilla Excel.';
+COMMENT ON COLUMN facturas.stg_xls_facturas.co_estado_proceso IS 'Código del estado del registro, identifica si se encuentra cargado o no.';
+COMMENT ON COLUMN facturas.stg_xls_facturas.ds_nombre IS 'Valor de la columna APELLIDO Y NOMBRE/S de la planilla.';
+COMMENT ON COLUMN facturas.stg_xls_facturas.ds_cuit IS 'Valor de la columna CUIT de la planilla.';
+COMMENT ON COLUMN facturas.stg_xls_facturas.ds_mes IS 'Valor de la columna MES de la planilla.';
+COMMENT ON COLUMN facturas.stg_xls_facturas.ds_importe IS 'Valor de la columna IMPORTE de la planilla.';
+COMMENT ON COLUMN facturas.stg_xls_facturas.ds_factura_numero IS 'Valor de la columna FACTURA NUMERO de la planilla.';
+COMMENT ON COLUMN facturas.stg_xls_facturas.ds_area IS 'Valor de la columna AREA de la planilla.';
+COMMENT ON COLUMN facturas.stg_xls_facturas.ds_observaciones IS 'Valor de la columna OBSERVACIONES de la planilla.';
 
+
+ALTER SEQUENCE facturas.stg_carga_sq OWNED BY facturas.stg_xls_facturas.id_carga;
 
 CREATE TABLE facturas.stg_base_rrhh (
                 ds_ministerio VARCHAR(100),
@@ -332,6 +368,7 @@ CREATE TABLE facturas.factura (
                 fl_rechazo BOOLEAN DEFAULT FALSE NOT NULL,
                 ds_comentario VARCHAR(400),
                 id_ubicacion_fisica INTEGER,
+                id_carga INTEGER,
                 CONSTRAINT factura_pk PRIMARY KEY (id_factura)
 );
 COMMENT ON TABLE facturas.factura IS 'Factura del agente asociada a un honorario mensual.';
@@ -351,6 +388,7 @@ COMMENT ON COLUMN facturas.factura.id_certificacion IS 'Lote de certificación de
 COMMENT ON COLUMN facturas.factura.fl_rechazo IS 'Indicador de rechazo de la factura.';
 COMMENT ON COLUMN facturas.factura.ds_comentario IS 'Comentario de la factura.';
 COMMENT ON COLUMN facturas.factura.id_ubicacion_fisica IS 'Ubicación física de traajo del agente.';
+COMMENT ON COLUMN facturas.factura.id_carga IS 'Identificador único de la carga en la que se generó el registro.';
 
 
 ALTER SEQUENCE facturas.factura_sq OWNED BY facturas.factura.id_factura;
