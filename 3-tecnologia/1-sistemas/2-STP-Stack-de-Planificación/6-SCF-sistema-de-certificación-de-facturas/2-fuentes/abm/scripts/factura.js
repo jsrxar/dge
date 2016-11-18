@@ -90,7 +90,9 @@ function fn_factura_grid () {
 	$("table.pgui-grid > tbody > tr > td").css({"padding":"0px","padding-left":"2px","padding-right":"2px"});
 
 	// Cambiar "SetAllowDeleteSelected(false);" por "SetAllowDeleteSelected(true);"
-	$('div.btn-toolbar.pull-left').before('<button class="btn rrhh-certif-selected"><i class="pg-icon-export"></i>Certificar facturas</button>');
+	if($('td.row-selection input[type=checkbox]').length > 0) {
+		$('div.btn-toolbar.pull-left').before('<button class="btn rrhh-certif-selected"><i class="pg-icon-export"></i>Certificar facturas</button>');
+	}
 	$('button.delete-selected').hide();
 
 	// Copiado de "deleteSelectedButton" en "components\js\pgui.grid.js"

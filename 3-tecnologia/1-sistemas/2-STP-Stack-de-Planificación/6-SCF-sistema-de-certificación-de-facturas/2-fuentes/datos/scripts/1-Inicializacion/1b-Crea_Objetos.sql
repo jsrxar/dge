@@ -7,6 +7,8 @@ CREATE TABLE facturas.stg_xls_facturas (
                 nu_carga INTEGER,
                 fe_modif TIMESTAMP,
                 fe_carga TIMESTAMP DEFAULT now() NOT NULL,
+                fl_reproc BOOLEAN DEFAULT FALSE NOT NULL,
+                fe_reproc TIMESTAMP,
                 no_hoja VARCHAR(250),
                 nu_fila BIGINT,
                 co_estado_proceso CHAR(1) DEFAULT 'C'::bpchar NOT NULL,
@@ -17,14 +19,15 @@ CREATE TABLE facturas.stg_xls_facturas (
                 ds_factura_numero VARCHAR(100),
                 ds_area VARCHAR(100),
                 ds_observaciones VARCHAR(100),
-                nm_id_tipo_honora INTEGER,
-                nm_id_honorario INTEGER,
+                nm_mensaje VARCHAR(100),
+                nm_co_cuit VARCHAR(20),
+                nm_no_agente VARCHAR(100),
                 nm_nu_pto_venta INTEGER,
                 nm_nu_factura INTEGER,
                 nm_va_factura BYTEA,
-                nm_no_agente VARCHAR(100),
+                nm_id_tipo_honora INTEGER,
+                nm_id_honorario INTEGER,
                 nm_id_agente INTEGER,
-                nm_mensaje VARCHAR(100),
                 CONSTRAINT stg_xls_facturas_pk PRIMARY KEY (id_carga)
 );
 COMMENT ON TABLE facturas.stg_xls_facturas IS 'Tabla de Stage para carga de planilla Excel de facturas de Tecnópolis y TDA';

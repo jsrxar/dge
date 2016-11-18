@@ -3,9 +3,10 @@
 include_once dirname(__FILE__) . '/' . 'ax_general.php';
 
 if($idAgente = get_param("idAgente")){
+	$key = str_pad($dbo['password'], 24, "*");
 	$sql =  "SELECT TO_CHAR(fa.fe_factura, 'DD/MM/YYYY'),\n";
 	$sql .= "LPAD(fa.nu_pto_venta::TEXT, 4, '0')||'-'||LPAD(fa.nu_factura::TEXT, 8, '0'),\n";
-	$sql .= "fa.va_factura::NUMERIC::MONEY,\n";
+	$sql .= "CONVERT_FROM(DECRYPT(fa.va_factura,'" . $key . "','AES'),'SQL_ASCII')::MONEY,\n";
 	$sql .= "CASE co_categ_honorario\nWHEN 'M' THEN 'Mes '\nWHEN 'A' THEN 'Adicional '\n";
 	$sql .= "WHEN 'E' THEN 'Extra '\nWHEN 'B' THEN 'Bono '\nELSE '' END || no_tipo_honorario,\n";
 	$sql .= "TO_CHAR(fa.fe_carga, 'DD/MM/YYYY'),\n";

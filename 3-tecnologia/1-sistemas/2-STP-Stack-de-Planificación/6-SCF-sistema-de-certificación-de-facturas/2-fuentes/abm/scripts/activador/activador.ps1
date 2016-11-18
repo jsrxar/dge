@@ -26,7 +26,7 @@ if(@( Get-Content $phpfunc | Where-Object { $_.Contains("/* Funciones Generales 
 }
 
 Write-Host Procesando los archivos PHP
-foreach ($arch in get-content "$diract\activador.txt") {
+foreach ($arch in Get-Content "$diract\activador.txt") {
 	$archori = $dir + "\" + $arch
 	Write-Host Procesando $arch
 
@@ -34,44 +34,23 @@ foreach ($arch in get-content "$diract\activador.txt") {
 		if(@( Get-Content $archori | Where-Object { $_.Contains("SetExportToExcelAvailable(true)") } ).Count -eq 0) {
 			$archtmp = $archori + ".borrar"
 
+			Get-Content $archori | 
+				%{$_ -replace 'Available\(false\)', 'Available(true)'} |
+				%{$_ -replace 'Navigator\(false\)', 'Navigator(true)'} |
+				%{$_ -replace 'SetUseImagesForActions\(false\)', 'SetUseImagesForActions(true)'} |
+				%{$_ -replace 'SetHighlightRowAtHover\(false\)', 'SetHighlightRowAtHover(true)'} |
+				%{$_ -replace 'SetVisualEffectsEnabled\(false\)', 'SetVisualEffectsEnabled(true)'} |
+				%{$_ -replace 'SetAllowDeleteSelected\(true\)', 'SetAllowDeleteSelected(false)'} |
+				%{$_ -replace 'AddBand\(', 'AddBandToBegin('} |
+				%{$_ -replace 'SetRowsPerPage\(.*\)', 'SetRowsPerPage(100)'} |
+				Out-File -Encoding "UTF8" $archtmp
+
 			if ($arch.Equals("factura.php")) {
-				get-content $archori | 
-					%{$_ -replace 'SetUseImagesForActions\(false\)', 'SetUseImagesForActions(true)'} |
-					%{$_ -replace 'SetHighlightRowAtHover\(false\)', 'SetHighlightRowAtHover(true)'} |
-					%{$_ -replace 'SetExportToExcelAvailable\(false\)', 'SetExportToExcelAvailable(true)'} |
-					%{$_ -replace 'SetExportToWordAvailable\(false\)', 'SetExportToWordAvailable(true)'} |
-					%{$_ -replace 'SetExportToXmlAvailable\(false\)', 'SetExportToXmlAvailable(true)'} |
-					%{$_ -replace 'SetExportToCsvAvailable\(false\)', 'SetExportToCsvAvailable(true)'} |
-					%{$_ -replace 'SetExportToPdfAvailable\(false\)', 'SetExportToPdfAvailable(true)'} |
-					%{$_ -replace 'SetPrinterFriendlyAvailable\(false\)', 'SetPrinterFriendlyAvailable(true)'} |
-					%{$_ -replace 'SetSimpleSearchAvailable\(false\)', 'SetSimpleSearchAvailable(true)'} |
-					%{$_ -replace 'SetAdvancedSearchAvailable\(false\)', 'SetAdvancedSearchAvailable(true)'} |
-					%{$_ -replace 'SetFilterRowAvailable\(false\)', 'SetFilterRowAvailable(true)'} |
-					%{$_ -replace 'SetVisualEffectsEnabled\(false\)', 'SetVisualEffectsEnabled(true)'} |
-					%{$_ -replace 'SetShowTopPageNavigator\(false\)', 'SetShowTopPageNavigator(true)'} |
-					%{$_ -replace 'SetShowBottomPageNavigator\(false\)', 'SetShowBottomPageNavigator(true)'} |
-					%{$_ -replace 'SetAllowDeleteSelected\(false\)', 'SetAllowDeleteSelected(true)'} |
-					%{$_ -replace 'AddBand\(', 'AddBandToBegin('} |
-					%{$_ -replace 'SetRowsPerPage\(.*\)', 'SetRowsPerPage(100)'} | Out-File -Encoding "UTF8" $archtmp
-			} else {
-				get-content $archori | 
-					%{$_ -replace 'SetUseImagesForActions\(false\)', 'SetUseImagesForActions(true)'} |
-					%{$_ -replace 'SetHighlightRowAtHover\(false\)', 'SetHighlightRowAtHover(true)'} |
-					%{$_ -replace 'SetExportToExcelAvailable\(false\)', 'SetExportToExcelAvailable(true)'} |
-					%{$_ -replace 'SetExportToWordAvailable\(false\)', 'SetExportToWordAvailable(true)'} |
-					%{$_ -replace 'SetExportToXmlAvailable\(false\)', 'SetExportToXmlAvailable(true)'} |
-					%{$_ -replace 'SetExportToCsvAvailable\(false\)', 'SetExportToCsvAvailable(true)'} |
-					%{$_ -replace 'SetExportToPdfAvailable\(false\)', 'SetExportToPdfAvailable(true)'} |
-					%{$_ -replace 'SetPrinterFriendlyAvailable\(false\)', 'SetPrinterFriendlyAvailable(true)'} |
-					%{$_ -replace 'SetSimpleSearchAvailable\(false\)', 'SetSimpleSearchAvailable(true)'} |
-					%{$_ -replace 'SetAdvancedSearchAvailable\(false\)', 'SetAdvancedSearchAvailable(true)'} |
-					%{$_ -replace 'SetFilterRowAvailable\(false\)', 'SetFilterRowAvailable(true)'} |
-					%{$_ -replace 'SetVisualEffectsEnabled\(false\)', 'SetVisualEffectsEnabled(true)'} |
-					%{$_ -replace 'SetShowTopPageNavigator\(false\)', 'SetShowTopPageNavigator(true)'} |
-					%{$_ -replace 'SetShowBottomPageNavigator\(false\)', 'SetShowBottomPageNavigator(true)'} |
-					%{$_ -replace 'SetAllowDeleteSelected\(true\)', 'SetAllowDeleteSelected(false)'} |
-					%{$_ -replace 'AddBand\(', 'AddBandToBegin('} |
-					%{$_ -replace 'SetRowsPerPage\(.*\)', 'SetRowsPerPage(100)'} | Out-File -Encoding "UTF8" $archtmp
+				$archtmp2 = $archtmp + ".2"
+				Get-Content $archtmp |
+					%{$_ -replace 'SetAllowDeleteSelected\(false\);$', 'SetAllowDeleteSelected(true);'} |
+					Out-File -Encoding "UTF8" $archtmp2
+				Move-Item -Path $archtmp2 -Destination $archtmp -Force
 			}
 
 			# Convierte la salida de nuevo a ISO-8859-1

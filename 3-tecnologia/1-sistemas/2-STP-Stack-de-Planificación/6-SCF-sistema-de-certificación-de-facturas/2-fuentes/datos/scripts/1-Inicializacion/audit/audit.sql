@@ -104,8 +104,10 @@ BEGIN
         statement_timestamp(),                        -- action_tstamp_stm
         clock_timestamp(),                            -- action_tstamp_clk
         txid_current(),                               -- transaction ID
+-- MJR Modify BEGIN
         --current_setting('application_name'),          -- client application
-        split_part(current_setting('application_name'),';',1), -- client application (MJR:Modify)
+        split_part(current_setting('application_name'),';',1), -- client application
+-- MJR Modify END
         inet_client_addr(),                           -- client_addr
         inet_client_port(),                           -- client_port
         current_query(),                              -- top-level query or queries (if multistatement) from client
@@ -181,9 +183,17 @@ $body$;
 
 
 
-CREATE OR REPLACE FUNCTION audit.audit_table(target_table regclass, audit_rows boolean, audit_query_text boolean, ignored_cols text[]) RETURNS void AS $body$
+-- MJR Modify BEGIN
+--CREATE OR REPLACE FUNCTION audit.audit_table(target_table regclass, audit_rows boolean, audit_query_text boolean, ignored_cols text[]) RETURNS void AS $body$
+CREATE OR REPLACE FUNCTION audit.audit_table(
+	target_table regclass,
+	audit_rows boolean,
+	audit_query_text boolean,
+	ignored_cols text[],
+	row_targets text DEFAULT 'INSERT OR UPDATE OR DELETE' ) RETURNS void AS $body$
+-- MJR Modify END
 DECLARE
-  stm_targets text = 'INSERT OR UPDATE OR DELETE OR TRUNCATE';
+  stm_targets text = row_targets || ' OR TRUNCATE';
   _q_txt text;
   _ignored_cols_snip text = '';
 BEGIN
@@ -194,7 +204,7 @@ BEGIN
         IF array_length(ignored_cols,1) > 0 THEN
             _ignored_cols_snip = ', ' || quote_literal(ignored_cols);
         END IF;
-        _q_txt = 'CREATE TRIGGER audit_trigger_row AFTER INSERT OR UPDATE OR DELETE ON ' || 
+        _q_txt = 'CREATE TRIGGER audit_trigger_row AFTER ' || row_targets || ' ON ' || 
                  quote_ident(target_table::TEXT) || 
                  ' FOR EACH ROW EXECUTE PROCEDURE audit.if_modified_func(' ||
                  quote_literal(audit_query_text) || _ignored_cols_snip || ');';
@@ -215,7 +225,10 @@ END;
 $body$
 language 'plpgsql';
 
-COMMENT ON FUNCTION audit.audit_table(regclass, boolean, boolean, text[]) IS $body$
+
+-- MJR Modify BEGIN
+--COMMENT ON FUNCTION audit.audit_table(regclass, boolean, boolean, text[]) IS $body$
+COMMENT ON FUNCTION audit.audit_table(regclass, boolean, boolean, text[], text) IS $body$
 Add auditing support to a table.
 
 Arguments:
@@ -223,7 +236,9 @@ Arguments:
    audit_rows:       Record each row change, or only audit at a statement level
    audit_query_text: Record the text of the client query that triggered the audit event?
    ignored_cols:     Columns to exclude from update diffs, ignore updates that change only ignored cols.
+   row_targets:      Targets to audit in the row changes
 $body$;
+-- MJR Modify END
 
 -- Pg doesn't allow variadic calls with 0 params, so provide a wrapper
 CREATE OR REPLACE FUNCTION audit.audit_table(target_table regclass, audit_rows boolean, audit_query_text boolean) RETURNS void AS $body$
