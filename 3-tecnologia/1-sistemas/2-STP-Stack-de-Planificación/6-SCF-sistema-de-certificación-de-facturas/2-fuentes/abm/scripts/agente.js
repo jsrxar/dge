@@ -15,9 +15,10 @@ switch($.urlParam('operation')) {
 }
 
 function fn_agente_edit () {
+	/*
 	$("#id_ubicacion_fisica_edit").bind("DOMSubtreeModified", function() {
-		// Agrandar combos de "Puesto" y "Dependencia"
-		$(".select2-container").css("width", "532px");
+		// Agrandar combo de "Dependencia"
+		$(".select2-container").css("width", "500px");
 	});
 	// Si cambia "Nombre" o "Apellido" colocamos el "Nombre Completo"
 	$("#no_nombre_edit").on("input",function(e){
@@ -26,6 +27,7 @@ function fn_agente_edit () {
 	$("#no_apellido_edit").on("input",function(e){
 		$("#no_agente_edit").val($("#no_apellido_edit").val() + ", " + $("#no_nombre_edit").val());
 	});
+	*/
 }
 
 function fn_agente_view () {

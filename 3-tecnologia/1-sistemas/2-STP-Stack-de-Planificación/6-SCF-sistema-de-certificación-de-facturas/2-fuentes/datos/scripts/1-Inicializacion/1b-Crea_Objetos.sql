@@ -19,13 +19,16 @@ CREATE TABLE facturas.stg_xls_facturas (
                 ds_factura_numero VARCHAR(100),
                 ds_area VARCHAR(100),
                 ds_observaciones VARCHAR(100),
-                nm_mensaje VARCHAR(100),
+                ds_cbu VARCHAR(100),
+                nm_mensaje VARCHAR(200),
                 nm_co_cuit VARCHAR(20),
+                nm_nu_cbu NUMERIC(22),
                 nm_no_agente VARCHAR(100),
                 nm_nu_pto_venta INTEGER,
                 nm_nu_factura INTEGER,
                 nm_va_factura BYTEA,
-                nm_id_tipo_honora INTEGER,
+                nm_co_categ_fact CHAR(1),
+                nm_fe_mes DATE,
                 nm_id_honorario INTEGER,
                 nm_id_agente INTEGER,
                 CONSTRAINT stg_xls_facturas_pk PRIMARY KEY (id_carga)
@@ -48,6 +51,10 @@ COMMENT ON COLUMN facturas.stg_xls_facturas.ds_observaciones IS 'Valor de la col
 
 
 ALTER SEQUENCE facturas.stg_carga_sq OWNED BY facturas.stg_xls_facturas.id_carga;
+
+CREATE INDEX stg_xls_facturas_ix
+ ON facturas.stg_xls_facturas
+ ( nm_id_honorario ASC, co_estado_proceso ASC );
 
 CREATE TABLE facturas.stg_base_rrhh (
                 ds_ministerio VARCHAR(100),
@@ -264,6 +271,7 @@ CREATE TABLE facturas.agente (
                 nu_documento BIGINT,
                 ar_documento BYTEA,
                 co_cuit VARCHAR(20),
+                nu_cbu NUMERIC(22),
                 fe_nacimiento DATE,
                 ds_estudios VARCHAR(200),
                 ds_direccion VARCHAR(200),
@@ -288,6 +296,7 @@ COMMENT ON COLUMN facturas.agente.co_tipo_documento IS 'Tipo de documento del ag
 COMMENT ON COLUMN facturas.agente.nu_documento IS 'Número de documento del agente.';
 COMMENT ON COLUMN facturas.agente.ar_documento IS 'Archivo de imagen digital del documento del agente.';
 COMMENT ON COLUMN facturas.agente.co_cuit IS 'Número de CUIT del agente.';
+COMMENT ON COLUMN facturas.agente.nu_cbu IS 'CBU de la cuenta en la que se desea recibir el pago del honorario.';
 COMMENT ON COLUMN facturas.agente.fe_nacimiento IS 'Fecha de nacimiento del agente.';
 COMMENT ON COLUMN facturas.agente.ds_estudios IS 'Estudios del agente.';
 COMMENT ON COLUMN facturas.agente.ds_direccion IS 'Dirección del agente.';
@@ -312,6 +321,8 @@ CREATE TABLE facturas.contrato (
                 id_categoria_lm INTEGER,
                 id_convenio_at INTEGER,
                 co_categ_contrato CHAR(1) DEFAULT 'M' NOT NULL,
+                fl_crea_honorarios BOOLEAN DEFAULT FALSE NOT NULL,
+                va_honorario BYTEA,
                 CONSTRAINT contrato_pk PRIMARY KEY (id_contrato)
 );
 COMMENT ON TABLE facturas.contrato IS 'Contrato con el agente.';
@@ -328,6 +339,8 @@ A=Adicional
 E=Extra
 B=Bono
 O=Otro';
+COMMENT ON COLUMN facturas.contrato.fl_crea_honorarios IS 'Al crear el contrato se crean automáticamente los honorarios mensuales entre la fecha de inicio y la de fin.';
+COMMENT ON COLUMN facturas.contrato.va_honorario IS 'Valor de los honorario a crear asociados al agente.';
 
 
 ALTER SEQUENCE facturas.contrato_sq OWNED BY facturas.contrato.id_contrato;
@@ -338,6 +351,7 @@ CREATE TABLE facturas.honorario (
                 id_honorario INTEGER NOT NULL DEFAULT nextval('facturas.honorario_sq'),
                 id_tipo_honorario INTEGER NOT NULL,
                 id_contrato INTEGER NOT NULL,
+                id_factura INTEGER,
                 va_pct_ajuste REAL DEFAULT 0,
                 va_honorario BYTEA NOT NULL,
                 CONSTRAINT honorario_pk PRIMARY KEY (id_honorario)
@@ -346,6 +360,7 @@ COMMENT ON TABLE facturas.honorario IS 'Honorario del agente (normalmente mensua
 COMMENT ON COLUMN facturas.honorario.id_honorario IS 'Identificador único del honorario del agente.';
 COMMENT ON COLUMN facturas.honorario.id_tipo_honorario IS 'Tipo del honorario (normalmente el mes del mismo).';
 COMMENT ON COLUMN facturas.honorario.id_contrato IS 'Contrato con el agente.';
+COMMENT ON COLUMN facturas.honorario.id_factura IS 'Factura del agente.';
 COMMENT ON COLUMN facturas.honorario.va_pct_ajuste IS 'Porcentaje de ajuste en el honorario.';
 COMMENT ON COLUMN facturas.honorario.va_honorario IS 'Valor del honorario del agente.';
 
@@ -369,6 +384,7 @@ CREATE TABLE facturas.factura (
                 id_convenio_at INTEGER,
                 id_certificacion INTEGER,
                 fl_rechazo BOOLEAN DEFAULT FALSE NOT NULL,
+                ds_certificacion VARCHAR(100),
                 ds_comentario VARCHAR(400),
                 id_ubicacion_fisica INTEGER,
                 id_carga INTEGER,
@@ -389,6 +405,7 @@ COMMENT ON COLUMN facturas.factura.ar_comprobante_cae_cai IS 'Constatación de Co
 COMMENT ON COLUMN facturas.factura.id_convenio_at IS 'Convenio de Asistencia Técnica asociado a la factura.';
 COMMENT ON COLUMN facturas.factura.id_certificacion IS 'Lote de certificación de las facturas.';
 COMMENT ON COLUMN facturas.factura.fl_rechazo IS 'Indicador de rechazo de la factura.';
+COMMENT ON COLUMN facturas.factura.ds_certificacion IS 'Observaciones de certificación de la factura.';
 COMMENT ON COLUMN facturas.factura.ds_comentario IS 'Comentario de la factura.';
 COMMENT ON COLUMN facturas.factura.id_ubicacion_fisica IS 'Ubicación física de traajo del agente.';
 COMMENT ON COLUMN facturas.factura.id_carga IS 'Identificador único de la carga en la que se generó el registro.';
@@ -498,5 +515,12 @@ ALTER TABLE facturas.factura ADD CONSTRAINT honorario_factura_fk
 FOREIGN KEY (id_honorario)
 REFERENCES facturas.honorario (id_honorario)
 ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE facturas.honorario ADD CONSTRAINT factura_honorario_fk
+FOREIGN KEY (id_factura)
+REFERENCES facturas.factura (id_factura)
+ON DELETE SET NULL
 ON UPDATE NO ACTION
 NOT DEFERRABLE;

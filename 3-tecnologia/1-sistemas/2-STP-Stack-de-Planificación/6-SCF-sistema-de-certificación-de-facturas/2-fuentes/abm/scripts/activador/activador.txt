@@ -10,4 +10,5 @@ honorario.php
 tipo_contrato.php
 tipo_honorario.php
 ubicacion_fisica.php
+errores_carga.php
 carga_facturas.php

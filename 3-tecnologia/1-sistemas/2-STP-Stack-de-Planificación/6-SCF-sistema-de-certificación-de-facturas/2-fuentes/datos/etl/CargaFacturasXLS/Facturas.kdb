@@ -1,6 +1,6 @@
   <connection>
     <name>Facturas</name>
-    <server>10.13.18.133</server>
+    <server>10.13.18.64</server>
     <type>POSTGRESQL</type>
     <access>Native</access>
     <database>sfmycp</database>

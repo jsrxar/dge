@@ -49,8 +49,14 @@ SELECT
        TO_CHAR(fe_fin, '&quot; - Fin contrato&quot; DD/MM/YY')) AS ds_contrato
 FROM facturas.contrato co
 INNER JOIN facturas.tipo_contrato tc ON tc.id_tipo_contrato = co.id_tipo_contrato
-WHERE NOW() BETWEEN COALESCE(fe_inicio, CURRENT_DATE - 1) AND COALESCE(fe_fin, CURRENT_DATE + 1)
-AND tc.co_tipo_contrato IN ('AT', 'CO')
+WHERE EXISTS (
+	SELECT 1 FROM facturas.honorario ho
+	WHERE ho.id_contrato = co.id_contrato
+	  AND NOT EXISTS (
+		SELECT 1 FROM facturas.factura fa
+		WHERE fa.id_honorario = ho.id_honorario
+		  AND NOT fa.fl_rechazo ))
+  AND tc.co_tipo_contrato IN ('AT', 'CO')
 ORDER BY 2      </SelectStatement>
       <InsertStatements/>
       <UpdateStatements/>
@@ -210,6 +216,59 @@ UNION ALL SELECT 'R', 'Rechazada'      </SelectStatement>
         <Field name="id"/>
       </PrimaryKeyFields>
     </Query>
+    <Query name="ver_detalle_carga">
+      <SelectStatement>
+SELECT
+	id_carga,
+	nu_carga,
+	co_estado_proceso,
+	nm_mensaje,
+	no_archivo,
+	no_hoja,
+	nu_fila,
+	fe_modif,
+	fe_carga,
+	fe_reproc,
+	fl_reproc,
+	ds_nombre,
+	ds_cuit,
+	ds_cbu,
+	ds_mes,
+	ds_factura_numero,
+	ds_area,
+	ds_observaciones,
+	nm_no_agente,
+	nm_co_cuit,
+	nm_nu_cbu,
+	nm_nu_pto_venta,
+	nm_nu_factura,
+	nm_va_factura,
+	nm_co_categ_fact,
+	nm_id_agente,
+	nm_id_honorario,
+	nm_fe_mes
+FROM stg_xls_facturas      </SelectStatement>
+      <InsertStatements/>
+      <UpdateStatements/>
+      <DeleteStatements/>
+      <PrimaryKeyFields>
+        <Field name="id_carga"/>
+      </PrimaryKeyFields>
+    </Query>
+    <Query name="ver_carga_factura">
+      <SelectStatement>
+SELECT
+id_factura,
+TO_CHAR(MAX(fe_carga), 'DD/MM/YYYY HH24:MI') AS fe_carga
+FROM facturas.factura
+GROUP BY id_factura      </SelectStatement>
+      <InsertStatements/>
+      <UpdateStatements/>
+      <DeleteStatements/>
+      <PrimaryKeyFields>
+        <Field name="id_factura"/>
+      </PrimaryKeyFields>
+    </Query>
   </Queries>
   <FieldContainers/>
   <Presentation disableMagicQuotesRuntime="true" showEnvironmentVariables="false" showExecutedQueries="false" showPHPErrorsAndWarnings="false">
@@ -289,6 +348,9 @@ UNION ALL SELECT 'R', 'Rechazada'      </SelectStatement>
               <ViewProperties type="text"/>
               <Hyperlink template="carga_facturas.php?operation=view&amp;amp;pk0=%id_carga%"/>
             </Column>
+            <Column fieldName="ds_certificacion" caption="Ds Certificacion" visible="false" headerHint="Observaciones de certificación de la factura." totalFunction="0">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
           </ViewColumns>
           <SingleRecordViewColumns>
             <Column fieldName="id_factura" caption="ID Factura" visible="true" headerHint="Identificador único de la factura del agente.">
@@ -361,6 +423,9 @@ UNION ALL SELECT 'R', 'Rechazada'      </SelectStatement>
               <Lookup tableName="ver_carga" linkFieldName="id_carga" displayFieldName="no_carga" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text"/>
               <Hyperlink template="carga_facturas.php?operation=view&amp;amp;pk0=%id_carga%"/>
+            </Column>
+            <Column fieldName="ds_certificacion" caption="Ds Certificacion" visible="false" headerHint="Observaciones de certificación de la factura.">
+              <ViewProperties type="text" maxLength="75"/>
             </Column>
           </SingleRecordViewColumns>
           <EditColumns>
@@ -452,6 +517,9 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
                 <MFUItems/>
               </EditProperties>
             </Column>
+            <Column fieldName="ds_certificacion" caption="Ds Certificacion" visible="false" canSetNull="true">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
           </EditColumns>
           <InsertColumns>
             <Column fieldName="id_factura" caption="ID Factura" visible="false" defaultInsertValue="">
@@ -542,6 +610,9 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
                 <MFUItems/>
               </EditProperties>
             </Column>
+            <Column fieldName="ds_certificacion" caption="Ds Certificacion" visible="false" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
           </InsertColumns>
           <SimpleSearchColumns>
             <Column fieldName="id_factura" caption="ID Factura" visible="true"/>
@@ -571,6 +642,7 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
             <Column fieldName="id_carga" caption="Carga" visible="true">
               <Lookup tableName="ver_carga" linkFieldName="id_carga" displayFieldName="no_carga" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
+            <Column fieldName="ds_certificacion" caption="Ds Certificacion" visible="false"/>
           </SimpleSearchColumns>
           <AdvancedSearchColumns>
             <Column fieldName="id_factura" caption="ID Factura" visible="true" useComboBox="false"/>
@@ -600,6 +672,7 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
             <Column fieldName="id_carga" caption="Carga" visible="true" useComboBox="false">
               <Lookup tableName="ver_carga" linkFieldName="id_carga" displayFieldName="no_carga" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
+            <Column fieldName="ds_certificacion" caption="Ds Certificacion" visible="false" useComboBox="false"/>
           </AdvancedSearchColumns>
           <ExportColumns>
             <Column fieldName="id_factura" caption="ID Factura" visible="true" headerHint="Identificador único de la factura del agente.">
@@ -671,6 +744,9 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
               <ViewProperties type="text"/>
               <Hyperlink template="carga_facturas.php?operation=view&amp;amp;pk0=%id_carga%"/>
             </Column>
+            <Column fieldName="ds_certificacion" caption="Ds Certificacion" visible="false" headerHint="Observaciones de certificación de la factura.">
+              <ViewProperties type="text"/>
+            </Column>
           </ExportColumns>
           <PrintColumns>
             <Column fieldName="id_factura" caption="ID Factura" visible="true" headerHint="Identificador único de la factura del agente.">
@@ -741,6 +817,9 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
               <Lookup tableName="ver_carga" linkFieldName="id_carga" displayFieldName="no_carga" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text"/>
               <Hyperlink template="carga_facturas.php?operation=view&amp;amp;pk0=%id_carga%"/>
+            </Column>
+            <Column fieldName="ds_certificacion" caption="Ds Certificacion" visible="false" headerHint="Observaciones de certificación de la factura.">
+              <ViewProperties type="text"/>
             </Column>
           </PrintColumns>
         </Columns>
@@ -1057,6 +1136,12 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
             <Column fieldName="fe_carga" caption="Carga" visible="true" headerHint="Fecha de carga de la factura." totalFunction="0">
               <ViewProperties type="dateTime" dateTimeFormat="d/m/y"/>
             </Column>
+            <Column fieldName="nu_cbu" caption="CBU Cuenta" visible="false" headerHint="CBU de la cuenta en la que se desea recibir el pago del honorario." totalFunction="0">
+              <ViewProperties type="text">
+                <DivAttributes align="right" italic="true"/>
+                <Format type="number"/>
+              </ViewProperties>
+            </Column>
           </ViewColumns>
           <SingleRecordViewColumns>
             <Column fieldName="id_agente" caption="ID Agente" visible="true" headerHint="Identificador único del agente que presta servicios.">
@@ -1147,6 +1232,12 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
             <Column fieldName="fe_carga" caption="Carga" visible="true" headerHint="Fecha de carga de la factura.">
               <ViewProperties type="dateTime" dateTimeFormat="d/m/y"/>
             </Column>
+            <Column fieldName="nu_cbu" caption="CBU Cuenta" visible="true" headerHint="CBU de la cuenta en la que se desea recibir el pago del honorario.">
+              <ViewProperties type="text">
+                <DivAttributes align="right" italic="true"/>
+                <Format type="number"/>
+              </ViewProperties>
+            </Column>
           </SingleRecordViewColumns>
           <EditColumns>
             <Column fieldName="id_agente" caption="ID Agente" visible="false">
@@ -1163,15 +1254,19 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
             </Column>
             <Column fieldName="id_puesto" caption="Puesto" visible="true" canSetNull="true">
               <Lookup tableName="facturas.puesto" linkFieldName="id_puesto" displayFieldName="no_puesto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
-              <EditProperties type="autocompleteEdit"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
             </Column>
             <Column fieldName="id_dependencia" caption="Dependencia" visible="true">
               <Lookup tableName="ver_dependencia" linkFieldName="id_dependencia" displayFieldName="ds_dependencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
-              <EditProperties type="autocompleteEdit"/>
+              <EditProperties type="autocompleteEdit" size="820px" allowClear="false"/>
             </Column>
             <Column fieldName="id_ubicacion_fisica" caption="Lugar" visible="true" canSetNull="true">
               <Lookup tableName="facturas.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
-              <EditProperties type="autocompleteEdit"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
             </Column>
             <Column fieldName="ds_funcion" caption="Función" visible="true" canSetNull="true">
               <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
@@ -1226,12 +1321,17 @@ DNI                  </MFUItem>
             <Column fieldName="ds_cv_agente" caption="Tipo CV" visible="false" canSetNull="true">
               <EditProperties type="textBox" size="10" maxLength="10" placeholder="" prefix="" suffix=""/>
             </Column>
-            <Column fieldName="fe_carga" caption="Carga" visible="true" readOnly="true">
+            <Column fieldName="fe_carga" caption="Carga" visible="true" canSetNull="true" readOnly="true">
               <EditProperties type="dateTime" showsTime="true" dateTimeFormat="Y-m-d H:i:s" firstDayOfWeek="0"/>
+            </Column>
+            <Column fieldName="nu_cbu" caption="CBU Cuenta" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="22" maxLength="22" placeholder="0000000000000000000000" prefix="" suffix="">
+                <AdvancedProperties inlineStyles="text-align:right" customAttributes="onkeypress='return (event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57) || event.charCode == 45'"/>
+              </EditProperties>
             </Column>
           </EditColumns>
           <InsertColumns>
-            <Column fieldName="id_agente" caption="ID Agente" visible="false" defaultInsertValue="">
+            <Column fieldName="id_agente" caption="ID Agente" visible="false" defaultInsertValue="&quot;DNI&quot;">
               <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
             </Column>
             <Column fieldName="no_apellido" caption="Apellido/s" visible="false" defaultInsertValue="">
@@ -1245,20 +1345,24 @@ DNI                  </MFUItem>
             </Column>
             <Column fieldName="id_puesto" caption="Puesto" visible="true" canSetNull="true" defaultInsertValue="">
               <Lookup tableName="facturas.puesto" linkFieldName="id_puesto" displayFieldName="no_puesto" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
-              <EditProperties type="autocompleteEdit"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
             </Column>
             <Column fieldName="id_dependencia" caption="Dependencia" visible="true" defaultInsertValue="">
               <Lookup tableName="ver_dependencia" linkFieldName="id_dependencia" displayFieldName="ds_dependencia" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
-              <EditProperties type="autocompleteEdit"/>
+              <EditProperties type="autocompleteEdit" size="820px" allowClear="false"/>
             </Column>
             <Column fieldName="id_ubicacion_fisica" caption="Lugar" visible="true" canSetNull="true" defaultInsertValue="">
               <Lookup tableName="facturas.ubicacion_fisica" linkFieldName="id_ubicacion_fisica" displayFieldName="no_ubicacion_fisica" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
-              <EditProperties type="autocompleteEdit"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
             </Column>
             <Column fieldName="ds_funcion" caption="Función" visible="true" canSetNull="true" defaultInsertValue="">
               <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
             </Column>
-            <Column fieldName="co_tipo_documento" caption="Tipo Documento" visible="true" canSetNull="true" defaultInsertValue="">
+            <Column fieldName="co_tipo_documento" caption="Tipo Documento" visible="true" canSetNull="true" defaultInsertValue="DNI">
               <EditProperties type="comboBox">
                 <Values>
                   <Value name="DNI" caption="D.N.I."/>
@@ -1308,8 +1412,13 @@ DNI                  </MFUItem>
             <Column fieldName="ds_cv_agente" caption="Tipo CV" visible="false" canSetNull="true" defaultInsertValue="">
               <EditProperties type="textBox" size="10" maxLength="10" placeholder="" prefix="" suffix=""/>
             </Column>
-            <Column fieldName="fe_carga" caption="Carga" visible="true" readOnly="true" defaultInsertValue="">
+            <Column fieldName="fe_carga" caption="Carga" visible="false" canSetNull="true" readOnly="true" defaultInsertValue="">
               <EditProperties type="dateTime" showsTime="true" dateTimeFormat="Y-m-d H:i:s" firstDayOfWeek="0"/>
+            </Column>
+            <Column fieldName="nu_cbu" caption="CBU Cuenta" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="22" maxLength="22" placeholder="0000000000000000000000" prefix="" suffix="">
+                <AdvancedProperties inlineStyles="text-align:right" customAttributes="onkeypress='return (event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57) || event.charCode == 45'"/>
+              </EditProperties>
             </Column>
           </InsertColumns>
           <SimpleSearchColumns>
@@ -1340,6 +1449,7 @@ DNI                  </MFUItem>
             <Column fieldName="ar_cv_agente" caption="CV Agente" visible="false"/>
             <Column fieldName="ds_cv_agente" caption="Tipo CV" visible="false"/>
             <Column fieldName="fe_carga" caption="Carga" visible="true"/>
+            <Column fieldName="nu_cbu" caption="CBU Cuenta" visible="true"/>
           </SimpleSearchColumns>
           <AdvancedSearchColumns>
             <Column fieldName="id_agente" caption="ID Agente" visible="true" useComboBox="false"/>
@@ -1369,6 +1479,7 @@ DNI                  </MFUItem>
             <Column fieldName="ar_cv_agente" caption="CV Agente" visible="true" useComboBox="false"/>
             <Column fieldName="ds_cv_agente" caption="Tipo CV" visible="false" useComboBox="false"/>
             <Column fieldName="fe_carga" caption="Carga" visible="true" useComboBox="false"/>
+            <Column fieldName="nu_cbu" caption="CBU Cuenta" visible="true" useComboBox="false"/>
           </AdvancedSearchColumns>
           <ExportColumns>
             <Column fieldName="id_agente" caption="ID Agente" visible="true" headerHint="Identificador único del agente que presta servicios.">
@@ -1451,6 +1562,12 @@ DNI                  </MFUItem>
             <Column fieldName="fe_carga" caption="Carga" visible="true" headerHint="Fecha de carga de la factura.">
               <ViewProperties type="dateTime" dateTimeFormat="d/m/y"/>
             </Column>
+            <Column fieldName="nu_cbu" caption="CBU Cuenta" visible="true" headerHint="CBU de la cuenta en la que se desea recibir el pago del honorario.">
+              <ViewProperties type="text">
+                <DivAttributes align="right" italic="true"/>
+                <Format type="number"/>
+              </ViewProperties>
+            </Column>
           </ExportColumns>
           <PrintColumns>
             <Column fieldName="id_agente" caption="ID Agente" visible="true" headerHint="Identificador único del agente que presta servicios.">
@@ -1532,6 +1649,12 @@ DNI                  </MFUItem>
             </Column>
             <Column fieldName="fe_carga" caption="Carga" visible="true" headerHint="Fecha de carga de la factura.">
               <ViewProperties type="dateTime" dateTimeFormat="d/m/y"/>
+            </Column>
+            <Column fieldName="nu_cbu" caption="CBU Cuenta" visible="true" headerHint="CBU de la cuenta en la que se desea recibir el pago del honorario.">
+              <ViewProperties type="text">
+                <DivAttributes align="right" italic="true"/>
+                <Format type="number"/>
+              </ViewProperties>
             </Column>
           </PrintColumns>
         </Columns>
@@ -2220,8 +2343,14 @@ DNI                  </MFUItem>
                 <DivAttributes align="left"/>
               </ViewProperties>
             </Column>
-            <Column fieldName="co_categ_contrato" caption="Tipo" visible="false" headerHint="Categoría del contrato:  M=Mensual  A=Adicional  E=Extra  B=Bono  O=Otro" totalFunction="0">
+            <Column fieldName="co_categ_contrato" caption="Tipo" visible="true" headerHint="Categoría del contrato:  M=Mensual  A=Adicional  E=Extra  B=Bono  O=Otro" totalFunction="0">
               <Lookup tableName="ver_tipo" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="fl_crea_honorarios" caption="Crea Honorarios?" visible="false" headerHint="Al crear el contrato se crean automáticamente los honorarios mensuales entre la fecha de inicio y la de fin." totalFunction="0">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="va_honorario" caption="Valor Honorarios" visible="false" headerHint="Valor de los honorario a crear asociados al agente." totalFunction="0">
               <ViewProperties type="text"/>
             </Column>
           </ViewColumns>
@@ -2258,6 +2387,12 @@ DNI                  </MFUItem>
             </Column>
             <Column fieldName="co_categ_contrato" caption="Tipo" visible="true" headerHint="Categoría del contrato:  M=Mensual  A=Adicional  E=Extra  B=Bono  O=Otro">
               <Lookup tableName="ver_tipo" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="fl_crea_honorarios" caption="Crea Honorarios?" visible="false" headerHint="Al crear el contrato se crean automáticamente los honorarios mensuales entre la fecha de inicio y la de fin.">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="va_honorario" caption="Valor Honorarios" visible="false" headerHint="Valor de los honorario a crear asociados al agente.">
               <ViewProperties type="text"/>
             </Column>
           </SingleRecordViewColumns>
@@ -2299,6 +2434,14 @@ DNI                  </MFUItem>
                 <MFUItems/>
               </EditProperties>
             </Column>
+            <Column fieldName="fl_crea_honorarios" caption="Crea Honorarios?" visible="false" canSetNull="true">
+              <EditProperties type="checkBox"/>
+            </Column>
+            <Column fieldName="va_honorario" caption="Valor Honorarios" visible="false" canSetNull="true">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="$" suffix="">
+                <AdvancedProperties inlineStyles="text-align:right" customAttributes="onkeypress='return (event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57) || event.charCode == 46'"/>
+              </EditProperties>
+            </Column>
           </EditColumns>
           <InsertColumns>
             <Column fieldName="id_contrato" caption="ID Contrato" visible="false" defaultInsertValue="">
@@ -2338,6 +2481,14 @@ DNI                  </MFUItem>
                 <MFUItems/>
               </EditProperties>
             </Column>
+            <Column fieldName="fl_crea_honorarios" caption="Crea Honorarios?" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="checkBox"/>
+            </Column>
+            <Column fieldName="va_honorario" caption="Valor Honorarios" visible="true" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="$" suffix="">
+                <AdvancedProperties inlineStyles="text-align:right" customAttributes="onkeypress='return (event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57) || event.charCode == 46'"/>
+              </EditProperties>
+            </Column>
           </InsertColumns>
           <SimpleSearchColumns>
             <Column fieldName="id_contrato" caption="ID Contrato" visible="true"/>
@@ -2358,6 +2509,8 @@ DNI                  </MFUItem>
             <Column fieldName="co_categ_contrato" caption="Tipo" visible="true">
               <Lookup tableName="ver_tipo" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
+            <Column fieldName="fl_crea_honorarios" caption="Crea Honorarios?" visible="false"/>
+            <Column fieldName="va_honorario" caption="Valor Honorarios" visible="false"/>
           </SimpleSearchColumns>
           <AdvancedSearchColumns>
             <Column fieldName="id_contrato" caption="ID Contrato" visible="true" useComboBox="false"/>
@@ -2378,6 +2531,8 @@ DNI                  </MFUItem>
             <Column fieldName="co_categ_contrato" caption="Tipo" visible="true" useComboBox="false">
               <Lookup tableName="ver_tipo" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
             </Column>
+            <Column fieldName="fl_crea_honorarios" caption="Crea Honorarios?" visible="false" useComboBox="false"/>
+            <Column fieldName="va_honorario" caption="Valor Honorarios" visible="false" useComboBox="false"/>
           </AdvancedSearchColumns>
           <ExportColumns>
             <Column fieldName="id_contrato" caption="ID Contrato" visible="true" headerHint="Identificador único del contrato con el agente.">
@@ -2414,6 +2569,12 @@ DNI                  </MFUItem>
               <Lookup tableName="ver_tipo" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text"/>
             </Column>
+            <Column fieldName="fl_crea_honorarios" caption="Crea Honorarios?" visible="false" headerHint="Al crear el contrato se crean automáticamente los honorarios mensuales entre la fecha de inicio y la de fin.">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="va_honorario" caption="Valor Honorarios" visible="false" headerHint="Valor de los honorario a crear asociados al agente.">
+              <ViewProperties type="text"/>
+            </Column>
           </ExportColumns>
           <PrintColumns>
             <Column fieldName="id_contrato" caption="ID Contrato" visible="true" headerHint="Identificador único del contrato con el agente.">
@@ -2448,6 +2609,12 @@ DNI                  </MFUItem>
             </Column>
             <Column fieldName="co_categ_contrato" caption="Tipo" visible="true" headerHint="Categoría del contrato:  M=Mensual  A=Adicional  E=Extra  B=Bono  O=Otro">
               <Lookup tableName="ver_tipo" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="fl_crea_honorarios" caption="Crea Honorarios?" visible="false" headerHint="Al crear el contrato se crean automáticamente los honorarios mensuales entre la fecha de inicio y la de fin.">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="va_honorario" caption="Valor Honorarios" visible="false" headerHint="Valor de los honorario a crear asociados al agente.">
               <ViewProperties type="text"/>
             </Column>
           </PrintColumns>
@@ -2659,6 +2826,10 @@ DNI                  </MFUItem>
                 <Format type="number" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
               </ViewProperties>
             </Column>
+            <Column fieldName="id_factura" caption="Carga Factura" visible="true" headerHint="Factura del agente." totalFunction="0">
+              <Lookup tableName="ver_carga_factura" linkFieldName="id_factura" displayFieldName="fe_carga" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
           </ViewColumns>
           <SingleRecordViewColumns>
             <Column fieldName="id_honorario" caption="ID Honorario" visible="true" headerHint="Identificador único del honorario del agente.">
@@ -2688,6 +2859,10 @@ DNI                  </MFUItem>
                 <Format type="number" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
               </ViewProperties>
             </Column>
+            <Column fieldName="id_factura" caption="Carga Factura" visible="true" headerHint="Factura del agente.">
+              <Lookup tableName="ver_carga_factura" linkFieldName="id_factura" displayFieldName="fe_carga" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
           </SingleRecordViewColumns>
           <EditColumns>
             <Column fieldName="id_honorario" caption="ID Honorario" visible="false">
@@ -2708,6 +2883,12 @@ DNI                  </MFUItem>
             </Column>
             <Column fieldName="va_pct_ajuste" caption="% Ajuste" visible="true" canSetNull="true">
               <EditProperties type="textBox" size="-2" maxLength="2" placeholder="" prefix="" suffix="%"/>
+            </Column>
+            <Column fieldName="id_factura" caption="Carga Factura" visible="false" canSetNull="true">
+              <Lookup tableName="ver_carga_factura" linkFieldName="id_factura" displayFieldName="fe_carga" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
             </Column>
           </EditColumns>
           <InsertColumns>
@@ -2730,6 +2911,12 @@ DNI                  </MFUItem>
             <Column fieldName="va_pct_ajuste" caption="% Ajuste" visible="true" canSetNull="true" defaultInsertValue="0">
               <EditProperties type="textBox" size="-2" maxLength="2" placeholder="" prefix="" suffix="%"/>
             </Column>
+            <Column fieldName="id_factura" caption="Carga Factura" visible="false" canSetNull="true" defaultInsertValue="">
+              <Lookup tableName="ver_carga_factura" linkFieldName="id_factura" displayFieldName="fe_carga" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
           </InsertColumns>
           <SimpleSearchColumns>
             <Column fieldName="id_honorario" caption="ID Honorario" visible="true"/>
@@ -2741,6 +2928,9 @@ DNI                  </MFUItem>
             </Column>
             <Column fieldName="va_honorario" caption="Monto" visible="true"/>
             <Column fieldName="va_pct_ajuste" caption="% Ajuste" visible="true"/>
+            <Column fieldName="id_factura" caption="Carga Factura" visible="true">
+              <Lookup tableName="ver_carga_factura" linkFieldName="id_factura" displayFieldName="fe_carga" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
           </SimpleSearchColumns>
           <AdvancedSearchColumns>
             <Column fieldName="id_honorario" caption="ID Honorario" visible="true" useComboBox="false"/>
@@ -2752,6 +2942,9 @@ DNI                  </MFUItem>
             </Column>
             <Column fieldName="va_honorario" caption="Monto" visible="true" useComboBox="false"/>
             <Column fieldName="va_pct_ajuste" caption="% Ajuste" visible="true" useComboBox="false"/>
+            <Column fieldName="id_factura" caption="Carga Factura" visible="true" useComboBox="false">
+              <Lookup tableName="ver_carga_factura" linkFieldName="id_factura" displayFieldName="fe_carga" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
           </AdvancedSearchColumns>
           <ExportColumns>
             <Column fieldName="id_honorario" caption="ID Honorario" visible="true" headerHint="Identificador único del honorario del agente.">
@@ -2781,6 +2974,10 @@ DNI                  </MFUItem>
                 <Format type="number" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
               </ViewProperties>
             </Column>
+            <Column fieldName="id_factura" caption="Carga Factura" visible="true" headerHint="Factura del agente.">
+              <Lookup tableName="ver_carga_factura" linkFieldName="id_factura" displayFieldName="fe_carga" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
           </ExportColumns>
           <PrintColumns>
             <Column fieldName="id_honorario" caption="ID Honorario" visible="true" headerHint="Identificador único del honorario del agente.">
@@ -2809,6 +3006,10 @@ DNI                  </MFUItem>
               <ViewProperties type="text">
                 <Format type="number" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
               </ViewProperties>
+            </Column>
+            <Column fieldName="id_factura" caption="Carga Factura" visible="true" headerHint="Factura del agente.">
+              <Lookup tableName="ver_carga_factura" linkFieldName="id_factura" displayFieldName="fe_carga" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
             </Column>
           </PrintColumns>
         </Columns>
@@ -2944,7 +3145,649 @@ DNI                  </MFUItem>
         <RecordPermissions useRecordPermissions="false"/>
         <PartitionNavigators/>
       </Page>
-      <Page type="table" tableName="facturas.stg_xls_facturas" fileName="carga_facturas" caption="Carga Facturas" shortCaption="Carga Facturas" groupName="Administrador" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="0" copyAbilityMode="0" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true" showKeyColumnsImagesInGridHeader="false">
+      <Page type="query" queryName="ver_detalle_carga" fileName="carga_facturas" caption="Detalles Carga" shortCaption="Detalles Carga" groupName="Administrador" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="0" editAbilityMode="0" copyAbilityMode="0" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true" showKeyColumnsImagesInGridHeader="false">
+        <BeforeGridText/>
+        <Columns>
+          <ViewColumns>
+            <Column fieldName="nu_carga" caption="Nº Carga" visible="true" headerHint="Número de la carga." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_carga" caption="ID Carga" visible="false" headerHint="Identificador único de la carga." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_archivo" caption="Nombre Archivo" visible="true" headerHint="Nombre del archivo cargado." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="fe_modif" caption="Fecha Modificación" visible="false" headerHint="Fecha de última modificación de la planilla cargada." totalFunction="0">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y H:i:s"/>
+            </Column>
+            <Column fieldName="fe_carga" caption="Fecha Carga" visible="true" headerHint="Fecha efectiva de carga del archivo." totalFunction="0">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y H:i:s"/>
+            </Column>
+            <Column fieldName="fe_reproc" caption="Fecha Reproceso" visible="false" headerHint="Fecha de último reproceso del registro." totalFunction="0">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y H:i:s"/>
+            </Column>
+            <Column fieldName="fl_reproc" caption="Reprocesar?" visible="false" headerHint="Si se desea procesar nuevamente el registro." totalFunction="0">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="no_hoja" caption="Nombre Hoja" visible="false" headerHint="Nombre de la hoja dentro de la planilla Excel." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nu_fila" caption="Número Fila" visible="false" headerHint="Número de fila dentro de la hoja de la planilla." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="co_estado_proceso" caption="Estado" visible="true" headerHint="Estado de procesamiento del registro." totalFunction="0">
+              <Lookup tableName="ver_estado_proceso" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_nombre" caption="Planilla: Nombre" visible="false" headerHint="Nombre del agente cargado de la planilla." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_cuit" caption="Planilla: CUIT" visible="true" headerHint="CUIT del agente cargado de la planilla." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_mes" caption="Planilla: Mes" visible="false" headerHint="Mes de la factura a cargar, debe estar en formato YYYY-MM." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_factura_numero" caption="Planilla: Número Factura" visible="false" headerHint="Número de la factura del agente cargado de la planilla." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_area" caption="Planilla: Área" visible="false" headerHint="Área de la factura." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_observaciones" caption="Planilla: Observaciones" visible="false" headerHint="Observaciones de la factura relacionadas con la certificación" totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nm_mensaje" caption="Mensaje" visible="true" headerHint="Mensaje de control o normalización del registro." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nm_id_agente" caption="Normalizado: Agente" visible="false" headerHint="Agente reconocido a partir del CUIT de la planilla de entrada." totalFunction="0">
+              <Lookup tableName="facturas.agente" linkFieldName="id_agente" displayFieldName="no_agente" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nm_id_honorario" caption="Normalizado: Honorario" visible="false" headerHint="Honorario obtenido a partir del mes y el agente de la planilla." totalFunction="0">
+              <Lookup tableName="ver_honorario" linkFieldName="id_honorario" displayFieldName="ds_honorario" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nm_co_cuit" caption="Normalizado: CUIT" visible="false" headerHint="CUIT normalizado." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nm_no_agente" caption="Normalizado: Nombre Agente" visible="false" headerHint="Nombre de agente normalizado a partir del nombre que llega en la entrada." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nm_nu_factura" caption="Normalizado: Número Factura" visible="false" headerHint="Número de factura normalizado a partir del valor de entrada." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nm_nu_pto_venta" caption="Normalizado: PV Factura" visible="false" headerHint="Punto de venta obtenido del número de factura del valor de entrada." totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nm_va_factura" caption="Normalizado: Valor Factura" visible="false" headerHint="Valor de factura encriptado a partir del valor de entrada." totalFunction="0">
+              <ViewProperties type="text">
+                <Format type="string" transformFunctionName="decrypt_aes"/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="ds_cbu" caption="Planilla: CBU" visible="false" totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nm_nu_cbu" caption="Normalizado: CBU" visible="false" totalFunction="0">
+              <ViewProperties type="text">
+                <Format type="number" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="nm_co_categ_fact" caption="Normalizado: Categoría" visible="false" totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nm_fe_mes" caption="Normalizado: Mes" visible="false" totalFunction="0">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y" dateTimeKind="1"/>
+            </Column>
+          </ViewColumns>
+          <SingleRecordViewColumns>
+            <Column fieldName="nu_carga" caption="Nº Carga" visible="true" headerHint="Número de la carga.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_carga" caption="ID Carga" visible="true" headerHint="Identificador único de la carga.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_archivo" caption="Nombre Archivo" visible="true" headerHint="Nombre del archivo cargado.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="fe_modif" caption="Fecha Modificación" visible="true" headerHint="Fecha de última modificación de la planilla cargada.">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y H:i:s"/>
+            </Column>
+            <Column fieldName="fe_carga" caption="Fecha Carga" visible="true" headerHint="Fecha efectiva de carga del archivo.">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y H:i:s"/>
+            </Column>
+            <Column fieldName="fe_reproc" caption="Fecha Reproceso" visible="true" headerHint="Fecha de último reproceso del registro.">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y H:i:s"/>
+            </Column>
+            <Column fieldName="fl_reproc" caption="Reprocesar?" visible="true" headerHint="Si se desea procesar nuevamente el registro.">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="no_hoja" caption="Nombre Hoja" visible="true" headerHint="Nombre de la hoja dentro de la planilla Excel.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nu_fila" caption="Número Fila" visible="true" headerHint="Número de fila dentro de la hoja de la planilla.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="co_estado_proceso" caption="Estado" visible="true" headerHint="Estado de procesamiento del registro.">
+              <Lookup tableName="ver_estado_proceso" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_nombre" caption="Planilla: Nombre" visible="true" headerHint="Nombre del agente cargado de la planilla.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_cuit" caption="Planilla: CUIT" visible="true" headerHint="CUIT del agente cargado de la planilla.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_mes" caption="Planilla: Mes" visible="true" headerHint="Mes de la factura a cargar, debe estar en formato YYYY-MM.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_factura_numero" caption="Planilla: Número Factura" visible="true" headerHint="Número de la factura del agente cargado de la planilla.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_area" caption="Planilla: Área" visible="true" headerHint="Área de la factura.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_observaciones" caption="Planilla: Observaciones" visible="true" headerHint="Observaciones de la factura relacionadas con la certificación">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nm_mensaje" caption="Mensaje" visible="true" headerHint="Mensaje de control o normalización del registro.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nm_id_agente" caption="Normalizado: Agente" visible="true" headerHint="Agente reconocido a partir del CUIT de la planilla de entrada.">
+              <Lookup tableName="facturas.agente" linkFieldName="id_agente" displayFieldName="no_agente" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nm_id_honorario" caption="Normalizado: Honorario" visible="true" headerHint="Honorario obtenido a partir del mes y el agente de la planilla.">
+              <Lookup tableName="ver_honorario" linkFieldName="id_honorario" displayFieldName="ds_honorario" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nm_co_cuit" caption="Normalizado: CUIT" visible="true" headerHint="CUIT normalizado.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nm_no_agente" caption="Normalizado: Nombre Agente" visible="true" headerHint="Nombre de agente normalizado a partir del nombre que llega en la entrada.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nm_nu_factura" caption="Normalizado: Número Factura" visible="true" headerHint="Número de factura normalizado a partir del valor de entrada.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nm_nu_pto_venta" caption="Normalizado: PV Factura" visible="true" headerHint="Punto de venta obtenido del número de factura del valor de entrada.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nm_va_factura" caption="Normalizado: Valor Factura" visible="true" headerHint="Valor de factura encriptado a partir del valor de entrada.">
+              <ViewProperties type="text">
+                <Format type="string" transformFunctionName="decrypt_aes"/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="ds_cbu" caption="Planilla: CBU" visible="false">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nm_nu_cbu" caption="Normalizado: CBU" visible="false">
+              <ViewProperties type="text">
+                <Format type="number" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="nm_co_categ_fact" caption="Normalizado: Categoría" visible="false">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nm_fe_mes" caption="Normalizado: Mes" visible="false">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y" dateTimeKind="1"/>
+            </Column>
+          </SingleRecordViewColumns>
+          <EditColumns>
+            <Column fieldName="nu_carga" caption="Nº Carga" visible="false">
+              <EditProperties type="spinEdit" maxValue="100" minValue="0" useConstraints="false" step="1"/>
+            </Column>
+            <Column fieldName="id_carga" caption="ID Carga" visible="false">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="no_archivo" caption="Nombre Archivo" visible="false">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="fe_modif" caption="Fecha Modificación" visible="false">
+              <EditProperties type="dateTime" showsTime="true" dateTimeFormat="Y-m-d H:i:s" firstDayOfWeek="0"/>
+            </Column>
+            <Column fieldName="fe_carga" caption="Fecha Carga" visible="false">
+              <EditProperties type="dateTime" showsTime="true" dateTimeFormat="Y-m-d H:i:s" firstDayOfWeek="0"/>
+            </Column>
+            <Column fieldName="fe_reproc" caption="Fecha Reproceso" visible="false">
+              <EditProperties type="dateTime" showsTime="true" dateTimeFormat="Y-m-d H:i:s" firstDayOfWeek="0"/>
+            </Column>
+            <Column fieldName="fl_reproc" caption="Reprocesar?" visible="false">
+              <EditProperties type="checkBox"/>
+            </Column>
+            <Column fieldName="no_hoja" caption="Nombre Hoja" visible="false">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="nu_fila" caption="Número Fila" visible="false">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="co_estado_proceso" caption="Estado" visible="false">
+              <Lookup tableName="ver_estado_proceso" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="ds_nombre" caption="Planilla: Nombre" visible="false">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="ds_cuit" caption="Planilla: CUIT" visible="false">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="ds_mes" caption="Planilla: Mes" visible="false">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="ds_factura_numero" caption="Planilla: Número Factura" visible="false">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="ds_area" caption="Planilla: Área" visible="false">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="ds_observaciones" caption="Planilla: Observaciones" visible="false">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="nm_mensaje" caption="Mensaje" visible="false">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="nm_id_agente" caption="Normalizado: Agente" visible="false">
+              <Lookup tableName="facturas.agente" linkFieldName="id_agente" displayFieldName="no_agente" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="nm_id_honorario" caption="Normalizado: Honorario" visible="false">
+              <Lookup tableName="ver_honorario" linkFieldName="id_honorario" displayFieldName="ds_honorario" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="nm_co_cuit" caption="Normalizado: CUIT" visible="false">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="nm_no_agente" caption="Normalizado: Nombre Agente" visible="false">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="nm_nu_factura" caption="Normalizado: Número Factura" visible="false">
+              <EditProperties type="spinEdit" maxValue="100" minValue="0" useConstraints="false" step="1"/>
+            </Column>
+            <Column fieldName="nm_nu_pto_venta" caption="Normalizado: PV Factura" visible="false">
+              <EditProperties type="spinEdit" maxValue="100" minValue="0" useConstraints="false" step="1"/>
+            </Column>
+            <Column fieldName="nm_va_factura" caption="Normalizado: Valor Factura" visible="false">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="ds_cbu" caption="Planilla: CBU" visible="false">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="nm_nu_cbu" caption="Normalizado: CBU" visible="false">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="nm_co_categ_fact" caption="Normalizado: Categoría" visible="false">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="nm_fe_mes" caption="Normalizado: Mes" visible="false">
+              <EditProperties type="dateTime" showsTime="false" dateTimeFormat="Y-m-d H:i:s" firstDayOfWeek="0"/>
+            </Column>
+          </EditColumns>
+          <InsertColumns>
+            <Column fieldName="nu_carga" caption="Nº Carga" visible="false" defaultInsertValue="">
+              <EditProperties type="spinEdit" maxValue="100" minValue="0" useConstraints="false" step="1"/>
+            </Column>
+            <Column fieldName="id_carga" caption="ID Carga" visible="false" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="no_archivo" caption="Nombre Archivo" visible="false" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="fe_modif" caption="Fecha Modificación" visible="false" defaultInsertValue="">
+              <EditProperties type="dateTime" showsTime="true" dateTimeFormat="Y-m-d H:i:s" firstDayOfWeek="0"/>
+            </Column>
+            <Column fieldName="fe_carga" caption="Fecha Carga" visible="false" defaultInsertValue="">
+              <EditProperties type="dateTime" showsTime="true" dateTimeFormat="Y-m-d H:i:s" firstDayOfWeek="0"/>
+            </Column>
+            <Column fieldName="fe_reproc" caption="Fecha Reproceso" visible="false" defaultInsertValue="">
+              <EditProperties type="dateTime" showsTime="true" dateTimeFormat="Y-m-d H:i:s" firstDayOfWeek="0"/>
+            </Column>
+            <Column fieldName="fl_reproc" caption="Reprocesar?" visible="false" defaultInsertValue="">
+              <EditProperties type="checkBox"/>
+            </Column>
+            <Column fieldName="no_hoja" caption="Nombre Hoja" visible="false" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="nu_fila" caption="Número Fila" visible="false" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="co_estado_proceso" caption="Estado" visible="false" defaultInsertValue="">
+              <Lookup tableName="ver_estado_proceso" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="ds_nombre" caption="Planilla: Nombre" visible="false" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="ds_cuit" caption="Planilla: CUIT" visible="false" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="ds_mes" caption="Planilla: Mes" visible="false" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="ds_factura_numero" caption="Planilla: Número Factura" visible="false" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="ds_area" caption="Planilla: Área" visible="false" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="ds_observaciones" caption="Planilla: Observaciones" visible="false" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="nm_mensaje" caption="Mensaje" visible="false" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="nm_id_agente" caption="Normalizado: Agente" visible="false" defaultInsertValue="">
+              <Lookup tableName="facturas.agente" linkFieldName="id_agente" displayFieldName="no_agente" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="nm_id_honorario" caption="Normalizado: Honorario" visible="false" defaultInsertValue="">
+              <Lookup tableName="ver_honorario" linkFieldName="id_honorario" displayFieldName="ds_honorario" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <EditProperties type="comboBox">
+                <MFUItems/>
+              </EditProperties>
+            </Column>
+            <Column fieldName="nm_co_cuit" caption="Normalizado: CUIT" visible="false" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="nm_no_agente" caption="Normalizado: Nombre Agente" visible="false" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="nm_nu_factura" caption="Normalizado: Número Factura" visible="false" defaultInsertValue="">
+              <EditProperties type="spinEdit" maxValue="100" minValue="0" useConstraints="false" step="1"/>
+            </Column>
+            <Column fieldName="nm_nu_pto_venta" caption="Normalizado: PV Factura" visible="false" defaultInsertValue="">
+              <EditProperties type="spinEdit" maxValue="100" minValue="0" useConstraints="false" step="1"/>
+            </Column>
+            <Column fieldName="nm_va_factura" caption="Normalizado: Valor Factura" visible="false" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="ds_cbu" caption="Planilla: CBU" visible="false" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="nm_nu_cbu" caption="Normalizado: CBU" visible="false" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="nm_co_categ_fact" caption="Normalizado: Categoría" visible="false" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="nm_fe_mes" caption="Normalizado: Mes" visible="false" defaultInsertValue="">
+              <EditProperties type="dateTime" showsTime="false" dateTimeFormat="Y-m-d H:i:s" firstDayOfWeek="0"/>
+            </Column>
+          </InsertColumns>
+          <SimpleSearchColumns>
+            <Column fieldName="nu_carga" caption="Nº Carga" visible="true"/>
+            <Column fieldName="id_carga" caption="ID Carga" visible="true"/>
+            <Column fieldName="no_archivo" caption="Nombre Archivo" visible="true"/>
+            <Column fieldName="fe_modif" caption="Fecha Modificación" visible="true"/>
+            <Column fieldName="fe_carga" caption="Fecha Carga" visible="true"/>
+            <Column fieldName="fe_reproc" caption="Fecha Reproceso" visible="true"/>
+            <Column fieldName="fl_reproc" caption="Reprocesar?" visible="true"/>
+            <Column fieldName="no_hoja" caption="Nombre Hoja" visible="true"/>
+            <Column fieldName="nu_fila" caption="Número Fila" visible="true"/>
+            <Column fieldName="co_estado_proceso" caption="Estado" visible="true">
+              <Lookup tableName="ver_estado_proceso" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="ds_nombre" caption="Planilla: Nombre" visible="true"/>
+            <Column fieldName="ds_cuit" caption="Planilla: CUIT" visible="true"/>
+            <Column fieldName="ds_mes" caption="Planilla: Mes" visible="true"/>
+            <Column fieldName="ds_factura_numero" caption="Planilla: Número Factura" visible="true"/>
+            <Column fieldName="ds_area" caption="Planilla: Área" visible="true"/>
+            <Column fieldName="ds_observaciones" caption="Planilla: Observaciones" visible="true"/>
+            <Column fieldName="nm_mensaje" caption="Mensaje" visible="true"/>
+            <Column fieldName="nm_id_agente" caption="Normalizado: Agente" visible="true">
+              <Lookup tableName="facturas.agente" linkFieldName="id_agente" displayFieldName="no_agente" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="nm_id_honorario" caption="Normalizado: Honorario" visible="true">
+              <Lookup tableName="ver_honorario" linkFieldName="id_honorario" displayFieldName="ds_honorario" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="nm_co_cuit" caption="Normalizado: CUIT" visible="true"/>
+            <Column fieldName="nm_no_agente" caption="Normalizado: Nombre Agente" visible="true"/>
+            <Column fieldName="nm_nu_factura" caption="Normalizado: Número Factura" visible="true"/>
+            <Column fieldName="nm_nu_pto_venta" caption="Normalizado: PV Factura" visible="true"/>
+            <Column fieldName="nm_va_factura" caption="Normalizado: Valor Factura" visible="false"/>
+            <Column fieldName="ds_cbu" caption="Planilla: CBU" visible="false"/>
+            <Column fieldName="nm_nu_cbu" caption="Normalizado: CBU" visible="false"/>
+            <Column fieldName="nm_co_categ_fact" caption="Normalizado: Categoría" visible="false"/>
+            <Column fieldName="nm_fe_mes" caption="Normalizado: Mes" visible="false"/>
+          </SimpleSearchColumns>
+          <AdvancedSearchColumns>
+            <Column fieldName="nu_carga" caption="Nº Carga" visible="true" useComboBox="false"/>
+            <Column fieldName="id_carga" caption="ID Carga" visible="true" useComboBox="false"/>
+            <Column fieldName="no_archivo" caption="Nombre Archivo" visible="true" useComboBox="false"/>
+            <Column fieldName="fe_modif" caption="Fecha Modificación" visible="true" useComboBox="false"/>
+            <Column fieldName="fe_carga" caption="Fecha Carga" visible="true" useComboBox="false"/>
+            <Column fieldName="fe_reproc" caption="Fecha Reproceso" visible="true" useComboBox="false"/>
+            <Column fieldName="fl_reproc" caption="Reprocesar?" visible="true" useComboBox="false"/>
+            <Column fieldName="no_hoja" caption="Nombre Hoja" visible="true" useComboBox="false"/>
+            <Column fieldName="nu_fila" caption="Número Fila" visible="true" useComboBox="false"/>
+            <Column fieldName="co_estado_proceso" caption="Estado" visible="true" useComboBox="false">
+              <Lookup tableName="ver_estado_proceso" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="ds_nombre" caption="Planilla: Nombre" visible="true" useComboBox="false"/>
+            <Column fieldName="ds_cuit" caption="Planilla: CUIT" visible="true" useComboBox="false"/>
+            <Column fieldName="ds_mes" caption="Planilla: Mes" visible="true" useComboBox="false"/>
+            <Column fieldName="ds_factura_numero" caption="Planilla: Número Factura" visible="true" useComboBox="false"/>
+            <Column fieldName="ds_area" caption="Planilla: Área" visible="true" useComboBox="false"/>
+            <Column fieldName="ds_observaciones" caption="Planilla: Observaciones" visible="true" useComboBox="false"/>
+            <Column fieldName="nm_mensaje" caption="Mensaje" visible="true" useComboBox="false"/>
+            <Column fieldName="nm_id_agente" caption="Normalizado: Agente" visible="true" useComboBox="false">
+              <Lookup tableName="facturas.agente" linkFieldName="id_agente" displayFieldName="no_agente" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="nm_id_honorario" caption="Normalizado: Honorario" visible="true" useComboBox="false">
+              <Lookup tableName="ver_honorario" linkFieldName="id_honorario" displayFieldName="ds_honorario" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+            </Column>
+            <Column fieldName="nm_co_cuit" caption="Normalizado: CUIT" visible="true" useComboBox="false"/>
+            <Column fieldName="nm_no_agente" caption="Normalizado: Nombre Agente" visible="true" useComboBox="false"/>
+            <Column fieldName="nm_nu_factura" caption="Normalizado: Número Factura" visible="true" useComboBox="false"/>
+            <Column fieldName="nm_nu_pto_venta" caption="Normalizado: PV Factura" visible="true" useComboBox="false"/>
+            <Column fieldName="nm_va_factura" caption="Normalizado: Valor Factura" visible="true" useComboBox="false"/>
+            <Column fieldName="ds_cbu" caption="Planilla: CBU" visible="false" useComboBox="false"/>
+            <Column fieldName="nm_nu_cbu" caption="Normalizado: CBU" visible="false" useComboBox="false"/>
+            <Column fieldName="nm_co_categ_fact" caption="Normalizado: Categoría" visible="false" useComboBox="false"/>
+            <Column fieldName="nm_fe_mes" caption="Normalizado: Mes" visible="false" useComboBox="false"/>
+          </AdvancedSearchColumns>
+          <ExportColumns>
+            <Column fieldName="nu_carga" caption="Nº Carga" visible="true" headerHint="Número de la carga.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_carga" caption="ID Carga" visible="true" headerHint="Identificador único de la carga.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_archivo" caption="Nombre Archivo" visible="true" headerHint="Nombre del archivo cargado.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="fe_modif" caption="Fecha Modificación" visible="true" headerHint="Fecha de última modificación de la planilla cargada.">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y H:i:s"/>
+            </Column>
+            <Column fieldName="fe_carga" caption="Fecha Carga" visible="true" headerHint="Fecha efectiva de carga del archivo.">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y H:i:s"/>
+            </Column>
+            <Column fieldName="fe_reproc" caption="Fecha Reproceso" visible="true" headerHint="Fecha de último reproceso del registro.">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y H:i:s"/>
+            </Column>
+            <Column fieldName="fl_reproc" caption="Reprocesar?" visible="true" headerHint="Si se desea procesar nuevamente el registro.">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="no_hoja" caption="Nombre Hoja" visible="true" headerHint="Nombre de la hoja dentro de la planilla Excel.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nu_fila" caption="Número Fila" visible="true" headerHint="Número de fila dentro de la hoja de la planilla.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="co_estado_proceso" caption="Estado" visible="true" headerHint="Estado de procesamiento del registro.">
+              <Lookup tableName="ver_estado_proceso" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_nombre" caption="Planilla: Nombre" visible="true" headerHint="Nombre del agente cargado de la planilla.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_cuit" caption="Planilla: CUIT" visible="true" headerHint="CUIT del agente cargado de la planilla.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_mes" caption="Planilla: Mes" visible="true" headerHint="Mes de la factura a cargar, debe estar en formato YYYY-MM.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_factura_numero" caption="Planilla: Número Factura" visible="true" headerHint="Número de la factura del agente cargado de la planilla.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_area" caption="Planilla: Área" visible="true" headerHint="Área de la factura.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_observaciones" caption="Planilla: Observaciones" visible="true" headerHint="Observaciones de la factura relacionadas con la certificación">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nm_mensaje" caption="Mensaje" visible="true" headerHint="Mensaje de control o normalización del registro.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nm_id_agente" caption="Normalizado: Agente" visible="true" headerHint="Agente reconocido a partir del CUIT de la planilla de entrada.">
+              <Lookup tableName="facturas.agente" linkFieldName="id_agente" displayFieldName="no_agente" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nm_id_honorario" caption="Normalizado: Honorario" visible="true" headerHint="Honorario obtenido a partir del mes y el agente de la planilla.">
+              <Lookup tableName="ver_honorario" linkFieldName="id_honorario" displayFieldName="ds_honorario" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nm_co_cuit" caption="Normalizado: CUIT" visible="true" headerHint="CUIT normalizado.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nm_no_agente" caption="Normalizado: Nombre Agente" visible="true" headerHint="Nombre de agente normalizado a partir del nombre que llega en la entrada.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nm_nu_factura" caption="Normalizado: Número Factura" visible="true" headerHint="Número de factura normalizado a partir del valor de entrada.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nm_nu_pto_venta" caption="Normalizado: PV Factura" visible="true" headerHint="Punto de venta obtenido del número de factura del valor de entrada.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nm_va_factura" caption="Normalizado: Valor Factura" visible="true" headerHint="Valor de factura encriptado a partir del valor de entrada.">
+              <ViewProperties type="text">
+                <Format type="string" transformFunctionName="decrypt_aes"/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="ds_cbu" caption="Planilla: CBU" visible="false">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nm_nu_cbu" caption="Normalizado: CBU" visible="false">
+              <ViewProperties type="text">
+                <Format type="number" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="nm_co_categ_fact" caption="Normalizado: Categoría" visible="false">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nm_fe_mes" caption="Normalizado: Mes" visible="false">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y" dateTimeKind="1"/>
+            </Column>
+          </ExportColumns>
+          <PrintColumns>
+            <Column fieldName="nu_carga" caption="Nº Carga" visible="true" headerHint="Número de la carga.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="id_carga" caption="ID Carga" visible="true" headerHint="Identificador único de la carga.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="no_archivo" caption="Nombre Archivo" visible="true" headerHint="Nombre del archivo cargado.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="fe_modif" caption="Fecha Modificación" visible="true" headerHint="Fecha de última modificación de la planilla cargada.">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y H:i:s"/>
+            </Column>
+            <Column fieldName="fe_carga" caption="Fecha Carga" visible="true" headerHint="Fecha efectiva de carga del archivo.">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y H:i:s"/>
+            </Column>
+            <Column fieldName="fe_reproc" caption="Fecha Reproceso" visible="true" headerHint="Fecha de último reproceso del registro.">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y H:i:s"/>
+            </Column>
+            <Column fieldName="fl_reproc" caption="Reprocesar?" visible="true" headerHint="Si se desea procesar nuevamente el registro.">
+              <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="no_hoja" caption="Nombre Hoja" visible="true" headerHint="Nombre de la hoja dentro de la planilla Excel.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nu_fila" caption="Número Fila" visible="true" headerHint="Número de fila dentro de la hoja de la planilla.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="co_estado_proceso" caption="Estado" visible="true" headerHint="Estado de procesamiento del registro.">
+              <Lookup tableName="ver_estado_proceso" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_nombre" caption="Planilla: Nombre" visible="true" headerHint="Nombre del agente cargado de la planilla.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_cuit" caption="Planilla: CUIT" visible="true" headerHint="CUIT del agente cargado de la planilla.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_mes" caption="Planilla: Mes" visible="true" headerHint="Mes de la factura a cargar, debe estar en formato YYYY-MM.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_factura_numero" caption="Planilla: Número Factura" visible="true" headerHint="Número de la factura del agente cargado de la planilla.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_area" caption="Planilla: Área" visible="true" headerHint="Área de la factura.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="ds_observaciones" caption="Planilla: Observaciones" visible="true" headerHint="Observaciones de la factura relacionadas con la certificación">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nm_mensaje" caption="Mensaje" visible="true" headerHint="Mensaje de control o normalización del registro.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nm_id_agente" caption="Normalizado: Agente" visible="true" headerHint="Agente reconocido a partir del CUIT de la planilla de entrada.">
+              <Lookup tableName="facturas.agente" linkFieldName="id_agente" displayFieldName="no_agente" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nm_id_honorario" caption="Normalizado: Honorario" visible="true" headerHint="Honorario obtenido a partir del mes y el agente de la planilla.">
+              <Lookup tableName="ver_honorario" linkFieldName="id_honorario" displayFieldName="ds_honorario" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nm_co_cuit" caption="Normalizado: CUIT" visible="true" headerHint="CUIT normalizado.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nm_no_agente" caption="Normalizado: Nombre Agente" visible="true" headerHint="Nombre de agente normalizado a partir del nombre que llega en la entrada.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nm_nu_factura" caption="Normalizado: Número Factura" visible="true" headerHint="Número de factura normalizado a partir del valor de entrada.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nm_nu_pto_venta" caption="Normalizado: PV Factura" visible="true" headerHint="Punto de venta obtenido del número de factura del valor de entrada.">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nm_va_factura" caption="Normalizado: Valor Factura" visible="true" headerHint="Valor de factura encriptado a partir del valor de entrada.">
+              <ViewProperties type="text">
+                <Format type="string" transformFunctionName="decrypt_aes"/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="ds_cbu" caption="Planilla: CBU" visible="false">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nm_nu_cbu" caption="Normalizado: CBU" visible="false">
+              <ViewProperties type="text">
+                <Format type="number" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="nm_co_categ_fact" caption="Normalizado: Categoría" visible="false">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nm_fe_mes" caption="Normalizado: Mes" visible="false">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y" dateTimeKind="1"/>
+            </Column>
+          </PrintColumns>
+        </Columns>
+        <Details/>
+        <RecordPermissions useRecordPermissions="false"/>
+        <PartitionNavigators/>
+      </Page>
+      <Page type="table" tableName="facturas.stg_xls_facturas" fileName="errores_carga" caption="Errores Carga" shortCaption="Errores Carga" groupName="Administrador" addSeparator="false" horizontalFilterCondition="co_estado_proceso = 'E'" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="0" copyAbilityMode="0" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true" showKeyColumnsImagesInGridHeader="false">
         <DefaultSortedColumns>
           <Column fieldName="fe_carga" orderType="1"/>
         </DefaultSortedColumns>
@@ -2954,13 +3797,13 @@ DNI                  </MFUItem>
             <Column fieldName="id_carga" caption="ID Carga" visible="false" headerHint="Identificador único de tabla stage de facturas." totalFunction="0">
               <ViewProperties type="text"/>
             </Column>
-            <Column fieldName="no_archivo" caption="Archivo" visible="true" headerHint="Nombre del archivo excel cargado." totalFunction="0">
+            <Column fieldName="no_archivo" caption="Nombre Archivo" visible="true" headerHint="Nombre del archivo excel cargado." totalFunction="0">
               <ViewProperties type="text" maxLength="25"/>
             </Column>
-            <Column fieldName="fe_modif" caption="Modificación" visible="false" headerHint="Fecha de última modificación de la planilla Excel." totalFunction="0">
+            <Column fieldName="fe_modif" caption="Fecha Modificación" visible="false" headerHint="Fecha de última modificación de la planilla Excel." totalFunction="0">
               <ViewProperties type="dateTime" dateTimeFormat="d/m/Y H:i:s"/>
             </Column>
-            <Column fieldName="fe_carga" caption="Carga" visible="true" headerHint="Fecha de carga de la planilla." totalFunction="0">
+            <Column fieldName="fe_carga" caption="Fecha Carga" visible="true" headerHint="Fecha de carga de la planilla." totalFunction="0">
               <ViewProperties type="dateTime" dateTimeFormat="d/m/y H:i"/>
             </Column>
             <Column fieldName="no_hoja" caption="Nombre Hoja" visible="false" headerHint="Nombre de la hoja de Excel cargada." totalFunction="0">
@@ -2969,7 +3812,7 @@ DNI                  </MFUItem>
             <Column fieldName="nu_fila" caption="Número Fila" visible="false" headerHint="Número de fila dentro de la planilla Excel." totalFunction="0">
               <ViewProperties type="text"/>
             </Column>
-            <Column fieldName="co_estado_proceso" caption="Estado" visible="true" headerHint="Código del estado del registro, identifica si se encuentra cargado o no." totalFunction="0">
+            <Column fieldName="co_estado_proceso" caption="Estado" visible="false" headerHint="Código del estado del registro, identifica si se encuentra cargado o no." totalFunction="0">
               <Lookup tableName="ver_estado_proceso" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <ViewProperties type="text"/>
             </Column>
@@ -3000,9 +3843,6 @@ DNI                  </MFUItem>
             <Column fieldName="nm_id_honorario" caption="Normalizado: ID Honorario" visible="false" totalFunction="0">
               <ViewProperties type="text"/>
             </Column>
-            <Column fieldName="nm_id_tipo_honora" caption="Normalizado: ID Tipo Honora" visible="false" totalFunction="0">
-              <ViewProperties type="text"/>
-            </Column>
             <Column fieldName="nm_mensaje" caption="Mensaje" visible="true" totalFunction="0">
               <ViewProperties type="text" maxLength="75">
                 <DivAttributes align="left"/>
@@ -3022,7 +3862,7 @@ DNI                  </MFUItem>
                 <Format type="string" transformFunctionName="decrypt_aes"/>
               </ViewProperties>
             </Column>
-            <Column fieldName="nu_carga" caption="Número Carga" visible="false" totalFunction="0">
+            <Column fieldName="nu_carga" caption="Nº Carga" visible="true" totalFunction="0">
               <ViewProperties type="text"/>
             </Column>
             <Column fieldName="fe_reproc" caption="Fecha Reproceso" visible="false" totalFunction="0">
@@ -3034,18 +3874,32 @@ DNI                  </MFUItem>
             <Column fieldName="fl_reproc" caption="Reproceso?" visible="false" totalFunction="0">
               <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
             </Column>
+            <Column fieldName="ds_cbu" caption="CBU" visible="false" totalFunction="0">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="nm_nu_cbu" caption="Normalizado: CBU" visible="false" totalFunction="0">
+              <ViewProperties type="text">
+                <Format type="number" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="nm_fe_mes" caption="Normalizado: Mes" visible="false" totalFunction="0">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y" dateTimeKind="1"/>
+            </Column>
+            <Column fieldName="nm_co_categ_fact" caption="Normalizado: Categoría" visible="false" totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
           </ViewColumns>
           <SingleRecordViewColumns>
             <Column fieldName="id_carga" caption="ID Carga" visible="true" headerHint="Identificador único de tabla stage de facturas.">
               <ViewProperties type="text"/>
             </Column>
-            <Column fieldName="no_archivo" caption="Archivo" visible="true" headerHint="Nombre del archivo excel cargado.">
+            <Column fieldName="no_archivo" caption="Nombre Archivo" visible="true" headerHint="Nombre del archivo excel cargado.">
               <ViewProperties type="text" maxLength="25"/>
             </Column>
-            <Column fieldName="fe_modif" caption="Modificación" visible="true" headerHint="Fecha de última modificación de la planilla Excel.">
+            <Column fieldName="fe_modif" caption="Fecha Modificación" visible="true" headerHint="Fecha de última modificación de la planilla Excel.">
               <ViewProperties type="dateTime" dateTimeFormat="d/m/Y H:i:s"/>
             </Column>
-            <Column fieldName="fe_carga" caption="Carga" visible="true" headerHint="Fecha de carga de la planilla.">
+            <Column fieldName="fe_carga" caption="Fecha Carga" visible="true" headerHint="Fecha de carga de la planilla.">
               <ViewProperties type="dateTime" dateTimeFormat="d/m/y H:i"/>
             </Column>
             <Column fieldName="no_hoja" caption="Nombre Hoja" visible="true" headerHint="Nombre de la hoja de Excel cargada.">
@@ -3085,9 +3939,6 @@ DNI                  </MFUItem>
             <Column fieldName="nm_id_honorario" caption="Normalizado: ID Honorario" visible="false">
               <ViewProperties type="text"/>
             </Column>
-            <Column fieldName="nm_id_tipo_honora" caption="Normalizado: ID Tipo Honora" visible="false">
-              <ViewProperties type="text"/>
-            </Column>
             <Column fieldName="nm_mensaje" caption="Mensaje" visible="true">
               <ViewProperties type="text" maxLength="75">
                 <DivAttributes align="left"/>
@@ -3107,7 +3958,7 @@ DNI                  </MFUItem>
                 <Format type="string" transformFunctionName="decrypt_aes"/>
               </ViewProperties>
             </Column>
-            <Column fieldName="nu_carga" caption="Número Carga" visible="true">
+            <Column fieldName="nu_carga" caption="Nº Carga" visible="true">
               <ViewProperties type="text"/>
             </Column>
             <Column fieldName="fe_reproc" caption="Fecha Reproceso" visible="true">
@@ -3119,18 +3970,32 @@ DNI                  </MFUItem>
             <Column fieldName="fl_reproc" caption="Reproceso?" visible="true">
               <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
             </Column>
+            <Column fieldName="ds_cbu" caption="CBU" visible="true">
+              <ViewProperties type="text" maxLength="75"/>
+            </Column>
+            <Column fieldName="nm_nu_cbu" caption="Normalizado: CBU" visible="true">
+              <ViewProperties type="text">
+                <Format type="number" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="nm_fe_mes" caption="Normalizado: Mes" visible="true">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y" dateTimeKind="1"/>
+            </Column>
+            <Column fieldName="nm_co_categ_fact" caption="Normalizado: Categoría" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
           </SingleRecordViewColumns>
           <EditColumns>
             <Column fieldName="id_carga" caption="ID Carga" visible="false" readOnly="true">
               <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
             </Column>
-            <Column fieldName="no_archivo" caption="Archivo" visible="true" canSetNull="true" readOnly="true">
+            <Column fieldName="no_archivo" caption="Nombre Archivo" visible="true" canSetNull="true" readOnly="true">
               <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
             </Column>
-            <Column fieldName="fe_modif" caption="Modificación" visible="true" canSetNull="true" readOnly="true">
+            <Column fieldName="fe_modif" caption="Fecha Modificación" visible="true" canSetNull="true" readOnly="true">
               <EditProperties type="dateTime" showsTime="true" dateTimeFormat="Y-m-d H:i:s" firstDayOfWeek="0"/>
             </Column>
-            <Column fieldName="fe_carga" caption="Carga" visible="true" canSetNull="true" readOnly="true">
+            <Column fieldName="fe_carga" caption="Fecha Carga" visible="true" canSetNull="true" readOnly="true">
               <EditProperties type="dateTime" showsTime="true" dateTimeFormat="Y-m-d H:i:s" firstDayOfWeek="0"/>
             </Column>
             <Column fieldName="no_hoja" caption="Nombre Hoja" visible="true" canSetNull="true" readOnly="true">
@@ -3139,7 +4004,7 @@ DNI                  </MFUItem>
             <Column fieldName="nu_fila" caption="Número Fila" visible="true" canSetNull="true" readOnly="true">
               <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
             </Column>
-            <Column fieldName="co_estado_proceso" caption="Estado" visible="true" canSetNull="true" readOnly="true">
+            <Column fieldName="co_estado_proceso" caption="Estado" visible="false" canSetNull="true" readOnly="true">
               <Lookup tableName="ver_estado_proceso" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <EditProperties type="comboBox">
                 <MFUItems/>
@@ -3172,9 +4037,6 @@ DNI                  </MFUItem>
             <Column fieldName="nm_id_honorario" caption="Normalizado: ID Honorario" visible="false" canSetNull="true" readOnly="true">
               <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
             </Column>
-            <Column fieldName="nm_id_tipo_honora" caption="Normalizado: ID Tipo Honora" visible="false" canSetNull="true" readOnly="true">
-              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
-            </Column>
             <Column fieldName="nm_mensaje" caption="Mensaje" visible="true" canSetNull="true" readOnly="true">
               <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
             </Column>
@@ -3190,7 +4052,7 @@ DNI                  </MFUItem>
             <Column fieldName="nm_va_factura" caption="Monto Factura" visible="true" canSetNull="true" readOnly="true">
               <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
             </Column>
-            <Column fieldName="nu_carga" caption="Número Carga" visible="true" canSetNull="true" readOnly="true">
+            <Column fieldName="nu_carga" caption="Nº Carga" visible="true" canSetNull="true" readOnly="true">
               <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
             </Column>
             <Column fieldName="fe_reproc" caption="Fecha Reproceso" visible="true" canSetNull="true" readOnly="true">
@@ -3202,51 +4064,63 @@ DNI                  </MFUItem>
             <Column fieldName="fl_reproc" caption="Reproceso?" visible="true">
               <EditProperties type="checkBox"/>
             </Column>
+            <Column fieldName="ds_cbu" caption="CBU" visible="true" canSetNull="true">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="nm_nu_cbu" caption="Normalizado: CBU" visible="false" canSetNull="true" readOnly="true">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="nm_fe_mes" caption="Normalizado: Mes" visible="false" canSetNull="true" readOnly="true">
+              <EditProperties type="dateTime" showsTime="false" dateTimeFormat="Y-m-d H:i:s" firstDayOfWeek="0"/>
+            </Column>
+            <Column fieldName="nm_co_categ_fact" caption="Normalizado: Categoría" visible="false" canSetNull="true" readOnly="true">
+              <EditProperties type="textBox" size="1" maxLength="1" placeholder="" prefix="" suffix=""/>
+            </Column>
           </EditColumns>
           <InsertColumns>
             <Column fieldName="id_carga" caption="ID Carga" visible="false" readOnly="true" defaultInsertValue="">
               <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
             </Column>
-            <Column fieldName="no_archivo" caption="Archivo" visible="true" canSetNull="true" readOnly="true" defaultInsertValue="">
+            <Column fieldName="no_archivo" caption="Nombre Archivo" visible="false" canSetNull="true" readOnly="true" defaultInsertValue="">
               <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
             </Column>
-            <Column fieldName="fe_modif" caption="Modificación" visible="true" canSetNull="true" readOnly="true" defaultInsertValue="">
+            <Column fieldName="fe_modif" caption="Fecha Modificación" visible="false" canSetNull="true" readOnly="true" defaultInsertValue="">
               <EditProperties type="dateTime" showsTime="true" dateTimeFormat="Y-m-d H:i:s" firstDayOfWeek="0"/>
             </Column>
-            <Column fieldName="fe_carga" caption="Carga" visible="true" canSetServerDefault="true" canSetNull="true" readOnly="true" defaultInsertValue="">
+            <Column fieldName="fe_carga" caption="Fecha Carga" visible="false" canSetNull="true" readOnly="true" defaultInsertValue="">
               <EditProperties type="dateTime" showsTime="true" dateTimeFormat="Y-m-d H:i:s" firstDayOfWeek="0"/>
             </Column>
-            <Column fieldName="no_hoja" caption="Nombre Hoja" visible="true" canSetNull="true" readOnly="true" defaultInsertValue="">
+            <Column fieldName="no_hoja" caption="Nombre Hoja" visible="false" canSetNull="true" readOnly="true" defaultInsertValue="">
               <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
             </Column>
-            <Column fieldName="nu_fila" caption="Número Fila" visible="true" canSetNull="true" readOnly="true" defaultInsertValue="">
+            <Column fieldName="nu_fila" caption="Número Fila" visible="false" canSetNull="true" readOnly="true" defaultInsertValue="">
               <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
             </Column>
-            <Column fieldName="co_estado_proceso" caption="Estado" visible="true" canSetServerDefault="true" canSetNull="true" readOnly="true" defaultInsertValue="">
+            <Column fieldName="co_estado_proceso" caption="Estado" visible="false" canSetNull="true" readOnly="true" defaultInsertValue="">
               <Lookup tableName="ver_estado_proceso" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <EditProperties type="comboBox">
                 <MFUItems/>
               </EditProperties>
             </Column>
-            <Column fieldName="ds_nombre" caption="Nombre Agente" visible="true" canSetNull="true" defaultInsertValue="">
+            <Column fieldName="ds_nombre" caption="Nombre Agente" visible="false" canSetNull="true" defaultInsertValue="">
               <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
             </Column>
-            <Column fieldName="ds_cuit" caption="CUIT" visible="true" canSetNull="true" defaultInsertValue="">
+            <Column fieldName="ds_cuit" caption="CUIT" visible="false" canSetNull="true" defaultInsertValue="">
               <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
             </Column>
-            <Column fieldName="ds_mes" caption="Mes Factura" visible="true" canSetNull="true" defaultInsertValue="">
+            <Column fieldName="ds_mes" caption="Mes Factura" visible="false" canSetNull="true" defaultInsertValue="">
               <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
             </Column>
-            <Column fieldName="ds_importe" caption="Monto Factura" visible="true" canSetNull="true" defaultInsertValue="">
+            <Column fieldName="ds_importe" caption="Monto Factura" visible="false" canSetNull="true" defaultInsertValue="">
               <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
             </Column>
-            <Column fieldName="ds_factura_numero" caption="Número Factura" visible="true" canSetNull="true" defaultInsertValue="">
+            <Column fieldName="ds_factura_numero" caption="Número Factura" visible="false" canSetNull="true" defaultInsertValue="">
               <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
             </Column>
-            <Column fieldName="ds_area" caption="Área" visible="true" canSetNull="true" defaultInsertValue="">
+            <Column fieldName="ds_area" caption="Área" visible="false" canSetNull="true" defaultInsertValue="">
               <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
             </Column>
-            <Column fieldName="ds_observaciones" caption="Observaciones" visible="true" canSetNull="true" defaultInsertValue="">
+            <Column fieldName="ds_observaciones" caption="Observaciones" visible="false" canSetNull="true" defaultInsertValue="">
               <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
             </Column>
             <Column fieldName="nm_id_agente" caption="Normalizado: ID Agente" visible="false" canSetNull="true" readOnly="true" defaultInsertValue="">
@@ -3255,10 +4129,7 @@ DNI                  </MFUItem>
             <Column fieldName="nm_id_honorario" caption="Normalizado: ID Honorario" visible="false" canSetNull="true" readOnly="true" defaultInsertValue="">
               <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
             </Column>
-            <Column fieldName="nm_id_tipo_honora" caption="Normalizado: ID Tipo Honora" visible="false" canSetNull="true" readOnly="true" defaultInsertValue="">
-              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
-            </Column>
-            <Column fieldName="nm_mensaje" caption="Mensaje" visible="true" canSetNull="true" readOnly="true" defaultInsertValue="">
+            <Column fieldName="nm_mensaje" caption="Mensaje" visible="false" canSetNull="true" readOnly="true" defaultInsertValue="">
               <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
             </Column>
             <Column fieldName="nm_no_agente" caption="Normalizado: Nombre Agente" visible="false" canSetNull="true" readOnly="true" defaultInsertValue="">
@@ -3270,27 +4141,39 @@ DNI                  </MFUItem>
             <Column fieldName="nm_nu_pto_venta" caption="Normalizado: Punto Venta" visible="false" canSetNull="true" readOnly="true" defaultInsertValue="">
               <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
             </Column>
-            <Column fieldName="nm_va_factura" caption="Monto Factura" visible="true" canSetNull="true" readOnly="true" defaultInsertValue="">
+            <Column fieldName="nm_va_factura" caption="Monto Factura" visible="false" canSetNull="true" readOnly="true" defaultInsertValue="">
               <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
             </Column>
-            <Column fieldName="nu_carga" caption="Número Carga" visible="true" canSetNull="true" readOnly="true" defaultInsertValue="">
+            <Column fieldName="nu_carga" caption="Nº Carga" visible="false" canSetNull="true" readOnly="true" defaultInsertValue="">
               <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
             </Column>
-            <Column fieldName="fe_reproc" caption="Fecha Reproceso" visible="true" canSetNull="true" readOnly="true" defaultInsertValue="">
+            <Column fieldName="fe_reproc" caption="Fecha Reproceso" visible="false" canSetNull="true" readOnly="true" defaultInsertValue="">
               <EditProperties type="dateTime" showsTime="true" dateTimeFormat="Y-m-d H:i:s" firstDayOfWeek="0"/>
             </Column>
             <Column fieldName="nm_co_cuit" caption="Normalizado: CUIT" visible="false" canSetNull="true" readOnly="true" defaultInsertValue="">
               <EditProperties type="textBox" size="20" maxLength="20" placeholder="" prefix="" suffix=""/>
             </Column>
-            <Column fieldName="fl_reproc" caption="Reproceso?" visible="true" defaultInsertValue="">
+            <Column fieldName="fl_reproc" caption="Reproceso?" visible="false" defaultInsertValue="">
               <EditProperties type="checkBox"/>
+            </Column>
+            <Column fieldName="ds_cbu" caption="CBU" visible="false" canSetNull="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="100" maxLength="100" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="nm_nu_cbu" caption="Normalizado: CBU" visible="false" canSetNull="true" readOnly="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="0" maxLength="0" placeholder="" prefix="" suffix=""/>
+            </Column>
+            <Column fieldName="nm_fe_mes" caption="Normalizado: Mes" visible="false" canSetNull="true" readOnly="true" defaultInsertValue="">
+              <EditProperties type="dateTime" showsTime="false" dateTimeFormat="Y-m-d H:i:s" firstDayOfWeek="0"/>
+            </Column>
+            <Column fieldName="nm_co_categ_fact" caption="Normalizado: Categoría" visible="false" canSetNull="true" readOnly="true" defaultInsertValue="">
+              <EditProperties type="textBox" size="1" maxLength="1" placeholder="" prefix="" suffix=""/>
             </Column>
           </InsertColumns>
           <SimpleSearchColumns>
             <Column fieldName="id_carga" caption="ID Carga" visible="true"/>
-            <Column fieldName="no_archivo" caption="Archivo" visible="true"/>
-            <Column fieldName="fe_modif" caption="Modificación" visible="true"/>
-            <Column fieldName="fe_carga" caption="Carga" visible="true"/>
+            <Column fieldName="no_archivo" caption="Nombre Archivo" visible="true"/>
+            <Column fieldName="fe_modif" caption="Fecha Modificación" visible="true"/>
+            <Column fieldName="fe_carga" caption="Fecha Carga" visible="true"/>
             <Column fieldName="no_hoja" caption="Nombre Hoja" visible="true"/>
             <Column fieldName="nu_fila" caption="Número Fila" visible="true"/>
             <Column fieldName="co_estado_proceso" caption="Estado" visible="true">
@@ -3305,22 +4188,25 @@ DNI                  </MFUItem>
             <Column fieldName="ds_observaciones" caption="Observaciones" visible="true"/>
             <Column fieldName="nm_id_agente" caption="Normalizado: ID Agente" visible="false"/>
             <Column fieldName="nm_id_honorario" caption="Normalizado: ID Honorario" visible="false"/>
-            <Column fieldName="nm_id_tipo_honora" caption="Normalizado: ID Tipo Honora" visible="false"/>
             <Column fieldName="nm_mensaje" caption="Mensaje" visible="true"/>
             <Column fieldName="nm_no_agente" caption="Normalizado: Nombre Agente" visible="false"/>
             <Column fieldName="nm_nu_factura" caption="Normalizado: Número Factura" visible="false"/>
             <Column fieldName="nm_nu_pto_venta" caption="Normalizado: Punto Venta" visible="false"/>
-            <Column fieldName="nu_carga" caption="Número Carga" visible="true"/>
+            <Column fieldName="nu_carga" caption="Nº Carga" visible="true"/>
             <Column fieldName="nm_va_factura" caption="Monto Factura" visible="true"/>
             <Column fieldName="fe_reproc" caption="Fecha Reproceso" visible="true"/>
             <Column fieldName="nm_co_cuit" caption="Normalizado: CUIT" visible="false"/>
             <Column fieldName="fl_reproc" caption="Reproceso?" visible="true"/>
+            <Column fieldName="ds_cbu" caption="CBU" visible="false"/>
+            <Column fieldName="nm_nu_cbu" caption="Normalizado: CBU" visible="false"/>
+            <Column fieldName="nm_fe_mes" caption="Normalizado: Mes" visible="false"/>
+            <Column fieldName="nm_co_categ_fact" caption="Normalizado: Categoría" visible="false"/>
           </SimpleSearchColumns>
           <AdvancedSearchColumns>
             <Column fieldName="id_carga" caption="ID Carga" visible="true" useComboBox="false"/>
-            <Column fieldName="no_archivo" caption="Archivo" visible="true" useComboBox="false"/>
-            <Column fieldName="fe_modif" caption="Modificación" visible="true" useComboBox="false"/>
-            <Column fieldName="fe_carga" caption="Carga" visible="true" useComboBox="false"/>
+            <Column fieldName="no_archivo" caption="Nombre Archivo" visible="true" useComboBox="false"/>
+            <Column fieldName="fe_modif" caption="Fecha Modificación" visible="true" useComboBox="false"/>
+            <Column fieldName="fe_carga" caption="Fecha Carga" visible="true" useComboBox="false"/>
             <Column fieldName="no_hoja" caption="Nombre Hoja" visible="true" useComboBox="false"/>
             <Column fieldName="nu_fila" caption="Número Fila" visible="true" useComboBox="false"/>
             <Column fieldName="co_estado_proceso" caption="Estado" visible="true" useComboBox="false">
@@ -3335,16 +4221,19 @@ DNI                  </MFUItem>
             <Column fieldName="ds_observaciones" caption="Observaciones" visible="true" useComboBox="false"/>
             <Column fieldName="nm_id_agente" caption="Normalizado: ID Agente" visible="false" useComboBox="false"/>
             <Column fieldName="nm_id_honorario" caption="Normalizado: ID Honorario" visible="false" useComboBox="false"/>
-            <Column fieldName="nm_id_tipo_honora" caption="Normalizado: ID Tipo Honora" visible="false" useComboBox="false"/>
             <Column fieldName="nm_mensaje" caption="Mensaje" visible="true" useComboBox="false"/>
             <Column fieldName="nm_no_agente" caption="Normalizado: Nombre Agente" visible="false" useComboBox="false"/>
             <Column fieldName="nm_nu_factura" caption="Normalizado: Número Factura" visible="false" useComboBox="false"/>
             <Column fieldName="nm_nu_pto_venta" caption="Normalizado: Punto Venta" visible="false" useComboBox="false"/>
             <Column fieldName="nm_va_factura" caption="Monto Factura" visible="true" useComboBox="false"/>
-            <Column fieldName="nu_carga" caption="Número Carga" visible="true" useComboBox="false"/>
+            <Column fieldName="nu_carga" caption="Nº Carga" visible="true" useComboBox="false"/>
             <Column fieldName="fe_reproc" caption="Fecha Reproceso" visible="true" useComboBox="false"/>
             <Column fieldName="nm_co_cuit" caption="Normalizado: CUIT" visible="false" useComboBox="false"/>
             <Column fieldName="fl_reproc" caption="Reproceso?" visible="true" useComboBox="false"/>
+            <Column fieldName="ds_cbu" caption="CBU" visible="false" useComboBox="false"/>
+            <Column fieldName="nm_nu_cbu" caption="Normalizado: CBU" visible="false" useComboBox="false"/>
+            <Column fieldName="nm_fe_mes" caption="Normalizado: Mes" visible="false" useComboBox="false"/>
+            <Column fieldName="nm_co_categ_fact" caption="Normalizado: Categoría" visible="false" useComboBox="false"/>
           </AdvancedSearchColumns>
           <ExportColumns>
             <Column fieldName="id_carga" caption="ID Carga" visible="true" headerHint="Identificador único de tabla stage de facturas.">
@@ -3353,10 +4242,10 @@ DNI                  </MFUItem>
             <Column fieldName="no_archivo" caption="No Archivo" visible="true" headerHint="Nombre del archivo excel cargado.">
               <ViewProperties type="text"/>
             </Column>
-            <Column fieldName="fe_modif" caption="Modificación" visible="true" headerHint="Fecha de última modificación de la planilla Excel.">
+            <Column fieldName="fe_modif" caption="Fecha Modificación" visible="true" headerHint="Fecha de última modificación de la planilla Excel.">
               <ViewProperties type="dateTime" dateTimeFormat="d/m/Y H:i:s"/>
             </Column>
-            <Column fieldName="fe_carga" caption="Carga" visible="true" headerHint="Fecha de carga de la planilla.">
+            <Column fieldName="fe_carga" caption="Fecha Carga" visible="true" headerHint="Fecha de carga de la planilla.">
               <ViewProperties type="dateTime" dateTimeFormat="d/m/y H:i"/>
             </Column>
             <Column fieldName="no_hoja" caption="No Hoja" visible="true" headerHint="Nombre de la hoja de Excel cargada.">
@@ -3396,9 +4285,6 @@ DNI                  </MFUItem>
             <Column fieldName="nm_id_honorario" caption="Normalizado: ID Honorario" visible="false">
               <ViewProperties type="text"/>
             </Column>
-            <Column fieldName="nm_id_tipo_honora" caption="Normalizado: ID Tipo Honora" visible="false">
-              <ViewProperties type="text"/>
-            </Column>
             <Column fieldName="nm_mensaje" caption="Nm Mensaje" visible="true">
               <ViewProperties type="text"/>
             </Column>
@@ -3416,7 +4302,7 @@ DNI                  </MFUItem>
                 <Format type="string" transformFunctionName="decrypt_aes"/>
               </ViewProperties>
             </Column>
-            <Column fieldName="nu_carga" caption="Número Carga" visible="true">
+            <Column fieldName="nu_carga" caption="Nº Carga" visible="true">
               <ViewProperties type="text"/>
             </Column>
             <Column fieldName="fe_reproc" caption="Fecha Reproceso" visible="true">
@@ -3427,6 +4313,20 @@ DNI                  </MFUItem>
             </Column>
             <Column fieldName="fl_reproc" caption="Reproceso?" visible="true">
               <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="ds_cbu" caption="Ds Cbu" visible="false">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nm_nu_cbu" caption="Normalizado: CBU" visible="false">
+              <ViewProperties type="text">
+                <Format type="number" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="nm_fe_mes" caption="Normalizado: Mes" visible="false">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y" dateTimeKind="1"/>
+            </Column>
+            <Column fieldName="nm_co_categ_fact" caption="Normalizado: Categoría" visible="false">
+              <ViewProperties type="text"/>
             </Column>
           </ExportColumns>
           <PrintColumns>
@@ -3436,10 +4336,10 @@ DNI                  </MFUItem>
             <Column fieldName="no_archivo" caption="No Archivo" visible="true" headerHint="Nombre del archivo excel cargado.">
               <ViewProperties type="text"/>
             </Column>
-            <Column fieldName="fe_modif" caption="Modificación" visible="true" headerHint="Fecha de última modificación de la planilla Excel.">
+            <Column fieldName="fe_modif" caption="Fecha Modificación" visible="true" headerHint="Fecha de última modificación de la planilla Excel.">
               <ViewProperties type="dateTime" dateTimeFormat="d/m/Y H:i:s"/>
             </Column>
-            <Column fieldName="fe_carga" caption="Carga" visible="true" headerHint="Fecha de carga de la planilla.">
+            <Column fieldName="fe_carga" caption="Fecha Carga" visible="true" headerHint="Fecha de carga de la planilla.">
               <ViewProperties type="dateTime" dateTimeFormat="d/m/y H:i"/>
             </Column>
             <Column fieldName="no_hoja" caption="No Hoja" visible="true" headerHint="Nombre de la hoja de Excel cargada.">
@@ -3479,9 +4379,6 @@ DNI                  </MFUItem>
             <Column fieldName="nm_id_honorario" caption="Normalizado: ID Honorario" visible="false">
               <ViewProperties type="text"/>
             </Column>
-            <Column fieldName="nm_id_tipo_honora" caption="Normalizado: ID Tipo Honora" visible="false">
-              <ViewProperties type="text"/>
-            </Column>
             <Column fieldName="nm_mensaje" caption="Nm Mensaje" visible="true">
               <ViewProperties type="text"/>
             </Column>
@@ -3499,7 +4396,7 @@ DNI                  </MFUItem>
                 <Format type="string" transformFunctionName="decrypt_aes"/>
               </ViewProperties>
             </Column>
-            <Column fieldName="nu_carga" caption="Número Carga" visible="true">
+            <Column fieldName="nu_carga" caption="Nº Carga" visible="true">
               <ViewProperties type="text"/>
             </Column>
             <Column fieldName="fe_reproc" caption="Fecha Reproceso" visible="true">
@@ -3510,6 +4407,20 @@ DNI                  </MFUItem>
             </Column>
             <Column fieldName="fl_reproc" caption="Reproceso?" visible="true">
               <ViewProperties type="checkBox" displayType="image" trueValue="images/checked.png" falseValue=""/>
+            </Column>
+            <Column fieldName="ds_cbu" caption="Ds Cbu" visible="false">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="nm_nu_cbu" caption="Normalizado: CBU" visible="false">
+              <ViewProperties type="text">
+                <Format type="number" numberAfterDecimal="2" decimalSeparator="," thousandSeparator="."/>
+              </ViewProperties>
+            </Column>
+            <Column fieldName="nm_fe_mes" caption="Normalizado: Mes" visible="false">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y" dateTimeKind="1"/>
+            </Column>
+            <Column fieldName="nm_co_categ_fact" caption="Normalizado: Categoría" visible="false">
+              <ViewProperties type="text"/>
             </Column>
           </PrintColumns>
         </Columns>
@@ -4588,6 +5499,70 @@ DNI                  </MFUItem>
         <RecordPermissions useRecordPermissions="false"/>
         <PartitionNavigators/>
       </Page>
+      <Page type="query" queryName="ver_carga_factura" fileName="ver_carga_factura" caption="Ver Carga Factura" shortCaption="Ver Carga Factura" groupName="Administrador" addSeparator="false" horizontalFilterCondition="" openAdvancedSearchAtFirst="false" recordsPerPage="100" NavigatorPosition="3" insertAbilityMode="0" editAbilityMode="0" copyAbilityMode="0" contentEncoding="UTF-8" exportToExcelAvailable="false" exportToWordAvailable="false" exportToXmlAvailable="false" exportToCsvAvailable="false" exportToPdfAvailable="false" printerFriendlyAvailable="false" advancedSearchAvailable="false" filterRowAvailable="false" visualEffectsEnabled="false" highlightRowOnMouseHover="true" showKeyColumnsImagesInGridHeader="false">
+        <BeforeGridText/>
+        <Columns>
+          <ViewColumns>
+            <Column fieldName="id_factura" caption="Id Factura" visible="true" totalFunction="0">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="fe_carga" caption="Fe Carga" visible="true" totalFunction="0">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y H:i:s"/>
+            </Column>
+          </ViewColumns>
+          <SingleRecordViewColumns>
+            <Column fieldName="id_factura" caption="Id Factura" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="fe_carga" caption="Fe Carga" visible="true">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y H:i:s"/>
+            </Column>
+          </SingleRecordViewColumns>
+          <EditColumns>
+            <Column fieldName="id_factura" caption="Id Factura" visible="true">
+              <EditProperties type="spinEdit" maxValue="100" minValue="0" useConstraints="false" step="1"/>
+            </Column>
+            <Column fieldName="fe_carga" caption="Fe Carga" visible="true">
+              <EditProperties type="dateTime" showsTime="true" dateTimeFormat="Y-m-d H:i:s" firstDayOfWeek="0"/>
+            </Column>
+          </EditColumns>
+          <InsertColumns>
+            <Column fieldName="id_factura" caption="Id Factura" visible="true" defaultInsertValue="">
+              <EditProperties type="spinEdit" maxValue="100" minValue="0" useConstraints="false" step="1"/>
+            </Column>
+            <Column fieldName="fe_carga" caption="Fe Carga" visible="true" defaultInsertValue="">
+              <EditProperties type="dateTime" showsTime="true" dateTimeFormat="Y-m-d H:i:s" firstDayOfWeek="0"/>
+            </Column>
+          </InsertColumns>
+          <SimpleSearchColumns>
+            <Column fieldName="id_factura" caption="Id Factura" visible="true"/>
+            <Column fieldName="fe_carga" caption="Fe Carga" visible="true"/>
+          </SimpleSearchColumns>
+          <AdvancedSearchColumns>
+            <Column fieldName="id_factura" caption="Id Factura" visible="true" useComboBox="false"/>
+            <Column fieldName="fe_carga" caption="Fe Carga" visible="true" useComboBox="false"/>
+          </AdvancedSearchColumns>
+          <ExportColumns>
+            <Column fieldName="id_factura" caption="Id Factura" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="fe_carga" caption="Fe Carga" visible="true">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y H:i:s"/>
+            </Column>
+          </ExportColumns>
+          <PrintColumns>
+            <Column fieldName="id_factura" caption="Id Factura" visible="true">
+              <ViewProperties type="text"/>
+            </Column>
+            <Column fieldName="fe_carga" caption="Fe Carga" visible="true">
+              <ViewProperties type="dateTime" dateTimeFormat="d/m/Y H:i:s"/>
+            </Column>
+          </PrintColumns>
+        </Columns>
+        <Details/>
+        <RecordPermissions useRecordPermissions="false"/>
+        <PartitionNavigators/>
+      </Page>
     </Pages>
     <UserAuthorization type="hardCoded">
       <Users>
@@ -4627,6 +5602,7 @@ DNI                  </MFUItem>
           <PageGrant pageName="facturas.tipo_honorario"/>
           <PageGrant pageName="facturas.honorario"/>
           <PageGrant pageName="facturas.categoria_lm"/>
+          <PageGrant pageName="ver_detalle_carga"/>
           <PageGrant pageName="facturas.stg_xls_facturas"/>
           <PageGrant pageName="audit.logged_actions"/>
           <PageGrant pageName="estado_lote"/>
@@ -4640,6 +5616,7 @@ DNI                  </MFUItem>
           <PageGrant pageName="ver_tipo_certificacion"/>
           <PageGrant pageName="ver_carga"/>
           <PageGrant pageName="ver_estado_proceso"/>
+          <PageGrant pageName="ver_carga_factura"/>
         </PageGrants>
         <PageGrants userName="catanzano">
           <PageGrant pageName="facturas.factura" select="1" insert="1" update="1" delete="1"/>
@@ -4654,6 +5631,7 @@ DNI                  </MFUItem>
           <PageGrant pageName="facturas.tipo_honorario" select="1" insert="1" update="1" delete="1"/>
           <PageGrant pageName="facturas.honorario" select="1" insert="1" update="1" delete="1"/>
           <PageGrant pageName="facturas.categoria_lm" select="1" insert="1" update="1" delete="1"/>
+          <PageGrant pageName="ver_detalle_carga" select="1"/>
           <PageGrant pageName="facturas.stg_xls_facturas" select="1" update="1"/>
           <PageGrant pageName="audit.logged_actions" select="1"/>
           <PageGrant pageName="estado_lote"/>
@@ -4667,6 +5645,7 @@ DNI                  </MFUItem>
           <PageGrant pageName="ver_tipo_certificacion"/>
           <PageGrant pageName="ver_carga"/>
           <PageGrant pageName="ver_estado_proceso"/>
+          <PageGrant pageName="ver_carga_factura"/>
         </PageGrants>
         <PageGrants userName="diaz">
           <PageGrant pageName="facturas.factura" select="1" insert="1" update="1" delete="1"/>
@@ -4681,6 +5660,7 @@ DNI                  </MFUItem>
           <PageGrant pageName="facturas.tipo_honorario" select="1" insert="1" update="1" delete="1"/>
           <PageGrant pageName="facturas.honorario" select="1" insert="1" update="1" delete="1"/>
           <PageGrant pageName="facturas.categoria_lm" select="1" insert="1" update="1" delete="1"/>
+          <PageGrant pageName="ver_detalle_carga" select="1"/>
           <PageGrant pageName="facturas.stg_xls_facturas" select="1" update="1"/>
           <PageGrant pageName="audit.logged_actions" select="1"/>
           <PageGrant pageName="estado_lote"/>
@@ -4694,6 +5674,7 @@ DNI                  </MFUItem>
           <PageGrant pageName="ver_tipo_certificacion"/>
           <PageGrant pageName="ver_carga"/>
           <PageGrant pageName="ver_estado_proceso"/>
+          <PageGrant pageName="ver_carga_factura"/>
         </PageGrants>
         <PageGrants userName="fornero">
           <PageGrant pageName="facturas.factura" select="1" insert="1" update="1" delete="1"/>
@@ -4708,7 +5689,8 @@ DNI                  </MFUItem>
           <PageGrant pageName="facturas.tipo_honorario" select="1" insert="1" update="1"/>
           <PageGrant pageName="facturas.honorario" select="1" insert="1" update="1"/>
           <PageGrant pageName="facturas.categoria_lm" select="1"/>
-          <PageGrant pageName="facturas.stg_xls_facturas" select="1"/>
+          <PageGrant pageName="ver_detalle_carga" select="1"/>
+          <PageGrant pageName="facturas.stg_xls_facturas"/>
           <PageGrant pageName="audit.logged_actions"/>
           <PageGrant pageName="estado_lote"/>
           <PageGrant pageName="ver_tipo_honorario"/>
@@ -4721,6 +5703,7 @@ DNI                  </MFUItem>
           <PageGrant pageName="ver_tipo_certificacion"/>
           <PageGrant pageName="ver_carga"/>
           <PageGrant pageName="ver_estado_proceso"/>
+          <PageGrant pageName="ver_carga_factura"/>
         </PageGrants>
         <PageGrants userName="monochio">
           <PageGrant pageName="facturas.factura" select="1" insert="1" update="1" delete="1"/>
@@ -4735,7 +5718,8 @@ DNI                  </MFUItem>
           <PageGrant pageName="facturas.tipo_honorario" select="1" insert="1" update="1"/>
           <PageGrant pageName="facturas.honorario" select="1" insert="1" update="1"/>
           <PageGrant pageName="facturas.categoria_lm" select="1"/>
-          <PageGrant pageName="facturas.stg_xls_facturas" select="1"/>
+          <PageGrant pageName="ver_detalle_carga" select="1"/>
+          <PageGrant pageName="facturas.stg_xls_facturas"/>
           <PageGrant pageName="audit.logged_actions"/>
           <PageGrant pageName="estado_lote"/>
           <PageGrant pageName="ver_tipo_honorario"/>
@@ -4748,6 +5732,7 @@ DNI                  </MFUItem>
           <PageGrant pageName="ver_tipo_certificacion"/>
           <PageGrant pageName="ver_carga"/>
           <PageGrant pageName="ver_estado_proceso"/>
+          <PageGrant pageName="ver_carga_factura"/>
         </PageGrants>
         <PageGrants userName="sanchezpaya">
           <PageGrant pageName="facturas.factura" select="1" insert="1" update="1"/>
@@ -4762,7 +5747,8 @@ DNI                  </MFUItem>
           <PageGrant pageName="facturas.tipo_honorario" select="1" insert="1" update="1"/>
           <PageGrant pageName="facturas.honorario" select="1" insert="1" update="1"/>
           <PageGrant pageName="facturas.categoria_lm" select="1"/>
-          <PageGrant pageName="facturas.stg_xls_facturas" select="1"/>
+          <PageGrant pageName="ver_detalle_carga" select="1"/>
+          <PageGrant pageName="facturas.stg_xls_facturas"/>
           <PageGrant pageName="audit.logged_actions"/>
           <PageGrant pageName="estado_lote"/>
           <PageGrant pageName="ver_tipo_honorario"/>
@@ -4775,6 +5761,7 @@ DNI                  </MFUItem>
           <PageGrant pageName="ver_tipo_certificacion"/>
           <PageGrant pageName="ver_carga"/>
           <PageGrant pageName="ver_estado_proceso"/>
+          <PageGrant pageName="ver_carga_factura"/>
         </PageGrants>
         <PageGrants userName="cerini">
           <PageGrant pageName="facturas.factura" select="1" insert="1"/>
@@ -4789,7 +5776,8 @@ DNI                  </MFUItem>
           <PageGrant pageName="facturas.tipo_honorario" select="1"/>
           <PageGrant pageName="facturas.honorario" select="1"/>
           <PageGrant pageName="facturas.categoria_lm" select="1"/>
-          <PageGrant pageName="facturas.stg_xls_facturas" select="1"/>
+          <PageGrant pageName="ver_detalle_carga" select="1"/>
+          <PageGrant pageName="facturas.stg_xls_facturas"/>
           <PageGrant pageName="audit.logged_actions"/>
           <PageGrant pageName="estado_lote"/>
           <PageGrant pageName="ver_tipo_honorario"/>
@@ -4802,6 +5790,7 @@ DNI                  </MFUItem>
           <PageGrant pageName="ver_tipo_certificacion"/>
           <PageGrant pageName="ver_carga"/>
           <PageGrant pageName="ver_estado_proceso"/>
+          <PageGrant pageName="ver_carga_factura"/>
         </PageGrants>
         <PageGrants userName="vallone">
           <PageGrant pageName="facturas.factura" select="1" insert="1"/>
@@ -4816,7 +5805,8 @@ DNI                  </MFUItem>
           <PageGrant pageName="facturas.tipo_honorario" select="1" insert="1"/>
           <PageGrant pageName="facturas.honorario" select="1" insert="1"/>
           <PageGrant pageName="facturas.categoria_lm" select="1"/>
-          <PageGrant pageName="facturas.stg_xls_facturas" select="1"/>
+          <PageGrant pageName="ver_detalle_carga" select="1"/>
+          <PageGrant pageName="facturas.stg_xls_facturas"/>
           <PageGrant pageName="audit.logged_actions"/>
           <PageGrant pageName="estado_lote"/>
           <PageGrant pageName="ver_tipo_honorario"/>
@@ -4829,6 +5819,7 @@ DNI                  </MFUItem>
           <PageGrant pageName="ver_tipo_certificacion"/>
           <PageGrant pageName="ver_carga"/>
           <PageGrant pageName="ver_estado_proceso"/>
+          <PageGrant pageName="ver_carga_factura"/>
         </PageGrants>
         <PageGrants userName="bocci">
           <PageGrant pageName="facturas.factura" select="1" insert="1"/>
@@ -4843,7 +5834,8 @@ DNI                  </MFUItem>
           <PageGrant pageName="facturas.tipo_honorario" select="1"/>
           <PageGrant pageName="facturas.honorario" select="1"/>
           <PageGrant pageName="facturas.categoria_lm" select="1"/>
-          <PageGrant pageName="facturas.stg_xls_facturas" select="1"/>
+          <PageGrant pageName="ver_detalle_carga" select="1"/>
+          <PageGrant pageName="facturas.stg_xls_facturas"/>
           <PageGrant pageName="audit.logged_actions"/>
           <PageGrant pageName="estado_lote"/>
           <PageGrant pageName="ver_tipo_honorario"/>
@@ -4856,6 +5848,7 @@ DNI                  </MFUItem>
           <PageGrant pageName="ver_tipo_certificacion"/>
           <PageGrant pageName="ver_carga"/>
           <PageGrant pageName="ver_estado_proceso"/>
+          <PageGrant pageName="ver_carga_factura"/>
         </PageGrants>
         <PageGrants userName="facturas">
           <PageGrant pageName="facturas.factura"/>
@@ -4870,6 +5863,7 @@ DNI                  </MFUItem>
           <PageGrant pageName="facturas.tipo_honorario"/>
           <PageGrant pageName="facturas.honorario"/>
           <PageGrant pageName="facturas.categoria_lm"/>
+          <PageGrant pageName="ver_detalle_carga"/>
           <PageGrant pageName="facturas.stg_xls_facturas"/>
           <PageGrant pageName="audit.logged_actions"/>
           <PageGrant pageName="estado_lote"/>
@@ -4883,6 +5877,7 @@ DNI                  </MFUItem>
           <PageGrant pageName="ver_tipo_certificacion"/>
           <PageGrant pageName="ver_carga"/>
           <PageGrant pageName="ver_estado_proceso"/>
+          <PageGrant pageName="ver_carga_factura"/>
         </PageGrants>
       </UserPageGrants>
     </UserGrants>
