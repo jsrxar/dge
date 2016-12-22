@@ -1,7 +1,7 @@
 ﻿/* Procesa los registros generados por una carga desde una planilla Excel */
 /* Lanzador: SELECT facturas.fn_xls_procesa_cargas('F4ct#r4s@2016'); */
 
-CREATE OR REPLACE FUNCTION facturas.fn_xls_procesa_cargas(IN pKey TEXT DEFAULT NULL) RETURNS INTEGER
+CREATE OR REPLACE FUNCTION facturas.fn_xls_procesa_cargas(IN pKey TEXT DEFAULT NULL, IN pFull BOOLEAN DEFAULT FALSE) RETURNS INTEGER
 	LANGUAGE plpgsql AS $xls_procesa_cargas$
 DECLARE
 	v_mensajes     HSTORE;
@@ -49,6 +49,14 @@ BEGIN
 
 	-- Numera las cargas
 	PERFORM facturas.fn_xls_numera_carga();
+
+	-- Reproceso FULL
+	IF pFull = TRUE THEN
+		UPDATE facturas.stg_xls_facturas st
+		SET fl_reproc = TRUE
+		WHERE co_estado_proceso = 'E'
+		  AND nu_carga IS NOT NULL;
+	END IF;
 
 	-- Normalizando los valores
 	BEGIN
@@ -385,11 +393,11 @@ BEGIN
 		SET co_estado_proceso = 'P'
 		WHERE co_estado_proceso = 'N'
 		RETURNING 1
-	) SELECT count(*) INTO v_cantidad FROM procesado;
+	) SELECT COUNT(1) INTO v_cantidad FROM procesado;
 
 	RETURN v_cantidad;
-EXCEPTION WHEN others THEN
-	RAISE NOTICE 'Error (%) al normalizar carga desde XLS: %', SQLSTATE, SQLERRM;
-	RETURN -1;
+--EXCEPTION WHEN others THEN
+--	RAISE NOTICE 'Error (%) al normalizar carga desde XLS: %', SQLSTATE, SQLERRM;
+--	RETURN -1;
 END;
 $xls_procesa_cargas$;

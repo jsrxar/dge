@@ -2,14 +2,22 @@ switch($.urlParam('operation')) {
     case 'edit':
 		// Edición de registro
         fn_honorario_edit();
+    case 'insert':
+		// Nuevo registro
+        fn_honorario_insert();
         break;
     case 'copy':
-    case 'insert':
     case 'view':
 		// Nada
         break;
     default:
 		// Nada
+}
+
+function fn_honorario_insert () {
+	$("form.form-horizontal").bind("DOMSubtreeModified", function(){
+		$("div#s2id_id_contrato_edit").css("width", "532px");
+	});
 }
 
 function fn_honorario_edit () {

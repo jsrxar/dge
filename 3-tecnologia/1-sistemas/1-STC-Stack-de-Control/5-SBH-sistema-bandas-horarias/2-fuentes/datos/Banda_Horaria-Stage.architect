@@ -4,20 +4,8 @@
  <print-settings numCopies="1" zoom="1.0" pageNumbersPrinted="true" orientation="1" paperWidth="612.0" paperHeight="792.0" leftBorder="50.0" rightBorder="50.0" topBorder="50.0" bottomBorder="50.0" />
  <project-data-sources>
   <data-source id="DS0">
-   <property key="Logical" value="RRHH Local" />
    <property key="Connection Type" value="PostgreSQL" />
-   <property key="JDBC URL" value="jdbc:postgresql://localhost:5432/RRHH" />
-   <property key="UID" value="rrhh" />
-   <property key="PWD" value="rrhh" />
-   <property key="ca.sqlpower.architect.etl.kettle.database" value="" />
-   <property key="ca.sqlpower.architect.etl.kettle.port" value="" />
-   <property key="ca.sqlpower.architect.etl.kettle.hostname" value="" />
-   <property key="ca.sqlpower.architect.etl.kettle.repos.login" value="" />
-   <property key="ca.sqlpower.architect.etl.kettle.repos.password" value="" />
-  </data-source>
-  <data-source id="DS0">
-   <property key="Logical" value="RRHH Local" />
-   <property key="Connection Type" value="PostgreSQL" />
+   <property key="Logical" value="PlayPen Database" />
    <property key="JDBC URL" value="jdbc:postgresql://localhost:5432/RRHH" />
    <property key="UID" value="rrhh" />
    <property key="PWD" value="rrhh" />
@@ -29,7 +17,19 @@
   </data-source>
   <data-source id="DS0">
    <property key="Connection Type" value="PostgreSQL" />
-   <property key="Logical" value="RRHH Local" />
+   <property key="Logical" value="PlayPen Database" />
+   <property key="JDBC URL" value="jdbc:postgresql://localhost:5432/RRHH" />
+   <property key="UID" value="rrhh" />
+   <property key="PWD" value="rrhh" />
+   <property key="ca.sqlpower.architect.etl.kettle.database" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.port" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.hostname" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.repos.login" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.repos.password" value="" />
+  </data-source>
+  <data-source id="DS0">
+   <property key="Connection Type" value="PostgreSQL" />
+   <property key="Logical" value="PlayPen Database" />
    <property key="JDBC URL" value="jdbc:postgresql://localhost:5432/RRHH" />
    <property key="UID" value="rrhh" />
    <property key="PWD" value="rrhh" />
@@ -41,7 +41,7 @@
   </data-source>
  </project-data-sources>
  <source-databases>
-  <database id="DB0" populated="true" UUID="73ba7043-9f67-41b9-ab16-93625276b568" dbcs-ref="DS0" name="RRHH Local" physicalName="RRHH Local" >
+  <database id="DB0" populated="true" UUID="73ba7043-9f67-41b9-ab16-93625276b568" dbcs-ref="DS0" name="PlayPen Database" physicalName="RRHH Local" >
    <catalog id="CAT1" populated="true" UUID="11c7ced1-144c-4cae-8e23-1efd05f6a6af" name="RRHH" nativeTerm="database" physicalName="RRHH" >
     <schema id="SCH2" populated="false" UUID="cab99b95-4308-4707-8083-30dcac0bf83e" name="information_schema" nativeTerm="schema" physicalName="information_schema" >
     </schema>
@@ -429,7 +429,7 @@
     </relationship>
    </relationships>
   </database>
-  <database id="DB121" populated="true" UUID="ad6445d6-f124-4e91-9402-0b432a18e147" dbcs-ref="DS0" name="RRHH Local" physicalName="RRHH Local" >
+  <database id="DB121" populated="true" UUID="ad6445d6-f124-4e91-9402-0b432a18e147" dbcs-ref="DS0" name="PlayPen Database" physicalName="RRHH Local" >
    <catalog id="CAT122" populated="true" UUID="70ef339b-6970-45f5-a973-6651832366ff" name="RRHH" nativeTerm="database" physicalName="RRHH" >
     <schema id="SCH123" populated="false" UUID="f9e3dce3-be37-4ce3-8b28-4ef2494bbfd3" name="information_schema" nativeTerm="schema" physicalName="information_schema" >
     </schema>
@@ -1070,122 +1070,125 @@
     <column id="COL324" populated="true" UUID="93b21a5c-9c9e-4e30-8813-9900fcd114d5" autoIncrement="false" autoIncrementSequenceName="stg_lecturas_tx_observacion_seq" defaultValue="" name="Observaciones" nullable="1" physicalName="tx_observacion" precision="100" referenceCount="1" scale="0" source-column-ref="COL92" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks>Observaciones varias sobre la lectura.</remarks>
     </column>
+    <column id="COL325" populated="true" UUID="c4e3ea10-ed6d-4df3-812f-0f02359975bc" autoIncrement="false" autoIncrementSequenceName="stg_lecturas_tx_tipo_seq" defaultValue="" name="Tipo Lectura" nullable="1" physicalName="tx_tipo" precision="5" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Tipo de lectura, normalmente identifica si se trata de una entrada (0) o una salida (1).</remarks>
+    </column>
     </folder>
     <folder id="FOLTAB3133" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
     </folder>
     <folder id="FOLTAB3132" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
     </folder>
     <folder id="FOLTAB3134" populated="true" name="Indices" physicalName="Indices" type="4">
-    <index id="IDX325" populated="true" UUID="e74c3540-407f-42a2-a957-2c67dea38bf0" clustered="false" name="stg_lecturas_pk" physicalName="stg_lecturas_pk" primaryKeyIndex="true" unique="false" >
-     <index-column id="IDC326" populated="true" UUID="854c4a00-ba17-4039-a813-55e2a4444f2c" ascendingOrDescending="UNSPECIFIED" column-ref="COL314" name="ID Carga" physicalName="id_carga" />
+    <index id="IDX326" populated="true" UUID="e74c3540-407f-42a2-a957-2c67dea38bf0" clustered="false" name="stg_lecturas_pk" physicalName="stg_lecturas_pk" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC327" populated="true" UUID="854c4a00-ba17-4039-a813-55e2a4444f2c" ascendingOrDescending="UNSPECIFIED" column-ref="COL314" name="ID Carga" physicalName="id_carga" />
     </index>
    </folder>
   </table>
-  <table id="TAB327" populated="true" UUID="335037d8-631f-4270-a06f-933b3783d0d6" name="Stage Personal" objectType="TABLE" physicalName="stg_personal" >
+  <table id="TAB328" populated="true" UUID="335037d8-631f-4270-a06f-933b3783d0d6" name="Stage Personal" objectType="TABLE" physicalName="stg_personal" >
    <remarks>Tabla Stage de personal cargado desde planilla enviada por Recursos Humanos.</remarks>
-   <folder id="FOLTAB3271" populated="true" name="Columns" physicalName="Columns" type="1">
-    <column id="COL328" populated="true" UUID="4b4c865a-e29b-46d0-ab06-a481ed2d1074" autoIncrement="false" defaultValue="nextval(&apos;carga_seq&apos;::regclass)" name="id_carga" nullable="0" physicalName="id_carga" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" source-column-ref="COL178" sourceDataTypeName="bigserial" type="-5" userDefinedTypeUUID="433cc8af-284d-4abb-8ef7-08ebcb34dbf1" >
+   <folder id="FOLTAB3281" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL329" populated="true" UUID="4b4c865a-e29b-46d0-ab06-a481ed2d1074" autoIncrement="false" defaultValue="nextval(&apos;carga_seq&apos;::regclass)" name="id_carga" nullable="0" physicalName="id_carga" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" source-column-ref="COL178" sourceDataTypeName="bigserial" type="-5" userDefinedTypeUUID="433cc8af-284d-4abb-8ef7-08ebcb34dbf1" >
      <remarks></remarks>
     </column>
-    <column id="COL329" populated="true" UUID="28c04544-b49b-4a8a-8aae-9788d50d41d8" autoIncrement="false" defaultValue="" name="no_archivo" nullable="1" physicalName="no_archivo" precision="100" referenceCount="1" scale="0" source-column-ref="COL179" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL330" populated="true" UUID="28c04544-b49b-4a8a-8aae-9788d50d41d8" autoIncrement="false" defaultValue="" name="no_archivo" nullable="1" physicalName="no_archivo" precision="100" referenceCount="1" scale="0" source-column-ref="COL179" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks>Nombre del archivo cargado.</remarks>
     </column>
-    <column id="COL330" populated="true" UUID="c7ec3460-2883-4360-9ecf-8b137b111a84" autoIncrement="false" defaultValue="" name="co_lugar" nullable="1" physicalName="co_lugar" precision="1" referenceCount="1" scale="0" source-column-ref="COL180" sourceDataTypeName="bpchar" type="1" userDefinedTypeUUID="67ddc63f-5541-4dd1-9236-632d9d155e80" >
+    <column id="COL331" populated="true" UUID="c7ec3460-2883-4360-9ecf-8b137b111a84" autoIncrement="false" defaultValue="" name="co_lugar" nullable="1" physicalName="co_lugar" precision="1" referenceCount="1" scale="0" source-column-ref="COL180" sourceDataTypeName="bpchar" type="1" userDefinedTypeUUID="67ddc63f-5541-4dd1-9236-632d9d155e80" >
      <remarks>Código de lugar.</remarks>
     </column>
-    <column id="COL331" populated="true" UUID="70cd0f65-c772-438f-bd7c-d7eae7549bd5" autoIncrement="false" defaultValue="" name="fe_carga" nullable="1" physicalName="fe_carga" precision="0" referenceCount="1" scale="0" source-column-ref="COL181" sourceDataTypeName="timestamp" type="93" userDefinedTypeUUID="6497d8de-0e00-40d6-a42e-e2adca83be64" >
+    <column id="COL332" populated="true" UUID="70cd0f65-c772-438f-bd7c-d7eae7549bd5" autoIncrement="false" defaultValue="" name="fe_carga" nullable="1" physicalName="fe_carga" precision="0" referenceCount="1" scale="0" source-column-ref="COL181" sourceDataTypeName="timestamp" type="93" userDefinedTypeUUID="6497d8de-0e00-40d6-a42e-e2adca83be64" >
      <remarks>Fecha y hora de carga del archivo.</remarks>
     </column>
-    <column id="COL332" populated="true" UUID="93057e4e-cd03-40c9-b978-1bca7f4c68f7" autoIncrement="false" defaultValue="" name="co_estado_proceso" nullable="1" physicalName="co_estado_proceso" precision="1" referenceCount="1" scale="0" source-column-ref="COL182" sourceDataTypeName="bpchar" type="1" userDefinedTypeUUID="67ddc63f-5541-4dd1-9236-632d9d155e80" >
+    <column id="COL333" populated="true" UUID="93057e4e-cd03-40c9-b978-1bca7f4c68f7" autoIncrement="false" defaultValue="" name="co_estado_proceso" nullable="1" physicalName="co_estado_proceso" precision="1" referenceCount="1" scale="0" source-column-ref="COL182" sourceDataTypeName="bpchar" type="1" userDefinedTypeUUID="67ddc63f-5541-4dd1-9236-632d9d155e80" >
      <remarks>Estado de procesamiento del registro.</remarks>
     </column>
-    <column id="COL333" populated="true" UUID="7a711fe0-cbbc-46dd-8b5e-4bba508827d5" autoIncrement="false" defaultValue="" name="tx_dat_lab_dependencia" nullable="1" physicalName="tx_dat_lab_dependencia" precision="100" referenceCount="1" scale="0" source-column-ref="COL183" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL334" populated="true" UUID="7a711fe0-cbbc-46dd-8b5e-4bba508827d5" autoIncrement="false" defaultValue="" name="tx_dat_lab_dependencia" nullable="1" physicalName="tx_dat_lab_dependencia" precision="100" referenceCount="1" scale="0" source-column-ref="COL183" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL334" populated="true" UUID="a918c881-cc57-4d76-9d10-3845d7732097" autoIncrement="false" defaultValue="" name="tx_dat_lab_secretaria" nullable="1" physicalName="tx_dat_lab_secretaria" precision="100" referenceCount="1" scale="0" source-column-ref="COL184" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL335" populated="true" UUID="a918c881-cc57-4d76-9d10-3845d7732097" autoIncrement="false" defaultValue="" name="tx_dat_lab_secretaria" nullable="1" physicalName="tx_dat_lab_secretaria" precision="100" referenceCount="1" scale="0" source-column-ref="COL184" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL335" populated="true" UUID="b4d65ce3-4fdd-4ce5-b9a4-6b1014914156" autoIncrement="false" defaultValue="" name="tx_dat_lab_subsecretaria" nullable="1" physicalName="tx_dat_lab_subsecretaria" precision="100" referenceCount="1" scale="0" source-column-ref="COL185" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL336" populated="true" UUID="b4d65ce3-4fdd-4ce5-b9a4-6b1014914156" autoIncrement="false" defaultValue="" name="tx_dat_lab_subsecretaria" nullable="1" physicalName="tx_dat_lab_subsecretaria" precision="100" referenceCount="1" scale="0" source-column-ref="COL185" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL336" populated="true" UUID="5c4bf464-eb2b-484d-809c-92b0d8422ce9" autoIncrement="false" defaultValue="" name="tx_dat_lab_direccion_area" nullable="1" physicalName="tx_dat_lab_direccion_area" precision="100" referenceCount="1" scale="0" source-column-ref="COL186" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL337" populated="true" UUID="5c4bf464-eb2b-484d-809c-92b0d8422ce9" autoIncrement="false" defaultValue="" name="tx_dat_lab_direccion_area" nullable="1" physicalName="tx_dat_lab_direccion_area" precision="100" referenceCount="1" scale="0" source-column-ref="COL186" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL337" populated="true" UUID="bcebe131-bea2-4c80-a5a2-eaa63d807fe4" autoIncrement="false" defaultValue="" name="tx_dat_lab_area_dependenc" nullable="1" physicalName="tx_dat_lab_area_dependenc" precision="100" referenceCount="1" scale="0" source-column-ref="COL187" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL338" populated="true" UUID="bcebe131-bea2-4c80-a5a2-eaa63d807fe4" autoIncrement="false" defaultValue="" name="tx_dat_lab_area_dependenc" nullable="1" physicalName="tx_dat_lab_area_dependenc" precision="100" referenceCount="1" scale="0" source-column-ref="COL187" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL338" populated="true" UUID="62871f6a-6f03-4d0c-b670-df164a51d822" autoIncrement="false" defaultValue="" name="tx_dat_lab_sector" nullable="1" physicalName="tx_dat_lab_sector" precision="100" referenceCount="1" scale="0" source-column-ref="COL188" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL339" populated="true" UUID="62871f6a-6f03-4d0c-b670-df164a51d822" autoIncrement="false" defaultValue="" name="tx_dat_lab_sector" nullable="1" physicalName="tx_dat_lab_sector" precision="100" referenceCount="1" scale="0" source-column-ref="COL188" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL339" populated="true" UUID="0a87dd9f-c350-4c81-9399-03c487a4bd4b" autoIncrement="false" defaultValue="" name="tx_dat_lab_sub_sector" nullable="1" physicalName="tx_dat_lab_sub_sector" precision="100" referenceCount="1" scale="0" source-column-ref="COL189" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL340" populated="true" UUID="0a87dd9f-c350-4c81-9399-03c487a4bd4b" autoIncrement="false" defaultValue="" name="tx_dat_lab_sub_sector" nullable="1" physicalName="tx_dat_lab_sub_sector" precision="100" referenceCount="1" scale="0" source-column-ref="COL189" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL340" populated="true" UUID="5bd567fe-f237-477b-a927-47cb7f7bf976" autoIncrement="false" defaultValue="" name="tx_dat_lab_puesto" nullable="1" physicalName="tx_dat_lab_puesto" precision="100" referenceCount="1" scale="0" source-column-ref="COL190" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL341" populated="true" UUID="5bd567fe-f237-477b-a927-47cb7f7bf976" autoIncrement="false" defaultValue="" name="tx_dat_lab_puesto" nullable="1" physicalName="tx_dat_lab_puesto" precision="100" referenceCount="1" scale="0" source-column-ref="COL190" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL341" populated="true" UUID="2ba46f02-93bf-461a-a28f-618d816f6d32" autoIncrement="false" defaultValue="" name="tx_destino_direccion_gral" nullable="1" physicalName="tx_destino_direccion_gral" precision="100" referenceCount="1" scale="0" source-column-ref="COL191" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL342" populated="true" UUID="2ba46f02-93bf-461a-a28f-618d816f6d32" autoIncrement="false" defaultValue="" name="tx_destino_direccion_gral" nullable="1" physicalName="tx_destino_direccion_gral" precision="100" referenceCount="1" scale="0" source-column-ref="COL191" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL342" populated="true" UUID="ef52575f-1777-4fff-9e6b-06398ed5476f" autoIncrement="false" defaultValue="" name="tx_destino_direccion" nullable="1" physicalName="tx_destino_direccion" precision="100" referenceCount="1" scale="0" source-column-ref="COL192" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL343" populated="true" UUID="ef52575f-1777-4fff-9e6b-06398ed5476f" autoIncrement="false" defaultValue="" name="tx_destino_direccion" nullable="1" physicalName="tx_destino_direccion" precision="100" referenceCount="1" scale="0" source-column-ref="COL192" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL343" populated="true" UUID="b2cbd8fc-c81d-49c9-8550-a8b66e53829f" autoIncrement="false" defaultValue="" name="tx_destino_departamento" nullable="1" physicalName="tx_destino_departamento" precision="100" referenceCount="1" scale="0" source-column-ref="COL193" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL344" populated="true" UUID="b2cbd8fc-c81d-49c9-8550-a8b66e53829f" autoIncrement="false" defaultValue="" name="tx_destino_departamento" nullable="1" physicalName="tx_destino_departamento" precision="100" referenceCount="1" scale="0" source-column-ref="COL193" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL344" populated="true" UUID="933c763b-e51b-421c-9d61-8de2ef5ca3a2" autoIncrement="false" defaultValue="" name="tx_destino_coord_unidad" nullable="1" physicalName="tx_destino_coord_unidad" precision="100" referenceCount="1" scale="0" source-column-ref="COL194" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL345" populated="true" UUID="933c763b-e51b-421c-9d61-8de2ef5ca3a2" autoIncrement="false" defaultValue="" name="tx_destino_coord_unidad" nullable="1" physicalName="tx_destino_coord_unidad" precision="100" referenceCount="1" scale="0" source-column-ref="COL194" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL345" populated="true" UUID="7713f3f3-ded7-4ac8-a2bc-cef360b17c68" autoIncrement="false" defaultValue="" name="tx_ubi_fis_ubic_fisica_1" nullable="1" physicalName="tx_ubi_fis_ubic_fisica_1" precision="100" referenceCount="1" scale="0" source-column-ref="COL195" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL346" populated="true" UUID="7713f3f3-ded7-4ac8-a2bc-cef360b17c68" autoIncrement="false" defaultValue="" name="tx_ubi_fis_ubic_fisica_1" nullable="1" physicalName="tx_ubi_fis_ubic_fisica_1" precision="100" referenceCount="1" scale="0" source-column-ref="COL195" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL346" populated="true" UUID="45ff4add-5c10-45dd-a636-5bc7b77be752" autoIncrement="false" defaultValue="" name="tx_ubi_fis_puesto" nullable="1" physicalName="tx_ubi_fis_puesto" precision="100" referenceCount="1" scale="0" source-column-ref="COL196" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL347" populated="true" UUID="45ff4add-5c10-45dd-a636-5bc7b77be752" autoIncrement="false" defaultValue="" name="tx_ubi_fis_puesto" nullable="1" physicalName="tx_ubi_fis_puesto" precision="100" referenceCount="1" scale="0" source-column-ref="COL196" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL347" populated="true" UUID="857cc1dd-85db-4f3e-b357-de5b235965d5" autoIncrement="false" defaultValue="" name="tx_ubi_fis_ubic_fisica_2" nullable="1" physicalName="tx_ubi_fis_ubic_fisica_2" precision="100" referenceCount="1" scale="0" source-column-ref="COL197" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL348" populated="true" UUID="857cc1dd-85db-4f3e-b357-de5b235965d5" autoIncrement="false" defaultValue="" name="tx_ubi_fis_ubic_fisica_2" nullable="1" physicalName="tx_ubi_fis_ubic_fisica_2" precision="100" referenceCount="1" scale="0" source-column-ref="COL197" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL348" populated="true" UUID="3c6904f2-1a5a-466e-ac72-bec07fc330c9" autoIncrement="false" defaultValue="" name="tx_dat_per_apell_nombre" nullable="1" physicalName="tx_dat_per_apell_nombre" precision="100" referenceCount="1" scale="0" source-column-ref="COL198" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL349" populated="true" UUID="3c6904f2-1a5a-466e-ac72-bec07fc330c9" autoIncrement="false" defaultValue="" name="tx_dat_per_apell_nombre" nullable="1" physicalName="tx_dat_per_apell_nombre" precision="100" referenceCount="1" scale="0" source-column-ref="COL198" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL349" populated="true" UUID="9340747e-916c-4924-86f7-3328799ce012" autoIncrement="false" defaultValue="" name="tx_dat_per_tipo_doc" nullable="1" physicalName="tx_dat_per_tipo_doc" precision="5" referenceCount="1" scale="0" source-column-ref="COL199" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL350" populated="true" UUID="9340747e-916c-4924-86f7-3328799ce012" autoIncrement="false" defaultValue="" name="tx_dat_per_tipo_doc" nullable="1" physicalName="tx_dat_per_tipo_doc" precision="5" referenceCount="1" scale="0" source-column-ref="COL199" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL350" populated="true" UUID="6d1a3922-e64e-410e-9358-67d996d66501" autoIncrement="false" defaultValue="" name="tx_dat_per_nro_doc" nullable="1" physicalName="tx_dat_per_nro_doc" precision="20" referenceCount="1" scale="0" source-column-ref="COL200" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL351" populated="true" UUID="6d1a3922-e64e-410e-9358-67d996d66501" autoIncrement="false" defaultValue="" name="tx_dat_per_nro_doc" nullable="1" physicalName="tx_dat_per_nro_doc" precision="20" referenceCount="1" scale="0" source-column-ref="COL200" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL351" populated="true" UUID="529545e7-8cc0-4a46-9f0f-d476fc7cc269" autoIncrement="false" defaultValue="" name="tx_mod_con_tipo" nullable="1" physicalName="tx_mod_con_tipo" precision="100" referenceCount="1" scale="0" source-column-ref="COL201" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL352" populated="true" UUID="529545e7-8cc0-4a46-9f0f-d476fc7cc269" autoIncrement="false" defaultValue="" name="tx_mod_con_tipo" nullable="1" physicalName="tx_mod_con_tipo" precision="100" referenceCount="1" scale="0" source-column-ref="COL201" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL352" populated="true" UUID="63d9966e-d16f-40d0-9df6-c45e54abafe4" autoIncrement="false" defaultValue="" name="tx_mod_con_tipo_2" nullable="1" physicalName="tx_mod_con_tipo_2" precision="100" referenceCount="1" scale="0" source-column-ref="COL202" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL353" populated="true" UUID="63d9966e-d16f-40d0-9df6-c45e54abafe4" autoIncrement="false" defaultValue="" name="tx_mod_con_tipo_2" nullable="1" physicalName="tx_mod_con_tipo_2" precision="100" referenceCount="1" scale="0" source-column-ref="COL202" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL353" populated="true" UUID="c9af9e4b-9130-411c-a63c-1de9baeba729" autoIncrement="false" defaultValue="" name="tx_mod_con_lm_at" nullable="1" physicalName="tx_mod_con_lm_at" precision="100" referenceCount="1" scale="0" source-column-ref="COL203" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL354" populated="true" UUID="c9af9e4b-9130-411c-a63c-1de9baeba729" autoIncrement="false" defaultValue="" name="tx_mod_con_lm_at" nullable="1" physicalName="tx_mod_con_lm_at" precision="100" referenceCount="1" scale="0" source-column-ref="COL203" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL354" populated="true" UUID="4e5fa785-0a57-400b-ae58-47229e35a75d" autoIncrement="false" defaultValue="" name="tx_mod_con_ingreso" nullable="1" physicalName="tx_mod_con_ingreso" precision="20" referenceCount="1" scale="0" source-column-ref="COL204" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL355" populated="true" UUID="4e5fa785-0a57-400b-ae58-47229e35a75d" autoIncrement="false" defaultValue="" name="tx_mod_con_ingreso" nullable="1" physicalName="tx_mod_con_ingreso" precision="20" referenceCount="1" scale="0" source-column-ref="COL204" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL355" populated="true" UUID="0a664be3-6550-467c-a532-0613cef6da70" autoIncrement="false" defaultValue="" name="tx_mod_con_convenio_at" nullable="1" physicalName="tx_mod_con_convenio_at" precision="100" referenceCount="1" scale="0" source-column-ref="COL205" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL356" populated="true" UUID="0a664be3-6550-467c-a532-0613cef6da70" autoIncrement="false" defaultValue="" name="tx_mod_con_convenio_at" nullable="1" physicalName="tx_mod_con_convenio_at" precision="100" referenceCount="1" scale="0" source-column-ref="COL205" sourceDataTypeName="varchar" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
     </folder>
-    <folder id="FOLTAB3273" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    <folder id="FOLTAB3283" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
     </folder>
-    <folder id="FOLTAB3272" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    <folder id="FOLTAB3282" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
     </folder>
-    <folder id="FOLTAB3274" populated="true" name="Indices" physicalName="Indices" type="4">
-    <index id="IDX356" populated="true" UUID="c8e19a2d-83ff-42db-8f3b-d3d15505c101" clustered="false" index-type="BTREE" name="stg_personal_pk" physicalName="stg_personal_pk" primaryKeyIndex="true" unique="true" >
-     <index-column id="IDC357" populated="true" UUID="9af217a4-4460-4994-b7bc-90b63fba7530" ascendingOrDescending="UNSPECIFIED" column-ref="COL328" name="id_carga" physicalName="id_carga" />
+    <folder id="FOLTAB3284" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX357" populated="true" UUID="c8e19a2d-83ff-42db-8f3b-d3d15505c101" clustered="false" index-type="BTREE" name="stg_personal_pk" physicalName="stg_personal_pk" primaryKeyIndex="true" unique="true" >
+     <index-column id="IDC358" populated="true" UUID="9af217a4-4460-4994-b7bc-90b63fba7530" ascendingOrDescending="UNSPECIFIED" column-ref="COL329" name="id_carga" physicalName="id_carga" />
     </index>
    </folder>
   </table>
   <relationships>
   </relationships>
  </target-database>
- <ddl-generator type="ca.sqlpower.architect.ddl.PostgresDDLGenerator" allow-connection="false" target-schema="public"> </ddl-generator>
+ <ddl-generator type="ca.sqlpower.architect.ddl.PostgresDDLGenerator" allow-connection="true" target-schema="public"> </ddl-generator>
  <liquibase-settings useSeparateChangeSets="false" generateId="false" idStart="1"/>
  <compare-dm-settings  ddlGenerator="ca.sqlpower.architect.ddl.PostgresDDLGenerator"  outputFormatAsString="SQL"  saveFlag="true" >
-  <source-stuff   datastoreTypeAsString="DATABASE"   connectName="RRHH Local"   filePath=""  />
+  <source-stuff   datastoreTypeAsString="DATABASE"   connectName="HORAS Servidor"   filePath=""  />
   <target-stuff   datastoreTypeAsString="PROJECT"   filePath=""  />
   <liquibase-settings useSeparateChangeSets="false" generateId="false" idStart="1"/>
  </compare-dm-settings>
@@ -1197,7 +1200,7 @@
   <table-pane table-ref="TAB280" x="28" y="420" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
   <table-pane table-ref="TAB293" x="215" y="397" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
   <table-pane table-ref="TAB313" x="435" y="253" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
-  <table-pane table-ref="TAB327" x="629" y="16" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB328" x="629" y="16" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
  </play-pen>
  <critic-manager>
   <critic-grouping platformType="Generic" enabled="true">

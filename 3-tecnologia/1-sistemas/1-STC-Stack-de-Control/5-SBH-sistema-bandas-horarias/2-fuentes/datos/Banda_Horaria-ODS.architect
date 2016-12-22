@@ -4,11 +4,11 @@
  <print-settings numCopies="1" zoom="1.0" pageNumbersPrinted="true" orientation="1" paperWidth="612.0" paperHeight="792.0" leftBorder="50.0" rightBorder="50.0" topBorder="50.0" bottomBorder="50.0" />
  <project-data-sources>
   <data-source id="DS0">
-   <property key="Logical" value="RRHH Local" />
+   <property key="Logical" value="HORAS Servidor" />
    <property key="Connection Type" value="PostgreSQL" />
-   <property key="JDBC URL" value="jdbc:postgresql://localhost:5432/RRHH" />
-   <property key="UID" value="rrhh" />
-   <property key="PWD" value="rrhh" />
+   <property key="JDBC URL" value="jdbc:postgresql://monet.myc.ar:5430/horas" />
+   <property key="UID" value="horas" />
+   <property key="PWD" value="hola1234" />
    <property key="ca.sqlpower.architect.etl.kettle.database" value="" />
    <property key="ca.sqlpower.architect.etl.kettle.port" value="" />
    <property key="ca.sqlpower.architect.etl.kettle.hostname" value="" />
@@ -516,32 +516,38 @@
     <column id="COL155" populated="true" UUID="df898d46-4247-4e14-b1ac-460c4742bafa" autoIncrement="false" autoIncrementSequenceName="ods_lectura_fe_carga_seq" defaultValue="" name="Fecha Carga" nullable="1" physicalName="fe_carga" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="93" userDefinedTypeUUID="6497d8de-0e00-40d6-a42e-e2adca83be64" >
      <remarks>Fecha de carga del registro en el DW.</remarks>
     </column>
+    <column id="COL156" populated="true" UUID="03871936-3c46-4a81-a94a-c9b0b78cc29a" autoIncrement="false" autoIncrementSequenceName="ods_lectura_co_sentido_seq" defaultValue="" name="Sentido" nullable="0" physicalName="co_sentido" precision="1" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="1" userDefinedTypeUUID="67ddc63f-5541-4dd1-9236-632d9d155e80" >
+     <remarks>Sentido de circulación de la lectura:
+E=Entrada
+S=Salida
+N=No Identificado</remarks>
+    </column>
     </folder>
     <folder id="FOLTAB1413" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
     </folder>
     <folder id="FOLTAB1412" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
     </folder>
     <folder id="FOLTAB1414" populated="true" name="Indices" physicalName="Indices" type="4">
-    <index id="IDX156" populated="true" UUID="d6db7ed8-4c59-4da8-801d-b20c687adb23" clustered="false" name="ods_lectura_pk" physicalName="ods_lectura_pk" primaryKeyIndex="true" unique="false" >
-     <index-column id="IDC157" populated="true" UUID="2889c969-8e49-44c4-880d-12db452e3c15" ascendingOrDescending="UNSPECIFIED" column-ref="COL142" name="ID Lectura" physicalName="id_lectura" />
+    <index id="IDX157" populated="true" UUID="d6db7ed8-4c59-4da8-801d-b20c687adb23" clustered="false" name="ods_lectura_pk" physicalName="ods_lectura_pk" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC158" populated="true" UUID="2889c969-8e49-44c4-880d-12db452e3c15" ascendingOrDescending="UNSPECIFIED" column-ref="COL142" name="ID Lectura" physicalName="id_lectura" />
     </index>
-    <index id="IDX158" populated="true" UUID="235cc905-0b67-4fe4-8b38-3edb17fe63af" clustered="false" name="ods_lectura_ix" physicalName="ods_lectura_ix" primaryKeyIndex="false" unique="false" >
-     <index-column id="IDC159" populated="true" UUID="88784858-2f53-4539-b84f-fa108f39d572" ascendingOrDescending="UNSPECIFIED" column-ref="COL143" name="ID Persona" physicalName="id_persona" />
-     <index-column id="IDC160" populated="true" UUID="aeccc0e3-716a-4505-a6ab-0b00d5aeb3b7" ascendingOrDescending="UNSPECIFIED" column-ref="COL144" name="Fecha Hora" physicalName="fe_fecha_lectura" />
-     <index-column id="IDC161" populated="true" UUID="5d65b418-ed4c-46f9-b9a9-85ae0246262c" ascendingOrDescending="UNSPECIFIED" column-ref="COL153" name="ID Carga" physicalName="id_carga" />
+    <index id="IDX159" populated="true" UUID="235cc905-0b67-4fe4-8b38-3edb17fe63af" clustered="false" name="ods_lectura_ix" physicalName="ods_lectura_ix" primaryKeyIndex="false" unique="false" >
+     <index-column id="IDC160" populated="true" UUID="88784858-2f53-4539-b84f-fa108f39d572" ascendingOrDescending="UNSPECIFIED" column-ref="COL143" name="ID Persona" physicalName="id_persona" />
+     <index-column id="IDC161" populated="true" UUID="aeccc0e3-716a-4505-a6ab-0b00d5aeb3b7" ascendingOrDescending="UNSPECIFIED" column-ref="COL144" name="Fecha Hora" physicalName="fe_fecha_lectura" />
+     <index-column id="IDC162" populated="true" UUID="5d65b418-ed4c-46f9-b9a9-85ae0246262c" ascendingOrDescending="UNSPECIFIED" column-ref="COL153" name="ID Carga" physicalName="id_carga" />
     </index>
    </folder>
   </table>
   <relationships>
-   <relationship id="REL162" populated="true" UUID="b255faba-c8a7-4293-9545-5256a7ffd671" deferrability="7" deleteRule="3" fk-table-ref="TAB141" fkCardinality="7" identifying="false" name="ods_persona_lectura_fk" physicalName="ods_persona_lectura_fk" pk-table-ref="TAB122" pkCardinality="2" updateRule="3" >
-    <column-mapping id="CMP163" populated="true" UUID="41ced146-d683-4322-a699-2ff7d649c035" fk-column-ref="COL143" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL123" />
+   <relationship id="REL163" populated="true" UUID="b255faba-c8a7-4293-9545-5256a7ffd671" deferrability="7" deleteRule="3" fk-table-ref="TAB141" fkCardinality="7" identifying="false" name="ods_persona_lectura_fk" physicalName="ods_persona_lectura_fk" pk-table-ref="TAB122" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP164" populated="true" UUID="41ced146-d683-4322-a699-2ff7d649c035" fk-column-ref="COL143" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL123" />
    </relationship>
   </relationships>
  </target-database>
  <ddl-generator type="ca.sqlpower.architect.ddl.PostgresDDLGenerator" allow-connection="false" target-schema="public"> </ddl-generator>
  <liquibase-settings useSeparateChangeSets="false" generateId="false" idStart="1"/>
  <compare-dm-settings  ddlGenerator="ca.sqlpower.architect.ddl.PostgresDDLGenerator"  outputFormatAsString="SQL"  saveFlag="true" >
-  <source-stuff   datastoreTypeAsString="DATABASE"   connectName="RRHH Local"   filePath=""  />
+  <source-stuff   datastoreTypeAsString="DATABASE"   connectName="HORAS Servidor"   filePath=""  />
   <target-stuff   datastoreTypeAsString="PROJECT"   filePath=""  />
   <liquibase-settings useSeparateChangeSets="false" generateId="false" idStart="1"/>
  </compare-dm-settings>
@@ -549,7 +555,7 @@
  <play-pen zoom="1.0" viewportX="0" viewportY="0" relationship-style="rectilinear" names-displayLogicalNames="true" showPrimaryTag="true" showForeignTag="true" showAlternateTag="true" columnVisibility="ALL" relationshipLabelVisibility="true">
   <table-pane table-ref="TAB122" x="66" y="314" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
   <table-pane table-ref="TAB141" x="406" y="178" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
-  <table-link relationship-ref="REL162" pkConnection="0.17751479289940827" fkConnection="0.7595628415300546" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="33"/>
+  <table-link relationship-ref="REL163" pkConnection="0.17751479289940827" fkConnection="0.7595628415300546" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="33"/>
  </play-pen>
  <critic-manager>
   <critic-grouping platformType="Generic" enabled="true">

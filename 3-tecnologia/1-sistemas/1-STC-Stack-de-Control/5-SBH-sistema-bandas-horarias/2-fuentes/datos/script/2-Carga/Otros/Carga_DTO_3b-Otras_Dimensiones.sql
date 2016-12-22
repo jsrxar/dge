@@ -31,6 +31,14 @@ INSERT INTO dim_lugar (co_lugar, no_lugar, ds_direccion) VALUES
 ('I', 'Interior',   'Interior');
 
 --###################
+--####  Sentido  ####
+--###################
+INSERT INTO dim_origen (id_origen, co_origen, no_origen) VALUES
+(-1, 'N', 'No Identificado'),
+(0, 'E', 'Entrada'),
+(1, 'S', 'Salida');
+
+--###################
 --####  Persona  ####
 --###################
 INSERT INTO dim_persona (id_persona, co_dni_cuit, no_persona)

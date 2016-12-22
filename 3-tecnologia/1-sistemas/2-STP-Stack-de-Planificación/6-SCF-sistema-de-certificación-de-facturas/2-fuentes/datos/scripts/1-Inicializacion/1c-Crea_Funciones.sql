@@ -23,7 +23,7 @@ $valida_numero$;
 CREATE OR REPLACE FUNCTION facturas.fn_valida_encrypt(IN ds_importe TEXT, IN pKey TEXT) RETURNS BYTEA
 	LANGUAGE plpgsql AS $valida_encrypt$
 BEGIN
-	RETURN fn_encrypt(ds_importe::NUMERIC::TEXT::BYTEA, pKey);
+	RETURN fn_encrypt(REPLACE(REPLACE(ds_importe,' ',''),',','.')::TEXT::BYTEA, pKey);
 EXCEPTION WHEN others THEN
 	RETURN NULL;
 END
@@ -126,6 +126,13 @@ BEGIN
 	ELSIF (TG_OP='INSERT') THEN
 		NEW.va_factura = facturas.fn_encrypt(NEW.va_factura);
 	END IF;
+
+	-- Actualiza datos del Honorario
+	NEW.no_tipo_honorario = (
+		SELECT th.no_tipo_honorario
+		FROM facturas.honorario ho
+		LEFT JOIN facturas.tipo_honorario th ON th.id_tipo_honorario = ho.id_tipo_honorario
+		WHERE ho.id_honorario = NEW.id_honorario );
 
 	-- Actualiza ID del Convenio
 	NEW.id_convenio_at = (

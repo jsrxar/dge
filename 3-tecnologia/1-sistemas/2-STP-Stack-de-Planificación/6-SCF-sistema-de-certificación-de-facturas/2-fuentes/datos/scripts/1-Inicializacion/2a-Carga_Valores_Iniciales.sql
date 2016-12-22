@@ -233,12 +233,12 @@ INSERT INTO facturas.tipo_honorario (
 	co_categ_honorario,
 	va_pct_ajuste )
 SELECT
-	TO_CHAR(datum, 'YYYYMM"0"')::INT AS id_tipo_honorario,
-	EXTRACT(MONTH FROM datum)        AS nu_mes_honorario,
-	EXTRACT(YEAR FROM datum)         AS nu_anio_honorario,
-	TO_CHAR(datum, 'YYYY/MM')        AS no_tipo_honorario,
-	'M'                              AS co_categ_honorario,
-	0                                AS va_pct_ajuste
+	TO_CHAR(datum, 'YYYYMM"0"')::INT  AS id_tipo_honorario,
+	EXTRACT(MONTH FROM datum)         AS nu_mes_honorario,
+	EXTRACT(YEAR FROM datum)          AS nu_anio_honorario,
+	TO_CHAR(datum, 'Mensual MM/YYYY') AS no_tipo_honorario,
+	'M'                               AS co_categ_honorario,
+	0                                 AS va_pct_ajuste
 FROM (
 	-- There are 3 leap years in this range, so calculate 365 * 20 + 5 records
 	SELECT '2015-01-01'::DATE + (SEQUENCE.DAY::TEXT || ' MONTH')::INTERVAL AS datum
