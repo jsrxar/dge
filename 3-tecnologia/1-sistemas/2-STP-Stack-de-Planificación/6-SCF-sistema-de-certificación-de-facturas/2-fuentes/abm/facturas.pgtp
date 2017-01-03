@@ -489,7 +489,7 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
             <Column fieldName="ds_comentario" caption="Comentario Factura" visible="true" canSetNull="true">
               <EditProperties type="textArea" columnCount="45" rowCount="3" placeholder=""/>
             </Column>
-            <Column fieldName="id_certificacion" caption="Lote Certificación" visible="true" canSetNull="true" readOnly="true">
+            <Column fieldName="id_certificacion" caption="Lote Certificación" visible="true" canSetNull="true">
               <Lookup tableName="ver_lote_cert" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <EditProperties type="comboBox">
                 <MFUItems/>
@@ -585,7 +585,7 @@ if(item.text.indexOf(&quot;&lt;!--&quot;) &lt; 0) {
             <Column fieldName="ds_comentario" caption="Comentario Factura" visible="true" canSetNull="true" defaultInsertValue="">
               <EditProperties type="textArea" columnCount="45" rowCount="3" placeholder=""/>
             </Column>
-            <Column fieldName="id_certificacion" caption="Lote Certificación" visible="false" canSetNull="true" readOnly="true" defaultInsertValue="">
+            <Column fieldName="id_certificacion" caption="Lote Certificación" visible="false" canSetNull="true" defaultInsertValue="">
               <Lookup tableName="ver_lote_cert" linkFieldName="id" displayFieldName="nombre" lookupFilter="" useLookupOrdering="true" lookupOrdering="0"/>
               <EditProperties type="comboBox">
                 <MFUItems/>
