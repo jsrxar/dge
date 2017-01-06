@@ -388,6 +388,7 @@ CREATE TABLE facturas.factura (
                 ds_comentario VARCHAR(400),
                 id_ubicacion_fisica INTEGER,
                 id_carga INTEGER,
+                no_tipo_honorario VARCHAR(20),
                 CONSTRAINT factura_pk PRIMARY KEY (id_factura)
 );
 COMMENT ON TABLE facturas.factura IS 'Factura del agente asociada a un honorario mensual.';
@@ -409,6 +410,7 @@ COMMENT ON COLUMN facturas.factura.ds_certificacion IS 'Observaciones de certifi
 COMMENT ON COLUMN facturas.factura.ds_comentario IS 'Comentario de la factura.';
 COMMENT ON COLUMN facturas.factura.id_ubicacion_fisica IS 'Ubicación física de traajo del agente.';
 COMMENT ON COLUMN facturas.factura.id_carga IS 'Identificador único de la carga en la que se generó el registro.';
+COMMENT ON COLUMN facturas.factura.no_tipo_honorario IS 'Tipo de honorario (normalmente el mes).';
 
 
 ALTER SEQUENCE facturas.factura_sq OWNED BY facturas.factura.id_factura;

@@ -43,9 +43,11 @@ function fn_factura_insert () {
 			var monto = $("#select2-chosen-4").html().split("(")[1];
 			monto = monto.split(")")[0];
 			monto = monto.replace("$","").replace(".","").replace(",",".");
-			$("#va_factura_edit").val(monto);
-			$("#va_factura_aux").val(monto);
-			commentOblig (false);
+			if($("#va_factura_aux").val() != monto) {
+				$("#va_factura_edit").val(monto);
+				$("#va_factura_aux").val(monto);
+				commentOblig (false);
+			}
 		}
 	});
 	
